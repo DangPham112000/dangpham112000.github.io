@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Posts on The Engineer Blogs</title>
+    <link>https://dangpham112000.github.io/posts/</link>
+    <description>Recent content in Posts on The Engineer Blogs</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 15 Nov 2023 01:47:46 +0700</lastBuildDate>
+    <atom:link href="https://dangpham112000.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Be Protocol</title>
+      <link>https://dangpham112000.github.io/posts/be-protocol/</link>
+      <pubDate>Wed, 15 Nov 2023 01:47:46 +0700</pubDate>
+      <guid>https://dangpham112000.github.io/posts/be-protocol/</guid>
+      <description>helo may cung</description>
+    </item>
+  </channel>
+</rss>
