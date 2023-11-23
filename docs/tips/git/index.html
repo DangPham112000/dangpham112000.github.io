@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="GIT#Terminology#HEAD: your current local working branch
+origin: the address to your remote git, represent for remote repo
+tracked file: the file git already had before, so when you edit it, git know this file is modified (M files)
+untracked, new file: the file recently add and git don’t know anything about it (U files)
+Commit#git add . git commit -m &#34;commit message&#34; These 2 commands can combie into 1">
+<meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff">
+<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#343a40">
+<meta name="color-scheme" content="light dark"><meta property="og:title" content="Git tips" />
+<meta property="og:description" content="GIT#Terminology#HEAD: your current local working branch
+origin: the address to your remote git, represent for remote repo
+tracked file: the file git already had before, so when you edit it, git know this file is modified (M files)
+untracked, new file: the file recently add and git don’t know anything about it (U files)
+Commit#git add . git commit -m &#34;commit message&#34; These 2 commands can combie into 1" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://dangpham112000.github.io/docs/tips/git/" /><meta property="article:section" content="docs" />
+<meta property="article:published_time" content="2023-11-15T01:47:46+07:00" />
+<meta property="article:modified_time" content="2023-11-15T01:47:46+07:00" />
+
+<title>Git tips | The Engineer Blogs</title>
+<link rel="manifest" href="/manifest.json">
+<link rel="icon" href="/favicon.png" >
+<link rel="stylesheet" href="/book.min.33a48f5432973b8ff9a82679d9e45d67f2c15d4399bd2829269455cfe390b5e8.css" integrity="sha256-M6SPVDKXO4/5qCZ52eRdZ/LBXUOZvSgpJpRVz&#43;OQteg=" crossorigin="anonymous">
+  <script defer src="/flexsearch.min.js"></script>
+  <script defer src="/en.search.min.91744671d95437d19557191d815592040a11eea8535ee49ffa14598cd44ca75b.js" integrity="sha256-kXRGcdlUN9GVVxkdgVWSBAoR7qhTXuSf&#43;hRZjNRMp1s=" crossorigin="anonymous"></script>
+<!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+  
+</head>
+<body dir="ltr">
+  <input type="checkbox" class="hidden toggle" id="menu-control" />
+  <input type="checkbox" class="hidden toggle" id="toc-control" />
+  <main class="container flex">
+    <aside class="book-menu">
+      <div class="book-menu-content">
+        
+  <nav>
+<h2 class="book-brand">
+  <a class="flex align-center" href="/"><span>The Engineer Blogs</span>
+  </a>
+</h2>
+
+
+<div class="book-search">
+  <input type="text" id="book-search-input" placeholder="Search" aria-label="Search" maxlength="64" data-hotkeys="s/" />
+  <div class="book-search-spinner hidden"></div>
+  <ul id="book-search-results"></ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <ul>
+    
+      
+        <li class="book-section-flat" >
+          
+  
+  
+
+  
+    <span>TIPs</span>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/tips/git/" class="active">Git tips</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/be-protocol/" class="">BE Protocol</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</nav>
+
+
+
+
+  <script>(function(){var e=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(){localStorage.setItem("menu.scrollTop",e.scrollTop)}),e.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
+
+
+ 
+      </div>
+    </aside>
+
+    <div class="book-page">
+      <header class="book-header">
+        
+  <div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="/svg/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <strong>Git tips</strong>
+
+  <label for="toc-control">
+    
+    <img src="/svg/toc.svg" class="book-icon" alt="Table of Contents" />
+    
+  </label>
+</div>
+
+
+  
+  <aside class="hidden clearfix">
+    
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#terminology">Terminology</a></li>
+    <li><a href="#commit">Commit</a></li>
+    <li><a href="#change-previous-commit-message">Change previous commit message</a>
+      <ul>
+        <li><a href="#commit-amend">Commit amend</a></li>
+        <li><a href="#rebase-reword">Rebase reword</a></li>
+      </ul>
+    </li>
+    <li><a href="#opps-code-on-wrong-branch">Opps! Code on wrong branch</a>
+      <ul>
+        <li><a href="#stash">Stash</a></li>
+      </ul>
+    </li>
+    <li><a href="#opps-commit-into-local-main-branch">Opps! Commit into local main branch</a>
+      <ul>
+        <li><a href="#reset">Reset</a></li>
+      </ul>
+    </li>
+    <li><a href="#update-the-outdated-feature-branch">Update the outdated feature branch</a>
+      <ul>
+        <li><a href="#relocate-branch-rebase">Relocate branch: rebase</a></li>
+        <li><a href="#pull-origin">Pull origin</a></li>
+      </ul>
+    </li>
+    <li><a href="#clean-up-messy-commits">Clean up messy commits</a>
+      <ul>
+        <li><a href="#accumulate-commits-rebase-fixup">Accumulate commits: rebase fixup</a></li>
+      </ul>
+    </li>
+    <li><a href="#delete-all-local-branches-except-main-branch">Delete all local branches except main branch</a></li>
+    <li><a href="#refresh-outdated-local-branch">Refresh outdated local branch</a></li>
+    <li><a href="#merge-pr-but-get-stuck-in-conflict">Merge PR but get stuck in conflict</a>
+      <ul>
+        <li><a href="#relocate-branch-rebase-1">Relocate branch: rebase</a></li>
+      </ul>
+    </li>
+    <li><a href="#log-pretty">Log pretty</a></li>
+    <li><a href="#config">Config</a>
+      <ul>
+        <li><a href="#show-current-global-credential">Show current global credential</a></li>
+        <li><a href="#configure-local-repos-credential-when-you-want-its-different-with-the-global-one">Configure local repo’s credential when you want it’s different with the global one</a></li>
+        <li><a href="#switch-git-user">Switch git user</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+
+
+  </aside>
+  
+ 
+      </header>
+
+      
+      
+  <article class="markdown"><h1 id="git">
+  GIT
+  <a class="anchor" href="#git">#</a>
+</h1>
+<h2 id="terminology">
+  Terminology
+  <a class="anchor" href="#terminology">#</a>
+</h2>
+<ul>
+<li>
+<p><code>HEAD</code>: your current local working branch</p>
+</li>
+<li>
+<p><code>origin</code>: the address to your remote git, represent for remote repo</p>
+</li>
+<li>
+<p>tracked file: the file git already had before, so when you edit it, git know this file is modified (<code>M</code> files)</p>
+</li>
+<li>
+<p>untracked, new file: the file recently add and git don’t know anything about it (<code>U</code> files)</p>
+</li>
+</ul>
+<h2 id="commit">
+  Commit
+  <a class="anchor" href="#commit">#</a>
+</h2>
+<pre tabindex="0"><code>git add .
+git commit -m &#34;commit message&#34;
+</code></pre><p>These 2 commands can combie into 1</p>
+<pre tabindex="0"><code>git commit -am &#34;commit message&#34;
+</code></pre><p>Note this only work with tracked files</p>
+<h2 id="change-previous-commit-message">
+  Change previous commit message
+  <a class="anchor" href="#change-previous-commit-message">#</a>
+</h2>
+<h3 id="commit-amend">
+  Commit amend
+  <a class="anchor" href="#commit-amend">#</a>
+</h3>
+<pre tabindex="0"><code>git commit --amend -m &#34;new message to replace the previous message&#34;
+</code></pre><p>Note this <code>amend</code> can also simplify by <code>amen</code> :))))</p>
+<h3 id="rebase-reword">
+  Rebase reword
+  <a class="anchor" href="#rebase-reword">#</a>
+</h3>
+<pre tabindex="0"><code>git rebase -i HEAD~1
+</code></pre><p>[Vim IDE appear and show a latest commit] <!-- raw HTML omitted -->
+→ type <code>i</code> to change into insert mode <!-- raw HTML omitted -->
+→ change <code>“pick”</code> to <code>“r”</code> or <code>“reword”</code> → means you will change this commit message <!-- raw HTML omitted -->
+→ press <code>“escape”</code> key to out insert mode <!-- raw HTML omitted -->
+→ type <code>wq</code> to save <!-- raw HTML omitted -->
+→ new vim ide appear to let you change the commit message <!-- raw HTML omitted -->
+→ change and save <!-- raw HTML omitted --></p>
+<pre tabindex="0"><code>git push -f
+</code></pre><h2 id="opps-code-on-wrong-branch">
+  Opps! Code on wrong branch
+  <a class="anchor" href="#opps-code-on-wrong-branch">#</a>
+</h2>
+<h3 id="stash">
+  Stash
+  <a class="anchor" href="#stash">#</a>
+</h3>
+<pre tabindex="0"><code>git stash
+git checkout correct-branch
+git stash pop
+</code></pre><p><!-- raw HTML omitted -->Note<!-- raw HTML omitted --> git stash will only bring the changes on <code>tracked files</code> to store but don’t worry when checkout to other branch, the <code>untracked files</code> will move to there also</p>
+<h2 id="opps-commit-into-local-main-branch">
+  Opps! Commit into local main branch
+  <a class="anchor" href="#opps-commit-into-local-main-branch">#</a>
+</h2>
+<h3 id="reset">
+  Reset
+  <a class="anchor" href="#reset">#</a>
+</h3>
+<p>Solution 1: Erase the current commit and back to the earlier commit</p>
+<pre tabindex="0"><code>git reset --hard HEAD~1
+</code></pre><p>Solution 2: Bring the current commit to staged change and go back to the earlier commit</p>
+<pre tabindex="0"><code>git reset --soft HEAD~1
+</code></pre><h2 id="update-the-outdated-feature-branch">
+  Update the outdated feature branch
+  <a class="anchor" href="#update-the-outdated-feature-branch">#</a>
+</h2>
+<h3 id="relocate-branch-rebase">
+  Relocate branch: rebase
+  <a class="anchor" href="#relocate-branch-rebase">#</a>
+</h3>
+<p>[figure] =&gt; [figure]</p>
+<pre tabindex="0"><code>git checkout master
+git pull
+git rebase master topic
+git push -f
+</code></pre><h3 id="pull-origin">
+  Pull origin
+  <a class="anchor" href="#pull-origin">#</a>
+</h3>
+<p>Collect code from master to feature branch. feature branch in this example is topic branch</p>
+<pre tabindex="0"><code>git checkout master
+git pull
+git checkout topic
+git pull origin master
+</code></pre><p><!-- raw HTML omitted -->Note:<!-- raw HTML omitted --> never tried yet</p>
+<h2 id="clean-up-messy-commits">
+  Clean up messy commits
+  <a class="anchor" href="#clean-up-messy-commits">#</a>
+</h2>
+<h3 id="accumulate-commits-rebase-fixup">
+  Accumulate commits: rebase fixup
+  <a class="anchor" href="#accumulate-commits-rebase-fixup">#</a>
+</h3>
+<p>If you have 3 messy commits per 4 commits on your feature branch</p>
+<p>[figure] =&gt; [figure]</p>
+<pre tabindex="0"><code>git rebase -i HEAD~4
+</code></pre><p>[vim ide appear and show 4 latest commits] <!-- raw HTML omitted -->
+→ type “i” to change into insert mode <!-- raw HTML omitted -->
+→ change “pick” to “f” or “fixup” → means you accumulate this 3 commits <!-- raw HTML omitted -->
+[figure] =&gt; [figure] <!-- raw HTML omitted -->
+→ out insert mode with “escape” key <!-- raw HTML omitted -->
+→ type “wq” to save <!-- raw HTML omitted -->
+[figure]</p>
+<pre tabindex="0"><code>git push -f
+</code></pre><p>Note: this commit will have all changes from 3 previous commits</p>
+<h2 id="delete-all-local-branches-except-main-branch">
+  Delete all local branches except main branch
+  <a class="anchor" href="#delete-all-local-branches-except-main-branch">#</a>
+</h2>
+<pre tabindex="0"><code>git branch | grep -v &#34;main&#34; | xargs git branch -D
+</code></pre><p>Explanation:</p>
+<ul>
+<li>Get all branches (except for the main) via git branch | grep -v &ldquo;main&rdquo; command</li>
+<li>Select every branch with xargs command</li>
+<li>Delete branch with xargs git branch -D</li>
+</ul>
+<h2 id="refresh-outdated-local-branch">
+  Refresh outdated local branch
+  <a class="anchor" href="#refresh-outdated-local-branch">#</a>
+</h2>
+<ul>
+<li>If you pull but show some warnings or errors and git show a recommend that is need to type some rebase commands</li>
+<li>Just checkout to another branch, delete your local conflict branch and then checkout to this branch again to download a latest one in remote repo</li>
+</ul>
+<pre tabindex="0"><code>git checkout dev
+git branch -D feature-branch
+git fetch
+git checkout feature-branch
+</code></pre><h2 id="merge-pr-but-get-stuck-in-conflict">
+  Merge PR but get stuck in conflict
+  <a class="anchor" href="#merge-pr-but-get-stuck-in-conflict">#</a>
+</h2>
+<h3 id="relocate-branch-rebase-1">
+  Relocate branch: rebase
+  <a class="anchor" href="#relocate-branch-rebase-1">#</a>
+</h3>
+<pre tabindex="0"><code>git checkout main
+git pull
+checkout feature-branch
+git rebase main feature-branch
+</code></pre><p>[Conflict appears in IDE]
+→ Resolve conflict and save file</p>
+<pre tabindex="0"><code>git add .
+git rebase --continue
+</code></pre><p>[vim ide appear to make you confirm change]
+→ <code>:wq</code></p>
+<pre tabindex="0"><code>git push -f
+</code></pre><h2 id="log-pretty">
+  Log pretty
+  <a class="anchor" href="#log-pretty">#</a>
+</h2>
+<pre tabindex="0"><code>git log --graph --decorate --oneline
+</code></pre><p>or</p>
+<pre tabindex="0"><code>git log --graph --decorate
+</code></pre><h2 id="config">
+  Config
+  <a class="anchor" href="#config">#</a>
+</h2>
+<h3 id="show-current-global-credential">
+  Show current global credential
+  <a class="anchor" href="#show-current-global-credential">#</a>
+</h3>
+<pre tabindex="0"><code>git config --global --list
+</code></pre><h3 id="configure-local-repos-credential-when-you-want-its-different-with-the-global-one">
+  Configure local repo’s credential when you want it’s different with the global one
+  <a class="anchor" href="#configure-local-repos-credential-when-you-want-its-different-with-the-global-one">#</a>
+</h3>
+<pre tabindex="0"><code>git config user.name DangPham112000
+git config user.email dangpham112000@gmail.com
+</code></pre><h3 id="switch-git-user">
+  Switch git user
+  <a class="anchor" href="#switch-git-user">#</a>
+</h3>
+<p><a href="https://github.com/geongeorge/Git-User-Switch">https://github.com/geongeorge/Git-User-Switch</a></p>
+</article>
+ 
+      
+
+      <footer class="book-footer">
+        
+  <div class="flex flex-wrap justify-between">
+
+
+
+
+
+</div>
+
+
+
+  <script>(function(){function e(e){const t=window.getSelection(),n=document.createRange();n.selectNodeContents(e),t.removeAllRanges(),t.addRange(n)}document.querySelectorAll("pre code").forEach(t=>{t.addEventListener("click",function(){if(window.getSelection().toString())return;e(t.parentElement),navigator.clipboard&&navigator.clipboard.writeText(t.parentElement.textContent)})})})()</script>
+
+
+ 
+        
+      </footer>
+
+      
+  
+  <div class="book-comments">
+
+</div>
+  
+ 
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
+    </div>
+
+    
+    <aside class="book-toc">
+      <div class="book-toc-content">
+        
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#terminology">Terminology</a></li>
+    <li><a href="#commit">Commit</a></li>
+    <li><a href="#change-previous-commit-message">Change previous commit message</a>
+      <ul>
+        <li><a href="#commit-amend">Commit amend</a></li>
+        <li><a href="#rebase-reword">Rebase reword</a></li>
+      </ul>
+    </li>
+    <li><a href="#opps-code-on-wrong-branch">Opps! Code on wrong branch</a>
+      <ul>
+        <li><a href="#stash">Stash</a></li>
+      </ul>
+    </li>
+    <li><a href="#opps-commit-into-local-main-branch">Opps! Commit into local main branch</a>
+      <ul>
+        <li><a href="#reset">Reset</a></li>
+      </ul>
+    </li>
+    <li><a href="#update-the-outdated-feature-branch">Update the outdated feature branch</a>
+      <ul>
+        <li><a href="#relocate-branch-rebase">Relocate branch: rebase</a></li>
+        <li><a href="#pull-origin">Pull origin</a></li>
+      </ul>
+    </li>
+    <li><a href="#clean-up-messy-commits">Clean up messy commits</a>
+      <ul>
+        <li><a href="#accumulate-commits-rebase-fixup">Accumulate commits: rebase fixup</a></li>
+      </ul>
+    </li>
+    <li><a href="#delete-all-local-branches-except-main-branch">Delete all local branches except main branch</a></li>
+    <li><a href="#refresh-outdated-local-branch">Refresh outdated local branch</a></li>
+    <li><a href="#merge-pr-but-get-stuck-in-conflict">Merge PR but get stuck in conflict</a>
+      <ul>
+        <li><a href="#relocate-branch-rebase-1">Relocate branch: rebase</a></li>
+      </ul>
+    </li>
+    <li><a href="#log-pretty">Log pretty</a></li>
+    <li><a href="#config">Config</a>
+      <ul>
+        <li><a href="#show-current-global-credential">Show current global credential</a></li>
+        <li><a href="#configure-local-repos-credential-when-you-want-its-different-with-the-global-one">Configure local repo’s credential when you want it’s different with the global one</a></li>
+        <li><a href="#switch-git-user">Switch git user</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+
+ 
+      </div>
+    </aside>
+    
+  </main>
+
+  
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
