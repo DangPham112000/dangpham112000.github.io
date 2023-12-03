@@ -1,21 +1,19 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>TIPs on The Engineer Blogs</title>
+    <title>TIPS on The Engineer Blogs</title>
     <link>https://dangpham112000.github.io/docs/tips/</link>
-    <description>Recent content in TIPs on The Engineer Blogs</description>
+    <description>Recent content in TIPS on The Engineer Blogs</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Wed, 15 Nov 2023 01:47:46 +0700</lastBuildDate>
     <atom:link href="https://dangpham112000.github.io/docs/tips/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Git tips</title>
+      <title>Git</title>
       <link>https://dangpham112000.github.io/docs/tips/git/</link>
       <pubDate>Wed, 15 Nov 2023 01:47:46 +0700</pubDate>
       <guid>https://dangpham112000.github.io/docs/tips/git/</guid>
-      <description>GIT#Terminology#HEAD: your current local working branch
-origin: the address to your remote git, represent for remote repo
-tracked file: the file git already had before, so when you edit it, git know this file is modified (M files)
+      <description>GIT TIPS#Terminology#HEAD: your current local working branch origin: the address to your remote git, represent for remote repo tracked file: the file git already had before, so when you edit it, git know this file is modified (M files)
 untracked, new file: the file recently add and git don’t know anything about it (U files)
 Commit#git add . git commit -m &amp;#34;commit message&amp;#34; These 2 commands can combie into 1</description>
     </item>

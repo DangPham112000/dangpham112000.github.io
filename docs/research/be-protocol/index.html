@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Backend Protocol#What is a protocol?#A system that allows two parties to communicate A protocol is designed with a set of properties Depending on the purpose of the protocol TCP, UDP, HTTP, gRPC, FTP The application protocols (HTTP/1.1, HTTP/2, HTTP/3) run on top of transport protocols (TCP, UDP) Protocol properties#Data format Text based (plain text, JSON, XML) Binary (protobuf, RESP, h2, h3) Transfer mode Message based (UDP, HTTaP) Stream (TCP, WebRTC) Addressing system DNS name, IP, MAC Directionality Bidirectional (TCP) Unidirectional (HTTP) Full/Half duplex State Stateful (TCP, gRPC, apache thrift) Stateless (UDP, HTTP) Routing Proxies, Gateways Flow &amp; Congestion control TCP (Flow &amp; Congestion) UDP (No control) Error management Error code Retries and timeouts Why do we need a communication model?">
+<meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff">
+<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#343a40">
+<meta name="color-scheme" content="light dark"><meta property="og:title" content="Backend Protocol" />
+<meta property="og:description" content="Backend Protocol#What is a protocol?#A system that allows two parties to communicate A protocol is designed with a set of properties Depending on the purpose of the protocol TCP, UDP, HTTP, gRPC, FTP The application protocols (HTTP/1.1, HTTP/2, HTTP/3) run on top of transport protocols (TCP, UDP) Protocol properties#Data format Text based (plain text, JSON, XML) Binary (protobuf, RESP, h2, h3) Transfer mode Message based (UDP, HTTaP) Stream (TCP, WebRTC) Addressing system DNS name, IP, MAC Directionality Bidirectional (TCP) Unidirectional (HTTP) Full/Half duplex State Stateful (TCP, gRPC, apache thrift) Stateless (UDP, HTTP) Routing Proxies, Gateways Flow &amp; Congestion control TCP (Flow &amp; Congestion) UDP (No control) Error management Error code Retries and timeouts Why do we need a communication model?" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://dangpham112000.github.io/docs/research/be-protocol/" /><meta property="article:section" content="docs" />
+<meta property="article:published_time" content="2023-11-15T01:47:46+07:00" />
+<meta property="article:modified_time" content="2023-11-15T01:47:46+07:00" />
+
+<title>Backend Protocol | The Engineer Blogs</title>
+<link rel="manifest" href="/manifest.json">
+<link rel="icon" href="/favicon.png" >
+<link rel="stylesheet" href="/book.min.d2e03d9c7a4cea10fdd096eb48db6766340b9b3b186fa0321e2ad69205bdc3ad.css" integrity="sha256-0uA9nHpM6hD90JbrSNtnZjQLmzsYb6AyHirWkgW9w60=" crossorigin="anonymous">
+  <script defer src="/flexsearch.min.js"></script>
+  <script defer src="/en.search.min.41ba5f9d96b5ce8504cfa2cf4982003102c155e0dcf3f10496f223996d12cfe1.js" integrity="sha256-QbpfnZa1zoUEz6LPSYIAMQLBVeDc8/EElvIjmW0Sz&#43;E=" crossorigin="anonymous"></script>
+<!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+  
+</head>
+<body dir="ltr">
+  <input type="checkbox" class="hidden toggle" id="menu-control" />
+  <input type="checkbox" class="hidden toggle" id="toc-control" />
+  <main class="container flex">
+    <aside class="book-menu">
+      <div class="book-menu-content">
+        
+  <nav>
+<h2 class="book-brand">
+  <a class="flex align-center" href="/"><span>The Engineer Blogs</span>
+  </a>
+</h2>
+
+
+<div class="book-search">
+  <input type="text" id="book-search-input" placeholder="Search" aria-label="Search" maxlength="64" data-hotkeys="s/" />
+  <div class="book-search-spinner hidden"></div>
+  <ul id="book-search-results"></ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <ul>
+    
+      
+        <li class="book-section-flat" >
+          
+  
+  
+
+  
+    <span>PROBLEMS</span>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/problems/knight-dialer/" class="">Knight Dialer</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li class="book-section-flat" >
+          
+  
+  
+
+  
+    <span>RESEARCH</span>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/research/be-protocol/" class="active">Backend Protocol</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li class="book-section-flat" >
+          
+  
+  
+
+  
+    <span>TIPS</span>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/tips/git/" class="">Git</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</nav>
+
+
+
+
+  <script>(function(){var e=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(){localStorage.setItem("menu.scrollTop",e.scrollTop)}),e.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
+
+
+ 
+      </div>
+    </aside>
+
+    <div class="book-page">
+      <header class="book-header">
+        
+  <div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="/svg/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <strong>Backend Protocol</strong>
+
+  <label for="toc-control">
+    
+    <img src="/svg/toc.svg" class="book-icon" alt="Table of Contents" />
+    
+  </label>
+</div>
+
+
+  
+  <aside class="hidden clearfix">
+    
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#what-is-a-protocol">What is a protocol?</a></li>
+    <li><a href="#protocol-properties">Protocol properties</a></li>
+    <li><a href="#why-do-we-need-a-communication-model">Why do we need a communication model?</a></li>
+    <li><a href="#osi-model">OSI Model</a></li>
+  </ul>
+</nav>
+
+
+
+  </aside>
+  
+ 
+      </header>
+
+      
+      
+  <article class="markdown"><h1 id="backend-protocol">
+  Backend Protocol
+  <a class="anchor" href="#backend-protocol">#</a>
+</h1>
+<h2 id="what-is-a-protocol">
+  What is a protocol?
+  <a class="anchor" href="#what-is-a-protocol">#</a>
+</h2>
+<ul>
+<li>A system that allows two parties to communicate</li>
+<li>A protocol is designed with a set of properties</li>
+<li>Depending on the purpose of the protocol</li>
+<li>TCP, UDP, HTTP, gRPC, FTP</li>
+<li>The application protocols (HTTP/1.1, HTTP/2, HTTP/3) run on top of transport protocols (TCP, UDP)</li>
+</ul>
+<h2 id="protocol-properties">
+  Protocol properties
+  <a class="anchor" href="#protocol-properties">#</a>
+</h2>
+<ul>
+<li>Data format
+<ul>
+<li>Text based (plain text, JSON, XML)</li>
+<li>Binary (protobuf, RESP, h2, h3)</li>
+</ul>
+</li>
+<li>Transfer mode
+<ul>
+<li>Message based (UDP, HTTaP)</li>
+<li>Stream (TCP, WebRTC)</li>
+</ul>
+</li>
+<li>Addressing system
+<ul>
+<li>DNS name, IP, MAC</li>
+</ul>
+</li>
+<li>Directionality
+<ul>
+<li>Bidirectional (TCP)</li>
+<li>Unidirectional (HTTP)</li>
+<li>Full/Half duplex</li>
+</ul>
+</li>
+<li>State
+<ul>
+<li>Stateful (TCP, gRPC, apache thrift)</li>
+<li>Stateless (UDP, HTTP)</li>
+</ul>
+</li>
+<li>Routing
+<ul>
+<li>Proxies, Gateways</li>
+</ul>
+</li>
+<li>Flow &amp; Congestion control
+<ul>
+<li>TCP (Flow &amp; Congestion)</li>
+<li>UDP (No control)</li>
+</ul>
+</li>
+<li>Error management
+<ul>
+<li>Error code</li>
+<li>Retries and timeouts</li>
+</ul>
+</li>
+</ul>
+<h2 id="why-do-we-need-a-communication-model">
+  Why do we need a communication model?
+  <a class="anchor" href="#why-do-we-need-a-communication-model">#</a>
+</h2>
+<ul>
+<li>Agnostic applications
+<ul>
+<li>App doesn’t need to to know network medium</li>
+<li>Otherwise we need an App for WIFI, ethernet vs LTE vs fiber</li>
+</ul>
+</li>
+<li>Network Equipment Management
+<ul>
+<li>Without a standard model, upgrading network equipments becomes difficult</li>
+<li>Decoupled Innovation</li>
+</ul>
+</li>
+<li>Innovations can be done in each layer separately without affecting the rest of the models</li>
+</ul>
+<h2 id="osi-model">
+  OSI Model
+  <a class="anchor" href="#osi-model">#</a>
+</h2>
+<p>7 Layers each describe a specific networking component</p>
+<p>Layer 7 - Application - HTTP/FTP/gRPC</p>
+<p>Layer 6 - Presentation - Encoding, Serialization</p>
+<p>Layer 5 - Session - Connection establishment, TLS</p>
+<p>Layer 4 - Transport - UDP/TCP</p>
+<p>Layer 3 - Network - IP</p>
+<p>Layer 2 - Data link - Frames, Mac address Ethernet</p>
+<p>Layer 1 - Physical - Electric signals, fiber or radio waves</p>
+</article>
+ 
+      
+
+      <footer class="book-footer">
+        
+  <div class="flex flex-wrap justify-between">
+
+
+
+
+
+</div>
+
+
+
+  <script>(function(){function e(e){const t=window.getSelection(),n=document.createRange();n.selectNodeContents(e),t.removeAllRanges(),t.addRange(n)}document.querySelectorAll("pre code").forEach(t=>{t.addEventListener("click",function(){if(window.getSelection().toString())return;e(t.parentElement),navigator.clipboard&&navigator.clipboard.writeText(t.parentElement.textContent)})})})()</script>
+
+
+ 
+        
+      </footer>
+
+      
+  
+  <div class="book-comments">
+
+</div>
+  
+ 
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
+    </div>
+
+    
+    <aside class="book-toc">
+      <div class="book-toc-content">
+        
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#what-is-a-protocol">What is a protocol?</a></li>
+    <li><a href="#protocol-properties">Protocol properties</a></li>
+    <li><a href="#why-do-we-need-a-communication-model">Why do we need a communication model?</a></li>
+    <li><a href="#osi-model">OSI Model</a></li>
+  </ul>
+</nav>
+
+
+ 
+      </div>
+    </aside>
+    
+  </main>
+
+  
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
