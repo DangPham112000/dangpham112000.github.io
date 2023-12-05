@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Knight dialer#Description#The chess knight has a unique movement, it may move two squares vertically and one square horizontally, or two squares horizontally and one square vertically (with both forming the shape of an L). The possible movements of chess knight are shown in this diagaram:
+A chess knight can move as indicated in the chess diagram below: We have a chess knight and a phone pad as shown below, the knight can only stand on a numeric cell (i.">
+<meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff">
+<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#343a40">
+<meta name="color-scheme" content="light dark"><meta property="og:title" content="Knight Dialer" />
+<meta property="og:description" content="Knight dialer#Description#The chess knight has a unique movement, it may move two squares vertically and one square horizontally, or two squares horizontally and one square vertically (with both forming the shape of an L). The possible movements of chess knight are shown in this diagaram:
+A chess knight can move as indicated in the chess diagram below: We have a chess knight and a phone pad as shown below, the knight can only stand on a numeric cell (i." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://dangpham112000.github.io/docs/problems/knight_dialer/" /><meta property="article:section" content="docs" />
+<meta property="article:published_time" content="2023-11-15T01:47:46+07:00" />
+<meta property="article:modified_time" content="2023-11-15T01:47:46+07:00" />
+
+<title>Knight Dialer | The Engineer Blogs</title>
+<link rel="manifest" href="/manifest.json">
+<link rel="icon" href="/favicon.png" >
+<link rel="stylesheet" href="/book.min.d2e03d9c7a4cea10fdd096eb48db6766340b9b3b186fa0321e2ad69205bdc3ad.css" integrity="sha256-0uA9nHpM6hD90JbrSNtnZjQLmzsYb6AyHirWkgW9w60=" crossorigin="anonymous">
+  <script defer src="/flexsearch.min.js"></script>
+  <script defer src="/en.search.min.94bb71f09e0ea7c40f8975f8bf1ef73f2aea30922c9aa34b8df1c3666dbb96dd.js" integrity="sha256-lLtx8J4Op8QPiXX4vx73PyrqMJIsmqNLjfHDZm27lt0=" crossorigin="anonymous"></script>
+<!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+  
+</head>
+<body dir="ltr">
+  <input type="checkbox" class="hidden toggle" id="menu-control" />
+  <input type="checkbox" class="hidden toggle" id="toc-control" />
+  <main class="container flex">
+    <aside class="book-menu">
+      <div class="book-menu-content">
+        
+  <nav>
+<h2 class="book-brand">
+  <a class="flex align-center" href="/"><span>The Engineer Blogs</span>
+  </a>
+</h2>
+
+
+<div class="book-search">
+  <input type="text" id="book-search-input" placeholder="Search" aria-label="Search" maxlength="64" data-hotkeys="s/" />
+  <div class="book-search-spinner hidden"></div>
+  <ul id="book-search-results"></ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <ul>
+    
+      
+        <li class="book-section-flat" >
+          
+  
+  
+
+  
+    <span>PROBLEMS</span>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/problems/knight_dialer/" class="active">Knight Dialer</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li class="book-section-flat" >
+          
+  
+  
+
+  
+    <span>RESEARCH</span>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/research/be_protocol/" class="">Backend Protocol</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li class="book-section-flat" >
+          
+  
+  
+
+  
+    <span>TIPS</span>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/tips/git/" class="">Git</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</nav>
+
+
+
+
+  <script>(function(){var e=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(){localStorage.setItem("menu.scrollTop",e.scrollTop)}),e.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
+
+
+ 
+      </div>
+    </aside>
+
+    <div class="book-page">
+      <header class="book-header">
+        
+  <div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="/svg/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <strong>Knight Dialer</strong>
+
+  <label for="toc-control">
+    
+    <img src="/svg/toc.svg" class="book-icon" alt="Table of Contents" />
+    
+  </label>
+</div>
+
+
+  
+  <aside class="hidden clearfix">
+    
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#description">Description</a></li>
+    <li><a href="#solution">Solution</a>
+      <ul>
+        <li><a href="#high-level">High level</a></li>
+        <li><a href="#low-level">Low level</a></li>
+      </ul>
+    </li>
+    <li><a href="#reference">Reference</a></li>
+  </ul>
+</nav>
+
+
+
+  </aside>
+  
+ 
+      </header>
+
+      
+      
+  <article class="markdown"><h1 id="knight-dialer">
+  Knight dialer
+  <a class="anchor" href="#knight-dialer">#</a>
+</h1>
+<h2 id="description">
+  Description
+  <a class="anchor" href="#description">#</a>
+</h2>
+<p>The chess knight has a <strong>unique movement</strong>, it may move two squares vertically and one square horizontally, or two squares horizontally and one square vertically (with both forming the shape of an <strong>L</strong>). The possible movements of chess knight are shown in this diagaram:</p>
+<p>A chess knight can move as indicated in the chess diagram below:</br>
+<img src="/problems/knight_dialer/chess_table.jpg" alt="chess_table" /></p>
+<p>We have a chess knight and a phone pad as shown below, the knight <strong>can only stand on a numeric cell</strong> (i.e. blue cell).</br>
+<img src="/problems/knight_dialer/phone_pad.jpg" alt="phone" /></p>
+<p>Given an integer <code>n</code>, return how many distinct phone numbers of length <code>n</code> we can dial.</p>
+<p>You are allowed to place the knight <strong>on any numeric cell</strong> initially<br>
+and then you should perform <code>n - 1</code> jumps to dial a number of length n. All jumps should be <strong>valid</strong> knight jumps.</p>
+<p>As the answer may be very large, <strong>return the answer modulo</strong> 
+<link rel="stylesheet" href="/katex/katex.min.css" />
+<script defer src="/katex/katex.min.js"></script>
+<script defer src="/katex/auto-render.min.js" onload="renderMathInElement(document.body);"></script><span>
+  \(10^9 &#43; 7\)
+</span>
+</p>
+<p><strong>Example 1:</strong></p>
+<blockquote>
+<p><strong>Input</strong>: n = 1<br>
+<strong>Output</strong>: 10<br>
+<strong>Explanation</strong>: We need to dial a number of length 1, so placing the knight over any numeric cell of the 10 cells is sufficient</p>
+</blockquote>
+<p><strong>Example 2:</strong></p>
+<blockquote>
+<p><strong>Input</strong>: n = 2<br>
+<strong>Output</strong>: 20<br>
+<strong>Explanation</strong>: All the valid number we can dial are [04, 06, 16, 18, 27, 29, 34, 38, 40, 43, 49, 60, 61, 67, 72, 76, 81, 83, 92, 94]</p>
+</blockquote>
+<p><strong>Example 3:</strong></p>
+<blockquote>
+<p><strong>Input</strong>: n = 3131<br>
+<strong>Output</strong>: 136006598<br>
+<strong>Explanation</strong>: Please take care of the mod</p>
+</blockquote>
+<p><strong>Constraints</strong>:</p>
+<ul>
+<li><code>1 &lt;= n &lt;= 5000</code></li>
+</ul>
+<h2 id="solution">
+  Solution
+  <a class="anchor" href="#solution">#</a>
+</h2>
+<h3 id="high-level">
+  High level
+  <a class="anchor" href="#high-level">#</a>
+</h3>
+<ul>
+<li>Có thể thấy bàn phím điện thoại khá nhỏ</li>
+<li>Ta có thể tận dụng các giới hạn này để giải quyết bài toán thay vì đâm đầu vào một công thức tổng quát:
+<ul>
+<li>Ở một vị trí chỉ có thể nhảy đến 1 tập giới hạn các vị trí khác</li>
+<li>Số cách di chuyển ở mỗi vị trí là hằng số và có thể liệt kê được</li>
+</ul>
+</li>
+</ul>
+<h3 id="low-level">
+  Low level
+  <a class="anchor" href="#low-level">#</a>
+</h3>
+<blockquote>
+<p>Ta nên bắt đầu bằng 1 ví dụ: đẹp nhất là <code>n = 3</code></p>
+</blockquote>
+<ul>
+<li>Ở lần đầu thì vị trí có thể là tất cả các nút</li>
+<li>Ở lần 2 thì cần duyệt qua từ 0 đến 9
+<ul>
+<li>vị trí 0 sẽ có thể nhảy đến 4 và</li>
+<li>vị trí 1 sẽ có thể nhảy đến 8 và</li>
+<li>&hellip;</li>
+</ul>
+</li>
+<li>Ở lần 3 thì
+<ul>
+<li>ta sẽ duyệt tiếp bên trong vị trí 0 ở lần 2
+<ul>
+<li>vị trí 4 sẽ có thể nhảy đến 3, 9 và 0</li>
+<li>vị trí 6 sẽ có thể nhảy đến 1, 7 và 0</li>
+</ul>
+</li>
+<li>trong vị trí 1 ở lần 2
+<ul>
+<li>8 =&gt; 1, 3</li>
+<li>6 =&gt; 1, 7, 0</li>
+</ul>
+</li>
+<li>&hellip;</li>
+</ul>
+</li>
+</ul>
+<p>Các kết quả cần tìm</p>
+<ul>
+<li>Với n = 1, return 10</li>
+<li>Với n = 2,
+<ul>
+<li>0 có thể đến 4 và 6,</li>
+<li>1 có thể đến 8 và 6</li>
+</ul>
+</li>
+<li>Với n = 3,
+<ul>
+<li>0 có thể đến 3, 9, 0, 1, 7, 0</li>
+<li>1 có thể đến 1, 3, 1, 7, 0</li>
+</ul>
+</li>
+</ul>
+<p>Kết quả là tổng sống lượng vị trí có thể đến</p>
+<ul>
+<li>Cần tạo 1 mảng chứa các vị trí khả dụng qua mỗi lần lặp n</li>
+</ul>
+<blockquote>
+<p>Có thể thấy ta có thể tạo 2 mảng</p>
+</blockquote>
+<ul>
+<li>Mảng số vị trí khả dụng kế tiếp khi ở vị trí i: <code>[[4, 6], [8, 6], []]</code></li>
+<li>Mảng số cách nhảy khả dụng khi ở vị trí i: <code>[2, 2, ]</code>
+<ul>
+<li>Có thể thay thế bằng length của mỗi phần tử trong mảng 1 để giảm space consume</li>
+</ul>
+</li>
+<li>Có thể thấy để dùng được mảng vị trí khả dụng thì n phải &gt;= 2</li>
+<li>Vậy thì thuật toán cần tìm phải bắt đầu từ 2</li>
+</ul>
+<details open><summary><strong>Code</strong></summary>
+  <div class="markdown-inner">
+    <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#75715e">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * @param {number} n
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * @return {number}
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> */</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">knightDialer</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">function</span> (<span style="color:#a6e22e">n</span>) {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">nextPlaces</span> <span style="color:#f92672">=</span> [
+</span></span><span style="display:flex;"><span>    [<span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">6</span>],
+</span></span><span style="display:flex;"><span>    [<span style="color:#ae81ff">6</span>, <span style="color:#ae81ff">8</span>],
+</span></span><span style="display:flex;"><span>    [<span style="color:#ae81ff">7</span>, <span style="color:#ae81ff">9</span>],
+</span></span><span style="display:flex;"><span>    [<span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">8</span>],
+</span></span><span style="display:flex;"><span>    [<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">9</span>],
+</span></span><span style="display:flex;"><span>    [],
+</span></span><span style="display:flex;"><span>    [<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">7</span>],
+</span></span><span style="display:flex;"><span>    [<span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">6</span>],
+</span></span><span style="display:flex;"><span>    [<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">3</span>],
+</span></span><span style="display:flex;"><span>    [<span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">4</span>],
+</span></span><span style="display:flex;"><span>  ];
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">n</span> <span style="color:#f92672">===</span> <span style="color:#ae81ff">1</span>) <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">10</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">validPlaces</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">JSON</span>.<span style="color:#a6e22e">parse</span>(<span style="color:#a6e22e">JSON</span>.<span style="color:#a6e22e">stringify</span>(<span style="color:#a6e22e">nextPlaces</span>));
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">let</span> <span style="color:#a6e22e">time</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">3</span>; <span style="color:#a6e22e">time</span> <span style="color:#f92672">&lt;=</span> <span style="color:#a6e22e">n</span>; <span style="color:#a6e22e">time</span><span style="color:#f92672">++</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">let</span> <span style="color:#a6e22e">place</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; <span style="color:#a6e22e">place</span> <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">9</span>; <span style="color:#a6e22e">place</span><span style="color:#f92672">++</span>) {
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">newPlaces</span> <span style="color:#f92672">=</span> [];
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">let</span> <span style="color:#a6e22e">i</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; <span style="color:#a6e22e">i</span> <span style="color:#f92672">&lt;</span> <span style="color:#a6e22e">validPlaces</span>[<span style="color:#a6e22e">place</span>].<span style="color:#a6e22e">length</span>; <span style="color:#a6e22e">i</span><span style="color:#f92672">++</span>) {
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">newPlaces</span>.<span style="color:#a6e22e">push</span>(...<span style="color:#a6e22e">nextPlaces</span>[<span style="color:#a6e22e">validPlaces</span>[<span style="color:#a6e22e">place</span>][<span style="color:#a6e22e">i</span>]]);
+</span></span><span style="display:flex;"><span>      }
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">validPlaces</span>[<span style="color:#a6e22e">place</span>] <span style="color:#f92672">=</span> <span style="color:#a6e22e">newPlaces</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">totalWays</span> <span style="color:#f92672">=</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">validPlaces</span>.<span style="color:#a6e22e">reduce</span>((<span style="color:#a6e22e">acc</span>, <span style="color:#a6e22e">currentArray</span>) =&gt; <span style="color:#a6e22e">acc</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">currentArray</span>.<span style="color:#a6e22e">length</span>, <span style="color:#ae81ff">0</span>) <span style="color:#f92672">%</span>
+</span></span><span style="display:flex;"><span>    (Math.<span style="color:#a6e22e">pow</span>(<span style="color:#ae81ff">10</span>, <span style="color:#ae81ff">9</span>) <span style="color:#f92672">+</span> <span style="color:#ae81ff">7</span>);
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">totalWays</span>;
+</span></span><span style="display:flex;"><span>};
+</span></span></code></pre></div>
+  </div>
+</details>
+
+<h2 id="reference">
+  Reference
+  <a class="anchor" href="#reference">#</a>
+</h2>
+<ul>
+<li><a href="https://leetcode.com/problems/knight-dialer">Leetcode</a></li>
+</ul>
+</article>
+ 
+      
+
+      <footer class="book-footer">
+        
+  <div class="flex flex-wrap justify-between">
+
+
+
+
+
+</div>
+
+
+
+  <script>(function(){function e(e){const t=window.getSelection(),n=document.createRange();n.selectNodeContents(e),t.removeAllRanges(),t.addRange(n)}document.querySelectorAll("pre code").forEach(t=>{t.addEventListener("click",function(){if(window.getSelection().toString())return;e(t.parentElement),navigator.clipboard&&navigator.clipboard.writeText(t.parentElement.textContent)})})})()</script>
+
+
+ 
+        
+      </footer>
+
+      
+  
+  <div class="book-comments">
+
+</div>
+  
+ 
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
+    </div>
+
+    
+    <aside class="book-toc">
+      <div class="book-toc-content">
+        
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#description">Description</a></li>
+    <li><a href="#solution">Solution</a>
+      <ul>
+        <li><a href="#high-level">High level</a></li>
+        <li><a href="#low-level">Low level</a></li>
+      </ul>
+    </li>
+    <li><a href="#reference">Reference</a></li>
+  </ul>
+</nav>
+
+
+ 
+      </div>
+    </aside>
+    
+  </main>
+
+  
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

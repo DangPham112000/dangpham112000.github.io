@@ -10,9 +10,9 @@
     <atom:link href="https://dangpham112000.github.io/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Backend Protocol</title>
-      <link>https://dangpham112000.github.io/docs/research/be-protocol/</link>
+      <link>https://dangpham112000.github.io/docs/research/be_protocol/</link>
       <pubDate>Wed, 15 Nov 2023 01:47:46 +0700</pubDate>
-      <guid>https://dangpham112000.github.io/docs/research/be-protocol/</guid>
+      <guid>https://dangpham112000.github.io/docs/research/be_protocol/</guid>
       <description>Backend Protocol#What is a protocol?#A system that allows two parties to communicate A protocol is designed with a set of properties Depending on the purpose of the protocol TCP, UDP, HTTP, gRPC, FTP The application protocols (HTTP/1.1, HTTP/2, HTTP/3) run on top of transport protocols (TCP, UDP) Protocol properties#Data format Text based (plain text, JSON, XML) Binary (protobuf, RESP, h2, h3) Transfer mode Message based (UDP, HTTaP) Stream (TCP, WebRTC) Addressing system DNS name, IP, MAC Directionality Bidirectional (TCP) Unidirectional (HTTP) Full/Half duplex State Stateful (TCP, gRPC, apache thrift) Stateless (UDP, HTTP) Routing Proxies, Gateways Flow &amp;amp; Congestion control TCP (Flow &amp;amp; Congestion) UDP (No control) Error management Error code Retries and timeouts Why do we need a communication model?</description>
     </item>
     <item>
@@ -26,9 +26,9 @@ Commit#git add . git commit -m &amp;#34;commit message&amp;#34; These 2 comman
     </item>
     <item>
       <title>Knight Dialer</title>
-      <link>https://dangpham112000.github.io/docs/problems/knight-dialer/</link>
+      <link>https://dangpham112000.github.io/docs/problems/knight_dialer/</link>
       <pubDate>Wed, 15 Nov 2023 01:47:46 +0700</pubDate>
-      <guid>https://dangpham112000.github.io/docs/problems/knight-dialer/</guid>
+      <guid>https://dangpham112000.github.io/docs/problems/knight_dialer/</guid>
       <description>Knight dialer#Description#The chess knight has a unique movement, it may move two squares vertically and one square horizontally, or two squares horizontally and one square vertically (with both forming the shape of an L). The possible movements of chess knight are shown in this diagaram:
 A chess knight can move as indicated in the chess diagram below: We have a chess knight and a phone pad as shown below, the knight can only stand on a numeric cell (i.</description>
     </item>
