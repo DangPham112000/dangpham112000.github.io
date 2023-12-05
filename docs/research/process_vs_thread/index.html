@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Process vs Thread#Program#A Program is an executable file containing a set of instructions and passively stored on disk
+Process#A Process means a program is in execution. When a program is loaded into the memory and becomes active, the program becomes a process or processes
+Thread#A Thread is the smallest unit of execution within a process
+Process vs Thread#Process#The process requires some essential resources such as registers, program counter, and stack">
+<meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff">
+<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#343a40">
+<meta name="color-scheme" content="light dark"><meta property="og:title" content="Process vs Thread" />
+<meta property="og:description" content="Process vs Thread#Program#A Program is an executable file containing a set of instructions and passively stored on disk
+Process#A Process means a program is in execution. When a program is loaded into the memory and becomes active, the program becomes a process or processes
+Thread#A Thread is the smallest unit of execution within a process
+Process vs Thread#Process#The process requires some essential resources such as registers, program counter, and stack" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://dangpham112000.github.io/docs/research/process_vs_thread/" /><meta property="article:section" content="docs" />
+<meta property="article:published_time" content="2023-12-05T01:47:46+07:00" />
+<meta property="article:modified_time" content="2023-12-05T01:47:46+07:00" />
+
+<title>Process vs Thread | The Engineer Blogs</title>
+<link rel="manifest" href="/manifest.json">
+<link rel="icon" href="/favicon.png" >
+<link rel="stylesheet" href="/book.min.d2e03d9c7a4cea10fdd096eb48db6766340b9b3b186fa0321e2ad69205bdc3ad.css" integrity="sha256-0uA9nHpM6hD90JbrSNtnZjQLmzsYb6AyHirWkgW9w60=" crossorigin="anonymous">
+  <script defer src="/flexsearch.min.js"></script>
+  <script defer src="/en.search.min.4115d1567226001fee418875eebcecf610ed3b25ceef9c994c319d3bfd8b8a20.js" integrity="sha256-QRXRVnImAB/uQYh17rzs9hDtOyXO75yZTDGdO/2LiiA=" crossorigin="anonymous"></script>
+<!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+  
+</head>
+<body dir="ltr">
+  <input type="checkbox" class="hidden toggle" id="menu-control" />
+  <input type="checkbox" class="hidden toggle" id="toc-control" />
+  <main class="container flex">
+    <aside class="book-menu">
+      <div class="book-menu-content">
+        
+  <nav>
+<h2 class="book-brand">
+  <a class="flex align-center" href="/"><span>The Engineer Blogs</span>
+  </a>
+</h2>
+
+
+<div class="book-search">
+  <input type="text" id="book-search-input" placeholder="Search" aria-label="Search" maxlength="64" data-hotkeys="s/" />
+  <div class="book-search-spinner hidden"></div>
+  <ul id="book-search-results"></ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <ul>
+    
+      
+        <li class="book-section-flat" >
+          
+  
+  
+
+  
+    <span>RESEARCH</span>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/research/chrome_architecture/" class="">Chrome Architecture</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/research/process_vs_thread/" class="active">Process vs Thread</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/research/aws_overview/" class="">AWS Overview</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/research/be_protocol/" class="">Backend Protocol</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li class="book-section-flat" >
+          
+  
+  
+
+  
+    <span>PROBLEMS</span>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/problems/knight_dialer/" class="">Knight Dialer</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li class="book-section-flat" >
+          
+  
+  
+
+  
+    <span>TIPS</span>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/tips/git/" class="">Git</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/tips/unit_test/" class="">Unit Test</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</nav>
+
+
+
+
+  <script>(function(){var e=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(){localStorage.setItem("menu.scrollTop",e.scrollTop)}),e.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
+
+
+ 
+      </div>
+    </aside>
+
+    <div class="book-page">
+      <header class="book-header">
+        
+  <div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="/svg/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <strong>Process vs Thread</strong>
+
+  <label for="toc-control">
+    
+    <img src="/svg/toc.svg" class="book-icon" alt="Table of Contents" />
+    
+  </label>
+</div>
+
+
+  
+  <aside class="hidden clearfix">
+    
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#program">Program</a></li>
+    <li><a href="#process">Process</a></li>
+    <li><a href="#thread">Thread</a></li>
+    <li><a href="#process-vs-thread-1">Process vs Thread</a>
+      <ul>
+        <li><a href="#process-1">Process</a></li>
+        <li><a href="#thread-1">Thread</a></li>
+        <li><a href="#code-demo">Code demo</a></li>
+      </ul>
+    </li>
+    <li><a href="#multithreading-and-multiprocessing">Multithreading and Multiprocessing</a>
+      <ul>
+        <li><a href="#concurrency-and-parallelism">Concurrency and Parallelism</a></li>
+        <li><a href="#multithreading">Multithreading</a></li>
+        <li><a href="#multiprocessing">Multiprocessing</a></li>
+        <li><a href="#code-demo-1">Code demo</a></li>
+      </ul>
+    </li>
+    <li><a href="#context-switching">Context switching</a></li>
+    <li><a href="#conclusion">Conclusion</a></li>
+    <li><a href="#appendix">Appendix</a>
+      <ul>
+        <li><a href="#processor-definition">Processor definition</a></li>
+        <li><a href="#virtual-memory">Virtual memory</a></li>
+        <li><a href="#hyper-threading">Hyper-threading</a></li>
+      </ul>
+    </li>
+    <li><a href="#reference">Reference</a></li>
+  </ul>
+</nav>
+
+
+
+  </aside>
+  
+ 
+      </header>
+
+      
+      
+  <article class="markdown"><h1 id="process-vs-thread">
+  Process vs Thread
+  <a class="anchor" href="#process-vs-thread">#</a>
+</h1>
+<h2 id="program">
+  Program
+  <a class="anchor" href="#program">#</a>
+</h2>
+<p>A <strong>Program</strong> is an executable file containing a set of instructions and passively stored on disk</p>
+<p><img src="/research/process_vs_thread/program.png" alt="program" /></p>
+<h2 id="process">
+  Process
+  <a class="anchor" href="#process">#</a>
+</h2>
+<p>A <strong>Process</strong> means a program is in execution. When a program is loaded into the memory and becomes active, the program becomes a process or processes</p>
+<p><img src="/research/process_vs_thread/process.png" alt="process" /></p>
+<h2 id="thread">
+  Thread
+  <a class="anchor" href="#thread">#</a>
+</h2>
+<p>A <strong>Thread</strong> is the smallest unit of execution within a process</p>
+<p><img src="/research/process_vs_thread/program_process_thread.png" alt="program_process_thread" /></p>
+<h2 id="process-vs-thread-1">
+  Process vs Thread
+  <a class="anchor" href="#process-vs-thread-1">#</a>
+</h2>
+<h3 id="process-1">
+  Process
+  <a class="anchor" href="#process-1">#</a>
+</h3>
+<p>The process requires some essential resources such as registers, program counter, and stack</p>
+<p><img src="/research/process_vs_thread/process_resouces.png" alt="process_resouces" /></p>
+<p>Each process has its own memory address space. One process can not corrupt the memory address space of another process. This means that when one process malfunctions, other processes keep running</p>
+<p><img src="/research/process_vs_thread/malfunction_process.png" alt="malfunction_process" /></p>
+<h3 id="thread-1">
+  Thread
+  <a class="anchor" href="#thread-1">#</a>
+</h3>
+<p>A process has at least one thread. It’s called the <strong>main thread</strong>. It’s <strong>not uncommon</strong> for a process to have many threads</p>
+<p>Each thread has its own stack. Earlier we mentioned <strong>registers, program counters and stack pointers</strong> as being part of a process. It’s more accurate to say that those things <strong>belong to a thread</strong></p>
+<p><img src="/research/process_vs_thread/thread_resources.png" alt="thread_resources" /></p>
+<blockquote class="book-hint info">
+  Threads within a process share a memory address space
+</blockquote>
+
+<p>It’s possible to communicate between threads using that shared memory space
+However, one misbehaving thread could bring down the entire process</p>
+<p><img src="/research/process_vs_thread/shared_memory.png" alt="shared_memory" /></p>
+<h3 id="code-demo">
+  Code demo
+  <a class="anchor" href="#code-demo">#</a>
+</h3>
+<p><details ><summary>When one <strong>process</strong> malfunctions, other processes keep running</summary>
+  <div class="markdown-inner">
+    <p><strong>Nodejs</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">cluster</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span>(<span style="color:#e6db74">&#34;cluster&#34;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">cluster</span>.<span style="color:#a6e22e">isMaster</span>) {
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// Master process logic
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#34;Master process&#34;</span>, <span style="color:#a6e22e">process</span>.<span style="color:#a6e22e">pid</span>, <span style="color:#e6db74">&#34;is running&#34;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">normalSlave</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">cluster</span>.<span style="color:#a6e22e">fork</span>();
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">misbehavingSlave</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">cluster</span>.<span style="color:#a6e22e">fork</span>();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">misbehavingSlave</span>.<span style="color:#a6e22e">send</span>({ <span style="color:#a6e22e">isNormal</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">false</span> });
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">normalSlave</span>.<span style="color:#a6e22e">send</span>({ <span style="color:#a6e22e">isNormal</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">true</span> });
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">setInterval</span>(() =&gt; {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#34;Master process&#34;</span>, <span style="color:#a6e22e">process</span>.<span style="color:#a6e22e">pid</span>, <span style="color:#e6db74">&#34;is doing some work.&#34;</span>);
+</span></span><span style="display:flex;"><span>  }, <span style="color:#ae81ff">300</span>);
+</span></span><span style="display:flex;"><span>} <span style="color:#66d9ef">else</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// Slave process logic
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#34;Slave process&#34;</span>, <span style="color:#a6e22e">process</span>.<span style="color:#a6e22e">pid</span>, <span style="color:#e6db74">&#34;is running&#34;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">process</span>.<span style="color:#a6e22e">on</span>(<span style="color:#e6db74">&#34;message&#34;</span>, ({ <span style="color:#a6e22e">isNormal</span> }) =&gt; {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">isNormal</span>) {
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">setInterval</span>(() =&gt; {
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#34;Slave process&#34;</span>, <span style="color:#a6e22e">process</span>.<span style="color:#a6e22e">pid</span>, <span style="color:#e6db74">&#34;is doing some work.&#34;</span>);
+</span></span><span style="display:flex;"><span>      }, <span style="color:#ae81ff">300</span>);
+</span></span><span style="display:flex;"><span>    } <span style="color:#66d9ef">else</span> {
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">setTimeout</span>(() =&gt; {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">throw</span> <span style="color:#66d9ef">new</span> Error(<span style="color:#e6db74">&#34;Slave process &#34;</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">process</span>.<span style="color:#a6e22e">pid</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34; is corrupted!!!&#34;</span>);
+</span></span><span style="display:flex;"><span>      }, <span style="color:#ae81ff">2000</span>);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>  });
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div>
+  </div>
+</details>
+
+</br>
+<details ><summary>One misbehaving <strong>thread</strong> could bring down the entire process</summary>
+  <div class="markdown-inner">
+    <p><strong>Nodejs</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> { <span style="color:#a6e22e">Worker</span> } <span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span>(<span style="color:#e6db74">&#34;worker_threads&#34;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#34;Process&#34;</span>, <span style="color:#a6e22e">process</span>.<span style="color:#a6e22e">pid</span>, <span style="color:#e6db74">&#34;starts&#34;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Create a misbehaving worker thread
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">misbehavingWorker</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">Worker</span>(
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">`
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  const { threadId } = require(&#39;worker_threads&#39;);
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  console.log(&#39;Thread&#39;, threadId, &#39;from process&#39;, process.pid, &#39;starts&#39;);
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  // Intentionally cause an unhandled exception
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  setTimeout(() =&gt; {
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">      throw new Error(&#39;Thread &#39; + threadId + &#39; is corrupted!!!&#39;);
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  }, 2000);
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  `</span>,
+</span></span><span style="display:flex;"><span>  { eval<span style="color:#f92672">:</span> <span style="color:#66d9ef">true</span> }
+</span></span><span style="display:flex;"><span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Create a normal worker thread
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">normalWorker</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">Worker</span>(
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">`
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  const { threadId } = require(&#39;worker_threads&#39;);
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  console.log(&#39;Thread&#39;, threadId, &#39;from process&#39;, process.pid, &#39;starts&#39;);
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  // Simulate normal work
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  setInterval(() =&gt; {
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    console.log(&#39;Thread&#39;, threadId, &#39;is doing some work.&#39;);
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  }, 300);
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  `</span>,
+</span></span><span style="display:flex;"><span>  { eval<span style="color:#f92672">:</span> <span style="color:#66d9ef">true</span> }
+</span></span><span style="display:flex;"><span>);
+</span></span></code></pre></div>
+  </div>
+</details>
+</p>
+<h2 id="multithreading-and-multiprocessing">
+  Multithreading and Multiprocessing
+  <a class="anchor" href="#multithreading-and-multiprocessing">#</a>
+</h2>
+<h3 id="concurrency-and-parallelism">
+  Concurrency and Parallelism
+  <a class="anchor" href="#concurrency-and-parallelism">#</a>
+</h3>
+<p><strong>Concurrency</strong> allows multiple tasks to make progress by interleaving their execution, even if they are not executing simultaneously. It is focused on efficient task scheduling and resource utilization</p>
+<p><img src="/research/process_vs_thread/concurrency.png" alt="concurrency" /></p>
+<p><strong>Parallelism</strong> involves executing multiple tasks simultaneously, typically on separate processing units or cores. It aims to achieve higher performance and faster task completion</p>
+<p><img src="/research/process_vs_thread/parallelism.png" alt="parallelism" /></p>
+<h3 id="multithreading">
+  Multithreading
+  <a class="anchor" href="#multithreading">#</a>
+</h3>
+<p>Multithreading focuses on generating computing threads from a single process, whereas multiprocessing increases computing power by adding processors</p>
+<p><img src="/research/process_vs_thread/multithreading.png" alt="multithreading" /></p>
+<h3 id="multiprocessing">
+  Multiprocessing
+  <a class="anchor" href="#multiprocessing">#</a>
+</h3>
+<p>Multiprocessing uses two or more processors to increase computing power, whereas multithreading uses a single process with multiple code segments to increase computing power</p>
+<p><img src="/research/process_vs_thread/multiprocessing.png" alt="multiprocessing" /></p>
+<h3 id="code-demo-1">
+  Code demo
+  <a class="anchor" href="#code-demo-1">#</a>
+</h3>
+<p><details ><summary>Single thread vs multithreading vs multiprocessing</summary>
+  <div class="markdown-inner">
+    <p><strong>Nodejs</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#75715e">// TBU;
+</span></span></span></code></pre></div>
+  </div>
+</details>
+
+</br>
+<details ><summary>Time-consuming when not communication together</summary>
+  <div class="markdown-inner">
+    <p>Time-consuming when running multiple threads and multiple processes without communication together meaning each item runs separately and does not share data</p>
+<p><strong>Nodejs</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#75715e">// TBU;
+</span></span></span></code></pre></div>
+  </div>
+</details>
+
+</br>
+<details ><summary>Time-consuming when communication together</summary>
+  <div class="markdown-inner">
+    <p>Time-consuming when running multiple threads and multiple processes within communication together meaning each item runs separately but shares data with the main item</p>
+<p><strong>Nodejs</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#75715e">// TBU;
+</span></span></span></code></pre></div>
+  </div>
+</details>
+</p>
+<h2 id="context-switching">
+  Context switching
+  <a class="anchor" href="#context-switching">#</a>
+</h2>
+<blockquote class="book-hint info">
+  How does the OS run threads or processes on a CPU (processor) ? <br>
+=&gt; This is handled by context switching
+</blockquote>
+
+<p><img src="/research/process_vs_thread/scheduler.png" alt="scheduler" /></p>
+<p>During a context switch, one process is switched out of the CPU (processor) so another process can run</p>
+<p><img src="/research/process_vs_thread/process_executing.png" alt="process_executing" /></p>
+<p>The OS stores the states of the current running process so the process can be restored and resume execution at a later point</p>
+<p>It then restores the previously saved states of a different process and resumes execution for that process</p>
+<p><strong>Context switching is expensive</strong>. It involves saving and loading registers, switching out memory pages, and updating various kernel data structures</p>
+<p><img src="/research/process_vs_thread/process_control_block.png" alt="process_control_block" /></p>
+<p>Switching execution between <strong>threads</strong> also requires context switching</p>
+<p><img src="/research/process_vs_thread/context_switching.png" alt="context_switching" /></p>
+<p>It’s generally <strong>faster</strong> to switch context between <strong>threads</strong> than between <strong>processes</strong></p>
+<p>There are fewer states to track, and more importantly, since threads share the same memory address space, there is no need to switch out virtual memory pages which is one of the most expensive operations during a context switch</p>
+<p>Context switching is so costly, there are <strong>other mechanisms to try to minimize it</strong>. Some examples are <strong>fibers and coroutines</strong></p>
+<p>These mechanisms <strong>trade complexity</strong> for even <strong>lower context-switching costs</strong></p>
+<p><img src="/research/process_vs_thread/fiber_yield.png" alt="fiber_yield" /></p>
+<p>In general, they are cooperatively scheduled, that is, they must yield control for others to run</p>
+<p>In other words, <strong>the application itself handles task scheduling</strong></p>
+<p>It’s the responsibility of the application to make sure a long-running task is broken up by yielding periodically</p>
+<h2 id="conclusion">
+  Conclusion
+  <a class="anchor" href="#conclusion">#</a>
+</h2>
+<p>Program, process, and thread:</p>
+<ul>
+<li>The program contains a set of instructions</li>
+<li>The program is loaded into memory. It becomes one or more running processes. When a process starts, it is assigned memory and resources</li>
+<li>The thread is the smallest unit of execution within a process. A process can have one or more threads</li>
+</ul>
+<p>If we can ideally run each thread on each idle core, we can actually run parallelism all jobs we want with the shortest time consuming</p>
+<p>The cost when sharing data between threads and processes is also expensive, processes are more expensive than threads because threads inside the process use together shared memory address space</p>
+<p>Context-switching will appear when the scheduler of OS assigns one logical processor more than one thread or process that needs to run. Context-switching is expensive</p>
+<h2 id="appendix">
+  Appendix
+  <a class="anchor" href="#appendix">#</a>
+</h2>
+<h3 id="processor-definition">
+  Processor definition
+  <a class="anchor" href="#processor-definition">#</a>
+</h3>
+<p>There are 2 definitions of the term <code>Processor</code> that can lead you to confusion when researching</p>
+<p>Let’s devine it into 2 names:</p>
+<ul>
+<li><strong>Physical processor</strong>: means processor definition in the hardware world</li>
+<li><strong>Logical processor</strong>: means processor definition in the software world</li>
+</ul>
+<h4 id="physical-processor">
+  Physical processor
+  <a class="anchor" href="#physical-processor">#</a>
+</h4>
+<p><strong>A processor</strong> in this context means <strong>the entire CPU chip</strong> as the Intel define</p>
+<p>This image is the complexity of a modern multi-processor, multi-core system
+<img src="/research/process_vs_thread/physical_processors.png" alt="physical_processors" /></p>
+<h4 id="logical-processor">
+  Logical processor
+  <a class="anchor" href="#logical-processor">#</a>
+</h4>
+<p><img src="/research/process_vs_thread/logical_processors.png" alt="logical_processors" /></p>
+<p><strong>A processor</strong> in this context means <strong>a virtual core</strong>:</p>
+<ul>
+<li>CPU has 8 cores</li>
+<li>CPU has <strong>hyperthreading</strong> and it is enabled so <strong>each core split into 2 virtual cores</strong></li>
+</ul>
+<h3 id="virtual-memory">
+  Virtual memory
+  <a class="anchor" href="#virtual-memory">#</a>
+</h3>
+<p>A computer can address more memory than the amount physically installed on the system. This extra memory is actually called virtual memory and it is a section of a hard disk that&rsquo;s set up to emulate the computer&rsquo;s RAM</p>
+<p><img src="/research/process_vs_thread/virtual_memory.png" alt="virtual_memory" /></p>
+<h3 id="hyper-threading">
+  Hyper-threading
+  <a class="anchor" href="#hyper-threading">#</a>
+</h3>
+<p>Intel® Hyper-Threading Technology is a hardware innovation that allows more than one thread to run on each core. More threads means more work can be done in parallel</p>
+<p>How does Hyper-Threading work? When Intel® Hyper-Threading Technology is active, the CPU exposes two execution contexts per physical core. This means that one physical core now works like two “logical cores” that can handle different software threads</p>
+<h2 id="reference">
+  Reference
+  <a class="anchor" href="#reference">#</a>
+</h2>
+<ul>
+<li>Bytebytego: <a href="https://blog.bytebytego.com/p/interview-question-design-twitter">Interview question: Design Twitter (Episode 5)</a></li>
+<li>Bytebytego: <a href="https://www.youtube.com/watch?v=4rLW7zg21gI">FANG Interview Question | Process vs Thread</a></li>
+<li>Intel: <a href="https://www.intel.com/content/www/us/en/developer/articles/tool/performance-counter-monitor.html">A Better Way to Measure CPU Utilization</a></li>
+<li>Medium: <a href="https://medium.com/rungo/achieving-concurrency-in-go-3f84cbf870ca">Achieving concurrency in Go</a></li>
+<li>Stackoverflow: <a href="https://stackoverflow.com/questions/680684/what-are-the-differences-between-multi-cpu-multi-core-and-hyper-thread">What are the differences between multi-CPU, multi-core and hyper-thread?</a></li>
+<li>Tutorialspoint: <a href="https://www.tutorialspoint.com/operating_system/os_virtual_memory.htm">Operating System - Virtual Memory</a></li>
+<li>Wikipedia: <a href="https://en.wikipedia.org/wiki/Virtual_memory">Virtual memory</a></li>
+<li>Intel: <a href="https://www.intel.com/content/www/us/en/gaming/resources/hyper-threading.html#:~:text=Intel%C2%AE%20Hyper%2DThreading%20Technology%20is%20a%20hardware%20innovation%20that,execution%20contexts%20per%20physical%20core">What Is Hyper-Threading?</a></li>
+<li>Geeksforgeeks: <a href="https://www.geeksforgeeks.org/difference-between-user-level-thread-and-kernel-level-thread/">Difference between User Level thread and Kernel Level thread</a></li>
+<li>Geeksforgeeks: <a href="https://www.geeksforgeeks.org/difference-between-multicore-and-multiprocessor-system/">Difference between MultiCore and MultiProcessor System</a></li>
+<li>Indeed: <a href="https://www.indeed.com/career-advice/career-development/multithreading-vs-multiprocessing#:~:text=Multiprocessing%20uses%20two%20or%20more,computing%20power%20by%20adding%20CPUs.">Multithreading vs. Multiprocessing: What&rsquo;s the Difference?</a></li>
+<li>Scaler: <a href="https://www.scaler.com/topics/operating-system/difference-between-multicore-and-multiprocessor-system/">Difference Between Multicore and Multiprocessor System</a></li>
+<li>Superuser: <a href="https://superuser.com/questions/1297813/whats-the-difference-between-a-multiprocessor-and-a-multiprocessing-system">What&rsquo;s the difference between a multiprocessor and a multiprocessing system?</a></li>
+<li>Superuser: <a href="https://superuser.com/questions/13107/whats-the-difference-between-multicore-proc-and-multiproc-system?rq=1">What&rsquo;s the difference between multicore proccesor and multiproccess system?</a></li>
+</ul>
+</article>
+ 
+      
+
+      <footer class="book-footer">
+        
+  <div class="flex flex-wrap justify-between">
+
+
+
+
+
+</div>
+
+
+
+  <script>(function(){function e(e){const t=window.getSelection(),n=document.createRange();n.selectNodeContents(e),t.removeAllRanges(),t.addRange(n)}document.querySelectorAll("pre code").forEach(t=>{t.addEventListener("click",function(){if(window.getSelection().toString())return;e(t.parentElement),navigator.clipboard&&navigator.clipboard.writeText(t.parentElement.textContent)})})})()</script>
+
+
+ 
+        
+      </footer>
+
+      
+  
+  <div class="book-comments">
+
+</div>
+  
+ 
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
+    </div>
+
+    
+    <aside class="book-toc">
+      <div class="book-toc-content">
+        
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#program">Program</a></li>
+    <li><a href="#process">Process</a></li>
+    <li><a href="#thread">Thread</a></li>
+    <li><a href="#process-vs-thread-1">Process vs Thread</a>
+      <ul>
+        <li><a href="#process-1">Process</a></li>
+        <li><a href="#thread-1">Thread</a></li>
+        <li><a href="#code-demo">Code demo</a></li>
+      </ul>
+    </li>
+    <li><a href="#multithreading-and-multiprocessing">Multithreading and Multiprocessing</a>
+      <ul>
+        <li><a href="#concurrency-and-parallelism">Concurrency and Parallelism</a></li>
+        <li><a href="#multithreading">Multithreading</a></li>
+        <li><a href="#multiprocessing">Multiprocessing</a></li>
+        <li><a href="#code-demo-1">Code demo</a></li>
+      </ul>
+    </li>
+    <li><a href="#context-switching">Context switching</a></li>
+    <li><a href="#conclusion">Conclusion</a></li>
+    <li><a href="#appendix">Appendix</a>
+      <ul>
+        <li><a href="#processor-definition">Processor definition</a></li>
+        <li><a href="#virtual-memory">Virtual memory</a></li>
+        <li><a href="#hyper-threading">Hyper-threading</a></li>
+      </ul>
+    </li>
+    <li><a href="#reference">Reference</a></li>
+  </ul>
+</nav>
+
+
+ 
+      </div>
+    </aside>
+    
+  </main>
+
+  
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

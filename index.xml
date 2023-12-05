@@ -6,8 +6,33 @@
     <description>Recent content in Introduction on The Engineer Blogs</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 15 Nov 2023 01:47:46 +0700</lastBuildDate>
+    <lastBuildDate>Tue, 05 Dec 2023 01:47:46 +0700</lastBuildDate>
     <atom:link href="https://dangpham112000.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Chrome Architecture</title>
+      <link>https://dangpham112000.github.io/docs/research/chrome_architecture/</link>
+      <pubDate>Tue, 05 Dec 2023 01:47:46 +0700</pubDate>
+      <guid>https://dangpham112000.github.io/docs/research/chrome_architecture/</guid>
+      <description>Chrome Architecture#Prerequisites#Read process vs thread first if you don&amp;rsquo;t have any process and thread concept in your mind
+Browser Architecture#When you start an application, a process is created. The program might create thread(s) to help it do work, but that&amp;rsquo;s optional. The Operating System gives the process a &amp;ldquo;slab&amp;rdquo; of memory to work with and all application state is kept in that private memory space.</description>
+    </item>
+    <item>
+      <title>Process vs Thread</title>
+      <link>https://dangpham112000.github.io/docs/research/process_vs_thread/</link>
+      <pubDate>Tue, 05 Dec 2023 01:47:46 +0700</pubDate>
+      <guid>https://dangpham112000.github.io/docs/research/process_vs_thread/</guid>
+      <description>Process vs Thread#Program#A Program is an executable file containing a set of instructions and passively stored on disk
+Process#A Process means a program is in execution. When a program is loaded into the memory and becomes active, the program becomes a process or processes
+Thread#A Thread is the smallest unit of execution within a process
+Process vs Thread#Process#The process requires some essential resources such as registers, program counter, and stack</description>
+    </item>
+    <item>
+      <title>AWS Overview</title>
+      <link>https://dangpham112000.github.io/docs/research/aws_overview/</link>
+      <pubDate>Wed, 15 Nov 2023 01:47:46 +0700</pubDate>
+      <guid>https://dangpham112000.github.io/docs/research/aws_overview/</guid>
+      <description>AWS Overview#</description>
+    </item>
     <item>
       <title>Backend Protocol</title>
       <link>https://dangpham112000.github.io/docs/research/be_protocol/</link>
@@ -31,6 +56,14 @@ Commit#git add . git commit -m &amp;#34;commit message&amp;#34; These 2 comman
       <guid>https://dangpham112000.github.io/docs/problems/knight_dialer/</guid>
       <description>Knight dialer#Description#The chess knight has a unique movement, it may move two squares vertically and one square horizontally, or two squares horizontally and one square vertically (with both forming the shape of an L). The possible movements of chess knight are shown in this diagaram:
 A chess knight can move as indicated in the chess diagram below: We have a chess knight and a phone pad as shown below, the knight can only stand on a numeric cell (i.</description>
+    </item>
+    <item>
+      <title>Unit Test</title>
+      <link>https://dangpham112000.github.io/docs/tips/unit_test/</link>
+      <pubDate>Wed, 15 Nov 2023 01:47:46 +0700</pubDate>
+      <guid>https://dangpham112000.github.io/docs/tips/unit_test/</guid>
+      <description>Unit Test#Reset all global variables for each unit test case#What environment the unit test cases are running on: Browser or Nodejs?#Because Nodejs does not have browser APIs Sinon stub#Stub a function that is called by another function in the same module#Using this.[func_name] when calling it in your module
+Stub an export default function#import * as query from &amp;#34;/database/query&amp;#34;; const makeQueryStub = sandbox.</description>
     </item>
     <item>
       <title></title>
