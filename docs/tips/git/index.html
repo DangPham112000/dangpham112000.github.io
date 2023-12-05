@@ -22,7 +22,7 @@ Commit#git add . git commit -m &#34;commit message&#34; These 2 commands can c
 <link rel="icon" href="/favicon.png" >
 <link rel="stylesheet" href="/book.min.d2e03d9c7a4cea10fdd096eb48db6766340b9b3b186fa0321e2ad69205bdc3ad.css" integrity="sha256-0uA9nHpM6hD90JbrSNtnZjQLmzsYb6AyHirWkgW9w60=" crossorigin="anonymous">
   <script defer src="/flexsearch.min.js"></script>
-  <script defer src="/en.search.min.4115d1567226001fee418875eebcecf610ed3b25ceef9c994c319d3bfd8b8a20.js" integrity="sha256-QRXRVnImAB/uQYh17rzs9hDtOyXO75yZTDGdO/2LiiA=" crossorigin="anonymous"></script>
+  <script defer src="/en.search.min.ff578f0a54bfe863c674d9a742ef6cd5164737900cbf09c574eeac685f9dbfc9.js" integrity="sha256-/1ePClS/6GPGdNmnQu9s1RZHN5AMvwnFdO6saF&#43;dv8k=" crossorigin="anonymous"></script>
 <!--
 Made with Book Theme
 https://github.com/alex-shpak/hugo-book
@@ -344,11 +344,11 @@ https://github.com/alex-shpak/hugo-book
   Commit
   <a class="anchor" href="#commit">#</a>
 </h2>
-<pre tabindex="0"><code>git add .
-git commit -m &#34;commit message&#34;
-</code></pre><p>These 2 commands can combie into 1</p>
-<pre tabindex="0"><code>git commit -am &#34;commit message&#34;
-</code></pre><p><ins>Note</ins>: this only work with <strong>tracked files</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>git add .
+</span></span><span style="display:flex;"><span>git commit -m <span style="color:#e6db74">&#34;commit message&#34;</span>
+</span></span></code></pre></div><p>These 2 commands can combie into 1</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>git commit -am <span style="color:#e6db74">&#34;commit message&#34;</span>
+</span></span></code></pre></div><p><ins>Note</ins>: this only work with <strong>tracked files</strong></p>
 <h2 id="change-previous-commit-message">
   Change previous commit message
   <a class="anchor" href="#change-previous-commit-message">#</a>
@@ -357,14 +357,14 @@ git commit -m &#34;commit message&#34;
   Commit amend
   <a class="anchor" href="#commit-amend">#</a>
 </h3>
-<pre tabindex="0"><code>git commit --amend -m &#34;new message to replace the previous message&#34;
-</code></pre><p><ins>Note</ins>: this <code>amend</code> can also simplify by <code>amen</code> :))))</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>git commit --amend -m <span style="color:#e6db74">&#34;new message to replace the previous message&#34;</span>
+</span></span></code></pre></div><p><ins>Note</ins>: this <code>amend</code> can also simplify by <code>amen</code> :))))</p>
 <h3 id="rebase-reword">
   Rebase reword
   <a class="anchor" href="#rebase-reword">#</a>
 </h3>
-<pre tabindex="0"><code>git rebase -i HEAD~1
-</code></pre><details open><summary><strong>Vim IDE appear and show a latest commit</strong></summary>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>git rebase -i HEAD~1
+</span></span></code></pre></div><details open><summary><strong>Vim IDE appear and show a latest commit</strong></summary>
   <div class="markdown-inner">
     <ol>
 <li>type <code>i</code> to begin insert mode, ready to modify</li>
@@ -378,8 +378,8 @@ git commit -m &#34;commit message&#34;
   </div>
 </details>
 
-<pre tabindex="0"><code>git push -f
-</code></pre><h2 id="opps-code-on-wrong-branch">
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>git push -f
+</span></span></code></pre></div><h2 id="opps-code-on-wrong-branch">
   Opps! Code on wrong branch
   <a class="anchor" href="#opps-code-on-wrong-branch">#</a>
 </h2>
@@ -387,10 +387,10 @@ git commit -m &#34;commit message&#34;
   Stash
   <a class="anchor" href="#stash">#</a>
 </h3>
-<pre tabindex="0"><code>git stash
-git checkout correct-branch
-git stash pop
-</code></pre><p><ins>Note</ins>: <code>git stash</code> will only bring the changes on <strong>tracked files</strong> to store but don&rsquo;t worry when checkout to other branch, the <strong>untracked files</strong> will move to there also</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>git stash
+</span></span><span style="display:flex;"><span>git checkout correct-branch
+</span></span><span style="display:flex;"><span>git stash pop
+</span></span></code></pre></div><p><ins>Note</ins>: <code>git stash</code> will only bring the changes on <strong>tracked files</strong> to store but don&rsquo;t worry when checkout to other branch, the <strong>untracked files</strong> will move to there also</p>
 <h2 id="opps-commit-into-local-main-branch">
   Opps! Commit into local main branch
   <a class="anchor" href="#opps-commit-into-local-main-branch">#</a>
@@ -400,10 +400,10 @@ git stash pop
   <a class="anchor" href="#reset">#</a>
 </h3>
 <p><strong>Solution 1:</strong> <ins>Erase</ins> the current commit and go back to the earlier commit</p>
-<pre tabindex="0"><code>git reset --hard HEAD~1
-</code></pre><p><strong>Solution 2:</strong> <ins>Bring</ins> the current commit to <strong>staged change</strong> and go back to the earlier commit</p>
-<pre tabindex="0"><code>git reset --soft HEAD~1
-</code></pre><h2 id="update-the-outdated-feature-branch">
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>git reset --hard HEAD~1
+</span></span></code></pre></div><p><strong>Solution 2:</strong> <ins>Bring</ins> the current commit to <strong>staged change</strong> and go back to the earlier commit</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>git reset --soft HEAD~1
+</span></span></code></pre></div><h2 id="update-the-outdated-feature-branch">
   Update the outdated feature branch
   <a class="anchor" href="#update-the-outdated-feature-branch">#</a>
 </h2>
@@ -419,21 +419,24 @@ git stash pop
     <img src="/tips/git/after_rebase.png" alt="after_rebase" width="330" height="">
     <p style="text-align:center;margin:0;font-style:italic;opacity: 0.5;">after rebase</p>
 </div></p>
-<pre tabindex="0"><code>git checkout master
-git pull
-git rebase master topic
-git push -f
-</code></pre><p><ins>Note</ins>: topic branch will have code from <code>F</code> and <code>G</code> of main branch, but if it conflicts with topic branch, the solution will be the same <a href="#relocate-branch-rebase-1">here</a></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>git checkout master
+</span></span><span style="display:flex;"><span>git pull
+</span></span><span style="display:flex;"><span>git rebase master topic
+</span></span><span style="display:flex;"><span>git push -f
+</span></span></code></pre></div><p><ins>Note</ins>: topic branch will have code from <code>F</code> and <code>G</code> of main branch, but if it conflicts with topic branch, the solution will be the same <a href="#relocate-branch-rebase-1">here</a></p>
 <h3 id="pull-origin">
   Pull origin
   <a class="anchor" href="#pull-origin">#</a>
 </h3>
 <p>Collect code from master to feature branch. Feature branch in this example is topic branch</p>
-<pre tabindex="0"><code>git checkout master
-git pull
-git checkout topic
-git pull origin master
-</code></pre><p><ins>Note</ins>: never ever tried it yet</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>git checkout master
+</span></span><span style="display:flex;"><span>git pull
+</span></span><span style="display:flex;"><span>git checkout topic
+</span></span><span style="display:flex;"><span>git pull origin master
+</span></span></code></pre></div><p><ins>Note</ins>: <blockquote class="book-hint danger">
+  never ever tried it yet
+</blockquote>
+</p>
 <h2 id="clean-up-messy-commits">
   Clean up messy commits
   <a class="anchor" href="#clean-up-messy-commits">#</a>
@@ -444,8 +447,8 @@ git pull origin master
 </h3>
 <p>If you have 3 messy commits per 4 commits on your feature branch</p>
 <p><img src="/tips/git/messy_branch.png" alt="messy_branch" /> <img src="/tips/git/messy_commits.png" alt="messy_commits" /></p>
-<pre tabindex="0"><code>git rebase -i HEAD~4
-</code></pre><blockquote class="book-hint info">
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>git rebase -i HEAD~4
+</span></span></code></pre></div><blockquote class="book-hint info">
   <strong>Vim IDE appear and show 4 latest commits</strong>
 </blockquote>
 
@@ -472,8 +475,8 @@ git pull origin master
 <li>Type <code>:wq</code> to save<br>
 <img src="/tips/git/rebase_success.png" alt="rebase_success" /></li>
 </ol>
-<pre tabindex="0"><code>git push -f
-</code></pre><table>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>git push -f
+</span></span></code></pre></div><table>
 <thead>
 <tr>
 <th>before</th>
@@ -496,12 +499,12 @@ git pull origin master
   Delete all local branches except main branch
   <a class="anchor" href="#delete-all-local-branches-except-main-branch">#</a>
 </h2>
-<pre tabindex="0"><code>git branch | grep -v &#34;main&#34; | xargs git branch -D
-</code></pre><p><ins>Explain</ins>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>git branch | grep -v <span style="color:#e6db74">&#34;main&#34;</span> | xargs git branch -D
+</span></span></code></pre></div><p><ins>Explain</ins>:</p>
 <ul>
-<li>Get all branches (except for the main) via git branch | grep -v &ldquo;main&rdquo; command</li>
-<li>Select every branch with xargs command</li>
-<li>Delete branch with xargs git branch -D</li>
+<li>Get all branches (except for the main) via <code>git branch | grep -v &quot;main&quot;</code> command</li>
+<li>Select every branch with <code>xargs</code> command</li>
+<li>Delete branch with <code>git branch -D</code></li>
 </ul>
 <h2 id="refresh-outdated-local-branch">
   Refresh outdated local branch
@@ -511,16 +514,19 @@ git pull origin master
 <li>If you pull but show some warnings or errors and git show a recommend that is need to type some rebase commands</li>
 <li>Just checkout to another branch, delete your local conflict branch and then checkout to this branch again to download a latest one in remote repo</li>
 </ul>
-<pre tabindex="0"><code>git checkout dev
-git branch -D feature-branch
-git fetch
-git checkout feature-branch
-</code></pre><h3 id="force-pull">
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>git checkout dev
+</span></span><span style="display:flex;"><span>git branch -D feature-branch
+</span></span><span style="display:flex;"><span>git fetch
+</span></span><span style="display:flex;"><span>git checkout feature-branch
+</span></span></code></pre></div><h3 id="force-pull">
   Force pull
   <a class="anchor" href="#force-pull">#</a>
 </h3>
-<pre tabindex="0"><code>git pull -f
-</code></pre><p><ins>Note</ins>: never ever tried it yet</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>git pull -f
+</span></span></code></pre></div><p><ins>Note</ins>: <blockquote class="book-hint danger">
+  never ever tried it yet
+</blockquote>
+</p>
 <h2 id="merge-pr-but-get-stuck-in-conflict">
   Merge PR but get stuck in conflict
   <a class="anchor" href="#merge-pr-but-get-stuck-in-conflict">#</a>
@@ -529,31 +535,31 @@ git checkout feature-branch
   Relocate branch: rebase
   <a class="anchor" href="#relocate-branch-rebase-1">#</a>
 </h3>
-<pre tabindex="0"><code>git checkout main
-git pull
-checkout feature-branch
-git rebase main feature-branch
-</code></pre><blockquote class="book-hint warning">
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>git checkout main
+</span></span><span style="display:flex;"><span>git pull
+</span></span><span style="display:flex;"><span>checkout feature-branch
+</span></span><span style="display:flex;"><span>git rebase main feature-branch
+</span></span></code></pre></div><blockquote class="book-hint warning">
   <strong>Conflict appears in IDE</strong><br>
 → Resolve conflict and save file
 </blockquote>
 
-<pre tabindex="0"><code>git add .
-git rebase --continue
-</code></pre><blockquote class="book-hint info">
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>git add .
+</span></span><span style="display:flex;"><span>git rebase --continue
+</span></span></code></pre></div><blockquote class="book-hint info">
   <strong>Vim IDE appear to make you confirm change</strong><br>
 → <code>:wq</code>
 </blockquote>
 
-<pre tabindex="0"><code>git push -f
-</code></pre><h2 id="log-pretty">
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>git push -f
+</span></span></code></pre></div><h2 id="log-pretty">
   Log pretty
   <a class="anchor" href="#log-pretty">#</a>
 </h2>
-<pre tabindex="0"><code>git log --graph --decorate --oneline
-</code></pre><p>or</p>
-<pre tabindex="0"><code>git log --graph --decorate
-</code></pre><h2 id="config">
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>git log --graph --decorate --oneline
+</span></span></code></pre></div><p>or</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>git log --graph --decorate
+</span></span></code></pre></div><h2 id="config">
   Config
   <a class="anchor" href="#config">#</a>
 </h2>
@@ -561,15 +567,15 @@ git rebase --continue
   Show current global credential
   <a class="anchor" href="#show-current-global-credential">#</a>
 </h3>
-<pre tabindex="0"><code>git config --global --list
-</code></pre><h3 id="configure-local-repos-credential">
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>git config --global --list
+</span></span></code></pre></div><h3 id="configure-local-repos-credential">
   Configure local repo’s credential
   <a class="anchor" href="#configure-local-repos-credential">#</a>
 </h3>
 <p>when you want it’s different with the global one</p>
-<pre tabindex="0"><code>git config user.name DangPham112000
-git config user.email dangpham112000@gmail.com
-</code></pre><h3 id="switch-git-user-tool">
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>git config user.name DangPham112000
+</span></span><span style="display:flex;"><span>git config user.email dangpham112000@gmail.com
+</span></span></code></pre></div><h3 id="switch-git-user-tool">
   Switch git user tool
   <a class="anchor" href="#switch-git-user-tool">#</a>
 </h3>
