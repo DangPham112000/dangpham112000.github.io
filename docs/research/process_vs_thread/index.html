@@ -24,7 +24,7 @@ Process vs Thread#Process#The process requires some essential resources such
 <link rel="icon" href="/favicon.png" >
 <link rel="stylesheet" href="/book.min.d2e03d9c7a4cea10fdd096eb48db6766340b9b3b186fa0321e2ad69205bdc3ad.css" integrity="sha256-0uA9nHpM6hD90JbrSNtnZjQLmzsYb6AyHirWkgW9w60=" crossorigin="anonymous">
   <script defer src="/flexsearch.min.js"></script>
-  <script defer src="/en.search.min.ff578f0a54bfe863c674d9a742ef6cd5164737900cbf09c574eeac685f9dbfc9.js" integrity="sha256-/1ePClS/6GPGdNmnQu9s1RZHN5AMvwnFdO6saF&#43;dv8k=" crossorigin="anonymous"></script>
+  <script defer src="/en.search.min.02aec83947eb1f5c976019685847cd1ce244866f51797686bb8853988800139c.js" integrity="sha256-Aq7IOUfrH1yXYBloWEfNHOJEhm9ReXaGu4hTmIgAE5w=" crossorigin="anonymous"></script>
 <!--
 Made with Book Theme
 https://github.com/alex-shpak/hugo-book
@@ -129,6 +129,141 @@ https://github.com/alex-shpak/hugo-book
 
   
     <a href="/docs/research/be_protocol/" class="">Backend Protocol</a>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/research/be_protocol/tcp_udp/" class="">TCP - UDP</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/research/be_protocol/tls_ssl/" class="">TLS - SSL</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/research/be_protocol/http/" class="">HTTP</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/research/be_protocol/https/" class="">HTTPS</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/research/be_protocol/webrtc/" class="">WebRTC</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/research/be_protocol/websocket/" class="">Websocket</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/research/be_protocol/grpc/" class="">gRPC</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/research/be_protocol/communication/" class="">Communication</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/research/encryption/" class="">Encryption</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/research/security/" class="">Security</a>
   
 
         </li>
@@ -465,20 +600,291 @@ However, one misbehaving thread could bring down the entire process</p>
   Code demo
   <a class="anchor" href="#code-demo-1">#</a>
 </h3>
-<p><details ><summary>Single thread vs multithreading vs multiprocessing</summary>
+<p><details ><summary>Prepared files</summary>
   <div class="markdown-inner">
     <p><strong>Nodejs</strong></p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#75715e">// TBU;
-</span></span></span></code></pre></div>
+<p><code>k.js</code></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">CPUS</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span>(<span style="color:#e6db74">&#34;os&#34;</span>).<span style="color:#a6e22e">cpus</span>();
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">NUM_CPU</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">CPUS</span>.<span style="color:#a6e22e">length</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">TOTAL_OBJS</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">10000000</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">numWorkers</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">NUM_CPU</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">workload</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">TOTAL_OBJS</span> <span style="color:#f92672">/</span> <span style="color:#a6e22e">numWorkers</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">module</span>.<span style="color:#a6e22e">exports</span> <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">CPUS</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">NUM_CPU</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">TOTAL_OBJS</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">numWorkers</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">workload</span>,
+</span></span><span style="display:flex;"><span>};
+</span></span></code></pre></div><p><code>_.js</code></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">generateRandomName</span> <span style="color:#f92672">=</span> () =&gt; {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">names</span> <span style="color:#f92672">=</span> [
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;Alice&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;Bob&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;Charlie&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;David&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;Eve&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;Frank&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;Grace&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;Henry&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;Ivy&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;Jack&#34;</span>,
+</span></span><span style="display:flex;"><span>  ];
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">names</span>[Math.<span style="color:#a6e22e">floor</span>(Math.<span style="color:#a6e22e">random</span>() <span style="color:#f92672">*</span> <span style="color:#a6e22e">names</span>.<span style="color:#a6e22e">length</span>)];
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">generateRandomAge</span> <span style="color:#f92672">=</span> () =&gt; {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> Math.<span style="color:#a6e22e">floor</span>(Math.<span style="color:#a6e22e">random</span>() <span style="color:#f92672">*</span> <span style="color:#ae81ff">100</span>) <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">generateObjects</span> <span style="color:#f92672">=</span> (<span style="color:#a6e22e">count</span>) =&gt; {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">objects</span> <span style="color:#f92672">=</span> [];
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">let</span> <span style="color:#a6e22e">i</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; <span style="color:#a6e22e">i</span> <span style="color:#f92672">&lt;</span> <span style="color:#a6e22e">count</span>; <span style="color:#a6e22e">i</span><span style="color:#f92672">++</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">object</span> <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">name</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">generateRandomName</span>(),
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">age</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">generateRandomAge</span>(),
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">createTime</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">new</span> Date(),
+</span></span><span style="display:flex;"><span>    };
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">objects</span>.<span style="color:#a6e22e">push</span>(<span style="color:#a6e22e">object</span>);
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">objects</span>;
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Logger</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">constructor</span>(<span style="color:#a6e22e">isEnable</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">isEnable</span> <span style="color:#f92672">=</span> <span style="color:#f92672">!!</span><span style="color:#a6e22e">isEnable</span>;
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">isDebug</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">false</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">logP1</span>(...<span style="color:#a6e22e">args</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">isEnable</span>) {
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(...<span style="color:#a6e22e">args</span>);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">debug</span>(...<span style="color:#a6e22e">args</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">isDebug</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">isEnable</span>) {
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(...<span style="color:#a6e22e">args</span>);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">ts</span> <span style="color:#f92672">=</span> () =&gt; <span style="color:#66d9ef">new</span> Date().<span style="color:#a6e22e">getTime</span>();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Monitor</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">startTime</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">endTime</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">start</span>() {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">startTime</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">ts</span>();
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">end</span>() {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">endTime</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">ts</span>();
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">getTotal</span>() {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">endTime</span> <span style="color:#f92672">-</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">startTime</span>;
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">module</span>.<span style="color:#a6e22e">exports</span> <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">Logger</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">Monitor</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">generateObjects</span>,
+</span></span><span style="display:flex;"><span>};
+</span></span></code></pre></div><p><code>worker.js</code></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> { <span style="color:#a6e22e">generateObjects</span>, <span style="color:#a6e22e">Monitor</span>, <span style="color:#a6e22e">Logger</span> } <span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span>(<span style="color:#e6db74">&#34;../_&#34;</span>);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> { <span style="color:#a6e22e">workerData</span>, <span style="color:#a6e22e">parentPort</span>, <span style="color:#a6e22e">threadId</span> } <span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span>(<span style="color:#e6db74">&#34;worker_threads&#34;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">monitor</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">Monitor</span>();
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">logger</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">Logger</span>(<span style="color:#66d9ef">true</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> { <span style="color:#a6e22e">workload</span>, <span style="color:#a6e22e">isDebug</span> } <span style="color:#f92672">=</span> <span style="color:#a6e22e">workerData</span>;
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">logger</span>.<span style="color:#a6e22e">isDebug</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">isDebug</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">logger</span>.<span style="color:#a6e22e">debug</span>(<span style="color:#e6db74">&#34;Worker&#34;</span>, <span style="color:#a6e22e">threadId</span>, <span style="color:#e6db74">&#34;of process&#34;</span>, <span style="color:#a6e22e">process</span>.<span style="color:#a6e22e">pid</span>, <span style="color:#e6db74">&#34;is running&#34;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">monitor</span>.<span style="color:#a6e22e">start</span>();
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">objects</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">generateObjects</span>(<span style="color:#a6e22e">workload</span>);
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">monitor</span>.<span style="color:#a6e22e">end</span>();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">logger</span>.<span style="color:#a6e22e">debug</span>(
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;Worker&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">threadId</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;generated&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">objects</span>.<span style="color:#a6e22e">length</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;in&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">monitor</span>.<span style="color:#a6e22e">getTotal</span>(),
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;ms&#34;</span>
+</span></span><span style="display:flex;"><span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">monitor</span>.<span style="color:#a6e22e">start</span>();
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">parentPort</span>.<span style="color:#a6e22e">postMessage</span>(<span style="color:#a6e22e">objects</span>);
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">monitor</span>.<span style="color:#a6e22e">end</span>();
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">logger</span>.<span style="color:#a6e22e">debug</span>(<span style="color:#e6db74">&#34;worker&#34;</span>, <span style="color:#a6e22e">threadId</span>, <span style="color:#e6db74">&#34;send data in&#34;</span>, <span style="color:#a6e22e">monitor</span>.<span style="color:#a6e22e">getTotal</span>(), <span style="color:#e6db74">&#34;ms&#34;</span>);
+</span></span></code></pre></div>
   </div>
 </details>
 
 </br>
-<details ><summary>Time-consuming when not communication together</summary>
+<details ><summary>Single thread vs multithreading vs multiprocessing</summary>
+  <div class="markdown-inner">
+    <p><strong>Nodejs</strong></p>
+<p><code>singleThread.js</code></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> { <span style="color:#a6e22e">TOTAL_OBJS</span> } <span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span>(<span style="color:#e6db74">&#34;../k&#34;</span>);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> { <span style="color:#a6e22e">generateObjects</span>, <span style="color:#a6e22e">Monitor</span> } <span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span>(<span style="color:#e6db74">&#34;../_&#34;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">monitor</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">Monitor</span>();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">monitor</span>.<span style="color:#a6e22e">start</span>();
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">obj</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">generateObjects</span>(<span style="color:#a6e22e">TOTAL_OBJS</span>);
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">monitor</span>.<span style="color:#a6e22e">end</span>();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#34;Generate&#34;</span>, <span style="color:#a6e22e">obj</span>.<span style="color:#a6e22e">length</span>, <span style="color:#e6db74">&#34;in&#34;</span>, <span style="color:#a6e22e">monitor</span>.<span style="color:#a6e22e">getTotal</span>(), <span style="color:#e6db74">&#34;ms&#34;</span>);
+</span></span></code></pre></div><p><code>multithread.js</code></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> { <span style="color:#a6e22e">Worker</span> } <span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span>(<span style="color:#e6db74">&#34;worker_threads&#34;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> { <span style="color:#a6e22e">numWorkers</span>, <span style="color:#a6e22e">workload</span>, <span style="color:#a6e22e">TOTAL_OBJS</span> } <span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span>(<span style="color:#e6db74">&#34;../k&#34;</span>);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> { <span style="color:#a6e22e">Monitor</span>, <span style="color:#a6e22e">Logger</span> } <span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span>(<span style="color:#e6db74">&#34;../_&#34;</span>);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">let</span> <span style="color:#a6e22e">generatedObjects</span> <span style="color:#f92672">=</span> [];
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">monitor</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">Monitor</span>();
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">logger</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">Logger</span>(<span style="color:#66d9ef">true</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// set true to see more logs
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">logger</span>.<span style="color:#a6e22e">isDebug</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">true</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">runWorker</span>(<span style="color:#a6e22e">workerData</span>) {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">new</span> Promise((<span style="color:#a6e22e">resolve</span>, <span style="color:#a6e22e">reject</span>) =&gt; {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">worker</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">Worker</span>(<span style="color:#e6db74">&#34;./worker_threads/worker.js&#34;</span>, { <span style="color:#a6e22e">workerData</span> });
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">logger</span>.<span style="color:#a6e22e">debug</span>(<span style="color:#e6db74">&#34;Worker&#34;</span>, <span style="color:#a6e22e">worker</span>.<span style="color:#a6e22e">threadId</span>, <span style="color:#e6db74">&#34;is running&#34;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">worker</span>.<span style="color:#a6e22e">on</span>(<span style="color:#e6db74">&#34;message&#34;</span>, (<span style="color:#a6e22e">message</span>) =&gt; {
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">generatedObjects</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">generatedObjects</span>.<span style="color:#a6e22e">concat</span>(<span style="color:#a6e22e">message</span>);
+</span></span><span style="display:flex;"><span>    });
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">worker</span>.<span style="color:#a6e22e">on</span>(<span style="color:#e6db74">&#34;error&#34;</span>, <span style="color:#a6e22e">reject</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">worker</span>.<span style="color:#a6e22e">on</span>(<span style="color:#e6db74">&#34;exit&#34;</span>, (<span style="color:#a6e22e">code</span>) =&gt; {
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">code</span> <span style="color:#f92672">===</span> <span style="color:#ae81ff">0</span>) {
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">resolve</span>();
+</span></span><span style="display:flex;"><span>      } <span style="color:#66d9ef">else</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">reject</span>(<span style="color:#66d9ef">new</span> Error(<span style="color:#e6db74">`Worker stopped with exit code </span><span style="color:#e6db74">${</span><span style="color:#a6e22e">code</span><span style="color:#e6db74">}</span><span style="color:#e6db74">`</span>));
+</span></span><span style="display:flex;"><span>      }
+</span></span><span style="display:flex;"><span>    });
+</span></span><span style="display:flex;"><span>  });
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">async</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">generateObjectsWithWorkers</span>() {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">workers</span> <span style="color:#f92672">=</span> [];
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">monitor</span>.<span style="color:#a6e22e">start</span>();
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">let</span> <span style="color:#a6e22e">i</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; <span style="color:#a6e22e">i</span> <span style="color:#f92672">&lt;</span> <span style="color:#a6e22e">numWorkers</span>; <span style="color:#a6e22e">i</span><span style="color:#f92672">++</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">workerData</span> <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">workload</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">isDebug</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">logger</span>.<span style="color:#a6e22e">isDebug</span>,
+</span></span><span style="display:flex;"><span>    };
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">workers</span>.<span style="color:#a6e22e">push</span>(<span style="color:#a6e22e">runWorker</span>(<span style="color:#a6e22e">workerData</span>));
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">await</span> Promise.<span style="color:#a6e22e">all</span>(<span style="color:#a6e22e">workers</span>);
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">monitor</span>.<span style="color:#a6e22e">end</span>();
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">logger</span>.<span style="color:#a6e22e">logP1</span>(
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;All done!&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">numWorkers</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;workers,&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">generatedObjects</span>.<span style="color:#a6e22e">length</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;objects, in&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">monitor</span>.<span style="color:#a6e22e">getTotal</span>(),
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;ms&#34;</span>
+</span></span><span style="display:flex;"><span>  );
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">generateObjectsWithWorkers</span>();
+</span></span></code></pre></div><p><code>multiprocess.js</code></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">cluster</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span>(<span style="color:#e6db74">&#34;cluster&#34;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> { <span style="color:#a6e22e">workload</span>, <span style="color:#a6e22e">numWorkers</span> } <span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span>(<span style="color:#e6db74">&#34;../k&#34;</span>);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> { <span style="color:#a6e22e">Monitor</span>, <span style="color:#a6e22e">Logger</span>, <span style="color:#a6e22e">generateObjects</span> } <span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span>(<span style="color:#e6db74">&#34;../_&#34;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">logger</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">Logger</span>(<span style="color:#66d9ef">true</span>);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">monitor</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">Monitor</span>();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// set true to see more logs
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">logger</span>.<span style="color:#a6e22e">isDebug</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">true</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">cluster</span>.<span style="color:#a6e22e">isMaster</span>) {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">monitor</span>.<span style="color:#a6e22e">start</span>();
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">logger</span>.<span style="color:#a6e22e">logP1</span>(<span style="color:#e6db74">&#34;Master&#34;</span>, <span style="color:#a6e22e">process</span>.<span style="color:#a6e22e">pid</span>, <span style="color:#e6db74">&#34;is running&#34;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// Fork slaves
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">let</span> <span style="color:#a6e22e">i</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; <span style="color:#a6e22e">i</span> <span style="color:#f92672">&lt;</span> <span style="color:#a6e22e">numWorkers</span>; <span style="color:#a6e22e">i</span><span style="color:#f92672">++</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">cluster</span>.<span style="color:#a6e22e">fork</span>();
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// Collect data from slaves
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">generatedObjects</span> <span style="color:#f92672">=</span> [];
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">cluster</span>.<span style="color:#a6e22e">on</span>(<span style="color:#e6db74">&#34;message&#34;</span>, (<span style="color:#a6e22e">slave</span>, <span style="color:#a6e22e">message</span>) =&gt; {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">generatedObjects</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">generatedObjects</span>.<span style="color:#a6e22e">concat</span>(<span style="color:#a6e22e">message</span>);
+</span></span><span style="display:flex;"><span>  });
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">//  Wait for all workers to finish logic
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">slaveOff</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">cluster</span>.<span style="color:#a6e22e">on</span>(<span style="color:#e6db74">&#34;disconnect&#34;</span>, () =&gt; {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">slaveOff</span><span style="color:#f92672">++</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">slaveOff</span> <span style="color:#f92672">===</span> <span style="color:#a6e22e">numWorkers</span>) {
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">monitor</span>.<span style="color:#a6e22e">end</span>();
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">logger</span>.<span style="color:#a6e22e">logP1</span>(
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;All done!&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">slaveOff</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;slaves, in&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">monitor</span>.<span style="color:#a6e22e">getTotal</span>(),
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;ms&#34;</span>
+</span></span><span style="display:flex;"><span>      );
+</span></span><span style="display:flex;"><span>      <span style="color:#75715e">// Exit the application
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>      <span style="color:#a6e22e">process</span>.<span style="color:#a6e22e">exit</span>(<span style="color:#ae81ff">0</span>);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>  });
+</span></span><span style="display:flex;"><span>} <span style="color:#66d9ef">else</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// Slave process logic
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#a6e22e">logger</span>.<span style="color:#a6e22e">debug</span>(<span style="color:#e6db74">&#34;Slave&#34;</span>, <span style="color:#a6e22e">process</span>.<span style="color:#a6e22e">pid</span>, <span style="color:#e6db74">&#34;is running&#34;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">generatedObjects</span> <span style="color:#f92672">=</span> [];
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// Generate objects in the worker process
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#a6e22e">monitor</span>.<span style="color:#a6e22e">start</span>();
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">objects</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">generateObjects</span>(<span style="color:#a6e22e">workload</span>);
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">monitor</span>.<span style="color:#a6e22e">end</span>();
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">generatedObjects</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">generatedObjects</span>.<span style="color:#a6e22e">concat</span>(<span style="color:#a6e22e">objects</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">logger</span>.<span style="color:#a6e22e">debug</span>(
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;Generated&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">objects</span>.<span style="color:#a6e22e">length</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;objects in slave&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">process</span>.<span style="color:#a6e22e">pid</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;in&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">monitor</span>.<span style="color:#a6e22e">getTotal</span>(),
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;ms&#34;</span>
+</span></span><span style="display:flex;"><span>  );
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// Send objects to the master process
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#a6e22e">monitor</span>.<span style="color:#a6e22e">start</span>();
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">process</span>.<span style="color:#a6e22e">send</span>(<span style="color:#a6e22e">objects</span>);
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">monitor</span>.<span style="color:#a6e22e">end</span>();
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">logger</span>.<span style="color:#a6e22e">debug</span>(<span style="color:#e6db74">&#34;slave&#34;</span>, <span style="color:#a6e22e">process</span>.<span style="color:#a6e22e">pid</span>, <span style="color:#e6db74">&#34;send data in&#34;</span>, <span style="color:#a6e22e">monitor</span>.<span style="color:#a6e22e">getTotal</span>(), <span style="color:#e6db74">&#34;ms&#34;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// Disconnect the slave process
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#a6e22e">cluster</span>.<span style="color:#a6e22e">worker</span>.<span style="color:#a6e22e">disconnect</span>();
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div>
+  </div>
+</details>
+</p>
+<p><details ><summary>Time-consuming when not communication together</summary>
   <div class="markdown-inner">
     <p>Time-consuming when running multiple threads and multiple processes without communication together meaning each item runs separately and does not share data</p>
 <p><strong>Nodejs</strong></p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#75715e">// TBU;
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#75715e">// TODO: update guideline how it work and how it look (htop)
 </span></span></span></code></pre></div>
   </div>
 </details>
@@ -488,8 +894,8 @@ However, one misbehaving thread could bring down the entire process</p>
   <div class="markdown-inner">
     <p>Time-consuming when running multiple threads and multiple processes within communication together meaning each item runs separately but shares data with the main item</p>
 <p><strong>Nodejs</strong></p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#75715e">// TBU;
-</span></span></span></code></pre></div>
+<p>// TODO: update guideline how it work and how it look (htop)</p>
+
   </div>
 </details>
 </p>
@@ -594,6 +1000,7 @@ However, one misbehaving thread could bring down the entire process</p>
 <li>Scaler: <a href="https://www.scaler.com/topics/operating-system/difference-between-multicore-and-multiprocessor-system/">Difference Between Multicore and Multiprocessor System</a></li>
 <li>Superuser: <a href="https://superuser.com/questions/1297813/whats-the-difference-between-a-multiprocessor-and-a-multiprocessing-system">What&rsquo;s the difference between a multiprocessor and a multiprocessing system?</a></li>
 <li>Superuser: <a href="https://superuser.com/questions/13107/whats-the-difference-between-multicore-proc-and-multiproc-system?rq=1">What&rsquo;s the difference between multicore proccesor and multiproccess system?</a></li>
+<li>Give a thank to ChatGPT dude to support me during a process create multiple supreme demos</li>
 </ul>
 </article>
  

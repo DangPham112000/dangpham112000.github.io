@@ -20,7 +20,7 @@ Stub an export default function#import * as query from &#34;/database/query&#3
 <link rel="icon" href="/favicon.png" >
 <link rel="stylesheet" href="/book.min.d2e03d9c7a4cea10fdd096eb48db6766340b9b3b186fa0321e2ad69205bdc3ad.css" integrity="sha256-0uA9nHpM6hD90JbrSNtnZjQLmzsYb6AyHirWkgW9w60=" crossorigin="anonymous">
   <script defer src="/flexsearch.min.js"></script>
-  <script defer src="/en.search.min.ff578f0a54bfe863c674d9a742ef6cd5164737900cbf09c574eeac685f9dbfc9.js" integrity="sha256-/1ePClS/6GPGdNmnQu9s1RZHN5AMvwnFdO6saF&#43;dv8k=" crossorigin="anonymous"></script>
+  <script defer src="/en.search.min.02aec83947eb1f5c976019685847cd1ce244866f51797686bb8853988800139c.js" integrity="sha256-Aq7IOUfrH1yXYBloWEfNHOJEhm9ReXaGu4hTmIgAE5w=" crossorigin="anonymous"></script>
 <!--
 Made with Book Theme
 https://github.com/alex-shpak/hugo-book
@@ -125,6 +125,141 @@ https://github.com/alex-shpak/hugo-book
 
   
     <a href="/docs/research/be_protocol/" class="">Backend Protocol</a>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/research/be_protocol/tcp_udp/" class="">TCP - UDP</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/research/be_protocol/tls_ssl/" class="">TLS - SSL</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/research/be_protocol/http/" class="">HTTP</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/research/be_protocol/https/" class="">HTTPS</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/research/be_protocol/webrtc/" class="">WebRTC</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/research/be_protocol/websocket/" class="">Websocket</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/research/be_protocol/grpc/" class="">gRPC</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/research/be_protocol/communication/" class="">Communication</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/research/encryption/" class="">Encryption</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/research/security/" class="">Security</a>
   
 
         </li>
@@ -332,8 +467,8 @@ https://github.com/alex-shpak/hugo-book
 </p>
 <p><strong>Check:</strong></p>
 <ul>
-<li>Restore after mocking function: <code>sandbox.restore()</code> at <code>afterEach</code></li>
-<li>Reset global variables inner module: create a reset function to reset all variable of module to the initial value</li>
+<li><ins>Restore all mocks after mocking functions</ins>: <code>sandbox.restore()</code> or <code>jest.restoreAllMocks()</code> at <code>afterEach</code></li>
+<li><ins>Reset global variables inner module</ins>: create a reset function to reset all variable of module to the initial value</li>
 </ul>
 <h2 id="mocha---chai---sinon-sample">
   Mocha - Chai - Sinon sample

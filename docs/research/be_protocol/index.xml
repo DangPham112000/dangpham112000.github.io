@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Backend Protocol on The Engineer Blogs</title>
+    <link>https://dangpham112000.github.io/docs/research/be_protocol/</link>
+    <description>Recent content in Backend Protocol on The Engineer Blogs</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 15 Nov 2023 01:47:46 +0700</lastBuildDate>
+    <atom:link href="https://dangpham112000.github.io/docs/research/be_protocol/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>TCP - UDP</title>
+      <link>https://dangpham112000.github.io/docs/research/be_protocol/tcp_udp/</link>
+      <pubDate>Wed, 15 Nov 2023 01:47:46 +0700</pubDate>
+      <guid>https://dangpham112000.github.io/docs/research/be_protocol/tcp_udp/</guid>
+      <description>TCP - UDP#</description>
+    </item>
+    <item>
+      <title>TLS - SSL</title>
+      <link>https://dangpham112000.github.io/docs/research/be_protocol/tls_ssl/</link>
+      <pubDate>Wed, 15 Nov 2023 01:47:46 +0700</pubDate>
+      <guid>https://dangpham112000.github.io/docs/research/be_protocol/tls_ssl/</guid>
+      <description>TLS - SSL#</description>
+    </item>
+    <item>
+      <title>HTTP</title>
+      <link>https://dangpham112000.github.io/docs/research/be_protocol/http/</link>
+      <pubDate>Wed, 15 Nov 2023 01:47:46 +0700</pubDate>
+      <guid>https://dangpham112000.github.io/docs/research/be_protocol/http/</guid>
+      <description>HTTP#</description>
+    </item>
+    <item>
+      <title>HTTPS</title>
+      <link>https://dangpham112000.github.io/docs/research/be_protocol/https/</link>
+      <pubDate>Wed, 15 Nov 2023 01:47:46 +0700</pubDate>
+      <guid>https://dangpham112000.github.io/docs/research/be_protocol/https/</guid>
+      <description>HTTPS#</description>
+    </item>
+    <item>
+      <title>WebRTC</title>
+      <link>https://dangpham112000.github.io/docs/research/be_protocol/webrtc/</link>
+      <pubDate>Wed, 15 Nov 2023 01:47:46 +0700</pubDate>
+      <guid>https://dangpham112000.github.io/docs/research/be_protocol/webrtc/</guid>
+      <description>WebRTC#</description>
+    </item>
+    <item>
+      <title>Websocket</title>
+      <link>https://dangpham112000.github.io/docs/research/be_protocol/websocket/</link>
+      <pubDate>Wed, 15 Nov 2023 01:47:46 +0700</pubDate>
+      <guid>https://dangpham112000.github.io/docs/research/be_protocol/websocket/</guid>
+      <description>Websocket#</description>
+    </item>
+    <item>
+      <title>gRPC</title>
+      <link>https://dangpham112000.github.io/docs/research/be_protocol/grpc/</link>
+      <pubDate>Wed, 15 Nov 2023 01:47:46 +0700</pubDate>
+      <guid>https://dangpham112000.github.io/docs/research/be_protocol/grpc/</guid>
+      <description>gRPC#</description>
+    </item>
+    <item>
+      <title>Communication</title>
+      <link>https://dangpham112000.github.io/docs/research/be_protocol/communication/</link>
+      <pubDate>Wed, 15 Nov 2023 01:47:46 +0700</pubDate>
+      <guid>https://dangpham112000.github.io/docs/research/be_protocol/communication/</guid>
+      <description>Communication#</description>
+    </item>
+  </channel>
+</rss>

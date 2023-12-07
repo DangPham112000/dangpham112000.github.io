@@ -7,18 +7,17 @@
 <meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff">
 <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#343a40">
 <meta name="color-scheme" content="light dark"><meta property="og:title" content="Backend Protocol" />
-<meta property="og:description" content="Backend Protocol#What is a protocol?#A system that allows two parties to communicate A protocol is designed with a set of properties Depending on the purpose of the protocol TCP, UDP, HTTP, gRPC, FTP The application protocols (HTTP/1.1, HTTP/2, HTTP/3) run on top of transport protocols (TCP, UDP) Protocol properties#Data format Text based (plain text, JSON, XML) Binary (protobuf, RESP, h2, h3) Transfer mode Message based (UDP, HTTaP) Stream (TCP, WebRTC) Addressing system DNS name, IP, MAC Directionality Bidirectional (TCP) Unidirectional (HTTP) Full/Half duplex State Stateful (TCP, gRPC, apache thrift) Stateless (UDP, HTTP) Routing Proxies, Gateways Flow &amp; Congestion control TCP (Flow &amp; Congestion) UDP (No control) Error management Error code Retries and timeouts Why do we need a communication model?" />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="https://dangpham112000.github.io/docs/research/be_protocol/" /><meta property="article:section" content="docs" />
-<meta property="article:published_time" content="2023-11-15T01:47:46+07:00" />
-<meta property="article:modified_time" content="2023-11-15T01:47:46+07:00" />
+<meta property="og:description" content="" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://dangpham112000.github.io/docs/research/be_protocol/" />
 
 <title>Backend Protocol | The Engineer Blogs</title>
 <link rel="manifest" href="/manifest.json">
 <link rel="icon" href="/favicon.png" >
 <link rel="stylesheet" href="/book.min.d2e03d9c7a4cea10fdd096eb48db6766340b9b3b186fa0321e2ad69205bdc3ad.css" integrity="sha256-0uA9nHpM6hD90JbrSNtnZjQLmzsYb6AyHirWkgW9w60=" crossorigin="anonymous">
   <script defer src="/flexsearch.min.js"></script>
-  <script defer src="/en.search.min.ff578f0a54bfe863c674d9a742ef6cd5164737900cbf09c574eeac685f9dbfc9.js" integrity="sha256-/1ePClS/6GPGdNmnQu9s1RZHN5AMvwnFdO6saF&#43;dv8k=" crossorigin="anonymous"></script>
+  <script defer src="/en.search.min.02aec83947eb1f5c976019685847cd1ce244866f51797686bb8853988800139c.js" integrity="sha256-Aq7IOUfrH1yXYBloWEfNHOJEhm9ReXaGu4hTmIgAE5w=" crossorigin="anonymous"></script>
+<link rel="alternate" type="application/rss+xml" href="https://dangpham112000.github.io/docs/research/be_protocol/index.xml" title="The Engineer Blogs" />
 <!--
 Made with Book Theme
 https://github.com/alex-shpak/hugo-book
@@ -123,6 +122,141 @@ https://github.com/alex-shpak/hugo-book
 
   
     <a href="/docs/research/be_protocol/" class="active">Backend Protocol</a>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/research/be_protocol/tcp_udp/" class="">TCP - UDP</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/research/be_protocol/tls_ssl/" class="">TLS - SSL</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/research/be_protocol/http/" class="">HTTP</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/research/be_protocol/https/" class="">HTTPS</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/research/be_protocol/webrtc/" class="">WebRTC</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/research/be_protocol/websocket/" class="">Websocket</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/research/be_protocol/grpc/" class="">gRPC</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/research/be_protocol/communication/" class="">Communication</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/research/encryption/" class="">Encryption</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/research/security/" class="">Security</a>
   
 
         </li>
@@ -264,6 +398,7 @@ https://github.com/alex-shpak/hugo-book
     <li><a href="#protocol-properties">Protocol properties</a></li>
     <li><a href="#why-do-we-need-a-communication-model">Why do we need a communication model?</a></li>
     <li><a href="#osi-model">OSI Model</a></li>
+    <li><a href="#tcpip-model">TCP/IP Model</a></li>
   </ul>
 </nav>
 
@@ -375,6 +510,18 @@ https://github.com/alex-shpak/hugo-book
 <p>Layer 3 - Network - IP</p>
 <p>Layer 2 - Data link - Frames, Mac address Ethernet</p>
 <p>Layer 1 - Physical - Electric signals, fiber or radio waves</p>
+<h2 id="tcpip-model">
+  TCP/IP Model
+  <a class="anchor" href="#tcpip-model">#</a>
+</h2>
+<p>Much simpler than OSI just 4 layers</p>
+<ul>
+<li>Application (Layer 5, 6 and 7)</li>
+<li>Transport (Layer 4)</li>
+<li>Internet (Layer 3)</li>
+<li>Data link (Layer 2)</li>
+<li>Physical layer is not officially covered in the model</li>
+</ul>
 </article>
  
       
@@ -420,6 +567,7 @@ https://github.com/alex-shpak/hugo-book
     <li><a href="#protocol-properties">Protocol properties</a></li>
     <li><a href="#why-do-we-need-a-communication-model">Why do we need a communication model?</a></li>
     <li><a href="#osi-model">OSI Model</a></li>
+    <li><a href="#tcpip-model">TCP/IP Model</a></li>
   </ul>
 </nav>
 
