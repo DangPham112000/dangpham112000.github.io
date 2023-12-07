@@ -20,7 +20,7 @@ A chess knight can move as indicated in the chess diagram below: We have a chess
 <link rel="icon" href="/favicon.png" >
 <link rel="stylesheet" href="/book.min.d2e03d9c7a4cea10fdd096eb48db6766340b9b3b186fa0321e2ad69205bdc3ad.css" integrity="sha256-0uA9nHpM6hD90JbrSNtnZjQLmzsYb6AyHirWkgW9w60=" crossorigin="anonymous">
   <script defer src="/flexsearch.min.js"></script>
-  <script defer src="/en.search.min.02aec83947eb1f5c976019685847cd1ce244866f51797686bb8853988800139c.js" integrity="sha256-Aq7IOUfrH1yXYBloWEfNHOJEhm9ReXaGu4hTmIgAE5w=" crossorigin="anonymous"></script>
+  <script defer src="/en.search.min.8162c452fe56b64b26bed29e34b6f97be56699c78ed608072b5caeec658b6922.js" integrity="sha256-gWLEUv5WtksmvtKeNLb5e&#43;VmmceO1ggHK1yu7GWLaSI=" crossorigin="anonymous"></script>
 <!--
 Made with Book Theme
 https://github.com/alex-shpak/hugo-book
@@ -404,6 +404,13 @@ https://github.com/alex-shpak/hugo-book
         <li><a href="#low-level">Low level</a></li>
       </ul>
     </li>
+    <li><a href="#optimize">Optimize</a>
+      <ul>
+        <li><a href="#look-back">Look back</a></li>
+        <li><a href="#new-way">New way</a></li>
+        <li><a href="#time-and-space-complexity-optimize">Time and space complexity optimize</a></li>
+      </ul>
+    </li>
     <li><a href="#reference">Reference</a></li>
   </ul>
 </nav>
@@ -487,7 +494,7 @@ and then you should perform <code>n - 1</code> jumps to dial a number of length 
 <p>Ta nên bắt đầu bằng 1 ví dụ: đẹp nhất là <code>n = 3</code></p>
 </blockquote>
 <ul>
-<li>Ở lần đầu thì vị trí có thể là tất cả các nút</li>
+<li>Ở lần đầu thì vị trí là tất cả các nút</li>
 <li>Ở lần 2 thì cần duyệt qua từ 0 đến 9
 <ul>
 <li>vị trí 0 sẽ có thể nhảy đến 4 và</li>
@@ -538,17 +545,12 @@ and then you should perform <code>n - 1</code> jumps to dial a number of length 
 </blockquote>
 <ul>
 <li>Mảng số vị trí khả dụng kế tiếp khi ở vị trí i: <code>[[4, 6], [8, 6], []]</code></li>
-<li>Mảng số cách nhảy khả dụng khi ở vị trí i: <code>[2, 2, ]</code>
-<ul>
-<li>Có thể thay thế bằng length của mỗi phần tử trong mảng 1 để giảm space consume</li>
-</ul>
-</li>
 <li>Có thể thấy để dùng được mảng vị trí khả dụng thì n phải &gt;= 2</li>
-<li>Vậy thì thuật toán cần tìm phải bắt đầu từ 2</li>
+<li>Vậy thì thuật toán cần tìm phải bắt đầu ít nhất từ 2</li>
 </ul>
 <details ><summary><strong>Code</strong></summary>
   <div class="markdown-inner">
-    <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#75715e">/**
+    <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#75715e">/**
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * @param {number} n
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * @return {number}
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e"> */</span>
@@ -587,12 +589,194 @@ and then you should perform <code>n - 1</code> jumps to dial a number of length 
   </div>
 </details>
 
+<blockquote class="book-hint danger">
+  <p>Xuất hiện lỗi <code>runtime error</code>: Cụ thể thì là do <code>out of memory</code></p>
+<p><img src="/problems/knight_dialer/err_msg.png" alt="err_msg" /></p>
+
+</blockquote>
+
+<ul>
+<li>Khi thử với các test case nhỏ thì dễ thấy hàm của chúng ta work như mong đợi</li>
+<li>Nhưng khi thử với số lớn thì sẽ xuất hiện lỗi <code>out of memory</code>
+<ul>
+<li>Giải thuật chưa tối ưu bộ nhớ ?</li>
+<li>Chọn cấu trúc dữ liệu chưa phù hợp ?</li>
+</ul>
+</li>
+</ul>
+<h2 id="optimize">
+  Optimize
+  <a class="anchor" href="#optimize">#</a>
+</h2>
+<h3 id="look-back">
+  Look back
+  <a class="anchor" href="#look-back">#</a>
+</h3>
+<p>Cùng nhìn lại cách diễn giải ban đầu:</p>
+<ul>
+<li>n = 1: tất cả các nút<br>
+==&gt; <code>[[0], [1], [2], [3], [4], [5], [6], [7], [8], [9]]</code></li>
+<li>n = 2:
+<ul>
+<li>0 có thể đến 4 và 6</li>
+<li>1 có thể đến 8 và 6</li>
+<li>2 có thể đến 7 và 9</li>
+<li>&hellip;<br>
+==&gt; <code>[[4, 6], [6, 8], [7, 9], [4, 8], [0, 3, 9], [], [0, 1, 7], [2, 6], [1, 3], [2, 4]]</code></li>
+</ul>
+</li>
+<li>n = 3:
+<ul>
+<li>0 có thể đến 3, 9, 0, 1, 7, 0</li>
+<li>1 có thể đến 1, 3, 1, 7, 0</li>
+<li>&hellip;<br>
+==&gt; <code>[[3, 9, 0, 1, 7, 0], [1, 3, 1, 7, 0], ...]</code></li>
+</ul>
+</li>
+<li>&hellip;</li>
+</ul>
+<blockquote class="book-hint warning">
+  <ul>
+<li>Dễ thấy n càng cao số phần từ trùng lặp lại trong mảng càng cao</li>
+<li>Với mỗi phần tử trùng ấy ta lại có cùng một công việc cho chúng</li>
+<li>Kết quả cần tìm lại là đếm số lượng phần tử của từng mảng</li>
+</ul>
+
+</blockquote>
+
+<p><strong>==&gt; Nếu có thể áp dụng cấu trúc Dictionary sẽ là một phương pháp tối ưu</strong></p>
+<h3 id="new-way">
+  New way
+  <a class="anchor" href="#new-way">#</a>
+</h3>
+<p>Cách diễn dãi mới</p>
+<ul>
+<li>n = 1<br>
+==&gt; <code>dic = {0: 1, 1: 1, 2: 1, 3: 1, 4: 1, 5: 1, 6: 1, 7: 1, 8: 1, 9: 1}</code><br>
+==&gt; <code>dic = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1]</code><br>
+==&gt; Nên chọn array vì key chúng ta cần chỉ là các con số từ 0-&gt;9</li>
+<li>n = 2
+<ul>
+<li>0 có thể đến 4 và 6 =&gt; <code>newDic[4] += dic[0]</code> và <code>newDic[6] += dic[0]</code>
+<ul>
+<li><code>newDic[4] += dic[0]</code> vì giả sử vị trí 0 đang chứa 2 khả năng, thì 2 khả năng đó đều đi đến được 4</li>
+<li>Dùng <code>newDic</code> là để trạng thái cũ k bị xáo trộn khi đang duyệt</li>
+</ul>
+</li>
+<li>1 có thể đến 8 và 6 =&gt; <code>newDic[8] += dic[1]</code> và <code>newDic[6] += dic[1]</code></li>
+<li>&hellip;</li>
+</ul>
+</li>
+</ul>
+<details ><summary><strong>Code</strong></summary>
+  <div class="markdown-inner">
+    <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#75715e">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * @param {number} n
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * @return {number}
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> */</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">knightDialer</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">function</span> (<span style="color:#a6e22e">n</span>) {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">nextPlaces</span> <span style="color:#f92672">=</span> [
+</span></span><span style="display:flex;"><span>    [<span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">6</span>],
+</span></span><span style="display:flex;"><span>    [<span style="color:#ae81ff">6</span>, <span style="color:#ae81ff">8</span>],
+</span></span><span style="display:flex;"><span>    [<span style="color:#ae81ff">7</span>, <span style="color:#ae81ff">9</span>],
+</span></span><span style="display:flex;"><span>    [<span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">8</span>],
+</span></span><span style="display:flex;"><span>    [<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">9</span>],
+</span></span><span style="display:flex;"><span>    [],
+</span></span><span style="display:flex;"><span>    [<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">7</span>],
+</span></span><span style="display:flex;"><span>    [<span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">6</span>],
+</span></span><span style="display:flex;"><span>    [<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">3</span>],
+</span></span><span style="display:flex;"><span>    [<span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">4</span>],
+</span></span><span style="display:flex;"><span>  ];
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">n</span> <span style="color:#f92672">===</span> <span style="color:#ae81ff">1</span>) <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">10</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">dic</span> <span style="color:#f92672">=</span> [<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>];
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">let</span> <span style="color:#a6e22e">time</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>; <span style="color:#a6e22e">time</span> <span style="color:#f92672">&lt;=</span> <span style="color:#a6e22e">n</span>; <span style="color:#a6e22e">time</span><span style="color:#f92672">++</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">newDic</span> <span style="color:#f92672">=</span> [<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>];
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">let</span> <span style="color:#a6e22e">place</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; <span style="color:#a6e22e">place</span> <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">9</span>; <span style="color:#a6e22e">place</span><span style="color:#f92672">++</span>) {
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">let</span> <span style="color:#a6e22e">i</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; <span style="color:#a6e22e">i</span> <span style="color:#f92672">&lt;</span> <span style="color:#a6e22e">nextPlaces</span>[<span style="color:#a6e22e">place</span>].<span style="color:#a6e22e">length</span>; <span style="color:#a6e22e">i</span><span style="color:#f92672">++</span>) {
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">newDic</span>[<span style="color:#a6e22e">nextPlaces</span>[<span style="color:#a6e22e">place</span>][<span style="color:#a6e22e">i</span>]] <span style="color:#f92672">+=</span> <span style="color:#a6e22e">dic</span>[<span style="color:#a6e22e">place</span>] <span style="color:#f92672">%</span> (Math.<span style="color:#a6e22e">pow</span>(<span style="color:#ae81ff">10</span>, <span style="color:#ae81ff">9</span>) <span style="color:#f92672">+</span> <span style="color:#ae81ff">7</span>);
+</span></span><span style="display:flex;"><span>      }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">dic</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">newDic</span>;
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">totalWays</span> <span style="color:#f92672">=</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">dic</span>.<span style="color:#a6e22e">reduce</span>((<span style="color:#a6e22e">acc</span>, <span style="color:#a6e22e">item</span>) =&gt; <span style="color:#a6e22e">acc</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">item</span>, <span style="color:#ae81ff">0</span>) <span style="color:#f92672">%</span> (Math.<span style="color:#a6e22e">pow</span>(<span style="color:#ae81ff">10</span>, <span style="color:#ae81ff">9</span>) <span style="color:#f92672">+</span> <span style="color:#ae81ff">7</span>);
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">totalWays</span>;
+</span></span><span style="display:flex;"><span>};
+</span></span></code></pre></div>
+  </div>
+</details>
+
+<blockquote class="book-hint info">
+  <img src="/problems/knight_dialer/result.png" alt="result" />
+</blockquote>
+
+<h3 id="time-and-space-complexity-optimize">
+  Time and space complexity optimize
+  <a class="anchor" href="#time-and-space-complexity-optimize">#</a>
+</h3>
+<details ><summary><strong>Code</strong></summary>
+  <div class="markdown-inner">
+    <h4 id="tiêu-chí-là-ít-tính-toán-lại-và-tận-dụng-nhiều-hơn">
+  Tiêu chí là ít tính toán lại và tận dụng nhiều hơn
+  <a class="anchor" href="#ti%c3%aau-ch%c3%ad-l%c3%a0-%c3%adt-t%c3%adnh-to%c3%a1n-l%e1%ba%a1i-v%c3%a0-t%e1%ba%adn-d%e1%bb%a5ng-nhi%e1%bb%81u-h%c6%a1n">#</a>
+</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#75715e">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * @param {number} n
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * @return {number}
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> */</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">knightDialer</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">function</span> (<span style="color:#a6e22e">n</span>) {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">nextPlaces</span> <span style="color:#f92672">=</span> [
+</span></span><span style="display:flex;"><span>    [<span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">6</span>],
+</span></span><span style="display:flex;"><span>    [<span style="color:#ae81ff">6</span>, <span style="color:#ae81ff">8</span>],
+</span></span><span style="display:flex;"><span>    [<span style="color:#ae81ff">7</span>, <span style="color:#ae81ff">9</span>],
+</span></span><span style="display:flex;"><span>    [<span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">8</span>],
+</span></span><span style="display:flex;"><span>    [<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">9</span>],
+</span></span><span style="display:flex;"><span>    [],
+</span></span><span style="display:flex;"><span>    [<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">7</span>],
+</span></span><span style="display:flex;"><span>    [<span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">6</span>],
+</span></span><span style="display:flex;"><span>    [<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">3</span>],
+</span></span><span style="display:flex;"><span>    [<span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">4</span>],
+</span></span><span style="display:flex;"><span>  ];
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">n</span> <span style="color:#f92672">===</span> <span style="color:#ae81ff">1</span>) <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">10</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">mod</span> <span style="color:#f92672">=</span> Math.<span style="color:#a6e22e">pow</span>(<span style="color:#ae81ff">10</span>, <span style="color:#ae81ff">9</span>) <span style="color:#f92672">+</span> <span style="color:#ae81ff">7</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">dic</span> <span style="color:#f92672">=</span> [<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>],
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">newDic</span> <span style="color:#f92672">=</span> [<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>],
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">place</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">i</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">let</span> <span style="color:#a6e22e">time</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>; <span style="color:#a6e22e">time</span> <span style="color:#f92672">&lt;=</span> <span style="color:#a6e22e">n</span>; <span style="color:#a6e22e">time</span><span style="color:#f92672">++</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">newDic</span> <span style="color:#f92672">=</span> [<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>];
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> (<span style="color:#a6e22e">place</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; <span style="color:#a6e22e">place</span> <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">9</span>; <span style="color:#a6e22e">place</span><span style="color:#f92672">++</span>) {
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">place</span> <span style="color:#f92672">===</span> <span style="color:#ae81ff">5</span>) <span style="color:#66d9ef">continue</span>;
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">for</span> (<span style="color:#a6e22e">i</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; <span style="color:#a6e22e">i</span> <span style="color:#f92672">&lt;</span> <span style="color:#a6e22e">nextPlaces</span>[<span style="color:#a6e22e">place</span>].<span style="color:#a6e22e">length</span>; <span style="color:#a6e22e">i</span><span style="color:#f92672">++</span>) {
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">newDic</span>[<span style="color:#a6e22e">nextPlaces</span>[<span style="color:#a6e22e">place</span>][<span style="color:#a6e22e">i</span>]] <span style="color:#f92672">+=</span> <span style="color:#a6e22e">dic</span>[<span style="color:#a6e22e">place</span>] <span style="color:#f92672">%</span> <span style="color:#a6e22e">mod</span>;
+</span></span><span style="display:flex;"><span>      }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">dic</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">newDic</span>;
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">totalWays</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">dic</span>.<span style="color:#a6e22e">reduce</span>((<span style="color:#a6e22e">acc</span>, <span style="color:#a6e22e">item</span>) =&gt; <span style="color:#a6e22e">acc</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">item</span>, <span style="color:#ae81ff">0</span>) <span style="color:#f92672">%</span> <span style="color:#a6e22e">mod</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">totalWays</span>;
+</span></span><span style="display:flex;"><span>};
+</span></span></code></pre></div>
+  </div>
+</details>
+
+<blockquote class="book-hint info">
+  <img src="/problems/knight_dialer/optimized_result.png" alt="optimized_result" />
+</blockquote>
+
 <h2 id="reference">
   Reference
   <a class="anchor" href="#reference">#</a>
 </h2>
 <ul>
-<li><a href="https://leetcode.com/problems/knight-dialer">Leetcode</a></li>
+<li>Leetcode: <a href="https://leetcode.com/problems/knight-dialer">knight dialer</a></li>
 </ul>
 </article>
  
@@ -640,6 +824,13 @@ and then you should perform <code>n - 1</code> jumps to dial a number of length 
       <ul>
         <li><a href="#high-level">High level</a></li>
         <li><a href="#low-level">Low level</a></li>
+      </ul>
+    </li>
+    <li><a href="#optimize">Optimize</a>
+      <ul>
+        <li><a href="#look-back">Look back</a></li>
+        <li><a href="#new-way">New way</a></li>
+        <li><a href="#time-and-space-complexity-optimize">Time and space complexity optimize</a></li>
       </ul>
     </li>
     <li><a href="#reference">Reference</a></li>
