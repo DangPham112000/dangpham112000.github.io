@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="AWS Overview#">
+<meta name="description" content="AWS Overview#Slide#EC2#On-Demand Instances – short workload, predictable pricing, pay by second Has the highest cost Recommended for short-term and un-interrupted workloads, where you can&rsquo;t predict how the application will behave Reserved (1 &amp; 3 years) Reserved Instances – long workloads Recommended for steady-state usage applications (think database) Convertible Reserved Instances – long workloads with flexible instances Savings Plans (1 &amp; 3 years) – commitment to an amount of usage, long workload Spot Instances – short workloads, cheap, can lose instances (less reliable) The MOST cost-efficient Dedicated Hosts – book an entire physical server, control instance placement The most expensive option Dedicated Instances – no other customers will share your hardware No control over instance placement Capacity Reservations – reserve capacity in a specific AZ for any duration Monitoring#CloudWatch: Metrics: monitor the performance of AWS services and billing metrics Alarms: automate notification, perform EC2 action, notify to SNS based on metric Logs: collect log files from EC2 instances, servers, Lambda functions… Events (or EventBridge): react to events in AWS, or trigger a rule on a schedule CloudTrail: audit API calls made within your AWS account CloudTrail Insights: automated analysis of your CloudTrail Events X-Ray: trace requests made through your distributed applications AWS Health Dashboard: status of all AWS services across all regions AWS Account Health Dashboard: AWS events that impact your infrastructure Amazon CodeGuru: automated code reviews and application performance recommendations ">
 <meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff">
 <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#343a40">
 <meta name="color-scheme" content="light dark"><meta property="og:title" content="AWS Overview" />
-<meta property="og:description" content="AWS Overview#" />
+<meta property="og:description" content="AWS Overview#Slide#EC2#On-Demand Instances – short workload, predictable pricing, pay by second Has the highest cost Recommended for short-term and un-interrupted workloads, where you can&rsquo;t predict how the application will behave Reserved (1 &amp; 3 years) Reserved Instances – long workloads Recommended for steady-state usage applications (think database) Convertible Reserved Instances – long workloads with flexible instances Savings Plans (1 &amp; 3 years) – commitment to an amount of usage, long workload Spot Instances – short workloads, cheap, can lose instances (less reliable) The MOST cost-efficient Dedicated Hosts – book an entire physical server, control instance placement The most expensive option Dedicated Instances – no other customers will share your hardware No control over instance placement Capacity Reservations – reserve capacity in a specific AZ for any duration Monitoring#CloudWatch: Metrics: monitor the performance of AWS services and billing metrics Alarms: automate notification, perform EC2 action, notify to SNS based on metric Logs: collect log files from EC2 instances, servers, Lambda functions… Events (or EventBridge): react to events in AWS, or trigger a rule on a schedule CloudTrail: audit API calls made within your AWS account CloudTrail Insights: automated analysis of your CloudTrail Events X-Ray: trace requests made through your distributed applications AWS Health Dashboard: status of all AWS services across all regions AWS Account Health Dashboard: AWS events that impact your infrastructure Amazon CodeGuru: automated code reviews and application performance recommendations " />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://dangpham112000.github.io/docs/research/aws_overview/" /><meta property="article:section" content="docs" />
 <meta property="article:published_time" content="2023-11-15T01:47:46+07:00" />
@@ -18,7 +18,7 @@
 <link rel="icon" href="/favicon.png" >
 <link rel="stylesheet" href="/book.min.d2e03d9c7a4cea10fdd096eb48db6766340b9b3b186fa0321e2ad69205bdc3ad.css" integrity="sha256-0uA9nHpM6hD90JbrSNtnZjQLmzsYb6AyHirWkgW9w60=" crossorigin="anonymous">
   <script defer src="/flexsearch.min.js"></script>
-  <script defer src="/en.search.min.8162c452fe56b64b26bed29e34b6f97be56699c78ed608072b5caeec658b6922.js" integrity="sha256-gWLEUv5WtksmvtKeNLb5e&#43;VmmceO1ggHK1yu7GWLaSI=" crossorigin="anonymous"></script>
+  <script defer src="/en.search.min.565dcb42279ef87f7e37c2102fc36b3bb389f5a3ba10321c6f662bb6e61fb758.js" integrity="sha256-Vl3LQiee&#43;H9&#43;N8IQL8NrO7OJ9aO6EDIcb2YrtuYft1g=" crossorigin="anonymous"></script>
 <!--
 Made with Book Theme
 https://github.com/alex-shpak/hugo-book
@@ -393,7 +393,13 @@ https://github.com/alex-shpak/hugo-book
   <aside class="hidden clearfix">
     
   
-<nav id="TableOfContents"></nav>
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#slidehttpsmediadatacumuluscomaws-ccpaws20certified20cloud20practitioner20slides20v24pdf_gl130glds_gamte3oty1nzc3ms4xnzaxotkzmtc4_ga_6gzztggx7hmtcwmtk5mze3oc4xljaumtcwmtk5mze3oc42mc4wlja"><a href="https://media.datacumulus.com/aws-ccp/AWS%20Certified%20Cloud%20Practitioner%20Slides%20v24.pdf?_gl=1*30glds*_ga*MTE3OTY1Nzc3MS4xNzAxOTkzMTc4*_ga_6GZZTGGX7H*MTcwMTk5MzE3OC4xLjAuMTcwMTk5MzE3OC42MC4wLjA.">Slide</a></a></li>
+    <li><a href="#ec2">EC2</a></li>
+    <li><a href="#monitoring">Monitoring</a></li>
+  </ul>
+</nav>
 
 
 
@@ -408,6 +414,69 @@ https://github.com/alex-shpak/hugo-book
   AWS Overview
   <a class="anchor" href="#aws-overview">#</a>
 </h1>
+<h2 id="slidehttpsmediadatacumuluscomaws-ccpaws20certified20cloud20practitioner20slides20v24pdf_gl130glds_gamte3oty1nzc3ms4xnzaxotkzmtc4_ga_6gzztggx7hmtcwmtk5mze3oc4xljaumtcwmtk5mze3oc42mc4wlja">
+  <a href="https://media.datacumulus.com/aws-ccp/AWS%20Certified%20Cloud%20Practitioner%20Slides%20v24.pdf?_gl=1*30glds*_ga*MTE3OTY1Nzc3MS4xNzAxOTkzMTc4*_ga_6GZZTGGX7H*MTcwMTk5MzE3OC4xLjAuMTcwMTk5MzE3OC42MC4wLjA.">Slide</a>
+  <a class="anchor" href="#slidehttpsmediadatacumuluscomaws-ccpaws20certified20cloud20practitioner20slides20v24pdf_gl130glds_gamte3oty1nzc3ms4xnzaxotkzmtc4_ga_6gzztggx7hmtcwmtk5mze3oc4xljaumtcwmtk5mze3oc42mc4wlja">#</a>
+</h2>
+<h2 id="ec2">
+  EC2
+  <a class="anchor" href="#ec2">#</a>
+</h2>
+<ul>
+<li><strong>On-Demand Instances</strong> – short workload, predictable pricing, pay by second
+<ul>
+<li>Has the highest cost</li>
+<li>Recommended for short-term and un-interrupted workloads, where you can&rsquo;t predict how the application will behave</li>
+</ul>
+</li>
+<li><strong>Reserved</strong> (1 &amp; 3 years)
+<ul>
+<li><strong>Reserved Instances</strong> – long workloads
+<ul>
+<li>Recommended for steady-state usage applications (think database)</li>
+</ul>
+</li>
+<li><strong>Convertible Reserved Instances</strong> – long workloads with flexible instances</li>
+</ul>
+</li>
+<li><strong>Savings Plans (1 &amp; 3 years)</strong> – commitment to an amount of usage, long workload</li>
+<li><strong>Spot Instances</strong> – short workloads, cheap, can lose instances (less reliable)
+<ul>
+<li>The MOST cost-efficient</li>
+</ul>
+</li>
+<li><strong>Dedicated Hosts</strong> – book an entire physical server, control instance placement
+<ul>
+<li>The most expensive option</li>
+</ul>
+</li>
+<li><strong>Dedicated Instances</strong> – no other customers will share your hardware
+<ul>
+<li>No control over instance placement</li>
+</ul>
+</li>
+<li><strong>Capacity Reservations</strong> – reserve capacity in a specific AZ for any duration</li>
+</ul>
+<h2 id="monitoring">
+  Monitoring
+  <a class="anchor" href="#monitoring">#</a>
+</h2>
+<ul>
+<li><strong>CloudWatch</strong>:
+<ul>
+<li><strong>Metrics</strong>: monitor the performance of AWS services and billing metrics</li>
+<li><strong>Alarms</strong>: automate notification, perform EC2 action, notify to SNS based on metric</li>
+<li><strong>Logs</strong>: collect log files from EC2 instances, servers, Lambda functions…</li>
+<li><strong>Events (or EventBridge)</strong>: react to events in AWS, or trigger a rule on a schedule</li>
+</ul>
+</li>
+<li><strong>CloudTrail</strong>: audit API calls made within your AWS account</li>
+<li><strong>CloudTrail Insights</strong>: automated analysis of your CloudTrail Events</li>
+<li><strong>X-Ray</strong>: trace requests made through your distributed applications</li>
+<li><strong>AWS Health Dashboard</strong>: status of all AWS services across all regions</li>
+<li><strong>AWS Account Health Dashboard</strong>: AWS events that impact your infrastructure</li>
+<li><strong>Amazon CodeGuru</strong>: automated code reviews and application performance recommendations</li>
+</ul>
 </article>
  
       
@@ -447,7 +516,13 @@ https://github.com/alex-shpak/hugo-book
       <div class="book-toc-content">
         
   
-<nav id="TableOfContents"></nav>
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#slidehttpsmediadatacumuluscomaws-ccpaws20certified20cloud20practitioner20slides20v24pdf_gl130glds_gamte3oty1nzc3ms4xnzaxotkzmtc4_ga_6gzztggx7hmtcwmtk5mze3oc4xljaumtcwmtk5mze3oc42mc4wlja"><a href="https://media.datacumulus.com/aws-ccp/AWS%20Certified%20Cloud%20Practitioner%20Slides%20v24.pdf?_gl=1*30glds*_ga*MTE3OTY1Nzc3MS4xNzAxOTkzMTc4*_ga_6GZZTGGX7H*MTcwMTk5MzE3OC4xLjAuMTcwMTk5MzE3OC42MC4wLjA.">Slide</a></a></li>
+    <li><a href="#ec2">EC2</a></li>
+    <li><a href="#monitoring">Monitoring</a></li>
+  </ul>
+</nav>
 
 
  
