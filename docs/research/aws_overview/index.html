@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="AWS Overview#Slide#EC2#On-Demand Instances – short workload, predictable pricing, pay by second Has the highest cost Recommended for short-term and un-interrupted workloads, where you can&rsquo;t predict how the application will behave Reserved (1 &amp; 3 years) Reserved Instances – long workloads Recommended for steady-state usage applications (think database) Convertible Reserved Instances – long workloads with flexible instances Savings Plans (1 &amp; 3 years) – commitment to an amount of usage, long workload Spot Instances – short workloads, cheap, can lose instances (less reliable) The MOST cost-efficient Dedicated Hosts – book an entire physical server, control instance placement The most expensive option Dedicated Instances – no other customers will share your hardware No control over instance placement Capacity Reservations – reserve capacity in a specific AZ for any duration Monitoring#CloudWatch: Metrics: monitor the performance of AWS services and billing metrics Alarms: automate notification, perform EC2 action, notify to SNS based on metric Logs: collect log files from EC2 instances, servers, Lambda functions… Events (or EventBridge): react to events in AWS, or trigger a rule on a schedule CloudTrail: audit API calls made within your AWS account CloudTrail Insights: automated analysis of your CloudTrail Events X-Ray: trace requests made through your distributed applications AWS Health Dashboard: status of all AWS services across all regions AWS Account Health Dashboard: AWS events that impact your infrastructure Amazon CodeGuru: automated code reviews and application performance recommendations ">
+<meta name="description" content="AWS Overview#Slide#Types of Cloud Computing#EC2 - Elastic Compute Cloud#EC2 = Infrastructure as a Service (IaaS) On-Demand Instances – short workload, predictable pricing, pay by second Has the highest cost Recommended for short-term and un-interrupted workloads, where you can&rsquo;t predict how the application will behave Reserved (1 &amp; 3 years) Reserved Instances – long workloads Recommended for steady-state usage applications (think database) Convertible Reserved Instances – long workloads with flexible instances Savings Plans (1 &amp; 3 years) – commitment to an amount of usage, long workload Spot Instances – short workloads, cheap, can lose instances (less reliable) The MOST cost-efficient Dedicated Hosts – book an entire physical server, control instance placement The most expensive option Dedicated Instances – no other customers will share your hardware No control over instance placement Capacity Reservations – reserve capacity in a specific AZ for any duration Monitoring#CloudWatch: Metrics: monitor the performance of AWS services and billing metrics Alarms: automate notification, perform EC2 action, notify to SNS based on metric Logs: collect log files from EC2 instances, servers, Lambda functions… Events (or EventBridge): react to events in AWS, or trigger a rule on a schedule CloudTrail: audit API calls made within your AWS account CloudTrail Insights: automated analysis of your CloudTrail Events X-Ray: trace requests made through your distributed applications AWS Health Dashboard: status of all AWS services across all regions AWS Account Health Dashboard: AWS events that impact your infrastructure Amazon CodeGuru: automated code reviews and application performance recommendations ECS - Elastic Container Service#You must provision &amp; maintain the infrastructure (the EC2 instances) Fargate#You do not provision the infrastructure (no EC2 instances to manage) – simpler!">
 <meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff">
 <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#343a40">
 <meta name="color-scheme" content="light dark"><meta property="og:title" content="AWS Overview" />
-<meta property="og:description" content="AWS Overview#Slide#EC2#On-Demand Instances – short workload, predictable pricing, pay by second Has the highest cost Recommended for short-term and un-interrupted workloads, where you can&rsquo;t predict how the application will behave Reserved (1 &amp; 3 years) Reserved Instances – long workloads Recommended for steady-state usage applications (think database) Convertible Reserved Instances – long workloads with flexible instances Savings Plans (1 &amp; 3 years) – commitment to an amount of usage, long workload Spot Instances – short workloads, cheap, can lose instances (less reliable) The MOST cost-efficient Dedicated Hosts – book an entire physical server, control instance placement The most expensive option Dedicated Instances – no other customers will share your hardware No control over instance placement Capacity Reservations – reserve capacity in a specific AZ for any duration Monitoring#CloudWatch: Metrics: monitor the performance of AWS services and billing metrics Alarms: automate notification, perform EC2 action, notify to SNS based on metric Logs: collect log files from EC2 instances, servers, Lambda functions… Events (or EventBridge): react to events in AWS, or trigger a rule on a schedule CloudTrail: audit API calls made within your AWS account CloudTrail Insights: automated analysis of your CloudTrail Events X-Ray: trace requests made through your distributed applications AWS Health Dashboard: status of all AWS services across all regions AWS Account Health Dashboard: AWS events that impact your infrastructure Amazon CodeGuru: automated code reviews and application performance recommendations " />
+<meta property="og:description" content="AWS Overview#Slide#Types of Cloud Computing#EC2 - Elastic Compute Cloud#EC2 = Infrastructure as a Service (IaaS) On-Demand Instances – short workload, predictable pricing, pay by second Has the highest cost Recommended for short-term and un-interrupted workloads, where you can&rsquo;t predict how the application will behave Reserved (1 &amp; 3 years) Reserved Instances – long workloads Recommended for steady-state usage applications (think database) Convertible Reserved Instances – long workloads with flexible instances Savings Plans (1 &amp; 3 years) – commitment to an amount of usage, long workload Spot Instances – short workloads, cheap, can lose instances (less reliable) The MOST cost-efficient Dedicated Hosts – book an entire physical server, control instance placement The most expensive option Dedicated Instances – no other customers will share your hardware No control over instance placement Capacity Reservations – reserve capacity in a specific AZ for any duration Monitoring#CloudWatch: Metrics: monitor the performance of AWS services and billing metrics Alarms: automate notification, perform EC2 action, notify to SNS based on metric Logs: collect log files from EC2 instances, servers, Lambda functions… Events (or EventBridge): react to events in AWS, or trigger a rule on a schedule CloudTrail: audit API calls made within your AWS account CloudTrail Insights: automated analysis of your CloudTrail Events X-Ray: trace requests made through your distributed applications AWS Health Dashboard: status of all AWS services across all regions AWS Account Health Dashboard: AWS events that impact your infrastructure Amazon CodeGuru: automated code reviews and application performance recommendations ECS - Elastic Container Service#You must provision &amp; maintain the infrastructure (the EC2 instances) Fargate#You do not provision the infrastructure (no EC2 instances to manage) – simpler!" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://dangpham112000.github.io/docs/research/aws_overview/" /><meta property="article:section" content="docs" />
 <meta property="article:published_time" content="2023-11-15T01:47:46+07:00" />
@@ -18,7 +18,7 @@
 <link rel="icon" href="/favicon.png" >
 <link rel="stylesheet" href="/book.min.d2e03d9c7a4cea10fdd096eb48db6766340b9b3b186fa0321e2ad69205bdc3ad.css" integrity="sha256-0uA9nHpM6hD90JbrSNtnZjQLmzsYb6AyHirWkgW9w60=" crossorigin="anonymous">
   <script defer src="/flexsearch.min.js"></script>
-  <script defer src="/en.search.min.565dcb42279ef87f7e37c2102fc36b3bb389f5a3ba10321c6f662bb6e61fb758.js" integrity="sha256-Vl3LQiee&#43;H9&#43;N8IQL8NrO7OJ9aO6EDIcb2YrtuYft1g=" crossorigin="anonymous"></script>
+  <script defer src="/en.search.min.3c2c76187ceaed276eb55ed269127dce125c7bb801e5684e710c177260b2ce4a.js" integrity="sha256-PCx2GHzq7SdutV7SaRJ9zhJce7gB5WhOcQwXcmCyzko=" crossorigin="anonymous"></script>
 <!--
 Made with Book Theme
 https://github.com/alex-shpak/hugo-book
@@ -396,8 +396,37 @@ https://github.com/alex-shpak/hugo-book
 <nav id="TableOfContents">
   <ul>
     <li><a href="#slidehttpsmediadatacumuluscomaws-ccpaws20certified20cloud20practitioner20slides20v24pdf_gl130glds_gamte3oty1nzc3ms4xnzaxotkzmtc4_ga_6gzztggx7hmtcwmtk5mze3oc4xljaumtcwmtk5mze3oc42mc4wlja"><a href="https://media.datacumulus.com/aws-ccp/AWS%20Certified%20Cloud%20Practitioner%20Slides%20v24.pdf?_gl=1*30glds*_ga*MTE3OTY1Nzc3MS4xNzAxOTkzMTc4*_ga_6GZZTGGX7H*MTcwMTk5MzE3OC4xLjAuMTcwMTk5MzE3OC42MC4wLjA.">Slide</a></a></li>
-    <li><a href="#ec2">EC2</a></li>
+    <li><a href="#types-of-cloud-computing">Types of Cloud Computing</a></li>
+    <li><a href="#ec2---elastic-compute-cloud">EC2 - Elastic Compute Cloud</a></li>
     <li><a href="#monitoring">Monitoring</a></li>
+    <li><a href="#ecs---elastic-container-service">ECS - Elastic Container Service</a></li>
+    <li><a href="#fargate">Fargate</a></li>
+    <li><a href="#ecr---elastic-container-registry">ECR - Elastic Container Registry</a></li>
+    <li><a href="#lambda">Lambda</a>
+      <ul>
+        <li><a href="#pricing">Pricing</a></li>
+        <li><a href="#example">Example</a></li>
+      </ul>
+    </li>
+    <li><a href="#api-gateway">API Gateway</a></li>
+    <li><a href="#batch">Batch</a></li>
+    <li><a href="#batch-vs-lambda">Batch vs Lambda</a></li>
+    <li><a href="#lightsail">Lightsail</a></li>
+    <li><a href="#cloudformation">CloudFormation</a></li>
+    <li><a href="#cdk---cloud-development-kit">CDK - Cloud Development Kit</a></li>
+    <li><a href="#elastic-beanstalk">Elastic Beanstalk</a>
+      <ul>
+        <li><a href="#overview">Overview</a></li>
+        <li><a href="#health-monitoring">Health Monitoring</a></li>
+      </ul>
+    </li>
+    <li><a href="#codedeploy">CodeDeploy</a></li>
+    <li><a href="#codecommit">CodeCommit</a></li>
+    <li><a href="#codebuild">CodeBuild</a></li>
+    <li><a href="#codepipeline">CodePipeline</a></li>
+    <li><a href="#codeartifact">CodeArtifact</a></li>
+    <li><a href="#codestar">CodeStar</a></li>
+    <li><a href="#cloud9">Cloud9</a></li>
   </ul>
 </nav>
 
@@ -418,11 +447,17 @@ https://github.com/alex-shpak/hugo-book
   <a href="https://media.datacumulus.com/aws-ccp/AWS%20Certified%20Cloud%20Practitioner%20Slides%20v24.pdf?_gl=1*30glds*_ga*MTE3OTY1Nzc3MS4xNzAxOTkzMTc4*_ga_6GZZTGGX7H*MTcwMTk5MzE3OC4xLjAuMTcwMTk5MzE3OC42MC4wLjA.">Slide</a>
   <a class="anchor" href="#slidehttpsmediadatacumuluscomaws-ccpaws20certified20cloud20practitioner20slides20v24pdf_gl130glds_gamte3oty1nzc3ms4xnzaxotkzmtc4_ga_6gzztggx7hmtcwmtk5mze3oc4xljaumtcwmtk5mze3oc42mc4wlja">#</a>
 </h2>
-<h2 id="ec2">
-  EC2
-  <a class="anchor" href="#ec2">#</a>
+<h2 id="types-of-cloud-computing">
+  Types of Cloud Computing
+  <a class="anchor" href="#types-of-cloud-computing">#</a>
+</h2>
+<p><img src="/research/aws_overview/cloud_computing_types.png" alt="cloud_computing_types" /></p>
+<h2 id="ec2---elastic-compute-cloud">
+  EC2 - Elastic Compute Cloud
+  <a class="anchor" href="#ec2---elastic-compute-cloud">#</a>
 </h2>
 <ul>
+<li><strong>EC2 = Infrastructure as a Service (IaaS)</strong></li>
 <li><strong>On-Demand Instances</strong> – short workload, predictable pricing, pay by second
 <ul>
 <li>Has the highest cost</li>
@@ -477,6 +512,237 @@ https://github.com/alex-shpak/hugo-book
 <li><strong>AWS Account Health Dashboard</strong>: AWS events that impact your infrastructure</li>
 <li><strong>Amazon CodeGuru</strong>: automated code reviews and application performance recommendations</li>
 </ul>
+<h2 id="ecs---elastic-container-service">
+  ECS - Elastic Container Service
+  <a class="anchor" href="#ecs---elastic-container-service">#</a>
+</h2>
+<ul>
+<li>You must provision &amp; maintain the infrastructure (the EC2 instances)
+<img src="/research/aws_overview/ecs.png" alt="ecs" /></li>
+</ul>
+<h2 id="fargate">
+  Fargate
+  <a class="anchor" href="#fargate">#</a>
+</h2>
+<ul>
+<li>You do not provision the infrastructure (no EC2 instances to manage) – simpler!</li>
+<li>Serverless offering
+<img src="/research/aws_overview/fargate.png" alt="fargate" /></li>
+</ul>
+<h2 id="ecr---elastic-container-registry">
+  ECR - Elastic Container Registry
+  <a class="anchor" href="#ecr---elastic-container-registry">#</a>
+</h2>
+<ul>
+<li>Store your Docker images
+<img src="/research/aws_overview/ecr.png" alt="ecr" /></li>
+</ul>
+<h2 id="lambda">
+  Lambda
+  <a class="anchor" href="#lambda">#</a>
+</h2>
+<ul>
+<li>Virtual <strong>functions</strong> – no servers to manage!</li>
+<li>Limited by time - <strong>short executions</strong></li>
+<li>Run <strong>on-demand</strong></li>
+<li><strong>Scaling is automated</strong>!</li>
+<li><strong>Event-Driven</strong>: functions get invoked by AWS when needed</li>
+</ul>
+<h3 id="pricing">
+  Pricing
+  <a class="anchor" href="#pricing">#</a>
+</h3>
+<ul>
+<li>Pay per <strong>calls</strong></li>
+<li>Pay per <strong>duration</strong></li>
+</ul>
+<h3 id="example">
+  Example
+  <a class="anchor" href="#example">#</a>
+</h3>
+<div class="book-columns flex flex-wrap">
+
+  <div class="flex-even markdown-inner">
+    <p><strong>Serverless Thumbnail creation</strong></p>
+<p><img src="/research/aws_overview/lambda_eg1.png" alt="lambda_eg1" /></p>
+
+  </div>
+
+  <div class="flex-even markdown-inner">
+    <p><strong>Serverless CRON Job</strong></p>
+<p><img src="/research/aws_overview/lambda_eg2.png" alt="lambda_eg2" /></p>
+
+  </div>
+
+</div>
+
+<h2 id="api-gateway">
+  API Gateway
+  <a class="anchor" href="#api-gateway">#</a>
+</h2>
+<ul>
+<li><strong>Serverless</strong> and scalable</li>
+<li>Supports RESTful APIs and WebSocket APIs</li>
+<li>Support for security, user authentication, API throttling, API keys, monitoring&hellip;
+<img src="/research/aws_overview/api_gateway.png" alt="api_gateway" /></li>
+</ul>
+<h2 id="batch">
+  Batch
+  <a class="anchor" href="#batch">#</a>
+</h2>
+<ul>
+<li><strong>Fully managed</strong> batch processing at <strong>any scale</strong></li>
+<li>Batch will dynamically launch <strong>EC2 instances</strong> or <strong>Spot Instances</strong></li>
+<li>Batch jobs are defined as <strong>Docker images</strong> and <strong>run on ECS</strong>
+<img src="/research/aws_overview/batch.png" alt="batch" /></li>
+</ul>
+<h2 id="batch-vs-lambda">
+  Batch vs Lambda
+  <a class="anchor" href="#batch-vs-lambda">#</a>
+</h2>
+<div class="book-columns flex flex-wrap">
+
+  <div class="flex-even markdown-inner">
+    <p><strong>Lambda</strong></p>
+<ul>
+<li>Time limit</li>
+<li>Limited runtimes</li>
+<li>Limited temporary disk space</li>
+<li>Serverless</li>
+</ul>
+
+  </div>
+
+  <div class="flex-even markdown-inner">
+    <p><strong>Batch</strong></p>
+<ul>
+<li>No time limit</li>
+<li>Any runtime as long as it’s packaged as a Docker image</li>
+<li>Rely on EBS / instance store for disk space</li>
+<li>Relies on EC2 (can be managed by AWS)</li>
+</ul>
+
+  </div>
+
+</div>
+
+<h2 id="lightsail">
+  Lightsail
+  <a class="anchor" href="#lightsail">#</a>
+</h2>
+<ul>
+<li>Simpler alternative to using EC2, RDS, ELB, EBS, Route 53</li>
+<li>Great for people with <strong>little cloud experience</strong>!</li>
+<li><strong>&ldquo;almost always be a wrong answer&rdquo;</strong></li>
+</ul>
+<h2 id="cloudformation">
+  CloudFormation
+  <a class="anchor" href="#cloudformation">#</a>
+</h2>
+<p><strong>Infrastructure as code</strong></p>
+<p>Within a CloudFormation template, you say:</p>
+<ul>
+<li>I want a security group</li>
+<li>I want two EC2 instances using this security group</li>
+<li>I want an S3 bucket</li>
+<li>I want a load balancer (ELB) in front of these machines</li>
+</ul>
+<p>Then CloudFormation creates those for you, in the <strong>right order</strong>, with the <strong>exact configuration</strong> that you specify</p>
+<h2 id="cdk---cloud-development-kit">
+  CDK - Cloud Development Kit
+  <a class="anchor" href="#cdk---cloud-development-kit">#</a>
+</h2>
+<ul>
+<li>Define your cloud infrastructure using a familiar language: JavaScript, Python, &hellip;
+<ul>
+<li>You can use <code>for</code> loop to create multiple instances</li>
+</ul>
+</li>
+<li>The code is “compiled” into a CloudFormation template (JSON/YAML)</li>
+<li>You can therefore deploy infrastructure and application runtime code together
+<img src="/research/aws_overview/cdk.png" alt="cdk" /></li>
+</ul>
+<h2 id="elastic-beanstalk">
+  Elastic Beanstalk
+  <a class="anchor" href="#elastic-beanstalk">#</a>
+</h2>
+<h3 id="overview">
+  Overview
+  <a class="anchor" href="#overview">#</a>
+</h3>
+<ul>
+<li><strong>A developer centric view</strong> of deploying an application on AWS</li>
+<li>It uses all the component’s we’ve seen before: EC2, ASG, ELB, RDS, etc</li>
+<li><strong>Beanstalk = Platform as a Service (PaaS)</strong></li>
+<li>Beanstalk is free but you pay for the underlying instances</li>
+<li><strong>Just the application code is the responsibility of the developer</strong></li>
+</ul>
+<h3 id="health-monitoring">
+  Health Monitoring
+  <a class="anchor" href="#health-monitoring">#</a>
+</h3>
+<ul>
+<li>Health agent pushes metrics to CloudWatch</li>
+<li>Checks for app health, publishes health events</li>
+</ul>
+<h2 id="codedeploy">
+  CodeDeploy
+  <a class="anchor" href="#codedeploy">#</a>
+</h2>
+<ul>
+<li>We want to deploy our application <strong>automatically</strong></li>
+<li>Works with <strong>EC2 Instances</strong></li>
+<li>Works with <strong>On-Premises Servers</strong></li>
+<li><strong><ins>Hybrid</ins></strong> service</li>
+<li>Servers / Instances must be provisioned and configured ahead of time with the CodeDeploy Agent</li>
+</ul>
+<p><img src="/research/aws_overview/codedeploy.png" alt="codedeploy" /></p>
+<h2 id="codecommit">
+  CodeCommit
+  <a class="anchor" href="#codecommit">#</a>
+</h2>
+<ul>
+<li><strong>Like GitHub</strong></li>
+<li>Developers usually store <strong>code in a repository</strong>, using the <strong>Git technology</strong></li>
+</ul>
+<h2 id="codebuild">
+  CodeBuild
+  <a class="anchor" href="#codebuild">#</a>
+</h2>
+<ul>
+<li><strong>Compiles source code, run tests, and produces packages</strong> that are ready to be deployed (by CodeDeploy for example)</li>
+<li>Pay-as-you-go pricing - <strong>only pay for the build time</strong></li>
+</ul>
+<p><img src="/research/aws_overview/codebuild.png" alt="codebuild" /></p>
+<h2 id="codepipeline">
+  CodePipeline
+  <a class="anchor" href="#codepipeline">#</a>
+</h2>
+<ul>
+<li>Orchestrate the different steps to have the code automatically pushed to production
+<ul>
+<li>Code =&gt; Build =&gt; Test =&gt; Provision =&gt; Deploy</li>
+<li>Basis for CICD (Continuous Integration &amp; Continuous Delivery)</li>
+</ul>
+</li>
+</ul>
+<p><img src="/research/aws_overview/codepipeline.png" alt="codepipeline" /></p>
+<h2 id="codeartifact">
+  CodeArtifact
+  <a class="anchor" href="#codeartifact">#</a>
+</h2>
+<h2 id="codestar">
+  CodeStar
+  <a class="anchor" href="#codestar">#</a>
+</h2>
+<h2 id="cloud9">
+  Cloud9
+  <a class="anchor" href="#cloud9">#</a>
+</h2>
+<ul>
+<li>A cloud IDE</li>
+<li>Allows for code collaboration in real-time (pair programming)</li>
+</ul>
 </article>
  
       
@@ -519,8 +785,37 @@ https://github.com/alex-shpak/hugo-book
 <nav id="TableOfContents">
   <ul>
     <li><a href="#slidehttpsmediadatacumuluscomaws-ccpaws20certified20cloud20practitioner20slides20v24pdf_gl130glds_gamte3oty1nzc3ms4xnzaxotkzmtc4_ga_6gzztggx7hmtcwmtk5mze3oc4xljaumtcwmtk5mze3oc42mc4wlja"><a href="https://media.datacumulus.com/aws-ccp/AWS%20Certified%20Cloud%20Practitioner%20Slides%20v24.pdf?_gl=1*30glds*_ga*MTE3OTY1Nzc3MS4xNzAxOTkzMTc4*_ga_6GZZTGGX7H*MTcwMTk5MzE3OC4xLjAuMTcwMTk5MzE3OC42MC4wLjA.">Slide</a></a></li>
-    <li><a href="#ec2">EC2</a></li>
+    <li><a href="#types-of-cloud-computing">Types of Cloud Computing</a></li>
+    <li><a href="#ec2---elastic-compute-cloud">EC2 - Elastic Compute Cloud</a></li>
     <li><a href="#monitoring">Monitoring</a></li>
+    <li><a href="#ecs---elastic-container-service">ECS - Elastic Container Service</a></li>
+    <li><a href="#fargate">Fargate</a></li>
+    <li><a href="#ecr---elastic-container-registry">ECR - Elastic Container Registry</a></li>
+    <li><a href="#lambda">Lambda</a>
+      <ul>
+        <li><a href="#pricing">Pricing</a></li>
+        <li><a href="#example">Example</a></li>
+      </ul>
+    </li>
+    <li><a href="#api-gateway">API Gateway</a></li>
+    <li><a href="#batch">Batch</a></li>
+    <li><a href="#batch-vs-lambda">Batch vs Lambda</a></li>
+    <li><a href="#lightsail">Lightsail</a></li>
+    <li><a href="#cloudformation">CloudFormation</a></li>
+    <li><a href="#cdk---cloud-development-kit">CDK - Cloud Development Kit</a></li>
+    <li><a href="#elastic-beanstalk">Elastic Beanstalk</a>
+      <ul>
+        <li><a href="#overview">Overview</a></li>
+        <li><a href="#health-monitoring">Health Monitoring</a></li>
+      </ul>
+    </li>
+    <li><a href="#codedeploy">CodeDeploy</a></li>
+    <li><a href="#codecommit">CodeCommit</a></li>
+    <li><a href="#codebuild">CodeBuild</a></li>
+    <li><a href="#codepipeline">CodePipeline</a></li>
+    <li><a href="#codeartifact">CodeArtifact</a></li>
+    <li><a href="#codestar">CodeStar</a></li>
+    <li><a href="#cloud9">Cloud9</a></li>
   </ul>
 </nav>
 
