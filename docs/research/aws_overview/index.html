@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="AWS Overview#Slide#Types of Cloud Computing#EC2 - Elastic Compute Cloud#EC2 = Infrastructure as a Service (IaaS) On-Demand Instances – short workload, predictable pricing, pay by second Has the highest cost Recommended for short-term and un-interrupted workloads, where you can&rsquo;t predict how the application will behave Reserved (1 &amp; 3 years) Reserved Instances – long workloads Recommended for steady-state usage applications (think database) Convertible Reserved Instances – long workloads with flexible instances Savings Plans (1 &amp; 3 years) – commitment to an amount of usage, long workload Spot Instances – short workloads, cheap, can lose instances (less reliable) The MOST cost-efficient Dedicated Hosts – book an entire physical server, control instance placement The most expensive option Dedicated Instances – no other customers will share your hardware No control over instance placement Capacity Reservations – reserve capacity in a specific AZ for any duration Monitoring#CloudWatch: Metrics: monitor the performance of AWS services and billing metrics Alarms: automate notification, perform EC2 action, notify to SNS based on metric Logs: collect log files from EC2 instances, servers, Lambda functions… Events (or EventBridge): react to events in AWS, or trigger a rule on a schedule CloudTrail: audit API calls made within your AWS account CloudTrail Insights: automated analysis of your CloudTrail Events X-Ray: trace requests made through your distributed applications AWS Health Dashboard: status of all AWS services across all regions AWS Account Health Dashboard: AWS events that impact your infrastructure Amazon CodeGuru: automated code reviews and application performance recommendations ECS - Elastic Container Service#You must provision &amp; maintain the infrastructure (the EC2 instances) Fargate#You do not provision the infrastructure (no EC2 instances to manage) – simpler!">
+<meta name="description" content="AWS Overview#Slide#Types of Cloud Computing#EC2 - Elastic Compute Cloud#EC2 = Infrastructure as a Service (IaaS) On-Demand Instances – short workload, predictable pricing, pay by second Has the highest cost Recommended for short-term and un-interrupted workloads, where you can&rsquo;t predict how the application will behave Reserved (1 &amp; 3 years) Reserved Instances – long workloads Recommended for steady-state usage applications (think database) Convertible Reserved Instances – long workloads with flexible instances Savings Plans (1 &amp; 3 years) – commitment to an amount of usage, long workload Spot Instances – short workloads, cheap, can lose instances (less reliable) The MOST cost-efficient Dedicated Hosts – book an entire physical server, control instance placement The most expensive option Dedicated Instances – no other customers will share your hardware No control over instance placement Capacity Reservations – reserve capacity in a specific AZ for any duration EBS - Elastic Block Store#A network drive you can attach to your instances while they run It allows your instances to persist data, even after their termination They can only be mounted to one instance at a time They are bound to a specific AZ Think of them as a “network USB stick”">
 <meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff">
 <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#343a40">
 <meta name="color-scheme" content="light dark"><meta property="og:title" content="AWS Overview" />
-<meta property="og:description" content="AWS Overview#Slide#Types of Cloud Computing#EC2 - Elastic Compute Cloud#EC2 = Infrastructure as a Service (IaaS) On-Demand Instances – short workload, predictable pricing, pay by second Has the highest cost Recommended for short-term and un-interrupted workloads, where you can&rsquo;t predict how the application will behave Reserved (1 &amp; 3 years) Reserved Instances – long workloads Recommended for steady-state usage applications (think database) Convertible Reserved Instances – long workloads with flexible instances Savings Plans (1 &amp; 3 years) – commitment to an amount of usage, long workload Spot Instances – short workloads, cheap, can lose instances (less reliable) The MOST cost-efficient Dedicated Hosts – book an entire physical server, control instance placement The most expensive option Dedicated Instances – no other customers will share your hardware No control over instance placement Capacity Reservations – reserve capacity in a specific AZ for any duration Monitoring#CloudWatch: Metrics: monitor the performance of AWS services and billing metrics Alarms: automate notification, perform EC2 action, notify to SNS based on metric Logs: collect log files from EC2 instances, servers, Lambda functions… Events (or EventBridge): react to events in AWS, or trigger a rule on a schedule CloudTrail: audit API calls made within your AWS account CloudTrail Insights: automated analysis of your CloudTrail Events X-Ray: trace requests made through your distributed applications AWS Health Dashboard: status of all AWS services across all regions AWS Account Health Dashboard: AWS events that impact your infrastructure Amazon CodeGuru: automated code reviews and application performance recommendations ECS - Elastic Container Service#You must provision &amp; maintain the infrastructure (the EC2 instances) Fargate#You do not provision the infrastructure (no EC2 instances to manage) – simpler!" />
+<meta property="og:description" content="AWS Overview#Slide#Types of Cloud Computing#EC2 - Elastic Compute Cloud#EC2 = Infrastructure as a Service (IaaS) On-Demand Instances – short workload, predictable pricing, pay by second Has the highest cost Recommended for short-term and un-interrupted workloads, where you can&rsquo;t predict how the application will behave Reserved (1 &amp; 3 years) Reserved Instances – long workloads Recommended for steady-state usage applications (think database) Convertible Reserved Instances – long workloads with flexible instances Savings Plans (1 &amp; 3 years) – commitment to an amount of usage, long workload Spot Instances – short workloads, cheap, can lose instances (less reliable) The MOST cost-efficient Dedicated Hosts – book an entire physical server, control instance placement The most expensive option Dedicated Instances – no other customers will share your hardware No control over instance placement Capacity Reservations – reserve capacity in a specific AZ for any duration EBS - Elastic Block Store#A network drive you can attach to your instances while they run It allows your instances to persist data, even after their termination They can only be mounted to one instance at a time They are bound to a specific AZ Think of them as a “network USB stick”" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://dangpham112000.github.io/docs/research/aws_overview/" /><meta property="article:section" content="docs" />
 <meta property="article:published_time" content="2023-11-15T01:47:46+07:00" />
@@ -18,7 +18,7 @@
 <link rel="icon" href="/favicon.png" >
 <link rel="stylesheet" href="/book.min.d2e03d9c7a4cea10fdd096eb48db6766340b9b3b186fa0321e2ad69205bdc3ad.css" integrity="sha256-0uA9nHpM6hD90JbrSNtnZjQLmzsYb6AyHirWkgW9w60=" crossorigin="anonymous">
   <script defer src="/flexsearch.min.js"></script>
-  <script defer src="/en.search.min.3c2c76187ceaed276eb55ed269127dce125c7bb801e5684e710c177260b2ce4a.js" integrity="sha256-PCx2GHzq7SdutV7SaRJ9zhJce7gB5WhOcQwXcmCyzko=" crossorigin="anonymous"></script>
+  <script defer src="/en.search.min.4134a59abfa711db9c75a5bd3237118494988720302929bd3185e5ad9373d62f.js" integrity="sha256-QTSlmr&#43;nEducdaW9MjcRhJSYhyAwKSm9MYXlrZNz1i8=" crossorigin="anonymous"></script>
 <!--
 Made with Book Theme
 https://github.com/alex-shpak/hugo-book
@@ -398,6 +398,26 @@ https://github.com/alex-shpak/hugo-book
     <li><a href="#slidehttpsmediadatacumuluscomaws-ccpaws20certified20cloud20practitioner20slides20v24pdf_gl130glds_gamte3oty1nzc3ms4xnzaxotkzmtc4_ga_6gzztggx7hmtcwmtk5mze3oc4xljaumtcwmtk5mze3oc42mc4wlja"><a href="https://media.datacumulus.com/aws-ccp/AWS%20Certified%20Cloud%20Practitioner%20Slides%20v24.pdf?_gl=1*30glds*_ga*MTE3OTY1Nzc3MS4xNzAxOTkzMTc4*_ga_6GZZTGGX7H*MTcwMTk5MzE3OC4xLjAuMTcwMTk5MzE3OC42MC4wLjA.">Slide</a></a></li>
     <li><a href="#types-of-cloud-computing">Types of Cloud Computing</a></li>
     <li><a href="#ec2---elastic-compute-cloud">EC2 - Elastic Compute Cloud</a></li>
+    <li><a href="#ebs---elastic-block-store">EBS - Elastic Block Store</a>
+      <ul>
+        <li><a href="#snapshots">Snapshots</a></li>
+        <li><a href="#snapshots-features">Snapshots Features</a></li>
+      </ul>
+    </li>
+    <li><a href="#ec2-instance-store">EC2 Instance Store</a></li>
+    <li><a href="#efs---elastic-file-system">EFS - Elastic File System</a>
+      <ul>
+        <li><a href="#efs-ia---efs-infrequent-access">EFS IA - EFS Infrequent Access</a></li>
+      </ul>
+    </li>
+    <li><a href="#fsx">FSx</a>
+      <ul>
+        <li><a href="#for-windows-file-server">for Windows File Server</a></li>
+        <li><a href="#for-lustre">for Lustre</a></li>
+      </ul>
+    </li>
+    <li><a href="#ami---amazon-machine-image">AMI - Amazon Machine Image</a></li>
+    <li><a href="#ec2-image-builder">EC2 Image Builder</a></li>
     <li><a href="#monitoring">Monitoring</a></li>
     <li><a href="#ecs---elastic-container-service">ECS - Elastic Container Service</a></li>
     <li><a href="#fargate">Fargate</a></li>
@@ -427,6 +447,13 @@ https://github.com/alex-shpak/hugo-book
     <li><a href="#codeartifact">CodeArtifact</a></li>
     <li><a href="#codestar">CodeStar</a></li>
     <li><a href="#cloud9">Cloud9</a></li>
+    <li><a href="#ssm---systems-manager">SSM - Systems Manager</a>
+      <ul>
+        <li><a href="#session-manager">Session Manager</a></li>
+        <li><a href="#parameter-store">Parameter Store</a></li>
+      </ul>
+    </li>
+    <li><a href="#opsworks">OpsWorks</a></li>
   </ul>
 </nav>
 
@@ -492,6 +519,142 @@ https://github.com/alex-shpak/hugo-book
 </li>
 <li><strong>Capacity Reservations</strong> – reserve capacity in a specific AZ for any duration</li>
 </ul>
+<h2 id="ebs---elastic-block-store">
+  EBS - Elastic Block Store
+  <a class="anchor" href="#ebs---elastic-block-store">#</a>
+</h2>
+<ul>
+<li><strong>A network drive</strong> you can attach to your instances while they run</li>
+<li>It allows your instances to persist data, even after their termination</li>
+<li>They can <strong>only be mounted to one instance</strong> at a time</li>
+<li>They are <strong>bound to a specific AZ</strong></li>
+</ul>
+<p>Think of them as a “network USB stick”</p>
+<p><img src="/research/aws_overview/ebs.png" alt="ebs" /></p>
+<h3 id="snapshots">
+  Snapshots
+  <a class="anchor" href="#snapshots">#</a>
+</h3>
+<ul>
+<li>Make a <strong>backup</strong> (snapshot) of your EBS volume at a point in time</li>
+<li>Can <strong>copy</strong> snapshots <strong>across AZ or Region</strong></li>
+</ul>
+<p><img src="/research/aws_overview/ebs_snapshots.png" alt="ebs_snapshots" /></p>
+<h3 id="snapshots-features">
+  Snapshots Features
+  <a class="anchor" href="#snapshots-features">#</a>
+</h3>
+<div class="book-columns flex flex-wrap">
+
+  <div class="flex-even markdown-inner">
+    <ul>
+<li><strong>Snapshot Archive</strong>
+<ul>
+<li>Move a Snapshot to an ”archive tier” that is 75% cheaper</li>
+<li>Takes within 24 to 72 hours for restoring the archive</li>
+</ul>
+</li>
+<li><strong>Recycle Bin for EBS Snapshots</strong>
+<ul>
+<li>Setup rules to retain deleted snapshots so you can recover them after an accidental deletion</li>
+<li>Specify retention (from 1 day to 1 year)</li>
+</ul>
+</li>
+</ul>
+
+  </div>
+
+  <div class="flex-even markdown-inner">
+    <img src="/research/aws_overview/ebs_snapshots_features.png" alt="ebs_snapshots_features" />
+  </div>
+
+</div>
+
+<h2 id="ec2-instance-store">
+  EC2 Instance Store
+  <a class="anchor" href="#ec2-instance-store">#</a>
+</h2>
+<ul>
+<li>If you need <strong>a high-performance hardware disk</strong>, use EC2 Instance Store</li>
+<li>Better I/O performance</li>
+<li>EC2 Instance Store <strong>lose their storage if they’re stopped</strong> (ephemeral)</li>
+<li>Good for buffer / cache / scratch data / temporary content</li>
+<li>Risk of data loss if hardware fails</li>
+<li><strong>Backups and Replication are your responsibility</strong></li>
+</ul>
+<h2 id="efs---elastic-file-system">
+  EFS - Elastic File System
+  <a class="anchor" href="#efs---elastic-file-system">#</a>
+</h2>
+<ul>
+<li>Managed NFS (network file system) that <strong>can be mounted on 100s of EC2</strong></li>
+<li>EFS works with <strong>Linux</strong> EC2 instances in <strong>multi-AZ</strong></li>
+<li>Highly available, scalable, expensive (3x gp2), pay per use, no capacity planning</li>
+</ul>
+<p><img src="/research/aws_overview/efs.png" alt="efs" /></p>
+<h3 id="efs-ia---efs-infrequent-access">
+  EFS IA - EFS Infrequent Access
+  <a class="anchor" href="#efs-ia---efs-infrequent-access">#</a>
+</h3>
+<ul>
+<li><strong>Storage class</strong> that is <strong>cost-optimized</strong> for <strong>files not accessed every day</strong></li>
+<li>EFS will automatically move your files to EFS-IA based on the <strong>last time they were accessed</strong></li>
+<li>Enable EFS-IA with a Lifecycle Policy</li>
+</ul>
+<p><img src="/research/aws_overview/efs_ia.png" alt="efs_ia" /></p>
+<h2 id="fsx">
+  FSx
+  <a class="anchor" href="#fsx">#</a>
+</h2>
+<h3 id="for-windows-file-server">
+  for Windows File Server
+  <a class="anchor" href="#for-windows-file-server">#</a>
+</h3>
+<ul>
+<li>A fully managed, highly reliable, and scalable <strong>Windows native shared file system</strong></li>
+<li>Built on <strong>Windows File Server</strong></li>
+<li>Supports <strong>SMB protocol</strong> &amp; Windows NTFS</li>
+<li>Integrated with Microsoft Active Directory</li>
+<li>Can be accessed from AWS or your on-premise infrastructure</li>
+</ul>
+<p><img src="/research/aws_overview/fsx_windows.png" alt="fsx_windows" /></p>
+<h3 id="for-lustre">
+  for Lustre
+  <a class="anchor" href="#for-lustre">#</a>
+</h3>
+<ul>
+<li>A fully managed, high-performance, scalable file storage for <strong>High Performance Computing (HPC)</strong></li>
+<li>The name Lustre is derived from “Linux” and “cluster”</li>
+<li>Machine Learning, Analytics, Video Processing, Financial Modeling, …</li>
+</ul>
+<p><img src="/research/aws_overview/fsx_lustre.png" alt="fsx_lustre" /></p>
+<h2 id="ami---amazon-machine-image">
+  AMI - Amazon Machine Image
+  <a class="anchor" href="#ami---amazon-machine-image">#</a>
+</h2>
+<ul>
+<li>AMI are a <strong>customization</strong> of an EC2 instance</li>
+<li>AMI are built for a <strong>specific region</strong> (and can be copied across regions)</li>
+<li>You can launch EC2 instances from:
+<ul>
+<li><strong>A Public AMI</strong>: AWS provided</li>
+<li><strong>Your own AMI</strong>: you make and maintain them yourself</li>
+<li><strong>An AWS Marketplace AMI</strong>: an AMI someone else made (and potentially sells)</li>
+</ul>
+</li>
+</ul>
+<p><img src="/research/aws_overview/ami.png" alt="ami" /></p>
+<h2 id="ec2-image-builder">
+  EC2 Image Builder
+  <a class="anchor" href="#ec2-image-builder">#</a>
+</h2>
+<ul>
+<li>Used to automate the creation of Virtual Machines or container images<br>
+=&gt; <strong>Automate the creation, maintain, validate and test EC2 AMIs</strong></li>
+<li>Can be run on a schedule (weekly, whenever packages are updated, etc…)</li>
+<li>Free service (only pay for the underlying resources)</li>
+</ul>
+<p><img src="/research/aws_overview/image_builder.png" alt="image_builder" /></p>
 <h2 id="monitoring">
   Monitoring
   <a class="anchor" href="#monitoring">#</a>
@@ -731,17 +894,89 @@ https://github.com/alex-shpak/hugo-book
   CodeArtifact
   <a class="anchor" href="#codeartifact">#</a>
 </h2>
+<ul>
+<li>Software packages depend on each other to be built (also called code <strong>dependencies</strong>), and new ones are created</li>
+<li>Storing and retrieving these dependencies is called <strong>artifact management</strong></li>
+<li><strong>Developers</strong> and <strong>CodeBuild</strong> can then <strong>retrieve dependencies straight from CodeArtifact</strong></li>
+</ul>
 <h2 id="codestar">
   CodeStar
   <a class="anchor" href="#codestar">#</a>
 </h2>
+<ul>
+<li><strong>Unified UI</strong></li>
+<li>Set-up CodeCommit, CodePipeline, CodeBuild, CodeDeploy, Elastic Beanstalk, EC2, etc</li>
+</ul>
 <h2 id="cloud9">
   Cloud9
   <a class="anchor" href="#cloud9">#</a>
 </h2>
 <ul>
-<li>A cloud IDE</li>
+<li>A <strong>cloud IDE</strong></li>
 <li>Allows for code collaboration in real-time (pair programming)</li>
+</ul>
+<h2 id="ssm---systems-manager">
+  SSM - Systems Manager
+  <a class="anchor" href="#ssm---systems-manager">#</a>
+</h2>
+<ul>
+<li>Manage your <strong>EC2</strong> and <strong>On-Premises</strong></li>
+<li><strong><ins>Hybrid</ins></strong> AWS service</li>
+</ul>
+<p><img src="/research/aws_overview/ssm.png" alt="ssm" /></p>
+<h3 id="session-manager">
+  Session Manager
+  <a class="anchor" href="#session-manager">#</a>
+</h3>
+<div class="book-columns flex flex-wrap">
+
+  <div class="flex-even markdown-inner">
+    <img src="/research/aws_overview/ssm_session_manager.png" alt="ssm_session_manager" />
+  </div>
+
+  <div class="flex-even markdown-inner">
+    <ul>
+<li>Allows you to <strong>start a secure shell</strong> on your EC2 and on-premises servers</li>
+<li><strong>No SSH access, bastion hosts, or SSH keys needed</strong></li>
+<li><strong>No port 22 needed</strong> (better security)</li>
+<li>Supports Linux, macOS, and Windows</li>
+<li>Send session log data to S3 or CloudWatch Logs</li>
+</ul>
+
+  </div>
+
+</div>
+
+<h3 id="parameter-store">
+  Parameter Store
+  <a class="anchor" href="#parameter-store">#</a>
+</h3>
+<div class="book-columns flex flex-wrap">
+
+  <div class="flex-even markdown-inner">
+    <img src="/research/aws_overview/ssm_parameter_store.png" alt="ssm_parameter_store" />
+  </div>
+
+  <div class="flex-even markdown-inner">
+    <ul>
+<li><strong>Secure storage for configuration and secrets</strong></li>
+<li><strong>API Keys</strong>, passwords, configurations…</li>
+<li>Serverless, scalable, durable, easy SDK</li>
+<li>Control access permissions using IAM</li>
+<li>Version tracking &amp; encryption (optional)</li>
+</ul>
+
+  </div>
+
+</div>
+
+<h2 id="opsworks">
+  OpsWorks
+  <a class="anchor" href="#opsworks">#</a>
+</h2>
+<ul>
+<li>AWS OpsWorks = Managed <strong>Chef &amp; Puppet</strong></li>
+<li>Chef &amp; Puppet (2 tools not created by AWS) help you perform server configuration automatically, or repetitive actions</li>
 </ul>
 </article>
  
@@ -787,6 +1022,26 @@ https://github.com/alex-shpak/hugo-book
     <li><a href="#slidehttpsmediadatacumuluscomaws-ccpaws20certified20cloud20practitioner20slides20v24pdf_gl130glds_gamte3oty1nzc3ms4xnzaxotkzmtc4_ga_6gzztggx7hmtcwmtk5mze3oc4xljaumtcwmtk5mze3oc42mc4wlja"><a href="https://media.datacumulus.com/aws-ccp/AWS%20Certified%20Cloud%20Practitioner%20Slides%20v24.pdf?_gl=1*30glds*_ga*MTE3OTY1Nzc3MS4xNzAxOTkzMTc4*_ga_6GZZTGGX7H*MTcwMTk5MzE3OC4xLjAuMTcwMTk5MzE3OC42MC4wLjA.">Slide</a></a></li>
     <li><a href="#types-of-cloud-computing">Types of Cloud Computing</a></li>
     <li><a href="#ec2---elastic-compute-cloud">EC2 - Elastic Compute Cloud</a></li>
+    <li><a href="#ebs---elastic-block-store">EBS - Elastic Block Store</a>
+      <ul>
+        <li><a href="#snapshots">Snapshots</a></li>
+        <li><a href="#snapshots-features">Snapshots Features</a></li>
+      </ul>
+    </li>
+    <li><a href="#ec2-instance-store">EC2 Instance Store</a></li>
+    <li><a href="#efs---elastic-file-system">EFS - Elastic File System</a>
+      <ul>
+        <li><a href="#efs-ia---efs-infrequent-access">EFS IA - EFS Infrequent Access</a></li>
+      </ul>
+    </li>
+    <li><a href="#fsx">FSx</a>
+      <ul>
+        <li><a href="#for-windows-file-server">for Windows File Server</a></li>
+        <li><a href="#for-lustre">for Lustre</a></li>
+      </ul>
+    </li>
+    <li><a href="#ami---amazon-machine-image">AMI - Amazon Machine Image</a></li>
+    <li><a href="#ec2-image-builder">EC2 Image Builder</a></li>
     <li><a href="#monitoring">Monitoring</a></li>
     <li><a href="#ecs---elastic-container-service">ECS - Elastic Container Service</a></li>
     <li><a href="#fargate">Fargate</a></li>
@@ -816,6 +1071,13 @@ https://github.com/alex-shpak/hugo-book
     <li><a href="#codeartifact">CodeArtifact</a></li>
     <li><a href="#codestar">CodeStar</a></li>
     <li><a href="#cloud9">Cloud9</a></li>
+    <li><a href="#ssm---systems-manager">SSM - Systems Manager</a>
+      <ul>
+        <li><a href="#session-manager">Session Manager</a></li>
+        <li><a href="#parameter-store">Parameter Store</a></li>
+      </ul>
+    </li>
+    <li><a href="#opsworks">OpsWorks</a></li>
   </ul>
 </nav>
 
