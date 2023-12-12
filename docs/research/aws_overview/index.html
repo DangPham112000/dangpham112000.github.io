@@ -18,7 +18,7 @@
 <link rel="icon" href="/favicon.png" >
 <link rel="stylesheet" href="/book.min.d2e03d9c7a4cea10fdd096eb48db6766340b9b3b186fa0321e2ad69205bdc3ad.css" integrity="sha256-0uA9nHpM6hD90JbrSNtnZjQLmzsYb6AyHirWkgW9w60=" crossorigin="anonymous">
   <script defer src="/flexsearch.min.js"></script>
-  <script defer src="/en.search.min.4134a59abfa711db9c75a5bd3237118494988720302929bd3185e5ad9373d62f.js" integrity="sha256-QTSlmr&#43;nEducdaW9MjcRhJSYhyAwKSm9MYXlrZNz1i8=" crossorigin="anonymous"></script>
+  <script defer src="/en.search.min.018a1ddaf56d4983a38911ed89b9ce47ad44fcb2cad9d99deec77ad6987e7c44.js" integrity="sha256-AYod2vVtSYOjiRHtibnOR61E/LLK2dmd7sd61ph&#43;fEQ=" crossorigin="anonymous"></script>
 <!--
 Made with Book Theme
 https://github.com/alex-shpak/hugo-book
@@ -416,6 +416,17 @@ https://github.com/alex-shpak/hugo-book
         <li><a href="#for-lustre">for Lustre</a></li>
       </ul>
     </li>
+    <li><a href="#s3">S3</a>
+      <ul>
+        <li><a href="#buckets">Buckets</a></li>
+        <li><a href="#objects">Objects</a></li>
+        <li><a href="#security">Security</a></li>
+        <li><a href="#static-website-hosting">Static Website Hosting</a></li>
+        <li><a href="#versioning">Versioning</a></li>
+        <li><a href="#replication">Replication</a></li>
+        <li><a href="#storage-classes">Storage Classes</a></li>
+      </ul>
+    </li>
     <li><a href="#ami---amazon-machine-image">AMI - Amazon Machine Image</a></li>
     <li><a href="#ec2-image-builder">EC2 Image Builder</a></li>
     <li><a href="#monitoring">Monitoring</a></li>
@@ -628,6 +639,190 @@ https://github.com/alex-shpak/hugo-book
 <li>Machine Learning, Analytics, Video Processing, Financial Modeling, …</li>
 </ul>
 <p><img src="/research/aws_overview/fsx_lustre.png" alt="fsx_lustre" /></p>
+<h2 id="s3">
+  S3
+  <a class="anchor" href="#s3">#</a>
+</h2>
+<ul>
+<li>&ldquo;infinitely scaling&rdquo; storage</li>
+</ul>
+<h3 id="buckets">
+  Buckets
+  <a class="anchor" href="#buckets">#</a>
+</h3>
+<ul>
+<li>Allows people to store <strong>objects (files)</strong> in <strong>buckets (directories)</strong></li>
+<li>Buckets must have a <strong>globally unique name (across all regions all accounts)</strong></li>
+<li>Buckets are defined at the region level</li>
+<li>Naming convention
+<ul>
+<li>No uppercase, No underscore</li>
+<li>3-63 characters long</li>
+<li>Not an IP</li>
+<li>Must start with lowercase letter or number</li>
+<li>Must NOT start with the prefix <strong>xn&ndash;</strong></li>
+<li>Must NOT end with the suffix <strong>-s3alias</strong></li>
+</ul>
+</li>
+</ul>
+<h3 id="objects">
+  Objects
+  <a class="anchor" href="#objects">#</a>
+</h3>
+<ul>
+<li>Objects (files) have a Key</li>
+<li>The <strong><span style="color: blue">key</span></strong> is the <strong>FULL</strong> path:
+<ul>
+<li>s3://my-bucket/<span style="color: blue">my_file.txt</span></li>
+<li>s3://my-bucket/<span style="color: blue">my_folder1/another_folder/my_file.txt</span></li>
+</ul>
+</li>
+<li>The <strong>key</strong> is composed of <strong><span style="color: orange">prefix</span> + <span style="color: green">object name</span></strong>
+<ul>
+<li>s3://my-bucket/<span style="color: orange">my_folder1/another_folder/</span><span style="color: green">my_file.txt</span></li>
+</ul>
+</li>
+<li>There’s no concept of “directories” within buckets<br>
+(although the UI will trick you to think otherwise)</li>
+<li>Just keys with very long names that contain slashes (“/”)</li>
+<li>Object values are the content of the body:
+<ul>
+<li>Max. Object Size is 5TB (5000GB)</li>
+<li>If uploading more than 5GB, must use “multi-part upload”</li>
+</ul>
+</li>
+</ul>
+<h3 id="security">
+  Security
+  <a class="anchor" href="#security">#</a>
+</h3>
+<ul>
+<li><strong>User-Based</strong>
+<ul>
+<li><strong>IAM Policies</strong> – which API calls should be allowed for a specific user from IAM</li>
+</ul>
+</li>
+<li><strong>Resource-Based</strong>
+<ul>
+<li><strong>Bucket Policies</strong> – bucket wide rules from the S3 console - allows cross account</li>
+<li><strong>Object Access Control List (ACL)</strong> – finer grain (can be disabled)</li>
+<li><strong>Bucket Access Control List (ACL)</strong> – less common (can be disabled)</li>
+</ul>
+</li>
+</ul>
+<h3 id="static-website-hosting">
+  Static Website Hosting
+  <a class="anchor" href="#static-website-hosting">#</a>
+</h3>
+<ul>
+<li>S3 can host static websites and have them accessible on the Internet</li>
+<li>The website URL will be (depending on the region)
+<ul>
+<li><strong>http
+://
+<span style="color: green">bucket-name</span>
+.s3-website-<span style="color: red">aws-region</span>.amazonaws.com</strong><br>
+OR</li>
+<li><strong>http
+://
+<span style="color: green">bucket-name</span>
+.s3-website.<span style="color: red">aws-region</span>.amazonaws.com</strong></li>
+</ul>
+</li>
+<li>If you get a <strong>403 Forbidden error</strong>, make sure the bucket policy allows public reads!</li>
+</ul>
+<p><img src="/research/aws_overview/s3_static_web.png" alt="s3_static_web" /></p>
+<h3 id="versioning">
+  Versioning
+  <a class="anchor" href="#versioning">#</a>
+</h3>
+<ul>
+<li>It is enabled at the <strong>bucket level</strong></li>
+<li>It is best practice to version your buckets
+<ul>
+<li>Protect against unintended deletes (ability to restore a version)</li>
+<li>Easy roll back to previous version</li>
+</ul>
+</li>
+<li>Notes:
+<ul>
+<li>Any file that is not versioned prior to enabling versioning will have version “null”</li>
+<li>Suspending versioning does not delete the previous versions</li>
+</ul>
+</li>
+</ul>
+<p><img src="/research/aws_overview/s3_versioning.png" alt="s3_versioning" /></p>
+<h3 id="replication">
+  Replication
+  <a class="anchor" href="#replication">#</a>
+</h3>
+<ul>
+<li><strong>Must enable Versioning</strong> in source and destination buckets</li>
+<li><strong>Cross-Region Replication (CRR)</strong></li>
+<li><strong>Same-Region Replication (SRR)</strong></li>
+<li>Buckets can be in different AWS accounts</li>
+<li>Copying is asynchronous</li>
+<li>Must give proper IAM permissions to S3</li>
+<li>Use cases:
+<ul>
+<li><strong>CRR</strong> – compliance, lower latency access, replication across accounts</li>
+<li><strong>SRR</strong> – log aggregation, live replication between production and test accounts</li>
+</ul>
+</li>
+</ul>
+<p><img src="/research/aws_overview/s3_replication.png" alt="s3_replication" /></p>
+<h3 id="storage-classes">
+  Storage Classes
+  <a class="anchor" href="#storage-classes">#</a>
+</h3>
+<ul>
+<li>Amazon S3 <strong>Standard - General Purpose</strong>
+<ul>
+<li>Used for frequently accessed data</li>
+<li>Use Cases: Big Data analytics, mobile &amp; gaming applications, content distribution</li>
+</ul>
+</li>
+<li>Amazon S3 <strong>Standard-Infrequent Access (IA)</strong>
+<ul>
+<li>For data that is less frequently accessed, but requires rapid access when needed</li>
+<li>Use cases: Disaster Recovery, backups</li>
+</ul>
+</li>
+<li>Amazon S3 <strong>One Zone-Infrequent Access</strong>
+<ul>
+<li>For data that is less frequently accessed, but requires rapid access when needed</li>
+<li>In a single AZ; data lost when AZ is destroyed</li>
+<li>Use Cases: Storing secondary backup copies of on-premise data, or data you can recreate</li>
+</ul>
+</li>
+<li>Amazon S3 <strong>Glacier Instant Retrieval</strong>
+<ul>
+<li>For data accessed once a quarter</li>
+<li>Millisecond retrieval</li>
+</ul>
+</li>
+<li>Amazon S3 <strong>Glacier Flexible Retrieval</strong> (formerly Amazon S3 Glacier)
+<ul>
+<li>Retrieval: Expedited (1 to 5 minutes), Standard (3 to 5 hours), Bulk (5 to 12 hours) – free</li>
+</ul>
+</li>
+<li>Amazon S3 <strong>Glacier Deep Archive</strong>
+<ul>
+<li>For long term storage</li>
+<li>Retrieval: Standard (12 hours), Bulk (48 hours)</li>
+</ul>
+</li>
+<li>Amazon S3 <strong>Intelligent Tiering</strong><br>
+<em>Moves objects automatically between Access Tiers based on usage</em>
+<ul>
+<li>Frequent Access tier (automatic): default tier</li>
+<li>Infrequent Access tier (automatic): objects not accessed for 30 days</li>
+<li>Archive Instant Access tier (automatic): objects not accessed for 90 days</li>
+<li>Archive Access tier (optional): configurable from 90 days to 700+ days</li>
+<li>Deep Archive Access tier (optional): config. from 180 days to 700+ days</li>
+</ul>
+</li>
+</ul>
 <h2 id="ami---amazon-machine-image">
   AMI - Amazon Machine Image
   <a class="anchor" href="#ami---amazon-machine-image">#</a>
@@ -1038,6 +1233,17 @@ https://github.com/alex-shpak/hugo-book
       <ul>
         <li><a href="#for-windows-file-server">for Windows File Server</a></li>
         <li><a href="#for-lustre">for Lustre</a></li>
+      </ul>
+    </li>
+    <li><a href="#s3">S3</a>
+      <ul>
+        <li><a href="#buckets">Buckets</a></li>
+        <li><a href="#objects">Objects</a></li>
+        <li><a href="#security">Security</a></li>
+        <li><a href="#static-website-hosting">Static Website Hosting</a></li>
+        <li><a href="#versioning">Versioning</a></li>
+        <li><a href="#replication">Replication</a></li>
+        <li><a href="#storage-classes">Storage Classes</a></li>
       </ul>
     </li>
     <li><a href="#ami---amazon-machine-image">AMI - Amazon Machine Image</a></li>
