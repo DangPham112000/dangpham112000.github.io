@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="AWS Overview#Slide#Types of Cloud Computing#EC2 - Elastic Compute Cloud#EC2 = Infrastructure as a Service (IaaS) On-Demand Instances – short workload, predictable pricing, pay by second Has the highest cost Recommended for short-term and un-interrupted workloads, where you can&rsquo;t predict how the application will behave Reserved (1 &amp; 3 years) Reserved Instances – long workloads Recommended for steady-state usage applications (think database) Convertible Reserved Instances – long workloads with flexible instances Savings Plans (1 &amp; 3 years) – commitment to an amount of usage, long workload Spot Instances – short workloads, cheap, can lose instances (less reliable) The MOST cost-efficient Dedicated Hosts – book an entire physical server, control instance placement The most expensive option Dedicated Instances – no other customers will share your hardware No control over instance placement Capacity Reservations – reserve capacity in a specific AZ for any duration EBS - Elastic Block Store#A network drive you can attach to your instances while they run It allows your instances to persist data, even after their termination They can only be mounted to one instance at a time They are bound to a specific AZ Think of them as a “network USB stick”">
+<meta name="description" content="AWS Overview#Slide#Types of Cloud Computing#EC2 - Elastic Compute Cloud#EC2 = Infrastructure as a Service (IaaS) On-Demand Instances – short workload, predictable pricing, pay by second Has the highest cost Recommended for short-term and un-interrupted workloads, where you can&rsquo;t predict how the application will behave Reserved (1 &amp; 3 years) Reserved Instances – long workloads Recommended for steady-state usage applications (think database) Convertible Reserved Instances – long workloads with flexible instances Savings Plans (1 &amp; 3 years) – commitment to an amount of usage, long workload Spot Instances – short workloads, cheap, can lose instances (less reliable) The MOST cost-efficient Dedicated Hosts – book an entire physical server, control instance placement The most expensive option Dedicated Instances – no other customers will share your hardware No control over instance placement Capacity Reservations – reserve capacity in a specific AZ for any duration AMI - Amazon Machine Image#AMI are a customization of an EC2 instance AMI are built for a specific region (and can be copied across regions) You can launch EC2 instances from: A Public AMI: AWS provided Your own AMI: you make and maintain them yourself An AWS Marketplace AMI: an AMI someone else made (and potentially sells) EC2 Image Builder#Used to automate the creation of Virtual Machines or container images">
 <meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff">
 <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#343a40">
 <meta name="color-scheme" content="light dark"><meta property="og:title" content="AWS Overview" />
-<meta property="og:description" content="AWS Overview#Slide#Types of Cloud Computing#EC2 - Elastic Compute Cloud#EC2 = Infrastructure as a Service (IaaS) On-Demand Instances – short workload, predictable pricing, pay by second Has the highest cost Recommended for short-term and un-interrupted workloads, where you can&rsquo;t predict how the application will behave Reserved (1 &amp; 3 years) Reserved Instances – long workloads Recommended for steady-state usage applications (think database) Convertible Reserved Instances – long workloads with flexible instances Savings Plans (1 &amp; 3 years) – commitment to an amount of usage, long workload Spot Instances – short workloads, cheap, can lose instances (less reliable) The MOST cost-efficient Dedicated Hosts – book an entire physical server, control instance placement The most expensive option Dedicated Instances – no other customers will share your hardware No control over instance placement Capacity Reservations – reserve capacity in a specific AZ for any duration EBS - Elastic Block Store#A network drive you can attach to your instances while they run It allows your instances to persist data, even after their termination They can only be mounted to one instance at a time They are bound to a specific AZ Think of them as a “network USB stick”" />
+<meta property="og:description" content="AWS Overview#Slide#Types of Cloud Computing#EC2 - Elastic Compute Cloud#EC2 = Infrastructure as a Service (IaaS) On-Demand Instances – short workload, predictable pricing, pay by second Has the highest cost Recommended for short-term and un-interrupted workloads, where you can&rsquo;t predict how the application will behave Reserved (1 &amp; 3 years) Reserved Instances – long workloads Recommended for steady-state usage applications (think database) Convertible Reserved Instances – long workloads with flexible instances Savings Plans (1 &amp; 3 years) – commitment to an amount of usage, long workload Spot Instances – short workloads, cheap, can lose instances (less reliable) The MOST cost-efficient Dedicated Hosts – book an entire physical server, control instance placement The most expensive option Dedicated Instances – no other customers will share your hardware No control over instance placement Capacity Reservations – reserve capacity in a specific AZ for any duration AMI - Amazon Machine Image#AMI are a customization of an EC2 instance AMI are built for a specific region (and can be copied across regions) You can launch EC2 instances from: A Public AMI: AWS provided Your own AMI: you make and maintain them yourself An AWS Marketplace AMI: an AMI someone else made (and potentially sells) EC2 Image Builder#Used to automate the creation of Virtual Machines or container images" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://dangpham112000.github.io/docs/research/aws_overview/" /><meta property="article:section" content="docs" />
 <meta property="article:published_time" content="2023-11-15T01:47:46+07:00" />
@@ -18,7 +18,7 @@
 <link rel="icon" href="/favicon.png" >
 <link rel="stylesheet" href="/book.min.d2e03d9c7a4cea10fdd096eb48db6766340b9b3b186fa0321e2ad69205bdc3ad.css" integrity="sha256-0uA9nHpM6hD90JbrSNtnZjQLmzsYb6AyHirWkgW9w60=" crossorigin="anonymous">
   <script defer src="/flexsearch.min.js"></script>
-  <script defer src="/en.search.min.018a1ddaf56d4983a38911ed89b9ce47ad44fcb2cad9d99deec77ad6987e7c44.js" integrity="sha256-AYod2vVtSYOjiRHtibnOR61E/LLK2dmd7sd61ph&#43;fEQ=" crossorigin="anonymous"></script>
+  <script defer src="/en.search.min.0f15f80fc76c55d2a2cd6a54b7e0244bc10c77a6ca03d4a849ccadbc63a07130.js" integrity="sha256-DxX4D8dsVdKizWpUt&#43;AkS8EMd6bKA9SoScytvGOgcTA=" crossorigin="anonymous"></script>
 <!--
 Made with Book Theme
 https://github.com/alex-shpak/hugo-book
@@ -398,6 +398,8 @@ https://github.com/alex-shpak/hugo-book
     <li><a href="#slidehttpsmediadatacumuluscomaws-ccpaws20certified20cloud20practitioner20slides20v24pdf_gl130glds_gamte3oty1nzc3ms4xnzaxotkzmtc4_ga_6gzztggx7hmtcwmtk5mze3oc4xljaumtcwmtk5mze3oc42mc4wlja"><a href="https://media.datacumulus.com/aws-ccp/AWS%20Certified%20Cloud%20Practitioner%20Slides%20v24.pdf?_gl=1*30glds*_ga*MTE3OTY1Nzc3MS4xNzAxOTkzMTc4*_ga_6GZZTGGX7H*MTcwMTk5MzE3OC4xLjAuMTcwMTk5MzE3OC42MC4wLjA.">Slide</a></a></li>
     <li><a href="#types-of-cloud-computing">Types of Cloud Computing</a></li>
     <li><a href="#ec2---elastic-compute-cloud">EC2 - Elastic Compute Cloud</a></li>
+    <li><a href="#ami---amazon-machine-image">AMI - Amazon Machine Image</a></li>
+    <li><a href="#ec2-image-builder">EC2 Image Builder</a></li>
     <li><a href="#ebs---elastic-block-store">EBS - Elastic Block Store</a>
       <ul>
         <li><a href="#snapshots">Snapshots</a></li>
@@ -425,10 +427,13 @@ https://github.com/alex-shpak/hugo-book
         <li><a href="#versioning">Versioning</a></li>
         <li><a href="#replication">Replication</a></li>
         <li><a href="#storage-classes">Storage Classes</a></li>
+        <li><a href="#encryption">Encryption</a></li>
+        <li><a href="#iam-access-analyzer">IAM Access Analyzer</a></li>
+        <li><a href="#snow-family">Snow Family</a></li>
+        <li><a href="#opshub">OpsHub</a></li>
+        <li><a href="#storage-gateway">Storage Gateway</a></li>
       </ul>
     </li>
-    <li><a href="#ami---amazon-machine-image">AMI - Amazon Machine Image</a></li>
-    <li><a href="#ec2-image-builder">EC2 Image Builder</a></li>
     <li><a href="#monitoring">Monitoring</a></li>
     <li><a href="#ecs---elastic-container-service">ECS - Elastic Container Service</a></li>
     <li><a href="#fargate">Fargate</a></li>
@@ -465,6 +470,26 @@ https://github.com/alex-shpak/hugo-book
       </ul>
     </li>
     <li><a href="#opsworks">OpsWorks</a></li>
+    <li><a href="#route-53---dns">Route 53 - DNS</a>
+      <ul>
+        <li><a href="#routing-policies">Routing Policies</a></li>
+      </ul>
+    </li>
+    <li><a href="#cloudfront---cdn">CloudFront - CDN</a>
+      <ul>
+        <li><a href="#cloudfront-vs-s3-cross-region-replication">CloudFront vs S3 Cross Region Replication</a></li>
+      </ul>
+    </li>
+    <li><a href="#s3-transfer-acceleration">S3 Transfer Acceleration</a></li>
+    <li><a href="#global-accelerator">Global Accelerator</a>
+      <ul>
+        <li><a href="#aws-global-accelerator-vs-cloudfront">AWS Global Accelerator vs CloudFront</a></li>
+      </ul>
+    </li>
+    <li><a href="#outposts">Outposts</a></li>
+    <li><a href="#wavelength">WaveLength</a></li>
+    <li><a href="#local-zones">Local Zones</a></li>
+    <li><a href="#global-applications-architecture">Global Applications Architecture</a></li>
   </ul>
 </nav>
 
@@ -530,6 +555,33 @@ https://github.com/alex-shpak/hugo-book
 </li>
 <li><strong>Capacity Reservations</strong> – reserve capacity in a specific AZ for any duration</li>
 </ul>
+<h2 id="ami---amazon-machine-image">
+  AMI - Amazon Machine Image
+  <a class="anchor" href="#ami---amazon-machine-image">#</a>
+</h2>
+<ul>
+<li>AMI are a <strong>customization</strong> of an EC2 instance</li>
+<li>AMI are built for a <strong>specific region</strong> (and can be copied across regions)</li>
+<li>You can launch EC2 instances from:
+<ul>
+<li><strong>A Public AMI</strong>: AWS provided</li>
+<li><strong>Your own AMI</strong>: you make and maintain them yourself</li>
+<li><strong>An AWS Marketplace AMI</strong>: an AMI someone else made (and potentially sells)</li>
+</ul>
+</li>
+</ul>
+<p><img src="/research/aws_overview/ami.png" alt="ami" /></p>
+<h2 id="ec2-image-builder">
+  EC2 Image Builder
+  <a class="anchor" href="#ec2-image-builder">#</a>
+</h2>
+<ul>
+<li>Used to automate the creation of Virtual Machines or container images<br>
+=&gt; <strong>Automate the creation, maintain, validate and test EC2 AMIs</strong></li>
+<li>Can be run on a schedule (weekly, whenever packages are updated, etc…)</li>
+<li>Free service (only pay for the underlying resources)</li>
+</ul>
+<p><img src="/research/aws_overview/image_builder.png" alt="image_builder" /></p>
 <h2 id="ebs---elastic-block-store">
   EBS - Elastic Block Store
   <a class="anchor" href="#ebs---elastic-block-store">#</a>
@@ -823,33 +875,54 @@ OR</li>
 </ul>
 </li>
 </ul>
-<h2 id="ami---amazon-machine-image">
-  AMI - Amazon Machine Image
-  <a class="anchor" href="#ami---amazon-machine-image">#</a>
-</h2>
+<h3 id="encryption">
+  Encryption
+  <a class="anchor" href="#encryption">#</a>
+</h3>
+<p><img src="/research/aws_overview/s3_encryption.png" alt="s3_encryption" /></p>
+<h3 id="iam-access-analyzer">
+  IAM Access Analyzer
+  <a class="anchor" href="#iam-access-analyzer">#</a>
+</h3>
 <ul>
-<li>AMI are a <strong>customization</strong> of an EC2 instance</li>
-<li>AMI are built for a <strong>specific region</strong> (and can be copied across regions)</li>
-<li>You can launch EC2 instances from:
+<li>Ensures that only intended people have access to your S3 buckets</li>
+<li>Example: publicly accessible bucket, bucket shared with other AWS account…</li>
+<li>Evaluates S3 Bucket Policies, S3 ACLs, S3 Access Point Policies</li>
+<li>Powered by IAM Access Analyzer</li>
+</ul>
+<h3 id="snow-family">
+  Snow Family
+  <a class="anchor" href="#snow-family">#</a>
+</h3>
 <ul>
-<li><strong>A Public AMI</strong>: AWS provided</li>
-<li><strong>Your own AMI</strong>: you make and maintain them yourself</li>
-<li><strong>An AWS Marketplace AMI</strong>: an AMI someone else made (and potentially sells)</li>
+<li>Highly-secure, portable devices to <strong>collect and process data at the edge, and migrate data into and out of AWS</strong></li>
+<li><strong>Data migration</strong>: Snowcone, Snowball Edge, Snowmobile</li>
+<li><strong>Edge computing</strong>: Snowcone, Snowball Edge</li>
 </ul>
-</li>
-</ul>
-<p><img src="/research/aws_overview/ami.png" alt="ami" /></p>
-<h2 id="ec2-image-builder">
-  EC2 Image Builder
-  <a class="anchor" href="#ec2-image-builder">#</a>
-</h2>
+<p><img src="/research/aws_overview/s3_snowfamily.png" alt="s3_snowfamily" /></p>
+<h3 id="opshub">
+  OpsHub
+  <a class="anchor" href="#opshub">#</a>
+</h3>
 <ul>
-<li>Used to automate the creation of Virtual Machines or container images<br>
-=&gt; <strong>Automate the creation, maintain, validate and test EC2 AMIs</strong></li>
-<li>Can be run on a schedule (weekly, whenever packages are updated, etc…)</li>
-<li>Free service (only pay for the underlying resources)</li>
+<li>A software you install on your computer / laptop</li>
+<li>To manage your Snow Family Device</li>
+<li>Transferring files</li>
+<li>Launch compatible AWS services on your devices (ex: Amazon EC2 instances, AWS DataSync, Network File System (NFS))</li>
 </ul>
-<p><img src="/research/aws_overview/image_builder.png" alt="image_builder" /></p>
+<h3 id="storage-gateway">
+  Storage Gateway
+  <a class="anchor" href="#storage-gateway">#</a>
+</h3>
+<ul>
+<li>Bridge between on-premise data and cloud data in S3</li>
+<li><strong>Hybrid</strong> storage service to <strong>allow on-premises to seamlessly use the AWS Cloud</strong></li>
+<li>Use cases: disaster recovery, backup &amp; restore, tiered storage</li>
+</ul>
+<div style="width:fit-content;display: inline-block;">
+    <img src="/research/aws_overview/s3_storage_gateway.png" alt="s3_storage_gateway" width="400" height="">
+    <p style="text-align:center;margin:0;font-style:italic;opacity: 0.5;"></p>
+</div>
 <h2 id="monitoring">
   Monitoring
   <a class="anchor" href="#monitoring">#</a>
@@ -1034,7 +1107,15 @@ OR</li>
 <li><strong>Beanstalk = Platform as a Service (PaaS)</strong></li>
 <li>Beanstalk is free but you pay for the underlying instances</li>
 <li><strong>Just the application code is the responsibility of the developer</strong></li>
+<li>Three architecture models:
+<ul>
+<li>Single Instance deployment: good for dev</li>
+<li>LB + ASG: great for production or pre-production web applications</li>
+<li>ASG only: great for non-web apps in production (workers, etc..)</li>
 </ul>
+</li>
+</ul>
+<p><img src="/research/aws_overview/elastic_beanstalk.png" alt="elastic_beanstalk" /></p>
 <h3 id="health-monitoring">
   Health Monitoring
   <a class="anchor" href="#health-monitoring">#</a>
@@ -1173,6 +1254,171 @@ OR</li>
 <li>AWS OpsWorks = Managed <strong>Chef &amp; Puppet</strong></li>
 <li>Chef &amp; Puppet (2 tools not created by AWS) help you perform server configuration automatically, or repetitive actions</li>
 </ul>
+<h2 id="route-53---dns">
+  Route 53 - DNS
+  <a class="anchor" href="#route-53---dns">#</a>
+</h2>
+<ul>
+<li>Route53 is a <strong>Managed DNS (Domain Name System)</strong></li>
+<li>DNS is a collection of rules and records which helps clients understand how to reach a server through URLs</li>
+</ul>
+<h3 id="routing-policies">
+  Routing Policies
+  <a class="anchor" href="#routing-policies">#</a>
+</h3>
+<p><img src="/research/aws_overview/route53_routing_policies1.png" alt="route53_routing_policies1" />
+<img src="/research/aws_overview/route53_routing_policies2.png" alt="route53_routing_policies2" /></p>
+<h2 id="cloudfront---cdn">
+  CloudFront - CDN
+  <a class="anchor" href="#cloudfront---cdn">#</a>
+</h2>
+<ul>
+<li><strong>Content Delivery Network (CDN)</strong></li>
+<li><strong>Improves read performance</strong>, content is cached at the edge</li>
+<li><strong>DDoS protection</strong> (because worldwide), integration with Shield, AWS Web Application Firewall</li>
+<li>S3 bucket
+<ul>
+<li>Enhanced security with CloudFront <strong>Origin Access Control (OAC)</strong></li>
+<li>OAC is replacing Origin Access Identity (OAI)</li>
+<li>CloudFront can be used as an ingress (<strong>to upload files to S3</strong>)</li>
+</ul>
+</li>
+</ul>
+<p><img src="/research/aws_overview/cloudfront.png" alt="cloudfront" />
+<img src="/research/aws_overview/cloudfront_s3.png" alt="cloudfront_s3" /></p>
+<h3 id="cloudfront-vs-s3-cross-region-replication">
+  CloudFront vs S3 Cross Region Replication
+  <a class="anchor" href="#cloudfront-vs-s3-cross-region-replication">#</a>
+</h3>
+<div class="book-columns flex flex-wrap">
+
+  <div class="flex-even markdown-inner">
+    <h3 id="cloudfront">
+  CloudFront:
+  <a class="anchor" href="#cloudfront">#</a>
+</h3>
+<ul>
+<li>Global Edge network</li>
+<li>Files are cached for a TTL (maybe a day)</li>
+<li><strong>Great for static content that must be available everywhere</strong></li>
+</ul>
+
+  </div>
+
+  <div class="flex-even markdown-inner">
+    <h3 id="s3-cross-region-replication">
+  S3 Cross Region Replication:
+  <a class="anchor" href="#s3-cross-region-replication">#</a>
+</h3>
+<ul>
+<li>Must be setup for each region you want replication to happen</li>
+<li>Files are updated in near real-time</li>
+<li>Read only</li>
+<li><strong>Great for dynamic content that needs to be available at low-latency in few regions</strong></li>
+</ul>
+
+  </div>
+
+</div>
+
+<h2 id="s3-transfer-acceleration">
+  S3 Transfer Acceleration
+  <a class="anchor" href="#s3-transfer-acceleration">#</a>
+</h2>
+<ul>
+<li>Increase transfer speed by transferring file to an AWS edge location which will forward the data to the S3 bucket in the target region</li>
+</ul>
+<p><img src="/research/aws_overview/s3_transfer_acceleration.png" alt="s3_transfer_acceleration" /></p>
+<h2 id="global-accelerator">
+  Global Accelerator
+  <a class="anchor" href="#global-accelerator">#</a>
+</h2>
+<ul>
+<li><strong>Improve global application <ins>availability</ins> and <ins>performance</ins> using the AWS global network</strong></li>
+<li>Leverage the AWS internal network to optimize the route to your application (60% improvement)</li>
+<li><strong>2 Anycast IP</strong> are created for your application and traffic is sent through Edge Locations</li>
+<li>The Edge locations send the traffic to your application</li>
+</ul>
+<p><img src="/research/aws_overview/global_accelerator.png" alt="global_accelerator" /></p>
+<h3 id="aws-global-accelerator-vs-cloudfront">
+  AWS Global Accelerator vs CloudFront
+  <a class="anchor" href="#aws-global-accelerator-vs-cloudfront">#</a>
+</h3>
+<ul>
+<li>They both use the AWS global network and its edge locations around the world</li>
+<li>Both services integrate with AWS Shield for DDoS protection</li>
+</ul>
+<div class="book-columns flex flex-wrap">
+
+  <div class="flex-even markdown-inner">
+    <h3 id="cloudfront---cdn">
+  CloudFront - CDN
+  <a class="anchor" href="#cloudfront---cdn">#</a>
+</h3>
+<ul>
+<li>Improves performance for your cacheable content (such as images and videos)</li>
+<li>Content is <strong>served at the edge</strong></li>
+</ul>
+
+  </div>
+
+  <div class="flex-even markdown-inner">
+    <h3 id="global-accelerator">
+  Global Accelerator
+  <a class="anchor" href="#global-accelerator">#</a>
+</h3>
+<ul>
+<li>No caching, <strong>proxying packets</strong> at the edge to applications running in one or more AWS Regions.</li>
+<li>Improves performance for a wide range of applications over TCP or UDP</li>
+<li>Good for HTTP use cases that require static IP addresses</li>
+<li>Good for HTTP use cases that required deterministic, fast regional failover</li>
+</ul>
+
+  </div>
+
+</div>
+
+<h2 id="outposts">
+  Outposts
+  <a class="anchor" href="#outposts">#</a>
+</h2>
+<ul>
+<li><strong>Hybrid Cloud</strong>: businesses that keep an on-premises infrastructure alongside a cloud infrastructure</li>
+<li><strong>AWS Outposts are “server racks”</strong> that offers the same AWS infrastructure, services, APIs &amp; tools to build your own applications on-premises just as in the cloud</li>
+<li><strong>AWS will setup and manage “Outposts Racks”</strong> within your on-premises infrastructure and you can start leveraging AWS services on-premises</li>
+<li><strong><ins>You are responsible for the Outposts Rack physical security</ins></strong></li>
+</ul>
+<p><img src="/research/aws_overview/outposts.png" alt="outposts" /></p>
+<h2 id="wavelength">
+  WaveLength
+  <a class="anchor" href="#wavelength">#</a>
+</h2>
+<ul>
+<li><strong>WaveLength Zones</strong> are infrastructure deployments embedded within the telecommunications providers&rsquo; datacenters at the edge of the <strong>5G networks</strong></li>
+<li>Use cases: Smart Cities, ML-assisted diagnostics, Connected Vehicles, Interactive Live Video Streams, AR/VR, Real-time Gaming, …</li>
+</ul>
+<p><img src="/research/aws_overview/wavelength.png" alt="wavelength" /></p>
+<h2 id="local-zones">
+  Local Zones
+  <a class="anchor" href="#local-zones">#</a>
+</h2>
+<ul>
+<li>Places AWS compute, storage, database, and other selected AWS services <strong>closer to end users to run latency-sensitive applications</strong></li>
+<li>Extend your VPC to more locations – <strong>“Extension of an AWS Region”</strong></li>
+<li>Example:
+<ul>
+<li><strong>AWS Region</strong>: N. Virginia (us-east-1)</li>
+<li><strong>AWS Local Zones</strong>: Boston, Chicago, Dallas, Houston, Miami, …</li>
+</ul>
+</li>
+</ul>
+<p><img src="/research/aws_overview/local_zones.png" alt="local_zones" /></p>
+<h2 id="global-applications-architecture">
+  Global Applications Architecture
+  <a class="anchor" href="#global-applications-architecture">#</a>
+</h2>
+<p><img src="/research/aws_overview/global_apps_architecture1.png" alt="global_apps_architecture1" />
+<img src="/research/aws_overview/global_apps_architecture2.png" alt="global_apps_architecture2" /></p>
 </article>
  
       
@@ -1217,6 +1463,8 @@ OR</li>
     <li><a href="#slidehttpsmediadatacumuluscomaws-ccpaws20certified20cloud20practitioner20slides20v24pdf_gl130glds_gamte3oty1nzc3ms4xnzaxotkzmtc4_ga_6gzztggx7hmtcwmtk5mze3oc4xljaumtcwmtk5mze3oc42mc4wlja"><a href="https://media.datacumulus.com/aws-ccp/AWS%20Certified%20Cloud%20Practitioner%20Slides%20v24.pdf?_gl=1*30glds*_ga*MTE3OTY1Nzc3MS4xNzAxOTkzMTc4*_ga_6GZZTGGX7H*MTcwMTk5MzE3OC4xLjAuMTcwMTk5MzE3OC42MC4wLjA.">Slide</a></a></li>
     <li><a href="#types-of-cloud-computing">Types of Cloud Computing</a></li>
     <li><a href="#ec2---elastic-compute-cloud">EC2 - Elastic Compute Cloud</a></li>
+    <li><a href="#ami---amazon-machine-image">AMI - Amazon Machine Image</a></li>
+    <li><a href="#ec2-image-builder">EC2 Image Builder</a></li>
     <li><a href="#ebs---elastic-block-store">EBS - Elastic Block Store</a>
       <ul>
         <li><a href="#snapshots">Snapshots</a></li>
@@ -1244,10 +1492,13 @@ OR</li>
         <li><a href="#versioning">Versioning</a></li>
         <li><a href="#replication">Replication</a></li>
         <li><a href="#storage-classes">Storage Classes</a></li>
+        <li><a href="#encryption">Encryption</a></li>
+        <li><a href="#iam-access-analyzer">IAM Access Analyzer</a></li>
+        <li><a href="#snow-family">Snow Family</a></li>
+        <li><a href="#opshub">OpsHub</a></li>
+        <li><a href="#storage-gateway">Storage Gateway</a></li>
       </ul>
     </li>
-    <li><a href="#ami---amazon-machine-image">AMI - Amazon Machine Image</a></li>
-    <li><a href="#ec2-image-builder">EC2 Image Builder</a></li>
     <li><a href="#monitoring">Monitoring</a></li>
     <li><a href="#ecs---elastic-container-service">ECS - Elastic Container Service</a></li>
     <li><a href="#fargate">Fargate</a></li>
@@ -1284,6 +1535,26 @@ OR</li>
       </ul>
     </li>
     <li><a href="#opsworks">OpsWorks</a></li>
+    <li><a href="#route-53---dns">Route 53 - DNS</a>
+      <ul>
+        <li><a href="#routing-policies">Routing Policies</a></li>
+      </ul>
+    </li>
+    <li><a href="#cloudfront---cdn">CloudFront - CDN</a>
+      <ul>
+        <li><a href="#cloudfront-vs-s3-cross-region-replication">CloudFront vs S3 Cross Region Replication</a></li>
+      </ul>
+    </li>
+    <li><a href="#s3-transfer-acceleration">S3 Transfer Acceleration</a></li>
+    <li><a href="#global-accelerator">Global Accelerator</a>
+      <ul>
+        <li><a href="#aws-global-accelerator-vs-cloudfront">AWS Global Accelerator vs CloudFront</a></li>
+      </ul>
+    </li>
+    <li><a href="#outposts">Outposts</a></li>
+    <li><a href="#wavelength">WaveLength</a></li>
+    <li><a href="#local-zones">Local Zones</a></li>
+    <li><a href="#global-applications-architecture">Global Applications Architecture</a></li>
   </ul>
 </nav>
 
