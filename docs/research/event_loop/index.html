@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Event loop#var name = &#34;JS&#34;; function execLater() { setTimeout(printName, 0); Promise .resolve() .then(() =&gt; { console.log(&#34;Promise resolve&#34;); }); console.log(name); var name = &#34;TS&#34;; } printName(name); function printName() { console.log(name); } execLater(); Phase 1: the memory creation phase
+name is declared and initialized equal &quot;JS&quot; execLater is declared and initialized printName is declared and initialized Phase 2: the code execution phase
+printName is called and it prints &quot;JS&quot; execLater is called: Phase 1: name is assigned to undefined due to hoisting Phase 2: printName goes to the callback queue and wait for 0ms to be executed later The promise goes to the microtask queue printName is executed with the value of name is undefined name is assigned to &quot;TS&quot; but only in execLater scope Once the call stack is empty, the event loop pulls the promise to execute it as it has higher priority printName is called and print &quot;JS&quot; b/c it referents to the global scope The display order on the consoleJS undefined Promise resolve JS ">
+<meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff">
+<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#343a40">
+<meta name="color-scheme" content="light dark"><meta property="og:title" content="Event loop" />
+<meta property="og:description" content="Event loop#var name = &#34;JS&#34;; function execLater() { setTimeout(printName, 0); Promise .resolve() .then(() =&gt; { console.log(&#34;Promise resolve&#34;); }); console.log(name); var name = &#34;TS&#34;; } printName(name); function printName() { console.log(name); } execLater(); Phase 1: the memory creation phase
+name is declared and initialized equal &quot;JS&quot; execLater is declared and initialized printName is declared and initialized Phase 2: the code execution phase
+printName is called and it prints &quot;JS&quot; execLater is called: Phase 1: name is assigned to undefined due to hoisting Phase 2: printName goes to the callback queue and wait for 0ms to be executed later The promise goes to the microtask queue printName is executed with the value of name is undefined name is assigned to &quot;TS&quot; but only in execLater scope Once the call stack is empty, the event loop pulls the promise to execute it as it has higher priority printName is called and print &quot;JS&quot; b/c it referents to the global scope The display order on the consoleJS undefined Promise resolve JS " />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://dangpham112000.github.io/docs/research/event_loop/" /><meta property="article:section" content="docs" />
+<meta property="article:published_time" content="2023-12-05T01:47:46+07:00" />
+<meta property="article:modified_time" content="2023-12-05T01:47:46+07:00" />
+
+<title>Event loop | The Engineer Blogs</title>
+<link rel="manifest" href="/manifest.json">
+<link rel="icon" href="/favicon.png" >
+<link rel="stylesheet" href="/book.min.d2e03d9c7a4cea10fdd096eb48db6766340b9b3b186fa0321e2ad69205bdc3ad.css" integrity="sha256-0uA9nHpM6hD90JbrSNtnZjQLmzsYb6AyHirWkgW9w60=" crossorigin="anonymous">
+  <script defer src="/flexsearch.min.js"></script>
+  <script defer src="/en.search.min.1a4c6d074bd68c79789bfdbbb196a9bf4cd35fdafe8c6e3f426458b238b4f751.js" integrity="sha256-GkxtB0vWjHl4m/27sZapv0zTX9r&#43;jG4/QmRYsji091E=" crossorigin="anonymous"></script>
+<!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+  
+</head>
+<body dir="ltr">
+  <input type="checkbox" class="hidden toggle" id="menu-control" />
+  <input type="checkbox" class="hidden toggle" id="toc-control" />
+  <main class="container flex">
+    <aside class="book-menu">
+      <div class="book-menu-content">
+        
+  <nav>
+<h2 class="book-brand">
+  <a class="flex align-center" href="/"><span>The Engineer Blogs</span>
+  </a>
+</h2>
+
+
+<div class="book-search">
+  <input type="text" id="book-search-input" placeholder="Search" aria-label="Search" maxlength="64" data-hotkeys="s/" />
+  <div class="book-search-spinner hidden"></div>
+  <ul id="book-search-results"></ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <ul>
+    
+      
+        <li class="book-section-flat" >
+          
+  
+  
+
+  
+    <span>PROBLEMS</span>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/problems/design_hashmap/" class="">Design HashMap</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/problems/knight_dialer/" class="">Knight Dialer</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li class="book-section-flat" >
+          
+  
+  
+
+  
+    <span>RESEARCH</span>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/research/event_loop/" class="active">Event loop</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/research/process_vs_thread/" class="">Process vs Thread</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/research/chrome_architecture/" class="">Chrome Architecture</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/research/aws_overview/" class="">AWS Overview</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/research/be_protocol/" class="">Backend Protocol</a>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/research/be_protocol/tcp_udp/" class="">TCP - UDP</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/research/be_protocol/tls_ssl/" class="">TLS - SSL</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/research/be_protocol/http/" class="">HTTP</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/research/be_protocol/https/" class="">HTTPS</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/research/be_protocol/webrtc/" class="">WebRTC</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/research/be_protocol/websocket/" class="">Websocket</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/research/be_protocol/grpc/" class="">gRPC</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/research/be_protocol/communication/" class="">Communication</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/research/encryption/" class="">Encryption</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/research/security/" class="">Security</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li class="book-section-flat" >
+          
+  
+  
+
+  
+    <span>TIPS</span>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/tips/git/" class="">Git</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/tips/unit_test/" class="">Unit Test</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</nav>
+
+
+
+
+  <script>(function(){var e=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(){localStorage.setItem("menu.scrollTop",e.scrollTop)}),e.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
+
+
+ 
+      </div>
+    </aside>
+
+    <div class="book-page">
+      <header class="book-header">
+        
+  <div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="/svg/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <strong>Event loop</strong>
+
+  <label for="toc-control">
+    
+    <img src="/svg/toc.svg" class="book-icon" alt="Table of Contents" />
+    
+  </label>
+</div>
+
+
+  
+  <aside class="hidden clearfix">
+    
+  
+<nav id="TableOfContents"></nav>
+
+
+
+  </aside>
+  
+ 
+      </header>
+
+      
+      
+  <article class="markdown"><h1 id="event-loop">
+  Event loop
+  <a class="anchor" href="#event-loop">#</a>
+</h1>
+<div class="book-columns flex flex-wrap">
+
+  <div class="flex-even markdown-inner">
+    <!-- raw HTML omitted -->
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">name</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;JS&#34;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">execLater</span>() {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">setTimeout</span>(<span style="color:#a6e22e">printName</span>, <span style="color:#ae81ff">0</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  Promise
+</span></span><span style="display:flex;"><span>    .<span style="color:#a6e22e">resolve</span>()
+</span></span><span style="display:flex;"><span>    .<span style="color:#a6e22e">then</span>(() =&gt; {
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#34;Promise resolve&#34;</span>);
+</span></span><span style="display:flex;"><span>    });
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">name</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">name</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;TS&#34;</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">printName</span>(<span style="color:#a6e22e">name</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">printName</span>() {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">name</span>);
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">execLater</span>();
+</span></span></code></pre></div><!-- raw HTML omitted -->
+
+  </div>
+
+  <div class="flex-even markdown-inner">
+    <p>Phase 1: the memory creation phase</p>
+<ol>
+<li><code>name</code> is declared and initialized equal <code>&quot;JS&quot;</code></li>
+<li><code>execLater</code> is declared and initialized</li>
+<li><code>printName</code> is declared and initialized</li>
+</ol>
+<p>Phase 2: the code execution phase</p>
+<ol>
+<li><code>printName</code> is called and it prints <code>&quot;JS&quot;</code></li>
+<li><code>execLater</code> is called:
+<ol>
+<li>Phase 1:
+<ol>
+<li><code>name</code> is assigned to undefined due to hoisting</li>
+</ol>
+</li>
+<li>Phase 2:
+<ol>
+<li><code>printName</code> goes to the callback queue and wait for 0ms to be executed later</li>
+<li>The promise goes to the microtask queue</li>
+<li><code>printName</code> is executed with the value of name is undefined</li>
+<li><code>name</code> is assigned to <code>&quot;TS&quot;</code> but only in <code>execLater</code> scope</li>
+<li>Once the call stack is empty, the event loop pulls the promise to execute it as it has higher priority</li>
+<li><code>printName</code> is called and print <code>&quot;JS&quot;</code> b/c it referents to the global scope</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+
+  </div>
+
+</div>
+
+<details ><summary>The display order on the console</summary>
+  <div class="markdown-inner">
+    <ol>
+<li>JS</li>
+<li>undefined</li>
+<li>Promise resolve</li>
+<li>JS</li>
+</ol>
+
+  </div>
+</details>
+
+</article>
+ 
+      
+
+      <footer class="book-footer">
+        
+  <div class="flex flex-wrap justify-between">
+
+
+
+
+
+</div>
+
+
+
+  <script>(function(){function e(e){const t=window.getSelection(),n=document.createRange();n.selectNodeContents(e),t.removeAllRanges(),t.addRange(n)}document.querySelectorAll("pre code").forEach(t=>{t.addEventListener("click",function(){if(window.getSelection().toString())return;e(t.parentElement),navigator.clipboard&&navigator.clipboard.writeText(t.parentElement.textContent)})})})()</script>
+
+
+ 
+        
+      </footer>
+
+      
+  
+  <div class="book-comments">
+
+</div>
+  
+ 
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
+    </div>
+
+    
+    <aside class="book-toc">
+      <div class="book-toc-content">
+        
+  
+<nav id="TableOfContents"></nav>
+
+
+ 
+      </div>
+    </aside>
+    
+  </main>
+
+  
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

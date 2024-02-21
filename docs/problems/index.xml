@@ -6,8 +6,15 @@
     <description>Recent content in PROBLEMS on The Engineer Blogs</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 15 Nov 2023 01:47:46 +0700</lastBuildDate>
+    <lastBuildDate>Mon, 12 Feb 2024 01:47:46 +0700</lastBuildDate>
     <atom:link href="https://dangpham112000.github.io/docs/problems/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Design HashMap</title>
+      <link>https://dangpham112000.github.io/docs/problems/design_hashmap/</link>
+      <pubDate>Mon, 12 Feb 2024 01:47:46 +0700</pubDate>
+      <guid>https://dangpham112000.github.io/docs/problems/design_hashmap/</guid>
+      <description>Design HashMap#</description>
+    </item>
     <item>
       <title>Knight Dialer</title>
       <link>https://dangpham112000.github.io/docs/problems/knight_dialer/</link>

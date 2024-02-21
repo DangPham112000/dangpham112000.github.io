@@ -9,12 +9,13 @@
     <lastBuildDate>Tue, 05 Dec 2023 01:47:46 +0700</lastBuildDate>
     <atom:link href="https://dangpham112000.github.io/docs/research/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Chrome Architecture</title>
-      <link>https://dangpham112000.github.io/docs/research/chrome_architecture/</link>
+      <title>Event loop</title>
+      <link>https://dangpham112000.github.io/docs/research/event_loop/</link>
       <pubDate>Tue, 05 Dec 2023 01:47:46 +0700</pubDate>
-      <guid>https://dangpham112000.github.io/docs/research/chrome_architecture/</guid>
-      <description>Chrome Architecture#Prerequisites#Read process vs thread first if you don&amp;rsquo;t have any process and thread concept in your mind
-Browser Architecture#When you start an application, a process is created. The program might create thread(s) to help it do work, but that&amp;rsquo;s optional. The Operating System gives the process a &amp;ldquo;slab&amp;rdquo; of memory to work with and all application state is kept in that private memory space.</description>
+      <guid>https://dangpham112000.github.io/docs/research/event_loop/</guid>
+      <description>Event loop#var name = &amp;#34;JS&amp;#34;; function execLater() { setTimeout(printName, 0); Promise .resolve() .then(() =&amp;gt; { console.log(&amp;#34;Promise resolve&amp;#34;); }); console.log(name); var name = &amp;#34;TS&amp;#34;; } printName(name); function printName() { console.log(name); } execLater(); Phase 1: the memory creation phase
+name is declared and initialized equal &amp;quot;JS&amp;quot; execLater is declared and initialized printName is declared and initialized Phase 2: the code execution phase
+printName is called and it prints &amp;quot;JS&amp;quot; execLater is called: Phase 1: name is assigned to undefined due to hoisting Phase 2: printName goes to the callback queue and wait for 0ms to be executed later The promise goes to the microtask queue printName is executed with the value of name is undefined name is assigned to &amp;quot;TS&amp;quot; but only in execLater scope Once the call stack is empty, the event loop pulls the promise to execute it as it has higher priority printName is called and print &amp;quot;JS&amp;quot; b/c it referents to the global scope The display order on the consoleJS undefined Promise resolve JS </description>
     </item>
     <item>
       <title>Process vs Thread</title>
@@ -25,6 +26,14 @@ Browser Architecture#When you start an application, a process is created. The 
 Process#A Process means a program is in execution. When a program is loaded into the memory and becomes active, the program becomes a process or processes
 Thread#A Thread is the smallest unit of execution within a process
 Process vs Thread#Process#The process requires some essential resources such as registers, program counter, and stack</description>
+    </item>
+    <item>
+      <title>Chrome Architecture</title>
+      <link>https://dangpham112000.github.io/docs/research/chrome_architecture/</link>
+      <pubDate>Tue, 05 Dec 2023 01:47:46 +0700</pubDate>
+      <guid>https://dangpham112000.github.io/docs/research/chrome_architecture/</guid>
+      <description>Chrome Architecture#Prerequisites#Read process vs thread first if you don&amp;rsquo;t have any process and thread concept in your mind
+Browser Architecture#When you start an application, a process is created. The program might create thread(s) to help it do work, but that&amp;rsquo;s optional. The Operating System gives the process a &amp;ldquo;slab&amp;rdquo; of memory to work with and all application state is kept in that private memory space.</description>
     </item>
     <item>
       <title>AWS Overview</title>
