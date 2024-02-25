@@ -22,8 +22,7 @@ Commit#git add . git commit -m &amp;#34;commit message&amp;#34; These 2 comman
       <link>https://dangpham112000.github.io/docs/tips/unit_test/</link>
       <pubDate>Wed, 15 Nov 2023 01:47:46 +0700</pubDate>
       <guid>https://dangpham112000.github.io/docs/tips/unit_test/</guid>
-      <description>Unit Test#Reset all global variables for each unit test case#What environment the unit test cases are running on: Browser or Nodejs?#Because Nodejs does not have browser APIs Sinon stub#Stub a function that is called by another function in the same module#Using this.[func_name] when calling it in your module
-Stub an export default function#import * as query from &amp;#34;/database/query&amp;#34;; const makeQueryStub = sandbox.</description>
+      <description>Unit Test#Reset all global variables for each unit test case#What environment the unit test cases are running on: Browser or Nodejs?#Because Nodejs does not have browser APIs Using Karma to run browser&amp;rsquo;s unit test Using JS-DOM but it&amp;rsquo;s missing a lot of browser APIs Work only when running alone#Scenario: A unit test case only pass when running alone but fail when running with other test casesCheck:</description>
     </item>
   </channel>
 </rss>

@@ -2,9 +2,6 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://dangpham112000.github.io/docs/problems/</loc>
-    <lastmod>2024-02-12T01:47:46+07:00</lastmod>
-  </url><url>
     <loc>https://dangpham112000.github.io/docs/research/</loc>
     <lastmod>2023-12-05T01:47:46+07:00</lastmod>
   </url><url>
@@ -16,6 +13,9 @@
   </url><url>
     <loc>https://dangpham112000.github.io/docs/research/be_protocol/tls_ssl/</loc>
     <lastmod>2023-11-15T01:47:46+07:00</lastmod>
+  </url><url>
+    <loc>https://dangpham112000.github.io/docs/problems/</loc>
+    <lastmod>2024-02-12T01:47:46+07:00</lastmod>
   </url><url>
     <loc>https://dangpham112000.github.io/docs/research/be_protocol/http/</loc>
     <lastmod>2023-11-15T01:47:46+07:00</lastmod>

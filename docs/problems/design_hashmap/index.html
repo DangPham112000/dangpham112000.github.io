@@ -3,11 +3,15 @@
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Design HashMap#">
+<meta name="description" content="Design HashMap#Overview#Its other names: hash table, map, unordered map, dictionary
+A hash table is a data structure that you can use to store data in key-value format with direct access to its items in constant time
+The most valuable aspect of a hash table over other abstract data structures is its speed to perform insertion, deletion, and search operations. Hash tables can do them all in constant time">
 <meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff">
 <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#343a40">
 <meta name="color-scheme" content="light dark"><meta property="og:title" content="Design HashMap" />
-<meta property="og:description" content="Design HashMap#" />
+<meta property="og:description" content="Design HashMap#Overview#Its other names: hash table, map, unordered map, dictionary
+A hash table is a data structure that you can use to store data in key-value format with direct access to its items in constant time
+The most valuable aspect of a hash table over other abstract data structures is its speed to perform insertion, deletion, and search operations. Hash tables can do them all in constant time" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://dangpham112000.github.io/docs/problems/design_hashmap/" /><meta property="article:section" content="docs" />
 <meta property="article:published_time" content="2024-02-12T01:47:46+07:00" />
@@ -18,7 +22,7 @@
 <link rel="icon" href="/favicon.png" >
 <link rel="stylesheet" href="/book.min.d2e03d9c7a4cea10fdd096eb48db6766340b9b3b186fa0321e2ad69205bdc3ad.css" integrity="sha256-0uA9nHpM6hD90JbrSNtnZjQLmzsYb6AyHirWkgW9w60=" crossorigin="anonymous">
   <script defer src="/flexsearch.min.js"></script>
-  <script defer src="/en.search.min.1a4c6d074bd68c79789bfdbbb196a9bf4cd35fdafe8c6e3f426458b238b4f751.js" integrity="sha256-GkxtB0vWjHl4m/27sZapv0zTX9r&#43;jG4/QmRYsji091E=" crossorigin="anonymous"></script>
+  <script defer src="/en.search.min.3df1e4d34570124c24f1d46c8bda92758fd595307f683144e549e4f3592414f3.js" integrity="sha256-PfHk00VwEkwk8dRsi9qSdY/VlTB/aDFE5Unk81kkFPM=" crossorigin="anonymous"></script>
 <!--
 Made with Book Theme
 https://github.com/alex-shpak/hugo-book
@@ -62,50 +66,6 @@ https://github.com/alex-shpak/hugo-book
 
   
   <ul>
-    
-      
-        <li class="book-section-flat" >
-          
-  
-  
-
-  
-    <span>PROBLEMS</span>
-  
-
-          
-  <ul>
-    
-      
-        <li>
-          
-  
-  
-
-  
-    <a href="/docs/problems/design_hashmap/" class="active">Design HashMap</a>
-  
-
-        </li>
-      
-    
-      
-        <li>
-          
-  
-  
-
-  
-    <a href="/docs/problems/knight_dialer/" class="">Knight Dialer</a>
-  
-
-        </li>
-      
-    
-  </ul>
-
-        </li>
-      
     
       
         <li class="book-section-flat" >
@@ -369,6 +329,50 @@ https://github.com/alex-shpak/hugo-book
         </li>
       
     
+      
+        <li class="book-section-flat" >
+          
+  
+  
+
+  
+    <span>PROBLEMS</span>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/problems/design_hashmap/" class="active">Design HashMap</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/problems/knight_dialer/" class="">Knight Dialer</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
   </ul>
 
 
@@ -419,7 +423,22 @@ https://github.com/alex-shpak/hugo-book
   <aside class="hidden clearfix">
     
   
-<nav id="TableOfContents"></nav>
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#overview">Overview</a></li>
+    <li><a href="#design-requirement">Design requirement</a></li>
+    <li><a href="#design-hashing-function">Design hashing function</a></li>
+    <li><a href="#hash-collisions">Hash collisions</a>
+      <ul>
+        <li><a href="#problem">Problem</a></li>
+        <li><a href="#solution">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#use-cases">Use cases</a></li>
+    <li><a href="#sets">Sets</a></li>
+    <li><a href="#reference">Reference</a></li>
+  </ul>
+</nav>
 
 
 
@@ -434,6 +453,122 @@ https://github.com/alex-shpak/hugo-book
   Design HashMap
   <a class="anchor" href="#design-hashmap">#</a>
 </h1>
+<h2 id="overview">
+  Overview
+  <a class="anchor" href="#overview">#</a>
+</h2>
+<ul>
+<li>
+<p>Its other names: hash table, map, unordered map, dictionary</p>
+</li>
+<li>
+<p>A hash table is a data structure that you can use to store data in key-value format with direct access to its items in constant time</p>
+</li>
+<li>
+<p>The most valuable aspect of a hash table over other abstract data structures is its speed to perform insertion, deletion, and search operations. Hash tables can do them all in constant time</p>
+</li>
+</ul>
+<p><strong>Time complexity</strong></p>
+<table>
+<thead>
+<tr>
+<th>Operation</th>
+<th>Average</th>
+<th>Worst case</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Search</td>
+<td>O(1)</td>
+<td>O(n)</td>
+</tr>
+<tr>
+<td>Insert</td>
+<td>O(1)</td>
+<td>O(n)</td>
+</tr>
+<tr>
+<td>Delete</td>
+<td>O(1)</td>
+<td>O(n)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Space complexity</strong></p>
+<table>
+<thead>
+<tr>
+<th>Space</th>
+<th>O(n)</th>
+<th>O(n)</th>
+</tr>
+</thead>
+</table>
+<h2 id="design-requirement">
+  Design requirement
+  <a class="anchor" href="#design-requirement">#</a>
+</h2>
+<p>Let&rsquo;s begin with a hash map for storing phone books</p>
+<div style="width:fit-content;display: inline-block;">
+    <img src="/problems/design_hashmap/hashmap_example.png" alt="hashmap_example" width="" height="">
+    <p style="text-align:center;margin:0;font-style:italic;opacity: 0.5;">Hash map for storing phone books</p>
+</div>
+<ul>
+<li>Not using any built-in hash map libraries</li>
+<li><code>HashMap()</code> initializes the object with an empty map</li>
+<li><code>void put(string key, string value)</code> inserts a (key, value) pair into the HashMap. If the key already exists in the map, update the corresponding value</li>
+<li><code>string get(key)</code> returns the value to which the specified key is mapped, or empty string if this map contains no mapping for the key</li>
+<li><code>void remove(key)</code> removes the key and its corresponding value if the map contains the mapping for the key</li>
+</ul>
+<h2 id="design-hashing-function">
+  Design hashing function
+  <a class="anchor" href="#design-hashing-function">#</a>
+</h2>
+<h2 id="hash-collisions">
+  Hash collisions
+  <a class="anchor" href="#hash-collisions">#</a>
+</h2>
+<h3 id="problem">
+  Problem
+  <a class="anchor" href="#problem">#</a>
+</h3>
+<h3 id="solution">
+  Solution
+  <a class="anchor" href="#solution">#</a>
+</h3>
+<ul>
+<li>Open addressing
+<ul>
+<li>Linear probing</li>
+<li>Plus 3 rehash</li>
+<li>Quadratic probing (failed attempts)</li>
+<li>Double hashing</li>
+</ul>
+</li>
+<li>Closed addresing</li>
+</ul>
+<h2 id="use-cases">
+  Use cases
+  <a class="anchor" href="#use-cases">#</a>
+</h2>
+<h2 id="sets">
+  Sets
+  <a class="anchor" href="#sets">#</a>
+</h2>
+<p>A <strong>set</strong> is like a hash map except it only stores keys, without values</p>
+<h2 id="reference">
+  Reference
+  <a class="anchor" href="#reference">#</a>
+</h2>
+<ul>
+<li>Leetcode: <a href="https://leetcode.com/problems/design-hashmap/description/?envType=daily-question">Design HashMap</a></li>
+<li>Interviewcake: <a href="https://v8.dev/features/modules">Hash Table</a> (2018 Jun 18)</li>
+<li>Freecodecamp: <a href="https://www.freecodecamp.org/news/javascript-hash-table-associative-array-hashing-in-js/">JavaScript Hash Table – Associative Array Hashing in JS</a></li>
+<li>Wikipedia: <a href="https://en.wikipedia.org/wiki/Hash_table">Hash table</a></li>
+<li>Khalilstemmler: <a href="https://khalilstemmler.com/blogs/data-structures-algorithms/hash-tables/#:~:text=Why%20use%20hash%20tables%3F,them%20all%20in%20constant%20time.">Hash Tables | What, Why &amp; How to Use Them</a> (Jan 19th, 2022)</li>
+<li>Youtube: <a href="https://www.youtube.com/watch?v=KyUTuwz_b7Q">Hash Tables and Hash Functions</a> (Mar 5th, 2017)</li>
+</ul>
 </article>
  
       
@@ -473,7 +608,22 @@ https://github.com/alex-shpak/hugo-book
       <div class="book-toc-content">
         
   
-<nav id="TableOfContents"></nav>
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#overview">Overview</a></li>
+    <li><a href="#design-requirement">Design requirement</a></li>
+    <li><a href="#design-hashing-function">Design hashing function</a></li>
+    <li><a href="#hash-collisions">Hash collisions</a>
+      <ul>
+        <li><a href="#problem">Problem</a></li>
+        <li><a href="#solution">Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#use-cases">Use cases</a></li>
+    <li><a href="#sets">Sets</a></li>
+    <li><a href="#reference">Reference</a></li>
+  </ul>
+</nav>
 
 
  

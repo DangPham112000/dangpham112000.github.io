@@ -126,15 +126,16 @@ Commit#git add . git commit -m &amp;#34;commit message&amp;#34; These 2 comman
       <link>https://dangpham112000.github.io/docs/tips/unit_test/</link>
       <pubDate>Wed, 15 Nov 2023 01:47:46 +0700</pubDate>
       <guid>https://dangpham112000.github.io/docs/tips/unit_test/</guid>
-      <description>Unit Test#Reset all global variables for each unit test case#What environment the unit test cases are running on: Browser or Nodejs?#Because Nodejs does not have browser APIs Sinon stub#Stub a function that is called by another function in the same module#Using this.[func_name] when calling it in your module
-Stub an export default function#import * as query from &amp;#34;/database/query&amp;#34;; const makeQueryStub = sandbox.</description>
+      <description>Unit Test#Reset all global variables for each unit test case#What environment the unit test cases are running on: Browser or Nodejs?#Because Nodejs does not have browser APIs Using Karma to run browser&amp;rsquo;s unit test Using JS-DOM but it&amp;rsquo;s missing a lot of browser APIs Work only when running alone#Scenario: A unit test case only pass when running alone but fail when running with other test casesCheck:</description>
     </item>
     <item>
       <title>Design HashMap</title>
       <link>https://dangpham112000.github.io/docs/problems/design_hashmap/</link>
       <pubDate>Mon, 12 Feb 2024 01:47:46 +0700</pubDate>
       <guid>https://dangpham112000.github.io/docs/problems/design_hashmap/</guid>
-      <description>Design HashMap#</description>
+      <description>Design HashMap#Overview#Its other names: hash table, map, unordered map, dictionary
+A hash table is a data structure that you can use to store data in key-value format with direct access to its items in constant time
+The most valuable aspect of a hash table over other abstract data structures is its speed to perform insertion, deletion, and search operations. Hash tables can do them all in constant time</description>
     </item>
     <item>
       <title>Knight Dialer</title>
