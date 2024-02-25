@@ -13,7 +13,8 @@
       <link>https://dangpham112000.github.io/docs/research/be_protocol/tcp_udp/</link>
       <pubDate>Wed, 15 Nov 2023 01:47:46 +0700</pubDate>
       <guid>https://dangpham112000.github.io/docs/research/be_protocol/tcp_udp/</guid>
-      <description>TCP - UDP#</description>
+      <description>TCP - UDP#UDP#Demo#// server.js import dgram from &amp;#34;dgram&amp;#34;; const socket = dgram.createSocket(&amp;#34;udp4&amp;#34;); socket.bind(5500, &amp;#34;127.0.0.1&amp;#34;); socket.on(&amp;#34;message&amp;#34;, (msg, info) =&amp;gt; { console.log( `My server got a datagram ${msg}, from ${info.address}:${info.port}` ); }); # client terminal nc -u 127.0.0.1 5500 # client terminal Hi # client terminal I am Dang The result of the server log: (TBU)
+TCP#Demo#// server.js import net from &amp;#34;net&amp;#34;; const server = net.</description>
     </item>
     <item>
       <title>TLS - SSL</title>

@@ -3,15 +3,15 @@
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Event loop#var name = &#34;JS&#34;; function execLater() { setTimeout(printName, 0); Promise .resolve() .then(() =&gt; { console.log(&#34;Promise resolve&#34;); }); console.log(name); var name = &#34;TS&#34;; } printName(name); function printName() { console.log(name); } execLater(); Phase 1: the memory creation phase
-name is declared and initialized equal &quot;JS&quot; execLater is declared and initialized printName is declared and initialized Phase 2: the code execution phase
-printName is called and it prints &quot;JS&quot; execLater is called: Phase 1: name is assigned to undefined due to hoisting Phase 2: printName goes to the callback queue and wait for 0ms to be executed later The promise goes to the microtask queue printName is executed with the value of name is undefined name is assigned to &quot;TS&quot; but only in execLater scope Once the call stack is empty, the event loop pulls the promise to execute it as it has higher priority printName is called and print &quot;JS&quot; b/c it referents to the global scope The display order on the consoleJS undefined Promise resolve JS ">
+<meta name="description" content="Event loop#Challenge#Can you guess the output of the below JS code
+var name = &#34;JS&#34;; function execLater() { setTimeout(printName, 0); Promise .resolve() .then(() =&gt; { console.log(&#34;Promise resolve&#34;); }); console.log(name); var name = &#34;TS&#34;; } printName(name); function printName() { console.log(name); } execLater(); Phase 1: the memory creation phase
+name is declared and initialized equal &quot;JS&quot; execLater is declared and initialized printName is declared and initialized Phase 2: the code execution phase">
 <meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff">
 <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#343a40">
 <meta name="color-scheme" content="light dark"><meta property="og:title" content="Event loop" />
-<meta property="og:description" content="Event loop#var name = &#34;JS&#34;; function execLater() { setTimeout(printName, 0); Promise .resolve() .then(() =&gt; { console.log(&#34;Promise resolve&#34;); }); console.log(name); var name = &#34;TS&#34;; } printName(name); function printName() { console.log(name); } execLater(); Phase 1: the memory creation phase
-name is declared and initialized equal &quot;JS&quot; execLater is declared and initialized printName is declared and initialized Phase 2: the code execution phase
-printName is called and it prints &quot;JS&quot; execLater is called: Phase 1: name is assigned to undefined due to hoisting Phase 2: printName goes to the callback queue and wait for 0ms to be executed later The promise goes to the microtask queue printName is executed with the value of name is undefined name is assigned to &quot;TS&quot; but only in execLater scope Once the call stack is empty, the event loop pulls the promise to execute it as it has higher priority printName is called and print &quot;JS&quot; b/c it referents to the global scope The display order on the consoleJS undefined Promise resolve JS " />
+<meta property="og:description" content="Event loop#Challenge#Can you guess the output of the below JS code
+var name = &#34;JS&#34;; function execLater() { setTimeout(printName, 0); Promise .resolve() .then(() =&gt; { console.log(&#34;Promise resolve&#34;); }); console.log(name); var name = &#34;TS&#34;; } printName(name); function printName() { console.log(name); } execLater(); Phase 1: the memory creation phase
+name is declared and initialized equal &quot;JS&quot; execLater is declared and initialized printName is declared and initialized Phase 2: the code execution phase" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://dangpham112000.github.io/docs/research/event_loop/" /><meta property="article:section" content="docs" />
 <meta property="article:published_time" content="2023-12-05T01:47:46+07:00" />
@@ -22,7 +22,7 @@ printName is called and it prints &quot;JS&quot; execLater is called: Phase 1: n
 <link rel="icon" href="/favicon.png" >
 <link rel="stylesheet" href="/book.min.d2e03d9c7a4cea10fdd096eb48db6766340b9b3b186fa0321e2ad69205bdc3ad.css" integrity="sha256-0uA9nHpM6hD90JbrSNtnZjQLmzsYb6AyHirWkgW9w60=" crossorigin="anonymous">
   <script defer src="/flexsearch.min.js"></script>
-  <script defer src="/en.search.min.3df1e4d34570124c24f1d46c8bda92758fd595307f683144e549e4f3592414f3.js" integrity="sha256-PfHk00VwEkwk8dRsi9qSdY/VlTB/aDFE5Unk81kkFPM=" crossorigin="anonymous"></script>
+  <script defer src="/en.search.min.5a9382e51e1426a8febdd68a9c229a8ab70f1670efa30c0d0d9eeab0ce3112eb.js" integrity="sha256-WpOC5R4UJqj&#43;vdaKnCKaircPFnDvowwNDZ7qsM4xEus=" crossorigin="anonymous"></script>
 <!--
 Made with Book Theme
 https://github.com/alex-shpak/hugo-book
@@ -79,19 +79,6 @@ https://github.com/alex-shpak/hugo-book
 
           
   <ul>
-    
-      
-        <li>
-          
-  
-  
-
-  
-    <a href="/docs/research/event_loop/" class="active">Event loop</a>
-  
-
-        </li>
-      
     
       
         <li>
@@ -280,6 +267,32 @@ https://github.com/alex-shpak/hugo-book
         </li>
       
     
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/research/event_loop/" class="active">Event loop</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/research/javascript_engine/" class="">JavaScript Engine</a>
+  
+
+        </li>
+      
+    
   </ul>
 
         </li>
@@ -423,7 +436,16 @@ https://github.com/alex-shpak/hugo-book
   <aside class="hidden clearfix">
     
   
-<nav id="TableOfContents"></nav>
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#challenge">Challenge</a></li>
+    <li><a href="#overview">Overview</a></li>
+    <li><a href="#stack">Stack</a></li>
+    <li><a href="#heap">Heap</a></li>
+    <li><a href="#queue">Queue</a></li>
+    <li><a href="#reference">Reference</a></li>
+  </ul>
+</nav>
 
 
 
@@ -438,6 +460,11 @@ https://github.com/alex-shpak/hugo-book
   Event loop
   <a class="anchor" href="#event-loop">#</a>
 </h1>
+<h2 id="challenge">
+  Challenge
+  <a class="anchor" href="#challenge">#</a>
+</h2>
+<p>Can you guess the output of the below JS code</p>
 <div class="book-columns flex flex-wrap">
 
   <div class="flex-even markdown-inner">
@@ -516,6 +543,31 @@ https://github.com/alex-shpak/hugo-book
   </div>
 </details>
 
+<h2 id="overview">
+  Overview
+  <a class="anchor" href="#overview">#</a>
+</h2>
+<h2 id="stack">
+  Stack
+  <a class="anchor" href="#stack">#</a>
+</h2>
+<h2 id="heap">
+  Heap
+  <a class="anchor" href="#heap">#</a>
+</h2>
+<h2 id="queue">
+  Queue
+  <a class="anchor" href="#queue">#</a>
+</h2>
+<h2 id="reference">
+  Reference
+  <a class="anchor" href="#reference">#</a>
+</h2>
+<ul>
+<li>Mozilla: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Event_loop">The event loop</a> (Dec 20, 2023)</li>
+<li>Youtube: <a href="https://www.youtube.com/watch?v=8aGhZQkoFbQ">What the heck is the event loop anyway? | Philip Roberts | JSConf EU</a> (Oct 9, 2014)</li>
+<li>Nodejs: <a href="https://nodejs.org/en/learn/asynchronous-work/event-loop-timers-and-nexttick">The Node.js Event Loop</a></li>
+</ul>
 </article>
  
       
@@ -555,7 +607,16 @@ https://github.com/alex-shpak/hugo-book
       <div class="book-toc-content">
         
   
-<nav id="TableOfContents"></nav>
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#challenge">Challenge</a></li>
+    <li><a href="#overview">Overview</a></li>
+    <li><a href="#stack">Stack</a></li>
+    <li><a href="#heap">Heap</a></li>
+    <li><a href="#queue">Queue</a></li>
+    <li><a href="#reference">Reference</a></li>
+  </ul>
+</nav>
 
 
  

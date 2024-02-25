@@ -9,15 +9,6 @@
     <lastBuildDate>Tue, 05 Dec 2023 01:47:46 +0700</lastBuildDate>
     <atom:link href="https://dangpham112000.github.io/docs/research/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Event loop</title>
-      <link>https://dangpham112000.github.io/docs/research/event_loop/</link>
-      <pubDate>Tue, 05 Dec 2023 01:47:46 +0700</pubDate>
-      <guid>https://dangpham112000.github.io/docs/research/event_loop/</guid>
-      <description>Event loop#var name = &amp;#34;JS&amp;#34;; function execLater() { setTimeout(printName, 0); Promise .resolve() .then(() =&amp;gt; { console.log(&amp;#34;Promise resolve&amp;#34;); }); console.log(name); var name = &amp;#34;TS&amp;#34;; } printName(name); function printName() { console.log(name); } execLater(); Phase 1: the memory creation phase
-name is declared and initialized equal &amp;quot;JS&amp;quot; execLater is declared and initialized printName is declared and initialized Phase 2: the code execution phase
-printName is called and it prints &amp;quot;JS&amp;quot; execLater is called: Phase 1: name is assigned to undefined due to hoisting Phase 2: printName goes to the callback queue and wait for 0ms to be executed later The promise goes to the microtask queue printName is executed with the value of name is undefined name is assigned to &amp;quot;TS&amp;quot; but only in execLater scope Once the call stack is empty, the event loop pulls the promise to execute it as it has higher priority printName is called and print &amp;quot;JS&amp;quot; b/c it referents to the global scope The display order on the consoleJS undefined Promise resolve JS </description>
-    </item>
-    <item>
       <title>Process vs Thread</title>
       <link>https://dangpham112000.github.io/docs/research/process_vs_thread/</link>
       <pubDate>Tue, 05 Dec 2023 01:47:46 +0700</pubDate>
@@ -55,6 +46,22 @@ Browser Architecture#When you start an application, a process is created. The 
       <pubDate>Wed, 15 Nov 2023 01:47:46 +0700</pubDate>
       <guid>https://dangpham112000.github.io/docs/research/security/</guid>
       <description>Security#DDOS#Backdoor attack#SQL injection#Cross-site scripting (XSS) attack#Cross-site request forgery (CSRF) attack#Cross-domain access attack#Syn flood attack#Relay attack#Man in the middle attack#request modify#response modify#</description>
+    </item>
+    <item>
+      <title>Event loop</title>
+      <link>https://dangpham112000.github.io/docs/research/event_loop/</link>
+      <pubDate>Tue, 05 Dec 2023 01:47:46 +0700</pubDate>
+      <guid>https://dangpham112000.github.io/docs/research/event_loop/</guid>
+      <description>Event loop#Challenge#Can you guess the output of the below JS code
+var name = &amp;#34;JS&amp;#34;; function execLater() { setTimeout(printName, 0); Promise .resolve() .then(() =&amp;gt; { console.log(&amp;#34;Promise resolve&amp;#34;); }); console.log(name); var name = &amp;#34;TS&amp;#34;; } printName(name); function printName() { console.log(name); } execLater(); Phase 1: the memory creation phase
+name is declared and initialized equal &amp;quot;JS&amp;quot; execLater is declared and initialized printName is declared and initialized Phase 2: the code execution phase</description>
+    </item>
+    <item>
+      <title>JavaScript Engine</title>
+      <link>https://dangpham112000.github.io/docs/research/javascript_engine/</link>
+      <pubDate>Tue, 05 Dec 2023 01:47:46 +0700</pubDate>
+      <guid>https://dangpham112000.github.io/docs/research/javascript_engine/</guid>
+      <description>JavaScript Engine#V8: Google Chrome, NodeJS SpiderMonkey: Firefox JavaScriptCore: Safari Reference#Nodejs: The V8 JavaScript Engine Mozilla: SpiderMonkey Apple: JavaScriptCore </description>
     </item>
   </channel>
 </rss>
