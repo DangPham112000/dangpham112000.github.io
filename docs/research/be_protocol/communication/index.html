@@ -3,11 +3,15 @@
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Communication#">
+<meta name="description" content="Communication#Request-Response#Overview#The Request-Response pattern is a fundamental communication pattern where a client sends a request to a server, and the server processes the request and sends back a response. It&rsquo;s one of the most common patterns for communication in distributed systems, client-server architectures, and web applications.
+Push#Real time notification
+Overview#Used by RabbitMQ Implementation#Concept:#Client connects to a server Server sends data to the client Client doesn’t have to request anything Protocol must be bidirectional Example code:#Short Polling#Request is taking a while, I’ll check with you later">
 <meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff">
 <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#343a40">
 <meta name="color-scheme" content="light dark"><meta property="og:title" content="Communication" />
-<meta property="og:description" content="Communication#" />
+<meta property="og:description" content="Communication#Request-Response#Overview#The Request-Response pattern is a fundamental communication pattern where a client sends a request to a server, and the server processes the request and sends back a response. It&rsquo;s one of the most common patterns for communication in distributed systems, client-server architectures, and web applications.
+Push#Real time notification
+Overview#Used by RabbitMQ Implementation#Concept:#Client connects to a server Server sends data to the client Client doesn’t have to request anything Protocol must be bidirectional Example code:#Short Polling#Request is taking a while, I’ll check with you later" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://dangpham112000.github.io/docs/research/be_protocol/communication/" /><meta property="article:section" content="docs" />
 <meta property="article:published_time" content="2023-11-15T01:47:46+07:00" />
@@ -18,7 +22,7 @@
 <link rel="icon" href="/favicon.png" >
 <link rel="stylesheet" href="/book.min.d2e03d9c7a4cea10fdd096eb48db6766340b9b3b186fa0321e2ad69205bdc3ad.css" integrity="sha256-0uA9nHpM6hD90JbrSNtnZjQLmzsYb6AyHirWkgW9w60=" crossorigin="anonymous">
   <script defer src="/flexsearch.min.js"></script>
-  <script defer src="/en.search.min.5a9382e51e1426a8febdd68a9c229a8ab70f1670efa30c0d0d9eeab0ce3112eb.js" integrity="sha256-WpOC5R4UJqj&#43;vdaKnCKaircPFnDvowwNDZ7qsM4xEus=" crossorigin="anonymous"></script>
+  <script defer src="/en.search.min.72d2214f09411d16006367dbf6789e32de78821fdbfb815a16e3f23fb33128d9.js" integrity="sha256-ctIhTwlBHRYAY2fb9nieMt54gh/b&#43;4FaFuPyP7MxKNk=" crossorigin="anonymous"></script>
 <!--
 Made with Book Theme
 https://github.com/alex-shpak/hugo-book
@@ -432,7 +436,47 @@ https://github.com/alex-shpak/hugo-book
   <aside class="hidden clearfix">
     
   
-<nav id="TableOfContents"></nav>
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#request-response">Request-Response</a>
+      <ul>
+        <li><a href="#overview">Overview</a></li>
+      </ul>
+    </li>
+    <li><a href="#push">Push</a>
+      <ul>
+        <li><a href="#overview-1">Overview</a></li>
+        <li><a href="#implementation">Implementation</a></li>
+      </ul>
+    </li>
+    <li><a href="#short-polling">Short Polling</a>
+      <ul>
+        <li><a href="#implementation-1">Implementation</a></li>
+      </ul>
+    </li>
+    <li><a href="#long-polling">Long Polling</a>
+      <ul>
+        <li><a href="#implementation-2">Implementation</a></li>
+      </ul>
+    </li>
+    <li><a href="#server-sent-events">Server sent events</a>
+      <ul>
+        <li><a href="#implementation-3">Implementation</a></li>
+      </ul>
+    </li>
+    <li><a href="#message-queue">Message Queue</a>
+      <ul>
+        <li><a href="#overview-2">Overview</a></li>
+      </ul>
+    </li>
+    <li><a href="#publish-subcribe">Publish Subcribe</a>
+      <ul>
+        <li><a href="#implementation-4">Implementation</a></li>
+      </ul>
+    </li>
+    <li><a href="#reference">Reference</a></li>
+  </ul>
+</nav>
 
 
 
@@ -447,6 +491,146 @@ https://github.com/alex-shpak/hugo-book
   Communication
   <a class="anchor" href="#communication">#</a>
 </h1>
+<h2 id="request-response">
+  Request-Response
+  <a class="anchor" href="#request-response">#</a>
+</h2>
+<p><img src="/research/be_protocol/communication/request_response.png" alt="request_response" /></p>
+<h3 id="overview">
+  Overview
+  <a class="anchor" href="#overview">#</a>
+</h3>
+<p>The Request-Response pattern is a fundamental communication pattern where a client sends a request to a server, and the server processes the request and sends back a response. It&rsquo;s one of the most common patterns for communication in distributed systems, client-server architectures, and web applications.</p>
+<h2 id="push">
+  Push
+  <a class="anchor" href="#push">#</a>
+</h2>
+<p>Real time notification</p>
+<p><img src="/research/be_protocol/communication/push.png" alt="push" /></p>
+<h3 id="overview-1">
+  Overview
+  <a class="anchor" href="#overview-1">#</a>
+</h3>
+<ul>
+<li>Used by RabbitMQ</li>
+</ul>
+<h3 id="implementation">
+  Implementation
+  <a class="anchor" href="#implementation">#</a>
+</h3>
+<h4 id="concept">
+  Concept:
+  <a class="anchor" href="#concept">#</a>
+</h4>
+<ul>
+<li>Client connects to a server</li>
+<li>Server sends data to the client</li>
+<li>Client doesn’t have to request anything</li>
+<li>Protocol must be bidirectional</li>
+</ul>
+<h4 id="example-code">
+  Example code:
+  <a class="anchor" href="#example-code">#</a>
+</h4>
+<h2 id="short-polling">
+  Short Polling
+  <a class="anchor" href="#short-polling">#</a>
+</h2>
+<p>Request is taking a while, I’ll check with you later</p>
+<p><img src="/research/be_protocol/communication/short_polling.png" alt="short_polling" /></p>
+<h3 id="implementation-1">
+  Implementation
+  <a class="anchor" href="#implementation-1">#</a>
+</h3>
+<h4 id="concept-1">
+  Concept:
+  <a class="anchor" href="#concept-1">#</a>
+</h4>
+<ul>
+<li>Client sends a request</li>
+<li>Server responds immediately with a handle</li>
+<li>Server continues to process the request</li>
+<li>Client uses that handle to check for status</li>
+<li>Multiple “short” request response as polls</li>
+</ul>
+<h2 id="long-polling">
+  Long Polling
+  <a class="anchor" href="#long-polling">#</a>
+</h2>
+<p><img src="/research/be_protocol/communication/long_polling.png" alt="long_polling" /></p>
+<h3 id="implementation-2">
+  Implementation
+  <a class="anchor" href="#implementation-2">#</a>
+</h3>
+<h4 id="concept-2">
+  Concept:
+  <a class="anchor" href="#concept-2">#</a>
+</h4>
+<ul>
+<li>Client sends a request</li>
+<li>Server responds immediately with a handle</li>
+<li>Server continues to process the request</li>
+<li>Client uses that handle to check for status</li>
+<li>Server DOES not reply until it has the response</li>
+<li>So we got a handle, we can disconnect and we are less chatty</li>
+<li>Some variation has timeouts too</li>
+</ul>
+<h2 id="server-sent-events">
+  Server sent events
+  <a class="anchor" href="#server-sent-events">#</a>
+</h2>
+<p><img src="/research/be_protocol/communication/server_sent_events.png" alt="server_sent_events" /></p>
+<h3 id="implementation-3">
+  Implementation
+  <a class="anchor" href="#implementation-3">#</a>
+</h3>
+<h4 id="concept-3">
+  Concept:
+  <a class="anchor" href="#concept-3">#</a>
+</h4>
+<ul>
+<li>A response has start and end</li>
+<li>Client sends a request</li>
+<li>Server sends logical events as part of response</li>
+<li>Server never writes the end of the response</li>
+<li>It is still a request but an unending response</li>
+<li>Client parses the streams data looking for events</li>
+<li>Works with request/response (HTTP)</li>
+</ul>
+<h2 id="message-queue">
+  Message Queue
+  <a class="anchor" href="#message-queue">#</a>
+</h2>
+<p>Asynchronous messaging for batching jobs and decoupling applications</p>
+<p><img src="/research/be_protocol/communication/message_queue.png" alt="message_queue" /></p>
+<h3 id="overview-2">
+  Overview
+  <a class="anchor" href="#overview-2">#</a>
+</h3>
+<p>A message queue is a form of asynchronous service-to-service communication used in serverless and microservices architectures. Messages are stored on the queue until they are processed and deleted. Each message is processed only once, by a single consumer. Message queues can be used to decouple heavyweight processing, to buffer or batch work, and to smooth spiky workloads.</p>
+<h2 id="publish-subcribe">
+  Publish Subcribe
+  <a class="anchor" href="#publish-subcribe">#</a>
+</h2>
+<p>One publisher many readers</p>
+<p><img src="/research/be_protocol/communication/pub_sub.png" alt="pub_sub" /></p>
+<h3 id="implementation-4">
+  Implementation
+  <a class="anchor" href="#implementation-4">#</a>
+</h3>
+<h4 id="concept-4">
+  Concept:
+  <a class="anchor" href="#concept-4">#</a>
+</h4>
+<h2 id="reference">
+  Reference
+  <a class="anchor" href="#reference">#</a>
+</h2>
+<ul>
+<li>Linkedin: <a href="https://www.linkedin.com/pulse/backend-communication-design-patterns-muhammad-iftekhar-ul-alam/">Backend Communication Design Patterns</a> (Sep 13, 2023)</li>
+<li>Freecodecamp: <a href="https://www.freecodecamp.org/news/communication-design-patterns-for-backend-development/">Communication Design Patterns for Backend Development</a></li>
+<li>Amazon: <a href="https://aws.amazon.com/message-queue/">Message Queues</a></li>
+</ul>
 </article>
  
       
@@ -486,7 +670,47 @@ https://github.com/alex-shpak/hugo-book
       <div class="book-toc-content">
         
   
-<nav id="TableOfContents"></nav>
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#request-response">Request-Response</a>
+      <ul>
+        <li><a href="#overview">Overview</a></li>
+      </ul>
+    </li>
+    <li><a href="#push">Push</a>
+      <ul>
+        <li><a href="#overview-1">Overview</a></li>
+        <li><a href="#implementation">Implementation</a></li>
+      </ul>
+    </li>
+    <li><a href="#short-polling">Short Polling</a>
+      <ul>
+        <li><a href="#implementation-1">Implementation</a></li>
+      </ul>
+    </li>
+    <li><a href="#long-polling">Long Polling</a>
+      <ul>
+        <li><a href="#implementation-2">Implementation</a></li>
+      </ul>
+    </li>
+    <li><a href="#server-sent-events">Server sent events</a>
+      <ul>
+        <li><a href="#implementation-3">Implementation</a></li>
+      </ul>
+    </li>
+    <li><a href="#message-queue">Message Queue</a>
+      <ul>
+        <li><a href="#overview-2">Overview</a></li>
+      </ul>
+    </li>
+    <li><a href="#publish-subcribe">Publish Subcribe</a>
+      <ul>
+        <li><a href="#implementation-4">Implementation</a></li>
+      </ul>
+    </li>
+    <li><a href="#reference">Reference</a></li>
+  </ul>
+</nav>
 
 
  

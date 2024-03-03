@@ -3,13 +3,13 @@
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="TCP - UDP#UDP#Demo#// server.js import dgram from &#34;dgram&#34;; const socket = dgram.createSocket(&#34;udp4&#34;); socket.bind(5500, &#34;127.0.0.1&#34;); socket.on(&#34;message&#34;, (msg, info) =&gt; { console.log( `My server got a datagram ${msg}, from ${info.address}:${info.port}` ); }); # client terminal nc -u 127.0.0.1 5500 # client terminal Hi # client terminal I am Dang The result of the server log: (TBU)
-TCP#Demo#// server.js import net from &#34;net&#34;; const server = net.">
+<meta name="description" content="TCP - UDP#UDP#User Datagram Protocol
+Overview#Message Based Layer 4 protocol Ability to address processes in a host using ports Simple protocol to send and receive messages Prior communication not required (double edge sword) Stateless no knowledge is stored on the host 8 byte header Datagram Demo#// server.js import dgram from &#34;dgram&#34;; const socket = dgram.createSocket(&#34;udp4&#34;); socket.bind(5500, &#34;127.0.0.1&#34;); socket.on(&#34;message&#34;, (msg, info) =&gt; { console.">
 <meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff">
 <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#343a40">
 <meta name="color-scheme" content="light dark"><meta property="og:title" content="TCP - UDP" />
-<meta property="og:description" content="TCP - UDP#UDP#Demo#// server.js import dgram from &#34;dgram&#34;; const socket = dgram.createSocket(&#34;udp4&#34;); socket.bind(5500, &#34;127.0.0.1&#34;); socket.on(&#34;message&#34;, (msg, info) =&gt; { console.log( `My server got a datagram ${msg}, from ${info.address}:${info.port}` ); }); # client terminal nc -u 127.0.0.1 5500 # client terminal Hi # client terminal I am Dang The result of the server log: (TBU)
-TCP#Demo#// server.js import net from &#34;net&#34;; const server = net." />
+<meta property="og:description" content="TCP - UDP#UDP#User Datagram Protocol
+Overview#Message Based Layer 4 protocol Ability to address processes in a host using ports Simple protocol to send and receive messages Prior communication not required (double edge sword) Stateless no knowledge is stored on the host 8 byte header Datagram Demo#// server.js import dgram from &#34;dgram&#34;; const socket = dgram.createSocket(&#34;udp4&#34;); socket.bind(5500, &#34;127.0.0.1&#34;); socket.on(&#34;message&#34;, (msg, info) =&gt; { console." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://dangpham112000.github.io/docs/research/be_protocol/tcp_udp/" /><meta property="article:section" content="docs" />
 <meta property="article:published_time" content="2023-11-15T01:47:46+07:00" />
@@ -20,7 +20,7 @@ TCP#Demo#// server.js import net from &#34;net&#34;; const server = net." />
 <link rel="icon" href="/favicon.png" >
 <link rel="stylesheet" href="/book.min.d2e03d9c7a4cea10fdd096eb48db6766340b9b3b186fa0321e2ad69205bdc3ad.css" integrity="sha256-0uA9nHpM6hD90JbrSNtnZjQLmzsYb6AyHirWkgW9w60=" crossorigin="anonymous">
   <script defer src="/flexsearch.min.js"></script>
-  <script defer src="/en.search.min.5a9382e51e1426a8febdd68a9c229a8ab70f1670efa30c0d0d9eeab0ce3112eb.js" integrity="sha256-WpOC5R4UJqj&#43;vdaKnCKaircPFnDvowwNDZ7qsM4xEus=" crossorigin="anonymous"></script>
+  <script defer src="/en.search.min.72d2214f09411d16006367dbf6789e32de78821fdbfb815a16e3f23fb33128d9.js" integrity="sha256-ctIhTwlBHRYAY2fb9nieMt54gh/b&#43;4FaFuPyP7MxKNk=" crossorigin="anonymous"></script>
 <!--
 Made with Book Theme
 https://github.com/alex-shpak/hugo-book
@@ -438,11 +438,14 @@ https://github.com/alex-shpak/hugo-book
   <ul>
     <li><a href="#udp">UDP</a>
       <ul>
+        <li><a href="#overview">Overview</a></li>
         <li><a href="#demo">Demo</a></li>
       </ul>
     </li>
     <li><a href="#tcp">TCP</a>
       <ul>
+        <li><a href="#overview-1">Overview</a></li>
+        <li><a href="#3-ways-handshake">3 ways handshake</a></li>
         <li><a href="#demo-1">Demo</a></li>
       </ul>
     </li>
@@ -466,6 +469,19 @@ https://github.com/alex-shpak/hugo-book
   UDP
   <a class="anchor" href="#udp">#</a>
 </h2>
+<p>User Datagram Protocol</p>
+<h3 id="overview">
+  Overview
+  <a class="anchor" href="#overview">#</a>
+</h3>
+<ul>
+<li>Message Based Layer 4 protocol</li>
+<li>Ability to address processes in a host using ports</li>
+<li>Simple protocol to send and receive messages</li>
+<li>Prior communication not required (double edge sword)</li>
+<li>Stateless no knowledge is stored on the host</li>
+<li>8 byte header Datagram</li>
+</ul>
 <h3 id="demo">
   Demo
   <a class="anchor" href="#demo">#</a>
@@ -491,6 +507,24 @@ https://github.com/alex-shpak/hugo-book
   TCP
   <a class="anchor" href="#tcp">#</a>
 </h2>
+<p>Transmission Control Protocol</p>
+<h3 id="overview-1">
+  Overview
+  <a class="anchor" href="#overview-1">#</a>
+</h3>
+<ul>
+<li>Stream based Layer 4 protocol</li>
+<li>Ability to address processes in a host using ports</li>
+<li>“Controls” the transmission unlike UDP which is a firehose</li>
+<li>Connection</li>
+<li>Requires handshake</li>
+<li>20 bytes headers Segment (can go to 60)</li>
+<li>Stateful</li>
+</ul>
+<h3 id="3-ways-handshake">
+  3 ways handshake
+  <a class="anchor" href="#3-ways-handshake">#</a>
+</h3>
 <h3 id="demo-1">
   Demo
   <a class="anchor" href="#demo-1">#</a>
@@ -556,11 +590,14 @@ https://github.com/alex-shpak/hugo-book
   <ul>
     <li><a href="#udp">UDP</a>
       <ul>
+        <li><a href="#overview">Overview</a></li>
         <li><a href="#demo">Demo</a></li>
       </ul>
     </li>
     <li><a href="#tcp">TCP</a>
       <ul>
+        <li><a href="#overview-1">Overview</a></li>
+        <li><a href="#3-ways-handshake">3 ways handshake</a></li>
         <li><a href="#demo-1">Demo</a></li>
       </ul>
     </li>

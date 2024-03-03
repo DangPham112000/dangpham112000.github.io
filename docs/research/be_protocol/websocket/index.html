@@ -3,11 +3,13 @@
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Websocket#">
+<meta name="description" content="Websocket#Bidirectional communications on the web
+Example code:#// server.js const http = require(&#34;http&#34;); const WebSocketServer = require(&#34;websocket&#34;).server; let connections = []; //create a raw http server (this will help us create the TCP which will then pass to the websocket to do the job) const httpserver = http.createServer(); //pass the httpserver object to the WebSocketServer library to do all the job, this class will override the req/res const websocket = new WebSocketServer({ httpServer: httpserver }); //listen on the TCP socket httpserver.">
 <meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff">
 <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#343a40">
 <meta name="color-scheme" content="light dark"><meta property="og:title" content="Websocket" />
-<meta property="og:description" content="Websocket#" />
+<meta property="og:description" content="Websocket#Bidirectional communications on the web
+Example code:#// server.js const http = require(&#34;http&#34;); const WebSocketServer = require(&#34;websocket&#34;).server; let connections = []; //create a raw http server (this will help us create the TCP which will then pass to the websocket to do the job) const httpserver = http.createServer(); //pass the httpserver object to the WebSocketServer library to do all the job, this class will override the req/res const websocket = new WebSocketServer({ httpServer: httpserver }); //listen on the TCP socket httpserver." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://dangpham112000.github.io/docs/research/be_protocol/websocket/" /><meta property="article:section" content="docs" />
 <meta property="article:published_time" content="2023-11-15T01:47:46+07:00" />
@@ -18,7 +20,7 @@
 <link rel="icon" href="/favicon.png" >
 <link rel="stylesheet" href="/book.min.d2e03d9c7a4cea10fdd096eb48db6766340b9b3b186fa0321e2ad69205bdc3ad.css" integrity="sha256-0uA9nHpM6hD90JbrSNtnZjQLmzsYb6AyHirWkgW9w60=" crossorigin="anonymous">
   <script defer src="/flexsearch.min.js"></script>
-  <script defer src="/en.search.min.5a9382e51e1426a8febdd68a9c229a8ab70f1670efa30c0d0d9eeab0ce3112eb.js" integrity="sha256-WpOC5R4UJqj&#43;vdaKnCKaircPFnDvowwNDZ7qsM4xEus=" crossorigin="anonymous"></script>
+  <script defer src="/en.search.min.72d2214f09411d16006367dbf6789e32de78821fdbfb815a16e3f23fb33128d9.js" integrity="sha256-ctIhTwlBHRYAY2fb9nieMt54gh/b&#43;4FaFuPyP7MxKNk=" crossorigin="anonymous"></script>
 <!--
 Made with Book Theme
 https://github.com/alex-shpak/hugo-book
@@ -432,7 +434,15 @@ https://github.com/alex-shpak/hugo-book
   <aside class="hidden clearfix">
     
   
-<nav id="TableOfContents"></nav>
+<nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
 
 
 
@@ -447,7 +457,47 @@ https://github.com/alex-shpak/hugo-book
   Websocket
   <a class="anchor" href="#websocket">#</a>
 </h1>
-</article>
+<p>Bidirectional communications on the web</p>
+<h4 id="example-code">
+  Example code:
+  <a class="anchor" href="#example-code">#</a>
+</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#75715e">// server.js
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">http</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span>(<span style="color:#e6db74">&#34;http&#34;</span>);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">WebSocketServer</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span>(<span style="color:#e6db74">&#34;websocket&#34;</span>).<span style="color:#a6e22e">server</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">let</span> <span style="color:#a6e22e">connections</span> <span style="color:#f92672">=</span> [];
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">//create a raw http server (this will help us create the TCP which will then pass to the websocket to do the job)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">httpserver</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">http</span>.<span style="color:#a6e22e">createServer</span>();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">//pass the httpserver object to the WebSocketServer library to do all the job, this class will override the req/res
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">websocket</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">WebSocketServer</span>({ <span style="color:#a6e22e">httpServer</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">httpserver</span> });
+</span></span><span style="display:flex;"><span><span style="color:#75715e">//listen on the TCP socket
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">httpserver</span>.<span style="color:#a6e22e">listen</span>(<span style="color:#ae81ff">8080</span>, () =&gt;
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#34;My server is listening on port 8080&#34;</span>)
+</span></span><span style="display:flex;"><span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">//when a legit websocket request comes listen to it and get the connection .. once you get a connection that&#39;s it!
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">websocket</span>.<span style="color:#a6e22e">on</span>(<span style="color:#e6db74">&#34;request&#34;</span>, (<span style="color:#a6e22e">request</span>) =&gt; {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">connection</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">request</span>.<span style="color:#a6e22e">accept</span>(<span style="color:#66d9ef">null</span>, <span style="color:#a6e22e">request</span>.<span style="color:#a6e22e">origin</span>);
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">connection</span>.<span style="color:#a6e22e">on</span>(<span style="color:#e6db74">&#34;message&#34;</span>, (<span style="color:#a6e22e">message</span>) =&gt; {
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">//someone just sent a message tell everybody
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">connections</span>.<span style="color:#a6e22e">forEach</span>((<span style="color:#a6e22e">c</span>) =&gt;
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">c</span>.<span style="color:#a6e22e">send</span>(<span style="color:#e6db74">`User</span><span style="color:#e6db74">${</span><span style="color:#a6e22e">connection</span>.<span style="color:#a6e22e">socket</span>.<span style="color:#a6e22e">remotePort</span><span style="color:#e6db74">}</span><span style="color:#e6db74"> says: </span><span style="color:#e6db74">${</span><span style="color:#a6e22e">message</span>.<span style="color:#a6e22e">utf8Data</span><span style="color:#e6db74">}</span><span style="color:#e6db74">`</span>)
+</span></span><span style="display:flex;"><span>    );
+</span></span><span style="display:flex;"><span>  });
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">connections</span>.<span style="color:#a6e22e">push</span>(<span style="color:#a6e22e">connection</span>);
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">//someone just connected, tell everybody
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#a6e22e">connections</span>.<span style="color:#a6e22e">forEach</span>((<span style="color:#a6e22e">c</span>) =&gt;
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">c</span>.<span style="color:#a6e22e">send</span>(<span style="color:#e6db74">`User</span><span style="color:#e6db74">${</span><span style="color:#a6e22e">connection</span>.<span style="color:#a6e22e">socket</span>.<span style="color:#a6e22e">remotePort</span><span style="color:#e6db74">}</span><span style="color:#e6db74"> just connected.`</span>)
+</span></span><span style="display:flex;"><span>  );
+</span></span><span style="display:flex;"><span>});
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#75715e">// client.js
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">let</span> <span style="color:#a6e22e">ws</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">WebSocket</span>(<span style="color:#e6db74">&#34;ws://localhost:8080&#34;</span>);
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">ws</span>.<span style="color:#a6e22e">onmessage</span> <span style="color:#f92672">=</span> (<span style="color:#a6e22e">message</span>) =&gt; <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">`Received: </span><span style="color:#e6db74">${</span><span style="color:#a6e22e">message</span>.<span style="color:#a6e22e">data</span><span style="color:#e6db74">}</span><span style="color:#e6db74">`</span>);
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">ws</span>.<span style="color:#a6e22e">send</span>(<span style="color:#e6db74">&#34;Hello! I&#39;m client&#34;</span>);
+</span></span></code></pre></div></article>
  
       
 
@@ -486,7 +536,15 @@ https://github.com/alex-shpak/hugo-book
       <div class="book-toc-content">
         
   
-<nav id="TableOfContents"></nav>
+<nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
 
 
  

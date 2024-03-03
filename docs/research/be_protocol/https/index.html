@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="HTTPS#">
+<meta name="description" content="HTTPS#Over TCP With TLS 1.2#Over TCP With TLS 1.3#Over QUIC (HTTP/3)#Over TCP With TLS 1.3 0RTT#Over QUIC 0RTT#">
 <meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff">
 <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#343a40">
 <meta name="color-scheme" content="light dark"><meta property="og:title" content="HTTPS" />
-<meta property="og:description" content="HTTPS#" />
+<meta property="og:description" content="HTTPS#Over TCP With TLS 1.2#Over TCP With TLS 1.3#Over QUIC (HTTP/3)#Over TCP With TLS 1.3 0RTT#Over QUIC 0RTT#" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://dangpham112000.github.io/docs/research/be_protocol/https/" /><meta property="article:section" content="docs" />
 <meta property="article:published_time" content="2023-11-15T01:47:46+07:00" />
@@ -18,7 +18,7 @@
 <link rel="icon" href="/favicon.png" >
 <link rel="stylesheet" href="/book.min.d2e03d9c7a4cea10fdd096eb48db6766340b9b3b186fa0321e2ad69205bdc3ad.css" integrity="sha256-0uA9nHpM6hD90JbrSNtnZjQLmzsYb6AyHirWkgW9w60=" crossorigin="anonymous">
   <script defer src="/flexsearch.min.js"></script>
-  <script defer src="/en.search.min.5a9382e51e1426a8febdd68a9c229a8ab70f1670efa30c0d0d9eeab0ce3112eb.js" integrity="sha256-WpOC5R4UJqj&#43;vdaKnCKaircPFnDvowwNDZ7qsM4xEus=" crossorigin="anonymous"></script>
+  <script defer src="/en.search.min.72d2214f09411d16006367dbf6789e32de78821fdbfb815a16e3f23fb33128d9.js" integrity="sha256-ctIhTwlBHRYAY2fb9nieMt54gh/b&#43;4FaFuPyP7MxKNk=" crossorigin="anonymous"></script>
 <!--
 Made with Book Theme
 https://github.com/alex-shpak/hugo-book
@@ -432,7 +432,15 @@ https://github.com/alex-shpak/hugo-book
   <aside class="hidden clearfix">
     
   
-<nav id="TableOfContents"></nav>
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#over-tcp-with-tls-12">Over TCP With TLS 1.2</a></li>
+    <li><a href="#over-tcp-with-tls-13">Over TCP With TLS 1.3</a></li>
+    <li><a href="#over-quic-http3">Over QUIC (HTTP/3)</a></li>
+    <li><a href="#over-tcp-with-tls-13-0rtt">Over TCP With TLS 1.3 0RTT</a></li>
+    <li><a href="#over-quic-0rtt">Over QUIC 0RTT</a></li>
+  </ul>
+</nav>
 
 
 
@@ -447,6 +455,26 @@ https://github.com/alex-shpak/hugo-book
   HTTPS
   <a class="anchor" href="#https">#</a>
 </h1>
+<h2 id="over-tcp-with-tls-12">
+  Over TCP With TLS 1.2
+  <a class="anchor" href="#over-tcp-with-tls-12">#</a>
+</h2>
+<h2 id="over-tcp-with-tls-13">
+  Over TCP With TLS 1.3
+  <a class="anchor" href="#over-tcp-with-tls-13">#</a>
+</h2>
+<h2 id="over-quic-http3">
+  Over QUIC (HTTP/3)
+  <a class="anchor" href="#over-quic-http3">#</a>
+</h2>
+<h2 id="over-tcp-with-tls-13-0rtt">
+  Over TCP With TLS 1.3 0RTT
+  <a class="anchor" href="#over-tcp-with-tls-13-0rtt">#</a>
+</h2>
+<h2 id="over-quic-0rtt">
+  Over QUIC 0RTT
+  <a class="anchor" href="#over-quic-0rtt">#</a>
+</h2>
 </article>
  
       
@@ -486,7 +514,15 @@ https://github.com/alex-shpak/hugo-book
       <div class="book-toc-content">
         
   
-<nav id="TableOfContents"></nav>
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#over-tcp-with-tls-12">Over TCP With TLS 1.2</a></li>
+    <li><a href="#over-tcp-with-tls-13">Over TCP With TLS 1.3</a></li>
+    <li><a href="#over-quic-http3">Over QUIC (HTTP/3)</a></li>
+    <li><a href="#over-tcp-with-tls-13-0rtt">Over TCP With TLS 1.3 0RTT</a></li>
+    <li><a href="#over-quic-0rtt">Over QUIC 0RTT</a></li>
+  </ul>
+</nav>
 
 
  

@@ -13,57 +13,65 @@
       <link>https://dangpham112000.github.io/docs/research/be_protocol/tcp_udp/</link>
       <pubDate>Wed, 15 Nov 2023 01:47:46 +0700</pubDate>
       <guid>https://dangpham112000.github.io/docs/research/be_protocol/tcp_udp/</guid>
-      <description>TCP - UDP#UDP#Demo#// server.js import dgram from &amp;#34;dgram&amp;#34;; const socket = dgram.createSocket(&amp;#34;udp4&amp;#34;); socket.bind(5500, &amp;#34;127.0.0.1&amp;#34;); socket.on(&amp;#34;message&amp;#34;, (msg, info) =&amp;gt; { console.log( `My server got a datagram ${msg}, from ${info.address}:${info.port}` ); }); # client terminal nc -u 127.0.0.1 5500 # client terminal Hi # client terminal I am Dang The result of the server log: (TBU)
-TCP#Demo#// server.js import net from &amp;#34;net&amp;#34;; const server = net.</description>
+      <description>TCP - UDP#UDP#User Datagram Protocol
+Overview#Message Based Layer 4 protocol Ability to address processes in a host using ports Simple protocol to send and receive messages Prior communication not required (double edge sword) Stateless no knowledge is stored on the host 8 byte header Datagram Demo#// server.js import dgram from &amp;#34;dgram&amp;#34;; const socket = dgram.createSocket(&amp;#34;udp4&amp;#34;); socket.bind(5500, &amp;#34;127.0.0.1&amp;#34;); socket.on(&amp;#34;message&amp;#34;, (msg, info) =&amp;gt; { console.</description>
     </item>
     <item>
       <title>TLS - SSL</title>
       <link>https://dangpham112000.github.io/docs/research/be_protocol/tls_ssl/</link>
       <pubDate>Wed, 15 Nov 2023 01:47:46 +0700</pubDate>
       <guid>https://dangpham112000.github.io/docs/research/be_protocol/tls_ssl/</guid>
-      <description>TLS - SSL#</description>
+      <description>TLS - SSL#Transport Layer Security - Secure Sockets Layer
+Overview#SSL stands for Secure Sockets Layer, and it refers to a protocol for encrypting, securing, and authenticating communications that take place on the Internet. Although SSL was replaced by an updated protocol called TLS (Transport Layer Security) some time ago, &amp;ldquo;SSL&amp;rdquo; is still a commonly used term for this technology
+TLS 1.2#Diffie Hellman#TLS 1.</description>
     </item>
     <item>
       <title>HTTP</title>
       <link>https://dangpham112000.github.io/docs/research/be_protocol/http/</link>
       <pubDate>Wed, 15 Nov 2023 01:47:46 +0700</pubDate>
       <guid>https://dangpham112000.github.io/docs/research/be_protocol/http/</guid>
-      <description>HTTP#</description>
+      <description>HTTP#HTTP 1.0#HTTP/1.1#HTTP/2#HTTP/3#HTTP over QUIC
+Reference#Upwork: What is the HTTP/2 Protocol? Overview and Examples (Aug 23, 2021) </description>
     </item>
     <item>
       <title>HTTPS</title>
       <link>https://dangpham112000.github.io/docs/research/be_protocol/https/</link>
       <pubDate>Wed, 15 Nov 2023 01:47:46 +0700</pubDate>
       <guid>https://dangpham112000.github.io/docs/research/be_protocol/https/</guid>
-      <description>HTTPS#</description>
+      <description>HTTPS#Over TCP With TLS 1.2#Over TCP With TLS 1.3#Over QUIC (HTTP/3)#Over TCP With TLS 1.3 0RTT#Over QUIC 0RTT#</description>
     </item>
     <item>
       <title>WebRTC</title>
       <link>https://dangpham112000.github.io/docs/research/be_protocol/webrtc/</link>
       <pubDate>Wed, 15 Nov 2023 01:47:46 +0700</pubDate>
       <guid>https://dangpham112000.github.io/docs/research/be_protocol/webrtc/</guid>
-      <description>WebRTC#</description>
+      <description>WebRTC#Web Real-Time Communication
+Overview#A protocol that connects peer to peer Find a peer to peer path to exchange video and audio in an efficient and low latency manner Standardized API Enables rich communications browsers, mobile, IOT devices </description>
     </item>
     <item>
       <title>Websocket</title>
       <link>https://dangpham112000.github.io/docs/research/be_protocol/websocket/</link>
       <pubDate>Wed, 15 Nov 2023 01:47:46 +0700</pubDate>
       <guid>https://dangpham112000.github.io/docs/research/be_protocol/websocket/</guid>
-      <description>Websocket#</description>
+      <description>Websocket#Bidirectional communications on the web
+Example code:#// server.js const http = require(&amp;#34;http&amp;#34;); const WebSocketServer = require(&amp;#34;websocket&amp;#34;).server; let connections = []; //create a raw http server (this will help us create the TCP which will then pass to the websocket to do the job) const httpserver = http.createServer(); //pass the httpserver object to the WebSocketServer library to do all the job, this class will override the req/res const websocket = new WebSocketServer({ httpServer: httpserver }); //listen on the TCP socket httpserver.</description>
     </item>
     <item>
       <title>gRPC</title>
       <link>https://dangpham112000.github.io/docs/research/be_protocol/grpc/</link>
       <pubDate>Wed, 15 Nov 2023 01:47:46 +0700</pubDate>
       <guid>https://dangpham112000.github.io/docs/research/be_protocol/grpc/</guid>
-      <description>gRPC#</description>
+      <description>gRPC#Taking HTTP/2 to the next level
+Overview#Client Library: One library for popular languages Protocol: HTTP/2 (hidden implementation) Message Format: Protocol buffers as format </description>
     </item>
     <item>
       <title>Communication</title>
       <link>https://dangpham112000.github.io/docs/research/be_protocol/communication/</link>
       <pubDate>Wed, 15 Nov 2023 01:47:46 +0700</pubDate>
       <guid>https://dangpham112000.github.io/docs/research/be_protocol/communication/</guid>
-      <description>Communication#</description>
+      <description>Communication#Request-Response#Overview#The Request-Response pattern is a fundamental communication pattern where a client sends a request to a server, and the server processes the request and sends back a response. It&amp;rsquo;s one of the most common patterns for communication in distributed systems, client-server architectures, and web applications.
+Push#Real time notification
+Overview#Used by RabbitMQ Implementation#Concept:#Client connects to a server Server sends data to the client Client doesn’t have to request anything Protocol must be bidirectional Example code:#Short Polling#Request is taking a while, I’ll check with you later</description>
     </item>
     <item>
       <title>Process vs Thread</title>
