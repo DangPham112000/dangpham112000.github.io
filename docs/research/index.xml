@@ -63,5 +63,12 @@ name is declared and initialized equal &amp;quot;JS&amp;quot; execLater is decla
       <guid>https://dangpham112000.github.io/docs/research/javascript_engine/</guid>
       <description>JavaScript Engine#V8: Google Chrome, NodeJS SpiderMonkey: Firefox JavaScriptCore: Safari Reference#Nodejs: The V8 JavaScript Engine Mozilla: SpiderMonkey Apple: JavaScriptCore </description>
     </item>
+    <item>
+      <title>Social Media</title>
+      <link>https://dangpham112000.github.io/docs/research/social_media/</link>
+      <pubDate>Tue, 05 Dec 2023 01:47:46 +0700</pubDate>
+      <guid>https://dangpham112000.github.io/docs/research/social_media/</guid>
+      <description>Social Media: fakebut.site#Architecture#Frontend: VanilaJS, Vite, Bootstrap 5 Backend: ExpressJS, MongoDB Ops: Git Action, Docker Login#Front: Login/Register page Setup Vite Routing handling Back: API login/register Cookie base Token base SSO Chat#Websocket Post#Comment#Notification#Admin management#</description>
+    </item>
   </channel>
 </rss>
