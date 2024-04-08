@@ -6,7 +6,7 @@
     <description>Recent content in Introduction on The Engineer Blogs</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 12 Feb 2024 01:47:46 +0700</lastBuildDate>
+    <lastBuildDate>Mon, 08 Apr 2024 01:47:46 +0700</lastBuildDate>
     <atom:link href="https://dangpham112000.github.io/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>TCP - UDP</title>
@@ -112,7 +112,7 @@ Browser Architecture#When you start an application, a process is created. The 
       <guid>https://dangpham112000.github.io/docs/tips/git/</guid>
       <description>GIT TIPS#Terminology#HEAD: your current local working branch origin: the address to your remote git, represent for remote repo tracked file: the file git already had before, so when you edit it, git know this file is modified (M files)
 untracked, new file: the file recently add and git don’t know anything about it (U files)
-Commit#git add . git commit -m &amp;#34;commit message&amp;#34; These 2 commands can combie into 1</description>
+Commit#git add . git commit -m &amp;#34;commit message&amp;#34; These 2 commands above can combie into 1:</description>
     </item>
     <item>
       <title>Security</title>
@@ -127,6 +127,13 @@ Commit#git add . git commit -m &amp;#34;commit message&amp;#34; These 2 comman
       <pubDate>Wed, 15 Nov 2023 01:47:46 +0700</pubDate>
       <guid>https://dangpham112000.github.io/docs/tips/unit_test/</guid>
       <description>Unit Test#Reset all global variables for each unit test case#What environment the unit test cases are running on: Browser or Nodejs?#Because Nodejs does not have browser APIs Using Karma to run browser&amp;rsquo;s unit test Using JS-DOM but it&amp;rsquo;s missing a lot of browser APIs Work only when running alone#Scenario: A unit test case only pass when running alone but fail when running with other test casesCheck:</description>
+    </item>
+    <item>
+      <title>Docker</title>
+      <link>https://dangpham112000.github.io/docs/tips/docker/</link>
+      <pubDate>Mon, 08 Apr 2024 01:47:46 +0700</pubDate>
+      <guid>https://dangpham112000.github.io/docs/tips/docker/</guid>
+      <description>Docker#Terminology#Image: Like the execution file (.exe) and even more. It have all needed setup dependences that stored inside it and ready to run instructions Container: Like the process after you run the image, but this application at this time is considered as the whole virtual machine Dockerfile: You will write all the instructions here, guild the Docker engine what enviroment you want your app to run inside, what dependencies need to be installed, copy your source code into and last but not least is the command to run your app Listing containers#Listing all running containers: docker ps Listing both stopped and runnning containers: docker ps --all Build the image#docker build -t welcome-to-docker .</description>
     </item>
     <item>
       <title>Design HashMap</title>
@@ -166,7 +173,7 @@ A chess knight can move as indicated in the chess diagram below: We have a chess
       <link>https://dangpham112000.github.io/docs/research/social_media/</link>
       <pubDate>Tue, 05 Dec 2023 01:47:46 +0700</pubDate>
       <guid>https://dangpham112000.github.io/docs/research/social_media/</guid>
-      <description>Social Media: fakebut.site#Architecture#Frontend: VanilaJS, Vite, Bootstrap 5 Backend: ExpressJS, MongoDB Ops: Git Action, Docker Login#Front: Login/Register page Setup Vite Routing handling Back: API login/register Cookie base Token base SSO Chat#Websocket Post#Comment#Notification#Admin management#</description>
+      <description>Social Media: fakebut.site#Architecture#Frontend: Vite-ReactJS, Argon (Consider replace with TaiwinCSS) Backend: ExpressJS, Golang, MongoDB Ops: Git Action, Docker, EC2 Login#Front: Login/Register page Setup Vite Routing handling Back: API login/register Cookie base Consider the possibility? Because the strickly of cookie when work with cross-origin (front-end origin vs backend origin) Solution: using the nginx to become the gateway to serve backend api and frontend site Token base SSO Chat#Websocket Post#Comment#Notification#Admin management#</description>
     </item>
   </channel>
 </rss>

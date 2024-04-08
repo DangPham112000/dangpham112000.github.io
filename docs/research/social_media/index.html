@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Social Media: fakebut.site#Architecture#Frontend: VanilaJS, Vite, Bootstrap 5 Backend: ExpressJS, MongoDB Ops: Git Action, Docker Login#Front: Login/Register page Setup Vite Routing handling Back: API login/register Cookie base Token base SSO Chat#Websocket Post#Comment#Notification#Admin management#">
+<meta name="description" content="Social Media: fakebut.site#Architecture#Frontend: Vite-ReactJS, Argon (Consider replace with TaiwinCSS) Backend: ExpressJS, Golang, MongoDB Ops: Git Action, Docker, EC2 Login#Front: Login/Register page Setup Vite Routing handling Back: API login/register Cookie base Consider the possibility? Because the strickly of cookie when work with cross-origin (front-end origin vs backend origin) Solution: using the nginx to become the gateway to serve backend api and frontend site Token base SSO Chat#Websocket Post#Comment#Notification#Admin management#">
 <meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff">
 <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#343a40">
 <meta name="color-scheme" content="light dark"><meta property="og:title" content="Social Media" />
-<meta property="og:description" content="Social Media: fakebut.site#Architecture#Frontend: VanilaJS, Vite, Bootstrap 5 Backend: ExpressJS, MongoDB Ops: Git Action, Docker Login#Front: Login/Register page Setup Vite Routing handling Back: API login/register Cookie base Token base SSO Chat#Websocket Post#Comment#Notification#Admin management#" />
+<meta property="og:description" content="Social Media: fakebut.site#Architecture#Frontend: Vite-ReactJS, Argon (Consider replace with TaiwinCSS) Backend: ExpressJS, Golang, MongoDB Ops: Git Action, Docker, EC2 Login#Front: Login/Register page Setup Vite Routing handling Back: API login/register Cookie base Consider the possibility? Because the strickly of cookie when work with cross-origin (front-end origin vs backend origin) Solution: using the nginx to become the gateway to serve backend api and frontend site Token base SSO Chat#Websocket Post#Comment#Notification#Admin management#" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://dangpham112000.github.io/docs/research/social_media/" /><meta property="article:section" content="docs" />
 <meta property="article:published_time" content="2023-12-05T01:47:46+07:00" />
@@ -18,7 +18,7 @@
 <link rel="icon" href="/favicon.png" >
 <link rel="stylesheet" href="/book.min.d2e03d9c7a4cea10fdd096eb48db6766340b9b3b186fa0321e2ad69205bdc3ad.css" integrity="sha256-0uA9nHpM6hD90JbrSNtnZjQLmzsYb6AyHirWkgW9w60=" crossorigin="anonymous">
   <script defer src="/flexsearch.min.js"></script>
-  <script defer src="/en.search.min.7146b6e4637db85f7594633c0ff594eecd07401aac4a533456d8f427928b108f.js" integrity="sha256-cUa25GN9uF91lGM8D/WU7s0HQBqsSlM0Vtj0J5KLEI8=" crossorigin="anonymous"></script>
+  <script defer src="/en.search.min.67564bea9d73576087b0bb2868d99ee1877304d5ae4249ce13dc1522b97ca3cf.js" integrity="sha256-Z1ZL6p1zV2CHsLsoaNme4YdzBNWuQknOE9wVIrl8o88=" crossorigin="anonymous"></script>
 <!--
 Made with Book Theme
 https://github.com/alex-shpak/hugo-book
@@ -346,6 +346,19 @@ https://github.com/alex-shpak/hugo-book
         </li>
       
     
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/tips/docker/" class="">Docker</a>
+  
+
+        </li>
+      
+    
   </ul>
 
         </li>
@@ -478,9 +491,9 @@ https://github.com/alex-shpak/hugo-book
   <a class="anchor" href="#architecture">#</a>
 </h2>
 <ul>
-<li>Frontend: VanilaJS, Vite, Bootstrap 5</li>
-<li>Backend: ExpressJS, MongoDB</li>
-<li>Ops: Git Action, Docker</li>
+<li>Frontend: Vite-ReactJS, Argon (Consider replace with TaiwinCSS)</li>
+<li>Backend: ExpressJS, Golang, MongoDB</li>
+<li>Ops: Git Action, Docker, EC2</li>
 </ul>
 <h3 id="login">
   Login
@@ -494,7 +507,13 @@ https://github.com/alex-shpak/hugo-book
 </ul>
 </li>
 <li>Back: API login/register</li>
-<li>Cookie base</li>
+<li>Cookie base
+<ul>
+<li>Consider the possibility?</li>
+<li>Because the strickly of cookie when work with cross-origin (front-end origin vs backend origin)</li>
+<li>Solution: using the nginx to become the gateway to serve backend api and frontend site</li>
+</ul>
+</li>
 <li>Token base</li>
 <li>SSO</li>
 </ul>

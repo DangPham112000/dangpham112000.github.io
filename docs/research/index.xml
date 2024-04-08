@@ -68,7 +68,7 @@ name is declared and initialized equal &amp;quot;JS&amp;quot; execLater is decla
       <link>https://dangpham112000.github.io/docs/research/social_media/</link>
       <pubDate>Tue, 05 Dec 2023 01:47:46 +0700</pubDate>
       <guid>https://dangpham112000.github.io/docs/research/social_media/</guid>
-      <description>Social Media: fakebut.site#Architecture#Frontend: VanilaJS, Vite, Bootstrap 5 Backend: ExpressJS, MongoDB Ops: Git Action, Docker Login#Front: Login/Register page Setup Vite Routing handling Back: API login/register Cookie base Token base SSO Chat#Websocket Post#Comment#Notification#Admin management#</description>
+      <description>Social Media: fakebut.site#Architecture#Frontend: Vite-ReactJS, Argon (Consider replace with TaiwinCSS) Backend: ExpressJS, Golang, MongoDB Ops: Git Action, Docker, EC2 Login#Front: Login/Register page Setup Vite Routing handling Back: API login/register Cookie base Consider the possibility? Because the strickly of cookie when work with cross-origin (front-end origin vs backend origin) Solution: using the nginx to become the gateway to serve backend api and frontend site Token base SSO Chat#Websocket Post#Comment#Notification#Admin management#</description>
     </item>
   </channel>
 </rss>
