@@ -133,7 +133,8 @@ Commit#git add . git commit -m &amp;#34;commit message&amp;#34; These 2 comman
       <link>https://dangpham112000.github.io/docs/tips/docker/</link>
       <pubDate>Mon, 08 Apr 2024 01:47:46 +0700</pubDate>
       <guid>https://dangpham112000.github.io/docs/tips/docker/</guid>
-      <description>Docker#Terminology#Image: Like the execution file (.exe) and even more. It have all needed setup dependences that stored inside it and ready to run instructions Container: Like the process after you run the image, but this application at this time is considered as the whole virtual machine Dockerfile: You will write all the instructions here, guild the Docker engine what enviroment you want your app to run inside, what dependencies need to be installed, copy your source code into and last but not least is the command to run your app Listing containers#Listing all running containers: docker ps Listing both stopped and runnning containers: docker ps --all Build the image#docker build -t welcome-to-docker .</description>
+      <description>Docker#Terminology#Image: Like the execution file (.exe) and even more. It have all needed setup dependences that stored inside it and ready to run instructions Container: Like the process after you run the image, but this application at this time is considered as the whole virtual machine Create#Create a docker image
+Dockerfile#You will write all the instructions here, guild the Docker engine what enviroment you want your app to run inside, what needed dependencies to be installed, copy your source code into and last but not least is the command to run your app:</description>
     </item>
     <item>
       <title>Design HashMap</title>
