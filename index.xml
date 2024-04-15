@@ -6,10 +6,10 @@
     <description>Recent content in Introduction on The Engineer Blogs</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 08 Apr 2024 01:47:46 +0700</lastBuildDate>
+    <lastBuildDate>Mon, 15 Apr 2024 01:47:46 +0700</lastBuildDate>
     <atom:link href="https://dangpham112000.github.io/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>TCP - UDP</title>
+      <title>TCP - UDP - Draft</title>
       <link>https://dangpham112000.github.io/docs/research/be_protocol/tcp_udp/</link>
       <pubDate>Wed, 15 Nov 2023 01:47:46 +0700</pubDate>
       <guid>https://dangpham112000.github.io/docs/research/be_protocol/tcp_udp/</guid>
@@ -17,16 +17,14 @@
 Overview#Message Based Layer 4 protocol Ability to address processes in a host using ports Simple protocol to send and receive messages Prior communication not required (double edge sword) Stateless no knowledge is stored on the host 8 byte header Datagram Demo#// server.js import dgram from &amp;#34;dgram&amp;#34;; const socket = dgram.createSocket(&amp;#34;udp4&amp;#34;); socket.bind(5500, &amp;#34;127.0.0.1&amp;#34;); socket.on(&amp;#34;message&amp;#34;, (msg, info) =&amp;gt; { console.</description>
     </item>
     <item>
-      <title>TLS - SSL</title>
+      <title>TLS - SSL - Draft</title>
       <link>https://dangpham112000.github.io/docs/research/be_protocol/tls_ssl/</link>
       <pubDate>Wed, 15 Nov 2023 01:47:46 +0700</pubDate>
       <guid>https://dangpham112000.github.io/docs/research/be_protocol/tls_ssl/</guid>
-      <description>TLS - SSL#Transport Layer Security - Secure Sockets Layer
-Overview#SSL stands for Secure Sockets Layer, and it refers to a protocol for encrypting, securing, and authenticating communications that take place on the Internet. Although SSL was replaced by an updated protocol called TLS (Transport Layer Security) some time ago, &amp;ldquo;SSL&amp;rdquo; is still a commonly used term for this technology
-TLS 1.2#Diffie Hellman#TLS 1.</description>
+      <description>TLS - SSL#Overview#A protocol for encrypting, securing, and authenticating communications that take place on the Internet SSL was replaced by an updated protocol called TLS some time ago, SSL is still a commonly used term for this technology TLS 1.2#TLS 1.3#Diffie Hellman#TLS 1.3#Reference#Cloudflare: How does SSL work? Gigamon: What Is TLS 1.2, and Why Should You (Still) Care?</description>
     </item>
     <item>
-      <title>HTTP</title>
+      <title>HTTP - Draft</title>
       <link>https://dangpham112000.github.io/docs/research/be_protocol/http/</link>
       <pubDate>Wed, 15 Nov 2023 01:47:46 +0700</pubDate>
       <guid>https://dangpham112000.github.io/docs/research/be_protocol/http/</guid>
@@ -34,14 +32,14 @@ TLS 1.2#Diffie Hellman#TLS 1.</description>
 Reference#Upwork: What is the HTTP/2 Protocol? Overview and Examples (Aug 23, 2021) </description>
     </item>
     <item>
-      <title>HTTPS</title>
+      <title>HTTPS - Draft</title>
       <link>https://dangpham112000.github.io/docs/research/be_protocol/https/</link>
       <pubDate>Wed, 15 Nov 2023 01:47:46 +0700</pubDate>
       <guid>https://dangpham112000.github.io/docs/research/be_protocol/https/</guid>
       <description>HTTPS#Over TCP With TLS 1.2#Over TCP With TLS 1.3#Over QUIC (HTTP/3)#Over TCP With TLS 1.3 0RTT#Over QUIC 0RTT#</description>
     </item>
     <item>
-      <title>WebRTC</title>
+      <title>WebRTC - Draft</title>
       <link>https://dangpham112000.github.io/docs/research/be_protocol/webrtc/</link>
       <pubDate>Wed, 15 Nov 2023 01:47:46 +0700</pubDate>
       <guid>https://dangpham112000.github.io/docs/research/be_protocol/webrtc/</guid>
@@ -49,7 +47,7 @@ Reference#Upwork: What is the HTTP/2 Protocol? Overview and Examples (Aug 23, 
 Overview#A protocol that connects peer to peer Find a peer to peer path to exchange video and audio in an efficient and low latency manner Standardized API Enables rich communications browsers, mobile, IOT devices </description>
     </item>
     <item>
-      <title>Websocket</title>
+      <title>Websocket - Draft</title>
       <link>https://dangpham112000.github.io/docs/research/be_protocol/websocket/</link>
       <pubDate>Wed, 15 Nov 2023 01:47:46 +0700</pubDate>
       <guid>https://dangpham112000.github.io/docs/research/be_protocol/websocket/</guid>
@@ -57,7 +55,7 @@ Overview#A protocol that connects peer to peer Find a peer to peer path to exc
 Example code:#// server.js const http = require(&amp;#34;http&amp;#34;); const WebSocketServer = require(&amp;#34;websocket&amp;#34;).server; let connections = []; //create a raw http server (this will help us create the TCP which will then pass to the websocket to do the job) const httpserver = http.createServer(); //pass the httpserver object to the WebSocketServer library to do all the job, this class will override the req/res const websocket = new WebSocketServer({ httpServer: httpserver }); //listen on the TCP socket httpserver.</description>
     </item>
     <item>
-      <title>gRPC</title>
+      <title>gRPC - Draft</title>
       <link>https://dangpham112000.github.io/docs/research/be_protocol/grpc/</link>
       <pubDate>Wed, 15 Nov 2023 01:47:46 +0700</pubDate>
       <guid>https://dangpham112000.github.io/docs/research/be_protocol/grpc/</guid>
@@ -65,7 +63,7 @@ Example code:#// server.js const http = require(&amp;#34;http&amp;#34;); const
 Overview#Client Library: One library for popular languages Protocol: HTTP/2 (hidden implementation) Message Format: Protocol buffers as format </description>
     </item>
     <item>
-      <title>Communication</title>
+      <title>Communication - Draft</title>
       <link>https://dangpham112000.github.io/docs/research/be_protocol/communication/</link>
       <pubDate>Wed, 15 Nov 2023 01:47:46 +0700</pubDate>
       <guid>https://dangpham112000.github.io/docs/research/be_protocol/communication/</guid>
@@ -99,7 +97,7 @@ Browser Architecture#When you start an application, a process is created. The 
       <description>AWS Overview#Slide#Types of Cloud Computing#EC2 - Elastic Compute Cloud#EC2 = Infrastructure as a Service (IaaS) On-Demand Instances – short workload, predictable pricing, pay by second Has the highest cost Recommended for short-term and un-interrupted workloads, where you can&amp;rsquo;t predict how the application will behave Reserved (1 &amp;amp; 3 years) Reserved Instances – long workloads Recommended for steady-state usage applications (think database) Convertible Reserved Instances – long workloads with flexible instances Savings Plans (1 &amp;amp; 3 years) – commitment to an amount of usage, long workload Spot Instances – short workloads, cheap, can lose instances (less reliable) The MOST cost-efficient Dedicated Hosts – book an entire physical server, control instance placement The most expensive option Dedicated Instances – no other customers will share your hardware No control over instance placement Capacity Reservations – reserve capacity in a specific AZ for any duration AMI - Amazon Machine Image#AMI are a customization of an EC2 instance AMI are built for a specific region (and can be copied across regions) You can launch EC2 instances from: A Public AMI: AWS provided Your own AMI: you make and maintain them yourself An AWS Marketplace AMI: an AMI someone else made (and potentially sells) EC2 Image Builder#Used to automate the creation of Virtual Machines or container images</description>
     </item>
     <item>
-      <title>Encryption</title>
+      <title>Encryption - Draft</title>
       <link>https://dangpham112000.github.io/docs/research/encryption/</link>
       <pubDate>Wed, 15 Nov 2023 01:47:46 +0700</pubDate>
       <guid>https://dangpham112000.github.io/docs/research/encryption/</guid>
@@ -115,7 +113,7 @@ untracked, new file: the file recently add and git don’t know anything about i
 Commit#git add . git commit -m &amp;#34;commit message&amp;#34; These 2 commands above can combie into 1:</description>
     </item>
     <item>
-      <title>Security</title>
+      <title>Security - Draft</title>
       <link>https://dangpham112000.github.io/docs/research/security/</link>
       <pubDate>Wed, 15 Nov 2023 01:47:46 +0700</pubDate>
       <guid>https://dangpham112000.github.io/docs/research/security/</guid>
@@ -137,16 +135,7 @@ Commit#git add . git commit -m &amp;#34;commit message&amp;#34; These 2 comman
 Dockerfile#You will write all the instructions here, guild the Docker engine what enviroment you want your app to run inside, what needed dependencies to be installed, copy your source code into and last but not least is the command to run your app:</description>
     </item>
     <item>
-      <title>Design HashMap</title>
-      <link>https://dangpham112000.github.io/docs/problems/design_hashmap/</link>
-      <pubDate>Mon, 12 Feb 2024 01:47:46 +0700</pubDate>
-      <guid>https://dangpham112000.github.io/docs/problems/design_hashmap/</guid>
-      <description>Design HashMap#Overview#Its other names: hash table, map, unordered map, dictionary
-A hash table is a data structure that you can use to store data in key-value format with direct access to its items in constant time
-The most valuable aspect of a hash table over other abstract data structures is its speed to perform insertion, deletion, and search operations. Hash tables can do them all in constant time</description>
-    </item>
-    <item>
-      <title>Event loop</title>
+      <title>Event loop - Draft</title>
       <link>https://dangpham112000.github.io/docs/research/event_loop/</link>
       <pubDate>Tue, 05 Dec 2023 01:47:46 +0700</pubDate>
       <guid>https://dangpham112000.github.io/docs/research/event_loop/</guid>
@@ -155,7 +144,7 @@ var name = &amp;#34;JS&amp;#34;; function execLater() { setTimeout(printName, 0)
 name is declared and initialized equal &amp;quot;JS&amp;quot; execLater is declared and initialized printName is declared and initialized Phase 2: the code execution phase</description>
     </item>
     <item>
-      <title>JavaScript Engine</title>
+      <title>JavaScript Engine - Draft</title>
       <link>https://dangpham112000.github.io/docs/research/javascript_engine/</link>
       <pubDate>Tue, 05 Dec 2023 01:47:46 +0700</pubDate>
       <guid>https://dangpham112000.github.io/docs/research/javascript_engine/</guid>
@@ -170,7 +159,16 @@ name is declared and initialized equal &amp;quot;JS&amp;quot; execLater is decla
 A chess knight can move as indicated in the chess diagram below: We have a chess knight and a phone pad as shown below, the knight can only stand on a numeric cell (i.</description>
     </item>
     <item>
-      <title>Social Media</title>
+      <title>Design HashMap - Draft</title>
+      <link>https://dangpham112000.github.io/docs/problems/design_hashmap/</link>
+      <pubDate>Mon, 12 Feb 2024 01:47:46 +0700</pubDate>
+      <guid>https://dangpham112000.github.io/docs/problems/design_hashmap/</guid>
+      <description>Design HashMap#Overview#Its other names: hash table, map, unordered map, dictionary
+A hash table is a data structure that you can use to store data in key-value format with direct access to its items in constant time
+The most valuable aspect of a hash table over other abstract data structures is its speed to perform insertion, deletion, and search operations. Hash tables can do them all in constant time</description>
+    </item>
+    <item>
+      <title>Social Media - Draft</title>
       <link>https://dangpham112000.github.io/docs/research/social_media/</link>
       <pubDate>Tue, 05 Dec 2023 01:47:46 +0700</pubDate>
       <guid>https://dangpham112000.github.io/docs/research/social_media/</guid>

@@ -9,21 +9,21 @@
     <lastBuildDate>Mon, 12 Feb 2024 01:47:46 +0700</lastBuildDate>
     <atom:link href="https://dangpham112000.github.io/docs/problems/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Design HashMap</title>
-      <link>https://dangpham112000.github.io/docs/problems/design_hashmap/</link>
-      <pubDate>Mon, 12 Feb 2024 01:47:46 +0700</pubDate>
-      <guid>https://dangpham112000.github.io/docs/problems/design_hashmap/</guid>
-      <description>Design HashMap#Overview#Its other names: hash table, map, unordered map, dictionary
-A hash table is a data structure that you can use to store data in key-value format with direct access to its items in constant time
-The most valuable aspect of a hash table over other abstract data structures is its speed to perform insertion, deletion, and search operations. Hash tables can do them all in constant time</description>
-    </item>
-    <item>
       <title>Knight Dialer</title>
       <link>https://dangpham112000.github.io/docs/problems/knight_dialer/</link>
       <pubDate>Wed, 15 Nov 2023 01:47:46 +0700</pubDate>
       <guid>https://dangpham112000.github.io/docs/problems/knight_dialer/</guid>
       <description>Knight dialer#Description#The chess knight has a unique movement, it may move two squares vertically and one square horizontally, or two squares horizontally and one square vertically (with both forming the shape of an L). The possible movements of chess knight are shown in this diagaram:
 A chess knight can move as indicated in the chess diagram below: We have a chess knight and a phone pad as shown below, the knight can only stand on a numeric cell (i.</description>
+    </item>
+    <item>
+      <title>Design HashMap - Draft</title>
+      <link>https://dangpham112000.github.io/docs/problems/design_hashmap/</link>
+      <pubDate>Mon, 12 Feb 2024 01:47:46 +0700</pubDate>
+      <guid>https://dangpham112000.github.io/docs/problems/design_hashmap/</guid>
+      <description>Design HashMap#Overview#Its other names: hash table, map, unordered map, dictionary
+A hash table is a data structure that you can use to store data in key-value format with direct access to its items in constant time
+The most valuable aspect of a hash table over other abstract data structures is its speed to perform insertion, deletion, and search operations. Hash tables can do them all in constant time</description>
     </item>
   </channel>
 </rss>

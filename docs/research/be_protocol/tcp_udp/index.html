@@ -7,7 +7,7 @@
 Overview#Message Based Layer 4 protocol Ability to address processes in a host using ports Simple protocol to send and receive messages Prior communication not required (double edge sword) Stateless no knowledge is stored on the host 8 byte header Datagram Demo#// server.js import dgram from &#34;dgram&#34;; const socket = dgram.createSocket(&#34;udp4&#34;); socket.bind(5500, &#34;127.0.0.1&#34;); socket.on(&#34;message&#34;, (msg, info) =&gt; { console.">
 <meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff">
 <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#343a40">
-<meta name="color-scheme" content="light dark"><meta property="og:title" content="TCP - UDP" />
+<meta name="color-scheme" content="light dark"><meta property="og:title" content="TCP - UDP - Draft" />
 <meta property="og:description" content="TCP - UDP#UDP#User Datagram Protocol
 Overview#Message Based Layer 4 protocol Ability to address processes in a host using ports Simple protocol to send and receive messages Prior communication not required (double edge sword) Stateless no knowledge is stored on the host 8 byte header Datagram Demo#// server.js import dgram from &#34;dgram&#34;; const socket = dgram.createSocket(&#34;udp4&#34;); socket.bind(5500, &#34;127.0.0.1&#34;); socket.on(&#34;message&#34;, (msg, info) =&gt; { console." />
 <meta property="og:type" content="article" />
@@ -15,12 +15,12 @@ Overview#Message Based Layer 4 protocol Ability to address processes in a host
 <meta property="article:published_time" content="2023-11-15T01:47:46+07:00" />
 <meta property="article:modified_time" content="2023-11-15T01:47:46+07:00" />
 
-<title>TCP - UDP | The Engineer Blogs</title>
+<title>TCP - UDP - Draft | The Engineer Blogs</title>
 <link rel="manifest" href="/manifest.json">
 <link rel="icon" href="/favicon.png" >
 <link rel="stylesheet" href="/book.min.d2e03d9c7a4cea10fdd096eb48db6766340b9b3b186fa0321e2ad69205bdc3ad.css" integrity="sha256-0uA9nHpM6hD90JbrSNtnZjQLmzsYb6AyHirWkgW9w60=" crossorigin="anonymous">
   <script defer src="/flexsearch.min.js"></script>
-  <script defer src="/en.search.min.111127fcfe9a7814a79e442adeb3809611f0fad83252b02f022005069cec2c3a.js" integrity="sha256-EREn/P6aeBSnnkQq3rOAlhHw&#43;tgyUrAvAiAFBpzsLDo=" crossorigin="anonymous"></script>
+  <script defer src="/en.search.min.221e4c7f0902ca7f2d0f2655d1b91fbc3d1a573d5d70ba9c0585c8b7b731df09.js" integrity="sha256-Ih5MfwkCyn8tDyZV0bkfvD0aVz1dcLqcBYXIt7cx3wk=" crossorigin="anonymous"></script>
 <!--
 Made with Book Theme
 https://github.com/alex-shpak/hugo-book
@@ -98,6 +98,128 @@ https://github.com/alex-shpak/hugo-book
   
 
   
+    <a href="/docs/research/be_protocol/" class="">Backend Protocol</a>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/research/be_protocol/tcp_udp/" class="active">TCP - UDP - Draft</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/research/be_protocol/tls_ssl/" class="">TLS - SSL - Draft</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/research/be_protocol/http/" class="">HTTP - Draft</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/research/be_protocol/https/" class="">HTTPS - Draft</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/research/be_protocol/webrtc/" class="">WebRTC - Draft</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/research/be_protocol/websocket/" class="">Websocket - Draft</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/research/be_protocol/grpc/" class="">gRPC - Draft</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/research/be_protocol/communication/" class="">Communication - Draft</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
     <a href="/docs/research/chrome_architecture/" class="">Chrome Architecture</a>
   
 
@@ -124,20 +246,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="/docs/research/be_protocol/" class="">Backend Protocol</a>
-  
-
-          
-  <ul>
-    
-      
-        <li>
-          
-  
-  
-
-  
-    <a href="/docs/research/be_protocol/tcp_udp/" class="active">TCP - UDP</a>
+    <a href="/docs/research/encryption/" class="">Encryption - Draft</a>
   
 
         </li>
@@ -150,7 +259,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="/docs/research/be_protocol/tls_ssl/" class="">TLS - SSL</a>
+    <a href="/docs/research/security/" class="">Security - Draft</a>
   
 
         </li>
@@ -163,7 +272,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="/docs/research/be_protocol/http/" class="">HTTP</a>
+    <a href="/docs/research/event_loop/" class="">Event loop - Draft</a>
   
 
         </li>
@@ -176,7 +285,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="/docs/research/be_protocol/https/" class="">HTTPS</a>
+    <a href="/docs/research/javascript_engine/" class="">JavaScript Engine - Draft</a>
   
 
         </li>
@@ -189,116 +298,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="/docs/research/be_protocol/webrtc/" class="">WebRTC</a>
-  
-
-        </li>
-      
-    
-      
-        <li>
-          
-  
-  
-
-  
-    <a href="/docs/research/be_protocol/websocket/" class="">Websocket</a>
-  
-
-        </li>
-      
-    
-      
-        <li>
-          
-  
-  
-
-  
-    <a href="/docs/research/be_protocol/grpc/" class="">gRPC</a>
-  
-
-        </li>
-      
-    
-      
-        <li>
-          
-  
-  
-
-  
-    <a href="/docs/research/be_protocol/communication/" class="">Communication</a>
-  
-
-        </li>
-      
-    
-  </ul>
-
-        </li>
-      
-    
-      
-        <li>
-          
-  
-  
-
-  
-    <a href="/docs/research/encryption/" class="">Encryption</a>
-  
-
-        </li>
-      
-    
-      
-        <li>
-          
-  
-  
-
-  
-    <a href="/docs/research/security/" class="">Security</a>
-  
-
-        </li>
-      
-    
-      
-        <li>
-          
-  
-  
-
-  
-    <a href="/docs/research/event_loop/" class="">Event loop</a>
-  
-
-        </li>
-      
-    
-      
-        <li>
-          
-  
-  
-
-  
-    <a href="/docs/research/javascript_engine/" class="">JavaScript Engine</a>
-  
-
-        </li>
-      
-    
-      
-        <li>
-          
-  
-  
-
-  
-    <a href="/docs/research/social_media/" class="">Social Media</a>
+    <a href="/docs/research/social_media/" class="">Social Media - Draft</a>
   
 
         </li>
@@ -386,7 +386,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="/docs/problems/design_hashmap/" class="">Design HashMap</a>
+    <a href="/docs/problems/knight_dialer/" class="">Knight Dialer</a>
   
 
         </li>
@@ -399,7 +399,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="/docs/problems/knight_dialer/" class="">Knight Dialer</a>
+    <a href="/docs/problems/design_hashmap/" class="">Design HashMap - Draft</a>
   
 
         </li>
@@ -446,7 +446,7 @@ https://github.com/alex-shpak/hugo-book
     <img src="/svg/menu.svg" class="book-icon" alt="Menu" />
   </label>
 
-  <strong>TCP - UDP</strong>
+  <strong>TCP - UDP - Draft</strong>
 
   <label for="toc-control">
     
@@ -475,6 +475,7 @@ https://github.com/alex-shpak/hugo-book
         <li><a href="#demo-1">Demo</a></li>
       </ul>
     </li>
+    <li><a href="#reference">Reference</a></li>
   </ul>
 </nav>
 
@@ -500,6 +501,7 @@ https://github.com/alex-shpak/hugo-book
   Overview
   <a class="anchor" href="#overview">#</a>
 </h3>
+<p><img src="/research/be_protocol/tcp_udp/udp.png" alt="udp" /></p>
 <ul>
 <li>Message Based Layer 4 protocol</li>
 <li>Ability to address processes in a host using ports</li>
@@ -538,6 +540,7 @@ https://github.com/alex-shpak/hugo-book
   Overview
   <a class="anchor" href="#overview-1">#</a>
 </h3>
+<p><img src="/research/be_protocol/tcp_udp/tcp_handshake.png" alt="tcp_handshake" /></p>
 <ul>
 <li>Stream based Layer 4 protocol</li>
 <li>Ability to address processes in a host using ports</li>
@@ -573,7 +576,15 @@ https://github.com/alex-shpak/hugo-book
 </span></span></code></pre></div><p>Client recieve message when successful establish the connection: (TBU)</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span><span style="color:#75715e"># client terminal</span>
 </span></span><span style="display:flex;"><span>This is data to send to the server!
-</span></span></code></pre></div></article>
+</span></span></code></pre></div><h2 id="reference">
+  Reference
+  <a class="anchor" href="#reference">#</a>
+</h2>
+<ul>
+<li>Geeksforgeeks: <a href="https://www.geeksforgeeks.org/differences-between-tcp-and-udp/">Differences between TCP and UDP</a> (06 May, 2023)</li>
+<li>Udemy: <a href="https://www.udemy.com/course/fundamentals-of-backend-communications-and-protocols">Fundamentals of Backend Engineering</a> (Feb, 2024)</li>
+</ul>
+</article>
  
       
 
@@ -627,6 +638,7 @@ https://github.com/alex-shpak/hugo-book
         <li><a href="#demo-1">Demo</a></li>
       </ul>
     </li>
+    <li><a href="#reference">Reference</a></li>
   </ul>
 </nav>
 
