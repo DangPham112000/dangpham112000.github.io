@@ -90,20 +90,6 @@ Process vs Thread#Process#The process requires some essential resources such
 Browser Architecture#When you start an application, a process is created. The program might create thread(s) to help it do work, but that&amp;rsquo;s optional. The Operating System gives the process a &amp;ldquo;slab&amp;rdquo; of memory to work with and all application state is kept in that private memory space.</description>
     </item>
     <item>
-      <title>AWS Overview</title>
-      <link>https://dangpham112000.github.io/docs/research/aws_overview/</link>
-      <pubDate>Wed, 15 Nov 2023 01:47:46 +0700</pubDate>
-      <guid>https://dangpham112000.github.io/docs/research/aws_overview/</guid>
-      <description>AWS Overview#Slide#Types of Cloud Computing#EC2 - Elastic Compute Cloud#EC2 = Infrastructure as a Service (IaaS) On-Demand Instances – short workload, predictable pricing, pay by second Has the highest cost Recommended for short-term and un-interrupted workloads, where you can&amp;rsquo;t predict how the application will behave Reserved (1 &amp;amp; 3 years) Reserved Instances – long workloads Recommended for steady-state usage applications (think database) Convertible Reserved Instances – long workloads with flexible instances Savings Plans (1 &amp;amp; 3 years) – commitment to an amount of usage, long workload Spot Instances – short workloads, cheap, can lose instances (less reliable) The MOST cost-efficient Dedicated Hosts – book an entire physical server, control instance placement The most expensive option Dedicated Instances – no other customers will share your hardware No control over instance placement Capacity Reservations – reserve capacity in a specific AZ for any duration AMI - Amazon Machine Image#AMI are a customization of an EC2 instance AMI are built for a specific region (and can be copied across regions) You can launch EC2 instances from: A Public AMI: AWS provided Your own AMI: you make and maintain them yourself An AWS Marketplace AMI: an AMI someone else made (and potentially sells) EC2 Image Builder#Used to automate the creation of Virtual Machines or container images</description>
-    </item>
-    <item>
-      <title>Encryption - Draft</title>
-      <link>https://dangpham112000.github.io/docs/research/encryption/</link>
-      <pubDate>Wed, 15 Nov 2023 01:47:46 +0700</pubDate>
-      <guid>https://dangpham112000.github.io/docs/research/encryption/</guid>
-      <description>Encryption#</description>
-    </item>
-    <item>
       <title>Git</title>
       <link>https://dangpham112000.github.io/docs/tips/git/</link>
       <pubDate>Wed, 15 Nov 2023 01:47:46 +0700</pubDate>
@@ -111,13 +97,6 @@ Browser Architecture#When you start an application, a process is created. The 
       <description>GIT TIPS#Terminology#HEAD: your current local working branch origin: the address to your remote git, represent for remote repo tracked file: the file git already had before, so when you edit it, git know this file is modified (M files)
 untracked, new file: the file recently add and git don’t know anything about it (U files)
 Commit#git add . git commit -m &amp;#34;commit message&amp;#34; These 2 commands above can combie into 1:</description>
-    </item>
-    <item>
-      <title>Security - Draft</title>
-      <link>https://dangpham112000.github.io/docs/research/security/</link>
-      <pubDate>Wed, 15 Nov 2023 01:47:46 +0700</pubDate>
-      <guid>https://dangpham112000.github.io/docs/research/security/</guid>
-      <description>Security#DDOS#Backdoor attack#SQL injection#Cross-site scripting (XSS) attack#Cross-site request forgery (CSRF) attack#Cross-domain access attack#Syn flood attack#Relay attack#Man in the middle attack#request modify#response modify#</description>
     </item>
     <item>
       <title>Unit Test</title>
@@ -133,6 +112,13 @@ Commit#git add . git commit -m &amp;#34;commit message&amp;#34; These 2 comman
       <guid>https://dangpham112000.github.io/docs/tips/docker/</guid>
       <description>Docker#Terminology#Image: Like the execution file (.exe) and even more. It have all needed setup dependences that stored inside it and ready to run instructions Container: Like the process after you run the image, but this application at this time is considered as the whole virtual machine Create#Create a docker image
 Dockerfile#You will write all the instructions here, guild the Docker engine what enviroment you want your app to run inside, what needed dependencies to be installed, copy your source code into and last but not least is the command to run your app:</description>
+    </item>
+    <item>
+      <title>AWS Overview</title>
+      <link>https://dangpham112000.github.io/docs/research/aws_overview/</link>
+      <pubDate>Wed, 15 Nov 2023 01:47:46 +0700</pubDate>
+      <guid>https://dangpham112000.github.io/docs/research/aws_overview/</guid>
+      <description>AWS Overview#Slide#Types of Cloud Computing#EC2 - Elastic Compute Cloud#EC2 = Infrastructure as a Service (IaaS) On-Demand Instances – short workload, predictable pricing, pay by second Has the highest cost Recommended for short-term and un-interrupted workloads, where you can&amp;rsquo;t predict how the application will behave Reserved (1 &amp;amp; 3 years) Reserved Instances – long workloads Recommended for steady-state usage applications (think database) Convertible Reserved Instances – long workloads with flexible instances Savings Plans (1 &amp;amp; 3 years) – commitment to an amount of usage, long workload Spot Instances – short workloads, cheap, can lose instances (less reliable) The MOST cost-efficient Dedicated Hosts – book an entire physical server, control instance placement The most expensive option Dedicated Instances – no other customers will share your hardware No control over instance placement Capacity Reservations – reserve capacity in a specific AZ for any duration AMI - Amazon Machine Image#AMI are a customization of an EC2 instance AMI are built for a specific region (and can be copied across regions) You can launch EC2 instances from: A Public AMI: AWS provided Your own AMI: you make and maintain them yourself An AWS Marketplace AMI: an AMI someone else made (and potentially sells) EC2 Image Builder#Used to automate the creation of Virtual Machines or container images</description>
     </item>
     <item>
       <title>Event loop - Draft</title>
@@ -168,11 +154,25 @@ A hash table is a data structure that you can use to store data in key-value for
 The most valuable aspect of a hash table over other abstract data structures is its speed to perform insertion, deletion, and search operations. Hash tables can do them all in constant time</description>
     </item>
     <item>
+      <title>Security - Draft</title>
+      <link>https://dangpham112000.github.io/docs/research/security/</link>
+      <pubDate>Wed, 15 Nov 2023 01:47:46 +0700</pubDate>
+      <guid>https://dangpham112000.github.io/docs/research/security/</guid>
+      <description>Security#DDOS#Backdoor attack#SQL injection#Cross-site scripting (XSS) attack#Cross-site request forgery (CSRF) attack#Cross-domain access attack#Syn flood attack#Relay attack#Man in the middle attack#request modify#response modify#</description>
+    </item>
+    <item>
       <title>Social Media - Draft</title>
       <link>https://dangpham112000.github.io/docs/research/social_media/</link>
       <pubDate>Tue, 05 Dec 2023 01:47:46 +0700</pubDate>
       <guid>https://dangpham112000.github.io/docs/research/social_media/</guid>
       <description>Social Media: fakebut.site#Architecture#Frontend: Vite-ReactJS, Argon (Consider replace with TaiwinCSS) Backend: ExpressJS, Golang, MongoDB Ops: Git Action, Docker, EC2 Login#Front: Login/Register page Setup Vite Routing handling Back: API login/register Cookie base Consider the possibility? Because the strickly of cookie when work with cross-origin (front-end origin vs backend origin) Solution: using the nginx to become the gateway to serve backend api and frontend site Token base SSO Chat#Websocket Post#Comment#Notification#Admin management#</description>
+    </item>
+    <item>
+      <title>Encryption - Draft</title>
+      <link>https://dangpham112000.github.io/docs/research/encryption/</link>
+      <pubDate>Wed, 15 Nov 2023 01:47:46 +0700</pubDate>
+      <guid>https://dangpham112000.github.io/docs/research/encryption/</guid>
+      <description>Encryption#</description>
     </item>
   </channel>
 </rss>
