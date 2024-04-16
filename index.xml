@@ -28,8 +28,10 @@ Overview#Message Based Layer 4 protocol Ability to address processes in a host
       <link>https://dangpham112000.github.io/docs/research/be_protocol/http/</link>
       <pubDate>Wed, 15 Nov 2023 01:47:46 +0700</pubDate>
       <guid>https://dangpham112000.github.io/docs/research/be_protocol/http/</guid>
-      <description>HTTP#HTTP 1.0#HTTP/1.1#HTTP/2#HTTP/3#HTTP over QUIC
-Reference#Upwork: What is the HTTP/2 Protocol? Overview and Examples (Aug 23, 2021) </description>
+      <description>HTTP#HTTP 1.0#Every request to the same server requires a separate TCP connection
+HTTP 1.1#Was published in 1997
+A TCP connection can be left open for reuse (persistent connection)
+HTTP pipelining#HTTP pipelining is a feature of HTTP/1.1, which allows multiple HTTP requests to be sent over a single TCP connection without waiting for the corresponding responses. HTTP/1.1 requires servers to respond to pipelined requests correctly</description>
     </item>
     <item>
       <title>HTTPS - Draft</title>

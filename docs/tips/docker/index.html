@@ -20,7 +20,7 @@ Dockerfile#You will write all the instructions here, guild the Docker engine w
 <link rel="icon" href="/favicon.png" >
 <link rel="stylesheet" href="/book.min.d2e03d9c7a4cea10fdd096eb48db6766340b9b3b186fa0321e2ad69205bdc3ad.css" integrity="sha256-0uA9nHpM6hD90JbrSNtnZjQLmzsYb6AyHirWkgW9w60=" crossorigin="anonymous">
   <script defer src="/flexsearch.min.js"></script>
-  <script defer src="/en.search.min.240314128bdb6162528f6e05429342f1ca29ce1d5ff415ce34d66f0c565bd9f5.js" integrity="sha256-JAMUEovbYWJSj24FQpNC8copzh1f9BXONNZvDFZb2fU=" crossorigin="anonymous"></script>
+  <script defer src="/en.search.min.1f576324657f8bc8c750a3f97d5ff48ba8d29c05c2ebe300e73d7d008985d111.js" integrity="sha256-H1djJGV/i8jHUKP5fV/0i6jSnAXC6&#43;MA5z19AImF0RE=" crossorigin="anonymous"></script>
 <!--
 Made with Book Theme
 https://github.com/alex-shpak/hugo-book
@@ -485,7 +485,12 @@ https://github.com/alex-shpak/hugo-book
         <li><a href="#terminal-access">Terminal access</a></li>
       </ul>
     </li>
-    <li><a href="#listing">Listing</a></li>
+    <li><a href="#listing">Listing</a>
+      <ul>
+        <li><a href="#container">Container</a></li>
+        <li><a href="#image">Image</a></li>
+      </ul>
+    </li>
     <li><a href="#caching">Caching</a></li>
     <li><a href="#volumes">Volumes</a>
       <ul>
@@ -673,6 +678,10 @@ https://github.com/alex-shpak/hugo-book
   Listing
   <a class="anchor" href="#listing">#</a>
 </h2>
+<h3 id="container">
+  Container
+  <a class="anchor" href="#container">#</a>
+</h3>
 <ul>
 <li>Listing all running containers:</li>
 </ul>
@@ -681,6 +690,11 @@ https://github.com/alex-shpak/hugo-book
 <li>Listing both stopped and runnning containers:</li>
 </ul>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>docker ps --all
+</span></span></code></pre></div><h3 id="image">
+  Image
+  <a class="anchor" href="#image">#</a>
+</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>docker image ls
 </span></span></code></pre></div><h2 id="caching">
   Caching
   <a class="anchor" href="#caching">#</a>
@@ -820,7 +834,12 @@ https://github.com/alex-shpak/hugo-book
         <li><a href="#terminal-access">Terminal access</a></li>
       </ul>
     </li>
-    <li><a href="#listing">Listing</a></li>
+    <li><a href="#listing">Listing</a>
+      <ul>
+        <li><a href="#container">Container</a></li>
+        <li><a href="#image">Image</a></li>
+      </ul>
+    </li>
     <li><a href="#caching">Caching</a></li>
     <li><a href="#volumes">Volumes</a>
       <ul>
