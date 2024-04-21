@@ -1,0 +1,850 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Scale#Monolith architecture#The server in itself is capable and responsible for all the tasks that have to be performed and can perform every step needed to perform a function Tasks: Authorization, Presentation, Database, Business Server side rendering (SSR)#Splitting server#Database splitting#Assume your app have a stable traffic Your data is not maintain steady, it always grows up. So database is the first thing we need to splitting out from our server and be standalone For later you will need to upgrade your DB (whatever scale out or scale up) Client splitting &amp;&amp; Client side rendering (CSR)#Example Flow:">
+<meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff">
+<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#343a40">
+<meta name="color-scheme" content="light dark"><meta property="og:title" content="Scale - draft" />
+<meta property="og:description" content="Scale#Monolith architecture#The server in itself is capable and responsible for all the tasks that have to be performed and can perform every step needed to perform a function Tasks: Authorization, Presentation, Database, Business Server side rendering (SSR)#Splitting server#Database splitting#Assume your app have a stable traffic Your data is not maintain steady, it always grows up. So database is the first thing we need to splitting out from our server and be standalone For later you will need to upgrade your DB (whatever scale out or scale up) Client splitting &amp;&amp; Client side rendering (CSR)#Example Flow:" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://dangpham112000.github.io/docs/research/scale/" /><meta property="article:section" content="docs" />
+<meta property="article:published_time" content="2024-04-18T01:47:46+07:00" />
+<meta property="article:modified_time" content="2024-04-18T01:47:46+07:00" />
+
+<title>Scale - draft | The Engineer Blogs</title>
+<link rel="manifest" href="/manifest.json">
+<link rel="icon" href="/favicon.png" >
+<link rel="stylesheet" href="/book.min.d2e03d9c7a4cea10fdd096eb48db6766340b9b3b186fa0321e2ad69205bdc3ad.css" integrity="sha256-0uA9nHpM6hD90JbrSNtnZjQLmzsYb6AyHirWkgW9w60=" crossorigin="anonymous">
+  <script defer src="/flexsearch.min.js"></script>
+  <script defer src="/en.search.min.4db3739f583a3bd21c6098090088141b7800f923f44dd7182cff578da4a3a6e8.js" integrity="sha256-TbNzn1g6O9IcYJgJAIgUG3gA&#43;SP0TdcYLP9XjaSjpug=" crossorigin="anonymous"></script>
+<!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+  
+</head>
+<body dir="ltr">
+  <input type="checkbox" class="hidden toggle" id="menu-control" />
+  <input type="checkbox" class="hidden toggle" id="toc-control" />
+  <main class="container flex">
+    <aside class="book-menu">
+      <div class="book-menu-content">
+        
+  <nav>
+<h2 class="book-brand">
+  <a class="flex align-center" href="/"><span>The Engineer Blogs</span>
+  </a>
+</h2>
+
+
+<div class="book-search">
+  <input type="text" id="book-search-input" placeholder="Search" aria-label="Search" maxlength="64" data-hotkeys="s/" />
+  <div class="book-search-spinner hidden"></div>
+  <ul id="book-search-results"></ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <ul>
+    
+      
+        <li class="book-section-flat" >
+          
+  
+  
+
+  
+    <span>RESEARCH</span>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/research/process_vs_thread/" class="">Process vs Thread</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/research/chrome_architecture/" class="">Chrome Architecture</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/research/aws_overview/" class="">AWS Overview</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/research/be_protocol/" class="">Backend Protocol</a>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/research/be_protocol/tcp_udp/" class="">TCP - UDP - Draft</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/research/be_protocol/http/" class="">HTTP - Draft</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/research/be_protocol/tls_ssl/" class="">TLS - SSL - Draft</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/research/be_protocol/https/" class="">HTTPS - Draft</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/research/be_protocol/webrtc/" class="">WebRTC - Draft</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/research/be_protocol/websocket/" class="">Websocket - Draft</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/research/be_protocol/grpc/" class="">gRPC - Draft</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/research/be_protocol/communication/" class="">Communication - Draft</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/research/event_loop/" class="">Event loop - Draft</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/research/javascript_engine/" class="">JavaScript Engine - Draft</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/research/security/" class="">Security - Draft</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/research/cors/" class="">CORS - draft</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/research/scale/" class="active">Scale - draft</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/research/social_media/" class="">Social Media - Draft</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/research/encryption/" class="">Encryption - Draft</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li class="book-section-flat" >
+          
+  
+  
+
+  
+    <span>TIPS</span>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/tips/git/" class="">Git</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/tips/unit_test/" class="">Unit Test</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/tips/docker/" class="">Docker</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li class="book-section-flat" >
+          
+  
+  
+
+  
+    <span>PROBLEMS</span>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/problems/knight_dialer/" class="">Knight Dialer</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/problems/design_hashmap/" class="">Design HashMap - Draft</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</nav>
+
+
+
+
+  <script>(function(){var e=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(){localStorage.setItem("menu.scrollTop",e.scrollTop)}),e.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
+
+
+ 
+      </div>
+    </aside>
+
+    <div class="book-page">
+      <header class="book-header">
+        
+  <div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="/svg/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <strong>Scale - draft</strong>
+
+  <label for="toc-control">
+    
+    <img src="/svg/toc.svg" class="book-icon" alt="Table of Contents" />
+    
+  </label>
+</div>
+
+
+  
+  <aside class="hidden clearfix">
+    
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#monolith-architecture">Monolith architecture</a>
+      <ul>
+        <li><a href="#server-side-rendering-ssr">Server side rendering (SSR)</a></li>
+      </ul>
+    </li>
+    <li><a href="#splitting-server">Splitting server</a>
+      <ul>
+        <li><a href="#database-splitting">Database splitting</a></li>
+        <li><a href="#client-splitting--client-side-rendering-csr">Client splitting &amp;&amp; Client side rendering (CSR)</a></li>
+        <li><a href="#mobile">Mobile</a></li>
+      </ul>
+    </li>
+    <li><a href="#scale-1">Scale</a>
+      <ul>
+        <li><a href="#vertical">Vertical</a></li>
+        <li><a href="#horizontal">Horizontal</a></li>
+      </ul>
+    </li>
+    <li><a href="#load-balancer">Load balancer</a>
+      <ul>
+        <li><a href="#algorithms">Algorithms</a></li>
+      </ul>
+    </li>
+    <li><a href="#database-scaling">Database Scaling</a>
+      <ul>
+        <li><a href="#replication">Replication</a></li>
+        <li><a href="#sharding">Sharding</a></li>
+        <li><a href="#combination">Combination</a></li>
+      </ul>
+    </li>
+    <li><a href="#caching">Caching</a></li>
+    <li><a href="#cdn">CDN</a></li>
+    <li><a href="#data-center">Data center</a></li>
+    <li><a href="#message-queue">Message queue</a></li>
+    <li><a href="#reference">Reference</a></li>
+  </ul>
+</nav>
+
+
+
+  </aside>
+  
+ 
+      </header>
+
+      
+      
+  <article class="markdown"><h1 id="scale">
+  Scale
+  <a class="anchor" href="#scale">#</a>
+</h1>
+<h2 id="monolith-architecture">
+  Monolith architecture
+  <a class="anchor" href="#monolith-architecture">#</a>
+</h2>
+<ul>
+<li>The server in itself is capable and responsible for all the tasks that have to be performed and can perform every step needed to perform a function</li>
+<li>Tasks: Authorization, Presentation, Database, Business</li>
+</ul>
+<h3 id="server-side-rendering-ssr">
+  Server side rendering (SSR)
+  <a class="anchor" href="#server-side-rendering-ssr">#</a>
+</h3>
+<p><img src="/research/scale/SSR.png" alt="SSR" /></p>
+<h2 id="splitting-server">
+  Splitting server
+  <a class="anchor" href="#splitting-server">#</a>
+</h2>
+<h3 id="database-splitting">
+  Database splitting
+  <a class="anchor" href="#database-splitting">#</a>
+</h3>
+<p><img src="/research/scale/database_splitting.png" alt="database_splitting" /></p>
+<ul>
+<li>Assume your app have a stable traffic</li>
+<li>Your data is not maintain steady, it always grows up. So database is the first thing we need to splitting out from our server and be standalone</li>
+<li>For later you will need to upgrade your DB (whatever scale out or scale up)</li>
+</ul>
+<h3 id="client-splitting--client-side-rendering-csr">
+  Client splitting &amp;&amp; Client side rendering (CSR)
+  <a class="anchor" href="#client-splitting--client-side-rendering-csr">#</a>
+</h3>
+<p><img src="/research/scale/CSR.png" alt="CSR" /></p>
+<p>Example Flow:</p>
+<ol>
+<li>The user enters <code>https://gg.com</code> in the browser bar</li>
+<li>The user&rsquo;s browser send an request to google</li>
+<li>GG&rsquo;s gateway receive this request first:
+<ol>
+<li>Parse the request -&gt; <code>{ method: GET, url: gg.com }</code> -&gt; This request is belong to frontend</li>
+<li>Ask and receive index.html, css, js from gg&rsquo;s frontend server</li>
+<li>Response back these things to user</li>
+</ol>
+</li>
+<li>The user&rsquo;s browser receive materials and then render gg website</li>
+<li>The user enters <code>The biggest butterfly</code> in the gg search</li>
+<li>Gg website ask browser to send a request to gg<br>
+<code>{ method: POST, url: gg.com/api, body: The biggest butterfly }</code></li>
+<li>After receive this request, gateway routes it to the backend server due to path <code>/api</code></li>
+<li>Backend server progress the request, get some data from database and response back</li>
+<li>The gg website using JS to rerender the interface corresponding with the response</li>
+</ol>
+<h3 id="mobile">
+  Mobile
+  <a class="anchor" href="#mobile">#</a>
+</h3>
+<p><img src="/research/scale/mobile.png" alt="mobile" /></p>
+<p>In mobile architecture</p>
+<ul>
+<li>Application is already installed in the device, they not need an frontend server to serve interface anymore</li>
+<li>Only need backend server if it need to process some business, CRUD data, &hellip;</li>
+</ul>
+<h2 id="scale-1">
+  Scale
+  <a class="anchor" href="#scale-1">#</a>
+</h2>
+<h3 id="vertical">
+  Vertical
+  <a class="anchor" href="#vertical">#</a>
+</h3>
+<p><img src="/research/scale/vertical_scaling.png" alt="vertical_scaling" /></p>
+<ul>
+<li>Also called “scale up”</li>
+<li>Vertical scaling is based on the idea of adding more power(CPU, RAM) to existing systems, basically adding more resources</li>
+<li>Pros:
+<ul>
+<li>Simplicity: less complicated maintenance, less need for software changes, less complex process communication</li>
+<li>Cost-effective: upgrading a pre-existing server costs less than purchasing a new one</li>
+</ul>
+</li>
+<li>Cons:
+<ul>
+<li>Higher possibility for downtime</li>
+<li>Single point of failure</li>
+<li>Upgrade limitations</li>
+</ul>
+</li>
+</ul>
+<h3 id="horizontal">
+  Horizontal
+  <a class="anchor" href="#horizontal">#</a>
+</h3>
+<p><img src="/research/scale/horizontal_scaling.png" alt="horizontal_scaling" /></p>
+<ul>
+<li>Also called “scale out”</li>
+<li>Horizontal scaling is based on the idea of adding more machines to our pool of resources.</li>
+<li>Pros:
+<ul>
+<li>Fewer periods of downtime</li>
+<li>Increased resilience and fault tolerance</li>
+</ul>
+</li>
+<li>Cons:
+<ul>
+<li>Increased complexity of maintenance and operation</li>
+<li>Increased Initial costs</li>
+</ul>
+</li>
+</ul>
+<h2 id="load-balancer">
+  Load balancer
+  <a class="anchor" href="#load-balancer">#</a>
+</h2>
+<ul>
+<li>A load balancer is a device that sits between the user and the server group and acts as an invisible facilitator, ensuring that all resource servers are used equally</li>
+</ul>
+<p><img src="/research/scale/load_balancer.png" alt="load_balancer" /></p>
+<ul>
+<li>Run application server maintenance or upgrades without application downtime</li>
+<li>Prevents traffic bottlenecks at any one server</li>
+<li>Route traffic through a group of network firewalls for additional security</li>
+</ul>
+<h3 id="algorithms">
+  Algorithms
+  <a class="anchor" href="#algorithms">#</a>
+</h3>
+<ul>
+<li><strong>Round-robin</strong>: Route traffic to the servers turn by turn or in a round-robin fashion</li>
+<li><strong>Weighted round-robin</strong>: Servers with higher weights will receive more incoming application traffic</li>
+<li><strong>Least connection</strong>: Which servers have the fewest active connections and sends traffic to those servers</li>
+<li><strong>Resource-based</strong>: Check the server resources, such as its computing capacity and memory. Then, the load balancer checks the agent for sufficient free resources before distributing traffic to that server</li>
+<li>&hellip;</li>
+</ul>
+<h2 id="database-scaling">
+  Database Scaling
+  <a class="anchor" href="#database-scaling">#</a>
+</h2>
+<h3 id="replication">
+  Replication
+  <a class="anchor" href="#replication">#</a>
+</h3>
+<ul>
+<li>All the slaves are connected with the master</li>
+<li>If the master DB goes down an eligible slave will hold the new master</li>
+</ul>
+<p><img src="/research/scale/replication.png" alt="replication" /></p>
+<ul>
+<li>High Availability of data disasters recovery</li>
+<li>No downtime for maintenance (like backups index rebuilds and compaction)</li>
+</ul>
+<h3 id="sharding">
+  Sharding
+  <a class="anchor" href="#sharding">#</a>
+</h3>
+<ul>
+<li>Sharding is a method for distributing large dataset and allocating it across multiple servers</li>
+</ul>
+<p><img src="/research/scale/sharding.png" alt="sharding" /></p>
+<h4 id="how-it-work">
+  How it work?
+  <a class="anchor" href="#how-it-work">#</a>
+</h4>
+<ul>
+<li>Consistent Hashing</li>
+</ul>
+<h4 id="simple-example">
+  Simple example
+  <a class="anchor" href="#simple-example">#</a>
+</h4>
+<ul>
+<li>We have 3 databases (shards) store products, named from 0 to 2</li>
+<li>We using product id to determind which shard will be used</li>
+<li>Each product come to our servers:
+<ul>
+<li>id will mod with 3</li>
+<li>If equal 0, shard 0 will be used to read or write this data</li>
+<li>Similar to others</li>
+</ul>
+</li>
+</ul>
+<p><img src="/research/scale/sharding_eg.png" alt="sharding_eg" /></p>
+<h3 id="combination">
+  Combination
+  <a class="anchor" href="#combination">#</a>
+</h3>
+<p><img src="/research/scale/combination.png" alt="combination" /></p>
+<h2 id="caching">
+  Caching
+  <a class="anchor" href="#caching">#</a>
+</h2>
+<h2 id="cdn">
+  CDN
+  <a class="anchor" href="#cdn">#</a>
+</h2>
+<h2 id="data-center">
+  Data center
+  <a class="anchor" href="#data-center">#</a>
+</h2>
+<h2 id="message-queue">
+  Message queue
+  <a class="anchor" href="#message-queue">#</a>
+</h2>
+<h2 id="reference">
+  Reference
+  <a class="anchor" href="#reference">#</a>
+</h2>
+<ul>
+<li>Geeksforgeeks: <a href="https://www.geeksforgeeks.org/what-is-a-monolith-server/">What is a monolith server ?</a> (19 Nov, 2021)</li>
+<li>Cloudzero: <a href="https://www.cloudzero.com/blog/horizontal-vs-vertical-scaling/">Horizontal Vs. Vertical Scaling: How Do They Compare?</a> (May 05, 2023)</li>
+<li>Amazon: <a href="https://aws.amazon.com/what-is/load-balancing">What is Load Balancing?</a></li>
+</ul>
+</article>
+ 
+      
+
+      <footer class="book-footer">
+        
+  <div class="flex flex-wrap justify-between">
+
+
+
+
+
+</div>
+
+
+
+  <script>(function(){function e(e){const t=window.getSelection(),n=document.createRange();n.selectNodeContents(e),t.removeAllRanges(),t.addRange(n)}document.querySelectorAll("pre code").forEach(t=>{t.addEventListener("click",function(){if(window.getSelection().toString())return;e(t.parentElement),navigator.clipboard&&navigator.clipboard.writeText(t.parentElement.textContent)})})})()</script>
+
+
+ 
+        
+      </footer>
+
+      
+  
+  <div class="book-comments">
+
+</div>
+  
+ 
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
+    </div>
+
+    
+    <aside class="book-toc">
+      <div class="book-toc-content">
+        
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#monolith-architecture">Monolith architecture</a>
+      <ul>
+        <li><a href="#server-side-rendering-ssr">Server side rendering (SSR)</a></li>
+      </ul>
+    </li>
+    <li><a href="#splitting-server">Splitting server</a>
+      <ul>
+        <li><a href="#database-splitting">Database splitting</a></li>
+        <li><a href="#client-splitting--client-side-rendering-csr">Client splitting &amp;&amp; Client side rendering (CSR)</a></li>
+        <li><a href="#mobile">Mobile</a></li>
+      </ul>
+    </li>
+    <li><a href="#scale-1">Scale</a>
+      <ul>
+        <li><a href="#vertical">Vertical</a></li>
+        <li><a href="#horizontal">Horizontal</a></li>
+      </ul>
+    </li>
+    <li><a href="#load-balancer">Load balancer</a>
+      <ul>
+        <li><a href="#algorithms">Algorithms</a></li>
+      </ul>
+    </li>
+    <li><a href="#database-scaling">Database Scaling</a>
+      <ul>
+        <li><a href="#replication">Replication</a></li>
+        <li><a href="#sharding">Sharding</a></li>
+        <li><a href="#combination">Combination</a></li>
+      </ul>
+    </li>
+    <li><a href="#caching">Caching</a></li>
+    <li><a href="#cdn">CDN</a></li>
+    <li><a href="#data-center">Data center</a></li>
+    <li><a href="#message-queue">Message queue</a></li>
+    <li><a href="#reference">Reference</a></li>
+  </ul>
+</nav>
+
+
+ 
+      </div>
+    </aside>
+    
+  </main>
+
+  
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

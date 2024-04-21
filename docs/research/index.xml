@@ -6,7 +6,7 @@
     <description>Recent content in RESEARCH on The Engineer Blogs</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 15 Apr 2024 01:47:46 +0700</lastBuildDate>
+    <lastBuildDate>Thu, 18 Apr 2024 01:47:46 +0700</lastBuildDate>
     <atom:link href="https://dangpham112000.github.io/docs/research/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Process vs Thread</title>
@@ -54,7 +54,24 @@ name is declared and initialized equal &amp;quot;JS&amp;quot; execLater is decla
       <link>https://dangpham112000.github.io/docs/research/security/</link>
       <pubDate>Wed, 15 Nov 2023 01:47:46 +0700</pubDate>
       <guid>https://dangpham112000.github.io/docs/research/security/</guid>
-      <description>Security#DDOS#Backdoor attack#SQL injection#Cross-site scripting (XSS) attack#Cross-site request forgery (CSRF) attack#Cross-domain access attack#Syn flood attack#Relay attack#Man in the middle attack#request modify#response modify#</description>
+      <description>Security#DOS#Rate limit DDOS
+Backdoor attack#SQL injection#Cross-site scripting (XSS) attack#Cross-site request forgery (CSRF) attack#IDOR attack#Authorize route
+Cross-domain access attack#Syn flood attack#Relay attack#Man in the middle attack#request modify#response modify#</description>
+    </item>
+    <item>
+      <title>CORS - draft</title>
+      <link>https://dangpham112000.github.io/docs/research/cors/</link>
+      <pubDate>Thu, 18 Apr 2024 01:47:46 +0700</pubDate>
+      <guid>https://dangpham112000.github.io/docs/research/cors/</guid>
+      <description>CORS#Overview#Origin defintion Why it was born?#Steel Cookie#CSRF#Bypass#Middle server
+How prevent it?#Authorization</description>
+    </item>
+    <item>
+      <title>Scale - draft</title>
+      <link>https://dangpham112000.github.io/docs/research/scale/</link>
+      <pubDate>Thu, 18 Apr 2024 01:47:46 +0700</pubDate>
+      <guid>https://dangpham112000.github.io/docs/research/scale/</guid>
+      <description>Scale#Monolith architecture#The server in itself is capable and responsible for all the tasks that have to be performed and can perform every step needed to perform a function Tasks: Authorization, Presentation, Database, Business Server side rendering (SSR)#Splitting server#Database splitting#Assume your app have a stable traffic Your data is not maintain steady, it always grows up. So database is the first thing we need to splitting out from our server and be standalone For later you will need to upgrade your DB (whatever scale out or scale up) Client splitting &amp;amp;&amp;amp; Client side rendering (CSR)#Example Flow:</description>
     </item>
     <item>
       <title>Social Media - Draft</title>
