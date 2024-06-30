@@ -4,177 +4,170 @@
     <title>Introduction on The Engineer Blogs</title>
     <link>https://dangpham112000.github.io/</link>
     <description>Recent content in Introduction on The Engineer Blogs</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 15 Apr 2024 01:47:46 +0700</lastBuildDate>
+    <lastBuildDate>Sat, 15 Jun 2024 01:47:46 +0700</lastBuildDate>
     <atom:link href="https://dangpham112000.github.io/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>TCP - UDP - Draft</title>
       <link>https://dangpham112000.github.io/docs/research/be_protocol/tcp_udp/</link>
       <pubDate>Wed, 15 Nov 2023 01:47:46 +0700</pubDate>
       <guid>https://dangpham112000.github.io/docs/research/be_protocol/tcp_udp/</guid>
-      <description>TCP - UDP#UDP#User Datagram Protocol
-Overview#Message Based Layer 4 protocol Ability to address processes in a host using ports Simple protocol to send and receive messages Prior communication not required (double edge sword) Stateless no knowledge is stored on the host 8 byte header Datagram Demo#// server.js import dgram from &amp;#34;dgram&amp;#34;; const socket = dgram.createSocket(&amp;#34;udp4&amp;#34;); socket.bind(5500, &amp;#34;127.0.0.1&amp;#34;); socket.on(&amp;#34;message&amp;#34;, (msg, info) =&amp;gt; { console.</description>
-    </item>
-    <item>
-      <title>TLS - SSL - Draft</title>
-      <link>https://dangpham112000.github.io/docs/research/be_protocol/tls_ssl/</link>
-      <pubDate>Wed, 15 Nov 2023 01:47:46 +0700</pubDate>
-      <guid>https://dangpham112000.github.io/docs/research/be_protocol/tls_ssl/</guid>
-      <description>TLS - SSL#Overview#A protocol for encrypting, securing, and authenticating communications that take place on the Internet SSL was replaced by an updated protocol called TLS some time ago, SSL is still a commonly used term for this technology TLS 1.2#TLS 1.3#Diffie Hellman#TLS 1.3#Reference#Cloudflare: How does SSL work? Gigamon: What Is TLS 1.2, and Why Should You (Still) Care?</description>
+      <description>TCP - UDP # UDP # User Datagram Protocol&#xA;Overview # Message Based Layer 4 protocol Ability to address processes in a host using ports Simple protocol to send and receive messages Prior communication not required (double edge sword) Stateless no knowledge is stored on the host 8 byte header Datagram Demo # // server.js import dgram from &amp;#34;dgram&amp;#34;; const socket = dgram.createSocket(&amp;#34;udp4&amp;#34;); socket.bind(5500, &amp;#34;127.0.0.1&amp;#34;); socket.on(&amp;#34;message&amp;#34;, (msg, info) =&amp;gt; { console.</description>
     </item>
     <item>
       <title>HTTP - Draft</title>
       <link>https://dangpham112000.github.io/docs/research/be_protocol/http/</link>
       <pubDate>Wed, 15 Nov 2023 01:47:46 +0700</pubDate>
       <guid>https://dangpham112000.github.io/docs/research/be_protocol/http/</guid>
-      <description>HTTP#HTTP 1.0#Every request to the same server requires a separate TCP connection
-HTTP 1.1#Was published in 1997
-A TCP connection can be left open for reuse (persistent connection)
-HTTP pipelining#HTTP pipelining is a feature of HTTP/1.1, which allows multiple HTTP requests to be sent over a single TCP connection without waiting for the corresponding responses. HTTP/1.1 requires servers to respond to pipelined requests correctly</description>
+      <description>HTTP # HTTP 1.0 # Every request to the same server requires a separate TCP connection&#xA;HTTP 1.1 # Was published in 1997&#xA;A TCP connection can be left open for reuse (persistent connection)&#xA;HTTP pipelining # HTTP pipelining is a feature of HTTP/1.1, which allows multiple HTTP requests to be sent over a single TCP connection without waiting for the corresponding responses. HTTP/1.1 requires servers to respond to pipelined requests correctly</description>
+    </item>
+    <item>
+      <title>TLS - SSL - Draft</title>
+      <link>https://dangpham112000.github.io/docs/research/be_protocol/tls_ssl/</link>
+      <pubDate>Wed, 15 Nov 2023 01:47:46 +0700</pubDate>
+      <guid>https://dangpham112000.github.io/docs/research/be_protocol/tls_ssl/</guid>
+      <description>TLS - SSL # Overview # A protocol for encrypting, securing, and authenticating communications that take place on the Internet SSL was replaced by an updated protocol called TLS some time ago, SSL is still a commonly used term for this technology TLS 1.2 # TLS 1.3 # Diffie Hellman # TLS 1.3 # Reference # Cloudflare: How does SSL work? Gigamon: What Is TLS 1.2, and Why Should You (Still) Care?</description>
     </item>
     <item>
       <title>HTTPS - Draft</title>
       <link>https://dangpham112000.github.io/docs/research/be_protocol/https/</link>
       <pubDate>Wed, 15 Nov 2023 01:47:46 +0700</pubDate>
       <guid>https://dangpham112000.github.io/docs/research/be_protocol/https/</guid>
-      <description>HTTPS#Over TCP With TLS 1.2#Over TCP With TLS 1.3#Over QUIC (HTTP/3)#Over TCP With TLS 1.3 0RTT#Over QUIC 0RTT#</description>
+      <description> HTTPS # Over TCP With TLS 1.2 # Over TCP With TLS 1.3 # Over QUIC (HTTP/3) # Over TCP With TLS 1.3 0RTT # Over QUIC 0RTT # </description>
     </item>
     <item>
       <title>WebRTC - Draft</title>
       <link>https://dangpham112000.github.io/docs/research/be_protocol/webrtc/</link>
       <pubDate>Wed, 15 Nov 2023 01:47:46 +0700</pubDate>
       <guid>https://dangpham112000.github.io/docs/research/be_protocol/webrtc/</guid>
-      <description>WebRTC#Web Real-Time Communication
-Overview#A protocol that connects peer to peer Find a peer to peer path to exchange video and audio in an efficient and low latency manner Standardized API Enables rich communications browsers, mobile, IOT devices </description>
+      <description> WebRTC # Web Real-Time Communication&#xA;Overview # A protocol that connects peer to peer Find a peer to peer path to exchange video and audio in an efficient and low latency manner Standardized API Enables rich communications browsers, mobile, IOT devices </description>
     </item>
     <item>
       <title>Websocket - Draft</title>
       <link>https://dangpham112000.github.io/docs/research/be_protocol/websocket/</link>
       <pubDate>Wed, 15 Nov 2023 01:47:46 +0700</pubDate>
       <guid>https://dangpham112000.github.io/docs/research/be_protocol/websocket/</guid>
-      <description>Websocket#Bidirectional communications on the web
-Example code:#// server.js const http = require(&amp;#34;http&amp;#34;); const WebSocketServer = require(&amp;#34;websocket&amp;#34;).server; let connections = []; //create a raw http server (this will help us create the TCP which will then pass to the websocket to do the job) const httpserver = http.createServer(); //pass the httpserver object to the WebSocketServer library to do all the job, this class will override the req/res const websocket = new WebSocketServer({ httpServer: httpserver }); //listen on the TCP socket httpserver.</description>
+      <description>Websocket # Bidirectional communications on the web&#xA;Example code: # // server.js const http = require(&amp;#34;http&amp;#34;); const WebSocketServer = require(&amp;#34;websocket&amp;#34;).server; let connections = []; //create a raw http server (this will help us create the TCP which will then pass to the websocket to do the job) const httpserver = http.createServer(); //pass the httpserver object to the WebSocketServer library to do all the job, this class will override the req/res const websocket = new WebSocketServer({ httpServer: httpserver }); //listen on the TCP socket httpserver.</description>
     </item>
     <item>
       <title>gRPC - Draft</title>
       <link>https://dangpham112000.github.io/docs/research/be_protocol/grpc/</link>
       <pubDate>Wed, 15 Nov 2023 01:47:46 +0700</pubDate>
       <guid>https://dangpham112000.github.io/docs/research/be_protocol/grpc/</guid>
-      <description>gRPC#Taking HTTP/2 to the next level
-Overview#Client Library: One library for popular languages Protocol: HTTP/2 (hidden implementation) Message Format: Protocol buffers as format </description>
+      <description> gRPC # Taking HTTP/2 to the next level&#xA;Overview # Client Library: One library for popular languages Protocol: HTTP/2 (hidden implementation) Message Format: Protocol buffers as format </description>
     </item>
     <item>
       <title>Communication - Draft</title>
       <link>https://dangpham112000.github.io/docs/research/be_protocol/communication/</link>
       <pubDate>Wed, 15 Nov 2023 01:47:46 +0700</pubDate>
       <guid>https://dangpham112000.github.io/docs/research/be_protocol/communication/</guid>
-      <description>Communication#Request-Response#Overview#The Request-Response pattern is a fundamental communication pattern where a client sends a request to a server, and the server processes the request and sends back a response. It&amp;rsquo;s one of the most common patterns for communication in distributed systems, client-server architectures, and web applications.
-Push#Real time notification
-Overview#Used by RabbitMQ Implementation#Concept:#Client connects to a server Server sends data to the client Client doesn’t have to request anything Protocol must be bidirectional Example code:#Short Polling#Request is taking a while, I’ll check with you later</description>
+      <description>Communication # Request-Response # Overview # The Request-Response pattern is a fundamental communication pattern where a client sends a request to a server, and the server processes the request and sends back a response. It&amp;rsquo;s one of the most common patterns for communication in distributed systems, client-server architectures, and web applications.&#xA;Push # Real time notification&#xA;Overview # Used by RabbitMQ Implementation # Concept: # Client connects to a server Server sends data to the client Client doesn’t have to request anything Protocol must be bidirectional Example code: # Short Polling # Request is taking a while, I’ll check with you later</description>
     </item>
     <item>
       <title>Process vs Thread</title>
       <link>https://dangpham112000.github.io/docs/research/process_vs_thread/</link>
       <pubDate>Tue, 05 Dec 2023 01:47:46 +0700</pubDate>
       <guid>https://dangpham112000.github.io/docs/research/process_vs_thread/</guid>
-      <description>Process vs Thread#Program#A Program is an executable file containing a set of instructions and passively stored on disk
-Process#A Process means a program is in execution. When a program is loaded into the memory and becomes active, the program becomes a process or processes
-Thread#A Thread is the smallest unit of execution within a process
-Process vs Thread#Process#The process requires some essential resources such as registers, program counter, and stack</description>
+      <description>Process vs Thread # Program # A Program is an executable file containing a set of instructions and passively stored on disk&#xA;Process # A Process means a program is in execution. When a program is loaded into the memory and becomes active, the program becomes a process or processes&#xA;Thread # A Thread is the smallest unit of execution within a process&#xA;Process vs Thread # Process # The process requires some essential resources such as registers, program counter, and stack</description>
     </item>
     <item>
       <title>Chrome Architecture</title>
       <link>https://dangpham112000.github.io/docs/research/chrome_architecture/</link>
       <pubDate>Tue, 05 Dec 2023 01:47:46 +0700</pubDate>
       <guid>https://dangpham112000.github.io/docs/research/chrome_architecture/</guid>
-      <description>Chrome Architecture#Prerequisites#Read process vs thread first if you don&amp;rsquo;t have any process and thread concept in your mind
-Browser Architecture#When you start an application, a process is created. The program might create thread(s) to help it do work, but that&amp;rsquo;s optional. The Operating System gives the process a &amp;ldquo;slab&amp;rdquo; of memory to work with and all application state is kept in that private memory space.</description>
+      <description>Chrome Architecture # Prerequisites # Read process vs thread first if you don&amp;rsquo;t have any process and thread concept in your mind&#xA;Browser Architecture # When you start an application, a process is created. The program might create thread(s) to help it do work, but that&amp;rsquo;s optional. The Operating System gives the process a &amp;ldquo;slab&amp;rdquo; of memory to work with and all application state is kept in that private memory space.</description>
     </item>
     <item>
       <title>Git</title>
       <link>https://dangpham112000.github.io/docs/tips/git/</link>
       <pubDate>Wed, 15 Nov 2023 01:47:46 +0700</pubDate>
       <guid>https://dangpham112000.github.io/docs/tips/git/</guid>
-      <description>GIT TIPS#Terminology#HEAD: your current local working branch origin: the address to your remote git, represent for remote repo tracked file: the file git already had before, so when you edit it, git know this file is modified (M files)
-untracked, new file: the file recently add and git don’t know anything about it (U files)
-Commit#git add . git commit -m &amp;#34;commit message&amp;#34; These 2 commands above can combie into 1:</description>
+      <description>GIT TIPS # Terminology # HEAD: your current local working branch origin: the address to your remote git, represent for remote repo tracked file: the file git already had before, so when you edit it, git know this file is modified (M files)&#xA;untracked, new file: the file recently add and git don’t know anything about it (U files)&#xA;Commit # git add . git commit -m &amp;#34;commit message&amp;#34; These 2 commands above can combie into 1:</description>
     </item>
     <item>
       <title>Unit Test</title>
       <link>https://dangpham112000.github.io/docs/tips/unit_test/</link>
       <pubDate>Wed, 15 Nov 2023 01:47:46 +0700</pubDate>
       <guid>https://dangpham112000.github.io/docs/tips/unit_test/</guid>
-      <description>Unit Test#Reset all global variables for each unit test case#What environment the unit test cases are running on: Browser or Nodejs?#Because Nodejs does not have browser APIs Using Karma to run browser&amp;rsquo;s unit test Using JS-DOM but it&amp;rsquo;s missing a lot of browser APIs Work only when running alone#Scenario: A unit test case only pass when running alone but fail when running with other test casesCheck:</description>
+      <description>Unit Test # Reset all global variables for each unit test case # What environment the unit test cases are running on: Browser or Nodejs? # Because Nodejs does not have browser APIs Using Karma to run browser&amp;rsquo;s unit test Using JS-DOM but it&amp;rsquo;s missing a lot of browser APIs Work only when running alone # Scenario: A unit test case only pass when running alone but fail when running with other test cases Check:</description>
     </item>
     <item>
       <title>Docker</title>
       <link>https://dangpham112000.github.io/docs/tips/docker/</link>
       <pubDate>Mon, 08 Apr 2024 01:47:46 +0700</pubDate>
       <guid>https://dangpham112000.github.io/docs/tips/docker/</guid>
-      <description>Docker#Terminology#Image: Like the execution file (.exe) and even more. It have all needed setup dependences that stored inside it and ready to run instructions Container: Like the process after you run the image, but this application at this time is considered as the whole virtual machine Create#Create a docker image
-Dockerfile#You will write all the instructions here, guild the Docker engine what enviroment you want your app to run inside, what needed dependencies to be installed, copy your source code into and last but not least is the command to run your app:</description>
+      <description>Docker # Terminology # Image: Like the execution file (.exe) and even more. It have all needed setup dependences that stored inside it and ready to run instructions Container: Like the process after you run the image, but this application at this time is considered as the whole virtual machine Create # Create a docker image&#xA;Dockerfile # You will write all the instructions here, guild the Docker engine what enviroment you want your app to run inside, what needed dependencies to be installed, copy your source code into and last but not least is the command to run your app:</description>
     </item>
     <item>
       <title>AWS Overview</title>
       <link>https://dangpham112000.github.io/docs/research/aws_overview/</link>
       <pubDate>Wed, 15 Nov 2023 01:47:46 +0700</pubDate>
       <guid>https://dangpham112000.github.io/docs/research/aws_overview/</guid>
-      <description>AWS Overview#Slide#Types of Cloud Computing#EC2 - Elastic Compute Cloud#EC2 = Infrastructure as a Service (IaaS) On-Demand Instances – short workload, predictable pricing, pay by second Has the highest cost Recommended for short-term and un-interrupted workloads, where you can&amp;rsquo;t predict how the application will behave Reserved (1 &amp;amp; 3 years) Reserved Instances – long workloads Recommended for steady-state usage applications (think database) Convertible Reserved Instances – long workloads with flexible instances Savings Plans (1 &amp;amp; 3 years) – commitment to an amount of usage, long workload Spot Instances – short workloads, cheap, can lose instances (less reliable) The MOST cost-efficient Dedicated Hosts – book an entire physical server, control instance placement The most expensive option Dedicated Instances – no other customers will share your hardware No control over instance placement Capacity Reservations – reserve capacity in a specific AZ for any duration AMI - Amazon Machine Image#AMI are a customization of an EC2 instance AMI are built for a specific region (and can be copied across regions) You can launch EC2 instances from: A Public AMI: AWS provided Your own AMI: you make and maintain them yourself An AWS Marketplace AMI: an AMI someone else made (and potentially sells) EC2 Image Builder#Used to automate the creation of Virtual Machines or container images</description>
+      <description>AWS Overview # Slide # Types of Cloud Computing # EC2 - Elastic Compute Cloud # EC2 = Infrastructure as a Service (IaaS) On-Demand Instances – short workload, predictable pricing, pay by second Has the highest cost Recommended for short-term and un-interrupted workloads, where you can&amp;rsquo;t predict how the application will behave Reserved (1 &amp;amp; 3 years) Reserved Instances – long workloads Recommended for steady-state usage applications (think database) Convertible Reserved Instances – long workloads with flexible instances Savings Plans (1 &amp;amp; 3 years) – commitment to an amount of usage, long workload Spot Instances – short workloads, cheap, can lose instances (less reliable) The MOST cost-efficient Dedicated Hosts – book an entire physical server, control instance placement The most expensive option Dedicated Instances – no other customers will share your hardware No control over instance placement Capacity Reservations – reserve capacity in a specific AZ for any duration AMI - Amazon Machine Image # AMI are a customization of an EC2 instance AMI are built for a specific region (and can be copied across regions) You can launch EC2 instances from: A Public AMI: AWS provided Your own AMI: you make and maintain them yourself An AWS Marketplace AMI: an AMI someone else made (and potentially sells) EC2 Image Builder # Used to automate the creation of Virtual Machines or container images</description>
     </item>
     <item>
       <title>Event loop - Draft</title>
       <link>https://dangpham112000.github.io/docs/research/event_loop/</link>
       <pubDate>Tue, 05 Dec 2023 01:47:46 +0700</pubDate>
       <guid>https://dangpham112000.github.io/docs/research/event_loop/</guid>
-      <description>Event loop#Challenge#Can you guess the output of the below JS code
-var name = &amp;#34;JS&amp;#34;; function execLater() { setTimeout(printName, 0); Promise .resolve() .then(() =&amp;gt; { console.log(&amp;#34;Promise resolve&amp;#34;); }); console.log(name); var name = &amp;#34;TS&amp;#34;; } printName(name); function printName() { console.log(name); } execLater(); Phase 1: the memory creation phase
-name is declared and initialized equal &amp;quot;JS&amp;quot; execLater is declared and initialized printName is declared and initialized Phase 2: the code execution phase</description>
+      <description>Event loop # Challenge # Can you guess the output of the below JS code&#xA;var name = &amp;#34;JS&amp;#34;; function execLater() { setTimeout(printName, 0); Promise .resolve() .then(() =&amp;gt; { console.log(&amp;#34;Promise resolve&amp;#34;); }); console.log(name); var name = &amp;#34;TS&amp;#34;; } printName(name); function printName() { console.log(name); } execLater(); Phase 1: the memory creation phase&#xA;name is declared and initialized equal &amp;quot;JS&amp;quot; execLater is declared and initialized printName is declared and initialized Phase 2: the code execution phase</description>
     </item>
     <item>
       <title>JavaScript Engine - Draft</title>
       <link>https://dangpham112000.github.io/docs/research/javascript_engine/</link>
       <pubDate>Tue, 05 Dec 2023 01:47:46 +0700</pubDate>
       <guid>https://dangpham112000.github.io/docs/research/javascript_engine/</guid>
-      <description>JavaScript Engine#V8: Google Chrome, NodeJS SpiderMonkey: Firefox JavaScriptCore: Safari Reference#Nodejs: The V8 JavaScript Engine Mozilla: SpiderMonkey Apple: JavaScriptCore </description>
+      <description> JavaScript Engine # V8: Google Chrome, NodeJS SpiderMonkey: Firefox JavaScriptCore: Safari Reference # Nodejs: The V8 JavaScript Engine Mozilla: SpiderMonkey Apple: JavaScriptCore </description>
     </item>
     <item>
       <title>Knight Dialer</title>
       <link>https://dangpham112000.github.io/docs/problems/knight_dialer/</link>
       <pubDate>Wed, 15 Nov 2023 01:47:46 +0700</pubDate>
       <guid>https://dangpham112000.github.io/docs/problems/knight_dialer/</guid>
-      <description>Knight dialer#Description#The chess knight has a unique movement, it may move two squares vertically and one square horizontally, or two squares horizontally and one square vertically (with both forming the shape of an L). The possible movements of chess knight are shown in this diagaram:
-A chess knight can move as indicated in the chess diagram below: We have a chess knight and a phone pad as shown below, the knight can only stand on a numeric cell (i.</description>
+      <description>Knight dialer # Description # The chess knight has a unique movement, it may move two squares vertically and one square horizontally, or two squares horizontally and one square vertically (with both forming the shape of an L). The possible movements of chess knight are shown in this diagaram:&#xA;A chess knight can move as indicated in the chess diagram below: We have a chess knight and a phone pad as shown below, the knight can only stand on a numeric cell (i.</description>
+    </item>
+    <item>
+      <title>Security - Draft</title>
+      <link>https://dangpham112000.github.io/docs/research/security/</link>
+      <pubDate>Sat, 15 Jun 2024 01:47:46 +0700</pubDate>
+      <guid>https://dangpham112000.github.io/docs/research/security/</guid>
+      <description>Security # Brute Force Attack # Every password-based system and encryption key out there can be cracked using a brute force attack. There is only one problem with this attack: the time. Why does the hashing method matter when cracking passwords with a brute force attack? Bcrypt will take longer to crack than MD5 Use case # Cracking passwords (SSH logins) Cracking encryption keys (API keys) How it works # The hacker have to run through every possible combination of characters before achieving their goal These attacks are often carried out by scripts or bots that target specific systems or accounts Prevention # Longer password Delay response: A system that responds immediately is not always good.</description>
     </item>
     <item>
       <title>Design HashMap - Draft</title>
       <link>https://dangpham112000.github.io/docs/problems/design_hashmap/</link>
       <pubDate>Mon, 12 Feb 2024 01:47:46 +0700</pubDate>
       <guid>https://dangpham112000.github.io/docs/problems/design_hashmap/</guid>
-      <description>Design HashMap#Overview#Its other names: hash table, map, unordered map, dictionary
-A hash table is a data structure that you can use to store data in key-value format with direct access to its items in constant time
-The most valuable aspect of a hash table over other abstract data structures is its speed to perform insertion, deletion, and search operations. Hash tables can do them all in constant time</description>
+      <description>Design HashMap # Overview # Its other names: hash table, map, unordered map, dictionary&#xA;A hash table is a data structure that you can use to store data in key-value format with direct access to its items in constant time&#xA;The most valuable aspect of a hash table over other abstract data structures is its speed to perform insertion, deletion, and search operations. Hash tables can do them all in constant time</description>
     </item>
     <item>
-      <title>Security - Draft</title>
-      <link>https://dangpham112000.github.io/docs/research/security/</link>
-      <pubDate>Wed, 15 Nov 2023 01:47:46 +0700</pubDate>
-      <guid>https://dangpham112000.github.io/docs/research/security/</guid>
-      <description>Security#DDOS#Backdoor attack#SQL injection#Cross-site scripting (XSS) attack#Cross-site request forgery (CSRF) attack#Cross-domain access attack#Syn flood attack#Relay attack#Man in the middle attack#request modify#response modify#</description>
+      <title>CORS - draft</title>
+      <link>https://dangpham112000.github.io/docs/research/cors/</link>
+      <pubDate>Thu, 18 Apr 2024 01:47:46 +0700</pubDate>
+      <guid>https://dangpham112000.github.io/docs/research/cors/</guid>
+      <description>CORS # Overview # Origin defintion Why it was born? # Steel Cookie # CSRF # Bypass # Middle server&#xA;How prevent it? # Authorization</description>
+    </item>
+    <item>
+      <title>Scale - draft</title>
+      <link>https://dangpham112000.github.io/docs/research/scale/</link>
+      <pubDate>Thu, 18 Apr 2024 01:47:46 +0700</pubDate>
+      <guid>https://dangpham112000.github.io/docs/research/scale/</guid>
+      <description>Scale # Monolith architecture # The server in itself is capable and responsible for all the tasks that have to be performed and can perform every step needed to perform a function Tasks: Authorization, Presentation, Database, Business Server side rendering (SSR) # Splitting server # Database splitting # Assume your app have a stable traffic Your data is not maintain steady, it always grows up. So database is the first thing we need to splitting out from our server and be standalone For later you will need to upgrade your DB (whatever scale out or scale up) Client splitting &amp;amp;&amp;amp; Client side rendering (CSR) # Example Flow:</description>
     </item>
     <item>
       <title>Social Media - Draft</title>
       <link>https://dangpham112000.github.io/docs/research/social_media/</link>
       <pubDate>Tue, 05 Dec 2023 01:47:46 +0700</pubDate>
       <guid>https://dangpham112000.github.io/docs/research/social_media/</guid>
-      <description>Social Media: fakebut.site#Architecture#Frontend: Vite-ReactJS, Argon (Consider replace with TaiwinCSS) Backend: ExpressJS, Golang, MongoDB Ops: Git Action, Docker, EC2 Login#Front: Login/Register page Setup Vite Routing handling Back: API login/register Cookie base Consider the possibility? Because the strickly of cookie when work with cross-origin (front-end origin vs backend origin) Solution: using the nginx to become the gateway to serve backend api and frontend site Token base SSO Chat#Websocket Post#Comment#Notification#Admin management#</description>
+      <description> Social Media: fakebut.site # Architecture # Frontend: Vite-ReactJS, Argon (Consider replace with TaiwinCSS) Backend: ExpressJS, Golang, MongoDB Ops: Git Action, Docker, EC2 Login # Front: Login/Register page Setup Vite Routing handling Back: API login/register Cookie base Consider the possibility? Because the strickly of cookie when work with cross-origin (front-end origin vs backend origin) Solution: using the nginx to become the gateway to serve backend api and frontend site Token base SSO Chat # Websocket Post # Comment # Notification # Admin management # </description>
     </item>
     <item>
       <title>Encryption - Draft</title>
       <link>https://dangpham112000.github.io/docs/research/encryption/</link>
       <pubDate>Wed, 15 Nov 2023 01:47:46 +0700</pubDate>
       <guid>https://dangpham112000.github.io/docs/research/encryption/</guid>
-      <description>Encryption#</description>
+      <description>Encryption # Hash # Note: An 8-bit byte is represented as 2 characters, from 00 to FF, in hexadecimal&#xA;Collision # Use case # Checking file integrity HMAC # HMAC stand for Hash-Based Message Authentication Codes Symmetric encryption # uses the same key to encrypt and decrypt messages&#xA;AES, Twofish and ChaCha20&#xA;AES cipher with CBC # Asymmetric encryption # uses a public-key cryptosystem (like RSA or ECC) and a key-pair: public key (encryption key) and corresponding private key (decryption key)</description>
     </item>
   </channel>
 </rss>

@@ -3,20 +3,25 @@
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Backend Protocol#What is a protocol?#A system that allows two parties to communicate A protocol is designed with a set of properties Depending on the purpose of the protocol TCP, UDP, HTTP, gRPC, FTP The application protocols (HTTP/1.1, HTTP/2, HTTP/3) run on top of transport protocols (TCP, UDP) Protocol properties#Data format Text based (plain text, JSON, XML) Binary (protobuf, RESP, h2, h3) Transfer mode Message based (UDP, HTTP) Stream (TCP, WebRTC) Addressing system DNS name, IP, MAC Directionality Bidirectional (TCP) Unidirectional (HTTP) Full/Half duplex State Stateful (TCP, gRPC, apache thrift) Stateless (UDP, HTTP) Routing Proxies, Gateways Flow &amp; Congestion control TCP (Flow &amp; Congestion) UDP (No control) Error management Error code Retries and timeouts Why do we need a communication model?">
+<meta name="description" content="Backend Protocol # What is a protocol? # A system that allows two parties to communicate A protocol is designed with a set of properties Depending on the purpose of the protocol TCP, UDP, HTTP, gRPC, FTP The application protocols (HTTP/1.1, HTTP/2, HTTP/3) run on top of transport protocols (TCP, UDP) Protocol properties # Data format Text based (plain text, JSON, XML) Binary (protobuf, RESP, h2, h3) Transfer mode Message based (UDP, HTTP) Stream (TCP, WebRTC) Addressing system DNS name, IP, MAC Directionality Bidirectional (TCP) Unidirectional (HTTP) Full/Half duplex State Stateful (TCP, gRPC, apache thrift) Stateless (UDP, HTTP) Routing Proxies, Gateways Flow &amp; Congestion control TCP (Flow &amp; Congestion) UDP (No control) Error management Error code Retries and timeouts Why do we need a communication model?">
 <meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff">
 <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#343a40">
-<meta name="color-scheme" content="light dark"><meta property="og:title" content="Backend Protocol" />
-<meta property="og:description" content="" />
-<meta property="og:type" content="website" />
-<meta property="og:url" content="https://dangpham112000.github.io/docs/research/be_protocol/" />
-
+<meta name="color-scheme" content="light dark"><meta property="og:url" content="https://dangpham112000.github.io/docs/research/be_protocol/">
+  <meta property="og:site_name" content="The Engineer Blogs">
+  <meta property="og:title" content="Backend Protocol">
+  <meta property="og:description" content="Backend Protocol # What is a protocol? # A system that allows two parties to communicate A protocol is designed with a set of properties Depending on the purpose of the protocol TCP, UDP, HTTP, gRPC, FTP The application protocols (HTTP/1.1, HTTP/2, HTTP/3) run on top of transport protocols (TCP, UDP) Protocol properties # Data format Text based (plain text, JSON, XML) Binary (protobuf, RESP, h2, h3) Transfer mode Message based (UDP, HTTP) Stream (TCP, WebRTC) Addressing system DNS name, IP, MAC Directionality Bidirectional (TCP) Unidirectional (HTTP) Full/Half duplex State Stateful (TCP, gRPC, apache thrift) Stateless (UDP, HTTP) Routing Proxies, Gateways Flow &amp; Congestion control TCP (Flow &amp; Congestion) UDP (No control) Error management Error code Retries and timeouts Why do we need a communication model?">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="website">
 <title>Backend Protocol | The Engineer Blogs</title>
 <link rel="manifest" href="/manifest.json">
 <link rel="icon" href="/favicon.png" >
-<link rel="stylesheet" href="/book.min.d2e03d9c7a4cea10fdd096eb48db6766340b9b3b186fa0321e2ad69205bdc3ad.css" integrity="sha256-0uA9nHpM6hD90JbrSNtnZjQLmzsYb6AyHirWkgW9w60=" crossorigin="anonymous">
-  <script defer src="/flexsearch.min.js"></script>
-  <script defer src="/en.search.min.1f576324657f8bc8c750a3f97d5ff48ba8d29c05c2ebe300e73d7d008985d111.js" integrity="sha256-H1djJGV/i8jHUKP5fV/0i6jSnAXC6&#43;MA5z19AImF0RE=" crossorigin="anonymous"></script>
+<link rel="canonical" href="https://dangpham112000.github.io/docs/research/be_protocol/">
+<link rel="stylesheet" href="/book.min.0ebfa1e81a7b241abaa8a9626be8325416e98d14702ea33197aea691fec27e9d.css" integrity="sha256-Dr&#43;h6Bp7JBq6qKlia&#43;gyVBbpjRRwLqMxl66mkf7Cfp0=" crossorigin="anonymous">
+  <script defer src="/fuse.min.js"></script>
+  <script defer src="/en.search.min.b553da730f3dd4faddfc319c1da12087f3add3fec328f40be9beadf1b3c1e91c.js" integrity="sha256-tVPacw891Prd/DGcHaEgh/Ot0/7DKPQL6b6t8bPB6Rw=" crossorigin="anonymous"></script>
+
+  
+
 <link rel="alternate" type="application/rss+xml" href="https://dangpham112000.github.io/docs/research/be_protocol/index.xml" title="The Engineer Blogs" />
 <!--
 Made with Book Theme
@@ -38,11 +43,12 @@ https://github.com/alex-shpak/hugo-book
 </h2>
 
 
-<div class="book-search">
+<div class="book-search hidden">
   <input type="text" id="book-search-input" placeholder="Search" aria-label="Search" maxlength="64" data-hotkeys="s/" />
   <div class="book-search-spinner hidden"></div>
   <ul id="book-search-results"></ul>
 </div>
+<script>document.querySelector(".book-search").classList.remove("hidden")</script>
 
 
 
@@ -147,7 +153,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="/docs/research/be_protocol/tls_ssl/" class="">TLS - SSL - Draft</a>
+    <a href="/docs/research/be_protocol/http/" class="">HTTP - Draft</a>
   
 
         </li>
@@ -160,7 +166,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="/docs/research/be_protocol/http/" class="">HTTP - Draft</a>
+    <a href="/docs/research/be_protocol/tls_ssl/" class="">TLS - SSL - Draft</a>
   
 
         </li>
@@ -270,6 +276,32 @@ https://github.com/alex-shpak/hugo-book
 
   
     <a href="/docs/research/security/" class="">Security - Draft</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/research/cors/" class="">CORS - draft</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/research/scale/" class="">Scale - draft</a>
   
 
         </li>
@@ -485,7 +517,7 @@ https://github.com/alex-shpak/hugo-book
 
       
       
-  <article class="markdown"><h1 id="backend-protocol">
+  <article class="markdown book-article"><h1 id="backend-protocol">
   Backend Protocol
   <a class="anchor" href="#backend-protocol">#</a>
 </h1>

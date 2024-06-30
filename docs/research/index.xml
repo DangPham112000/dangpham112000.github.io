@@ -4,71 +4,79 @@
     <title>RESEARCH on The Engineer Blogs</title>
     <link>https://dangpham112000.github.io/docs/research/</link>
     <description>Recent content in RESEARCH on The Engineer Blogs</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 15 Apr 2024 01:47:46 +0700</lastBuildDate>
+    <lastBuildDate>Sat, 15 Jun 2024 01:47:46 +0700</lastBuildDate>
     <atom:link href="https://dangpham112000.github.io/docs/research/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Process vs Thread</title>
       <link>https://dangpham112000.github.io/docs/research/process_vs_thread/</link>
       <pubDate>Tue, 05 Dec 2023 01:47:46 +0700</pubDate>
       <guid>https://dangpham112000.github.io/docs/research/process_vs_thread/</guid>
-      <description>Process vs Thread#Program#A Program is an executable file containing a set of instructions and passively stored on disk
-Process#A Process means a program is in execution. When a program is loaded into the memory and becomes active, the program becomes a process or processes
-Thread#A Thread is the smallest unit of execution within a process
-Process vs Thread#Process#The process requires some essential resources such as registers, program counter, and stack</description>
+      <description>Process vs Thread # Program # A Program is an executable file containing a set of instructions and passively stored on disk&#xA;Process # A Process means a program is in execution. When a program is loaded into the memory and becomes active, the program becomes a process or processes&#xA;Thread # A Thread is the smallest unit of execution within a process&#xA;Process vs Thread # Process # The process requires some essential resources such as registers, program counter, and stack</description>
     </item>
     <item>
       <title>Chrome Architecture</title>
       <link>https://dangpham112000.github.io/docs/research/chrome_architecture/</link>
       <pubDate>Tue, 05 Dec 2023 01:47:46 +0700</pubDate>
       <guid>https://dangpham112000.github.io/docs/research/chrome_architecture/</guid>
-      <description>Chrome Architecture#Prerequisites#Read process vs thread first if you don&amp;rsquo;t have any process and thread concept in your mind
-Browser Architecture#When you start an application, a process is created. The program might create thread(s) to help it do work, but that&amp;rsquo;s optional. The Operating System gives the process a &amp;ldquo;slab&amp;rdquo; of memory to work with and all application state is kept in that private memory space.</description>
+      <description>Chrome Architecture # Prerequisites # Read process vs thread first if you don&amp;rsquo;t have any process and thread concept in your mind&#xA;Browser Architecture # When you start an application, a process is created. The program might create thread(s) to help it do work, but that&amp;rsquo;s optional. The Operating System gives the process a &amp;ldquo;slab&amp;rdquo; of memory to work with and all application state is kept in that private memory space.</description>
     </item>
     <item>
       <title>AWS Overview</title>
       <link>https://dangpham112000.github.io/docs/research/aws_overview/</link>
       <pubDate>Wed, 15 Nov 2023 01:47:46 +0700</pubDate>
       <guid>https://dangpham112000.github.io/docs/research/aws_overview/</guid>
-      <description>AWS Overview#Slide#Types of Cloud Computing#EC2 - Elastic Compute Cloud#EC2 = Infrastructure as a Service (IaaS) On-Demand Instances – short workload, predictable pricing, pay by second Has the highest cost Recommended for short-term and un-interrupted workloads, where you can&amp;rsquo;t predict how the application will behave Reserved (1 &amp;amp; 3 years) Reserved Instances – long workloads Recommended for steady-state usage applications (think database) Convertible Reserved Instances – long workloads with flexible instances Savings Plans (1 &amp;amp; 3 years) – commitment to an amount of usage, long workload Spot Instances – short workloads, cheap, can lose instances (less reliable) The MOST cost-efficient Dedicated Hosts – book an entire physical server, control instance placement The most expensive option Dedicated Instances – no other customers will share your hardware No control over instance placement Capacity Reservations – reserve capacity in a specific AZ for any duration AMI - Amazon Machine Image#AMI are a customization of an EC2 instance AMI are built for a specific region (and can be copied across regions) You can launch EC2 instances from: A Public AMI: AWS provided Your own AMI: you make and maintain them yourself An AWS Marketplace AMI: an AMI someone else made (and potentially sells) EC2 Image Builder#Used to automate the creation of Virtual Machines or container images</description>
+      <description>AWS Overview # Slide # Types of Cloud Computing # EC2 - Elastic Compute Cloud # EC2 = Infrastructure as a Service (IaaS) On-Demand Instances – short workload, predictable pricing, pay by second Has the highest cost Recommended for short-term and un-interrupted workloads, where you can&amp;rsquo;t predict how the application will behave Reserved (1 &amp;amp; 3 years) Reserved Instances – long workloads Recommended for steady-state usage applications (think database) Convertible Reserved Instances – long workloads with flexible instances Savings Plans (1 &amp;amp; 3 years) – commitment to an amount of usage, long workload Spot Instances – short workloads, cheap, can lose instances (less reliable) The MOST cost-efficient Dedicated Hosts – book an entire physical server, control instance placement The most expensive option Dedicated Instances – no other customers will share your hardware No control over instance placement Capacity Reservations – reserve capacity in a specific AZ for any duration AMI - Amazon Machine Image # AMI are a customization of an EC2 instance AMI are built for a specific region (and can be copied across regions) You can launch EC2 instances from: A Public AMI: AWS provided Your own AMI: you make and maintain them yourself An AWS Marketplace AMI: an AMI someone else made (and potentially sells) EC2 Image Builder # Used to automate the creation of Virtual Machines or container images</description>
     </item>
     <item>
       <title>Event loop - Draft</title>
       <link>https://dangpham112000.github.io/docs/research/event_loop/</link>
       <pubDate>Tue, 05 Dec 2023 01:47:46 +0700</pubDate>
       <guid>https://dangpham112000.github.io/docs/research/event_loop/</guid>
-      <description>Event loop#Challenge#Can you guess the output of the below JS code
-var name = &amp;#34;JS&amp;#34;; function execLater() { setTimeout(printName, 0); Promise .resolve() .then(() =&amp;gt; { console.log(&amp;#34;Promise resolve&amp;#34;); }); console.log(name); var name = &amp;#34;TS&amp;#34;; } printName(name); function printName() { console.log(name); } execLater(); Phase 1: the memory creation phase
-name is declared and initialized equal &amp;quot;JS&amp;quot; execLater is declared and initialized printName is declared and initialized Phase 2: the code execution phase</description>
+      <description>Event loop # Challenge # Can you guess the output of the below JS code&#xA;var name = &amp;#34;JS&amp;#34;; function execLater() { setTimeout(printName, 0); Promise .resolve() .then(() =&amp;gt; { console.log(&amp;#34;Promise resolve&amp;#34;); }); console.log(name); var name = &amp;#34;TS&amp;#34;; } printName(name); function printName() { console.log(name); } execLater(); Phase 1: the memory creation phase&#xA;name is declared and initialized equal &amp;quot;JS&amp;quot; execLater is declared and initialized printName is declared and initialized Phase 2: the code execution phase</description>
     </item>
     <item>
       <title>JavaScript Engine - Draft</title>
       <link>https://dangpham112000.github.io/docs/research/javascript_engine/</link>
       <pubDate>Tue, 05 Dec 2023 01:47:46 +0700</pubDate>
       <guid>https://dangpham112000.github.io/docs/research/javascript_engine/</guid>
-      <description>JavaScript Engine#V8: Google Chrome, NodeJS SpiderMonkey: Firefox JavaScriptCore: Safari Reference#Nodejs: The V8 JavaScript Engine Mozilla: SpiderMonkey Apple: JavaScriptCore </description>
+      <description> JavaScript Engine # V8: Google Chrome, NodeJS SpiderMonkey: Firefox JavaScriptCore: Safari Reference # Nodejs: The V8 JavaScript Engine Mozilla: SpiderMonkey Apple: JavaScriptCore </description>
     </item>
     <item>
       <title>Security - Draft</title>
       <link>https://dangpham112000.github.io/docs/research/security/</link>
-      <pubDate>Wed, 15 Nov 2023 01:47:46 +0700</pubDate>
+      <pubDate>Sat, 15 Jun 2024 01:47:46 +0700</pubDate>
       <guid>https://dangpham112000.github.io/docs/research/security/</guid>
-      <description>Security#DDOS#Backdoor attack#SQL injection#Cross-site scripting (XSS) attack#Cross-site request forgery (CSRF) attack#Cross-domain access attack#Syn flood attack#Relay attack#Man in the middle attack#request modify#response modify#</description>
+      <description>Security # Brute Force Attack # Every password-based system and encryption key out there can be cracked using a brute force attack. There is only one problem with this attack: the time. Why does the hashing method matter when cracking passwords with a brute force attack? Bcrypt will take longer to crack than MD5 Use case # Cracking passwords (SSH logins) Cracking encryption keys (API keys) How it works # The hacker have to run through every possible combination of characters before achieving their goal These attacks are often carried out by scripts or bots that target specific systems or accounts Prevention # Longer password Delay response: A system that responds immediately is not always good.</description>
+    </item>
+    <item>
+      <title>CORS - draft</title>
+      <link>https://dangpham112000.github.io/docs/research/cors/</link>
+      <pubDate>Thu, 18 Apr 2024 01:47:46 +0700</pubDate>
+      <guid>https://dangpham112000.github.io/docs/research/cors/</guid>
+      <description>CORS # Overview # Origin defintion Why it was born? # Steel Cookie # CSRF # Bypass # Middle server&#xA;How prevent it? # Authorization</description>
+    </item>
+    <item>
+      <title>Scale - draft</title>
+      <link>https://dangpham112000.github.io/docs/research/scale/</link>
+      <pubDate>Thu, 18 Apr 2024 01:47:46 +0700</pubDate>
+      <guid>https://dangpham112000.github.io/docs/research/scale/</guid>
+      <description>Scale # Monolith architecture # The server in itself is capable and responsible for all the tasks that have to be performed and can perform every step needed to perform a function Tasks: Authorization, Presentation, Database, Business Server side rendering (SSR) # Splitting server # Database splitting # Assume your app have a stable traffic Your data is not maintain steady, it always grows up. So database is the first thing we need to splitting out from our server and be standalone For later you will need to upgrade your DB (whatever scale out or scale up) Client splitting &amp;amp;&amp;amp; Client side rendering (CSR) # Example Flow:</description>
     </item>
     <item>
       <title>Social Media - Draft</title>
       <link>https://dangpham112000.github.io/docs/research/social_media/</link>
       <pubDate>Tue, 05 Dec 2023 01:47:46 +0700</pubDate>
       <guid>https://dangpham112000.github.io/docs/research/social_media/</guid>
-      <description>Social Media: fakebut.site#Architecture#Frontend: Vite-ReactJS, Argon (Consider replace with TaiwinCSS) Backend: ExpressJS, Golang, MongoDB Ops: Git Action, Docker, EC2 Login#Front: Login/Register page Setup Vite Routing handling Back: API login/register Cookie base Consider the possibility? Because the strickly of cookie when work with cross-origin (front-end origin vs backend origin) Solution: using the nginx to become the gateway to serve backend api and frontend site Token base SSO Chat#Websocket Post#Comment#Notification#Admin management#</description>
+      <description> Social Media: fakebut.site # Architecture # Frontend: Vite-ReactJS, Argon (Consider replace with TaiwinCSS) Backend: ExpressJS, Golang, MongoDB Ops: Git Action, Docker, EC2 Login # Front: Login/Register page Setup Vite Routing handling Back: API login/register Cookie base Consider the possibility? Because the strickly of cookie when work with cross-origin (front-end origin vs backend origin) Solution: using the nginx to become the gateway to serve backend api and frontend site Token base SSO Chat # Websocket Post # Comment # Notification # Admin management # </description>
     </item>
     <item>
       <title>Encryption - Draft</title>
       <link>https://dangpham112000.github.io/docs/research/encryption/</link>
       <pubDate>Wed, 15 Nov 2023 01:47:46 +0700</pubDate>
       <guid>https://dangpham112000.github.io/docs/research/encryption/</guid>
-      <description>Encryption#</description>
+      <description>Encryption # Hash # Note: An 8-bit byte is represented as 2 characters, from 00 to FF, in hexadecimal&#xA;Collision # Use case # Checking file integrity HMAC # HMAC stand for Hash-Based Message Authentication Codes Symmetric encryption # uses the same key to encrypt and decrypt messages&#xA;AES, Twofish and ChaCha20&#xA;AES cipher with CBC # Asymmetric encryption # uses a public-key cryptosystem (like RSA or ECC) and a key-pair: public key (encryption key) and corresponding private key (decryption key)</description>
     </item>
   </channel>
 </rss>
