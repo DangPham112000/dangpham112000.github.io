@@ -3,22 +3,34 @@
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Encryption#">
+<meta name="description" content="Encryption # Hash # Note: An 8-bit byte is represented as 2 characters, from 00 to FF, in hexadecimal
+Collision # Use case # Checking file integrity HMAC # HMAC stand for Hash-Based Message Authentication Codes Symmetric encryption # uses the same key to encrypt and decrypt messages
+AES, Twofish and ChaCha20
+AES cipher with CBC # Asymmetric encryption # uses a public-key cryptosystem (like RSA or ECC) and a key-pair: public key (encryption key) and corresponding private key (decryption key)">
 <meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff">
 <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#343a40">
-<meta name="color-scheme" content="light dark"><meta property="og:title" content="Encryption - Draft" />
-<meta property="og:description" content="Encryption#" />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="https://dangpham112000.github.io/docs/research/encryption/" /><meta property="article:section" content="docs" />
-<meta property="article:published_time" content="2023-11-15T01:47:46+07:00" />
-<meta property="article:modified_time" content="2023-11-15T01:47:46+07:00" />
-
+<meta name="color-scheme" content="light dark"><meta property="og:url" content="https://dangpham112000.github.io/docs/research/encryption/">
+  <meta property="og:site_name" content="The Engineer Blogs">
+  <meta property="og:title" content="Encryption - Draft">
+  <meta property="og:description" content="Encryption # Hash # Note: An 8-bit byte is represented as 2 characters, from 00 to FF, in hexadecimal
+Collision # Use case # Checking file integrity HMAC # HMAC stand for Hash-Based Message Authentication Codes Symmetric encryption # uses the same key to encrypt and decrypt messages
+AES, Twofish and ChaCha20
+AES cipher with CBC # Asymmetric encryption # uses a public-key cryptosystem (like RSA or ECC) and a key-pair: public key (encryption key) and corresponding private key (decryption key)">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="docs">
+    <meta property="article:published_time" content="2023-11-15T01:47:46+07:00">
+    <meta property="article:modified_time" content="2023-11-15T01:47:46+07:00">
 <title>Encryption - Draft | The Engineer Blogs</title>
 <link rel="manifest" href="/manifest.json">
 <link rel="icon" href="/favicon.png" >
-<link rel="stylesheet" href="/book.min.d2e03d9c7a4cea10fdd096eb48db6766340b9b3b186fa0321e2ad69205bdc3ad.css" integrity="sha256-0uA9nHpM6hD90JbrSNtnZjQLmzsYb6AyHirWkgW9w60=" crossorigin="anonymous">
-  <script defer src="/flexsearch.min.js"></script>
-  <script defer src="/en.search.min.4db3739f583a3bd21c6098090088141b7800f923f44dd7182cff578da4a3a6e8.js" integrity="sha256-TbNzn1g6O9IcYJgJAIgUG3gA&#43;SP0TdcYLP9XjaSjpug=" crossorigin="anonymous"></script>
+<link rel="canonical" href="https://dangpham112000.github.io/docs/research/encryption/">
+<link rel="stylesheet" href="/book.min.0ebfa1e81a7b241abaa8a9626be8325416e98d14702ea33197aea691fec27e9d.css" integrity="sha256-Dr&#43;h6Bp7JBq6qKlia&#43;gyVBbpjRRwLqMxl66mkf7Cfp0=" crossorigin="anonymous">
+  <script defer src="/fuse.min.js"></script>
+  <script defer src="/en.search.min.b553da730f3dd4faddfc319c1da12087f3add3fec328f40be9beadf1b3c1e91c.js" integrity="sha256-tVPacw891Prd/DGcHaEgh/Ot0/7DKPQL6b6t8bPB6Rw=" crossorigin="anonymous"></script>
+
+  
+
 <!--
 Made with Book Theme
 https://github.com/alex-shpak/hugo-book
@@ -39,11 +51,12 @@ https://github.com/alex-shpak/hugo-book
 </h2>
 
 
-<div class="book-search">
+<div class="book-search hidden">
   <input type="text" id="book-search-input" placeholder="Search" aria-label="Search" maxlength="64" data-hotkeys="s/" />
   <div class="book-search-spinner hidden"></div>
   <ul id="book-search-results"></ul>
 </div>
+<script>document.querySelector(".book-search").classList.remove("hidden")</script>
 
 
 
@@ -484,7 +497,38 @@ https://github.com/alex-shpak/hugo-book
   <aside class="hidden clearfix">
     
   
-<nav id="TableOfContents"></nav>
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#hash">Hash</a>
+      <ul>
+        <li><a href="#collision">Collision</a></li>
+        <li><a href="#use-case">Use case</a></li>
+      </ul>
+    </li>
+    <li><a href="#hmac">HMAC</a></li>
+    <li><a href="#symmetric-encryption">Symmetric encryption</a>
+      <ul>
+        <li><a href="#aes-cipher-with-cbc">AES cipher with CBC</a></li>
+      </ul>
+    </li>
+    <li><a href="#asymmetric-encryption">Asymmetric encryption</a>
+      <ul>
+        <li><a href="#rsa-cipher">RSA cipher</a></li>
+      </ul>
+    </li>
+    <li><a href="#digital-signatures">Digital signatures</a></li>
+    <li><a href="#message-authentication">Message Authentication</a></li>
+    <li><a href="#secure-random-numbers">Secure Random Numbers</a></li>
+    <li><a href="#key-exchange">Key Exchange</a></li>
+    <li><a href="#confusion-and-diffusion-in-cryptography">Confusion and Diffusion in Cryptography</a></li>
+    <li><a href="#appendix">Appendix</a>
+      <ul>
+        <li><a href="#why-bcrypt-will-take-longer-time-to-crack-your-password-than-md5">Why Bcrypt will take longer time to crack your password than MD5?</a></li>
+      </ul>
+    </li>
+    <li><a href="#reference">Reference</a></li>
+  </ul>
+</nav>
 
 
 
@@ -495,10 +539,110 @@ https://github.com/alex-shpak/hugo-book
 
       
       
-  <article class="markdown"><h1 id="encryption">
+  <article class="markdown book-article"><h1 id="encryption">
   Encryption
   <a class="anchor" href="#encryption">#</a>
 </h1>
+<h2 id="hash">
+  Hash
+  <a class="anchor" href="#hash">#</a>
+</h2>
+<p><em>Note: An 8-bit byte is represented as 2 characters, from 00 to FF, in hexadecimal</em></p>
+<h3 id="collision">
+  Collision
+  <a class="anchor" href="#collision">#</a>
+</h3>
+<h3 id="use-case">
+  Use case
+  <a class="anchor" href="#use-case">#</a>
+</h3>
+<ul>
+<li>Checking file integrity</li>
+</ul>
+<h2 id="hmac">
+  HMAC
+  <a class="anchor" href="#hmac">#</a>
+</h2>
+<ul>
+<li>HMAC stand for <strong>H</strong>ash-Based <strong>M</strong>essage <strong>A</strong>uthentication <strong>C</strong>odes</li>
+</ul>
+<h2 id="symmetric-encryption">
+  Symmetric encryption
+  <a class="anchor" href="#symmetric-encryption">#</a>
+</h2>
+<p>uses the same key to encrypt and decrypt messages</p>
+<p>AES, Twofish and ChaCha20</p>
+<h3 id="aes-cipher-with-cbc">
+  AES cipher with CBC
+  <a class="anchor" href="#aes-cipher-with-cbc">#</a>
+</h3>
+<h2 id="asymmetric-encryption">
+  Asymmetric encryption
+  <a class="anchor" href="#asymmetric-encryption">#</a>
+</h2>
+<p>uses a public-key cryptosystem (like RSA or ECC) and a key-pair: public key (encryption key) and corresponding private key (decryption key)</p>
+<p>Encryption algorithms are often combined in encryption schemes (like AES-256-CTR-HMAC-SHA-256, ChaCha20-Poly1305 or ECIES-secp256k1-AES-128-GCM).</p>
+<h3 id="rsa-cipher">
+  RSA cipher
+  <a class="anchor" href="#rsa-cipher">#</a>
+</h3>
+<h2 id="digital-signatures">
+  Digital signatures
+  <a class="anchor" href="#digital-signatures">#</a>
+</h2>
+<p>guarantee message authenticity, integrity and non-repudiation.</p>
+<p>Most digital signature algorithms (like DSA, ECDSA and EdDSA) use asymmetric key pair (private and public key):</p>
+<ul>
+<li>the message is signed by the private key</li>
+<li>the signature is verified by the corresponding public key</li>
+</ul>
+<p>Use cases:</p>
+<ul>
+<li>In the bank systems digital signatures are used to sign and approve payments.</li>
+<li>In blockchain signed transactions allow users to transfer a blockchain asset from one address to another.</li>
+</ul>
+<h2 id="message-authentication">
+  Message Authentication
+  <a class="anchor" href="#message-authentication">#</a>
+</h2>
+<p>message authentication algorithms (like HMAC) and message authentication codes (MAC codes)</p>
+<p>prove message authenticity, integrity and authorship</p>
+<p>Authentication is used side by side with encryption, to ensure secure communication.</p>
+<h2 id="secure-random-numbers">
+  Secure Random Numbers
+  <a class="anchor" href="#secure-random-numbers">#</a>
+</h2>
+<p>Cryptography uses random numbers and deals with entropy (unpredictable randomness) and secure generation of random numbers (e.g. using CSPRNG). Secure random numbers are unpredictable by nature and developers should care about them, because broken random generator means compromised or hacked system or app.</p>
+<p>Like <code>Math.random()</code> does not secure but <code>Crypto.getRandomValues()</code> does (Ref: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random">Math.random()</a>)</p>
+<h2 id="key-exchange">
+  Key Exchange
+  <a class="anchor" href="#key-exchange">#</a>
+</h2>
+<p>Cryptography defines key-exchange algorithms (like Diffie-Hellman key exchange and ECDH) and key establishment schemes, used to securely establish encryption keys between two parties that intend to transmit messages securely using encryption. Such algorithms are performed typically when a new secure connection between two parties is established, e.g. when you open a modern Web site or connect to the WiFi network.</p>
+<h2 id="confusion-and-diffusion-in-cryptography">
+  Confusion and Diffusion in Cryptography
+  <a class="anchor" href="#confusion-and-diffusion-in-cryptography">#</a>
+</h2>
+<p>In cryptography the hashing, encryption algorithms and random generators follow the Shannon&rsquo;s principles of <a href="https://en.wikipedia.org/wiki/Confusion_and_diffusion">confusion and diffusion</a>. Confusion means that each bit in the output form a cipher should depend on several parts of the key and input data and thus direct mapping cannot be established. Diffusion means that changing one bit in the input should change approximately half of the bits in the output. These principles are incorporated in most hash functions, MAC algorithms, random number generators, symmetric and asymmetric ciphers.</p>
+<h2 id="appendix">
+  Appendix
+  <a class="anchor" href="#appendix">#</a>
+</h2>
+<h3 id="why-bcrypt-will-take-longer-time-to-crack-your-password-than-md5">
+  Why Bcrypt will take longer time to crack your password than MD5?
+  <a class="anchor" href="#why-bcrypt-will-take-longer-time-to-crack-your-password-than-md5">#</a>
+</h3>
+<p><img src="/research/encription/2024_Password_Table_MD5.png" alt="2024_Password_Table_MD5" />
+<img src="/research/encription/2024_Password_Table_bcrypt.png" alt="2024_Password_Table_bcrypt" /></p>
+<h2 id="reference">
+  Reference
+  <a class="anchor" href="#reference">#</a>
+</h2>
+<ul>
+<li>Okta: <a href="https://www.okta.com/identity-101/hmac/">HMAC (Hash-Based Message Authentication Codes) Definition</a> (Sep 15, 2023)</li>
+<li>Cryptobook: <a href="https://cryptobook.nakov.com/cryptography-overview">Cryptography - Overview</a> (Jun 19, 2019)</li>
+<li>Hivesystems: <a href="https://www.hivesystems.com/blog/are-your-passwords-in-the-green">Are Your Passwords in the Green?</a> (2024)</li>
+</ul>
 </article>
  
       
@@ -538,7 +682,38 @@ https://github.com/alex-shpak/hugo-book
       <div class="book-toc-content">
         
   
-<nav id="TableOfContents"></nav>
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#hash">Hash</a>
+      <ul>
+        <li><a href="#collision">Collision</a></li>
+        <li><a href="#use-case">Use case</a></li>
+      </ul>
+    </li>
+    <li><a href="#hmac">HMAC</a></li>
+    <li><a href="#symmetric-encryption">Symmetric encryption</a>
+      <ul>
+        <li><a href="#aes-cipher-with-cbc">AES cipher with CBC</a></li>
+      </ul>
+    </li>
+    <li><a href="#asymmetric-encryption">Asymmetric encryption</a>
+      <ul>
+        <li><a href="#rsa-cipher">RSA cipher</a></li>
+      </ul>
+    </li>
+    <li><a href="#digital-signatures">Digital signatures</a></li>
+    <li><a href="#message-authentication">Message Authentication</a></li>
+    <li><a href="#secure-random-numbers">Secure Random Numbers</a></li>
+    <li><a href="#key-exchange">Key Exchange</a></li>
+    <li><a href="#confusion-and-diffusion-in-cryptography">Confusion and Diffusion in Cryptography</a></li>
+    <li><a href="#appendix">Appendix</a>
+      <ul>
+        <li><a href="#why-bcrypt-will-take-longer-time-to-crack-your-password-than-md5">Why Bcrypt will take longer time to crack your password than MD5?</a></li>
+      </ul>
+    </li>
+    <li><a href="#reference">Reference</a></li>
+  </ul>
+</nav>
 
 
  

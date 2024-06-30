@@ -4,7 +4,7 @@
     <title>TIPS on The Engineer Blogs</title>
     <link>https://dangpham112000.github.io/docs/tips/</link>
     <description>Recent content in TIPS on The Engineer Blogs</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo</generator>
     <language>en-us</language>
     <lastBuildDate>Mon, 08 Apr 2024 01:47:46 +0700</lastBuildDate>
     <atom:link href="https://dangpham112000.github.io/docs/tips/index.xml" rel="self" type="application/rss+xml" />
@@ -13,24 +13,21 @@
       <link>https://dangpham112000.github.io/docs/tips/git/</link>
       <pubDate>Wed, 15 Nov 2023 01:47:46 +0700</pubDate>
       <guid>https://dangpham112000.github.io/docs/tips/git/</guid>
-      <description>GIT TIPS#Terminology#HEAD: your current local working branch origin: the address to your remote git, represent for remote repo tracked file: the file git already had before, so when you edit it, git know this file is modified (M files)
-untracked, new file: the file recently add and git don’t know anything about it (U files)
-Commit#git add . git commit -m &amp;#34;commit message&amp;#34; These 2 commands above can combie into 1:</description>
+      <description>GIT TIPS # Terminology # HEAD: your current local working branch origin: the address to your remote git, represent for remote repo tracked file: the file git already had before, so when you edit it, git know this file is modified (M files)&#xA;untracked, new file: the file recently add and git don’t know anything about it (U files)&#xA;Commit # git add . git commit -m &amp;#34;commit message&amp;#34; These 2 commands above can combie into 1:</description>
     </item>
     <item>
       <title>Unit Test</title>
       <link>https://dangpham112000.github.io/docs/tips/unit_test/</link>
       <pubDate>Wed, 15 Nov 2023 01:47:46 +0700</pubDate>
       <guid>https://dangpham112000.github.io/docs/tips/unit_test/</guid>
-      <description>Unit Test#Reset all global variables for each unit test case#What environment the unit test cases are running on: Browser or Nodejs?#Because Nodejs does not have browser APIs Using Karma to run browser&amp;rsquo;s unit test Using JS-DOM but it&amp;rsquo;s missing a lot of browser APIs Work only when running alone#Scenario: A unit test case only pass when running alone but fail when running with other test casesCheck:</description>
+      <description>Unit Test # Reset all global variables for each unit test case # What environment the unit test cases are running on: Browser or Nodejs? # Because Nodejs does not have browser APIs Using Karma to run browser&amp;rsquo;s unit test Using JS-DOM but it&amp;rsquo;s missing a lot of browser APIs Work only when running alone # Scenario: A unit test case only pass when running alone but fail when running with other test cases Check:</description>
     </item>
     <item>
       <title>Docker</title>
       <link>https://dangpham112000.github.io/docs/tips/docker/</link>
       <pubDate>Mon, 08 Apr 2024 01:47:46 +0700</pubDate>
       <guid>https://dangpham112000.github.io/docs/tips/docker/</guid>
-      <description>Docker#Terminology#Image: Like the execution file (.exe) and even more. It have all needed setup dependences that stored inside it and ready to run instructions Container: Like the process after you run the image, but this application at this time is considered as the whole virtual machine Create#Create a docker image
-Dockerfile#You will write all the instructions here, guild the Docker engine what enviroment you want your app to run inside, what needed dependencies to be installed, copy your source code into and last but not least is the command to run your app:</description>
+      <description>Docker # Terminology # Image: Like the execution file (.exe) and even more. It have all needed setup dependences that stored inside it and ready to run instructions Container: Like the process after you run the image, but this application at this time is considered as the whole virtual machine Create # Create a docker image&#xA;Dockerfile # You will write all the instructions here, guild the Docker engine what enviroment you want your app to run inside, what needed dependencies to be installed, copy your source code into and last but not least is the command to run your app:</description>
     </item>
   </channel>
 </rss>

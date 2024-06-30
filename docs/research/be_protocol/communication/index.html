@@ -3,26 +3,32 @@
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Communication#Request-Response#Overview#The Request-Response pattern is a fundamental communication pattern where a client sends a request to a server, and the server processes the request and sends back a response. It&rsquo;s one of the most common patterns for communication in distributed systems, client-server architectures, and web applications.
-Push#Real time notification
-Overview#Used by RabbitMQ Implementation#Concept:#Client connects to a server Server sends data to the client Client doesn’t have to request anything Protocol must be bidirectional Example code:#Short Polling#Request is taking a while, I’ll check with you later">
+<meta name="description" content="Communication # Request-Response # Overview # The Request-Response pattern is a fundamental communication pattern where a client sends a request to a server, and the server processes the request and sends back a response. It&rsquo;s one of the most common patterns for communication in distributed systems, client-server architectures, and web applications.
+Push # Real time notification
+Overview # Used by RabbitMQ Implementation # Concept: # Client connects to a server Server sends data to the client Client doesn’t have to request anything Protocol must be bidirectional Example code: # Short Polling # Request is taking a while, I’ll check with you later">
 <meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff">
 <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#343a40">
-<meta name="color-scheme" content="light dark"><meta property="og:title" content="Communication - Draft" />
-<meta property="og:description" content="Communication#Request-Response#Overview#The Request-Response pattern is a fundamental communication pattern where a client sends a request to a server, and the server processes the request and sends back a response. It&rsquo;s one of the most common patterns for communication in distributed systems, client-server architectures, and web applications.
-Push#Real time notification
-Overview#Used by RabbitMQ Implementation#Concept:#Client connects to a server Server sends data to the client Client doesn’t have to request anything Protocol must be bidirectional Example code:#Short Polling#Request is taking a while, I’ll check with you later" />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="https://dangpham112000.github.io/docs/research/be_protocol/communication/" /><meta property="article:section" content="docs" />
-<meta property="article:published_time" content="2023-11-15T01:47:46+07:00" />
-<meta property="article:modified_time" content="2023-11-15T01:47:46+07:00" />
-
+<meta name="color-scheme" content="light dark"><meta property="og:url" content="https://dangpham112000.github.io/docs/research/be_protocol/communication/">
+  <meta property="og:site_name" content="The Engineer Blogs">
+  <meta property="og:title" content="Communication - Draft">
+  <meta property="og:description" content="Communication # Request-Response # Overview # The Request-Response pattern is a fundamental communication pattern where a client sends a request to a server, and the server processes the request and sends back a response. It’s one of the most common patterns for communication in distributed systems, client-server architectures, and web applications.
+Push # Real time notification
+Overview # Used by RabbitMQ Implementation # Concept: # Client connects to a server Server sends data to the client Client doesn’t have to request anything Protocol must be bidirectional Example code: # Short Polling # Request is taking a while, I’ll check with you later">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="docs">
+    <meta property="article:published_time" content="2023-11-15T01:47:46+07:00">
+    <meta property="article:modified_time" content="2023-11-15T01:47:46+07:00">
 <title>Communication - Draft | The Engineer Blogs</title>
 <link rel="manifest" href="/manifest.json">
 <link rel="icon" href="/favicon.png" >
-<link rel="stylesheet" href="/book.min.d2e03d9c7a4cea10fdd096eb48db6766340b9b3b186fa0321e2ad69205bdc3ad.css" integrity="sha256-0uA9nHpM6hD90JbrSNtnZjQLmzsYb6AyHirWkgW9w60=" crossorigin="anonymous">
-  <script defer src="/flexsearch.min.js"></script>
-  <script defer src="/en.search.min.4db3739f583a3bd21c6098090088141b7800f923f44dd7182cff578da4a3a6e8.js" integrity="sha256-TbNzn1g6O9IcYJgJAIgUG3gA&#43;SP0TdcYLP9XjaSjpug=" crossorigin="anonymous"></script>
+<link rel="canonical" href="https://dangpham112000.github.io/docs/research/be_protocol/communication/">
+<link rel="stylesheet" href="/book.min.0ebfa1e81a7b241abaa8a9626be8325416e98d14702ea33197aea691fec27e9d.css" integrity="sha256-Dr&#43;h6Bp7JBq6qKlia&#43;gyVBbpjRRwLqMxl66mkf7Cfp0=" crossorigin="anonymous">
+  <script defer src="/fuse.min.js"></script>
+  <script defer src="/en.search.min.b553da730f3dd4faddfc319c1da12087f3add3fec328f40be9beadf1b3c1e91c.js" integrity="sha256-tVPacw891Prd/DGcHaEgh/Ot0/7DKPQL6b6t8bPB6Rw=" crossorigin="anonymous"></script>
+
+  
+
 <!--
 Made with Book Theme
 https://github.com/alex-shpak/hugo-book
@@ -43,11 +49,12 @@ https://github.com/alex-shpak/hugo-book
 </h2>
 
 
-<div class="book-search">
+<div class="book-search hidden">
   <input type="text" id="book-search-input" placeholder="Search" aria-label="Search" maxlength="64" data-hotkeys="s/" />
   <div class="book-search-spinner hidden"></div>
   <ul id="book-search-results"></ul>
 </div>
+<script>document.querySelector(".book-search").classList.remove("hidden")</script>
 
 
 
@@ -539,7 +546,7 @@ https://github.com/alex-shpak/hugo-book
 
       
       
-  <article class="markdown"><h1 id="communication">
+  <article class="markdown book-article"><h1 id="communication">
   Communication
   <a class="anchor" href="#communication">#</a>
 </h1>
