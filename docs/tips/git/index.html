@@ -3,9 +3,29 @@
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="GIT TIPS # Terminology # HEAD: your current local working branch origin: the address to your remote git, represent for remote repo tracked file: the file git already had before, so when you edit it, git know this file is modified (M files)
+<meta name="description" content="
+  GIT TIPS
+  #
+
+
+  Terminology
+  #
+
+
+HEAD: your current local working branch
+origin: the address to your remote git, represent for remote repo
+tracked file: the file git already had before, so when you edit it, git know this file is modified (M files)
+
 untracked, new file: the file recently add and git don’t know anything about it (U files)
-Commit # git add . git commit -m &#34;commit message&#34; These 2 commands above can combie into 1:">
+
+
+
+  Commit
+  #
+
+git add .
+git commit -m &#34;commit message&#34;
+These 2 commands above can combie into 1:">
 <meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff">
 <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#343a40">
 <meta name="color-scheme" content="light dark"><meta property="og:url" content="https://dangpham112000.github.io/docs/tips/git/">
@@ -25,10 +45,7 @@ Commit # git add . git commit -m &#34;commit message&#34; These 2 commands above
 <link rel="canonical" href="https://dangpham112000.github.io/docs/tips/git/">
 <link rel="stylesheet" href="/book.min.0ebfa1e81a7b241abaa8a9626be8325416e98d14702ea33197aea691fec27e9d.css" integrity="sha256-Dr&#43;h6Bp7JBq6qKlia&#43;gyVBbpjRRwLqMxl66mkf7Cfp0=" crossorigin="anonymous">
   <script defer src="/fuse.min.js"></script>
-  <script defer src="/en.search.min.b553da730f3dd4faddfc319c1da12087f3add3fec328f40be9beadf1b3c1e91c.js" integrity="sha256-tVPacw891Prd/DGcHaEgh/Ot0/7DKPQL6b6t8bPB6Rw=" crossorigin="anonymous"></script>
-
-  
-
+  <script defer src="/en.search.min.a09ed1ef72b48bcda219399e91ab7acbaa04d425e68d97bfdb837e7ed078782c.js" integrity="sha256-oJ7R73K0i82iGTmekat6y6oE1CXmjZe/24N&#43;ftB4eCw=" crossorigin="anonymous"></script>
 <!--
 Made with Book Theme
 https://github.com/alex-shpak/hugo-book
@@ -255,6 +272,32 @@ https://github.com/alex-shpak/hugo-book
   
 
   
+    <a href="/docs/research/encryption/" class="">Encryption - Draft</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/research/authentication/" class="">Authentication - Draft</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
     <a href="/docs/research/event_loop/" class="">Event loop - Draft</a>
   
 
@@ -321,19 +364,6 @@ https://github.com/alex-shpak/hugo-book
 
   
     <a href="/docs/research/social_media/" class="">Social Media - Draft</a>
-  
-
-        </li>
-      
-    
-      
-        <li>
-          
-  
-  
-
-  
-    <a href="/docs/research/encryption/" class="">Encryption - Draft</a>
   
 
         </li>
@@ -537,12 +567,28 @@ https://github.com/alex-shpak/hugo-book
         <li><a href="#relocate-branch-rebase-1">Relocate branch: rebase</a></li>
       </ul>
     </li>
+    <li><a href="#remote-origin">Remote origin</a>
+      <ul>
+        <li><a href="#check-remote-origin">Check remote origin</a></li>
+        <li><a href="#change-remote-origin">Change remote origin</a></li>
+        <li><a href="#remove-remote-origin">Remove remote origin</a></li>
+      </ul>
+    </li>
     <li><a href="#log-pretty">Log pretty</a></li>
     <li><a href="#config">Config</a>
       <ul>
         <li><a href="#show-current-global-credential">Show current global credential</a></li>
         <li><a href="#configure-local-repos-credential">Configure local repo’s credential</a></li>
         <li><a href="#switch-git-user-tool">Switch git user tool</a></li>
+      </ul>
+    </li>
+    <li><a href="#connecting-to-github-using-ssh-keys-ubuntu">Connecting to GitHub using SSH keys (Ubuntu)</a>
+      <ul>
+        <li><a href="#checking-for-existing-ssh-keys">Checking for existing SSH keys</a></li>
+        <li><a href="#generating-a-new-ssh-key">Generating a new SSH key</a></li>
+        <li><a href="#adding-your-ssh-key-to-the-ssh-agent">Adding your SSH key to the ssh-agent</a></li>
+        <li><a href="#adding-a-new-ssh-key-to-account">Adding a new SSH key to account</a></li>
+        <li><a href="#testing-your-ssh-connection">Testing your SSH connection</a></li>
       </ul>
     </li>
   </ul>
@@ -710,22 +756,22 @@ https://github.com/alex-shpak/hugo-book
 </ol>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>git push -f
 </span></span></code></pre></div><table>
-<thead>
-<tr>
-<th>before</th>
-<th>after</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><img src="/tips/git/messy_branch.png" alt="messy_branch" /></td>
-<td><img src="/tips/git/rebased_branch.png" alt="rebased_branch" /></td>
-</tr>
-<tr>
-<td><img src="/tips/git/messy_commits.png" alt="messy_commits" /></td>
-<td><img src="/tips/git/rebased_commits.png" alt="rebased_commits" /></td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th>before</th>
+          <th>after</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><img src="/tips/git/messy_branch.png" alt="messy_branch" /></td>
+          <td><img src="/tips/git/rebased_branch.png" alt="rebased_branch" /></td>
+      </tr>
+      <tr>
+          <td><img src="/tips/git/messy_commits.png" alt="messy_commits" /></td>
+          <td><img src="/tips/git/rebased_commits.png" alt="rebased_commits" /></td>
+      </tr>
+  </tbody>
 </table>
 <p><ins>Note</ins>: the present commit will have all changes from 3 previous commits</p>
 <h2 id="delete-all-local-branches-except-main-branch">
@@ -785,6 +831,25 @@ https://github.com/alex-shpak/hugo-book
 </blockquote>
 
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>git push -f
+</span></span></code></pre></div><h2 id="remote-origin">
+  Remote origin
+  <a class="anchor" href="#remote-origin">#</a>
+</h2>
+<h3 id="check-remote-origin">
+  Check remote origin
+  <a class="anchor" href="#check-remote-origin">#</a>
+</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>git remote -v
+</span></span></code></pre></div><h3 id="change-remote-origin">
+  Change remote origin
+  <a class="anchor" href="#change-remote-origin">#</a>
+</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>git remote set-url origin git://new.url.here
+</span></span></code></pre></div><h3 id="remove-remote-origin">
+  Remove remote origin
+  <a class="anchor" href="#remove-remote-origin">#</a>
+</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>git remote remove origin
 </span></span></code></pre></div><h2 id="log-pretty">
   Log pretty
   <a class="anchor" href="#log-pretty">#</a>
@@ -813,6 +878,82 @@ https://github.com/alex-shpak/hugo-book
   <a class="anchor" href="#switch-git-user-tool">#</a>
 </h3>
 <p><a href="https://github.com/geongeorge/Git-User-Switch">https://github.com/geongeorge/Git-User-Switch</a></p>
+<h2 id="connecting-to-github-using-ssh-keys-ubuntu">
+  Connecting to GitHub using SSH keys (Ubuntu)
+  <a class="anchor" href="#connecting-to-github-using-ssh-keys-ubuntu">#</a>
+</h2>
+<h3 id="checking-for-existing-ssh-keys">
+  Checking for existing SSH keys
+  <a class="anchor" href="#checking-for-existing-ssh-keys">#</a>
+</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>ls -al ~/.ssh
+</span></span></code></pre></div><p>Check the existing of these files:</p>
+<ul>
+<li>id_rsa.pub</li>
+<li>id_ecdsa.pub</li>
+<li>id_ed25519.pub</li>
+</ul>
+<h3 id="generating-a-new-ssh-key">
+  Generating a new SSH key
+  <a class="anchor" href="#generating-a-new-ssh-key">#</a>
+</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>ssh-keygen -t ed25519 -C <span style="color:#e6db74">&#34;dangpham112000@gmail.com&#34;</span>
+</span></span></code></pre></div><p>You can skip all the prompted by Enter</p>
+<h3 id="adding-your-ssh-key-to-the-ssh-agent">
+  Adding your SSH key to the ssh-agent
+  <a class="anchor" href="#adding-your-ssh-key-to-the-ssh-agent">#</a>
+</h3>
+<ol>
+<li>
+<p>Start the ssh-agent in the background</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>$ eval <span style="color:#e6db74">&#34;</span><span style="color:#66d9ef">$(</span>ssh-agent -s<span style="color:#66d9ef">)</span><span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span>&gt; Agent pid <span style="color:#ae81ff">59566</span>
+</span></span></code></pre></div></li>
+<li>
+<p>Add your SSH private key to the ssh-agent</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>ssh-add ~/.ssh/id_ed25519
+</span></span></code></pre></div></li>
+</ol>
+<h3 id="adding-a-new-ssh-key-to-account">
+  Adding a new SSH key to account
+  <a class="anchor" href="#adding-a-new-ssh-key-to-account">#</a>
+</h3>
+<ol>
+<li>
+<p>Copy the SSH public key to your clipboard</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>cat ~/.ssh/id_ed25519.pub
+</span></span></code></pre></div><p>Then select and copy the contents of the <code>id_ed25519.pub</code> file displayed in the terminal to your clipboard</p>
+</li>
+<li>
+<p>In the upper-right corner of any page on GitHub, click your profile photo, then click <strong>Settings</strong></p>
+</li>
+<li>
+<p>In the &ldquo;Access&rdquo; section of the sidebar, click <strong>SSH and GPG keys</strong></p>
+</li>
+<li>
+<p>Click <strong>New SSH key</strong> or <strong>Add SSH key</strong></p>
+</li>
+<li>
+<p>In the &ldquo;Title&rdquo; field, add a descriptive label for the new key.
+<em>For example</em>, if you&rsquo;re using a personal laptop, you might call this key &ldquo;Personal laptop&rdquo;</p>
+</li>
+<li>
+<p>Select the type of key, either authentication or signing</p>
+</li>
+<li>
+<p>In the &ldquo;Key&rdquo; field, paste your public key</p>
+</li>
+<li>
+<p>Click <strong>Add SSH key</strong></p>
+</li>
+</ol>
+<h3 id="testing-your-ssh-connection">
+  Testing your SSH connection
+  <a class="anchor" href="#testing-your-ssh-connection">#</a>
+</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>ssh -T git@github.com
+</span></span></code></pre></div><p>You may see a message like this:
+<code>Hi DangPham112000! You've successfully authenticated, but GitHub does not provide shell access.</code></p>
 </article>
  
       
@@ -894,12 +1035,28 @@ https://github.com/alex-shpak/hugo-book
         <li><a href="#relocate-branch-rebase-1">Relocate branch: rebase</a></li>
       </ul>
     </li>
+    <li><a href="#remote-origin">Remote origin</a>
+      <ul>
+        <li><a href="#check-remote-origin">Check remote origin</a></li>
+        <li><a href="#change-remote-origin">Change remote origin</a></li>
+        <li><a href="#remove-remote-origin">Remove remote origin</a></li>
+      </ul>
+    </li>
     <li><a href="#log-pretty">Log pretty</a></li>
     <li><a href="#config">Config</a>
       <ul>
         <li><a href="#show-current-global-credential">Show current global credential</a></li>
         <li><a href="#configure-local-repos-credential">Configure local repo’s credential</a></li>
         <li><a href="#switch-git-user-tool">Switch git user tool</a></li>
+      </ul>
+    </li>
+    <li><a href="#connecting-to-github-using-ssh-keys-ubuntu">Connecting to GitHub using SSH keys (Ubuntu)</a>
+      <ul>
+        <li><a href="#checking-for-existing-ssh-keys">Checking for existing SSH keys</a></li>
+        <li><a href="#generating-a-new-ssh-key">Generating a new SSH key</a></li>
+        <li><a href="#adding-your-ssh-key-to-the-ssh-agent">Adding your SSH key to the ssh-agent</a></li>
+        <li><a href="#adding-a-new-ssh-key-to-account">Adding a new SSH key to account</a></li>
+        <li><a href="#testing-your-ssh-connection">Testing your SSH connection</a></li>
       </ul>
     </li>
   </ul>

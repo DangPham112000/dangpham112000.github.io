@@ -3,15 +3,58 @@
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Websocket # Bidirectional communications on the web
-Example code: # // server.js const http = require(&#34;http&#34;); const WebSocketServer = require(&#34;websocket&#34;).server; let connections = []; //create a raw http server (this will help us create the TCP which will then pass to the websocket to do the job) const httpserver = http.createServer(); //pass the httpserver object to the WebSocketServer library to do all the job, this class will override the req/res const websocket = new WebSocketServer({ httpServer: httpserver }); //listen on the TCP socket httpserver.">
+<meta name="description" content="
+  Websocket
+  #
+
+Bidirectional communications on the web
+
+  Example code:
+  #
+
+// server.js
+const http = require(&#34;http&#34;);
+const WebSocketServer = require(&#34;websocket&#34;).server;
+let connections = [];
+
+//create a raw http server (this will help us create the TCP which will then pass to the websocket to do the job)
+const httpserver = http.createServer();
+
+//pass the httpserver object to the WebSocketServer library to do all the job, this class will override the req/res
+const websocket = new WebSocketServer({ httpServer: httpserver });
+//listen on the TCP socket
+httpserver.listen(8080, () =&gt;
+  console.log(&#34;My server is listening on port 8080&#34;)
+);
+
+//when a legit websocket request comes listen to it and get the connection .. once you get a connection that&#39;s it!
+websocket.on(&#34;request&#34;, (request) =&gt; {
+  const connection = request.accept(null, request.origin);
+  connection.on(&#34;message&#34;, (message) =&gt; {
+    //someone just sent a message tell everybody
+    connections.forEach((c) =&gt;
+      c.send(`User${connection.socket.remotePort} says: ${message.utf8Data}`)
+    );
+  });
+
+  connections.push(connection);
+  //someone just connected, tell everybody
+  connections.forEach((c) =&gt;
+    c.send(`User${connection.socket.remotePort} just connected.`)
+  );
+});
+// client.js
+let ws = new WebSocket(&#34;ws://localhost:8080&#34;);
+ws.onmessage = (message) =&gt; console.log(`Received: ${message.data}`);
+ws.send(&#34;Hello! I&#39;m client&#34;);
+">
 <meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff">
 <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#343a40">
 <meta name="color-scheme" content="light dark"><meta property="og:url" content="https://dangpham112000.github.io/docs/research/be_protocol/websocket/">
   <meta property="og:site_name" content="The Engineer Blogs">
   <meta property="og:title" content="Websocket - Draft">
   <meta property="og:description" content="Websocket # Bidirectional communications on the web
-Example code: # // server.js const http = require(&#34;http&#34;); const WebSocketServer = require(&#34;websocket&#34;).server; let connections = []; //create a raw http server (this will help us create the TCP which will then pass to the websocket to do the job) const httpserver = http.createServer(); //pass the httpserver object to the WebSocketServer library to do all the job, this class will override the req/res const websocket = new WebSocketServer({ httpServer: httpserver }); //listen on the TCP socket httpserver.">
+Example code: # // server.js const http = require(&#34;http&#34;); const WebSocketServer = require(&#34;websocket&#34;).server; let connections = []; //create a raw http server (this will help us create the TCP which will then pass to the websocket to do the job) const httpserver = http.createServer(); //pass the httpserver object to the WebSocketServer library to do all the job, this class will override the req/res const websocket = new WebSocketServer({ httpServer: httpserver }); //listen on the TCP socket httpserver.listen(8080, () =&gt; console.log(&#34;My server is listening on port 8080&#34;) ); //when a legit websocket request comes listen to it and get the connection .. once you get a connection that&#39;s it! websocket.on(&#34;request&#34;, (request) =&gt; { const connection = request.accept(null, request.origin); connection.on(&#34;message&#34;, (message) =&gt; { //someone just sent a message tell everybody connections.forEach((c) =&gt; c.send(`User${connection.socket.remotePort} says: ${message.utf8Data}`) ); }); connections.push(connection); //someone just connected, tell everybody connections.forEach((c) =&gt; c.send(`User${connection.socket.remotePort} just connected.`) ); }); // client.js let ws = new WebSocket(&#34;ws://localhost:8080&#34;); ws.onmessage = (message) =&gt; console.log(`Received: ${message.data}`); ws.send(&#34;Hello! I&#39;m client&#34;);">
   <meta property="og:locale" content="en_us">
   <meta property="og:type" content="article">
     <meta property="article:section" content="docs">
@@ -23,10 +66,7 @@ Example code: # // server.js const http = require(&#34;http&#34;); const WebSock
 <link rel="canonical" href="https://dangpham112000.github.io/docs/research/be_protocol/websocket/">
 <link rel="stylesheet" href="/book.min.0ebfa1e81a7b241abaa8a9626be8325416e98d14702ea33197aea691fec27e9d.css" integrity="sha256-Dr&#43;h6Bp7JBq6qKlia&#43;gyVBbpjRRwLqMxl66mkf7Cfp0=" crossorigin="anonymous">
   <script defer src="/fuse.min.js"></script>
-  <script defer src="/en.search.min.b553da730f3dd4faddfc319c1da12087f3add3fec328f40be9beadf1b3c1e91c.js" integrity="sha256-tVPacw891Prd/DGcHaEgh/Ot0/7DKPQL6b6t8bPB6Rw=" crossorigin="anonymous"></script>
-
-  
-
+  <script defer src="/en.search.min.a09ed1ef72b48bcda219399e91ab7acbaa04d425e68d97bfdb837e7ed078782c.js" integrity="sha256-oJ7R73K0i82iGTmekat6y6oE1CXmjZe/24N&#43;ftB4eCw=" crossorigin="anonymous"></script>
 <!--
 Made with Book Theme
 https://github.com/alex-shpak/hugo-book
@@ -253,6 +293,32 @@ https://github.com/alex-shpak/hugo-book
   
 
   
+    <a href="/docs/research/encryption/" class="">Encryption - Draft</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/research/authentication/" class="">Authentication - Draft</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
     <a href="/docs/research/event_loop/" class="">Event loop - Draft</a>
   
 
@@ -319,19 +385,6 @@ https://github.com/alex-shpak/hugo-book
 
   
     <a href="/docs/research/social_media/" class="">Social Media - Draft</a>
-  
-
-        </li>
-      
-    
-      
-        <li>
-          
-  
-  
-
-  
-    <a href="/docs/research/encryption/" class="">Encryption - Draft</a>
   
 
         </li>

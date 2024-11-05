@@ -3,15 +3,27 @@
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Chrome Architecture # Prerequisites # Read process vs thread first if you don&rsquo;t have any process and thread concept in your mind
-Browser Architecture # When you start an application, a process is created. The program might create thread(s) to help it do work, but that&rsquo;s optional. The Operating System gives the process a &ldquo;slab&rdquo; of memory to work with and all application state is kept in that private memory space.">
+<meta name="description" content="
+  Chrome Architecture
+  #
+
+
+  Prerequisites
+  #
+
+Read process vs thread first if you don&rsquo;t have any process and thread concept in your mind
+
+  Browser Architecture
+  #
+
+When you start an application, a process is created. The program might create thread(s) to help it do work, but that&rsquo;s optional. The Operating System gives the process a &ldquo;slab&rdquo; of memory to work with and all application state is kept in that private memory space. When you close the application, the process also goes away and the Operating System frees up the memory">
 <meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff">
 <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#343a40">
 <meta name="color-scheme" content="light dark"><meta property="og:url" content="https://dangpham112000.github.io/docs/research/chrome_architecture/">
   <meta property="og:site_name" content="The Engineer Blogs">
   <meta property="og:title" content="Chrome Architecture">
   <meta property="og:description" content="Chrome Architecture # Prerequisites # Read process vs thread first if you don’t have any process and thread concept in your mind
-Browser Architecture # When you start an application, a process is created. The program might create thread(s) to help it do work, but that’s optional. The Operating System gives the process a “slab” of memory to work with and all application state is kept in that private memory space.">
+Browser Architecture # When you start an application, a process is created. The program might create thread(s) to help it do work, but that’s optional. The Operating System gives the process a “slab” of memory to work with and all application state is kept in that private memory space. When you close the application, the process also goes away and the Operating System frees up the memory">
   <meta property="og:locale" content="en_us">
   <meta property="og:type" content="article">
     <meta property="article:section" content="docs">
@@ -23,10 +35,7 @@ Browser Architecture # When you start an application, a process is created. The 
 <link rel="canonical" href="https://dangpham112000.github.io/docs/research/chrome_architecture/">
 <link rel="stylesheet" href="/book.min.0ebfa1e81a7b241abaa8a9626be8325416e98d14702ea33197aea691fec27e9d.css" integrity="sha256-Dr&#43;h6Bp7JBq6qKlia&#43;gyVBbpjRRwLqMxl66mkf7Cfp0=" crossorigin="anonymous">
   <script defer src="/fuse.min.js"></script>
-  <script defer src="/en.search.min.b553da730f3dd4faddfc319c1da12087f3add3fec328f40be9beadf1b3c1e91c.js" integrity="sha256-tVPacw891Prd/DGcHaEgh/Ot0/7DKPQL6b6t8bPB6Rw=" crossorigin="anonymous"></script>
-
-  
-
+  <script defer src="/en.search.min.a09ed1ef72b48bcda219399e91ab7acbaa04d425e68d97bfdb837e7ed078782c.js" integrity="sha256-oJ7R73K0i82iGTmekat6y6oE1CXmjZe/24N&#43;ftB4eCw=" crossorigin="anonymous"></script>
 <!--
 Made with Book Theme
 https://github.com/alex-shpak/hugo-book
@@ -253,6 +262,32 @@ https://github.com/alex-shpak/hugo-book
   
 
   
+    <a href="/docs/research/encryption/" class="">Encryption - Draft</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/research/authentication/" class="">Authentication - Draft</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
     <a href="/docs/research/event_loop/" class="">Event loop - Draft</a>
   
 
@@ -319,19 +354,6 @@ https://github.com/alex-shpak/hugo-book
 
   
     <a href="/docs/research/social_media/" class="">Social Media - Draft</a>
-  
-
-        </li>
-      
-    
-      
-        <li>
-          
-  
-  
-
-  
-    <a href="/docs/research/encryption/" class="">Encryption - Draft</a>
   
 
         </li>
@@ -546,30 +568,30 @@ https://github.com/alex-shpak/hugo-book
 </blockquote>
 
 <table>
-<thead>
-<tr>
-<th>Process</th>
-<th>What it controls?</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>Browser</strong></td>
-<td>Controls &ldquo;chrome&rdquo; part of the application including address bar, bookmarks, back and forward buttons. Also handles the invisible, privileged parts of a web browser such as network requests and file access</td>
-</tr>
-<tr>
-<td><strong>Renderer</strong></td>
-<td>Controls anything inside of the tab where a website is displayed</td>
-</tr>
-<tr>
-<td>Plugin</td>
-<td>Controls any plugins used by the website, for example, flash</td>
-</tr>
-<tr>
-<td>GPU</td>
-<td>Handles GPU tasks in isolation from other processes. It is separated into different process because GPUs handles requests from multiple apps and draw them in the same surface</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th>Process</th>
+          <th>What it controls?</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><strong>Browser</strong></td>
+          <td>Controls &ldquo;chrome&rdquo; part of the application including address bar, bookmarks, back and forward buttons. Also handles the invisible, privileged parts of a web browser such as network requests and file access</td>
+      </tr>
+      <tr>
+          <td><strong>Renderer</strong></td>
+          <td>Controls anything inside of the tab where a website is displayed</td>
+      </tr>
+      <tr>
+          <td>Plugin</td>
+          <td>Controls any plugins used by the website, for example, flash</td>
+      </tr>
+      <tr>
+          <td>GPU</td>
+          <td>Handles GPU tasks in isolation from other processes. It is separated into different process because GPUs handles requests from multiple apps and draw them in the same surface</td>
+      </tr>
+  </tbody>
 </table>
 <p>There are even more processes like the Extension process and utility processes. If you want to see how many processes are running in your Chrome, click the options menu icon more_vert at the top right corner, select More Tools, then select Task Manager. This opens up a window with a list of processes that are currently running and how much CPU/Memory they are using.</p>
 <p><img src="/research/chrome_architecture/processes.png" alt="processes" /></p>
@@ -580,26 +602,26 @@ https://github.com/alex-shpak/hugo-book
   <a class="anchor" href="#browser-process">#</a>
 </h2>
 <table>
-<thead>
-<tr>
-<th>Thread</th>
-<th>Mission</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>UI</td>
-<td>Draws buttons and input fields of the browser</td>
-</tr>
-<tr>
-<td>Network</td>
-<td>Deals with network stack to receive data from the internet</td>
-</tr>
-<tr>
-<td>Storage</td>
-<td>Controls access to the files and more</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th>Thread</th>
+          <th>Mission</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>UI</td>
+          <td>Draws buttons and input fields of the browser</td>
+      </tr>
+      <tr>
+          <td>Network</td>
+          <td>Deals with network stack to receive data from the internet</td>
+      </tr>
+      <tr>
+          <td>Storage</td>
+          <td>Controls access to the files and more</td>
+      </tr>
+  </tbody>
 </table>
 <p><img src="/research/chrome_architecture/browser_process.png" alt="browser_process" /></p>
 <h2 id="renderer-process">
@@ -608,26 +630,26 @@ https://github.com/alex-shpak/hugo-book
 </h2>
 <p>The renderer process is responsible for everything that happens inside of a tab</p>
 <table>
-<thead>
-<tr>
-<th>Thread</th>
-<th>Mission</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Main</td>
-<td>The main thread handles most of the code you send to the user</td>
-</tr>
-<tr>
-<td>Worker</td>
-<td>Sometimes parts of your JavaScript is handled by worker threads if you use a web worker or a service worker</td>
-</tr>
-<tr>
-<td>Compositor and Raster</td>
-<td>Compositor and raster threads are also run inside of a renderer processes to render a page efficiently and smoothly</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th>Thread</th>
+          <th>Mission</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>Main</td>
+          <td>The main thread handles most of the code you send to the user</td>
+      </tr>
+      <tr>
+          <td>Worker</td>
+          <td>Sometimes parts of your JavaScript is handled by worker threads if you use a web worker or a service worker</td>
+      </tr>
+      <tr>
+          <td>Compositor and Raster</td>
+          <td>Compositor and raster threads are also run inside of a renderer processes to render a page efficiently and smoothly</td>
+      </tr>
+  </tbody>
 </table>
 <p>The renderer process&rsquo;s core job is to turn HTML, CSS, and JavaScript into a web page that the user can interact with</p>
 <p><img src="/research/chrome_architecture/renderer_process.png" alt="renderer_process" /></p>
@@ -637,35 +659,35 @@ https://github.com/alex-shpak/hugo-book
 </h3>
 <p><img src="/research/chrome_architecture/renderer_process_flow.png" alt="renderer_process_flow" /></p>
 <table>
-<thead>
-<tr>
-<th>Pharse</th>
-<th>Job</th>
-<th>Visual</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Parsing</td>
-<td>When the renderer process starts to receive HTML data, the main thread begins to parse the text string (HTML) and turn it into a <strong>D</strong>ocument <strong>O</strong>bject <strong>M</strong>odel (<strong>DOM</strong>)</td>
-<td><img src="/research/chrome_architecture/parsing.png" alt="parsing" /></td>
-</tr>
-<tr>
-<td>Style calculation</td>
-<td>The main thread parses CSS and determines the computed style for each DOM node. This is information about what kind of style is applied to each element based on CSS selectors</td>
-<td><img src="/research/chrome_architecture/style_calculation.png" alt="style_calculation" /></td>
-</tr>
-<tr>
-<td>Layout</td>
-<td>The layout is a process to find the geometry of elements. The main thread walks through the DOM and computed styles and creates the layout tree which has information like x y coordinates and bounding box sizes. Layout tree may be similar structure to the DOM tree, but it only contains information related to what&rsquo;s visible on the page</td>
-<td><img src="/research/chrome_architecture/layout.png" alt="layout" /></td>
-</tr>
-<tr>
-<td>Paint</td>
-<td>The main thread walks the layout tree to create paint records. Paint record is a note of painting process like &ldquo;background first, then text, then rectangle&rdquo;</td>
-<td><img src="/research/chrome_architecture/paint.png" alt="paint" /></td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th>Pharse</th>
+          <th>Job</th>
+          <th>Visual</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>Parsing</td>
+          <td>When the renderer process starts to receive HTML data, the main thread begins to parse the text string (HTML) and turn it into a <strong>D</strong>ocument <strong>O</strong>bject <strong>M</strong>odel (<strong>DOM</strong>)</td>
+          <td><img src="/research/chrome_architecture/parsing.png" alt="parsing" /></td>
+      </tr>
+      <tr>
+          <td>Style calculation</td>
+          <td>The main thread parses CSS and determines the computed style for each DOM node. This is information about what kind of style is applied to each element based on CSS selectors</td>
+          <td><img src="/research/chrome_architecture/style_calculation.png" alt="style_calculation" /></td>
+      </tr>
+      <tr>
+          <td>Layout</td>
+          <td>The layout is a process to find the geometry of elements. The main thread walks through the DOM and computed styles and creates the layout tree which has information like x y coordinates and bounding box sizes. Layout tree may be similar structure to the DOM tree, but it only contains information related to what&rsquo;s visible on the page</td>
+          <td><img src="/research/chrome_architecture/layout.png" alt="layout" /></td>
+      </tr>
+      <tr>
+          <td>Paint</td>
+          <td>The main thread walks the layout tree to create paint records. Paint record is a note of painting process like &ldquo;background first, then text, then rectangle&rdquo;</td>
+          <td><img src="/research/chrome_architecture/paint.png" alt="paint" /></td>
+      </tr>
+  </tbody>
 </table>
 <p>A website usually uses external resources like images, CSS, and JavaScript. Those files need to be loaded from network or cache. The main thread could request them one by one as they find them while parsing to build a DOM, but in order to speed up, &ldquo;preload scanner&rdquo; is run concurrently.</p>
 <p>When the HTML parser finds a <code>&lt;script&gt;</code> tag, <strong>it pauses the parsing of the HTML document</strong> and has to load, parse, and execute the JavaScript code<br>

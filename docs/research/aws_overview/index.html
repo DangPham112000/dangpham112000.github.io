@@ -3,13 +3,81 @@
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="AWS Overview # Slide # Types of Cloud Computing # EC2 - Elastic Compute Cloud # EC2 = Infrastructure as a Service (IaaS) On-Demand Instances – short workload, predictable pricing, pay by second Has the highest cost Recommended for short-term and un-interrupted workloads, where you can&rsquo;t predict how the application will behave Reserved (1 &amp; 3 years) Reserved Instances – long workloads Recommended for steady-state usage applications (think database) Convertible Reserved Instances – long workloads with flexible instances Savings Plans (1 &amp; 3 years) – commitment to an amount of usage, long workload Spot Instances – short workloads, cheap, can lose instances (less reliable) The MOST cost-efficient Dedicated Hosts – book an entire physical server, control instance placement The most expensive option Dedicated Instances – no other customers will share your hardware No control over instance placement Capacity Reservations – reserve capacity in a specific AZ for any duration AMI - Amazon Machine Image # AMI are a customization of an EC2 instance AMI are built for a specific region (and can be copied across regions) You can launch EC2 instances from: A Public AMI: AWS provided Your own AMI: you make and maintain them yourself An AWS Marketplace AMI: an AMI someone else made (and potentially sells) EC2 Image Builder # Used to automate the creation of Virtual Machines or container images">
+<meta name="description" content="
+  AWS Overview
+  #
+
+
+  Slide
+  #
+
+
+  Types of Cloud Computing
+  #
+
+
+
+  EC2 - Elastic Compute Cloud
+  #
+
+
+EC2 = Infrastructure as a Service (IaaS)
+On-Demand Instances – short workload, predictable pricing, pay by second
+
+Has the highest cost
+Recommended for short-term and un-interrupted workloads, where you can&rsquo;t predict how the application will behave
+
+
+Reserved (1 &amp; 3 years)
+
+Reserved Instances – long workloads
+
+Recommended for steady-state usage applications (think database)
+
+
+Convertible Reserved Instances – long workloads with flexible instances
+
+
+Savings Plans (1 &amp; 3 years) – commitment to an amount of usage, long workload
+Spot Instances – short workloads, cheap, can lose instances (less reliable)
+
+The MOST cost-efficient
+
+
+Dedicated Hosts – book an entire physical server, control instance placement
+
+The most expensive option
+
+
+Dedicated Instances – no other customers will share your hardware
+
+No control over instance placement
+
+
+Capacity Reservations – reserve capacity in a specific AZ for any duration
+
+
+  AMI - Amazon Machine Image
+  #
+
+
+AMI are a customization of an EC2 instance
+AMI are built for a specific region (and can be copied across regions)
+You can launch EC2 instances from:
+
+A Public AMI: AWS provided
+Your own AMI: you make and maintain them yourself
+An AWS Marketplace AMI: an AMI someone else made (and potentially sells)
+
+
+
+">
 <meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff">
 <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#343a40">
 <meta name="color-scheme" content="light dark"><meta property="og:url" content="https://dangpham112000.github.io/docs/research/aws_overview/">
   <meta property="og:site_name" content="The Engineer Blogs">
   <meta property="og:title" content="AWS Overview">
-  <meta property="og:description" content="AWS Overview # Slide # Types of Cloud Computing # EC2 - Elastic Compute Cloud # EC2 = Infrastructure as a Service (IaaS) On-Demand Instances – short workload, predictable pricing, pay by second Has the highest cost Recommended for short-term and un-interrupted workloads, where you can’t predict how the application will behave Reserved (1 &amp; 3 years) Reserved Instances – long workloads Recommended for steady-state usage applications (think database) Convertible Reserved Instances – long workloads with flexible instances Savings Plans (1 &amp; 3 years) – commitment to an amount of usage, long workload Spot Instances – short workloads, cheap, can lose instances (less reliable) The MOST cost-efficient Dedicated Hosts – book an entire physical server, control instance placement The most expensive option Dedicated Instances – no other customers will share your hardware No control over instance placement Capacity Reservations – reserve capacity in a specific AZ for any duration AMI - Amazon Machine Image # AMI are a customization of an EC2 instance AMI are built for a specific region (and can be copied across regions) You can launch EC2 instances from: A Public AMI: AWS provided Your own AMI: you make and maintain them yourself An AWS Marketplace AMI: an AMI someone else made (and potentially sells) EC2 Image Builder # Used to automate the creation of Virtual Machines or container images">
+  <meta property="og:description" content="AWS Overview # Slide # Types of Cloud Computing # EC2 - Elastic Compute Cloud # EC2 = Infrastructure as a Service (IaaS) On-Demand Instances – short workload, predictable pricing, pay by second Has the highest cost Recommended for short-term and un-interrupted workloads, where you can’t predict how the application will behave Reserved (1 &amp; 3 years) Reserved Instances – long workloads Recommended for steady-state usage applications (think database) Convertible Reserved Instances – long workloads with flexible instances Savings Plans (1 &amp; 3 years) – commitment to an amount of usage, long workload Spot Instances – short workloads, cheap, can lose instances (less reliable) The MOST cost-efficient Dedicated Hosts – book an entire physical server, control instance placement The most expensive option Dedicated Instances – no other customers will share your hardware No control over instance placement Capacity Reservations – reserve capacity in a specific AZ for any duration AMI - Amazon Machine Image # AMI are a customization of an EC2 instance AMI are built for a specific region (and can be copied across regions) You can launch EC2 instances from: A Public AMI: AWS provided Your own AMI: you make and maintain them yourself An AWS Marketplace AMI: an AMI someone else made (and potentially sells)">
   <meta property="og:locale" content="en_us">
   <meta property="og:type" content="article">
     <meta property="article:section" content="docs">
@@ -21,10 +89,7 @@
 <link rel="canonical" href="https://dangpham112000.github.io/docs/research/aws_overview/">
 <link rel="stylesheet" href="/book.min.0ebfa1e81a7b241abaa8a9626be8325416e98d14702ea33197aea691fec27e9d.css" integrity="sha256-Dr&#43;h6Bp7JBq6qKlia&#43;gyVBbpjRRwLqMxl66mkf7Cfp0=" crossorigin="anonymous">
   <script defer src="/fuse.min.js"></script>
-  <script defer src="/en.search.min.b553da730f3dd4faddfc319c1da12087f3add3fec328f40be9beadf1b3c1e91c.js" integrity="sha256-tVPacw891Prd/DGcHaEgh/Ot0/7DKPQL6b6t8bPB6Rw=" crossorigin="anonymous"></script>
-
-  
-
+  <script defer src="/en.search.min.a09ed1ef72b48bcda219399e91ab7acbaa04d425e68d97bfdb837e7ed078782c.js" integrity="sha256-oJ7R73K0i82iGTmekat6y6oE1CXmjZe/24N&#43;ftB4eCw=" crossorigin="anonymous"></script>
 <!--
 Made with Book Theme
 https://github.com/alex-shpak/hugo-book
@@ -251,6 +316,32 @@ https://github.com/alex-shpak/hugo-book
   
 
   
+    <a href="/docs/research/encryption/" class="">Encryption - Draft</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/research/authentication/" class="">Authentication - Draft</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
     <a href="/docs/research/event_loop/" class="">Event loop - Draft</a>
   
 
@@ -317,19 +408,6 @@ https://github.com/alex-shpak/hugo-book
 
   
     <a href="/docs/research/social_media/" class="">Social Media - Draft</a>
-  
-
-        </li>
-      
-    
-      
-        <li>
-          
-  
-  
-
-  
-    <a href="/docs/research/encryption/" class="">Encryption - Draft</a>
   
 
         </li>

@@ -3,13 +3,48 @@
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Scale # Monolith architecture # The server in itself is capable and responsible for all the tasks that have to be performed and can perform every step needed to perform a function Tasks: Authorization, Presentation, Database, Business Server side rendering (SSR) # Splitting server # Database splitting # Assume your app have a stable traffic Your data is not maintain steady, it always grows up. So database is the first thing we need to splitting out from our server and be standalone For later you will need to upgrade your DB (whatever scale out or scale up) Client splitting &amp;&amp; Client side rendering (CSR) # Example Flow:">
+<meta name="description" content="
+  Scale
+  #
+
+
+  Monolith architecture
+  #
+
+
+The server in itself is capable and responsible for all the tasks that have to be performed and can perform every step needed to perform a function
+Tasks: Authorization, Presentation, Database, Business
+
+
+  Server side rendering (SSR)
+  #
+
+
+
+  Splitting server
+  #
+
+
+  Database splitting
+  #
+
+
+
+Assume your app have a stable traffic
+Your data is not maintain steady, it always grows up. So database is the first thing we need to splitting out from our server and be standalone
+For later you will need to upgrade your DB (whatever scale out or scale up)
+
+
+  Client splitting &amp;&amp; Client side rendering (CSR)
+  #
+
+">
 <meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff">
 <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#343a40">
 <meta name="color-scheme" content="light dark"><meta property="og:url" content="https://dangpham112000.github.io/docs/research/scale/">
   <meta property="og:site_name" content="The Engineer Blogs">
   <meta property="og:title" content="Scale - draft">
-  <meta property="og:description" content="Scale # Monolith architecture # The server in itself is capable and responsible for all the tasks that have to be performed and can perform every step needed to perform a function Tasks: Authorization, Presentation, Database, Business Server side rendering (SSR) # Splitting server # Database splitting # Assume your app have a stable traffic Your data is not maintain steady, it always grows up. So database is the first thing we need to splitting out from our server and be standalone For later you will need to upgrade your DB (whatever scale out or scale up) Client splitting &amp;&amp; Client side rendering (CSR) # Example Flow:">
+  <meta property="og:description" content="Scale # Monolith architecture # The server in itself is capable and responsible for all the tasks that have to be performed and can perform every step needed to perform a function Tasks: Authorization, Presentation, Database, Business Server side rendering (SSR) # Splitting server # Database splitting # Assume your app have a stable traffic Your data is not maintain steady, it always grows up. So database is the first thing we need to splitting out from our server and be standalone For later you will need to upgrade your DB (whatever scale out or scale up) Client splitting &amp;&amp; Client side rendering (CSR) #">
   <meta property="og:locale" content="en_us">
   <meta property="og:type" content="article">
     <meta property="article:section" content="docs">
@@ -21,10 +56,7 @@
 <link rel="canonical" href="https://dangpham112000.github.io/docs/research/scale/">
 <link rel="stylesheet" href="/book.min.0ebfa1e81a7b241abaa8a9626be8325416e98d14702ea33197aea691fec27e9d.css" integrity="sha256-Dr&#43;h6Bp7JBq6qKlia&#43;gyVBbpjRRwLqMxl66mkf7Cfp0=" crossorigin="anonymous">
   <script defer src="/fuse.min.js"></script>
-  <script defer src="/en.search.min.b553da730f3dd4faddfc319c1da12087f3add3fec328f40be9beadf1b3c1e91c.js" integrity="sha256-tVPacw891Prd/DGcHaEgh/Ot0/7DKPQL6b6t8bPB6Rw=" crossorigin="anonymous"></script>
-
-  
-
+  <script defer src="/en.search.min.a09ed1ef72b48bcda219399e91ab7acbaa04d425e68d97bfdb837e7ed078782c.js" integrity="sha256-oJ7R73K0i82iGTmekat6y6oE1CXmjZe/24N&#43;ftB4eCw=" crossorigin="anonymous"></script>
 <!--
 Made with Book Theme
 https://github.com/alex-shpak/hugo-book
@@ -251,6 +283,32 @@ https://github.com/alex-shpak/hugo-book
   
 
   
+    <a href="/docs/research/encryption/" class="">Encryption - Draft</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/research/authentication/" class="">Authentication - Draft</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
     <a href="/docs/research/event_loop/" class="">Event loop - Draft</a>
   
 
@@ -317,19 +375,6 @@ https://github.com/alex-shpak/hugo-book
 
   
     <a href="/docs/research/social_media/" class="">Social Media - Draft</a>
-  
-
-        </li>
-      
-    
-      
-        <li>
-          
-  
-  
-
-  
-    <a href="/docs/research/encryption/" class="">Encryption - Draft</a>
   
 
         </li>
@@ -523,8 +568,13 @@ https://github.com/alex-shpak/hugo-book
         <li><a href="#combination">Combination</a></li>
       </ul>
     </li>
-    <li><a href="#caching">Caching</a></li>
-    <li><a href="#cdn">CDN</a></li>
+    <li><a href="#caching">Caching</a>
+      <ul>
+        <li><a href="#frontend">Frontend</a></li>
+        <li><a href="#backend">Backend</a></li>
+        <li><a href="#cdn---content-delivery-network">CDN - Content Delivery Network</a></li>
+      </ul>
+    </li>
     <li><a href="#data-center">Data center</a></li>
     <li><a href="#message-queue">Message queue</a></li>
     <li><a href="#reference">Reference</a></li>
@@ -733,10 +783,53 @@ https://github.com/alex-shpak/hugo-book
   Caching
   <a class="anchor" href="#caching">#</a>
 </h2>
-<h2 id="cdn">
-  CDN
-  <a class="anchor" href="#cdn">#</a>
-</h2>
+<p>Everything stored on frontend can be changed by the user so this is potential security vulnerability.</p>
+<p>This is the main difference between backend and frontend caching, backend caching can&rsquo;t be edited by the user.</p>
+<p><img src="/research/scale/caching.png" alt="caching" /></p>
+<h3 id="frontend">
+  Frontend
+  <a class="anchor" href="#frontend">#</a>
+</h3>
+<p>On the frontend, a browser or the client application caches data like a header image the first time your user accesses it. The next time they access that same content, the frontend loads the cached files to improve performance.</p>
+<h4 id="browser-caching">
+  Browser caching
+  <a class="anchor" href="#browser-caching">#</a>
+</h4>
+<p>Browser caching is a technique that allows you to store certain files, such as CSS, JavaScript, and images</p>
+<h3 id="backend">
+  Backend
+  <a class="anchor" href="#backend">#</a>
+</h3>
+<p>Backend development uses caching to reduce the load on the application server. What you store in the backend cache depends on your application itself. Cached content includes static pages, database query results, API responses, session data, images, and videos.</p>
+<h3 id="cdn---content-delivery-network">
+  CDN - Content Delivery Network
+  <a class="anchor" href="#cdn---content-delivery-network">#</a>
+</h3>
+<p>Implementing CDN caching requires integrating your website with a CDN provider. This involves configuring your DNS settings to point to the CDN’s servers and setting up caching rules to determine which files should be cached and for how long.</p>
+<h4 id="ramble-on-about-the-limit-of-the-speed-of-light">
+  Ramble on about the limit of the speed of light
+  <a class="anchor" href="#ramble-on-about-the-limit-of-the-speed-of-light">#</a>
+</h4>
+<p>Quantum entanglement promises to enable instant communication or data transmission in the future, regardless of distance.</p>
+<p>However, as of now, we use fiber optic cables, and the latency is significantly higher when transfering data from a distant location compared to a nearby one.</p>
+<p>A question is: <strong>Aren&rsquo;t data packets traveling at the speed of light?</strong> If they did, would the difference in latency between close and far locations be significant?</p>
+<p>For example:</p>
+<ul>
+<li>The distance from Ho Chi Minh City to New York is 14,275 km, or 14,275,000 meters.</li>
+<li>The speed of light is approximately 300,000,000 m/s, or 300,000 meters per millisecond (m/ms).</li>
+<li>The time for a data packet to travel one way would be around 47.583 ms, so a round trip (sending and receiving) would take about 95 ms.</li>
+</ul>
+<p>But this is in an ideal scenario where:</p>
+<ul>
+<li>The server takes 0 ms to process the request and sends the response instantly.</li>
+<li>The signal is traveling in a vacuum at the speed of light (300,000 m/ms).</li>
+</ul>
+<p>In reality:</p>
+<ul>
+<li>The speed of data transmission through fiber optic cables is lower—around 200,000 kilometers per second, or 200,000 m/ms.</li>
+<li>Even with a direct fiber optic connection between Ho Chi Minh City and a server in New York, the round trip would take at least 142.75 ms.</li>
+</ul>
+<p>So even with a direct connection to a New York server, I&rsquo;d still be playing League of Legends with a ping of over 140 ms!</p>
 <h2 id="data-center">
   Data center
   <a class="anchor" href="#data-center">#</a>
@@ -753,6 +846,7 @@ https://github.com/alex-shpak/hugo-book
 <li>Geeksforgeeks: <a href="https://www.geeksforgeeks.org/what-is-a-monolith-server/">What is a monolith server ?</a> (19 Nov, 2021)</li>
 <li>Cloudzero: <a href="https://www.cloudzero.com/blog/horizontal-vs-vertical-scaling/">Horizontal Vs. Vertical Scaling: How Do They Compare?</a> (May 05, 2023)</li>
 <li>Amazon: <a href="https://aws.amazon.com/what-is/load-balancing">What is Load Balancing?</a></li>
+<li>Linkedin: <a href="https://www.linkedin.com/pulse/internet-speed-light-viktor-turskyi-/">How Web is limited by the speed of light?</a> (May 16, 2022)</li>
 </ul>
 </article>
  
@@ -825,8 +919,13 @@ https://github.com/alex-shpak/hugo-book
         <li><a href="#combination">Combination</a></li>
       </ul>
     </li>
-    <li><a href="#caching">Caching</a></li>
-    <li><a href="#cdn">CDN</a></li>
+    <li><a href="#caching">Caching</a>
+      <ul>
+        <li><a href="#frontend">Frontend</a></li>
+        <li><a href="#backend">Backend</a></li>
+        <li><a href="#cdn---content-delivery-network">CDN - Content Delivery Network</a></li>
+      </ul>
+    </li>
     <li><a href="#data-center">Data center</a></li>
     <li><a href="#message-queue">Message queue</a></li>
     <li><a href="#reference">Reference</a></li>

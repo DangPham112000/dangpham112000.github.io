@@ -3,15 +3,56 @@
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="TCP - UDP # UDP # User Datagram Protocol
-Overview # Message Based Layer 4 protocol Ability to address processes in a host using ports Simple protocol to send and receive messages Prior communication not required (double edge sword) Stateless no knowledge is stored on the host 8 byte header Datagram Demo # // server.js import dgram from &#34;dgram&#34;; const socket = dgram.createSocket(&#34;udp4&#34;); socket.bind(5500, &#34;127.0.0.1&#34;); socket.on(&#34;message&#34;, (msg, info) =&gt; { console.">
+<meta name="description" content="
+  TCP - UDP
+  #
+
+
+  UDP
+  #
+
+User Datagram Protocol
+
+  Overview
+  #
+
+
+
+Message Based Layer 4 protocol
+Ability to address processes in a host using ports
+Simple protocol to send and receive messages
+Prior communication not required (double edge sword)
+Stateless no knowledge is stored on the host
+8 byte header Datagram
+
+
+  Demo
+  #
+
+// server.js
+import dgram from &#34;dgram&#34;;
+
+const socket = dgram.createSocket(&#34;udp4&#34;);
+socket.bind(5500, &#34;127.0.0.1&#34;);
+socket.on(&#34;message&#34;, (msg, info) =&gt; {
+  console.log(
+    `My server got a datagram ${msg}, from ${info.address}:${info.port}`
+  );
+});
+# client terminal
+nc -u 127.0.0.1 5500
+# client terminal
+Hi
+# client terminal
+I am Dang
+The result of the server log: (TBU)">
 <meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff">
 <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#343a40">
 <meta name="color-scheme" content="light dark"><meta property="og:url" content="https://dangpham112000.github.io/docs/research/be_protocol/tcp_udp/">
   <meta property="og:site_name" content="The Engineer Blogs">
   <meta property="og:title" content="TCP - UDP - Draft">
   <meta property="og:description" content="TCP - UDP # UDP # User Datagram Protocol
-Overview # Message Based Layer 4 protocol Ability to address processes in a host using ports Simple protocol to send and receive messages Prior communication not required (double edge sword) Stateless no knowledge is stored on the host 8 byte header Datagram Demo # // server.js import dgram from &#34;dgram&#34;; const socket = dgram.createSocket(&#34;udp4&#34;); socket.bind(5500, &#34;127.0.0.1&#34;); socket.on(&#34;message&#34;, (msg, info) =&gt; { console.">
+Overview # Message Based Layer 4 protocol Ability to address processes in a host using ports Simple protocol to send and receive messages Prior communication not required (double edge sword) Stateless no knowledge is stored on the host 8 byte header Datagram Demo # // server.js import dgram from &#34;dgram&#34;; const socket = dgram.createSocket(&#34;udp4&#34;); socket.bind(5500, &#34;127.0.0.1&#34;); socket.on(&#34;message&#34;, (msg, info) =&gt; { console.log( `My server got a datagram ${msg}, from ${info.address}:${info.port}` ); }); # client terminal nc -u 127.0.0.1 5500 # client terminal Hi # client terminal I am Dang The result of the server log: (TBU)">
   <meta property="og:locale" content="en_us">
   <meta property="og:type" content="article">
     <meta property="article:section" content="docs">
@@ -23,10 +64,7 @@ Overview # Message Based Layer 4 protocol Ability to address processes in a host
 <link rel="canonical" href="https://dangpham112000.github.io/docs/research/be_protocol/tcp_udp/">
 <link rel="stylesheet" href="/book.min.0ebfa1e81a7b241abaa8a9626be8325416e98d14702ea33197aea691fec27e9d.css" integrity="sha256-Dr&#43;h6Bp7JBq6qKlia&#43;gyVBbpjRRwLqMxl66mkf7Cfp0=" crossorigin="anonymous">
   <script defer src="/fuse.min.js"></script>
-  <script defer src="/en.search.min.b553da730f3dd4faddfc319c1da12087f3add3fec328f40be9beadf1b3c1e91c.js" integrity="sha256-tVPacw891Prd/DGcHaEgh/Ot0/7DKPQL6b6t8bPB6Rw=" crossorigin="anonymous"></script>
-
-  
-
+  <script defer src="/en.search.min.a09ed1ef72b48bcda219399e91ab7acbaa04d425e68d97bfdb837e7ed078782c.js" integrity="sha256-oJ7R73K0i82iGTmekat6y6oE1CXmjZe/24N&#43;ftB4eCw=" crossorigin="anonymous"></script>
 <!--
 Made with Book Theme
 https://github.com/alex-shpak/hugo-book
@@ -253,6 +291,32 @@ https://github.com/alex-shpak/hugo-book
   
 
   
+    <a href="/docs/research/encryption/" class="">Encryption - Draft</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/research/authentication/" class="">Authentication - Draft</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
     <a href="/docs/research/event_loop/" class="">Event loop - Draft</a>
   
 
@@ -319,19 +383,6 @@ https://github.com/alex-shpak/hugo-book
 
   
     <a href="/docs/research/social_media/" class="">Social Media - Draft</a>
-  
-
-        </li>
-      
-    
-      
-        <li>
-          
-  
-  
-
-  
-    <a href="/docs/research/encryption/" class="">Encryption - Draft</a>
   
 
         </li>

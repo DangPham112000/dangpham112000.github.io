@@ -3,13 +3,58 @@
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="TLS - SSL # Overview # A protocol for encrypting, securing, and authenticating communications that take place on the Internet SSL was replaced by an updated protocol called TLS some time ago, SSL is still a commonly used term for this technology TLS 1.2 # TLS 1.3 # Diffie Hellman # TLS 1.3 # Reference # Cloudflare: How does SSL work? Gigamon: What Is TLS 1.2, and Why Should You (Still) Care?">
+<meta name="description" content="
+  TLS - SSL
+  #
+
+
+  Overview
+  #
+
+
+A protocol for encrypting, securing, and authenticating communications that take place on the Internet
+SSL was replaced by an updated protocol called TLS some time ago, SSL is still a commonly used term for this technology
+
+
+
+  TLS 1.2
+  #
+
+
+
+  TLS 1.3
+  #
+
+
+  Diffie Hellman
+  #
+
+
+  TLS 1.3
+  #
+
+
+  Related
+  #
+
+
+Why a website we need Certificate?: Malicious Network Redirects
+
+
+  Reference
+  #
+
+
+Cloudflare: How does SSL work?
+Gigamon: What Is TLS 1.2, and Why Should You (Still) Care?
+Wikipedia: Transport Layer Security (Mar 1, 2024)
+">
 <meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff">
 <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#343a40">
 <meta name="color-scheme" content="light dark"><meta property="og:url" content="https://dangpham112000.github.io/docs/research/be_protocol/tls_ssl/">
   <meta property="og:site_name" content="The Engineer Blogs">
   <meta property="og:title" content="TLS - SSL - Draft">
-  <meta property="og:description" content="TLS - SSL # Overview # A protocol for encrypting, securing, and authenticating communications that take place on the Internet SSL was replaced by an updated protocol called TLS some time ago, SSL is still a commonly used term for this technology TLS 1.2 # TLS 1.3 # Diffie Hellman # TLS 1.3 # Reference # Cloudflare: How does SSL work? Gigamon: What Is TLS 1.2, and Why Should You (Still) Care?">
+  <meta property="og:description" content="TLS - SSL # Overview # A protocol for encrypting, securing, and authenticating communications that take place on the Internet SSL was replaced by an updated protocol called TLS some time ago, SSL is still a commonly used term for this technology TLS 1.2 # TLS 1.3 # Diffie Hellman # TLS 1.3 # Related # Why a website we need Certificate?: Malicious Network Redirects Reference # Cloudflare: How does SSL work? Gigamon: What Is TLS 1.2, and Why Should You (Still) Care? Wikipedia: Transport Layer Security (Mar 1, 2024)">
   <meta property="og:locale" content="en_us">
   <meta property="og:type" content="article">
     <meta property="article:section" content="docs">
@@ -21,10 +66,7 @@
 <link rel="canonical" href="https://dangpham112000.github.io/docs/research/be_protocol/tls_ssl/">
 <link rel="stylesheet" href="/book.min.0ebfa1e81a7b241abaa8a9626be8325416e98d14702ea33197aea691fec27e9d.css" integrity="sha256-Dr&#43;h6Bp7JBq6qKlia&#43;gyVBbpjRRwLqMxl66mkf7Cfp0=" crossorigin="anonymous">
   <script defer src="/fuse.min.js"></script>
-  <script defer src="/en.search.min.b553da730f3dd4faddfc319c1da12087f3add3fec328f40be9beadf1b3c1e91c.js" integrity="sha256-tVPacw891Prd/DGcHaEgh/Ot0/7DKPQL6b6t8bPB6Rw=" crossorigin="anonymous"></script>
-
-  
-
+  <script defer src="/en.search.min.a09ed1ef72b48bcda219399e91ab7acbaa04d425e68d97bfdb837e7ed078782c.js" integrity="sha256-oJ7R73K0i82iGTmekat6y6oE1CXmjZe/24N&#43;ftB4eCw=" crossorigin="anonymous"></script>
 <!--
 Made with Book Theme
 https://github.com/alex-shpak/hugo-book
@@ -251,6 +293,32 @@ https://github.com/alex-shpak/hugo-book
   
 
   
+    <a href="/docs/research/encryption/" class="">Encryption - Draft</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/research/authentication/" class="">Authentication - Draft</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
     <a href="/docs/research/event_loop/" class="">Event loop - Draft</a>
   
 
@@ -317,19 +385,6 @@ https://github.com/alex-shpak/hugo-book
 
   
     <a href="/docs/research/social_media/" class="">Social Media - Draft</a>
-  
-
-        </li>
-      
-    
-      
-        <li>
-          
-  
-  
-
-  
-    <a href="/docs/research/encryption/" class="">Encryption - Draft</a>
   
 
         </li>
@@ -501,6 +556,7 @@ https://github.com/alex-shpak/hugo-book
         <li><a href="#tls-13-1">TLS 1.3</a></li>
       </ul>
     </li>
+    <li><a href="#related">Related</a></li>
     <li><a href="#reference">Reference</a></li>
   </ul>
 </nav>
@@ -544,6 +600,13 @@ https://github.com/alex-shpak/hugo-book
   TLS 1.3
   <a class="anchor" href="#tls-13-1">#</a>
 </h3>
+<h2 id="related">
+  Related
+  <a class="anchor" href="#related">#</a>
+</h2>
+<ul>
+<li>Why a website we need Certificate?: <a href="/docs/research/security/#malicious-network-redirects">Malicious Network Redirects</a></li>
+</ul>
 <h2 id="reference">
   Reference
   <a class="anchor" href="#reference">#</a>
@@ -602,6 +665,7 @@ https://github.com/alex-shpak/hugo-book
         <li><a href="#tls-13-1">TLS 1.3</a></li>
       </ul>
     </li>
+    <li><a href="#related">Related</a></li>
     <li><a href="#reference">Reference</a></li>
   </ul>
 </nav>

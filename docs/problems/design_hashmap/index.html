@@ -3,8 +3,22 @@
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Design HashMap # Overview # Its other names: hash table, map, unordered map, dictionary
+<meta name="description" content="
+  Design HashMap
+  #
+
+
+  Overview
+  #
+
+
+
+Its other names: hash table, map, unordered map, dictionary
+
+
 A hash table is a data structure that you can use to store data in key-value format with direct access to its items in constant time
+
+
 The most valuable aspect of a hash table over other abstract data structures is its speed to perform insertion, deletion, and search operations. Hash tables can do them all in constant time">
 <meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff">
 <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#343a40">
@@ -25,10 +39,7 @@ The most valuable aspect of a hash table over other abstract data structures is 
 <link rel="canonical" href="https://dangpham112000.github.io/docs/problems/design_hashmap/">
 <link rel="stylesheet" href="/book.min.0ebfa1e81a7b241abaa8a9626be8325416e98d14702ea33197aea691fec27e9d.css" integrity="sha256-Dr&#43;h6Bp7JBq6qKlia&#43;gyVBbpjRRwLqMxl66mkf7Cfp0=" crossorigin="anonymous">
   <script defer src="/fuse.min.js"></script>
-  <script defer src="/en.search.min.b553da730f3dd4faddfc319c1da12087f3add3fec328f40be9beadf1b3c1e91c.js" integrity="sha256-tVPacw891Prd/DGcHaEgh/Ot0/7DKPQL6b6t8bPB6Rw=" crossorigin="anonymous"></script>
-
-  
-
+  <script defer src="/en.search.min.a09ed1ef72b48bcda219399e91ab7acbaa04d425e68d97bfdb837e7ed078782c.js" integrity="sha256-oJ7R73K0i82iGTmekat6y6oE1CXmjZe/24N&#43;ftB4eCw=" crossorigin="anonymous"></script>
 <!--
 Made with Book Theme
 https://github.com/alex-shpak/hugo-book
@@ -255,6 +266,32 @@ https://github.com/alex-shpak/hugo-book
   
 
   
+    <a href="/docs/research/encryption/" class="">Encryption - Draft</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/research/authentication/" class="">Authentication - Draft</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
     <a href="/docs/research/event_loop/" class="">Event loop - Draft</a>
   
 
@@ -321,19 +358,6 @@ https://github.com/alex-shpak/hugo-book
 
   
     <a href="/docs/research/social_media/" class="">Social Media - Draft</a>
-  
-
-        </li>
-      
-    
-      
-        <li>
-          
-  
-  
-
-  
-    <a href="/docs/research/encryption/" class="">Encryption - Draft</a>
   
 
         </li>
@@ -542,40 +566,42 @@ https://github.com/alex-shpak/hugo-book
 </ul>
 <p><strong>Time complexity</strong></p>
 <table>
-<thead>
-<tr>
-<th>Operation</th>
-<th>Average</th>
-<th>Worst case</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Search</td>
-<td>O(1)</td>
-<td>O(n)</td>
-</tr>
-<tr>
-<td>Insert</td>
-<td>O(1)</td>
-<td>O(n)</td>
-</tr>
-<tr>
-<td>Delete</td>
-<td>O(1)</td>
-<td>O(n)</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th>Operation</th>
+          <th>Average</th>
+          <th>Worst case</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>Search</td>
+          <td>O(1)</td>
+          <td>O(n)</td>
+      </tr>
+      <tr>
+          <td>Insert</td>
+          <td>O(1)</td>
+          <td>O(n)</td>
+      </tr>
+      <tr>
+          <td>Delete</td>
+          <td>O(1)</td>
+          <td>O(n)</td>
+      </tr>
+  </tbody>
 </table>
 <p><strong>Space complexity</strong></p>
 <table>
-<thead>
-<tr>
-<th>Space</th>
-<th>O(n)</th>
-<th>O(n)</th>
-</tr>
-</thead>
+  <thead>
+      <tr>
+          <th>Space</th>
+          <th>O(n)</th>
+          <th>O(n)</th>
+      </tr>
+  </thead>
+  <tbody>
+  </tbody>
 </table>
 <h2 id="design-requirement">
   Design requirement

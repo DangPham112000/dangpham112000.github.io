@@ -3,22 +3,53 @@
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="">
+<meta name="description" content="
+  Authentication
+  #
+
+
+  Cookie - Session
+  #
+
+
+  Token base
+  #
+
+Basic flow
+
+Token expired
+
+
+  Access Token
+  #
+
+
+  Pros
+  #
+
+Do you notice some web page allow you go to a route like dashboard immediately just because you has been login before, but some other web app also have dashboard but they request you login every time you go to them
+&ndash;&gt; Bad UX
+If we use AT, they do not need re-login">
 <meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff">
 <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#343a40">
-<meta name="color-scheme" content="light dark"><meta property="og:url" content="https://dangpham112000.github.io/categories/">
+<meta name="color-scheme" content="light dark"><meta property="og:url" content="https://dangpham112000.github.io/docs/research/authentication/">
   <meta property="og:site_name" content="The Engineer Blogs">
-  <meta property="og:title" content="Categories">
+  <meta property="og:title" content="Authentication - Draft">
+  <meta property="og:description" content="Authentication # Cookie - Session # Token base # Basic flow Token expired Access Token # Pros # Do you notice some web page allow you go to a route like dashboard immediately just because you has been login before, but some other web app also have dashboard but they request you login every time you go to them
+–&gt; Bad UX
+If we use AT, they do not need re-login">
   <meta property="og:locale" content="en_us">
-  <meta property="og:type" content="website">
-<title>Categories | The Engineer Blogs</title>
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="docs">
+    <meta property="article:published_time" content="2024-10-17T01:47:46+07:00">
+    <meta property="article:modified_time" content="2024-10-17T01:47:46+07:00">
+<title>Authentication - Draft | The Engineer Blogs</title>
 <link rel="manifest" href="/manifest.json">
 <link rel="icon" href="/favicon.png" >
-<link rel="canonical" href="https://dangpham112000.github.io/categories/">
+<link rel="canonical" href="https://dangpham112000.github.io/docs/research/authentication/">
 <link rel="stylesheet" href="/book.min.0ebfa1e81a7b241abaa8a9626be8325416e98d14702ea33197aea691fec27e9d.css" integrity="sha256-Dr&#43;h6Bp7JBq6qKlia&#43;gyVBbpjRRwLqMxl66mkf7Cfp0=" crossorigin="anonymous">
   <script defer src="/fuse.min.js"></script>
   <script defer src="/en.search.min.a09ed1ef72b48bcda219399e91ab7acbaa04d425e68d97bfdb837e7ed078782c.js" integrity="sha256-oJ7R73K0i82iGTmekat6y6oE1CXmjZe/24N&#43;ftB4eCw=" crossorigin="anonymous"></script>
-<link rel="alternate" type="application/rss+xml" href="https://dangpham112000.github.io/categories/index.xml" title="The Engineer Blogs" />
 <!--
 Made with Book Theme
 https://github.com/alex-shpak/hugo-book
@@ -258,7 +289,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="/docs/research/authentication/" class="">Authentication - Draft</a>
+    <a href="/docs/research/authentication/" class="active">Authentication - Draft</a>
   
 
         </li>
@@ -484,7 +515,7 @@ https://github.com/alex-shpak/hugo-book
     <img src="/svg/menu.svg" class="book-icon" alt="Menu" />
   </label>
 
-  <strong>Categories</strong>
+  <strong>Authentication - Draft</strong>
 
   <label for="toc-control">
     
@@ -497,29 +528,20 @@ https://github.com/alex-shpak/hugo-book
   
   <aside class="hidden clearfix">
     
-  <nav>
+  
+<nav id="TableOfContents">
   <ul>
-  
-    
-    <li class="book-section-flat">
-      <strong>Categories</strong>
+    <li><a href="#cookie---session">Cookie - Session</a></li>
+    <li><a href="#token-base">Token base</a>
       <ul>
-      
+        <li><a href="#access-token">Access Token</a></li>
+        <li><a href="#refresh-token">Refresh Token</a></li>
       </ul>
     </li>
-    
-  
-    
-    <li class="book-section-flat">
-      <strong>Tags</strong>
-      <ul>
-      
-      </ul>
-    </li>
-    
-  
+    <li><a href="#reference">Reference</a></li>
   </ul>
 </nav>
+
 
 
   </aside>
@@ -529,9 +551,70 @@ https://github.com/alex-shpak/hugo-book
 
       
       
-  
-
-  
+  <article class="markdown book-article"><h1 id="authentication">
+  Authentication
+  <a class="anchor" href="#authentication">#</a>
+</h1>
+<h2 id="cookie---session">
+  Cookie - Session
+  <a class="anchor" href="#cookie---session">#</a>
+</h2>
+<h2 id="token-base">
+  Token base
+  <a class="anchor" href="#token-base">#</a>
+</h2>
+<p>Basic flow
+<img src="/research/authentication/basic-flow.png" alt="basic-flow" /></p>
+<p>Token expired
+<img src="/research/authentication/token-expired.png" alt="token-expired" /></p>
+<h3 id="access-token">
+  Access Token
+  <a class="anchor" href="#access-token">#</a>
+</h3>
+<h4 id="pros">
+  Pros
+  <a class="anchor" href="#pros">#</a>
+</h4>
+<p>Do you notice some web page allow you go to a route like dashboard immediately just because you has been login before, but some other web app also have dashboard but they request you login every time you go to them</p>
+<p>&ndash;&gt; Bad UX</p>
+<p>If we use AT, they do not need re-login</p>
+<h4 id="cons">
+  Cons
+  <a class="anchor" href="#cons">#</a>
+</h4>
+<p>If we only use AT for authentication
+So when hacker stolen AT successfully, they can impersonate the user</p>
+<p>How about short-term AT?</p>
+<ul>
+<li>Each time we grant AT we need to force user re-login
+&ndash;&gt; Bad UX</li>
+</ul>
+<p>How about combine short-term AT and store AT in DB?
+Our server can grant several AT and somehow one of them be stolen by hacker, if we store current AT-list and used-AT list. Then if we renew an AT for hacker or user and then another try to renew a used AT we can clear all of them and then force user to re-login</p>
+<ul>
+<li>This approach is totally possible
+&ndash;&gt; BUT we will increase the I/O cost in DB because too much AT used to check and store</li>
+</ul>
+<p>&ndash;&gt; So we design RT</p>
+<h3 id="refresh-token">
+  Refresh Token
+  <a class="anchor" href="#refresh-token">#</a>
+</h3>
+<p>In order to prevent hacker stolen AT, we decide AT only live in a short time
+So refresh token born as a factor to re-grant AT when they are expired and user then can be continue their session with our resource without re-login and don&rsquo;t worry about impersonation</p>
+<h4 id="each-rt-can-only-be-used-once">
+  Each RT can only be used once
+  <a class="anchor" href="#each-rt-can-only-be-used-once">#</a>
+</h4>
+<p>Whenever we see the reused RT, we must right away clear all token and it&rsquo;s keys, then force user to re-login to the system</p>
+<h2 id="reference">
+  Reference
+  <a class="anchor" href="#reference">#</a>
+</h2>
+<ul>
+<li>: <a href=""></a> ()</li>
+</ul>
+</article>
  
       
 
@@ -556,6 +639,10 @@ https://github.com/alex-shpak/hugo-book
 
       
   
+  <div class="book-comments">
+
+</div>
+  
  
 
       <label for="menu-control" class="hidden book-menu-overlay"></label>
@@ -565,29 +652,20 @@ https://github.com/alex-shpak/hugo-book
     <aside class="book-toc">
       <div class="book-toc-content">
         
-  <nav>
+  
+<nav id="TableOfContents">
   <ul>
-  
-    
-    <li class="book-section-flat">
-      <strong>Categories</strong>
+    <li><a href="#cookie---session">Cookie - Session</a></li>
+    <li><a href="#token-base">Token base</a>
       <ul>
-      
+        <li><a href="#access-token">Access Token</a></li>
+        <li><a href="#refresh-token">Refresh Token</a></li>
       </ul>
     </li>
-    
-  
-    
-    <li class="book-section-flat">
-      <strong>Tags</strong>
-      <ul>
-      
-      </ul>
-    </li>
-    
-  
+    <li><a href="#reference">Reference</a></li>
   </ul>
 </nav>
+
 
  
       </div>

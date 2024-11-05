@@ -3,13 +3,90 @@
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Security # Brute Force Attack # Every password-based system and encryption key out there can be cracked using a brute force attack. There is only one problem with this attack: the time. Why does the hashing method matter when cracking passwords with a brute force attack? Bcrypt will take longer to crack than MD5 Use case # Cracking passwords (SSH logins) Cracking encryption keys (API keys) How it works # The hacker have to run through every possible combination of characters before achieving their goal These attacks are often carried out by scripts or bots that target specific systems or accounts Prevention # Longer password Delay response: A system that responds immediately is not always good.">
+<meta name="description" content="
+  Security
+  #
+
+
+  Brute Force Attack
+  #
+
+
+Every password-based system and encryption key out there can be cracked using a brute force attack.
+There is only one problem with this attack: the time.
+
+
+
+Why does the hashing method matter when cracking passwords with a brute force attack? Bcrypt will take longer to crack than MD5
+
+
+  Use case
+  #
+
+
+Cracking passwords (SSH logins)
+Cracking encryption keys (API keys)
+
+
+  How it works
+  #
+
+
+The hacker have to run through every possible combination of characters before achieving their goal
+These attacks are often carried out by scripts or bots that target specific systems or accounts
+
+
+  Prevention
+  #
+
+
+Longer password
+Delay response: A system that responds immediately is not always good. Adding a delay when checking passwords, even a delay of a few seconds, can greatly weaken the effectiveness of a brute force attack
+Stronger hashing method
+Two-factor authentication
+Rate limit
+
+
+  Dictionary attack
+  #
+
+
+  Use case
+  #
+
+
+A dictionary attack is a method of breaking into a password-protected computer, network or other IT resource by systematically entering every word in a dictionary, or word list, as a password
+A dictionary attack can also be used in an attempt to find the key necessary to decrypt an encrypted message or document
+
+
+  How it works
+  #
+
+
+If it targets an organization or a particular person, the dictionary can collect all the closely related words around the target they want to hack. It can then combine all of them in all possible ways and try each combination to guess the password or key they want to hack
+
+
+  Prevention
+  #
+
+
+Avoid passwords: Passwords can&rsquo;t be hacked if we don&rsquo;t use them for login (I&rsquo;m joking). From a system perspective, we can completely avoid them by using password-free authentication solutions and biometric logins
+Random passwords: From a user perspective, don&rsquo;t use closely related information (like names, pets, birthdays) or easy-to-predict words (like &ldquo;password,&rdquo; &ldquo;abcd,&rdquo; &ldquo;xyz,&rdquo; &ldquo;123&rdquo;) to create a password. Instead, use random strings. If you find them difficult to remember, you can use a third-party password manager to store them (of course, you need to choose a trustworthy one).
+Two-factor authentication
+Limit login attempts
+Force resets
+
+
+  Malicious Network Redirects
+  #
+
+Attackers can inject fake DNS responses, redirecting you to malicious versions of websites">
 <meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff">
 <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#343a40">
 <meta name="color-scheme" content="light dark"><meta property="og:url" content="https://dangpham112000.github.io/docs/research/security/">
   <meta property="og:site_name" content="The Engineer Blogs">
   <meta property="og:title" content="Security - Draft">
-  <meta property="og:description" content="Security # Brute Force Attack # Every password-based system and encryption key out there can be cracked using a brute force attack. There is only one problem with this attack: the time. Why does the hashing method matter when cracking passwords with a brute force attack? Bcrypt will take longer to crack than MD5 Use case # Cracking passwords (SSH logins) Cracking encryption keys (API keys) How it works # The hacker have to run through every possible combination of characters before achieving their goal These attacks are often carried out by scripts or bots that target specific systems or accounts Prevention # Longer password Delay response: A system that responds immediately is not always good.">
+  <meta property="og:description" content="Security # Brute Force Attack # Every password-based system and encryption key out there can be cracked using a brute force attack. There is only one problem with this attack: the time. Why does the hashing method matter when cracking passwords with a brute force attack? Bcrypt will take longer to crack than MD5 Use case # Cracking passwords (SSH logins) Cracking encryption keys (API keys) How it works # The hacker have to run through every possible combination of characters before achieving their goal These attacks are often carried out by scripts or bots that target specific systems or accounts Prevention # Longer password Delay response: A system that responds immediately is not always good. Adding a delay when checking passwords, even a delay of a few seconds, can greatly weaken the effectiveness of a brute force attack Stronger hashing method Two-factor authentication Rate limit Dictionary attack # Use case # A dictionary attack is a method of breaking into a password-protected computer, network or other IT resource by systematically entering every word in a dictionary, or word list, as a password A dictionary attack can also be used in an attempt to find the key necessary to decrypt an encrypted message or document How it works # If it targets an organization or a particular person, the dictionary can collect all the closely related words around the target they want to hack. It can then combine all of them in all possible ways and try each combination to guess the password or key they want to hack Prevention # Avoid passwords: Passwords can’t be hacked if we don’t use them for login (I’m joking). From a system perspective, we can completely avoid them by using password-free authentication solutions and biometric logins Random passwords: From a user perspective, don’t use closely related information (like names, pets, birthdays) or easy-to-predict words (like “password,” “abcd,” “xyz,” “123”) to create a password. Instead, use random strings. If you find them difficult to remember, you can use a third-party password manager to store them (of course, you need to choose a trustworthy one). Two-factor authentication Limit login attempts Force resets Malicious Network Redirects # Attackers can inject fake DNS responses, redirecting you to malicious versions of websites">
   <meta property="og:locale" content="en_us">
   <meta property="og:type" content="article">
     <meta property="article:section" content="docs">
@@ -21,10 +98,7 @@
 <link rel="canonical" href="https://dangpham112000.github.io/docs/research/security/">
 <link rel="stylesheet" href="/book.min.0ebfa1e81a7b241abaa8a9626be8325416e98d14702ea33197aea691fec27e9d.css" integrity="sha256-Dr&#43;h6Bp7JBq6qKlia&#43;gyVBbpjRRwLqMxl66mkf7Cfp0=" crossorigin="anonymous">
   <script defer src="/fuse.min.js"></script>
-  <script defer src="/en.search.min.b553da730f3dd4faddfc319c1da12087f3add3fec328f40be9beadf1b3c1e91c.js" integrity="sha256-tVPacw891Prd/DGcHaEgh/Ot0/7DKPQL6b6t8bPB6Rw=" crossorigin="anonymous"></script>
-
-  
-
+  <script defer src="/en.search.min.a09ed1ef72b48bcda219399e91ab7acbaa04d425e68d97bfdb837e7ed078782c.js" integrity="sha256-oJ7R73K0i82iGTmekat6y6oE1CXmjZe/24N&#43;ftB4eCw=" crossorigin="anonymous"></script>
 <!--
 Made with Book Theme
 https://github.com/alex-shpak/hugo-book
@@ -251,6 +325,32 @@ https://github.com/alex-shpak/hugo-book
   
 
   
+    <a href="/docs/research/encryption/" class="">Encryption - Draft</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/research/authentication/" class="">Authentication - Draft</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
     <a href="/docs/research/event_loop/" class="">Event loop - Draft</a>
   
 
@@ -317,19 +417,6 @@ https://github.com/alex-shpak/hugo-book
 
   
     <a href="/docs/research/social_media/" class="">Social Media - Draft</a>
-  
-
-        </li>
-      
-    
-      
-        <li>
-          
-  
-  
-
-  
-    <a href="/docs/research/encryption/" class="">Encryption - Draft</a>
   
 
         </li>
@@ -507,9 +594,15 @@ https://github.com/alex-shpak/hugo-book
         <li><a href="#prevention-1">Prevention</a></li>
       </ul>
     </li>
+    <li><a href="#malicious-network-redirects">Malicious Network Redirects</a>
+      <ul>
+        <li><a href="#how-it-works-2">How it works</a></li>
+        <li><a href="#prevention-2">Prevention</a></li>
+      </ul>
+    </li>
     <li><a href="#dos">DOS</a>
       <ul>
-        <li><a href="#prevention-2">Prevention</a></li>
+        <li><a href="#prevention-3">Prevention</a></li>
         <li><a href="#ddos">DDOS</a></li>
       </ul>
     </li>
@@ -520,8 +613,9 @@ https://github.com/alex-shpak/hugo-book
     <li><a href="#idor-attack">IDOR attack</a></li>
     <li><a href="#cross-domain-access-attack">Cross-domain access attack</a></li>
     <li><a href="#syn-flood-attack">Syn flood attack</a></li>
-    <li><a href="#relay-attack">Relay attack</a></li>
-    <li><a href="#man-in-the-middle-attack">Man in the middle attack</a>
+    <li><a href="#man-in-the-middle-attack">Man in the middle attack</a></li>
+    <li><a href="#replay-attack">Replay attack</a></li>
+    <li><a href="#relay-attack">Relay attack</a>
       <ul>
         <li><a href="#request-modify">request modify</a></li>
         <li><a href="#response-modify">response modify</a></li>
@@ -613,13 +707,33 @@ https://github.com/alex-shpak/hugo-book
 <li><strong>Limit login attempts</strong></li>
 <li><strong>Force resets</strong></li>
 </ul>
+<h2 id="malicious-network-redirects">
+  Malicious Network Redirects
+  <a class="anchor" href="#malicious-network-redirects">#</a>
+</h2>
+<p>Attackers can inject fake DNS responses, redirecting you to malicious versions of websites</p>
+<h3 id="how-it-works-2">
+  How it works
+  <a class="anchor" href="#how-it-works-2">#</a>
+</h3>
+<ul>
+<li>Hacker hijacking the unsecured Wi-Fi you access</li>
+<li>Malware in your computer edit your Host file (the file work like the DNS in your computer)</li>
+</ul>
+<h3 id="prevention-2">
+  Prevention
+  <a class="anchor" href="#prevention-2">#</a>
+</h3>
+<ul>
+<li><strong>Using SSL/TLS for website</strong>: Even if SSL helps detect this (you’d see a certificate warning), many users may overlook or click through the warning, which could put them at risk</li>
+</ul>
 <h2 id="dos">
   DOS
   <a class="anchor" href="#dos">#</a>
 </h2>
-<h3 id="prevention-2">
+<h3 id="prevention-3">
   Prevention
-  <a class="anchor" href="#prevention-2">#</a>
+  <a class="anchor" href="#prevention-3">#</a>
 </h3>
 <ul>
 <li>Rate limit</li>
@@ -657,13 +771,17 @@ https://github.com/alex-shpak/hugo-book
   Syn flood attack
   <a class="anchor" href="#syn-flood-attack">#</a>
 </h2>
-<h2 id="relay-attack">
-  Relay attack
-  <a class="anchor" href="#relay-attack">#</a>
-</h2>
 <h2 id="man-in-the-middle-attack">
   Man in the middle attack
   <a class="anchor" href="#man-in-the-middle-attack">#</a>
+</h2>
+<h2 id="replay-attack">
+  Replay attack
+  <a class="anchor" href="#replay-attack">#</a>
+</h2>
+<h2 id="relay-attack">
+  Relay attack
+  <a class="anchor" href="#relay-attack">#</a>
 </h2>
 <h3 id="request-modify">
   request modify
@@ -737,9 +855,15 @@ https://github.com/alex-shpak/hugo-book
         <li><a href="#prevention-1">Prevention</a></li>
       </ul>
     </li>
+    <li><a href="#malicious-network-redirects">Malicious Network Redirects</a>
+      <ul>
+        <li><a href="#how-it-works-2">How it works</a></li>
+        <li><a href="#prevention-2">Prevention</a></li>
+      </ul>
+    </li>
     <li><a href="#dos">DOS</a>
       <ul>
-        <li><a href="#prevention-2">Prevention</a></li>
+        <li><a href="#prevention-3">Prevention</a></li>
         <li><a href="#ddos">DDOS</a></li>
       </ul>
     </li>
@@ -750,8 +874,9 @@ https://github.com/alex-shpak/hugo-book
     <li><a href="#idor-attack">IDOR attack</a></li>
     <li><a href="#cross-domain-access-attack">Cross-domain access attack</a></li>
     <li><a href="#syn-flood-attack">Syn flood attack</a></li>
-    <li><a href="#relay-attack">Relay attack</a></li>
-    <li><a href="#man-in-the-middle-attack">Man in the middle attack</a>
+    <li><a href="#man-in-the-middle-attack">Man in the middle attack</a></li>
+    <li><a href="#replay-attack">Replay attack</a></li>
+    <li><a href="#relay-attack">Relay attack</a>
       <ul>
         <li><a href="#request-modify">request modify</a></li>
         <li><a href="#response-modify">response modify</a></li>
