@@ -37,14 +37,11 @@ HMAC stand for Hash-Based Message Authentication Codes
 uses the same key to encrypt and decrypt messages
 AES, Twofish and ChaCha20
 
-  AES cipher with CBC
+
+  Demo code
   #
 
-
-  Asymmetric encryption
-  #
-
-uses a public-key cryptosystem (like RSA or ECC) and a key-pair: public key (encryption key) and corresponding private key (decryption key)">
+This example demonstrates symmetric encryption and decryption in NodeJS using the crypto module with AES (Advanced Encryption Standard) in AES-256-CBC mode">
 <meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff">
 <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#343a40">
 <meta name="color-scheme" content="light dark"><meta property="og:url" content="https://dangpham112000.github.io/docs/research/encryption/">
@@ -53,7 +50,7 @@ uses a public-key cryptosystem (like RSA or ECC) and a key-pair: public key (enc
   <meta property="og:description" content="Encryption # Hash # Note: An 8-bit byte is represented as 2 characters, from 00 to FF, in hexadecimal
 Collision # Use case # Checking file integrity HMAC # HMAC stand for Hash-Based Message Authentication Codes Symmetric encryption # uses the same key to encrypt and decrypt messages
 AES, Twofish and ChaCha20
-AES cipher with CBC # Asymmetric encryption # uses a public-key cryptosystem (like RSA or ECC) and a key-pair: public key (encryption key) and corresponding private key (decryption key)">
+Demo code # This example demonstrates symmetric encryption and decryption in NodeJS using the crypto module with AES (Advanced Encryption Standard) in AES-256-CBC mode">
   <meta property="og:locale" content="en_us">
   <meta property="og:type" content="article">
     <meta property="article:section" content="docs">
@@ -65,7 +62,7 @@ AES cipher with CBC # Asymmetric encryption # uses a public-key cryptosystem (li
 <link rel="canonical" href="https://dangpham112000.github.io/docs/research/encryption/">
 <link rel="stylesheet" href="/book.min.0ebfa1e81a7b241abaa8a9626be8325416e98d14702ea33197aea691fec27e9d.css" integrity="sha256-Dr&#43;h6Bp7JBq6qKlia&#43;gyVBbpjRRwLqMxl66mkf7Cfp0=" crossorigin="anonymous">
   <script defer src="/fuse.min.js"></script>
-  <script defer src="/en.search.min.a09ed1ef72b48bcda219399e91ab7acbaa04d425e68d97bfdb837e7ed078782c.js" integrity="sha256-oJ7R73K0i82iGTmekat6y6oE1CXmjZe/24N&#43;ftB4eCw=" crossorigin="anonymous"></script>
+  <script defer src="/en.search.min.1aee2ceaf05ad1b069a0e45f27a39b202a407ffa5a7dbb16092fe3fa4e56c617.js" integrity="sha256-Gu4s6vBa0bBpoORfJ6ObICpAf/pafbsWCS/j&#43;k5Wxhc=" crossorigin="anonymous"></script>
 <!--
 Made with Book Theme
 https://github.com/alex-shpak/hugo-book
@@ -331,19 +328,6 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="/docs/research/javascript_engine/" class="">JavaScript Engine - Draft</a>
-  
-
-        </li>
-      
-    
-      
-        <li>
-          
-  
-  
-
-  
     <a href="/docs/research/security/" class="">Security - Draft</a>
   
 
@@ -556,12 +540,13 @@ https://github.com/alex-shpak/hugo-book
     <li><a href="#hmac">HMAC</a></li>
     <li><a href="#symmetric-encryption">Symmetric encryption</a>
       <ul>
-        <li><a href="#aes-cipher-with-cbc">AES cipher with CBC</a></li>
+        <li><a href="#demo-code">Demo code</a></li>
       </ul>
     </li>
     <li><a href="#asymmetric-encryption">Asymmetric encryption</a>
       <ul>
-        <li><a href="#rsa-cipher">RSA cipher</a></li>
+        <li><a href="#demo-of-public-key-encryption-and-private-key-decryption">Demo of public key encryption and private key decryption</a></li>
+        <li><a href="#demo-of-private-key-encryption-and-public-key-decryption">Demo of private key encryption and public key decryption</a></li>
       </ul>
     </li>
     <li><a href="#digital-signatures">Digital signatures</a></li>
@@ -620,20 +605,581 @@ https://github.com/alex-shpak/hugo-book
 </h2>
 <p>uses the same key to encrypt and decrypt messages</p>
 <p>AES, Twofish and ChaCha20</p>
-<h3 id="aes-cipher-with-cbc">
-  AES cipher with CBC
-  <a class="anchor" href="#aes-cipher-with-cbc">#</a>
+<p><img src="/research/encription/Symmetric.png" alt="Symmetric" /></p>
+<h3 id="demo-code">
+  Demo code
+  <a class="anchor" href="#demo-code">#</a>
 </h3>
+<p>This example demonstrates symmetric encryption and decryption in NodeJS using the crypto module with AES (Advanced Encryption Standard) in AES-256-CBC mode</p>
+<details ><summary>Init necessary functions</summary>
+  <div class="markdown-inner">
+    <p><strong>NodeJS</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">crypto</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span>(<span style="color:#e6db74">&#39;crypto&#39;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">generateKeyAndIv</span>() {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">key</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">crypto</span>.<span style="color:#a6e22e">randomBytes</span>(<span style="color:#ae81ff">32</span>).<span style="color:#a6e22e">toString</span>(<span style="color:#e6db74">&#39;hex&#39;</span>); <span style="color:#75715e">// 256-bit key as hex string
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">iv</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">crypto</span>.<span style="color:#a6e22e">randomBytes</span>(<span style="color:#ae81ff">16</span>).<span style="color:#a6e22e">toString</span>(<span style="color:#e6db74">&#39;hex&#39;</span>); <span style="color:#75715e">// 128-bit IV as hex string
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">return</span> { <span style="color:#a6e22e">key</span>, <span style="color:#a6e22e">iv</span> };
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">encrypt</span>(<span style="color:#a6e22e">text</span>, <span style="color:#a6e22e">keyHex</span>, <span style="color:#a6e22e">ivHex</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">key</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">Buffer</span>.<span style="color:#a6e22e">from</span>(<span style="color:#a6e22e">keyHex</span>, <span style="color:#e6db74">&#39;hex&#39;</span>); <span style="color:#75715e">// Convert key from hex to Buffer
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">iv</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">Buffer</span>.<span style="color:#a6e22e">from</span>(<span style="color:#a6e22e">ivHex</span>, <span style="color:#e6db74">&#39;hex&#39;</span>);   <span style="color:#75715e">// Convert iv from hex to Buffer
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">cipher</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">crypto</span>.<span style="color:#a6e22e">createCipheriv</span>(<span style="color:#e6db74">&#39;aes-256-cbc&#39;</span>, <span style="color:#a6e22e">key</span>, <span style="color:#a6e22e">iv</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">encrypted</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">cipher</span>.<span style="color:#a6e22e">update</span>(<span style="color:#a6e22e">text</span>, <span style="color:#e6db74">&#39;utf8&#39;</span>, <span style="color:#e6db74">&#39;hex&#39;</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">encrypted</span> <span style="color:#f92672">+=</span> <span style="color:#a6e22e">cipher</span>.<span style="color:#66d9ef">final</span>(<span style="color:#e6db74">&#39;hex&#39;</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">encrypted</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">decrypt</span>(<span style="color:#a6e22e">encryptedText</span>, <span style="color:#a6e22e">keyHex</span>, <span style="color:#a6e22e">ivHex</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">key</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">Buffer</span>.<span style="color:#a6e22e">from</span>(<span style="color:#a6e22e">keyHex</span>, <span style="color:#e6db74">&#39;hex&#39;</span>); <span style="color:#75715e">// Convert key from hex to Buffer
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">iv</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">Buffer</span>.<span style="color:#a6e22e">from</span>(<span style="color:#a6e22e">ivHex</span>, <span style="color:#e6db74">&#39;hex&#39;</span>);   <span style="color:#75715e">// Convert iv from hex to Buffer
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">decipher</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">crypto</span>.<span style="color:#a6e22e">createDecipheriv</span>(<span style="color:#e6db74">&#39;aes-256-cbc&#39;</span>, <span style="color:#a6e22e">key</span>, <span style="color:#a6e22e">iv</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">decrypted</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">decipher</span>.<span style="color:#a6e22e">update</span>(<span style="color:#a6e22e">encryptedText</span>, <span style="color:#e6db74">&#39;hex&#39;</span>, <span style="color:#e6db74">&#39;utf8&#39;</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">decrypted</span> <span style="color:#f92672">+=</span> <span style="color:#a6e22e">decipher</span>.<span style="color:#66d9ef">final</span>(<span style="color:#e6db74">&#39;utf8&#39;</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">decrypted</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div>
+  </div>
+</details>
+
+</br>
+<details ><summary>Encrypt and decrypt a message</summary>
+  <div class="markdown-inner">
+    <p><strong>NodeJS</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> { <span style="color:#a6e22e">key</span>, <span style="color:#a6e22e">iv</span> } <span style="color:#f92672">=</span> <span style="color:#a6e22e">generateKeyAndIv</span>();
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#34;Generated Key (hex):&#34;</span>, <span style="color:#a6e22e">key</span>);
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#34;Generated IV (hex):&#34;</span>, <span style="color:#a6e22e">iv</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">message</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Hello, this is a secret message!&#34;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#34;Original Message:&#34;</span>, <span style="color:#a6e22e">message</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">encryptedMessage</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">encrypt</span>(<span style="color:#a6e22e">message</span>, <span style="color:#a6e22e">key</span>, <span style="color:#a6e22e">iv</span>);
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#34;Encrypted Message:&#34;</span>, <span style="color:#a6e22e">encryptedMessage</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">decryptedMessage</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">decrypt</span>(<span style="color:#a6e22e">encryptedMessage</span>, <span style="color:#a6e22e">key</span>, <span style="color:#a6e22e">iv</span>);
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#34;Decrypted Message:&#34;</span>, <span style="color:#a6e22e">decryptedMessage</span>);
+</span></span></code></pre></div><p><strong>Output</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>Generated Key (hex): 00298bfc28cf81a3de3502951b70f3568c4dd5dadbcfadd7b79fee2e640aee07
+</span></span><span style="display:flex;"><span>Generated IV (hex): 387591abb794b2345f496bb1192ace36
+</span></span><span style="display:flex;"><span>Original Message: Hello, this is a secret message!
+</span></span><span style="display:flex;"><span>Encrypted Message: 96b91c46b8e380a3b3fc9caf473821508f1ec313ed8b4306eb839c9c04f3692ed0579485016559e272ba9c3c54c5c449
+</span></span><span style="display:flex;"><span>Decrypted Message: Hello, this is a secret message!
+</span></span></code></pre></div>
+  </div>
+</details>
+
+</br>
+<details ><summary>Decrypt a message with wrong key</summary>
+  <div class="markdown-inner">
+    <p><strong>NodeJS</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> { <span style="color:#a6e22e">key</span>, <span style="color:#a6e22e">iv</span> } <span style="color:#f92672">=</span> <span style="color:#a6e22e">generateKeyAndIv</span>();
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#34;Generated Key (hex):&#34;</span>, <span style="color:#a6e22e">key</span>);
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#34;Generated IV (hex):&#34;</span>, <span style="color:#a6e22e">iv</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> { <span style="color:#a6e22e">key</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">key2</span> } <span style="color:#f92672">=</span> <span style="color:#a6e22e">generateKeyAndIv</span>();
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#34;Generated Key 2 (hex):&#34;</span>, <span style="color:#a6e22e">key2</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">message</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Hello, this is a secret message!&#34;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#34;Original Message:&#34;</span>, <span style="color:#a6e22e">message</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">encryptedMessage</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">encrypt</span>(<span style="color:#a6e22e">message</span>, <span style="color:#a6e22e">key</span>, <span style="color:#a6e22e">iv</span>);
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#34;Encrypted Message:&#34;</span>, <span style="color:#a6e22e">encryptedMessage</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">decryptedMessage</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">decrypt</span>(<span style="color:#a6e22e">encryptedMessage</span>, <span style="color:#a6e22e">key2</span>, <span style="color:#a6e22e">iv</span>);
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#34;Decrypted Message:&#34;</span>, <span style="color:#a6e22e">decryptedMessage</span>);
+</span></span></code></pre></div><p><strong>Output</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>Generated Key (hex): 0e35a011a116b0708012ae4165b95be678300be387478c1f217dbc48a1e5f2e8
+</span></span><span style="display:flex;"><span>Generated IV (hex): 6b714efdcab58ebc399332b79df8354d
+</span></span><span style="display:flex;"><span>Generated Key 2 (hex): c5bd73c9fa521dd1b019b3be1010645fc2152db17401006781a3908db43ca94f
+</span></span><span style="display:flex;"><span>Original Message: Hello, this is a secret message!
+</span></span><span style="display:flex;"><span>Encrypted Message: a4b90407ab748d8002d2f33b6ae8698460ed11d1640592fb2e83da9f101e7795ba54e447162f5373f49592ebfff8fa5c
+</span></span><span style="display:flex;"><span>node:internal/crypto/cipher:199
+</span></span><span style="display:flex;"><span>  const ret = this[kHandle].final();
+</span></span><span style="display:flex;"><span>                            ^
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Error: error:1C800064:Provider routines::bad decrypt
+</span></span><span style="display:flex;"><span>    at Decipheriv.final (node:internal/crypto/cipher:199:29)
+</span></span><span style="display:flex;"><span>    at decrypt (/home/dangpham/Workspace/nodejs/demo/symmetric.js:23:27)
+</span></span><span style="display:flex;"><span>    at Object.&lt;anonymous&gt; (/home/dangpham/Workspace/nodejs/demo/symmetric.js:55:26)
+</span></span><span style="display:flex;"><span>    at Module._compile (node:internal/modules/cjs/loader:1356:14)
+</span></span><span style="display:flex;"><span>    at Module._extensions..js (node:internal/modules/cjs/loader:1414:10)
+</span></span><span style="display:flex;"><span>    at Module.load (node:internal/modules/cjs/loader:1197:32)
+</span></span><span style="display:flex;"><span>    at Module._load (node:internal/modules/cjs/loader:1013:12)
+</span></span><span style="display:flex;"><span>    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:128:12)
+</span></span><span style="display:flex;"><span>    at node:internal/main/run_main_module:28:49 {
+</span></span><span style="display:flex;"><span>  library: &#39;Provider routines&#39;,
+</span></span><span style="display:flex;"><span>  reason: &#39;bad decrypt&#39;,
+</span></span><span style="display:flex;"><span>  code: &#39;ERR_OSSL_BAD_DECRYPT&#39;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Node.js v18.19.1
+</span></span></code></pre></div>
+  </div>
+</details>
+
+</br>
+<details ><summary>Decrypt a message with wrong iv</summary>
+  <div class="markdown-inner">
+    <p><strong>NodeJS</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> { <span style="color:#a6e22e">key</span>, <span style="color:#a6e22e">iv</span> } <span style="color:#f92672">=</span> <span style="color:#a6e22e">generateKeyAndIv</span>();
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> { <span style="color:#a6e22e">iv</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">iv2</span> } <span style="color:#f92672">=</span> <span style="color:#a6e22e">generateKeyAndIv</span>();
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">message</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.&#34;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#34;Original Message:&#34;</span>, <span style="color:#a6e22e">message</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">encryptedMessage</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">encrypt</span>(<span style="color:#a6e22e">message</span>, <span style="color:#a6e22e">key</span>, <span style="color:#a6e22e">iv</span>);
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#34;Encrypted Message:&#34;</span>, <span style="color:#a6e22e">encryptedMessage</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">decryptedMessage</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">decrypt</span>(<span style="color:#a6e22e">encryptedMessage</span>, <span style="color:#a6e22e">key</span>, <span style="color:#a6e22e">iv2</span>);
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#34;Decrypted Message:&#34;</span>, <span style="color:#a6e22e">decryptedMessage</span>);
+</span></span></code></pre></div><p><strong>Output</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>Generated Key (hex): 76e1a03f6b3e326cd8c383ce12ff6fbd4b77c484afa7811f93304bc548b9de01
+</span></span><span style="display:flex;"><span>Generated IV (hex): 11edd0224d639ac9d8b1c0a1297ed758
+</span></span><span style="display:flex;"><span>Generated IV2 (hex): aca3f6cd3738dab6c97c43a211ec121f
+</span></span><span style="display:flex;"><span>Original Message: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+</span></span><span style="display:flex;"><span>Encrypted Message: 3189b2b3fbb3d511086609f2cbb5f68928fd980bad454fbcfba3c7aada3f6499832a19be0b6285f3b6ed175d67b4fb04c76c4443873a7f6eecbbf3a667dfc70146916de1f55d5e6d057bbed520e9489b97ce25d1cae41a58db5fe3adcf59d6f0d668a4b9561f32303544b90aa5a800000fe2f30f611e9b23af7170e9f95abecd2023df028570e8816a02c603883a90b1b722f2139b3588e78f4dad472f1e799875e30e8a54f9ae9a761779963abd83cc9a8138a91f57b66a9c499a0e0ae0d57ee409bd381d15c52fdeee4b96684cc35bf2db78dedfa433db25fd1323c887597693571d9dab1c1b052a9ed74195aae89a6db5ef47bed08aae24100b19e7ca3e64389fa8b99ad89104f50a7aa291731985e0b464213df61e50df2df5b22b21767987e5b40c5def1ae6ce80a34845d13ca06a6fe250ef291a4ef01b01b531c843d0201b8b06d41b727e0799dd6742a5814a76fefc57a0ba1f7badc854702e8c6f2f88c13d320c45c300a007464c64e73919403e21527570dec2afbb21746fded82a4360887ff7aad565a797cc731deb6cf6f23dccb73427b21c061f46939d1d5e6ef7b16079467199a9ce03f558dbcb3141f2502683cb5af69ec47e35f343bb5e25
+</span></span><span style="display:flex;"><span>Decrypted Message: �!T�{)b��#\��(r sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+</span></span></code></pre></div>
+  </div>
+</details>
+
 <h2 id="asymmetric-encryption">
   Asymmetric encryption
   <a class="anchor" href="#asymmetric-encryption">#</a>
 </h2>
-<p>uses a public-key cryptosystem (like RSA or ECC) and a key-pair: public key (encryption key) and corresponding private key (decryption key)</p>
+<p>Uses a public-key cryptosystem (like RSA or ECC) and a key-pair: encryption key and corresponding decryption key</p>
 <p>Encryption algorithms are often combined in encryption schemes (like AES-256-CTR-HMAC-SHA-256, ChaCha20-Poly1305 or ECIES-secp256k1-AES-128-GCM).</p>
-<h3 id="rsa-cipher">
-  RSA cipher
-  <a class="anchor" href="#rsa-cipher">#</a>
+<p><img src="/research/encription/Asymmetric.png" alt="Asymmetric" /></p>
+<h3 id="demo-of-public-key-encryption-and-private-key-decryption">
+  Demo of public key encryption and private key decryption
+  <a class="anchor" href="#demo-of-public-key-encryption-and-private-key-decryption">#</a>
 </h3>
+<p>This example demonstrates asymmetric encryption using an RSA <strong>public key to encrypt</strong> and an RSA <strong>private key to decrypt</strong> a message in Node.js with the crypto module</p>
+<details ><summary>Init necessary functions</summary>
+  <div class="markdown-inner">
+    <p><strong>NodeJS</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">crypto</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span>(<span style="color:#e6db74">&#39;crypto&#39;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">generateKeyPair</span> <span style="color:#f92672">=</span> () =&gt; {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">crypto</span>.<span style="color:#a6e22e">generateKeyPairSync</span>(<span style="color:#e6db74">&#39;rsa&#39;</span>, {
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">modulusLength</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">2048</span>, <span style="color:#75715e">// Length of key in bits (2048 is standard)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#a6e22e">publicKeyEncoding</span><span style="color:#f92672">:</span> {
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">type</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;pkcs1&#39;</span>, <span style="color:#75715e">// Public Key Cryptography Standards 1
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>            <span style="color:#a6e22e">format</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;pem&#39;</span>  <span style="color:#75715e">// Output as PEM (Base64 encoded)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        },
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">privateKeyEncoding</span><span style="color:#f92672">:</span> {
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">type</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;pkcs1&#39;</span>, <span style="color:#75715e">// Private Key Cryptography Standards 1
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>            <span style="color:#a6e22e">format</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;pem&#39;</span>  <span style="color:#75715e">// Output as PEM (Base64 encoded)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        }
+</span></span><span style="display:flex;"><span>    });
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">encryptWithPublicKey</span>(<span style="color:#a6e22e">publicKeyPem</span>, <span style="color:#a6e22e">message</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">encrypted</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">crypto</span>.<span style="color:#a6e22e">publicEncrypt</span>(<span style="color:#a6e22e">publicKeyPem</span>, <span style="color:#a6e22e">Buffer</span>.<span style="color:#a6e22e">from</span>(<span style="color:#a6e22e">message</span>));
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">encrypted</span>.<span style="color:#a6e22e">toString</span>(<span style="color:#e6db74">&#39;base64&#39;</span>);  <span style="color:#75715e">// Convert encrypted message to base64 for readability
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">decryptWithPrivateKey</span>(<span style="color:#a6e22e">privateKeyPem</span>, <span style="color:#a6e22e">encryptedMessage</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">decrypted</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">crypto</span>.<span style="color:#a6e22e">privateDecrypt</span>(<span style="color:#a6e22e">privateKeyPem</span>, <span style="color:#a6e22e">Buffer</span>.<span style="color:#a6e22e">from</span>(<span style="color:#a6e22e">encryptedMessage</span>, <span style="color:#e6db74">&#39;base64&#39;</span>));
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">decrypted</span>.<span style="color:#a6e22e">toString</span>(<span style="color:#e6db74">&#39;utf8&#39;</span>);  <span style="color:#75715e">// Convert decrypted message to utf8 string
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>}
+</span></span></code></pre></div>
+  </div>
+</details>
+
+</br>
+<details ><summary>Public key to encrypt and private key to decrypt a message</summary>
+  <div class="markdown-inner">
+    <p><strong>NodeJS</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> { <span style="color:#a6e22e">publicKey</span>, <span style="color:#a6e22e">privateKey</span> } <span style="color:#f92672">=</span> <span style="color:#a6e22e">generateKeyPair</span>();
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#34;Public Key (PEM format):\n&#34;</span>, <span style="color:#a6e22e">publicKey</span>);
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#34;Private Key (PEM format):\n&#34;</span>, <span style="color:#a6e22e">privateKey</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">message</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Hello, this is a secret message!&#34;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#34;Original Message:&#34;</span>, <span style="color:#a6e22e">message</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">encryptedMessage</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">encryptWithPublicKey</span>(<span style="color:#a6e22e">publicKey</span>, <span style="color:#a6e22e">message</span>);
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#34;Encrypted Message:&#34;</span>, <span style="color:#a6e22e">encryptedMessage</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">decryptedMessage</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">decryptWithPrivateKey</span>(<span style="color:#a6e22e">privateKey</span>, <span style="color:#a6e22e">encryptedMessage</span>);
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#34;Decrypted Message:&#34;</span>, <span style="color:#a6e22e">decryptedMessage</span>);
+</span></span></code></pre></div><p><strong>Output</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>Public Key (PEM format):
+</span></span><span style="display:flex;"><span> -----BEGIN RSA PUBLIC KEY-----
+</span></span><span style="display:flex;"><span>MIIBCgKCAQEA0ivCBvmxFewdtUePX8RG3+SKifuEz9dsoSEJzQiCbdOfxCzZiyCb
+</span></span><span style="display:flex;"><span>R7azQhY67IKC93qr/j7zyCGx3WJ2lrRd4ij51Q9CIn75zPExEfLMvCt0HQtO+UQo
+</span></span><span style="display:flex;"><span>w0QZLGIZc6Q+eJfQg++PeUVYpZPT/jp3RXHEScpZJfHCarhl6JfCkuu3YuITSpta
+</span></span><span style="display:flex;"><span>rhUuaw6UMoWnZCbr0/OW2rC3s97p+VIr5i3jCf+z84E7dTZ529mZ1PsxNue5NKqO
+</span></span><span style="display:flex;"><span>/SWyjrNvwORMkdYweoSqz5oZ0U2B29mUWRkhcOrPmrRBCxMRwWTmQC3PpzrAwG2/
+</span></span><span style="display:flex;"><span>eQfbKX1tzzSVjjjMUgKvmeLvr57au62yLwIDAQAB
+</span></span><span style="display:flex;"><span>-----END RSA PUBLIC KEY-----
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Private Key (PEM format):
+</span></span><span style="display:flex;"><span> -----BEGIN RSA PRIVATE KEY-----
+</span></span><span style="display:flex;"><span>MIIEowIBAAKCAQEA0ivCBvmxFewdtUePX8RG3+SKifuEz9dsoSEJzQiCbdOfxCzZ
+</span></span><span style="display:flex;"><span>iyCbR7azQhY67IKC93qr/j7zyCGx3WJ2lrRd4ij51Q9CIn75zPExEfLMvCt0HQtO
+</span></span><span style="display:flex;"><span>+UQow0QZLGIZc6Q+eJfQg++PeUVYpZPT/jp3RXHEScpZJfHCarhl6JfCkuu3YuIT
+</span></span><span style="display:flex;"><span>SptarhUuaw6UMoWnZCbr0/OW2rC3s97p+VIr5i3jCf+z84E7dTZ529mZ1PsxNue5
+</span></span><span style="display:flex;"><span>NKqO/SWyjrNvwORMkdYweoSqz5oZ0U2B29mUWRkhcOrPmrRBCxMRwWTmQC3PpzrA
+</span></span><span style="display:flex;"><span>wG2/eQfbKX1tzzSVjjjMUgKvmeLvr57au62yLwIDAQABAoIBAELNKr4p1gn4QxcP
+</span></span><span style="display:flex;"><span>+DfBvJ9EVm52Fegz+jCavjE/r6k11vW1Ja4tfn2ESiTKyQ7MitEbWhiVLMojP5P0
+</span></span><span style="display:flex;"><span>zGmpSZ/tUz9Pur8ZKc/kp6qjSETU8PKcWg0rh2NNPU0Ynytc/Ig7BMkytyEeFAeI
+</span></span><span style="display:flex;"><span>3ZxUO/3EI9YqbTx8w8VE+As+VVd55dkkoEShi77ibxFNeevWvS46k/d1a5hcsVj8
+</span></span><span style="display:flex;"><span>NlsngHux8ZwUu8ZaIQH0wclLo77TcDOJF9NkJb7x8xzXH/pvNOPu49nA098zob6c
+</span></span><span style="display:flex;"><span>ivZTW6z2Jsa94NzPzvCQ/NLumrkt07bE0HBXJCkaajlhjn69gXR2fEfWVrryW3e9
+</span></span><span style="display:flex;"><span>sLFEPJUCgYEA9hz4qFpM/QB4q1AzNR7ZK5vfzfAIAQWPmbVpFZXYdUD+tzXut7Yu
+</span></span><span style="display:flex;"><span>dd4WZU1l/LgUeLUmUfJqDwiMOz/pGSTNcJqtHl3wP2Yz9n1fcWhxdbjbPZkB1+Di
+</span></span><span style="display:flex;"><span>dhKkxvxEih4PyK+367udHcJYF+Su7Pl2hNmBMvTc0rzWpdJHRVCrwEMCgYEA2p0o
+</span></span><span style="display:flex;"><span>Dyy5dBhrMCi083074qQhdXQqX1+f0KDZXy1u8JtooktbpARfyc+P9/hT+sdvxln7
+</span></span><span style="display:flex;"><span>hEsYPkplvPS3ahm0tb4tCW1esAZLhn8RvYJqJConBawKRw2oVJ9YCW1Et4vn+oKU
+</span></span><span style="display:flex;"><span>pLfvmgX/PgCIuVn6szmU4LUj9pHoaoE5E0ulLaUCgYEA5n+dtvbTsgR1/2RegTrC
+</span></span><span style="display:flex;"><span>BGC5TAOpS2Os6TWJFKlBkBduN6KwT6i1fLiiWwARK44vxhlKqWcTQ78qrvcdVeos
+</span></span><span style="display:flex;"><span>6nBDAPTT5FzQ/+LNt8YstSeLVfZuToQVNKYjYyWy/3RGLhu8cnBFJzD0FnScC99b
+</span></span><span style="display:flex;"><span>y/J1WYcRJeGsWqNFErsKEEcCgYAw/e0/UVeSU/KZjVXYB2XHSd8RsmHYk9Z9674r
+</span></span><span style="display:flex;"><span>HURyeXF+hYLZA/3vfSuXd7hiSBWdjwbVw/p/4y5fpTwBdBdSb3cqWK9SpWaBkrKI
+</span></span><span style="display:flex;"><span>FNTym9u44rA+8imaJUeWfT1cIOdw9ZiYPXxduSBVZcs+NpL/XVUm8pFHrbU3QRRo
+</span></span><span style="display:flex;"><span>ZZhz3QKBgHcVAZq3TaigmrupfdGlSDN+NdxP7EhOlGaYu5LuJcfic2q/W1+SKoQK
+</span></span><span style="display:flex;"><span>5osEUzV/SeWQH5oHW/2ASx2GOwyiWcn2RfXRFPSXfX4aHfO3JBOZVJ8Wzql9WhST
+</span></span><span style="display:flex;"><span>NEw2BFi05XXkbE/ncxq5+SZsHVGQVZ0hlkG2oPc3Hp7sDAMJSDQC
+</span></span><span style="display:flex;"><span>-----END RSA PRIVATE KEY-----
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Original Message: Hello, this is a secret message!
+</span></span><span style="display:flex;"><span>Encrypted Message: Vb+Oc8Kn76rvjJuXZOvtLGsQDm/VGXzB2KbqzWXr5UMZV4bXLkhCs407H4Li4ImROH6uPXlA+SNPSYr0XpLQ+Uksnt2b8YbUQZUSvi15bJbXKKXsvo9FLg2ygcSUiqBjGs3coMbWh0sZnGN+GpXbIld8ItGCkLRnMDkvCK/uzgA11bmLcBOFt726ytjK0qGJGDM1svL2A2ZTXGgnLMUSnSzNxWv5K4sUU0yi38/ineL1Kc6FLlUo3YrLnW6MvB0rp+lF9VRGw8Sbagpm01PcnQiQH28OmbQxLomScQ4Mq1EXqN7oVgE2kMDXIO0mec6I0TmLtsLjWirN0iT2Um/cDQ==
+</span></span><span style="display:flex;"><span>Decrypted Message: Hello, this is a secret message!
+</span></span></code></pre></div>
+  </div>
+</details>
+
+</br>
+<details ><summary>Private key to encrypt and decrypt a message</summary>
+  <div class="markdown-inner">
+    <p><strong>NodeJS</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> { <span style="color:#a6e22e">privateKey</span> } <span style="color:#f92672">=</span> <span style="color:#a6e22e">generateKeyPair</span>();
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#34;Private Key (PEM format):\n&#34;</span>, <span style="color:#a6e22e">privateKey</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">message</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Hello, this is a secret message!&#34;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#34;Original Message:&#34;</span>, <span style="color:#a6e22e">message</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">encryptedMessage</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">encryptWithPublicKey</span>(<span style="color:#a6e22e">privateKey</span>, <span style="color:#a6e22e">message</span>);
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#34;Encrypted Message:&#34;</span>, <span style="color:#a6e22e">encryptedMessage</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">decryptedMessage</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">decryptWithPrivateKey</span>(<span style="color:#a6e22e">privateKey</span>, <span style="color:#a6e22e">encryptedMessage</span>);
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#34;Decrypted Message:&#34;</span>, <span style="color:#a6e22e">decryptedMessage</span>);
+</span></span></code></pre></div><p><strong>Output</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>Private Key (PEM format):
+</span></span><span style="display:flex;"><span> -----BEGIN RSA PRIVATE KEY-----
+</span></span><span style="display:flex;"><span>MIIEpAIBAAKCAQEA8+Vsp8r+fNSpHdr+cr8+8tX+Tmm/1oCtU4dlVSz+auKLj490
+</span></span><span style="display:flex;"><span>duuh+rZ2ud7zgMzzCd9cSqFs4JWHsAFbx2oe4LSWD++V7ZES3ORE+48ksziCMC/r
+</span></span><span style="display:flex;"><span>...
+</span></span><span style="display:flex;"><span>EZUgvYiHTgt3lJnQunBQPGug59B4mB8JRPZIdrpZc8acTA0X5+Ys8PRSwFoNzQ+b
+</span></span><span style="display:flex;"><span>pDxXQo6e+j9SU9xi9ULFuK9ZZp48ERgX8MqG+1fdxGU+LFHfK192Kw==
+</span></span><span style="display:flex;"><span>-----END RSA PRIVATE KEY-----
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Original Message: Hello, this is a secret message!
+</span></span><span style="display:flex;"><span>Encrypted Message: V3fyDYvqx5OzPBJfKO434XKTUSC+c7KnpsvjpSdkUYR+BfrK0A+4V+y1Mf7uuCWaCRIA4Npu9aRoAgDPV8u7Zwc7h6sGaGo8WSofWsADCobDiN1d1dX0Htxurr9tVNmcdvXBxigyLK93h+Q7xXg5Xn2RdBpItPBHDITxfBlCRdyDZX+x81b1xTCdue6mTQwEp8CkJpZsahEPYgW7tYA+rWBu147Cz0jKEstk62Udxc82WYMRT+za0pz2nqSVqDKZCpaXBT1xlmPNgy14bzuLNZbykyUScly3PJUmybi9Ml/+OYjPwLY+XuYbXDklV2OX2fPsiuTo0iwXOwZB7HRE1Q==
+</span></span><span style="display:flex;"><span>Decrypted Message: Hello, this is a secret message!
+</span></span></code></pre></div>
+  </div>
+</details>
+
+</br>
+<details ><summary>Private key to encrypt and public key to decrypt a message</summary>
+  <div class="markdown-inner">
+    <p><strong>NodeJS</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> { <span style="color:#a6e22e">publicKey</span>, <span style="color:#a6e22e">privateKey</span> } <span style="color:#f92672">=</span> <span style="color:#a6e22e">generateKeyPair</span>();
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#34;Public Key (PEM format):\n&#34;</span>, <span style="color:#a6e22e">publicKey</span>);
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#34;Private Key (PEM format):\n&#34;</span>, <span style="color:#a6e22e">privateKey</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">message</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Hello, this is a secret message!&#34;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#34;Original Message:&#34;</span>, <span style="color:#a6e22e">message</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">encryptedMessage</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">encryptWithPublicKey</span>(<span style="color:#a6e22e">privateKey</span>, <span style="color:#a6e22e">message</span>);
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#34;Encrypted Message:&#34;</span>, <span style="color:#a6e22e">encryptedMessage</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">decryptedMessage</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">decryptWithPrivateKey</span>(<span style="color:#a6e22e">publicKey</span>, <span style="color:#a6e22e">encryptedMessage</span>);
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#34;Decrypted Message:&#34;</span>, <span style="color:#a6e22e">decryptedMessage</span>);
+</span></span></code></pre></div><p><strong>Output</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>Public Key (PEM format):
+</span></span><span style="display:flex;"><span> -----BEGIN RSA PUBLIC KEY-----
+</span></span><span style="display:flex;"><span>MIIBCgKCAQEA2UVnWwcABrWqMggU7xxkl25zzV3/FabJvFDiGtaWjTUhLu9QjKtO
+</span></span><span style="display:flex;"><span>...
+</span></span><span style="display:flex;"><span>wUXBn7HZjrd8Oue5JVPL1KqpUABxLBYc1QIDAQAB
+</span></span><span style="display:flex;"><span>-----END RSA PUBLIC KEY-----
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Private Key (PEM format):
+</span></span><span style="display:flex;"><span> -----BEGIN RSA PRIVATE KEY-----
+</span></span><span style="display:flex;"><span>MIIEpAIBAAKCAQEA2UVnWwcABrWqMggU7xxkl25zzV3/FabJvFDiGtaWjTUhLu9Q
+</span></span><span style="display:flex;"><span>...
+</span></span><span style="display:flex;"><span>lXDeVDYNZZ5oYCOWxjoAYamUbPrXD+SDGsDwnlgcaHViBBxUeGElHw==
+</span></span><span style="display:flex;"><span>-----END RSA PRIVATE KEY-----
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Original Message: Hello, this is a secret message!
+</span></span><span style="display:flex;"><span>Encrypted Message: VwgGUHIcxGAO5J5THYzxEgrmGQlIWy8Xg8f+c2zuyWjEzlgkat2TIyJa4fZ/vvf/kmIaetfw2cJf7wSvDfHP+yikVYRN2/uQ67pE6dK+FtW0d5GK6HaoM4c6QP/DbeMbikywSFjxYiyKsqp7eREtv8rdEgpde7OVL3pthSZmoJWUoSFNUvMqJT5+D1hPv8J38TlNdEUp7YrIQdx/gyZx8w6q+uikyboJbEJ2Z4YCfJVUbw1Fwbijox/jb8bWRFO6OHb2XXC4w2LXGLoZdxAAykRQ19BTsV6ojMflb1Bw428Q2GNaiolJXZX7j20rVRjM0KccLvHQ5FLPzTmK3BHQxg==
+</span></span><span style="display:flex;"><span>node:internal/crypto/cipher:80
+</span></span><span style="display:flex;"><span>    return method(data, format, type, passphrase, buffer, padding, oaepHash,
+</span></span><span style="display:flex;"><span>           ^
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Error: error:020000B3:rsa routines::missing private key
+</span></span><span style="display:flex;"><span>    at Object.privateDecrypt (node:internal/crypto/cipher:80:12)
+</span></span><span style="display:flex;"><span>    at decryptWithPrivateKey (/home/dangpham/Workspace/nodejs/demo/asymmetric.js:23:30)
+</span></span><span style="display:flex;"><span>    at Object.&lt;anonymous&gt; (/home/dangpham/Workspace/nodejs/demo/asymmetric.js:66:26)
+</span></span><span style="display:flex;"><span>    at Module._compile (node:internal/modules/cjs/loader:1356:14)
+</span></span><span style="display:flex;"><span>    at Module._extensions..js (node:internal/modules/cjs/loader:1414:10)
+</span></span><span style="display:flex;"><span>    at Module.load (node:internal/modules/cjs/loader:1197:32)
+</span></span><span style="display:flex;"><span>    at Module._load (node:internal/modules/cjs/loader:1013:12)
+</span></span><span style="display:flex;"><span>    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:128:12)
+</span></span><span style="display:flex;"><span>    at node:internal/main/run_main_module:28:49 {
+</span></span><span style="display:flex;"><span>  opensslErrorStack: [ &#39;error:1C8000A2:Provider routines::failed to decrypt&#39; ],
+</span></span><span style="display:flex;"><span>  library: &#39;rsa routines&#39;,
+</span></span><span style="display:flex;"><span>  reason: &#39;missing private key&#39;,
+</span></span><span style="display:flex;"><span>  code: &#39;ERR_OSSL_RSA_MISSING_PRIVATE_KEY&#39;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Node.js v18.19.1
+</span></span></code></pre></div>
+  </div>
+</details>
+
+<h3 id="demo-of-private-key-encryption-and-public-key-decryption">
+  Demo of private key encryption and public key decryption
+  <a class="anchor" href="#demo-of-private-key-encryption-and-public-key-decryption">#</a>
+</h3>
+<p>This example demonstrates RSA encryption and decryption in a way that mimics JWT behavior, where the <strong>private key is used to sign (encrypt)</strong> the message, and the <strong>public key is used to verify (decrypt)</strong> it</p>
+<details ><summary>Init necessary functions</summary>
+  <div class="markdown-inner">
+    <p><strong>NodeJS</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">crypto</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span>(<span style="color:#e6db74">&#39;crypto&#39;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">generateKeyPair</span> <span style="color:#f92672">=</span> () =&gt; {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">crypto</span>.<span style="color:#a6e22e">generateKeyPairSync</span>(<span style="color:#e6db74">&#39;rsa&#39;</span>, {
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">modulusLength</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">2048</span>, <span style="color:#75715e">// Length of key in bits (2048 is standard)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#a6e22e">publicKeyEncoding</span><span style="color:#f92672">:</span> {
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">type</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;pkcs1&#39;</span>, <span style="color:#75715e">// Public Key Cryptography Standards 1
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>            <span style="color:#a6e22e">format</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;pem&#39;</span>  <span style="color:#75715e">// Output as PEM (Base64 encoded)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        },
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">privateKeyEncoding</span><span style="color:#f92672">:</span> {
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">type</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;pkcs1&#39;</span>, <span style="color:#75715e">// Private Key Cryptography Standards 1
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>            <span style="color:#a6e22e">format</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;pem&#39;</span>  <span style="color:#75715e">// Output as PEM (Base64 encoded)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        }
+</span></span><span style="display:flex;"><span>    });
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Function to &#34;sign&#34; (encrypt) a message using RSA private key
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">signWithPrivateKey</span>(<span style="color:#a6e22e">privateKeyPem</span>, <span style="color:#a6e22e">message</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">encrypted</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">crypto</span>.<span style="color:#a6e22e">privateEncrypt</span>(<span style="color:#a6e22e">privateKeyPem</span>, <span style="color:#a6e22e">Buffer</span>.<span style="color:#a6e22e">from</span>(<span style="color:#a6e22e">message</span>));
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">encrypted</span>.<span style="color:#a6e22e">toString</span>(<span style="color:#e6db74">&#39;base64&#39;</span>);  <span style="color:#75715e">// Convert encrypted message to base64 for readability
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Function to &#34;verify&#34; (decrypt) a message using RSA public key
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">verifyWithPublicKey</span>(<span style="color:#a6e22e">publicKeyPem</span>, <span style="color:#a6e22e">encryptedMessage</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">decrypted</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">crypto</span>.<span style="color:#a6e22e">publicDecrypt</span>(<span style="color:#a6e22e">publicKeyPem</span>, <span style="color:#a6e22e">Buffer</span>.<span style="color:#a6e22e">from</span>(<span style="color:#a6e22e">encryptedMessage</span>, <span style="color:#e6db74">&#39;base64&#39;</span>));
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">decrypted</span>.<span style="color:#a6e22e">toString</span>(<span style="color:#e6db74">&#39;utf8&#39;</span>);  <span style="color:#75715e">// Convert decrypted message to utf8 string
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>}
+</span></span></code></pre></div>
+  </div>
+</details>
+
+</br>
+<details ><summary>Private key to encrypt and public key to decrypt a message</summary>
+  <div class="markdown-inner">
+    <p><strong>NodeJS</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> { <span style="color:#a6e22e">publicKey</span>, <span style="color:#a6e22e">privateKey</span> } <span style="color:#f92672">=</span> <span style="color:#a6e22e">generateKeyPair</span>();
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#34;Public Key (PEM format):\n&#34;</span>, <span style="color:#a6e22e">publicKey</span>);
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#34;Private Key (PEM format):\n&#34;</span>, <span style="color:#a6e22e">privateKey</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">message</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;J5 love ST&#34;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#34;Original Message:&#34;</span>, <span style="color:#a6e22e">message</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// &#34;Sign&#34; the message using the private key (Encrypt)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">encryptedMessage</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">signWithPrivateKey</span>(<span style="color:#a6e22e">privateKey</span>, <span style="color:#a6e22e">message</span>);
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#34;Encrypted Message (Base64):&#34;</span>, <span style="color:#a6e22e">encryptedMessage</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// &#34;Verify&#34; the message using the public key (Decrypt)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">decryptedMessage</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">verifyWithPublicKey</span>(<span style="color:#a6e22e">publicKey</span>, <span style="color:#a6e22e">encryptedMessage</span>);
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#34;Decrypted Message:&#34;</span>, <span style="color:#a6e22e">decryptedMessage</span>);
+</span></span></code></pre></div><p><strong>Output</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>Public Key (PEM format):
+</span></span><span style="display:flex;"><span> -----BEGIN RSA PUBLIC KEY-----
+</span></span><span style="display:flex;"><span>MIIBCgKCAQEAnxkXw9Cbi4F+tsJImVUNVhOUTYWj/lMUB+jcXBE6myqgZ4xiHWWx
+</span></span><span style="display:flex;"><span>0nGzjqxHiojYcN3jiEtABqbls2KToTs9LvNHDYcr8bPh828HZTcB6V9r1x79zFSp
+</span></span><span style="display:flex;"><span>jJtvx4hmOa0K7iOiN2AwWaV1mtFTKOZ/2QsQMqyhleBgPMCQyD6CYS2IJrRq6Wu+
+</span></span><span style="display:flex;"><span>anekIYgfWToajrpbgs4AE5X0aTd10/0eR0A7n3C8jGKiyAaTsROBtqvmoq69QGrW
+</span></span><span style="display:flex;"><span>ozDOWl/Dt6I3Y/a0Vx6lyL2bjClbIo61yJqkxW0VWFLodFuKvjd8gln3PZokTiEl
+</span></span><span style="display:flex;"><span>fjQFKVj63Wh/ssXHQjFtYvnmS73gMATYSwIDAQAB
+</span></span><span style="display:flex;"><span>-----END RSA PUBLIC KEY-----
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Private Key (PEM format):
+</span></span><span style="display:flex;"><span> -----BEGIN RSA PRIVATE KEY-----
+</span></span><span style="display:flex;"><span>MIIEowIBAAKCAQEAnxkXw9Cbi4F+tsJImVUNVhOUTYWj/lMUB+jcXBE6myqgZ4xi
+</span></span><span style="display:flex;"><span>HWWx0nGzjqxHiojYcN3jiEtABqbls2KToTs9LvNHDYcr8bPh828HZTcB6V9r1x79
+</span></span><span style="display:flex;"><span>zFSpjJtvx4hmOa0K7iOiN2AwWaV1mtFTKOZ/2QsQMqyhleBgPMCQyD6CYS2IJrRq
+</span></span><span style="display:flex;"><span>6Wu+anekIYgfWToajrpbgs4AE5X0aTd10/0eR0A7n3C8jGKiyAaTsROBtqvmoq69
+</span></span><span style="display:flex;"><span>QGrWozDOWl/Dt6I3Y/a0Vx6lyL2bjClbIo61yJqkxW0VWFLodFuKvjd8gln3PZok
+</span></span><span style="display:flex;"><span>TiElfjQFKVj63Wh/ssXHQjFtYvnmS73gMATYSwIDAQABAoIBADBGznnKPrC92iP9
+</span></span><span style="display:flex;"><span>30a70sCoT0uYvlMJhZ4C0H8VcUmtTSAuroUKG0Pm4Zvs9gZ5EOhqxETSxLpgAXqF
+</span></span><span style="display:flex;"><span>8pMtpRqukoRt3G1K7sjOC5nwb6GPpWsRCeVrWUmDzw7melKNCjCJ2orgIrvJI98X
+</span></span><span style="display:flex;"><span>HpteGjRTkZY24Q9YFwvISQaiRTDURBuTN1xmKNJ22AFU9oinLbedg0wPJ3xS5YPP
+</span></span><span style="display:flex;"><span>nROv8Gz/buoRrxysObguPgaBcOPQB3qz1qdsXwjnCDfQGKzo8LrFGtD1z3Zu4jWx
+</span></span><span style="display:flex;"><span>CfxzGisk45FuE0FWksNMwD0mKXDh11unA3p/xCstbwD2ISIiFhSvG09tGYl5pqlD
+</span></span><span style="display:flex;"><span>tGOZj2UCgYEA0OAyKRCNKPRxj1nXFtg7eR02YXxlnIqhl1ggXdW6hpwTx1t+Bu28
+</span></span><span style="display:flex;"><span>Qi5OsDOBivkTHjqt3x5DQTQTaOdpfwDBUpuYM4NIxL6EoFZaC2R26ocaIsZ4qKkk
+</span></span><span style="display:flex;"><span>SmBJW1Yx5iRWrurKB+1iwVshcjAHFyYWiltM4iL25RKAAeE7M1inlGcCgYEAwv3w
+</span></span><span style="display:flex;"><span>ceg+/mTmhE9XfW9N6ThEHvnoneHjuil5/7RN4XONDgB5Av68iimOTlcROmrc27TY
+</span></span><span style="display:flex;"><span>UcZvDI0j7yrAwv+7Z9I9DS56vSPpqYEC0HXayyFiCn3CS2Om0ySMYdTVJRi+53kf
+</span></span><span style="display:flex;"><span>8qZVEW9OMyRNIbc9djKObN4wTijMiRbZpmT2Tn0CgYAApnIBhrepxPkFhTYSMCIf
+</span></span><span style="display:flex;"><span>QmQE8aovTo8qNXAEWsH14U5+dF50DxFi81nzWnWwxQ22LmCULTfwYAUfcnj1mD8B
+</span></span><span style="display:flex;"><span>ztIudt4nHqCzDxHAr1Nfb4Q5T3zYqY4fXSVdT2tgWASdDsYKOEbyayIzhMrA27F+
+</span></span><span style="display:flex;"><span>RMJ8gbdbBy+20cipZEFBSQKBgQCEGB2EPO43zkjvRwSg//8KyEg1p9zy3+0y1xhD
+</span></span><span style="display:flex;"><span>pnTAD1R2MNHJuqIlAsPZxFfyeCRIXnnQ5BmkqhS22AKf1ziwu5cKT/tsGGEZqEEs
+</span></span><span style="display:flex;"><span>0To4M9REAS/XfJmuHetP9yuxptLk4oRHEHE+j2WtdaEe/xCO+u7LR7X3rOHq2OT3
+</span></span><span style="display:flex;"><span>ORw2zQKBgEACN6Qhs+ExE2+MLlC/8IaI3mPwa893LFk65/qHMuUQ2xUniJo2fQV5
+</span></span><span style="display:flex;"><span>BomT4OFSDaPBftdL1a/WVg6/EvN9Re1VBncAycCsLeSB+UHnk3+MvQTCh5E3j/Vy
+</span></span><span style="display:flex;"><span>gvIAt3PKqHBQTTx8p3CSxaDp91U6ru3OxetBgIchdHavxCXOkvrW
+</span></span><span style="display:flex;"><span>-----END RSA PRIVATE KEY-----
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Original Message: J5 love ST
+</span></span><span style="display:flex;"><span>Encrypted Message (Base64): cG6810O8omJ67Ji6ZoQRw2um5UTx6YdTvUXWlH4GrUtph5J3xVqJhta4SWgJHNjaMgfMveJpFPTv/iAq0yBskmha+f+hRyYOITzXcz3jqtOl+4G9dC/OyqdkGIHq96lF9YZmWrXVtkCncRR07XoL+AMiBJ37HUgbHS15axAtghtJSYfWzabASA13sbEewVgQTIvg+aH9NvG5s2gKxLNIPtKcqUvmmqB2P0hFhg437QaF4SM/MBz/w7HbQT69B+YveBW8pFcgxAl+oIdl+dAneCog0FZiWI5mg13jlUmx4s7dhBKu7Ebdtayk3pZsHCKCYHNyePgSYA8bnUEqUVw+Hg==
+</span></span><span style="display:flex;"><span>Decrypted Message: J5 love ST
+</span></span></code></pre></div>
+  </div>
+</details>
+
+</br>
+<details ><summary>Public key to encrypt and decrypt a message</summary>
+  <div class="markdown-inner">
+    <p><strong>NodeJS</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> { <span style="color:#a6e22e">publicKey</span> } <span style="color:#f92672">=</span> <span style="color:#a6e22e">generateKeyPair</span>();
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#34;Public Key (PEM format):\n&#34;</span>, <span style="color:#a6e22e">publicKey</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">message</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;J5 love ST&#34;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#34;Original Message:&#34;</span>, <span style="color:#a6e22e">message</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">encryptedMessage</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">signWithPrivateKey</span>(<span style="color:#a6e22e">publicKey</span>, <span style="color:#a6e22e">message</span>);
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#34;Encrypted Message (Base64):&#34;</span>, <span style="color:#a6e22e">encryptedMessage</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">decryptedMessage</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">verifyWithPublicKey</span>(<span style="color:#a6e22e">publicKey</span>, <span style="color:#a6e22e">encryptedMessage</span>);
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#34;Decrypted Message:&#34;</span>, <span style="color:#a6e22e">decryptedMessage</span>);
+</span></span></code></pre></div><p><strong>Output</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>Public Key (PEM format):
+</span></span><span style="display:flex;"><span> -----BEGIN RSA PUBLIC KEY-----
+</span></span><span style="display:flex;"><span>MIIBCgKCAQEA1GV0AyMKyczyUpRyIolyuDRkw5hpkqhojoZ4KJvh11bqDe6H2mjJ
+</span></span><span style="display:flex;"><span>...
+</span></span><span style="display:flex;"><span>f3Io9s6lsPaN3zWxDxxJJMo5SsX48T5NQQIDAQAB
+</span></span><span style="display:flex;"><span>-----END RSA PUBLIC KEY-----
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Original Message: J5 love ST
+</span></span><span style="display:flex;"><span>node:internal/crypto/cipher:80
+</span></span><span style="display:flex;"><span>    return method(data, format, type, passphrase, buffer, padding, oaepHash,
+</span></span><span style="display:flex;"><span>           ^
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Error: error:020000B3:rsa routines::missing private key
+</span></span><span style="display:flex;"><span>    at Object.privateEncrypt (node:internal/crypto/cipher:80:12)
+</span></span><span style="display:flex;"><span>    at signWithPrivateKey (/home/dangpham/Workspace/nodejs/demo/asymmetricLikeJWT.js:19:30)
+</span></span><span style="display:flex;"><span>    at Object.&lt;anonymous&gt; (/home/dangpham/Workspace/nodejs/demo/asymmetricLikeJWT.js:56:26)
+</span></span><span style="display:flex;"><span>    at Module._compile (node:internal/modules/cjs/loader:1356:14)
+</span></span><span style="display:flex;"><span>    at Module._extensions..js (node:internal/modules/cjs/loader:1414:10)
+</span></span><span style="display:flex;"><span>    at Module.load (node:internal/modules/cjs/loader:1197:32)
+</span></span><span style="display:flex;"><span>    at Module._load (node:internal/modules/cjs/loader:1013:12)
+</span></span><span style="display:flex;"><span>    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:128:12)
+</span></span><span style="display:flex;"><span>    at node:internal/main/run_main_module:28:49 {
+</span></span><span style="display:flex;"><span>  opensslErrorStack: [ &#39;error:1C880004:Provider routines::RSA lib&#39; ],
+</span></span><span style="display:flex;"><span>  library: &#39;rsa routines&#39;,
+</span></span><span style="display:flex;"><span>  reason: &#39;missing private key&#39;,
+</span></span><span style="display:flex;"><span>  code: &#39;ERR_OSSL_RSA_MISSING_PRIVATE_KEY&#39;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Node.js v18.19.1
+</span></span></code></pre></div>
+  </div>
+</details>
+
+</br>
+<details ><summary>Public key to encrypt and private key to decrypt a message</summary>
+  <div class="markdown-inner">
+    <p><strong>NodeJS</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> { <span style="color:#a6e22e">publicKey</span>, <span style="color:#a6e22e">privateKey</span> } <span style="color:#f92672">=</span> <span style="color:#a6e22e">generateKeyPair</span>();
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#34;Public Key (PEM format):\n&#34;</span>, <span style="color:#a6e22e">publicKey</span>);
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#34;Private Key (PEM format):\n&#34;</span>, <span style="color:#a6e22e">privateKey</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">message</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;J5 love ST&#34;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#34;Original Message:&#34;</span>, <span style="color:#a6e22e">message</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">encryptedMessage</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">signWithPrivateKey</span>(<span style="color:#a6e22e">publicKey</span>, <span style="color:#a6e22e">message</span>);
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#34;Encrypted Message (Base64):&#34;</span>, <span style="color:#a6e22e">encryptedMessage</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">decryptedMessage</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">verifyWithPublicKey</span>(<span style="color:#a6e22e">privateKey</span>, <span style="color:#a6e22e">encryptedMessage</span>);
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#34;Decrypted Message:&#34;</span>, <span style="color:#a6e22e">decryptedMessage</span>);
+</span></span></code></pre></div><p><strong>Output</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>Public Key (PEM format):
+</span></span><span style="display:flex;"><span> -----BEGIN RSA PUBLIC KEY-----
+</span></span><span style="display:flex;"><span>MIIBCgKCAQEAoqD5nBZ1axzJnDyxmuQmb11/3NBVZlk4py/X64ew9HH5NzrwkH04
+</span></span><span style="display:flex;"><span>...
+</span></span><span style="display:flex;"><span>t1rjt5xOTmK5N0fyrxNoouTqIpV3E85P/QIDAQAB
+</span></span><span style="display:flex;"><span>-----END RSA PUBLIC KEY-----
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Private Key (PEM format):
+</span></span><span style="display:flex;"><span> -----BEGIN RSA PRIVATE KEY-----
+</span></span><span style="display:flex;"><span>MIIEowIBAAKCAQEAoqD5nBZ1axzJnDyxmuQmb11/3NBVZlk4py/X64ew9HH5Nzrw
+</span></span><span style="display:flex;"><span>...
+</span></span><span style="display:flex;"><span>fKcxqqYvJv2yio3ogNZSJsFGFU1lafg7FwWMgqnd/99nWBCY2gn1
+</span></span><span style="display:flex;"><span>-----END RSA PRIVATE KEY-----
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Original Message: J5 love ST
+</span></span><span style="display:flex;"><span>node:internal/crypto/cipher:80
+</span></span><span style="display:flex;"><span>    return method(data, format, type, passphrase, buffer, padding, oaepHash,
+</span></span><span style="display:flex;"><span>           ^
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Error: error:020000B3:rsa routines::missing private key
+</span></span><span style="display:flex;"><span>    at Object.privateEncrypt (node:internal/crypto/cipher:80:12)
+</span></span><span style="display:flex;"><span>    at signWithPrivateKey (/home/dangpham/Workspace/nodejs/demo/asymmetricLikeJWT.js:19:30)
+</span></span><span style="display:flex;"><span>    at Object.&lt;anonymous&gt; (/home/dangpham/Workspace/nodejs/demo/asymmetricLikeJWT.js:73:26)
+</span></span><span style="display:flex;"><span>    at Module._compile (node:internal/modules/cjs/loader:1356:14)
+</span></span><span style="display:flex;"><span>    at Module._extensions..js (node:internal/modules/cjs/loader:1414:10)
+</span></span><span style="display:flex;"><span>    at Module.load (node:internal/modules/cjs/loader:1197:32)
+</span></span><span style="display:flex;"><span>    at Module._load (node:internal/modules/cjs/loader:1013:12)
+</span></span><span style="display:flex;"><span>    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:128:12)
+</span></span><span style="display:flex;"><span>    at node:internal/main/run_main_module:28:49 {
+</span></span><span style="display:flex;"><span>  opensslErrorStack: [ &#39;error:1C880004:Provider routines::RSA lib&#39; ],
+</span></span><span style="display:flex;"><span>  library: &#39;rsa routines&#39;,
+</span></span><span style="display:flex;"><span>  reason: &#39;missing private key&#39;,
+</span></span><span style="display:flex;"><span>  code: &#39;ERR_OSSL_RSA_MISSING_PRIVATE_KEY&#39;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Node.js v18.19.1
+</span></span></code></pre></div>
+  </div>
+</details>
+
+</br>
+<details ><summary>Private key to encrypt and decrypt a message</summary>
+  <div class="markdown-inner">
+    <p><strong>NodeJS</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> { <span style="color:#a6e22e">privateKey</span> } <span style="color:#f92672">=</span> <span style="color:#a6e22e">generateKeyPair</span>();
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#34;Private Key (PEM format):\n&#34;</span>, <span style="color:#a6e22e">privateKey</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">message</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;J5 love ST&#34;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#34;Original Message:&#34;</span>, <span style="color:#a6e22e">message</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">encryptedMessage</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">signWithPrivateKey</span>(<span style="color:#a6e22e">privateKey</span>, <span style="color:#a6e22e">message</span>);
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#34;Encrypted Message (Base64):&#34;</span>, <span style="color:#a6e22e">encryptedMessage</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">decryptedMessage</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">verifyWithPublicKey</span>(<span style="color:#a6e22e">privateKey</span>, <span style="color:#a6e22e">encryptedMessage</span>);
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#34;Decrypted Message:&#34;</span>, <span style="color:#a6e22e">decryptedMessage</span>);
+</span></span></code></pre></div><p><strong>Output</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>Private Key (PEM format):
+</span></span><span style="display:flex;"><span> -----BEGIN RSA PRIVATE KEY-----
+</span></span><span style="display:flex;"><span>MIIEowIBAAKCAQEAykZk5e0pL+3la4Ydil2jc3sjJWslEvYv0qfGwi5SrKmA8HpS
+</span></span><span style="display:flex;"><span>...
+</span></span><span style="display:flex;"><span>Wso3YmC9MOThDlzdM3nY4sNugECT1emFNVitiegOuOuhoD2qBvUb
+</span></span><span style="display:flex;"><span>-----END RSA PRIVATE KEY-----
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Original Message: J5 love ST
+</span></span><span style="display:flex;"><span>Encrypted Message (Base64): dOgtEZCxxV+IoD9p8cfCgSlVNfDhgaumgihbBoD5yvhOA4r0qM2/Pq+m28riZZH66EtXUtjQoCaDt9r92flIhvnJbQeDgumCl7MwseMoZdJoDRjGGXuxEqyzinMc5mYmxayz9iSDOMt3NgDSTmClJXb+rGXkLLpM9zxpQSBrdq3wdamMrY0/JAnyul1icLZ6HpSiwSg7DhQYrZR9CDxgNeZpqyzNoUksu61EfYO7hxDcjbIZ37QrDT/Le/RBU+L6jyDyDcgETuV+xyJyVdy/C0iLtr5J72GQbcQozLrPIFZ/yYb0iePiwa72fymhIpNhMlVBgr2VFEIT/Wb9QZr7dw==
+</span></span><span style="display:flex;"><span>Decrypted Message: J5 love ST
+</span></span></code></pre></div>
+  </div>
+</details>
+
 <h2 id="digital-signatures">
   Digital signatures
   <a class="anchor" href="#digital-signatures">#</a>
@@ -741,12 +1287,13 @@ https://github.com/alex-shpak/hugo-book
     <li><a href="#hmac">HMAC</a></li>
     <li><a href="#symmetric-encryption">Symmetric encryption</a>
       <ul>
-        <li><a href="#aes-cipher-with-cbc">AES cipher with CBC</a></li>
+        <li><a href="#demo-code">Demo code</a></li>
       </ul>
     </li>
     <li><a href="#asymmetric-encryption">Asymmetric encryption</a>
       <ul>
-        <li><a href="#rsa-cipher">RSA cipher</a></li>
+        <li><a href="#demo-of-public-key-encryption-and-private-key-decryption">Demo of public key encryption and private key decryption</a></li>
+        <li><a href="#demo-of-private-key-encryption-and-public-key-decryption">Demo of private key encryption and public key decryption</a></li>
       </ul>
     </li>
     <li><a href="#digital-signatures">Digital signatures</a></li>
