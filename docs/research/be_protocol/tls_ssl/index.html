@@ -34,27 +34,16 @@ SSL was replaced by an updated protocol called TLS some time ago, SSL is still a
   #
 
 
-  Related
+  SSL Certificate
   #
 
-
-Why a website we need Certificate?: Malicious Network Redirects
-
-
-  Reference
-  #
-
-
-Cloudflare: How does SSL work?
-Gigamon: What Is TLS 1.2, and Why Should You (Still) Care?
-Wikipedia: Transport Layer Security (Mar 1, 2024)
-">
+An SSL certificate contains:">
 <meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff">
 <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#343a40">
 <meta name="color-scheme" content="light dark"><meta property="og:url" content="https://dangpham112000.github.io/docs/research/be_protocol/tls_ssl/">
   <meta property="og:site_name" content="The Engineer Blogs">
   <meta property="og:title" content="TLS - SSL - Draft">
-  <meta property="og:description" content="TLS - SSL # Overview # A protocol for encrypting, securing, and authenticating communications that take place on the Internet SSL was replaced by an updated protocol called TLS some time ago, SSL is still a commonly used term for this technology TLS 1.2 # TLS 1.3 # Diffie Hellman # TLS 1.3 # Related # Why a website we need Certificate?: Malicious Network Redirects Reference # Cloudflare: How does SSL work? Gigamon: What Is TLS 1.2, and Why Should You (Still) Care? Wikipedia: Transport Layer Security (Mar 1, 2024)">
+  <meta property="og:description" content="TLS - SSL # Overview # A protocol for encrypting, securing, and authenticating communications that take place on the Internet SSL was replaced by an updated protocol called TLS some time ago, SSL is still a commonly used term for this technology TLS 1.2 # TLS 1.3 # Diffie Hellman # TLS 1.3 # SSL Certificate # An SSL certificate contains:">
   <meta property="og:locale" content="en_us">
   <meta property="og:type" content="article">
     <meta property="article:section" content="docs">
@@ -66,7 +55,7 @@ Wikipedia: Transport Layer Security (Mar 1, 2024)
 <link rel="canonical" href="https://dangpham112000.github.io/docs/research/be_protocol/tls_ssl/">
 <link rel="stylesheet" href="/book.min.0ebfa1e81a7b241abaa8a9626be8325416e98d14702ea33197aea691fec27e9d.css" integrity="sha256-Dr&#43;h6Bp7JBq6qKlia&#43;gyVBbpjRRwLqMxl66mkf7Cfp0=" crossorigin="anonymous">
   <script defer src="/fuse.min.js"></script>
-  <script defer src="/en.search.min.1aee2ceaf05ad1b069a0e45f27a39b202a407ffa5a7dbb16092fe3fa4e56c617.js" integrity="sha256-Gu4s6vBa0bBpoORfJ6ObICpAf/pafbsWCS/j&#43;k5Wxhc=" crossorigin="anonymous"></script>
+  <script defer src="/en.search.min.05b15f34f6c092dd6efbf7d1fd7593ecfb1c2f57dd12c426348258f4943f04a4.js" integrity="sha256-BbFfNPbAkt1u&#43;/fR/XWT7PscL1fdEsQmNIJY9JQ/BKQ=" crossorigin="anonymous"></script>
 <!--
 Made with Book Theme
 https://github.com/alex-shpak/hugo-book
@@ -543,7 +532,13 @@ https://github.com/alex-shpak/hugo-book
         <li><a href="#tls-13-1">TLS 1.3</a></li>
       </ul>
     </li>
-    <li><a href="#related">Related</a></li>
+    <li><a href="#ssl-certificate">SSL Certificate</a>
+      <ul>
+        <li><a href="#why-we-need-ssl-certificate">Why we need SSL Certificate?</a></li>
+        <li><a href="#types">Types</a></li>
+        <li><a href="#validation-levels">Validation levels</a></li>
+      </ul>
+    </li>
     <li><a href="#reference">Reference</a></li>
   </ul>
 </nav>
@@ -587,12 +582,76 @@ https://github.com/alex-shpak/hugo-book
   TLS 1.3
   <a class="anchor" href="#tls-13-1">#</a>
 </h3>
-<h2 id="related">
-  Related
-  <a class="anchor" href="#related">#</a>
+<h2 id="ssl-certificate">
+  SSL Certificate
+  <a class="anchor" href="#ssl-certificate">#</a>
 </h2>
+<p>An SSL certificate contains:</p>
 <ul>
-<li>Why a website we need Certificate?: <a href="/docs/research/security/#malicious-network-redirects">Malicious Network Redirects</a></li>
+<li>The website&rsquo;s public key</li>
+<li>The domain name it&rsquo;s issued for</li>
+<li>The issuing certificate authority&rsquo;s digital signature</li>
+<li>Other important information</li>
+</ul>
+<h3 id="why-we-need-ssl-certificate">
+  Why we need SSL Certificate?
+  <a class="anchor" href="#why-we-need-ssl-certificate">#</a>
+</h3>
+<ul>
+<li>Prevent:
+<ul>
+<li><a href="https://www.cloudflare.com/learning/security/threats/on-path-attack/">On-path attack</a>  <!-- raw HTML omitted --></li>
+<li>Domain spoofing</li>
+<li>Other methods attackers use to impersonate a website and trick users</li>
+</ul>
+</li>
+<li>Establish HTTPS</li>
+</ul>
+<h3 id="types">
+  Types
+  <a class="anchor" href="#types">#</a>
+</h3>
+<h4 id="single-domain-ssl-certificates">
+  Single Domain SSL Certificates
+  <a class="anchor" href="#single-domain-ssl-certificates">#</a>
+</h4>
+<p>One domain and all pages</p>
+<h4 id="wildcard-ssl-certificates">
+  Wildcard SSL Certificates
+  <a class="anchor" href="#wildcard-ssl-certificates">#</a>
+</h4>
+<p>One domain and all subdomains</p>
+<h4 id="multi-domain-ssl-certificates">
+  Multi-Domain SSL Certificates
+  <a class="anchor" href="#multi-domain-ssl-certificates">#</a>
+</h4>
+<p>It&rsquo;s a shared certificate. Multiple distinct domains will be listed on a certificate</p>
+<h3 id="validation-levels">
+  Validation levels
+  <a class="anchor" href="#validation-levels">#</a>
+</h3>
+<h4 id="domain-validation">
+  Domain Validation
+  <a class="anchor" href="#domain-validation">#</a>
+</h4>
+<ul>
+<li>The least-stringent level</li>
+<li>The user only has to prove they control the domain</li>
+<li>The process can be automated</li>
+</ul>
+<h4 id="organization-validation">
+  Organization Validation
+  <a class="anchor" href="#organization-validation">#</a>
+</h4>
+<ul>
+<li>Manual vetting process</li>
+</ul>
+<h4 id="extended-validation">
+  Extended Validation
+  <a class="anchor" href="#extended-validation">#</a>
+</h4>
+<ul>
+<li>Full background check of the organization</li>
 </ul>
 <h2 id="reference">
   Reference
@@ -600,8 +659,11 @@ https://github.com/alex-shpak/hugo-book
 </h2>
 <ul>
 <li>Cloudflare: <a href="https://www.cloudflare.com/learning/ssl/how-does-ssl-work/">How does SSL work?</a></li>
+<li>Cloudflare: <a href="https://www.cloudflare.com/learning/ssl/types-of-ssl-certificates/">Types of SSL certificates: SSL certificate types explained</a></li>
 <li>Gigamon: <a href="https://blog.gigamon.com/2021/07/14/what-is-tls-1-2-and-why-should-you-still-care/">What Is TLS 1.2, and Why Should You (Still) Care?</a></li>
-<li>Wikipedia: <a href="https://en.wikipedia.org/wiki/Transport_Layer_Security">Transport Layer Security</a> (Mar 1, 2024)</li>
+<li>Wikipedia: <a href="https://en.wikipedia.org/wiki/Transport_Layer_Security">Transport Layer Security</a> (Mar 1st, 2024)</li>
+<li>Youtube: <a href="https://www.youtube.com/watch?v=jrR_WfgmWEw">Let&rsquo;s Encrypt Explained: Free SSL</a> (Oct 25th, 2020)</li>
+<li>Youtube: <a href="https://www.youtube.com/watch?v=yjk36fv3Km4">Are Free SSL Certificates Really Good Enough for Your Website?</a> (Sep 1st, 2022)</li>
 </ul>
 </article>
  
@@ -652,7 +714,13 @@ https://github.com/alex-shpak/hugo-book
         <li><a href="#tls-13-1">TLS 1.3</a></li>
       </ul>
     </li>
-    <li><a href="#related">Related</a></li>
+    <li><a href="#ssl-certificate">SSL Certificate</a>
+      <ul>
+        <li><a href="#why-we-need-ssl-certificate">Why we need SSL Certificate?</a></li>
+        <li><a href="#types">Types</a></li>
+        <li><a href="#validation-levels">Validation levels</a></li>
+      </ul>
+    </li>
     <li><a href="#reference">Reference</a></li>
   </ul>
 </nav>
