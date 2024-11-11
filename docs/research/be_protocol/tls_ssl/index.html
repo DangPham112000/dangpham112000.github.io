@@ -55,7 +55,7 @@ An SSL certificate contains:">
 <link rel="canonical" href="https://dangpham112000.github.io/docs/research/be_protocol/tls_ssl/">
 <link rel="stylesheet" href="/book.min.0ebfa1e81a7b241abaa8a9626be8325416e98d14702ea33197aea691fec27e9d.css" integrity="sha256-Dr&#43;h6Bp7JBq6qKlia&#43;gyVBbpjRRwLqMxl66mkf7Cfp0=" crossorigin="anonymous">
   <script defer src="/fuse.min.js"></script>
-  <script defer src="/en.search.min.05b15f34f6c092dd6efbf7d1fd7593ecfb1c2f57dd12c426348258f4943f04a4.js" integrity="sha256-BbFfNPbAkt1u&#43;/fR/XWT7PscL1fdEsQmNIJY9JQ/BKQ=" crossorigin="anonymous"></script>
+  <script defer src="/en.search.min.830cd7a9da17bc04b835768f926dc54e93ff71d9a13b701b89c9c34b0cc8246c.js" integrity="sha256-gwzXqdoXvAS4NXaPkm3FTpP/cdmhO3AbicnDSwzIJGw=" crossorigin="anonymous"></script>
 <!--
 Made with Book Theme
 https://github.com/alex-shpak/hugo-book
@@ -324,6 +324,19 @@ https://github.com/alex-shpak/hugo-book
     <a href="/docs/research/security/" class="">Security - Draft</a>
   
 
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/research/security/csrf/" class="">CSRF - Draft</a>
+  
+
         </li>
       
     
@@ -334,8 +347,26 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="/docs/research/cors/" class="">CORS - draft</a>
+    <a href="/docs/research/security/xss/" class="">XSS - Draft</a>
   
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/research/security/cors/" class="">CORS - draft</a>
+  
+
+        </li>
+      
+    
+  </ul>
 
         </li>
       
@@ -535,8 +566,8 @@ https://github.com/alex-shpak/hugo-book
     <li><a href="#ssl-certificate">SSL Certificate</a>
       <ul>
         <li><a href="#why-we-need-ssl-certificate">Why we need SSL Certificate?</a></li>
-        <li><a href="#types">Types</a></li>
         <li><a href="#validation-levels">Validation levels</a></li>
+        <li><a href="#types">Types</a></li>
       </ul>
     </li>
     <li><a href="#reference">Reference</a></li>
@@ -588,11 +619,13 @@ https://github.com/alex-shpak/hugo-book
 </h2>
 <p>An SSL certificate contains:</p>
 <ul>
-<li>The website&rsquo;s public key</li>
-<li>The domain name it&rsquo;s issued for</li>
-<li>The issuing certificate authority&rsquo;s digital signature</li>
-<li>Other important information</li>
+<li>Domain name it&rsquo;s issued for</li>
+<li>Certificate Authority (CA)</li>
+<li>Validity Period</li>
+<li>Website&rsquo;s public key</li>
+<li>Other information</li>
 </ul>
+<p><img src="/research/be_protocol/tls_ssl/certificate.png" alt="certificate" /></p>
 <h3 id="why-we-need-ssl-certificate">
   Why we need SSL Certificate?
   <a class="anchor" href="#why-we-need-ssl-certificate">#</a>
@@ -607,6 +640,58 @@ https://github.com/alex-shpak/hugo-book
 </li>
 <li>Establish HTTPS</li>
 </ul>
+<h3 id="validation-levels">
+  Validation levels
+  <a class="anchor" href="#validation-levels">#</a>
+</h3>
+<p><img src="/research/be_protocol/tls_ssl/validation_levels.png" alt="validation_levels" /></p>
+<blockquote class="book-hint info">
+  In terms of encryption strength, all three levels provide the same security
+</blockquote>
+
+<div class="book-columns flex flex-wrap">
+
+  <div class="flex-even markdown-inner">
+    <h4 id="domain-validation">
+  Domain Validation
+  <a class="anchor" href="#domain-validation">#</a>
+</h4>
+<ul>
+<li>Least-stringent level</li>
+<li>User only has to prove they control the domain</li>
+<li>Process can be automated</li>
+</ul>
+
+  </div>
+
+  <div class="flex-even markdown-inner">
+    <h4 id="organization-validation">
+  Organization Validation
+  <a class="anchor" href="#organization-validation">#</a>
+</h4>
+<ul>
+<li>Manual vetting process</li>
+</ul>
+
+  </div>
+
+  <div class="flex-even markdown-inner">
+    <h4 id="extended-validation">
+  Extended Validation
+  <a class="anchor" href="#extended-validation">#</a>
+</h4>
+<ul>
+<li>Full background check of the organization</li>
+</ul>
+
+  </div>
+
+</div>
+
+<blockquote class="book-hint info">
+  At higher levels, they give more verified information about the website owner&rsquo;s identity
+</blockquote>
+
 <h3 id="types">
   Types
   <a class="anchor" href="#types">#</a>
@@ -616,43 +701,22 @@ https://github.com/alex-shpak/hugo-book
   <a class="anchor" href="#single-domain-ssl-certificates">#</a>
 </h4>
 <p>One domain and all pages</p>
+<p><img src="/research/be_protocol/tls_ssl/single_domain.png" alt="single_domain" /></p>
 <h4 id="wildcard-ssl-certificates">
   Wildcard SSL Certificates
   <a class="anchor" href="#wildcard-ssl-certificates">#</a>
 </h4>
 <p>One domain and all subdomains</p>
+<p><img src="/research/be_protocol/tls_ssl/wildcard.png" alt="wildcard" /></p>
 <h4 id="multi-domain-ssl-certificates">
   Multi-Domain SSL Certificates
   <a class="anchor" href="#multi-domain-ssl-certificates">#</a>
 </h4>
-<p>It&rsquo;s a shared certificate. Multiple distinct domains will be listed on a certificate</p>
-<h3 id="validation-levels">
-  Validation levels
-  <a class="anchor" href="#validation-levels">#</a>
-</h3>
-<h4 id="domain-validation">
-  Domain Validation
-  <a class="anchor" href="#domain-validation">#</a>
-</h4>
 <ul>
-<li>The least-stringent level</li>
-<li>The user only has to prove they control the domain</li>
-<li>The process can be automated</li>
+<li>It&rsquo;s a shared certificate</li>
+<li>Multiple distinct domains will be listed on a certificate</li>
 </ul>
-<h4 id="organization-validation">
-  Organization Validation
-  <a class="anchor" href="#organization-validation">#</a>
-</h4>
-<ul>
-<li>Manual vetting process</li>
-</ul>
-<h4 id="extended-validation">
-  Extended Validation
-  <a class="anchor" href="#extended-validation">#</a>
-</h4>
-<ul>
-<li>Full background check of the organization</li>
-</ul>
+<p><img src="/research/be_protocol/tls_ssl/multi-domain.png" alt="multi-domain" /></p>
 <h2 id="reference">
   Reference
   <a class="anchor" href="#reference">#</a>
@@ -717,8 +781,8 @@ https://github.com/alex-shpak/hugo-book
     <li><a href="#ssl-certificate">SSL Certificate</a>
       <ul>
         <li><a href="#why-we-need-ssl-certificate">Why we need SSL Certificate?</a></li>
-        <li><a href="#types">Types</a></li>
         <li><a href="#validation-levels">Validation levels</a></li>
+        <li><a href="#types">Types</a></li>
       </ul>
     </li>
     <li><a href="#reference">Reference</a></li>
