@@ -4,55 +4,105 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="
-  TLS - SSL
+  Operation Tips
+  #
+
+apt update
+apt upgrade
+
+  Nano
   #
 
 
-  Overview
+Text editor
+
+
+  Open file
+  #
+
+nano &lt;file-name&gt;
+# E.g
+nano index.html
+
+  Save
   #
 
 
-A protocol for encrypting, securing, and authenticating communications that take place on the Internet
-SSL was replaced by an updated protocol called TLS some time ago, SSL is still a commonly used term for this technology
+Press Ctrl &#43; x
+Press y
+Press enter
 
 
-
-  TLS 1.2
+  Nginx
   #
 
 
+Capacity: 2MB
 
-  TLS 1.3
+
+  Install
+  #
+
+apt install nginx
+==&gt; Press Tab -&raquo; Choose OK and then press enter
+
+  Open ports
   #
 
 
-  Diffie Hellman
+After installing Nginx, we may not be able to access our server because the firewall is enabled by default
+
+
+  Check firewall status
   #
 
+ufw status
 
-  TLS 1.3
+ufw: ubuntu firewall
+
+
+  Let&rsquo;s firewall allow nginx
   #
 
+ufw allow &#34;Nginx Full&#34;
+
+  Locate the index file
+  #
+
+cd /var/www/html
+ls
 
   SSL Certificate
   #
 
-An SSL certificate contains:">
+
+  Certificates for localhost
+  #
+
+openssl req -x509 -out localhost.crt -keyout localhost.key \
+  -newkey rsa:2048 -nodes -sha256 \
+  -subj &#39;/CN=localhost&#39; -extensions EXT -config &lt;( \
+   printf &#34;[dn]\nCN=localhost\n[req]\ndistinguished_name = dn\n[EXT]\nsubjectAltName=DNS:localhost\nkeyUsage=digitalSignature\nextendedKeyUsage=serverAuth&#34;)
+
+Letsencrypt: Certificates for localhost (Dec 21st, 2017)
+Youtube: A Very Simple VPS Server Tutorial for Beginners (Jul 5th, 2022)
+">
 <meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff">
 <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#343a40">
-<meta name="color-scheme" content="light dark"><meta property="og:url" content="https://dangpham112000.github.io/docs/research/be_protocol/tls_ssl/">
+<meta name="color-scheme" content="light dark"><meta property="og:url" content="https://dangpham112000.github.io/docs/tips/004_ops/">
   <meta property="og:site_name" content="The Engineer Blogs">
-  <meta property="og:title" content="TLS - SSL - Draft">
-  <meta property="og:description" content="TLS - SSL # Overview # A protocol for encrypting, securing, and authenticating communications that take place on the Internet SSL was replaced by an updated protocol called TLS some time ago, SSL is still a commonly used term for this technology TLS 1.2 # TLS 1.3 # Diffie Hellman # TLS 1.3 # SSL Certificate # An SSL certificate contains:">
+  <meta property="og:title" content="Ops">
+  <meta property="og:description" content="Operation Tips # apt update apt upgrade Nano # Text editor Open file # nano &lt;file-name&gt; # E.g nano index.html Save # Press Ctrl &#43; x Press y Press enter Nginx # Capacity: 2MB Install # apt install nginx ==&gt; Press Tab -» Choose OK and then press enter
+Open ports # After installing Nginx, we may not be able to access our server because the firewall is enabled by default Check firewall status # ufw status ufw: ubuntu firewall Let’s firewall allow nginx # ufw allow &#34;Nginx Full&#34; Locate the index file # cd /var/www/html ls SSL Certificate # Certificates for localhost # openssl req -x509 -out localhost.crt -keyout localhost.key \ -newkey rsa:2048 -nodes -sha256 \ -subj &#39;/CN=localhost&#39; -extensions EXT -config &lt;( \ printf &#34;[dn]\nCN=localhost\n[req]\ndistinguished_name = dn\n[EXT]\nsubjectAltName=DNS:localhost\nkeyUsage=digitalSignature\nextendedKeyUsage=serverAuth&#34;) Letsencrypt: Certificates for localhost (Dec 21st, 2017) Youtube: A Very Simple VPS Server Tutorial for Beginners (Jul 5th, 2022)">
   <meta property="og:locale" content="en_us">
   <meta property="og:type" content="article">
     <meta property="article:section" content="docs">
     <meta property="article:published_time" content="2023-11-15T01:47:46+07:00">
     <meta property="article:modified_time" content="2023-11-15T01:47:46+07:00">
-<title>TLS - SSL - Draft | The Engineer Blogs</title>
+<title>Ops | The Engineer Blogs</title>
 <link rel="manifest" href="/manifest.json">
 <link rel="icon" href="/favicon.png" >
-<link rel="canonical" href="https://dangpham112000.github.io/docs/research/be_protocol/tls_ssl/">
+<link rel="canonical" href="https://dangpham112000.github.io/docs/tips/004_ops/">
 <link rel="stylesheet" href="/book.min.0ebfa1e81a7b241abaa8a9626be8325416e98d14702ea33197aea691fec27e9d.css" integrity="sha256-Dr&#43;h6Bp7JBq6qKlia&#43;gyVBbpjRRwLqMxl66mkf7Cfp0=" crossorigin="anonymous">
   <script defer src="/fuse.min.js"></script>
   <script defer src="/en.search.min.903c54048edbce9ad9d40c007722f0ec8155ae8dfb2f318148384804f1847954.js" integrity="sha256-kDxUBI7bzprZ1AwAdyLw7IFVro37LzGBSDhIBPGEeVQ=" crossorigin="anonymous"></script>
@@ -199,7 +249,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="/docs/research/be_protocol/tls_ssl/" class="active">TLS - SSL - Draft</a>
+    <a href="/docs/research/be_protocol/tls_ssl/" class="">TLS - SSL - Draft</a>
   
 
         </li>
@@ -461,7 +511,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="/docs/tips/004_ops/" class="">Ops</a>
+    <a href="/docs/tips/004_ops/" class="active">Ops</a>
   
 
         </li>
@@ -552,7 +602,7 @@ https://github.com/alex-shpak/hugo-book
     <img src="/svg/menu.svg" class="book-icon" alt="Menu" />
   </label>
 
-  <strong>TLS - SSL - Draft</strong>
+  <strong>Ops</strong>
 
   <label for="toc-control">
     
@@ -568,23 +618,24 @@ https://github.com/alex-shpak/hugo-book
   
 <nav id="TableOfContents">
   <ul>
-    <li><a href="#overview">Overview</a></li>
-    <li><a href="#tls-12">TLS 1.2</a></li>
-    <li><a href="#tls-13">TLS 1.3</a>
+    <li><a href="#nano">Nano</a>
       <ul>
-        <li><a href="#diffie-hellman">Diffie Hellman</a></li>
-        <li><a href="#tls-13-1">TLS 1.3</a></li>
+        <li><a href="#open-file">Open file</a></li>
+        <li><a href="#save">Save</a></li>
+      </ul>
+    </li>
+    <li><a href="#nginx">Nginx</a>
+      <ul>
+        <li><a href="#install">Install</a></li>
+        <li><a href="#open-ports">Open ports</a></li>
+        <li><a href="#locate-the-index-file">Locate the index file</a></li>
       </ul>
     </li>
     <li><a href="#ssl-certificate">SSL Certificate</a>
       <ul>
-        <li><a href="#validation-levels">Validation levels</a></li>
-        <li><a href="#types">Types</a></li>
-        <li><a href="#why-we-need-ssl-certificate">Why we need SSL Certificate?</a></li>
-        <li><a href="#how-to-setup-ssl-certdocstips004_opsssl-certificate"><a href="/docs/tips/004_ops/#ssl-certificate">How to setup SSL Cert?</a></a></li>
+        <li><a href="#certificates-for-localhost">Certificates for localhost</a></li>
       </ul>
     </li>
-    <li><a href="#reference">Reference</a></li>
   </ul>
 </nav>
 
@@ -597,156 +648,89 @@ https://github.com/alex-shpak/hugo-book
 
       
       
-  <article class="markdown book-article"><h1 id="tls---ssl">
-  TLS - SSL
-  <a class="anchor" href="#tls---ssl">#</a>
+  <article class="markdown book-article"><h1 id="operation-tips">
+  Operation Tips
+  <a class="anchor" href="#operation-tips">#</a>
 </h1>
-<h2 id="overview">
-  Overview
-  <a class="anchor" href="#overview">#</a>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>apt update
+</span></span><span style="display:flex;"><span>apt upgrade
+</span></span></code></pre></div><h2 id="nano">
+  Nano
+  <a class="anchor" href="#nano">#</a>
 </h2>
 <ul>
-<li>A protocol for encrypting, securing, and authenticating communications that take place on the Internet</li>
-<li>SSL was replaced by an updated protocol called TLS some time ago, SSL is still a commonly used term for this technology</li>
+<li>Text editor</li>
 </ul>
-<p><img src="/research/be_protocol/tls_ssl/evolution.png" alt="evolution" /></p>
-<h2 id="tls-12">
-  TLS 1.2
-  <a class="anchor" href="#tls-12">#</a>
-</h2>
-<p><img src="/research/be_protocol/tls_ssl/tls_1.2_handsake.png" alt="tls_1.2_handsake" /></p>
-<h2 id="tls-13">
-  TLS 1.3
-  <a class="anchor" href="#tls-13">#</a>
-</h2>
-<h3 id="diffie-hellman">
-  Diffie Hellman
-  <a class="anchor" href="#diffie-hellman">#</a>
+<h3 id="open-file">
+  Open file
+  <a class="anchor" href="#open-file">#</a>
 </h3>
-<h3 id="tls-13-1">
-  TLS 1.3
-  <a class="anchor" href="#tls-13-1">#</a>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>nano &lt;file-name&gt;
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># E.g</span>
+</span></span><span style="display:flex;"><span>nano index.html
+</span></span></code></pre></div><h3 id="save">
+  Save
+  <a class="anchor" href="#save">#</a>
 </h3>
-<h2 id="ssl-certificate">
+<ol>
+<li>Press <code>Ctrl</code> + <code>x</code></li>
+<li>Press <code>y</code></li>
+<li>Press <code>enter</code></li>
+</ol>
+<h2 id="nginx">
+  Nginx
+  <a class="anchor" href="#nginx">#</a>
+</h2>
+<ul>
+<li>Capacity: 2MB</li>
+</ul>
+<h3 id="install">
+  Install
+  <a class="anchor" href="#install">#</a>
+</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>apt install nginx
+</span></span></code></pre></div><p>==&gt; Press <code>Tab</code> -&raquo; Choose <code>OK</code> and then press <code>enter</code></p>
+<h3 id="open-ports">
+  Open ports
+  <a class="anchor" href="#open-ports">#</a>
+</h3>
+<ul>
+<li>After installing Nginx, we may not be able to access our server because the firewall is enabled by default</li>
+</ul>
+<h4 id="check-firewall-status">
+  Check firewall status
+  <a class="anchor" href="#check-firewall-status">#</a>
+</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>ufw status
+</span></span></code></pre></div><ul>
+<li><code>ufw</code>: ubuntu firewall</li>
+</ul>
+<h4 id="lets-firewall-allow-nginx">
+  Let&rsquo;s firewall allow nginx
+  <a class="anchor" href="#lets-firewall-allow-nginx">#</a>
+</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>ufw allow <span style="color:#e6db74">&#34;Nginx Full&#34;</span>
+</span></span></code></pre></div><h3 id="locate-the-index-file">
+  Locate the index file
+  <a class="anchor" href="#locate-the-index-file">#</a>
+</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>cd /var/www/html
+</span></span><span style="display:flex;"><span>ls
+</span></span></code></pre></div><h2 id="ssl-certificate">
   SSL Certificate
   <a class="anchor" href="#ssl-certificate">#</a>
 </h2>
-<p>An SSL certificate contains:</p>
-<ul>
-<li>Domain name it&rsquo;s issued for</li>
-<li>Certificate Authority (CA)</li>
-<li>Validity Period</li>
-<li>Website&rsquo;s public key</li>
-<li>Other information</li>
-</ul>
-<p><img src="/research/be_protocol/tls_ssl/certificate.png" alt="certificate" /></p>
-<h3 id="validation-levels">
-  Validation levels
-  <a class="anchor" href="#validation-levels">#</a>
+<h3 id="certificates-for-localhost">
+  Certificates for localhost
+  <a class="anchor" href="#certificates-for-localhost">#</a>
 </h3>
-<p><img src="/research/be_protocol/tls_ssl/validation_levels.png" alt="validation_levels" /></p>
-<blockquote class="book-hint info">
-  In terms of encryption strength, all three levels provide the same security
-</blockquote>
-
-<div class="book-columns flex flex-wrap">
-
-  <div class="flex-even markdown-inner">
-    <h4 id="domain-validation">
-  Domain Validation
-  <a class="anchor" href="#domain-validation">#</a>
-</h4>
-<ul>
-<li>Least-stringent level</li>
-<li>User only has to prove they control the domain</li>
-<li>Process can be automated</li>
-</ul>
-
-  </div>
-
-  <div class="flex-even markdown-inner">
-    <h4 id="organization-validation">
-  Organization Validation
-  <a class="anchor" href="#organization-validation">#</a>
-</h4>
-<ul>
-<li>Manual vetting process</li>
-</ul>
-
-  </div>
-
-  <div class="flex-even markdown-inner">
-    <h4 id="extended-validation">
-  Extended Validation
-  <a class="anchor" href="#extended-validation">#</a>
-</h4>
-<ul>
-<li>Full background check of the organization</li>
-</ul>
-
-  </div>
-
-</div>
-
-<blockquote class="book-hint info">
-  At higher levels, they give more verified information about the website owner&rsquo;s identity
-</blockquote>
-
-<h3 id="types">
-  Types
-  <a class="anchor" href="#types">#</a>
-</h3>
-<h4 id="single-domain-ssl-certificates">
-  Single Domain SSL Certificates
-  <a class="anchor" href="#single-domain-ssl-certificates">#</a>
-</h4>
-<p>One domain and all pages</p>
-<p><img src="/research/be_protocol/tls_ssl/single_domain.png" alt="single_domain" /></p>
-<h4 id="wildcard-ssl-certificates">
-  Wildcard SSL Certificates
-  <a class="anchor" href="#wildcard-ssl-certificates">#</a>
-</h4>
-<p>One domain and all subdomains</p>
-<p><img src="/research/be_protocol/tls_ssl/wildcard.png" alt="wildcard" /></p>
-<h4 id="multi-domain-ssl-certificates">
-  Multi-Domain SSL Certificates
-  <a class="anchor" href="#multi-domain-ssl-certificates">#</a>
-</h4>
-<ul>
-<li>It&rsquo;s a shared certificate</li>
-<li>Multiple distinct domains will be listed on a certificate</li>
-</ul>
-<p><img src="/research/be_protocol/tls_ssl/multi-domain.png" alt="multi-domain" /></p>
-<h3 id="why-we-need-ssl-certificate">
-  Why we need SSL Certificate?
-  <a class="anchor" href="#why-we-need-ssl-certificate">#</a>
-</h3>
-<ul>
-<li>Prevent:
-<ul>
-<li><a href="https://www.cloudflare.com/learning/security/threats/on-path-attack/">On-path attack</a>  <!-- raw HTML omitted --></li>
-<li>Domain spoofing</li>
-<li>Other methods attackers use to impersonate a website and trick users</li>
-</ul>
-</li>
-<li>Establish HTTPS</li>
-</ul>
-<h3 id="how-to-setup-ssl-certdocstips004_opsssl-certificate">
-  <a href="/docs/tips/004_ops/#ssl-certificate">How to setup SSL Cert?</a>
-  <a class="anchor" href="#how-to-setup-ssl-certdocstips004_opsssl-certificate">#</a>
-</h3>
-<h2 id="reference">
-  Reference
-  <a class="anchor" href="#reference">#</a>
-</h2>
-<ul>
-<li>Cloudflare: <a href="https://www.cloudflare.com/learning/ssl/how-does-ssl-work/">How does SSL work?</a></li>
-<li>Cloudflare: <a href="https://www.cloudflare.com/learning/ssl/types-of-ssl-certificates/">Types of SSL certificates: SSL certificate types explained</a></li>
-<li>Gigamon: <a href="https://blog.gigamon.com/2021/07/14/what-is-tls-1-2-and-why-should-you-still-care/">What Is TLS 1.2, and Why Should You (Still) Care?</a></li>
-<li>Wikipedia: <a href="https://en.wikipedia.org/wiki/Transport_Layer_Security">Transport Layer Security</a> (Mar 1st, 2024)</li>
-<li>Youtube: <a href="https://www.youtube.com/watch?v=jrR_WfgmWEw">Let&rsquo;s Encrypt Explained: Free SSL</a> (Oct 25th, 2020)</li>
-<li>Youtube: <a href="https://www.youtube.com/watch?v=yjk36fv3Km4">Are Free SSL Certificates Really Good Enough for Your Website?</a> (Sep 1st, 2022)</li>
-<li>Mozilla: <a href="https://ssl-config.mozilla.org/">SSL Configuration Generator</a> (Nov 13th, 2024)</li>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>openssl req -x509 -out localhost.crt -keyout localhost.key <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  -newkey rsa:2048 -nodes -sha256 <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  -subj <span style="color:#e6db74">&#39;/CN=localhost&#39;</span> -extensions EXT -config &lt;<span style="color:#f92672">(</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>   printf <span style="color:#e6db74">&#34;[dn]\nCN=localhost\n[req]\ndistinguished_name = dn\n[EXT]\nsubjectAltName=DNS:localhost\nkeyUsage=digitalSignature\nextendedKeyUsage=serverAuth&#34;</span><span style="color:#f92672">)</span>
+</span></span></code></pre></div><ul>
+<li>Letsencrypt: <a href="https://letsencrypt.org/docs/certificates-for-localhost/">Certificates for localhost</a> (Dec 21st, 2017)</li>
+<li>Youtube: <a href="https://www.youtube.com/watch?v=YiwBkRukugw">A Very Simple VPS Server Tutorial for Beginners</a> (Jul 5th, 2022)</li>
 </ul>
 </article>
  
@@ -789,23 +773,24 @@ https://github.com/alex-shpak/hugo-book
   
 <nav id="TableOfContents">
   <ul>
-    <li><a href="#overview">Overview</a></li>
-    <li><a href="#tls-12">TLS 1.2</a></li>
-    <li><a href="#tls-13">TLS 1.3</a>
+    <li><a href="#nano">Nano</a>
       <ul>
-        <li><a href="#diffie-hellman">Diffie Hellman</a></li>
-        <li><a href="#tls-13-1">TLS 1.3</a></li>
+        <li><a href="#open-file">Open file</a></li>
+        <li><a href="#save">Save</a></li>
+      </ul>
+    </li>
+    <li><a href="#nginx">Nginx</a>
+      <ul>
+        <li><a href="#install">Install</a></li>
+        <li><a href="#open-ports">Open ports</a></li>
+        <li><a href="#locate-the-index-file">Locate the index file</a></li>
       </ul>
     </li>
     <li><a href="#ssl-certificate">SSL Certificate</a>
       <ul>
-        <li><a href="#validation-levels">Validation levels</a></li>
-        <li><a href="#types">Types</a></li>
-        <li><a href="#why-we-need-ssl-certificate">Why we need SSL Certificate?</a></li>
-        <li><a href="#how-to-setup-ssl-certdocstips004_opsssl-certificate"><a href="/docs/tips/004_ops/#ssl-certificate">How to setup SSL Cert?</a></a></li>
+        <li><a href="#certificates-for-localhost">Certificates for localhost</a></li>
       </ul>
     </li>
-    <li><a href="#reference">Reference</a></li>
   </ul>
 </nav>
 

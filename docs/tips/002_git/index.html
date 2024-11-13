@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en-us" dir="ltr">
-<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+<head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="
-  GIT TIPS
+  Git - Github Tips
   #
 
 
@@ -14,10 +14,11 @@
 
 HEAD: your current local working branch
 origin: the address to your remote git, represent for remote repo
-tracked file: the file git already had before, so when you edit it, git know this file is modified (M files)
+Tracked file: the file git already had before, so when you edit it, git knows this file is modified (M files)
 
-untracked, new file: the file recently add and git don’t know anything about it (U files)
+Untracked (new file): the file recently add and git don’t know anything about it (U files)
 
+Remote-tracking branches: References (in the form of origin/branch-name) that point to the branches in a remote repository
 
 
   Commit
@@ -28,12 +29,12 @@ git commit -m &#34;commit message&#34;
 These 2 commands above can combie into 1:">
 <meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff">
 <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#343a40">
-<meta name="color-scheme" content="light dark"><meta property="og:url" content="http://localhost:1313/docs/tips/git/">
+<meta name="color-scheme" content="light dark"><meta property="og:url" content="https://dangpham112000.github.io/docs/tips/002_git/">
   <meta property="og:site_name" content="The Engineer Blogs">
   <meta property="og:title" content="Git">
-  <meta property="og:description" content="GIT TIPS # Terminology # HEAD: your current local working branch origin: the address to your remote git, represent for remote repo tracked file: the file git already had before, so when you edit it, git know this file is modified (M files)
-untracked, new file: the file recently add and git don’t know anything about it (U files)
-Commit # git add . git commit -m &#34;commit message&#34; These 2 commands above can combie into 1:">
+  <meta property="og:description" content="Git - Github Tips # Terminology # HEAD: your current local working branch origin: the address to your remote git, represent for remote repo Tracked file: the file git already had before, so when you edit it, git knows this file is modified (M files)
+Untracked (new file): the file recently add and git don’t know anything about it (U files)
+Remote-tracking branches: References (in the form of origin/branch-name) that point to the branches in a remote repository Commit # git add . git commit -m &#34;commit message&#34; These 2 commands above can combie into 1:">
   <meta property="og:locale" content="en_us">
   <meta property="og:type" content="article">
     <meta property="article:section" content="docs">
@@ -42,10 +43,10 @@ Commit # git add . git commit -m &#34;commit message&#34; These 2 commands above
 <title>Git | The Engineer Blogs</title>
 <link rel="manifest" href="/manifest.json">
 <link rel="icon" href="/favicon.png" >
-<link rel="canonical" href="http://localhost:1313/docs/tips/git/">
+<link rel="canonical" href="https://dangpham112000.github.io/docs/tips/002_git/">
 <link rel="stylesheet" href="/book.min.0ebfa1e81a7b241abaa8a9626be8325416e98d14702ea33197aea691fec27e9d.css" integrity="sha256-Dr&#43;h6Bp7JBq6qKlia&#43;gyVBbpjRRwLqMxl66mkf7Cfp0=" crossorigin="anonymous">
   <script defer src="/fuse.min.js"></script>
-  <script defer src="/en.search.min.830cd7a9da17bc04b835768f926dc54e93ff71d9a13b701b89c9c34b0cc8246c.js" integrity="sha256-gwzXqdoXvAS4NXaPkm3FTpP/cdmhO3AbicnDSwzIJGw=" crossorigin="anonymous"></script>
+  <script defer src="/en.search.min.903c54048edbce9ad9d40c007722f0ec8155ae8dfb2f318148384804f1847954.js" integrity="sha256-kDxUBI7bzprZ1AwAdyLw7IFVro37LzGBSDhIBPGEeVQ=" crossorigin="anonymous"></script>
 <!--
 Made with Book Theme
 https://github.com/alex-shpak/hugo-book
@@ -412,7 +413,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="/docs/tips/git/" class="active">Git</a>
+    <a href="/docs/tips/001_unit_test/" class="">Unit Test</a>
   
 
         </li>
@@ -425,7 +426,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="/docs/tips/ops/" class="">Ops</a>
+    <a href="/docs/tips/002_git/" class="active">Git</a>
   
 
         </li>
@@ -438,7 +439,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="/docs/tips/unit_test/" class="">Unit Test</a>
+    <a href="/docs/tips/003_docker/" class="">Docker</a>
   
 
         </li>
@@ -451,7 +452,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="/docs/tips/docker/" class="">Docker</a>
+    <a href="/docs/tips/004_ops/" class="">Ops</a>
   
 
         </li>
@@ -588,6 +589,7 @@ https://github.com/alex-shpak/hugo-book
       </ul>
     </li>
     <li><a href="#delete-all-local-branches-except-main-branch">Delete all local branches except main branch</a></li>
+    <li><a href="#clean-up-outdated-references">Clean up outdated references</a></li>
     <li><a href="#refresh-outdated-local-branch">Refresh outdated local branch</a>
       <ul>
         <li><a href="#force-pull">Force pull</a></li>
@@ -613,7 +615,6 @@ https://github.com/alex-shpak/hugo-book
         <li><a href="#switch-git-user-tool">Switch git user tool</a></li>
       </ul>
     </li>
-    <li><a href="#change-origin">Change origin</a></li>
     <li><a href="#connecting-to-github-using-ssh-keys-ubuntu">Connecting to GitHub using SSH keys (Ubuntu)</a>
       <ul>
         <li><a href="#checking-for-existing-ssh-keys">Checking for existing SSH keys</a></li>
@@ -635,9 +636,9 @@ https://github.com/alex-shpak/hugo-book
 
       
       
-  <article class="markdown book-article"><h1 id="git-tips">
-  GIT TIPS
-  <a class="anchor" href="#git-tips">#</a>
+  <article class="markdown book-article"><h1 id="git---github-tips">
+  Git - Github Tips
+  <a class="anchor" href="#git---github-tips">#</a>
 </h1>
 <h2 id="terminology">
   Terminology
@@ -646,10 +647,11 @@ https://github.com/alex-shpak/hugo-book
 <ul>
 <li><code>HEAD</code>: your current local working branch</li>
 <li><code>origin</code>: the address to your remote git, represent for remote repo</li>
-<li><strong>tracked file</strong>: the file git already had before, so when you edit it, git know this file is modified (<code>M</code> files)<br>
+<li><strong>Tracked file</strong>: the file git already had before, so when you edit it, git knows this file is modified (<code>M</code> files)<br>
 <img src="/tips/git/track_file.png" alt="track_file" /></li>
-<li><strong>untracked</strong>, <strong>new file</strong>: the file recently add and git don’t know anything about it (<code>U</code> files)<br>
+<li><strong>Untracked</strong> (<strong>new file</strong>): the file recently add and git don’t know anything about it (<code>U</code> files)<br>
 <img src="/tips/git/untrack_file.png" alt="untrack_file" /></li>
+<li><strong>Remote-tracking branches</strong>: References (in the form of <code>origin/branch-name</code>) that point to the branches in a remote repository</li>
 </ul>
 <h2 id="commit">
   Commit
@@ -817,7 +819,16 @@ https://github.com/alex-shpak/hugo-book
 <li>Select every branch with <code>xargs</code> command</li>
 <li>Delete branch with <code>git branch -D</code></li>
 </ul>
-<h2 id="refresh-outdated-local-branch">
+<h2 id="clean-up-outdated-references">
+  Clean up outdated references
+  <a class="anchor" href="#clean-up-outdated-references">#</a>
+</h2>
+<ul>
+<li>It only removes <strong>remote-tracking branches</strong> that no longer exist on the remote</li>
+<li>All <strong>local branches you’ve created</strong> yourself won’t be affected</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>git fetch --prune
+</span></span></code></pre></div><h2 id="refresh-outdated-local-branch">
   Refresh outdated local branch
   <a class="anchor" href="#refresh-outdated-local-branch">#</a>
 </h2>
@@ -876,7 +887,9 @@ https://github.com/alex-shpak/hugo-book
   Change remote origin
   <a class="anchor" href="#change-remote-origin">#</a>
 </h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>git remote set-url origin git://new.url.here
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>git remote set-url origin &lt;url&gt;
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># E.g</span>
+</span></span><span style="display:flex;"><span>git remote set-url origin git://new.url.here
 </span></span></code></pre></div><h3 id="remove-remote-origin">
   Remove remote origin
   <a class="anchor" href="#remove-remote-origin">#</a>
@@ -909,13 +922,10 @@ https://github.com/alex-shpak/hugo-book
   Switch git user tool
   <a class="anchor" href="#switch-git-user-tool">#</a>
 </h3>
-<p><a href="https://github.com/geongeorge/Git-User-Switch">https://github.com/geongeorge/Git-User-Switch</a></p>
-<h2 id="change-origin">
-  Change origin
-  <a class="anchor" href="#change-origin">#</a>
-</h2>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>git remote set-url origin &lt;url&gt;
-</span></span></code></pre></div><h2 id="connecting-to-github-using-ssh-keys-ubuntu">
+<ul>
+<li><a href="https://github.com/geongeorge/Git-User-Switch">Git-User-Switch</a></li>
+</ul>
+<h2 id="connecting-to-github-using-ssh-keys-ubuntu">
   Connecting to GitHub using SSH keys (Ubuntu)
   <a class="anchor" href="#connecting-to-github-using-ssh-keys-ubuntu">#</a>
 </h2>
@@ -1062,6 +1072,7 @@ https://github.com/alex-shpak/hugo-book
       </ul>
     </li>
     <li><a href="#delete-all-local-branches-except-main-branch">Delete all local branches except main branch</a></li>
+    <li><a href="#clean-up-outdated-references">Clean up outdated references</a></li>
     <li><a href="#refresh-outdated-local-branch">Refresh outdated local branch</a>
       <ul>
         <li><a href="#force-pull">Force pull</a></li>
@@ -1087,7 +1098,6 @@ https://github.com/alex-shpak/hugo-book
         <li><a href="#switch-git-user-tool">Switch git user tool</a></li>
       </ul>
     </li>
-    <li><a href="#change-origin">Change origin</a></li>
     <li><a href="#connecting-to-github-using-ssh-keys-ubuntu">Connecting to GitHub using SSH keys (Ubuntu)</a>
       <ul>
         <li><a href="#checking-for-existing-ssh-keys">Checking for existing SSH keys</a></li>

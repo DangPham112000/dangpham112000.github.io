@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en-us" dir="ltr">
-<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+<head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="
-  Unit Test
+  Unit Test Tips
   #
 
 
@@ -42,10 +42,10 @@ Scenario:
 ">
 <meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff">
 <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#343a40">
-<meta name="color-scheme" content="light dark"><meta property="og:url" content="http://localhost:1313/docs/tips/unit_test/">
+<meta name="color-scheme" content="light dark"><meta property="og:url" content="https://dangpham112000.github.io/docs/tips/001_unit_test/">
   <meta property="og:site_name" content="The Engineer Blogs">
   <meta property="og:title" content="Unit Test">
-  <meta property="og:description" content="Unit Test # Reset all global variables for each unit test case # What environment the unit test cases are running on: Browser or Nodejs? # Because Nodejs does not have browser APIs Using Karma to run browser’s unit test Using JS-DOM but it’s missing a lot of browser APIs Work only when running alone # Scenario: A unit test case only pass when running alone but fail when running with other test cases">
+  <meta property="og:description" content="Unit Test Tips # Reset all global variables for each unit test case # What environment the unit test cases are running on: Browser or Nodejs? # Because Nodejs does not have browser APIs Using Karma to run browser’s unit test Using JS-DOM but it’s missing a lot of browser APIs Work only when running alone # Scenario: A unit test case only pass when running alone but fail when running with other test cases">
   <meta property="og:locale" content="en_us">
   <meta property="og:type" content="article">
     <meta property="article:section" content="docs">
@@ -54,10 +54,10 @@ Scenario:
 <title>Unit Test | The Engineer Blogs</title>
 <link rel="manifest" href="/manifest.json">
 <link rel="icon" href="/favicon.png" >
-<link rel="canonical" href="http://localhost:1313/docs/tips/unit_test/">
+<link rel="canonical" href="https://dangpham112000.github.io/docs/tips/001_unit_test/">
 <link rel="stylesheet" href="/book.min.0ebfa1e81a7b241abaa8a9626be8325416e98d14702ea33197aea691fec27e9d.css" integrity="sha256-Dr&#43;h6Bp7JBq6qKlia&#43;gyVBbpjRRwLqMxl66mkf7Cfp0=" crossorigin="anonymous">
   <script defer src="/fuse.min.js"></script>
-  <script defer src="/en.search.min.830cd7a9da17bc04b835768f926dc54e93ff71d9a13b701b89c9c34b0cc8246c.js" integrity="sha256-gwzXqdoXvAS4NXaPkm3FTpP/cdmhO3AbicnDSwzIJGw=" crossorigin="anonymous"></script>
+  <script defer src="/en.search.min.903c54048edbce9ad9d40c007722f0ec8155ae8dfb2f318148384804f1847954.js" integrity="sha256-kDxUBI7bzprZ1AwAdyLw7IFVro37LzGBSDhIBPGEeVQ=" crossorigin="anonymous"></script>
 <!--
 Made with Book Theme
 https://github.com/alex-shpak/hugo-book
@@ -424,7 +424,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="/docs/tips/ops/" class="">Ops</a>
+    <a href="/docs/tips/001_unit_test/" class="active">Unit Test</a>
   
 
         </li>
@@ -437,7 +437,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="/docs/tips/unit_test/" class="active">Unit Test</a>
+    <a href="/docs/tips/002_git/" class="">Git</a>
   
 
         </li>
@@ -450,7 +450,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="/docs/tips/docker/" class="">Docker</a>
+    <a href="/docs/tips/003_docker/" class="">Docker</a>
   
 
         </li>
@@ -463,7 +463,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="/docs/tips/001_git/" class="">Git</a>
+    <a href="/docs/tips/004_ops/" class="">Ops</a>
   
 
         </li>
@@ -601,9 +601,9 @@ https://github.com/alex-shpak/hugo-book
 
       
       
-  <article class="markdown book-article"><h1 id="unit-test">
-  Unit Test
-  <a class="anchor" href="#unit-test">#</a>
+  <article class="markdown book-article"><h1 id="unit-test-tips">
+  Unit Test Tips
+  <a class="anchor" href="#unit-test-tips">#</a>
 </h1>
 <blockquote class="book-hint danger">
   <h2 id="reset-all-_global_-variables-for-each-unit-test-case">
@@ -746,7 +746,7 @@ https://github.com/alex-shpak/hugo-book
 </blockquote>
 
 <p><strong>Solution:</strong></p>
-<p>If your module exports alots, and you only want to mock one thing, you shoult split it into another module</p>
+<p>If your module exports alots, and you only want to mock one thing, you should split it into another module</p>
 <p><strong>Example:</strong></p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#75715e">// calculateThings.js
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">import</span> <span style="color:#a6e22e">cal1Thing</span> <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#34;./private/cal1Thing.js&#34;</span>;
