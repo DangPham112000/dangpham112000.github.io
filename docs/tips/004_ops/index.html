@@ -10,11 +10,80 @@
 apt update
 apt upgrade
 
+  Common Commands
+  #
+
+
+  Print working directory
+  #
+
+pwd
+
+  Copy
+  #
+
+cp &lt;source&gt; &lt;destination&gt;
+# E.g
+cp readme.md readyou.md # create a copy named readyou with the same content as readme
+
+  Clear directory
+  #
+
+rm -rf &lt;directory-name&gt;
+
+  Move
+  #
+
+mv &lt;source&gt; &lt;destination&gt;
+# E.g
+mv readme.md .. # Move readme file to parent dir
+mv ../readme.md . # Move readme from parent dir to current dir
+
+  Rename
+  #
+
+
+If you move a file within the current directory, that means you are renaming it
+
+mv &lt;old-name&gt; &lt;new-name&gt;
+# E.g
+mv readme.md readyou.md
+
+  Create
+  #
+
+# Directory: 
+mkdir &lt;dir-name&gt;
+# File: 
+touch &lt;file-name&gt;
+
+  Print file content
+  #
+
+cat &lt;file-name&gt;
+
+  Echo
+  #
+
+
+  Print env variable
+  #
+
+echo $USER
+# E.g result: 
+# &gt;&gt; dangpham112  
+
+  Add content to file
+  #
+
+echo Hello $USER &gt; readme.md
+# readme file now have a content: Hello dangpham112
+
   Nano
   #
 
 
-Text editor
+A default text editor of some OS
 
 
   Open file
@@ -44,56 +113,13 @@ Capacity: 2MB
   #
 
 apt install nginx
-==&gt; Press Tab -&raquo; Choose OK and then press enter
-
-  Open ports
-  #
-
-
-After installing Nginx, we may not be able to access our server because the firewall is enabled by default
-
-
-  Check firewall status
-  #
-
-ufw status
-
-ufw: ubuntu firewall
-
-
-  Let&rsquo;s firewall allow nginx
-  #
-
-ufw allow &#34;Nginx Full&#34;
-
-  Locate the index file
-  #
-
-cd /var/www/html
-ls
-
-  SSL Certificate
-  #
-
-
-  Certificates for localhost
-  #
-
-openssl req -x509 -out localhost.crt -keyout localhost.key \
-  -newkey rsa:2048 -nodes -sha256 \
-  -subj &#39;/CN=localhost&#39; -extensions EXT -config &lt;( \
-   printf &#34;[dn]\nCN=localhost\n[req]\ndistinguished_name = dn\n[EXT]\nsubjectAltName=DNS:localhost\nkeyUsage=digitalSignature\nextendedKeyUsage=serverAuth&#34;)
-
-Letsencrypt: Certificates for localhost (Dec 21st, 2017)
-Youtube: A Very Simple VPS Server Tutorial for Beginners (Jul 5th, 2022)
-">
+==&gt; Press Tab -&raquo; Choose OK and then press enter">
 <meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff">
 <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#343a40">
 <meta name="color-scheme" content="light dark"><meta property="og:url" content="https://dangpham112000.github.io/docs/tips/004_ops/">
   <meta property="og:site_name" content="The Engineer Blogs">
   <meta property="og:title" content="Ops">
-  <meta property="og:description" content="Operation Tips # apt update apt upgrade Nano # Text editor Open file # nano &lt;file-name&gt; # E.g nano index.html Save # Press Ctrl &#43; x Press y Press enter Nginx # Capacity: 2MB Install # apt install nginx ==&gt; Press Tab -» Choose OK and then press enter
-Open ports # After installing Nginx, we may not be able to access our server because the firewall is enabled by default Check firewall status # ufw status ufw: ubuntu firewall Let’s firewall allow nginx # ufw allow &#34;Nginx Full&#34; Locate the index file # cd /var/www/html ls SSL Certificate # Certificates for localhost # openssl req -x509 -out localhost.crt -keyout localhost.key \ -newkey rsa:2048 -nodes -sha256 \ -subj &#39;/CN=localhost&#39; -extensions EXT -config &lt;( \ printf &#34;[dn]\nCN=localhost\n[req]\ndistinguished_name = dn\n[EXT]\nsubjectAltName=DNS:localhost\nkeyUsage=digitalSignature\nextendedKeyUsage=serverAuth&#34;) Letsencrypt: Certificates for localhost (Dec 21st, 2017) Youtube: A Very Simple VPS Server Tutorial for Beginners (Jul 5th, 2022)">
+  <meta property="og:description" content="Operation Tips # apt update apt upgrade Common Commands # Print working directory # pwd Copy # cp &lt;source&gt; &lt;destination&gt; # E.g cp readme.md readyou.md # create a copy named readyou with the same content as readme Clear directory # rm -rf &lt;directory-name&gt; Move # mv &lt;source&gt; &lt;destination&gt; # E.g mv readme.md .. # Move readme file to parent dir mv ../readme.md . # Move readme from parent dir to current dir Rename # If you move a file within the current directory, that means you are renaming it mv &lt;old-name&gt; &lt;new-name&gt; # E.g mv readme.md readyou.md Create # # Directory: mkdir &lt;dir-name&gt; # File: touch &lt;file-name&gt; Print file content # cat &lt;file-name&gt; Echo # Print env variable # echo $USER # E.g result: # &gt;&gt; dangpham112 Add content to file # echo Hello $USER &gt; readme.md # readme file now have a content: Hello dangpham112 Nano # A default text editor of some OS Open file # nano &lt;file-name&gt; # E.g nano index.html Save # Press Ctrl &#43; x Press y Press enter Nginx # Capacity: 2MB Install # apt install nginx ==&gt; Press Tab -» Choose OK and then press enter">
   <meta property="og:locale" content="en_us">
   <meta property="og:type" content="article">
     <meta property="article:section" content="docs">
@@ -105,7 +131,7 @@ Open ports # After installing Nginx, we may not be able to access our server bec
 <link rel="canonical" href="https://dangpham112000.github.io/docs/tips/004_ops/">
 <link rel="stylesheet" href="/book.min.0ebfa1e81a7b241abaa8a9626be8325416e98d14702ea33197aea691fec27e9d.css" integrity="sha256-Dr&#43;h6Bp7JBq6qKlia&#43;gyVBbpjRRwLqMxl66mkf7Cfp0=" crossorigin="anonymous">
   <script defer src="/fuse.min.js"></script>
-  <script defer src="/en.search.min.903c54048edbce9ad9d40c007722f0ec8155ae8dfb2f318148384804f1847954.js" integrity="sha256-kDxUBI7bzprZ1AwAdyLw7IFVro37LzGBSDhIBPGEeVQ=" crossorigin="anonymous"></script>
+  <script defer src="/en.search.min.57acea971201462ec5b65644345a2a5f37f49522b1ed581f0116b86c816c5871.js" integrity="sha256-V6zqlxIBRi7FtlZENFoqXzf0lSKx7VgfARa4bIFsWHE=" crossorigin="anonymous"></script>
 <!--
 Made with Book Theme
 https://github.com/alex-shpak/hugo-book
@@ -618,6 +644,18 @@ https://github.com/alex-shpak/hugo-book
   
 <nav id="TableOfContents">
   <ul>
+    <li><a href="#common-commands">Common Commands</a>
+      <ul>
+        <li><a href="#print-working-directory">Print working directory</a></li>
+        <li><a href="#copy">Copy</a></li>
+        <li><a href="#clear-directory">Clear directory</a></li>
+        <li><a href="#move">Move</a></li>
+        <li><a href="#rename">Rename</a></li>
+        <li><a href="#create">Create</a></li>
+        <li><a href="#print-file-content">Print file content</a></li>
+        <li><a href="#echo">Echo</a></li>
+      </ul>
+    </li>
     <li><a href="#nano">Nano</a>
       <ul>
         <li><a href="#open-file">Open file</a></li>
@@ -654,12 +692,81 @@ https://github.com/alex-shpak/hugo-book
 </h1>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>apt update
 </span></span><span style="display:flex;"><span>apt upgrade
+</span></span></code></pre></div><h2 id="common-commands">
+  Common Commands
+  <a class="anchor" href="#common-commands">#</a>
+</h2>
+<h3 id="print-working-directory">
+  Print working directory
+  <a class="anchor" href="#print-working-directory">#</a>
+</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>pwd
+</span></span></code></pre></div><h3 id="copy">
+  Copy
+  <a class="anchor" href="#copy">#</a>
+</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>cp &lt;source&gt; &lt;destination&gt;
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># E.g</span>
+</span></span><span style="display:flex;"><span>cp readme.md readyou.md <span style="color:#75715e"># create a copy named readyou with the same content as readme</span>
+</span></span></code></pre></div><h3 id="clear-directory">
+  Clear directory
+  <a class="anchor" href="#clear-directory">#</a>
+</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>rm -rf &lt;directory-name&gt;
+</span></span></code></pre></div><h3 id="move">
+  Move
+  <a class="anchor" href="#move">#</a>
+</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>mv &lt;source&gt; &lt;destination&gt;
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># E.g</span>
+</span></span><span style="display:flex;"><span>mv readme.md .. <span style="color:#75715e"># Move readme file to parent dir</span>
+</span></span><span style="display:flex;"><span>mv ../readme.md . <span style="color:#75715e"># Move readme from parent dir to current dir</span>
+</span></span></code></pre></div><h3 id="rename">
+  Rename
+  <a class="anchor" href="#rename">#</a>
+</h3>
+<ul>
+<li>If you move a file within the current directory, that means you are renaming it</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>mv &lt;old-name&gt; &lt;new-name&gt;
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># E.g</span>
+</span></span><span style="display:flex;"><span>mv readme.md readyou.md
+</span></span></code></pre></div><h3 id="create">
+  Create
+  <a class="anchor" href="#create">#</a>
+</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span><span style="color:#75715e"># Directory: </span>
+</span></span><span style="display:flex;"><span>mkdir &lt;dir-name&gt;
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># File: </span>
+</span></span><span style="display:flex;"><span>touch &lt;file-name&gt;
+</span></span></code></pre></div><h3 id="print-file-content">
+  Print file content
+  <a class="anchor" href="#print-file-content">#</a>
+</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>cat &lt;file-name&gt;
+</span></span></code></pre></div><h3 id="echo">
+  Echo
+  <a class="anchor" href="#echo">#</a>
+</h3>
+<h4 id="print-env-variable">
+  Print env variable
+  <a class="anchor" href="#print-env-variable">#</a>
+</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>echo $USER
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># E.g result: </span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># &gt;&gt; dangpham112  </span>
+</span></span></code></pre></div><h4 id="add-content-to-file">
+  Add content to file
+  <a class="anchor" href="#add-content-to-file">#</a>
+</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>echo Hello $USER &gt; readme.md
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># readme file now have a content: Hello dangpham112</span>
 </span></span></code></pre></div><h2 id="nano">
   Nano
   <a class="anchor" href="#nano">#</a>
 </h2>
 <ul>
-<li>Text editor</li>
+<li>A default text editor of some OS</li>
 </ul>
 <h3 id="open-file">
   Open file
@@ -773,6 +880,18 @@ https://github.com/alex-shpak/hugo-book
   
 <nav id="TableOfContents">
   <ul>
+    <li><a href="#common-commands">Common Commands</a>
+      <ul>
+        <li><a href="#print-working-directory">Print working directory</a></li>
+        <li><a href="#copy">Copy</a></li>
+        <li><a href="#clear-directory">Clear directory</a></li>
+        <li><a href="#move">Move</a></li>
+        <li><a href="#rename">Rename</a></li>
+        <li><a href="#create">Create</a></li>
+        <li><a href="#print-file-content">Print file content</a></li>
+        <li><a href="#echo">Echo</a></li>
+      </ul>
+    </li>
     <li><a href="#nano">Nano</a>
       <ul>
         <li><a href="#open-file">Open file</a></li>
