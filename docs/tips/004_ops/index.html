@@ -7,11 +7,54 @@
   Operation Tips
   #
 
-apt update
-apt upgrade
 
   Common Commands
   #
+
+
+  Show detail a command
+  #
+
+man &lt;command&gt;
+# E.g
+man vim
+# Then press q to quit
+
+  Best practice before install anything
+  #
+
+apt update
+apt upgrade
+
+  Show package detail
+  #
+
+apt show &lt;package-name&gt;
+# E.g 
+apt show ssh
+E.g output
+  
+    Package: ssh
+Version: 1:9.6p1-3ubuntu13.5
+Priority: optional
+Section: net
+Source: openssh
+Origin: Ubuntu
+Maintainer: Ubuntu Developers &lt;ubuntu-devel-discuss@lists.ubuntu.com&gt;
+Original-Maintainer: Debian OpenSSH Maintainers &lt;debian-ssh@lists.debian.org&gt;
+Bugs: https://bugs.launchpad.net/ubuntu/&#43;filebug
+Installed-Size: 57.3 kB
+Depends: openssh-client (&gt;= 1:9.6p1-3ubuntu13.5), openssh-server (&gt;= 1:9.6p1-3ubuntu13.5)
+Homepage: https://www.openssh.com/
+Download-Size: 4,658 B
+APT-Sources: http://vn.archive.ubuntu.com/ubuntu noble-updates/main amd64 Packages
+Description: secure shell client and server (metapackage)
+ This metapackage is a convenient way to install both the OpenSSH client
+ and the OpenSSH server. It provides nothing in and of itself, so you
+ may remove it if nothing depends on it.
+
+  
+
 
 
   Print working directory
@@ -79,6 +122,52 @@ echo $USER
 echo Hello $USER &gt; readme.md
 # readme file now have a content: Hello dangpham112
 
+  Systemctl
+  #
+
+
+  Restart
+  #
+
+systemctl restart &lt;service-name&gt;
+# E.g
+systemctl restart ssh
+
+  Check status
+  #
+
+systemctl status &lt;service-name&gt;
+# E.g
+systemctl status ssh
+
+  SSH
+  #
+
+
+Stand for Secure Shell
+Check SSH score
+SSH Hardening Guides
+
+
+  Connect
+  #
+
+# Access SSH server 
+ssh &lt;username&gt;@&lt;ip-address || domain-name&gt;
+# Then typing password and press enter
+
+  Disable root login
+  #
+
+# Open the SSH daemon configuration file
+vim /etc/ssh/sshd_config
+# in [sshd_config] -&gt; Find PermitRootLogin and set it to no
+PermitRootLogin no
+# in [sshd_config] -&gt; Find PasswordAuthentication and set it to no
+PasswordAuthentication no
+# Restart the SSH Service
+systemctl restart ssh
+
   Nano
   #
 
@@ -102,6 +191,18 @@ Press y
 Press enter
 
 
+  Setup root password
+  #
+
+
+If your root user does not yet have a password
+
+# Gain root privileges
+sudo su
+# Set a Password
+passwd root
+# -&gt; Enter and confirm the password
+
   Nginx
   #
 
@@ -119,7 +220,7 @@ apt install nginx
 <meta name="color-scheme" content="light dark"><meta property="og:url" content="https://dangpham112000.github.io/docs/tips/004_ops/">
   <meta property="og:site_name" content="The Engineer Blogs">
   <meta property="og:title" content="Ops">
-  <meta property="og:description" content="Operation Tips # apt update apt upgrade Common Commands # Print working directory # pwd Copy # cp &lt;source&gt; &lt;destination&gt; # E.g cp readme.md readyou.md # create a copy named readyou with the same content as readme Clear directory # rm -rf &lt;directory-name&gt; Move # mv &lt;source&gt; &lt;destination&gt; # E.g mv readme.md .. # Move readme file to parent dir mv ../readme.md . # Move readme from parent dir to current dir Rename # If you move a file within the current directory, that means you are renaming it mv &lt;old-name&gt; &lt;new-name&gt; # E.g mv readme.md readyou.md Create # # Directory: mkdir &lt;dir-name&gt; # File: touch &lt;file-name&gt; Print file content # cat &lt;file-name&gt; Echo # Print env variable # echo $USER # E.g result: # &gt;&gt; dangpham112 Add content to file # echo Hello $USER &gt; readme.md # readme file now have a content: Hello dangpham112 Nano # A default text editor of some OS Open file # nano &lt;file-name&gt; # E.g nano index.html Save # Press Ctrl &#43; x Press y Press enter Nginx # Capacity: 2MB Install # apt install nginx ==&gt; Press Tab -» Choose OK and then press enter">
+  <meta property="og:description" content="Operation Tips # Common Commands # Show detail a command # man &lt;command&gt; # E.g man vim # Then press q to quit Best practice before install anything # apt update apt upgrade Show package detail # apt show &lt;package-name&gt; # E.g apt show ssh E.g output Package: ssh Version: 1:9.6p1-3ubuntu13.5 Priority: optional Section: net Source: openssh Origin: Ubuntu Maintainer: Ubuntu Developers &lt;ubuntu-devel-discuss@lists.ubuntu.com&gt; Original-Maintainer: Debian OpenSSH Maintainers &lt;debian-ssh@lists.debian.org&gt; Bugs: https://bugs.launchpad.net/ubuntu/&#43;filebug Installed-Size: 57.3 kB Depends: openssh-client (&gt;= 1:9.6p1-3ubuntu13.5), openssh-server (&gt;= 1:9.6p1-3ubuntu13.5) Homepage: https://www.openssh.com/ Download-Size: 4,658 B APT-Sources: http://vn.archive.ubuntu.com/ubuntu noble-updates/main amd64 Packages Description: secure shell client and server (metapackage) This metapackage is a convenient way to install both the OpenSSH client and the OpenSSH server. It provides nothing in and of itself, so you may remove it if nothing depends on it. Print working directory # pwd Copy # cp &lt;source&gt; &lt;destination&gt; # E.g cp readme.md readyou.md # create a copy named readyou with the same content as readme Clear directory # rm -rf &lt;directory-name&gt; Move # mv &lt;source&gt; &lt;destination&gt; # E.g mv readme.md .. # Move readme file to parent dir mv ../readme.md . # Move readme from parent dir to current dir Rename # If you move a file within the current directory, that means you are renaming it mv &lt;old-name&gt; &lt;new-name&gt; # E.g mv readme.md readyou.md Create # # Directory: mkdir &lt;dir-name&gt; # File: touch &lt;file-name&gt; Print file content # cat &lt;file-name&gt; Echo # Print env variable # echo $USER # E.g result: # &gt;&gt; dangpham112 Add content to file # echo Hello $USER &gt; readme.md # readme file now have a content: Hello dangpham112 Systemctl # Restart # systemctl restart &lt;service-name&gt; # E.g systemctl restart ssh Check status # systemctl status &lt;service-name&gt; # E.g systemctl status ssh SSH # Stand for Secure Shell Check SSH score SSH Hardening Guides Connect # # Access SSH server ssh &lt;username&gt;@&lt;ip-address || domain-name&gt; # Then typing password and press enter Disable root login # # Open the SSH daemon configuration file vim /etc/ssh/sshd_config # in [sshd_config] -&gt; Find PermitRootLogin and set it to no PermitRootLogin no # in [sshd_config] -&gt; Find PasswordAuthentication and set it to no PasswordAuthentication no # Restart the SSH Service systemctl restart ssh Nano # A default text editor of some OS Open file # nano &lt;file-name&gt; # E.g nano index.html Save # Press Ctrl &#43; x Press y Press enter Setup root password # If your root user does not yet have a password # Gain root privileges sudo su # Set a Password passwd root # -&gt; Enter and confirm the password Nginx # Capacity: 2MB Install # apt install nginx ==&gt; Press Tab -» Choose OK and then press enter">
   <meta property="og:locale" content="en_us">
   <meta property="og:type" content="article">
     <meta property="article:section" content="docs">
@@ -131,7 +232,7 @@ apt install nginx
 <link rel="canonical" href="https://dangpham112000.github.io/docs/tips/004_ops/">
 <link rel="stylesheet" href="/book.min.0ebfa1e81a7b241abaa8a9626be8325416e98d14702ea33197aea691fec27e9d.css" integrity="sha256-Dr&#43;h6Bp7JBq6qKlia&#43;gyVBbpjRRwLqMxl66mkf7Cfp0=" crossorigin="anonymous">
   <script defer src="/fuse.min.js"></script>
-  <script defer src="/en.search.min.73f7ebe5d7f64056a6d3236936e7a94e1af3c90cf1abb468e46d1bf5dfba69e3.js" integrity="sha256-c/fr5df2QFam0yNpNuepThrzyQzxq7Ro5G0b9d&#43;6aeM=" crossorigin="anonymous"></script>
+  <script defer src="/en.search.min.05850cad49a46959708ba3159be18b46d09fdca35872603a6cc4e0ce9851c88e.js" integrity="sha256-BYUMrUmkaVlwi6MVm&#43;GLRtCf3KNYcmA6bMTgzphRyI4=" crossorigin="anonymous"></script>
 <!--
 Made with Book Theme
 https://github.com/alex-shpak/hugo-book
@@ -659,6 +760,9 @@ https://github.com/alex-shpak/hugo-book
   <ul>
     <li><a href="#common-commands">Common Commands</a>
       <ul>
+        <li><a href="#show-detail-a-command">Show detail a command</a></li>
+        <li><a href="#best-practice-before-install-anything">Best practice before install anything</a></li>
+        <li><a href="#show-package-detail">Show package detail</a></li>
         <li><a href="#print-working-directory">Print working directory</a></li>
         <li><a href="#copy">Copy</a></li>
         <li><a href="#clear-directory">Clear directory</a></li>
@@ -669,12 +773,25 @@ https://github.com/alex-shpak/hugo-book
         <li><a href="#echo">Echo</a></li>
       </ul>
     </li>
+    <li><a href="#systemctl">Systemctl</a>
+      <ul>
+        <li><a href="#restart">Restart</a></li>
+        <li><a href="#check-status">Check status</a></li>
+      </ul>
+    </li>
+    <li><a href="#ssh">SSH</a>
+      <ul>
+        <li><a href="#connect">Connect</a></li>
+        <li><a href="#disable-root-login">Disable root login</a></li>
+      </ul>
+    </li>
     <li><a href="#nano">Nano</a>
       <ul>
         <li><a href="#open-file">Open file</a></li>
         <li><a href="#save">Save</a></li>
       </ul>
     </li>
+    <li><a href="#setup-root-password">Setup root password</a></li>
     <li><a href="#nginx">Nginx</a>
       <ul>
         <li><a href="#install">Install</a></li>
@@ -682,6 +799,7 @@ https://github.com/alex-shpak/hugo-book
         <li><a href="#locate-the-index-file">Locate the index file</a></li>
       </ul>
     </li>
+    <li><a href="#well-known-ports-linkhttpsenwikipediaorgwikilist_of_tcp_and_udp_port_numberswell-known_ports"><a href="https://en.wikipedia.org/wiki/List_of_TCP_and_UDP_port_numbers#Well-known_ports">Well-known ports (Link)</a></a></li>
     <li><a href="#ssl-certificate">SSL Certificate</a>
       <ul>
         <li><a href="#certificates-for-localhost">Certificates for localhost</a></li>
@@ -704,12 +822,55 @@ https://github.com/alex-shpak/hugo-book
   Operation Tips
   <a class="anchor" href="#operation-tips">#</a>
 </h1>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>apt update
-</span></span><span style="display:flex;"><span>apt upgrade
-</span></span></code></pre></div><h2 id="common-commands">
+<h2 id="common-commands">
   Common Commands
   <a class="anchor" href="#common-commands">#</a>
 </h2>
+<h3 id="show-detail-a-command">
+  Show detail a command
+  <a class="anchor" href="#show-detail-a-command">#</a>
+</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>man &lt;command&gt;
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># E.g</span>
+</span></span><span style="display:flex;"><span>man vim
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Then press q to quit</span>
+</span></span></code></pre></div><h3 id="best-practice-before-install-anything">
+  Best practice before install anything
+  <a class="anchor" href="#best-practice-before-install-anything">#</a>
+</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>apt update
+</span></span><span style="display:flex;"><span>apt upgrade
+</span></span></code></pre></div><h3 id="show-package-detail">
+  Show package detail
+  <a class="anchor" href="#show-package-detail">#</a>
+</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>apt show &lt;package-name&gt;
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># E.g </span>
+</span></span><span style="display:flex;"><span>apt show ssh
+</span></span></code></pre></div><details ><summary>E.g output</summary>
+  <div class="markdown-inner">
+    <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yml" data-lang="yml"><span style="display:flex;"><span><span style="color:#f92672">Package</span>: <span style="color:#ae81ff">ssh</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">Version</span>: <span style="color:#ae81ff">1</span>:<span style="color:#ae81ff">9.</span><span style="color:#ae81ff">6p1-3ubuntu13.5</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">Priority</span>: <span style="color:#ae81ff">optional</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">Section</span>: <span style="color:#ae81ff">net</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">Source</span>: <span style="color:#ae81ff">openssh</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">Origin</span>: <span style="color:#ae81ff">Ubuntu</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">Maintainer</span>: <span style="color:#ae81ff">Ubuntu Developers &lt;ubuntu-devel-discuss@lists.ubuntu.com&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">Original-Maintainer</span>: <span style="color:#ae81ff">Debian OpenSSH Maintainers &lt;debian-ssh@lists.debian.org&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">Bugs</span>: <span style="color:#ae81ff">https://bugs.launchpad.net/ubuntu/+filebug</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">Installed-Size</span>: <span style="color:#ae81ff">57.3</span> <span style="color:#ae81ff">kB</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">Depends</span>: <span style="color:#ae81ff">openssh-client (&gt;= 1:9.6p1-3ubuntu13.5), openssh-server (&gt;= 1:9.6p1-3ubuntu13.5)</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">Homepage</span>: <span style="color:#ae81ff">https://www.openssh.com/</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">Download-Size</span>: <span style="color:#ae81ff">4</span>,<span style="color:#ae81ff">658</span> <span style="color:#ae81ff">B</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">APT-Sources</span>: <span style="color:#ae81ff">http://vn.archive.ubuntu.com/ubuntu noble-updates/main amd64 Packages</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">Description</span>: <span style="color:#ae81ff">secure shell client and server (metapackage)</span>
+</span></span><span style="display:flex;"><span> <span style="color:#ae81ff">This metapackage is a convenient way to install both the OpenSSH client</span>
+</span></span><span style="display:flex;"><span> <span style="color:#ae81ff">and the OpenSSH server. It provides nothing in and of itself, so you</span>
+</span></span><span style="display:flex;"><span> <span style="color:#ae81ff">may remove it if nothing depends on it.</span>
+</span></span></code></pre></div>
+  </div>
+</details>
+
 <h3 id="print-working-directory">
   Print working directory
   <a class="anchor" href="#print-working-directory">#</a>
@@ -775,6 +936,52 @@ https://github.com/alex-shpak/hugo-book
 </h4>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>echo Hello $USER &gt; readme.md
 </span></span><span style="display:flex;"><span><span style="color:#75715e"># readme file now have a content: Hello dangpham112</span>
+</span></span></code></pre></div><h2 id="systemctl">
+  Systemctl
+  <a class="anchor" href="#systemctl">#</a>
+</h2>
+<h3 id="restart">
+  Restart
+  <a class="anchor" href="#restart">#</a>
+</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>systemctl restart &lt;service-name&gt;
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># E.g</span>
+</span></span><span style="display:flex;"><span>systemctl restart ssh
+</span></span></code></pre></div><h3 id="check-status">
+  Check status
+  <a class="anchor" href="#check-status">#</a>
+</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>systemctl status &lt;service-name&gt;
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># E.g</span>
+</span></span><span style="display:flex;"><span>systemctl status ssh
+</span></span></code></pre></div><h2 id="ssh">
+  SSH
+  <a class="anchor" href="#ssh">#</a>
+</h2>
+<ul>
+<li>Stand for Secure Shell</li>
+<li><a href="https://ssh-audit.com/">Check SSH score</a></li>
+<li><a href="https://ssh-audit.com/hardening_guides.html">SSH Hardening Guides</a></li>
+</ul>
+<h3 id="connect">
+  Connect
+  <a class="anchor" href="#connect">#</a>
+</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span><span style="color:#75715e"># Access SSH server </span>
+</span></span><span style="display:flex;"><span>ssh &lt;username&gt;@&lt;ip-address <span style="color:#f92672">||</span> domain-name&gt;
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Then typing password and press enter</span>
+</span></span></code></pre></div><h3 id="disable-root-login">
+  Disable root login
+  <a class="anchor" href="#disable-root-login">#</a>
+</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span><span style="color:#75715e"># Open the SSH daemon configuration file</span>
+</span></span><span style="display:flex;"><span>vim /etc/ssh/sshd_config
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># in [sshd_config] -&gt; Find PermitRootLogin and set it to no</span>
+</span></span><span style="display:flex;"><span>PermitRootLogin no
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># in [sshd_config] -&gt; Find PasswordAuthentication and set it to no</span>
+</span></span><span style="display:flex;"><span>PasswordAuthentication no
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Restart the SSH Service</span>
+</span></span><span style="display:flex;"><span>systemctl restart ssh
 </span></span></code></pre></div><h2 id="nano">
   Nano
   <a class="anchor" href="#nano">#</a>
@@ -798,7 +1005,19 @@ https://github.com/alex-shpak/hugo-book
 <li>Press <code>y</code></li>
 <li>Press <code>enter</code></li>
 </ol>
-<h2 id="nginx">
+<h2 id="setup-root-password">
+  Setup root password
+  <a class="anchor" href="#setup-root-password">#</a>
+</h2>
+<ul>
+<li>If your root user does not yet have a password</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span><span style="color:#75715e"># Gain root privileges</span>
+</span></span><span style="display:flex;"><span>sudo su
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Set a Password</span>
+</span></span><span style="display:flex;"><span>passwd root
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># -&gt; Enter and confirm the password</span>
+</span></span></code></pre></div><h2 id="nginx">
   Nginx
   <a class="anchor" href="#nginx">#</a>
 </h2>
@@ -837,7 +1056,11 @@ https://github.com/alex-shpak/hugo-book
 </h3>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>cd /var/www/html
 </span></span><span style="display:flex;"><span>ls
-</span></span></code></pre></div><h2 id="ssl-certificate">
+</span></span></code></pre></div><h2 id="well-known-ports-linkhttpsenwikipediaorgwikilist_of_tcp_and_udp_port_numberswell-known_ports">
+  <a href="https://en.wikipedia.org/wiki/List_of_TCP_and_UDP_port_numbers#Well-known_ports">Well-known ports (Link)</a>
+  <a class="anchor" href="#well-known-ports-linkhttpsenwikipediaorgwikilist_of_tcp_and_udp_port_numberswell-known_ports">#</a>
+</h2>
+<h2 id="ssl-certificate">
   SSL Certificate
   <a class="anchor" href="#ssl-certificate">#</a>
 </h2>
@@ -856,6 +1079,7 @@ https://github.com/alex-shpak/hugo-book
 <ul>
 <li>Letsencrypt: <a href="https://letsencrypt.org/docs/certificates-for-localhost/">Certificates for localhost</a> (Dec 21st, 2017)</li>
 <li>Youtube: <a href="https://www.youtube.com/watch?v=YiwBkRukugw">A Very Simple VPS Server Tutorial for Beginners</a> (Jul 5th, 2022)</li>
+<li>Wikipedia: <a href="https://en.wikipedia.org/wiki/List_of_TCP_and_UDP_port_numbers">List of TCP and UDP port numbers</a></li>
 </ul>
 </article>
  
@@ -900,6 +1124,9 @@ https://github.com/alex-shpak/hugo-book
   <ul>
     <li><a href="#common-commands">Common Commands</a>
       <ul>
+        <li><a href="#show-detail-a-command">Show detail a command</a></li>
+        <li><a href="#best-practice-before-install-anything">Best practice before install anything</a></li>
+        <li><a href="#show-package-detail">Show package detail</a></li>
         <li><a href="#print-working-directory">Print working directory</a></li>
         <li><a href="#copy">Copy</a></li>
         <li><a href="#clear-directory">Clear directory</a></li>
@@ -910,12 +1137,25 @@ https://github.com/alex-shpak/hugo-book
         <li><a href="#echo">Echo</a></li>
       </ul>
     </li>
+    <li><a href="#systemctl">Systemctl</a>
+      <ul>
+        <li><a href="#restart">Restart</a></li>
+        <li><a href="#check-status">Check status</a></li>
+      </ul>
+    </li>
+    <li><a href="#ssh">SSH</a>
+      <ul>
+        <li><a href="#connect">Connect</a></li>
+        <li><a href="#disable-root-login">Disable root login</a></li>
+      </ul>
+    </li>
     <li><a href="#nano">Nano</a>
       <ul>
         <li><a href="#open-file">Open file</a></li>
         <li><a href="#save">Save</a></li>
       </ul>
     </li>
+    <li><a href="#setup-root-password">Setup root password</a></li>
     <li><a href="#nginx">Nginx</a>
       <ul>
         <li><a href="#install">Install</a></li>
@@ -923,6 +1163,7 @@ https://github.com/alex-shpak/hugo-book
         <li><a href="#locate-the-index-file">Locate the index file</a></li>
       </ul>
     </li>
+    <li><a href="#well-known-ports-linkhttpsenwikipediaorgwikilist_of_tcp_and_udp_port_numberswell-known_ports"><a href="https://en.wikipedia.org/wiki/List_of_TCP_and_UDP_port_numbers#Well-known_ports">Well-known ports (Link)</a></a></li>
     <li><a href="#ssl-certificate">SSL Certificate</a>
       <ul>
         <li><a href="#certificates-for-localhost">Certificates for localhost</a></li>
