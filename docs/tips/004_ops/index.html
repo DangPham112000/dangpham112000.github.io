@@ -23,8 +23,8 @@ man vim
   Best practice before install anything
   #
 
-apt update
-apt upgrade
+sudo apt update
+sudo apt upgrade
 
   Show package detail
   #
@@ -156,6 +156,51 @@ SSH Hardening Guides
 ssh &lt;username&gt;@&lt;ip-address || domain-name&gt;
 # Then typing password and press enter
 
+  Login with username and password
+  #
+
+ssh &lt;host-username&gt;@&lt;host-ip || host-domain&gt;
+# -&gt; SSH will promt you to enter the password
+
+  Login with PEM
+  #
+
+# Change permissions for the private key file
+chmod 400 &lt;private-key&gt;.pem
+# E.g 
+chmod 400 MyServer.pem
+
+# Log in via SSH (notice host-username)
+ssh -i &lt;private-key&gt;.pem &lt;host-username&gt;@&lt;host-ip || host-domain&gt;
+# E.g 1: If you use EC2 Ubuntu the host-username maybe ubuntu
+ssh -i MyServer.pem ubuntu@54.251.177.159
+# E.g 2: If you use EC2 Amazon Linux the host-username maybe ec2-user
+ssh -i MyServer.pem ec2-user@18.141.175.126
+
+Where is PEM file?
+
+E.g 1: While you create EC2 instance, you can create key-pair for login in aws console, then they will give you &lt;private-key&gt;.pem to store on your SSH-client
+
+
+
+
+  Setup passwordless authentication
+  #
+
+# On SSH client
+# Generate a new SSH key pair using the Ed25519 algorithm
+ssh-keygen -t ed25519
+# -&gt; You can leave all the command prompts empty, just press enter
+# -&gt; You should notice the location of file *.pub for further actions 
+
+# Copy the public SSH key to the SSH server 
+ssh-copy-id -i &lt;public-key-file-location&gt; &lt;host-username&gt;@&lt;host-ip || host-domain&gt;
+# E.g
+ssh-copy-id -i /root/.ssh/id_ed25519.pub ubuntu@123.213.32.1
+# Test the connection
+ssh &lt;host-username&gt;@&lt;host-ip || host-domain&gt;
+# -&gt; SSH server will no longer ask you a password
+
   Disable root login
   #
 
@@ -167,6 +212,18 @@ PermitRootLogin no
 PasswordAuthentication no
 # Restart the SSH Service
 systemctl restart ssh
+
+  Secure copy
+  #
+
+
+  From SSH-client to SSH-server
+  #
+
+# On SSH-client
+scp &lt;path-to-file&gt; &lt;host-username&gt;@&lt;host-ip&gt;:&lt;destination&gt;
+# E.g
+scp &lt;path-to-file&gt; &lt;host-username&gt;@&lt;host-ip&gt;:&lt;destination&gt;
 
   Nano
   #
@@ -213,14 +270,14 @@ Capacity: 2MB
   Install
   #
 
-apt install nginx
+sudo apt install nginx
 ==&gt; Press Tab -&raquo; Choose OK and then press enter">
 <meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff">
 <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#343a40">
 <meta name="color-scheme" content="light dark"><meta property="og:url" content="https://dangpham112000.github.io/docs/tips/004_ops/">
   <meta property="og:site_name" content="The Engineer Blogs">
   <meta property="og:title" content="Ops">
-  <meta property="og:description" content="Operation Tips # Common Commands # Show detail a command # man &lt;command&gt; # E.g man vim # Then press q to quit Best practice before install anything # apt update apt upgrade Show package detail # apt show &lt;package-name&gt; # E.g apt show ssh E.g output Package: ssh Version: 1:9.6p1-3ubuntu13.5 Priority: optional Section: net Source: openssh Origin: Ubuntu Maintainer: Ubuntu Developers &lt;ubuntu-devel-discuss@lists.ubuntu.com&gt; Original-Maintainer: Debian OpenSSH Maintainers &lt;debian-ssh@lists.debian.org&gt; Bugs: https://bugs.launchpad.net/ubuntu/&#43;filebug Installed-Size: 57.3 kB Depends: openssh-client (&gt;= 1:9.6p1-3ubuntu13.5), openssh-server (&gt;= 1:9.6p1-3ubuntu13.5) Homepage: https://www.openssh.com/ Download-Size: 4,658 B APT-Sources: http://vn.archive.ubuntu.com/ubuntu noble-updates/main amd64 Packages Description: secure shell client and server (metapackage) This metapackage is a convenient way to install both the OpenSSH client and the OpenSSH server. It provides nothing in and of itself, so you may remove it if nothing depends on it. Print working directory # pwd Copy # cp &lt;source&gt; &lt;destination&gt; # E.g cp readme.md readyou.md # create a copy named readyou with the same content as readme Clear directory # rm -rf &lt;directory-name&gt; Move # mv &lt;source&gt; &lt;destination&gt; # E.g mv readme.md .. # Move readme file to parent dir mv ../readme.md . # Move readme from parent dir to current dir Rename # If you move a file within the current directory, that means you are renaming it mv &lt;old-name&gt; &lt;new-name&gt; # E.g mv readme.md readyou.md Create # # Directory: mkdir &lt;dir-name&gt; # File: touch &lt;file-name&gt; Print file content # cat &lt;file-name&gt; Echo # Print env variable # echo $USER # E.g result: # &gt;&gt; dangpham112 Add content to file # echo Hello $USER &gt; readme.md # readme file now have a content: Hello dangpham112 Systemctl # Restart # systemctl restart &lt;service-name&gt; # E.g systemctl restart ssh Check status # systemctl status &lt;service-name&gt; # E.g systemctl status ssh SSH # Stand for Secure Shell Check SSH score SSH Hardening Guides Connect # # Access SSH server ssh &lt;username&gt;@&lt;ip-address || domain-name&gt; # Then typing password and press enter Disable root login # # Open the SSH daemon configuration file vim /etc/ssh/sshd_config # in [sshd_config] -&gt; Find PermitRootLogin and set it to no PermitRootLogin no # in [sshd_config] -&gt; Find PasswordAuthentication and set it to no PasswordAuthentication no # Restart the SSH Service systemctl restart ssh Nano # A default text editor of some OS Open file # nano &lt;file-name&gt; # E.g nano index.html Save # Press Ctrl &#43; x Press y Press enter Setup root password # If your root user does not yet have a password # Gain root privileges sudo su # Set a Password passwd root # -&gt; Enter and confirm the password Nginx # Capacity: 2MB Install # apt install nginx ==&gt; Press Tab -» Choose OK and then press enter">
+  <meta property="og:description" content="Operation Tips # Common Commands # Show detail a command # man &lt;command&gt; # E.g man vim # Then press q to quit Best practice before install anything # sudo apt update sudo apt upgrade Show package detail # apt show &lt;package-name&gt; # E.g apt show ssh E.g output Package: ssh Version: 1:9.6p1-3ubuntu13.5 Priority: optional Section: net Source: openssh Origin: Ubuntu Maintainer: Ubuntu Developers &lt;ubuntu-devel-discuss@lists.ubuntu.com&gt; Original-Maintainer: Debian OpenSSH Maintainers &lt;debian-ssh@lists.debian.org&gt; Bugs: https://bugs.launchpad.net/ubuntu/&#43;filebug Installed-Size: 57.3 kB Depends: openssh-client (&gt;= 1:9.6p1-3ubuntu13.5), openssh-server (&gt;= 1:9.6p1-3ubuntu13.5) Homepage: https://www.openssh.com/ Download-Size: 4,658 B APT-Sources: http://vn.archive.ubuntu.com/ubuntu noble-updates/main amd64 Packages Description: secure shell client and server (metapackage) This metapackage is a convenient way to install both the OpenSSH client and the OpenSSH server. It provides nothing in and of itself, so you may remove it if nothing depends on it. Print working directory # pwd Copy # cp &lt;source&gt; &lt;destination&gt; # E.g cp readme.md readyou.md # create a copy named readyou with the same content as readme Clear directory # rm -rf &lt;directory-name&gt; Move # mv &lt;source&gt; &lt;destination&gt; # E.g mv readme.md .. # Move readme file to parent dir mv ../readme.md . # Move readme from parent dir to current dir Rename # If you move a file within the current directory, that means you are renaming it mv &lt;old-name&gt; &lt;new-name&gt; # E.g mv readme.md readyou.md Create # # Directory: mkdir &lt;dir-name&gt; # File: touch &lt;file-name&gt; Print file content # cat &lt;file-name&gt; Echo # Print env variable # echo $USER # E.g result: # &gt;&gt; dangpham112 Add content to file # echo Hello $USER &gt; readme.md # readme file now have a content: Hello dangpham112 Systemctl # Restart # systemctl restart &lt;service-name&gt; # E.g systemctl restart ssh Check status # systemctl status &lt;service-name&gt; # E.g systemctl status ssh SSH # Stand for Secure Shell Check SSH score SSH Hardening Guides Connect # # Access SSH server ssh &lt;username&gt;@&lt;ip-address || domain-name&gt; # Then typing password and press enter Login with username and password # ssh &lt;host-username&gt;@&lt;host-ip || host-domain&gt; # -&gt; SSH will promt you to enter the password Login with PEM # # Change permissions for the private key file chmod 400 &lt;private-key&gt;.pem # E.g chmod 400 MyServer.pem # Log in via SSH (notice host-username) ssh -i &lt;private-key&gt;.pem &lt;host-username&gt;@&lt;host-ip || host-domain&gt; # E.g 1: If you use EC2 Ubuntu the host-username maybe ubuntu ssh -i MyServer.pem ubuntu@54.251.177.159 # E.g 2: If you use EC2 Amazon Linux the host-username maybe ec2-user ssh -i MyServer.pem ec2-user@18.141.175.126 Where is PEM file? E.g 1: While you create EC2 instance, you can create key-pair for login in aws console, then they will give you &lt;private-key&gt;.pem to store on your SSH-client Setup passwordless authentication # # On SSH client # Generate a new SSH key pair using the Ed25519 algorithm ssh-keygen -t ed25519 # -&gt; You can leave all the command prompts empty, just press enter # -&gt; You should notice the location of file *.pub for further actions # Copy the public SSH key to the SSH server ssh-copy-id -i &lt;public-key-file-location&gt; &lt;host-username&gt;@&lt;host-ip || host-domain&gt; # E.g ssh-copy-id -i /root/.ssh/id_ed25519.pub ubuntu@123.213.32.1 # Test the connection ssh &lt;host-username&gt;@&lt;host-ip || host-domain&gt; # -&gt; SSH server will no longer ask you a password Disable root login # # Open the SSH daemon configuration file vim /etc/ssh/sshd_config # in [sshd_config] -&gt; Find PermitRootLogin and set it to no PermitRootLogin no # in [sshd_config] -&gt; Find PasswordAuthentication and set it to no PasswordAuthentication no # Restart the SSH Service systemctl restart ssh Secure copy # From SSH-client to SSH-server # # On SSH-client scp &lt;path-to-file&gt; &lt;host-username&gt;@&lt;host-ip&gt;:&lt;destination&gt; # E.g scp &lt;path-to-file&gt; &lt;host-username&gt;@&lt;host-ip&gt;:&lt;destination&gt; Nano # A default text editor of some OS Open file # nano &lt;file-name&gt; # E.g nano index.html Save # Press Ctrl &#43; x Press y Press enter Setup root password # If your root user does not yet have a password # Gain root privileges sudo su # Set a Password passwd root # -&gt; Enter and confirm the password Nginx # Capacity: 2MB Install # sudo apt install nginx ==&gt; Press Tab -» Choose OK and then press enter">
   <meta property="og:locale" content="en_us">
   <meta property="og:type" content="article">
     <meta property="article:section" content="docs">
@@ -232,7 +289,7 @@ apt install nginx
 <link rel="canonical" href="https://dangpham112000.github.io/docs/tips/004_ops/">
 <link rel="stylesheet" href="/book.min.0ebfa1e81a7b241abaa8a9626be8325416e98d14702ea33197aea691fec27e9d.css" integrity="sha256-Dr&#43;h6Bp7JBq6qKlia&#43;gyVBbpjRRwLqMxl66mkf7Cfp0=" crossorigin="anonymous">
   <script defer src="/fuse.min.js"></script>
-  <script defer src="/en.search.min.05850cad49a46959708ba3159be18b46d09fdca35872603a6cc4e0ce9851c88e.js" integrity="sha256-BYUMrUmkaVlwi6MVm&#43;GLRtCf3KNYcmA6bMTgzphRyI4=" crossorigin="anonymous"></script>
+  <script defer src="/en.search.min.a496fa9118ea5d322e6548b0d68b84f62b4c8d695d52c74421b6db49d2b099f5.js" integrity="sha256-pJb6kRjqXTIuZUiw1ouE9itMjWldUsdEIbbbSdKwmfU=" crossorigin="anonymous"></script>
 <!--
 Made with Book Theme
 https://github.com/alex-shpak/hugo-book
@@ -782,7 +839,11 @@ https://github.com/alex-shpak/hugo-book
     <li><a href="#ssh">SSH</a>
       <ul>
         <li><a href="#connect">Connect</a></li>
+        <li><a href="#login-with-username-and-password">Login with username and password</a></li>
+        <li><a href="#login-with-pem">Login with PEM</a></li>
+        <li><a href="#setup-passwordless-authentication">Setup passwordless authentication</a></li>
         <li><a href="#disable-root-login">Disable root login</a></li>
+        <li><a href="#secure-copy">Secure copy</a></li>
       </ul>
     </li>
     <li><a href="#nano">Nano</a>
@@ -838,8 +899,8 @@ https://github.com/alex-shpak/hugo-book
   Best practice before install anything
   <a class="anchor" href="#best-practice-before-install-anything">#</a>
 </h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>apt update
-</span></span><span style="display:flex;"><span>apt upgrade
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>sudo apt update
+</span></span><span style="display:flex;"><span>sudo apt upgrade
 </span></span></code></pre></div><h3 id="show-package-detail">
   Show package detail
   <a class="anchor" href="#show-package-detail">#</a>
@@ -970,6 +1031,51 @@ https://github.com/alex-shpak/hugo-book
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span><span style="color:#75715e"># Access SSH server </span>
 </span></span><span style="display:flex;"><span>ssh &lt;username&gt;@&lt;ip-address <span style="color:#f92672">||</span> domain-name&gt;
 </span></span><span style="display:flex;"><span><span style="color:#75715e"># Then typing password and press enter</span>
+</span></span></code></pre></div><h3 id="login-with-username-and-password">
+  Login with username and password
+  <a class="anchor" href="#login-with-username-and-password">#</a>
+</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>ssh &lt;host-username&gt;@&lt;host-ip <span style="color:#f92672">||</span> host-domain&gt;
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># -&gt; SSH will promt you to enter the password</span>
+</span></span></code></pre></div><h3 id="login-with-pem">
+  Login with PEM
+  <a class="anchor" href="#login-with-pem">#</a>
+</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span><span style="color:#75715e"># Change permissions for the private key file</span>
+</span></span><span style="display:flex;"><span>chmod <span style="color:#ae81ff">400</span> &lt;private-key&gt;.pem
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># E.g </span>
+</span></span><span style="display:flex;"><span>chmod <span style="color:#ae81ff">400</span> MyServer.pem
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Log in via SSH (notice host-username)</span>
+</span></span><span style="display:flex;"><span>ssh -i &lt;private-key&gt;.pem &lt;host-username&gt;@&lt;host-ip <span style="color:#f92672">||</span> host-domain&gt;
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># E.g 1: If you use EC2 Ubuntu the host-username maybe ubuntu</span>
+</span></span><span style="display:flex;"><span>ssh -i MyServer.pem ubuntu@54.251.177.159
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># E.g 2: If you use EC2 Amazon Linux the host-username maybe ec2-user</span>
+</span></span><span style="display:flex;"><span>ssh -i MyServer.pem ec2-user@18.141.175.126
+</span></span></code></pre></div><ul>
+<li>Where is PEM file?
+<ul>
+<li>E.g 1: While you create EC2 instance, you can create key-pair for login in aws console, then they will give you <code>&lt;private-key&gt;.pem</code> to store on your SSH-client</li>
+</ul>
+</li>
+</ul>
+<h3 id="setup-passwordless-authentication">
+  Setup passwordless authentication
+  <a class="anchor" href="#setup-passwordless-authentication">#</a>
+</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span><span style="color:#75715e"># On SSH client</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Generate a new SSH key pair using the Ed25519 algorithm</span>
+</span></span><span style="display:flex;"><span>ssh-keygen -t ed25519
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># -&gt; You can leave all the command prompts empty, just press enter</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># -&gt; You should notice the location of file *.pub for further actions </span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Copy the public SSH key to the SSH server </span>
+</span></span><span style="display:flex;"><span>ssh-copy-id -i &lt;public-key-file-location&gt; &lt;host-username&gt;@&lt;host-ip <span style="color:#f92672">||</span> host-domain&gt;
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># E.g</span>
+</span></span><span style="display:flex;"><span>ssh-copy-id -i /root/.ssh/id_ed25519.pub ubuntu@123.213.32.1
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Test the connection</span>
+</span></span><span style="display:flex;"><span>ssh &lt;host-username&gt;@&lt;host-ip <span style="color:#f92672">||</span> host-domain&gt;
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># -&gt; SSH server will no longer ask you a password</span>
 </span></span></code></pre></div><h3 id="disable-root-login">
   Disable root login
   <a class="anchor" href="#disable-root-login">#</a>
@@ -982,6 +1088,18 @@ https://github.com/alex-shpak/hugo-book
 </span></span><span style="display:flex;"><span>PasswordAuthentication no
 </span></span><span style="display:flex;"><span><span style="color:#75715e"># Restart the SSH Service</span>
 </span></span><span style="display:flex;"><span>systemctl restart ssh
+</span></span></code></pre></div><h3 id="secure-copy">
+  Secure copy
+  <a class="anchor" href="#secure-copy">#</a>
+</h3>
+<h4 id="from-ssh-client-to-ssh-server">
+  From SSH-client to SSH-server
+  <a class="anchor" href="#from-ssh-client-to-ssh-server">#</a>
+</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span><span style="color:#75715e"># On SSH-client</span>
+</span></span><span style="display:flex;"><span>scp &lt;path-to-file&gt; &lt;host-username&gt;@&lt;host-ip&gt;:&lt;destination&gt;
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># E.g</span>
+</span></span><span style="display:flex;"><span>scp &lt;path-to-file&gt; &lt;host-username&gt;@&lt;host-ip&gt;:&lt;destination&gt;
 </span></span></code></pre></div><h2 id="nano">
   Nano
   <a class="anchor" href="#nano">#</a>
@@ -1028,20 +1146,25 @@ https://github.com/alex-shpak/hugo-book
   Install
   <a class="anchor" href="#install">#</a>
 </h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>apt install nginx
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>sudo apt install nginx
 </span></span></code></pre></div><p>==&gt; Press <code>Tab</code> -&raquo; Choose <code>OK</code> and then press <code>enter</code></p>
 <h3 id="open-ports">
   Open ports
   <a class="anchor" href="#open-ports">#</a>
 </h3>
 <ul>
-<li>After installing Nginx, we may not be able to access our server because the firewall is enabled by default</li>
+<li>After installing Nginx, we may not be able to access our website because the firewall is enabled by default</li>
+<li>If you use EC2, the firewall is disabled by default, but your EC2 <code>Security Group</code> will block access to your website
+<ul>
+<li>You must edit the inbound rules to allow traffic on HTTP (port 80) and HTTPS (port 443)</li>
+</ul>
+</li>
 </ul>
 <h4 id="check-firewall-status">
   Check firewall status
   <a class="anchor" href="#check-firewall-status">#</a>
 </h4>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>ufw status
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>sudo ufw status
 </span></span></code></pre></div><ul>
 <li><code>ufw</code>: ubuntu firewall</li>
 </ul>
@@ -1049,13 +1172,12 @@ https://github.com/alex-shpak/hugo-book
   Let&rsquo;s firewall allow nginx
   <a class="anchor" href="#lets-firewall-allow-nginx">#</a>
 </h4>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>ufw allow <span style="color:#e6db74">&#34;Nginx Full&#34;</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>sudo ufw allow <span style="color:#e6db74">&#34;Nginx Full&#34;</span>
 </span></span></code></pre></div><h3 id="locate-the-index-file">
   Locate the index file
   <a class="anchor" href="#locate-the-index-file">#</a>
 </h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>cd /var/www/html
-</span></span><span style="display:flex;"><span>ls
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>ls /var/www/html
 </span></span></code></pre></div><h2 id="well-known-ports-linkhttpsenwikipediaorgwikilist_of_tcp_and_udp_port_numberswell-known_ports">
   <a href="https://en.wikipedia.org/wiki/List_of_TCP_and_UDP_port_numbers#Well-known_ports">Well-known ports (Link)</a>
   <a class="anchor" href="#well-known-ports-linkhttpsenwikipediaorgwikilist_of_tcp_and_udp_port_numberswell-known_ports">#</a>
@@ -1146,7 +1268,11 @@ https://github.com/alex-shpak/hugo-book
     <li><a href="#ssh">SSH</a>
       <ul>
         <li><a href="#connect">Connect</a></li>
+        <li><a href="#login-with-username-and-password">Login with username and password</a></li>
+        <li><a href="#login-with-pem">Login with PEM</a></li>
+        <li><a href="#setup-passwordless-authentication">Setup passwordless authentication</a></li>
         <li><a href="#disable-root-login">Disable root login</a></li>
+        <li><a href="#secure-copy">Secure copy</a></li>
       </ul>
     </li>
     <li><a href="#nano">Nano</a>
