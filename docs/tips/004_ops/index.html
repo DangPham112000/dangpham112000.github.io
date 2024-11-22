@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en-us" dir="ltr">
-<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+<head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="
@@ -294,7 +294,7 @@ sudo apt install nginx
 ==&gt; Press Tab -&raquo; Choose OK and then press enter">
 <meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff">
 <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#343a40">
-<meta name="color-scheme" content="light dark"><meta property="og:url" content="http://localhost:1313/docs/tips/004_ops/">
+<meta name="color-scheme" content="light dark"><meta property="og:url" content="https://dangpham112000.github.io/docs/tips/004_ops/">
   <meta property="og:site_name" content="The Engineer Blogs">
   <meta property="og:title" content="Ops">
   <meta property="og:description" content="Operation Tips # Common Commands # Show public ip address # curl ipinfo.io/ip Show detail a command # man &lt;command&gt; # E.g man vim # Then press q to quit Best practice before install anything # sudo apt update sudo apt upgrade Show package detail # apt show &lt;package-name&gt; # E.g apt show ssh E.g output Package: ssh Version: 1:9.6p1-3ubuntu13.5 Priority: optional Section: net Source: openssh Origin: Ubuntu Maintainer: Ubuntu Developers &lt;ubuntu-devel-discuss@lists.ubuntu.com&gt; Original-Maintainer: Debian OpenSSH Maintainers &lt;debian-ssh@lists.debian.org&gt; Bugs: https://bugs.launchpad.net/ubuntu/&#43;filebug Installed-Size: 57.3 kB Depends: openssh-client (&gt;= 1:9.6p1-3ubuntu13.5), openssh-server (&gt;= 1:9.6p1-3ubuntu13.5) Homepage: https://www.openssh.com/ Download-Size: 4,658 B APT-Sources: http://vn.archive.ubuntu.com/ubuntu noble-updates/main amd64 Packages Description: secure shell client and server (metapackage) This metapackage is a convenient way to install both the OpenSSH client and the OpenSSH server. It provides nothing in and of itself, so you may remove it if nothing depends on it. Print working directory # pwd Copy # cp &lt;source&gt; &lt;destination&gt; # E.g cp readme.md readyou.md # create a copy named readyou with the same content as readme Clear directory # rm -rf &lt;directory-name&gt; Move # mv &lt;source&gt; &lt;destination&gt; # E.g mv readme.md .. # Move readme file to parent dir mv ../readme.md . # Move readme from parent dir to current dir Rename # If you move a file within the current directory, that means you are renaming it mv &lt;old-name&gt; &lt;new-name&gt; # E.g mv readme.md readyou.md Create # # Directory: mkdir &lt;dir-name&gt; # File: touch &lt;file-name&gt; Print file content # cat &lt;file-name&gt; Echo # Print env variable # echo $USER # E.g result: # &gt;&gt; dangpham112 Add content to file # echo Hello $USER &gt; readme.md # readme file now have a content: Hello dangpham112 Systemctl # Restart # systemctl restart &lt;service-name&gt; # E.g systemctl restart ssh Check status # systemctl status &lt;service-name&gt; # E.g systemctl status ssh SSH # Stand for Secure Shell Check SSH score SSH Hardening Guides Connect # # Access SSH server ssh &lt;username&gt;@&lt;ip-address || domain-name&gt; # Then typing password and press enter Login with username and password # ssh &lt;host-username&gt;@&lt;host-ip || host-domain&gt; # -&gt; SSH will promt you to enter the password Login with PEM # # Change permissions for the private key file chmod 400 &lt;private-key&gt;.pem # E.g chmod 400 MyServer.pem # Log in via SSH (notice host-username) ssh -i &lt;private-key&gt;.pem &lt;host-username&gt;@&lt;host-ip || host-domain&gt; # E.g 1: If you use EC2 Ubuntu the host-username maybe ubuntu ssh -i MyServer.pem ubuntu@54.251.177.159 # E.g 2: If you use EC2 Amazon Linux the host-username maybe ec2-user ssh -i MyServer.pem ec2-user@18.141.175.126 Where is PEM file? E.g 1: While you create EC2 instance, you can create key-pair for login in aws console, then they will give you &lt;private-key&gt;.pem to store on your SSH-client Setup passwordless authentication # # On SSH client # Generate a new SSH key pair using the Ed25519 algorithm ssh-keygen -t ed25519 # -&gt; You can leave all the command prompts empty, just press enter # -&gt; You should notice the location of file *.pub for further actions # Copy the public SSH key to the SSH server ssh-copy-id -i &lt;public-key-file-location&gt; &lt;host-username&gt;@&lt;host-ip || host-domain&gt; # E.g ssh-copy-id -i /root/.ssh/id_ed25519.pub ubuntu@123.213.32.1 # Test the connection ssh &lt;host-username&gt;@&lt;host-ip || host-domain&gt; # -&gt; SSH server will no longer ask you a password Disable root login # # Open the SSH daemon configuration file vim /etc/ssh/sshd_config # in [sshd_config] -&gt; Find PermitRootLogin and set it to no PermitRootLogin no # in [sshd_config] -&gt; Find PasswordAuthentication and set it to no PasswordAuthentication no # Restart the SSH Service systemctl restart ssh Secure copy # From SSH-client to SSH-server # # On SSH-client # From SSH-Client to SSH-Server scp &lt;path-to-file&gt; &lt;host-username&gt;@&lt;host-ip&gt;:&lt;destination&gt; # E.g scp ~/Documents/readme.md ubuntu@18.141.184.34:~/Document/ # Or scp -i &lt;private-key&gt;.pem &lt;path-to-file&gt; &lt;host-username&gt;@&lt;host-ip&gt;:&lt;destination&gt; # E.g scp -i ~/Auth/MyServer.pem ~/Documents/readme.md ubuntu@18.141.184.34:~/Document/ # From SSH-Server to SSH-Client scp &lt;host-username&gt;@&lt;host-ip&gt;:&lt;path-to-file&gt; &lt;destination-on-client&gt; # E.g scp ubuntu@18.141.184.34:~/Document/readyou.md ~/Documents # Or scp -i &lt;private-key&gt;.pem &lt;host-username&gt;@&lt;host-ip&gt;:&lt;path-to-file&gt; &lt;destination-on-client&gt; # E.g scp -i ~/Auth/MyServer.pem ubuntu@18.141.184.34:~/Document/readyou.md ~/Documents Nano # A default text editor of some OS Open file # nano &lt;file-name&gt; # E.g nano index.html Save # Press Ctrl &#43; x Press y Press enter Setup root password # If your root user does not yet have a password # Gain root privileges sudo su # Set a Password passwd root # -&gt; Enter and confirm the password Nginx # Capacity: 2MB Install # sudo apt install nginx ==&gt; Press Tab -» Choose OK and then press enter">
@@ -306,10 +306,10 @@ sudo apt install nginx
 <title>Ops | The Engineer Blogs</title>
 <link rel="manifest" href="/manifest.json">
 <link rel="icon" href="/favicon.png" >
-<link rel="canonical" href="http://localhost:1313/docs/tips/004_ops/">
+<link rel="canonical" href="https://dangpham112000.github.io/docs/tips/004_ops/">
 <link rel="stylesheet" href="/book.min.0ebfa1e81a7b241abaa8a9626be8325416e98d14702ea33197aea691fec27e9d.css" integrity="sha256-Dr&#43;h6Bp7JBq6qKlia&#43;gyVBbpjRRwLqMxl66mkf7Cfp0=" crossorigin="anonymous">
   <script defer src="/fuse.min.js"></script>
-  <script defer src="/en.search.min.a496fa9118ea5d322e6548b0d68b84f62b4c8d695d52c74421b6db49d2b099f5.js" integrity="sha256-pJb6kRjqXTIuZUiw1ouE9itMjWldUsdEIbbbSdKwmfU=" crossorigin="anonymous"></script>
+  <script defer src="/en.search.min.f74775bb19b33c3839f0d37e306c3a4e5d19e6e1b6fe0eb1c404af382fa7168d.js" integrity="sha256-90d1uxmzPDg58NN&#43;MGw6Tl0Z5uG2/g6xxASvOC&#43;nFo0=" crossorigin="anonymous"></script>
 <!--
 Made with Book Theme
 https://github.com/alex-shpak/hugo-book
@@ -1277,18 +1277,166 @@ https://github.com/alex-shpak/hugo-book
   Certificates for localhost
   <a class="anchor" href="#certificates-for-localhost">#</a>
 </h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>openssl req -x509 -out localhost.crt -keyout localhost.key <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  -newkey rsa:2048 -nodes -sha256 <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  -subj <span style="color:#e6db74">&#39;/CN=localhost&#39;</span> -extensions EXT -config &lt;<span style="color:#f92672">(</span> <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>   printf <span style="color:#e6db74">&#34;[dn]\nCN=localhost\n[req]\ndistinguished_name = dn\n[EXT]\nsubjectAltName=DNS:localhost\nkeyUsage=digitalSignature\nextendedKeyUsage=serverAuth&#34;</span><span style="color:#f92672">)</span>
-</span></span></code></pre></div><h2 id="references">
+<h4 id="create-ca-certificate">
+  Create CA certificate
+  <a class="anchor" href="#create-ca-certificate">#</a>
+</h4>
+<ul>
+<li>Generate <code>RootCA.pem</code>, <code>RootCA.key</code>, and <code>RootCA.crt</code>:</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span><span style="color:#75715e"># Generate a Root CA Certificate</span>
+</span></span><span style="display:flex;"><span>openssl req -x509 -nodes -new -sha256 -days <span style="color:#ae81ff">1024</span> -newkey rsa:2048 -keyout RootCA.key -out RootCA.pem -subj <span style="color:#e6db74">&#34;/C=US/CN=Example-Root-CA&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># -&gt; RootCA.key &amp; RootCA.pem</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Convert the Certificate to .crt Format</span>
+</span></span><span style="display:flex;"><span>openssl x509 -outform pem -in RootCA.pem -out RootCA.crt
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># -&gt; RootCA.crt</span>
+</span></span></code></pre></div><ul>
+<li><code>RootCA.key</code>: Private key for the Root CA</li>
+<li><code>RootCA.pem</code>: Self-signed certificate for the Root CA in PEM format</li>
+<li><code>RootCA.crt</code>: Contains the same information as <code>RootCA.pem</code>, but they are often distinguished by convention</li>
+</ul>
+<h4 id="create-a-configuration-snippet">
+  Create a configuration snippet
+  <a class="anchor" href="#create-a-configuration-snippet">#</a>
+</h4>
+<ul>
+<li>Create a file <code>domains.ext</code></li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ini" data-lang="ini"><span style="display:flex;"><span><span style="color:#75715e"># domains.ext</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">authorityKeyIdentifier</span><span style="color:#f92672">=</span><span style="color:#e6db74">keyid,issuer</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">basicConstraints</span><span style="color:#f92672">=</span><span style="color:#e6db74">CA:FALSE</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">keyUsage</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">digitalSignature, nonRepudiation, keyEncipherment, dataEncipherment</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">subjectAltName</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">@alt_names</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">[alt_names]</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">DNS.1</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">localhost</span>
+</span></span></code></pre></div><h4 id="generating-a-signed-certificate-for-localhost">
+  Generating a signed certificate for localhost
+  <a class="anchor" href="#generating-a-signed-certificate-for-localhost">#</a>
+</h4>
+<ul>
+<li>Generate <code>localhost.key</code>, <code>localhost.csr</code>, and <code>localhost.crt</code></li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span><span style="color:#75715e"># Generate a CSR (Certificate Signing Request) for localhost</span>
+</span></span><span style="display:flex;"><span>openssl req -new -nodes -newkey rsa:2048 -keyout localhost.key -out localhost.csr -subj <span style="color:#e6db74">&#34;/C=US/ST=YourState/L=YourCity/O=Example-Certificates/CN=localhost&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># -&gt; localhost.key &amp; localhost.csr</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Sign the CSR with a Root CA to generate the signed certificate</span>
+</span></span><span style="display:flex;"><span>openssl x509 -req -sha256 -days <span style="color:#ae81ff">1024</span> -in localhost.csr -CA RootCA.pem -CAkey RootCA.key -CAcreateserial -extfile domains.ext -out localhost.crt
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># -&gt; localhost.crt</span>
+</span></span></code></pre></div><ul>
+<li><code>localhost.key</code>: Private key for the certificate</li>
+<li><code>localhost.csr</code>: Certificate Signing Request (CSR) that can be sent to a Certificate Authority (CA) for signing</li>
+<li><code>localhost.crt</code>: The final signed certificate for localhost generated by your Root CA</li>
+</ul>
+<h4 id="configure-your-webserver">
+  Configure your webserver
+  <a class="anchor" href="#configure-your-webserver">#</a>
+</h4>
+<details ><summary><strong>Nginx</strong></summary>
+  <div class="markdown-inner">
+    <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-nginx" data-lang="nginx"><span style="display:flex;"><span><span style="color:#66d9ef">server</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">listen</span> <span style="color:#ae81ff">443</span> <span style="color:#e6db74">ssl</span> <span style="color:#e6db74">default_server</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">listen</span> <span style="color:#e6db74">[::]:443</span> <span style="color:#e6db74">ssl</span> <span style="color:#e6db74">default_server</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">ssl_certificate</span> <span style="color:#e6db74">/home/dangpham/Auth/ssl_cert/localhost.crt</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">ssl_certificate_key</span> <span style="color:#e6db74">/home/dangpham/Auth/ssl_cert/localhost.key</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">root</span> <span style="color:#e6db74">/var/www/html</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">index</span> <span style="color:#e6db74">index.html</span> <span style="color:#e6db74">index.htm</span> <span style="color:#e6db74">index.nginx-debian.html</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">server_name</span> <span style="color:#e6db74">localhost</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">location</span> <span style="color:#e6db74">/</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">try_files</span> $uri $uri/ =<span style="color:#ae81ff">404</span>;
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div>
+  </div>
+</details>
+
+</br>
+<details ><summary><strong>Nodejs</strong></summary>
+  <div class="markdown-inner">
+    <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">https</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span>(<span style="color:#e6db74">&#39;https&#39;</span>);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">fs</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span>(<span style="color:#e6db74">&#39;fs&#39;</span>);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">path</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span>(<span style="color:#e6db74">&#39;path&#39;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">certLocation</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;/home/dangpham/Auth/ssl_cert&#39;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">options</span> <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">key</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">fs</span>.<span style="color:#a6e22e">readFileSync</span>(<span style="color:#a6e22e">path</span>.<span style="color:#a6e22e">resolve</span>(<span style="color:#a6e22e">certLocation</span>, <span style="color:#e6db74">&#39;localhost.key&#39;</span>)), 
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">cert</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">fs</span>.<span style="color:#a6e22e">readFileSync</span>(<span style="color:#a6e22e">path</span>.<span style="color:#a6e22e">resolve</span>(<span style="color:#a6e22e">certLocation</span>, <span style="color:#e6db74">&#39;localhost.crt&#39;</span>)), 
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">server</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">https</span>.<span style="color:#a6e22e">createServer</span>(<span style="color:#a6e22e">options</span>,(<span style="color:#a6e22e">req</span>, <span style="color:#a6e22e">res</span>) =&gt; {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">req</span>.<span style="color:#a6e22e">url</span> <span style="color:#f92672">===</span> <span style="color:#e6db74">&#39;/hello&#39;</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#a6e22e">req</span>.<span style="color:#a6e22e">method</span> <span style="color:#f92672">===</span> <span style="color:#e6db74">&#39;GET&#39;</span>) {
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">res</span>.<span style="color:#a6e22e">writeHead</span>(<span style="color:#ae81ff">200</span>, { <span style="color:#e6db74">&#39;Content-Type&#39;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;text/plain&#39;</span> });
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">res</span>.<span style="color:#a6e22e">end</span>(<span style="color:#e6db74">&#39;world&#39;</span>);
+</span></span><span style="display:flex;"><span>    } <span style="color:#66d9ef">else</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">res</span>.<span style="color:#a6e22e">writeHead</span>(<span style="color:#ae81ff">404</span>, { <span style="color:#e6db74">&#39;Content-Type&#39;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;text/plain&#39;</span> });
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">res</span>.<span style="color:#a6e22e">end</span>(<span style="color:#e6db74">&#39;Not Found&#39;</span>);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>});
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">server</span>.<span style="color:#a6e22e">listen</span>(<span style="color:#ae81ff">443</span>, () =&gt; {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#39;Server is listening on port 443&#39;</span>);
+</span></span><span style="display:flex;"><span>});
+</span></span></code></pre></div>
+  </div>
+</details>
+
+<h4 id="add-new-local-ca-to-the-trusted-root-certificate-authorities">
+  Add new local CA to the trusted Root Certificate Authorities
+  <a class="anchor" href="#add-new-local-ca-to-the-trusted-root-certificate-authorities">#</a>
+</h4>
+<details ><summary><strong>Chrome</strong></summary>
+  <div class="markdown-inner">
+    <ol>
+<li>Browse <code>chrome://settings/certificates</code></li>
+<li>Choose <code>Authorities</code> then <code>Import</code></li>
+<li>Import <code>RootCA.pem</code> we created above</li>
+<li>Check all options</li>
+</ol>
+
+  </div>
+</details>
+
+</br>
+<details ><summary><strong>Firefox</strong></summary>
+  <div class="markdown-inner">
+    <ul>
+<li>Make Firefox trusted Root CAs:
+<ol>
+<li>Browse <code>about:config</code></li>
+<li>Type <code>security.enterprise_roots.enabled</code></li>
+<li>Enable it to <code>true</code></li>
+</ol>
+</li>
+<li>Import CA certificate:
+<ol>
+<li>Browse <code>about:preferences#privacy</code></li>
+<li>Find <code>Certificats</code> section</li>
+<li>Choose <code>View Certificates</code> and then <code>Import</code></li>
+<li>Import <code>RootCA.pem</code> we created above</li>
+<li>Confirm</li>
+</ol>
+</li>
+</ul>
+
+  </div>
+</details>
+
+<h2 id="references">
   References
   <a class="anchor" href="#references">#</a>
 </h2>
 <ul>
-<li>Wikipedia: <a href="https://en.wikipedia.org/wiki/List_of_TCP_and_UDP_port_numbers">List of TCP and UDP port numbers</a></li>
-<li>Letsencrypt: <a href="https://letsencrypt.org/docs/certificates-for-localhost/">Certificates for localhost</a> (Dec 21st, 2017)</li>
+<li>Wikipedia: <a href="https://en.wikipedia.org/wiki/List_of_TCP_and_UDP_port_numbers">List of TCP and UDP port numbers</a> (Nov 13th, 2024)</li>
 <li>Certbot: <a href="https://certbot.eff.org/instructions?ws=nginx&amp;os=snap">Certbot Instructions Nginx on Linux (snap)</a></li>
+<li>Letsencrypt: <a href="https://letsencrypt.org/docs/certificates-for-localhost/">Certificates for localhost</a> (Dec 21st, 2017)</li>
+<li>Github: <a href="https://gist.github.com/cecilemuller/9492b848eb8fe46d462abeb26656c4f8">How to create an HTTPS certificate for localhost domains</a> (2019)</li>
 </ul>
 </article>
  

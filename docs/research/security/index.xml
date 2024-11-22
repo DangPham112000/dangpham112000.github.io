@@ -2,31 +2,31 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Security - Draft on The Engineer Blogs</title>
-    <link>http://localhost:1313/docs/research/security/</link>
+    <link>https://dangpham112000.github.io/docs/research/security/</link>
     <description>Recent content in Security - Draft on The Engineer Blogs</description>
     <generator>Hugo</generator>
     <language>en-us</language>
     <lastBuildDate>Sat, 15 Jun 2024 01:47:46 +0700</lastBuildDate>
-    <atom:link href="http://localhost:1313/docs/research/security/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://dangpham112000.github.io/docs/research/security/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>CSRF - Draft</title>
-      <link>http://localhost:1313/docs/research/security/csrf/</link>
+      <link>https://dangpham112000.github.io/docs/research/security/csrf/</link>
       <pubDate>Sat, 15 Jun 2024 01:47:46 +0700</pubDate>
-      <guid>http://localhost:1313/docs/research/security/csrf/</guid>
+      <guid>https://dangpham112000.github.io/docs/research/security/csrf/</guid>
       <description>&lt;h1 id=&#34;cross-site-request-forgery-attack&#34;&gt;&#xA;  Cross-site request forgery attack&#xA;  &lt;a class=&#34;anchor&#34; href=&#34;#cross-site-request-forgery-attack&#34;&gt;#&lt;/a&gt;&#xA;&lt;/h1&gt;</description>
     </item>
     <item>
       <title>XSS - Draft</title>
-      <link>http://localhost:1313/docs/research/security/xss/</link>
+      <link>https://dangpham112000.github.io/docs/research/security/xss/</link>
       <pubDate>Sat, 15 Jun 2024 01:47:46 +0700</pubDate>
-      <guid>http://localhost:1313/docs/research/security/xss/</guid>
+      <guid>https://dangpham112000.github.io/docs/research/security/xss/</guid>
       <description>&lt;h1 id=&#34;cross-site-scripting-attack&#34;&gt;&#xA;  Cross-site scripting attack&#xA;  &lt;a class=&#34;anchor&#34; href=&#34;#cross-site-scripting-attack&#34;&gt;#&lt;/a&gt;&#xA;&lt;/h1&gt;</description>
     </item>
     <item>
       <title>CORS - draft</title>
-      <link>http://localhost:1313/docs/research/security/cors/</link>
+      <link>https://dangpham112000.github.io/docs/research/security/cors/</link>
       <pubDate>Thu, 18 Apr 2024 01:47:46 +0700</pubDate>
-      <guid>http://localhost:1313/docs/research/security/cors/</guid>
+      <guid>https://dangpham112000.github.io/docs/research/security/cors/</guid>
       <description>&lt;h1 id=&#34;cross-origin-resource-sharing&#34;&gt;&#xA;  Cross-origin resource sharing&#xA;  &lt;a class=&#34;anchor&#34; href=&#34;#cross-origin-resource-sharing&#34;&gt;#&lt;/a&gt;&#xA;&lt;/h1&gt;&#xA;&lt;h2 id=&#34;overview&#34;&gt;&#xA;  Overview&#xA;  &lt;a class=&#34;anchor&#34; href=&#34;#overview&#34;&gt;#&lt;/a&gt;&#xA;&lt;/h2&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Origin defintion&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h2 id=&#34;why-it-was-born&#34;&gt;&#xA;  Why it was born?&#xA;  &lt;a class=&#34;anchor&#34; href=&#34;#why-it-was-born&#34;&gt;#&lt;/a&gt;&#xA;&lt;/h2&gt;&#xA;&lt;h3 id=&#34;steel-cookie&#34;&gt;&#xA;  Steel Cookie&#xA;  &lt;a class=&#34;anchor&#34; href=&#34;#steel-cookie&#34;&gt;#&lt;/a&gt;&#xA;&lt;/h3&gt;&#xA;&lt;h3 id=&#34;csrf&#34;&gt;&#xA;  CSRF&#xA;  &lt;a class=&#34;anchor&#34; href=&#34;#csrf&#34;&gt;#&lt;/a&gt;&#xA;&lt;/h3&gt;&#xA;&lt;h2 id=&#34;bypass&#34;&gt;&#xA;  Bypass&#xA;  &lt;a class=&#34;anchor&#34; href=&#34;#bypass&#34;&gt;#&lt;/a&gt;&#xA;&lt;/h2&gt;&#xA;&lt;p&gt;Middle server&lt;/p&gt;&#xA;&lt;h3 id=&#34;how-prevent-it&#34;&gt;&#xA;  How prevent it?&#xA;  &lt;a class=&#34;anchor&#34; href=&#34;#how-prevent-it&#34;&gt;#&lt;/a&gt;&#xA;&lt;/h3&gt;&#xA;&lt;p&gt;Authorization&lt;/p&gt;</description>
     </item>
   </channel>
