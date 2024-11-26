@@ -37,13 +37,13 @@ SSL was replaced by an updated protocol called TLS some time ago, SSL is still a
   SSL Certificate
   #
 
-An SSL certificate contains:">
+A SSL certificate contains:">
 <meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff">
 <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#343a40">
 <meta name="color-scheme" content="light dark"><meta property="og:url" content="https://dangpham112000.github.io/docs/research/be_protocol/tls_ssl/">
   <meta property="og:site_name" content="The Engineer Blogs">
   <meta property="og:title" content="TLS - SSL - Draft">
-  <meta property="og:description" content="TLS - SSL # Overview # A protocol for encrypting, securing, and authenticating communications that take place on the Internet SSL was replaced by an updated protocol called TLS some time ago, SSL is still a commonly used term for this technology TLS 1.2 # TLS 1.3 # Diffie Hellman # TLS 1.3 # SSL Certificate # An SSL certificate contains:">
+  <meta property="og:description" content="TLS - SSL # Overview # A protocol for encrypting, securing, and authenticating communications that take place on the Internet SSL was replaced by an updated protocol called TLS some time ago, SSL is still a commonly used term for this technology TLS 1.2 # TLS 1.3 # Diffie Hellman # TLS 1.3 # SSL Certificate # A SSL certificate contains:">
   <meta property="og:locale" content="en_us">
   <meta property="og:type" content="article">
     <meta property="article:section" content="docs">
@@ -55,7 +55,7 @@ An SSL certificate contains:">
 <link rel="canonical" href="https://dangpham112000.github.io/docs/research/be_protocol/tls_ssl/">
 <link rel="stylesheet" href="/book.min.0ebfa1e81a7b241abaa8a9626be8325416e98d14702ea33197aea691fec27e9d.css" integrity="sha256-Dr&#43;h6Bp7JBq6qKlia&#43;gyVBbpjRRwLqMxl66mkf7Cfp0=" crossorigin="anonymous">
   <script defer src="/fuse.min.js"></script>
-  <script defer src="/en.search.min.e7aeba940b34cd8318b5a6b81853c3f8de19174b438a210aee66b6483fa73c3a.js" integrity="sha256-5666lAs0zYMYtaa4GFPD&#43;N4ZF0tDiiEK7ma2SD&#43;nPDo=" crossorigin="anonymous"></script>
+  <script defer src="/en.search.min.7d3cacbc7287ce16e5db3ca4cd9b1584432f304b7eab4bc6cb6d44dfeda412fc.js" integrity="sha256-fTysvHKHzhbl2zykzZsVhEMvMEt&#43;q0vGy21E3&#43;2kEvw=" crossorigin="anonymous"></script>
 <!--
 Made with Book Theme
 https://github.com/alex-shpak/hugo-book
@@ -644,7 +644,7 @@ https://github.com/alex-shpak/hugo-book
   SSL Certificate
   <a class="anchor" href="#ssl-certificate">#</a>
 </h2>
-<p>An SSL certificate contains:</p>
+<p>A SSL certificate contains:</p>
 <ul>
 <li>Domain name it&rsquo;s issued for</li>
 <li>Certificate Authority (CA)</li>
@@ -653,6 +653,34 @@ https://github.com/alex-shpak/hugo-book
 <li>Other information</li>
 </ul>
 <p><img src="/research/be_protocol/tls_ssl/certificate.png" alt="certificate" /></p>
+<div class="book-columns flex flex-wrap">
+
+  <div class="flex-even markdown-inner">
+    <h4 id="no-certificate">
+  No certificate
+  <a class="anchor" href="#no-certificate">#</a>
+</h4>
+<p><img src="/research/be_protocol/tls_ssl/no_cert.png" alt="no_cert" /></p>
+  </div>
+
+  <div class="flex-even markdown-inner">
+    <h4 id="invalid-certificate">
+  Invalid certificate
+  <a class="anchor" href="#invalid-certificate">#</a>
+</h4>
+<p><img src="/research/be_protocol/tls_ssl/err_cert.png" alt="err_cert" /></p>
+  </div>
+
+  <div class="flex-even markdown-inner">
+    <h4 id="valid-certificate">
+  Valid certificate
+  <a class="anchor" href="#valid-certificate">#</a>
+</h4>
+<p><img src="/research/be_protocol/tls_ssl/valid_cert.png" alt="valid_cert" /></p>
+  </div>
+
+</div>
+
 <h3 id="validation-levels">
   Validation levels
   <a class="anchor" href="#validation-levels">#</a>
@@ -697,6 +725,38 @@ https://github.com/alex-shpak/hugo-book
 <li>Full background check of the organization</li>
 </ul>
 
+  </div>
+
+</div>
+
+<div class="book-columns flex flex-wrap">
+
+  <div class="flex-even markdown-inner">
+    <img src="/research/be_protocol/tls_ssl/DV1.png" alt="DV1" />
+  </div>
+
+  <div class="flex-even markdown-inner">
+    <img src="/research/be_protocol/tls_ssl/OV1.png" alt="OV1" />
+  </div>
+
+  <div class="flex-even markdown-inner">
+    <img src="/research/be_protocol/tls_ssl/EV1.png" alt="EV1" />
+  </div>
+
+</div>
+
+<div class="book-columns flex flex-wrap">
+
+  <div class="flex-even markdown-inner">
+    <img src="/research/be_protocol/tls_ssl/DV2.png" alt="DV2" />
+  </div>
+
+  <div class="flex-even markdown-inner">
+    <img src="/research/be_protocol/tls_ssl/OV2.png" alt="OV2" />
+  </div>
+
+  <div class="flex-even markdown-inner">
+    <img src="/research/be_protocol/tls_ssl/EV2.png" alt="EV2" />
   </div>
 
 </div>

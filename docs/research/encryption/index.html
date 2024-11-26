@@ -34,8 +34,17 @@ HMAC stand for Hash-Based Message Authentication Codes
   Symmetric encryption
   #
 
-uses the same key to encrypt and decrypt messages
+Uses the same key to encrypt and decrypt messages
 AES, Twofish and ChaCha20
+
+
+  Use case
+  #
+
+
+HTTPS with SSL/TLS: Session key
+Data Transmission
+Data Storage
 
 
   Demo code
@@ -48,9 +57,9 @@ This example demonstrates symmetric encryption and decryption in NodeJS using th
   <meta property="og:site_name" content="The Engineer Blogs">
   <meta property="og:title" content="Encryption - Draft">
   <meta property="og:description" content="Encryption # Hash # Note: An 8-bit byte is represented as 2 characters, from 00 to FF, in hexadecimal
-Collision # Use case # Checking file integrity HMAC # HMAC stand for Hash-Based Message Authentication Codes Symmetric encryption # uses the same key to encrypt and decrypt messages
+Collision # Use case # Checking file integrity HMAC # HMAC stand for Hash-Based Message Authentication Codes Symmetric encryption # Uses the same key to encrypt and decrypt messages
 AES, Twofish and ChaCha20
-Demo code # This example demonstrates symmetric encryption and decryption in NodeJS using the crypto module with AES (Advanced Encryption Standard) in AES-256-CBC mode">
+Use case # HTTPS with SSL/TLS: Session key Data Transmission Data Storage Demo code # This example demonstrates symmetric encryption and decryption in NodeJS using the crypto module with AES (Advanced Encryption Standard) in AES-256-CBC mode">
   <meta property="og:locale" content="en_us">
   <meta property="og:type" content="article">
     <meta property="article:section" content="docs">
@@ -62,7 +71,7 @@ Demo code # This example demonstrates symmetric encryption and decryption in Nod
 <link rel="canonical" href="https://dangpham112000.github.io/docs/research/encryption/">
 <link rel="stylesheet" href="/book.min.0ebfa1e81a7b241abaa8a9626be8325416e98d14702ea33197aea691fec27e9d.css" integrity="sha256-Dr&#43;h6Bp7JBq6qKlia&#43;gyVBbpjRRwLqMxl66mkf7Cfp0=" crossorigin="anonymous">
   <script defer src="/fuse.min.js"></script>
-  <script defer src="/en.search.min.e7aeba940b34cd8318b5a6b81853c3f8de19174b438a210aee66b6483fa73c3a.js" integrity="sha256-5666lAs0zYMYtaa4GFPD&#43;N4ZF0tDiiEK7ma2SD&#43;nPDo=" crossorigin="anonymous"></script>
+  <script defer src="/en.search.min.7d3cacbc7287ce16e5db3ca4cd9b1584432f304b7eab4bc6cb6d44dfeda412fc.js" integrity="sha256-fTysvHKHzhbl2zykzZsVhEMvMEt&#43;q0vGy21E3&#43;2kEvw=" crossorigin="anonymous"></script>
 <!--
 Made with Book Theme
 https://github.com/alex-shpak/hugo-book
@@ -597,6 +606,7 @@ https://github.com/alex-shpak/hugo-book
     <li><a href="#hmac">HMAC</a></li>
     <li><a href="#symmetric-encryption">Symmetric encryption</a>
       <ul>
+        <li><a href="#use-case-1">Use case</a></li>
         <li><a href="#demo-code">Demo code</a></li>
       </ul>
     </li>
@@ -660,9 +670,18 @@ https://github.com/alex-shpak/hugo-book
   Symmetric encryption
   <a class="anchor" href="#symmetric-encryption">#</a>
 </h2>
-<p>uses the same key to encrypt and decrypt messages</p>
+<p>Uses the same key to encrypt and decrypt messages</p>
 <p>AES, Twofish and ChaCha20</p>
 <p><img src="/research/encription/Symmetric.png" alt="Symmetric" /></p>
+<h3 id="use-case-1">
+  Use case
+  <a class="anchor" href="#use-case-1">#</a>
+</h3>
+<ul>
+<li>HTTPS with SSL/TLS: Session key</li>
+<li>Data Transmission</li>
+<li>Data Storage</li>
+</ul>
 <h3 id="demo-code">
   Demo code
   <a class="anchor" href="#demo-code">#</a>
@@ -1345,6 +1364,7 @@ https://github.com/alex-shpak/hugo-book
     <li><a href="#hmac">HMAC</a></li>
     <li><a href="#symmetric-encryption">Symmetric encryption</a>
       <ul>
+        <li><a href="#use-case-1">Use case</a></li>
         <li><a href="#demo-code">Demo code</a></li>
       </ul>
     </li>
