@@ -12,51 +12,8 @@
   #
 
 
-TODO: Demo listen plain packet from wifi if user browse a website using http with and without ssl/tls
+Demo listen plain packet from wifi if user browse a website using http with and without ssl/tls: Link
 
-# Install the Aircrack-ng suite, which includes airmon-ng
-sudo apt install aircrack-ng
-
-# Check wireless interface
-iwconfig
-# -&gt; E.g output
-lo        no wireless extensions.
-enp4s0    no wireless extensions.
-wlo1      IEEE 802.11  ESSID:&#34;A14-01&#34;  
-          Mode:Managed  Frequency:2.417 GHz  Access Point: CC:71:90:62:9E:98   
-          Bit Rate=130 Mb/s   Tx-Power=22 dBm   
-          Retry short limit:7   RTS thr:off   Fragment thr:off
-          Power Management:on
-          Link Quality=62/70  Signal level=-48 dBm  
-          Rx invalid nwid:0  Rx invalid crypt:0  Rx invalid frag:0
-          Tx excessive retries:0  Invalid misc:203   Missed beacon:0
-docker0   no wireless extensions.
-
-# Disconnect the wireless adapter from managing a network
-sudo airmon-ng check kill
-
-# Enable monitor mode on your wireless adapter
-sudo airmon-ng start wlo1
-
-# Verify
-iwconfig
-# -&gt; E.g output
-lo        no wireless extensions.
-enp4s0    no wireless extensions.
-docker0   no wireless extensions.
-wlo1mon   IEEE 802.11  Mode:Monitor  Frequency:2.457 GHz  
-          Retry short limit:7   RTS thr:off   Fragment thr:off
-          Power Management:on
-
-# Capture packets
-sudo airodump-ng wlo1mon
-sudo wireshark
-# -&gt; Use Wireshark to capture packets on the wlo1mon interface
-
-Stop capturing packets (Monitor Mode)
-
-sudo airmon-ng stop wlo1mon
-sudo systemctl restart NetworkManager
 
   Overview
   #
@@ -65,13 +22,29 @@ sudo systemctl restart NetworkManager
 A protocol for encrypting, securing, and authenticating communications that take place on the Internet
 SSL was replaced by an updated protocol called TLS some time ago, SSL is still a commonly used term for this technology
 
+
+
+To see which TLS version of a website (For Chrome):
+
+Open the Developer Tools (Ctrl&#43;Shift&#43;I)
+Select the Security tab
+Navigate to the Origin you want to inspect
+At the Connection section, check the results which TLS protocol is used
+
+
+
+
+
+  TLS 1.2
+  #
+
 ">
 <meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff">
 <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#343a40">
 <meta name="color-scheme" content="light dark"><meta property="og:url" content="https://dangpham112000.github.io/docs/research/be_protocol/tls_ssl/">
   <meta property="og:site_name" content="The Engineer Blogs">
   <meta property="og:title" content="TLS - SSL - Draft">
-  <meta property="og:description" content="TLS - SSL # Problem # TODO: Demo listen plain packet from wifi if user browse a website using http with and without ssl/tls # Install the Aircrack-ng suite, which includes airmon-ng sudo apt install aircrack-ng # Check wireless interface iwconfig # -&gt; E.g output lo no wireless extensions. enp4s0 no wireless extensions. wlo1 IEEE 802.11 ESSID:&#34;A14-01&#34; Mode:Managed Frequency:2.417 GHz Access Point: CC:71:90:62:9E:98 Bit Rate=130 Mb/s Tx-Power=22 dBm Retry short limit:7 RTS thr:off Fragment thr:off Power Management:on Link Quality=62/70 Signal level=-48 dBm Rx invalid nwid:0 Rx invalid crypt:0 Rx invalid frag:0 Tx excessive retries:0 Invalid misc:203 Missed beacon:0 docker0 no wireless extensions. # Disconnect the wireless adapter from managing a network sudo airmon-ng check kill # Enable monitor mode on your wireless adapter sudo airmon-ng start wlo1 # Verify iwconfig # -&gt; E.g output lo no wireless extensions. enp4s0 no wireless extensions. docker0 no wireless extensions. wlo1mon IEEE 802.11 Mode:Monitor Frequency:2.457 GHz Retry short limit:7 RTS thr:off Fragment thr:off Power Management:on # Capture packets sudo airodump-ng wlo1mon sudo wireshark # -&gt; Use Wireshark to capture packets on the wlo1mon interface Stop capturing packets (Monitor Mode) sudo airmon-ng stop wlo1mon sudo systemctl restart NetworkManager Overview # A protocol for encrypting, securing, and authenticating communications that take place on the Internet SSL was replaced by an updated protocol called TLS some time ago, SSL is still a commonly used term for this technology">
+  <meta property="og:description" content="TLS - SSL # Problem # Demo listen plain packet from wifi if user browse a website using http with and without ssl/tls: Link Overview # A protocol for encrypting, securing, and authenticating communications that take place on the Internet SSL was replaced by an updated protocol called TLS some time ago, SSL is still a commonly used term for this technology To see which TLS version of a website (For Chrome): Open the Developer Tools (Ctrl&#43;Shift&#43;I) Select the Security tab Navigate to the Origin you want to inspect At the Connection section, check the results which TLS protocol is used TLS 1.2 #">
   <meta property="og:locale" content="en_us">
   <meta property="og:type" content="article">
     <meta property="article:section" content="docs">
@@ -83,7 +56,7 @@ SSL was replaced by an updated protocol called TLS some time ago, SSL is still a
 <link rel="canonical" href="https://dangpham112000.github.io/docs/research/be_protocol/tls_ssl/">
 <link rel="stylesheet" href="/book.min.0ebfa1e81a7b241abaa8a9626be8325416e98d14702ea33197aea691fec27e9d.css" integrity="sha256-Dr&#43;h6Bp7JBq6qKlia&#43;gyVBbpjRRwLqMxl66mkf7Cfp0=" crossorigin="anonymous">
   <script defer src="/fuse.min.js"></script>
-  <script defer src="/en.search.min.b6c651071796225500237f4cfc34c88e6fe541af41d4c5b76ea7b93d3f7be06d.js" integrity="sha256-tsZRBxeWIlUAI39M/DTIjm/lQa9B1MW3bqe5PT974G0=" crossorigin="anonymous"></script>
+  <script defer src="/en.search.min.ca2baecdf21f73cf301d7b015a8531f252ae05f67e124825f7cb7f69d14ec65e.js" integrity="sha256-yiuuzfIfc88wHXsBWoUx8lKuBfZ&#43;Ekgl98t/adFOxl4=" crossorigin="anonymous"></script>
 <!--
 Made with Book Theme
 https://github.com/alex-shpak/hugo-book
@@ -362,7 +335,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="/docs/research/security/csrf/" class="">CSRF - Draft</a>
+    <a href="/docs/research/security/cors/" class="">CORS - draft</a>
   
 
         </li>
@@ -388,7 +361,33 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="/docs/research/security/cors/" class="">CORS - draft</a>
+    <a href="/docs/research/security/csrf/" class="">CSRF - Draft</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/research/security/packet_sniffing/" class="">Packet Sniffing - Draft</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/research/security/evil_twin/" class="">Evil Twin - Draft</a>
   
 
         </li>
@@ -653,52 +652,9 @@ https://github.com/alex-shpak/hugo-book
   <a class="anchor" href="#problem">#</a>
 </h2>
 <ul>
-<li>TODO: Demo listen plain packet from wifi if user browse a website using http with and without ssl/tls</li>
+<li>Demo listen plain packet from wifi if user browse a website using http with and without ssl/tls: <a href="/docs/research/security/packet_sniffing/">Link</a></li>
 </ul>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span><span style="color:#75715e"># Install the Aircrack-ng suite, which includes airmon-ng</span>
-</span></span><span style="display:flex;"><span>sudo apt install aircrack-ng
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># Check wireless interface</span>
-</span></span><span style="display:flex;"><span>iwconfig
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># -&gt; E.g output</span>
-</span></span><span style="display:flex;"><span>lo        no wireless extensions.
-</span></span><span style="display:flex;"><span>enp4s0    no wireless extensions.
-</span></span><span style="display:flex;"><span>wlo1      IEEE 802.11  ESSID:<span style="color:#e6db74">&#34;A14-01&#34;</span>  
-</span></span><span style="display:flex;"><span>          Mode:Managed  Frequency:2.417 GHz  Access Point: CC:71:90:62:9E:98   
-</span></span><span style="display:flex;"><span>          Bit Rate<span style="color:#f92672">=</span><span style="color:#ae81ff">130</span> Mb/s   Tx-Power<span style="color:#f92672">=</span><span style="color:#ae81ff">22</span> dBm   
-</span></span><span style="display:flex;"><span>          Retry short limit:7   RTS thr:off   Fragment thr:off
-</span></span><span style="display:flex;"><span>          Power Management:on
-</span></span><span style="display:flex;"><span>          Link Quality<span style="color:#f92672">=</span>62/70  Signal level<span style="color:#f92672">=</span>-48 dBm  
-</span></span><span style="display:flex;"><span>          Rx invalid nwid:0  Rx invalid crypt:0  Rx invalid frag:0
-</span></span><span style="display:flex;"><span>          Tx excessive retries:0  Invalid misc:203   Missed beacon:0
-</span></span><span style="display:flex;"><span>docker0   no wireless extensions.
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># Disconnect the wireless adapter from managing a network</span>
-</span></span><span style="display:flex;"><span>sudo airmon-ng check kill
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># Enable monitor mode on your wireless adapter</span>
-</span></span><span style="display:flex;"><span>sudo airmon-ng start wlo1
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># Verify</span>
-</span></span><span style="display:flex;"><span>iwconfig
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># -&gt; E.g output</span>
-</span></span><span style="display:flex;"><span>lo        no wireless extensions.
-</span></span><span style="display:flex;"><span>enp4s0    no wireless extensions.
-</span></span><span style="display:flex;"><span>docker0   no wireless extensions.
-</span></span><span style="display:flex;"><span>wlo1mon   IEEE 802.11  Mode:Monitor  Frequency:2.457 GHz  
-</span></span><span style="display:flex;"><span>          Retry short limit:7   RTS thr:off   Fragment thr:off
-</span></span><span style="display:flex;"><span>          Power Management:on
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># Capture packets</span>
-</span></span><span style="display:flex;"><span>sudo airodump-ng wlo1mon
-</span></span><span style="display:flex;"><span>sudo wireshark
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># -&gt; Use Wireshark to capture packets on the wlo1mon interface</span>
-</span></span></code></pre></div><ul>
-<li>Stop capturing packets (Monitor Mode)</li>
-</ul>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>sudo airmon-ng stop wlo1mon
-</span></span><span style="display:flex;"><span>sudo systemctl restart NetworkManager
-</span></span></code></pre></div><h2 id="overview">
+<h2 id="overview">
   Overview
   <a class="anchor" href="#overview">#</a>
 </h2>
@@ -796,14 +752,16 @@ https://github.com/alex-shpak/hugo-book
 <details ><summary><strong>Nginx</strong></summary>
   <div class="markdown-inner">
     <ol start="0">
-<li>Requirements</li>
-</ol>
+<li>
+<p>Requirements</p>
 <ul>
 <li><code>OpenSSL</code>: 1.1.1 or newer</li>
 <li><code>Nginx</code>: 1.13.0 or newer</li>
 </ul>
-<ol>
-<li>Open Your Nginx Configuration</li>
+</li>
+<li>
+<p>Open Your Nginx Configuration</p>
+</li>
 </ol>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>sudo vi /etc/nginx/sites-enabled/default
 </span></span></code></pre></div><ol start="2">
@@ -847,6 +805,7 @@ https://github.com/alex-shpak/hugo-book
 <li>Verify</li>
 </ol>
 <p><img src="/research/be_protocol/tls_ssl/tls_1_3_setup.png" alt="tls_1_3_setup" /></p>
+
   </div>
 </details>
 
@@ -1038,7 +997,6 @@ https://github.com/alex-shpak/hugo-book
 <li>Youtube: <a href="https://www.youtube.com/watch?v=yjk36fv3Km4">Are Free SSL Certificates Really Good Enough for Your Website?</a> (Sep 1st, 2022)</li>
 <li>Mozilla: <a href="https://ssl-config.mozilla.org/">SSL Configuration Generator</a> (Nov 13th, 2024)</li>
 <li>Networkoptix: <a href="https://support.networkoptix.com/hc/en-us/articles/17314112665111-How-to-check-and-or-change-the-TLS-version">How to check and/or change the TLS version</a> (Nov 11th, 2024)</li>
-<li>Wireshark: <a href="https://wiki.wireshark.org/CaptureSetup/WLAN#turning-on-monitor-mode">Turning on monitor mode</a></li>
 </ul>
 </article>
  
