@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en-us" dir="ltr">
-<head>
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="
@@ -50,8 +50,8 @@ ws.send(&#34;Hello! I&#39;m client&#34;);
 ">
 <meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff">
 <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#343a40">
-<meta name="color-scheme" content="light dark"><meta property="og:url" content="https://dangpham112000.github.io/docs/research/be_protocol/websocket/">
-  <meta property="og:site_name" content="The Engineer Blogs">
+<meta name="color-scheme" content="light dark"><meta property="og:url" content="http://localhost:1313/docs/research/be_protocol/websocket/">
+  <meta property="og:site_name" content="Dante 0401">
   <meta property="og:title" content="Websocket - Draft">
   <meta property="og:description" content="Websocket # Bidirectional communications on the web
 Example code: # // server.js const http = require(&#34;http&#34;); const WebSocketServer = require(&#34;websocket&#34;).server; let connections = []; //create a raw http server (this will help us create the TCP which will then pass to the websocket to do the job) const httpserver = http.createServer(); //pass the httpserver object to the WebSocketServer library to do all the job, this class will override the req/res const websocket = new WebSocketServer({ httpServer: httpserver }); //listen on the TCP socket httpserver.listen(8080, () =&gt; console.log(&#34;My server is listening on port 8080&#34;) ); //when a legit websocket request comes listen to it and get the connection .. once you get a connection that&#39;s it! websocket.on(&#34;request&#34;, (request) =&gt; { const connection = request.accept(null, request.origin); connection.on(&#34;message&#34;, (message) =&gt; { //someone just sent a message tell everybody connections.forEach((c) =&gt; c.send(`User${connection.socket.remotePort} says: ${message.utf8Data}`) ); }); connections.push(connection); //someone just connected, tell everybody connections.forEach((c) =&gt; c.send(`User${connection.socket.remotePort} just connected.`) ); }); // client.js let ws = new WebSocket(&#34;ws://localhost:8080&#34;); ws.onmessage = (message) =&gt; console.log(`Received: ${message.data}`); ws.send(&#34;Hello! I&#39;m client&#34;);">
@@ -60,13 +60,13 @@ Example code: # // server.js const http = require(&#34;http&#34;); const WebSock
     <meta property="article:section" content="docs">
     <meta property="article:published_time" content="2023-11-15T01:47:46+07:00">
     <meta property="article:modified_time" content="2023-11-15T01:47:46+07:00">
-<title>Websocket - Draft | The Engineer Blogs</title>
+<title>Websocket - Draft | Dante 0401</title>
 <link rel="manifest" href="/manifest.json">
 <link rel="icon" href="/favicon.png" >
-<link rel="canonical" href="https://dangpham112000.github.io/docs/research/be_protocol/websocket/">
+<link rel="canonical" href="http://localhost:1313/docs/research/be_protocol/websocket/">
 <link rel="stylesheet" href="/book.min.0ebfa1e81a7b241abaa8a9626be8325416e98d14702ea33197aea691fec27e9d.css" integrity="sha256-Dr&#43;h6Bp7JBq6qKlia&#43;gyVBbpjRRwLqMxl66mkf7Cfp0=" crossorigin="anonymous">
   <script defer src="/fuse.min.js"></script>
-  <script defer src="/en.search.min.80ad0b52c842ed41631b600405d6ea593368189fc352b73f736514d767021773.js" integrity="sha256-gK0LUshC7UFjG2AEBdbqWTNoGJ/DUrc/c2UU12cCF3M=" crossorigin="anonymous"></script>
+  <script defer src="/en.search.min.49718a035eca8bb7bfbf8c0b1352a9fd99c2839da0a0ef9a2821a0bedfdb59f4.js" integrity="sha256-SXGKA17Ki7e/v4wLE1Kp/ZnCg52goO&#43;aKCGgvt/bWfQ=" crossorigin="anonymous"></script>
 <!--
 Made with Book Theme
 https://github.com/alex-shpak/hugo-book
@@ -82,7 +82,7 @@ https://github.com/alex-shpak/hugo-book
         
   <nav>
 <h2 class="book-brand">
-  <a class="flex align-center" href="/"><span>The Engineer Blogs</span>
+  <a class="flex align-center" href="/"><span>Dante 0401</span>
   </a>
 </h2>
 
