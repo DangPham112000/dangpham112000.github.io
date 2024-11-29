@@ -27,8 +27,31 @@ Avoid unencrypted public Wi-Fi
   Demo
   #
 
-# Install the Aircrack-ng suite, which includes airmon-ng
+
+  DISCLAIMER: This demo is for educational purposes only. The techniques should only be tested on systems you own or have explicit permission to analyze. Misuse of this information is unethical, may violate the law, and could lead to serious consequences. The author takes no responsibility for any damages or misuse arising from this content
+
+
+
+  Install necessary packages
+  #
+
+sudo apt update
+
+Aircrack-ng:
+
+Airmon-ng is a utility in the Aircrack-ng suite that helps set up a wireless network card into monitor mode
+Airodump-ng: Captures data packets from nearby wireless networks
+
+
+
 sudo apt install aircrack-ng
+
+Wireshark is a network packet analyzer
+
+sudo apt install wireshark
+
+  Hand-on
+  #
 
 # Check wireless interface
 iwconfig
@@ -44,6 +67,7 @@ wlo1      IEEE 802.11  ESSID:&#34;A14-01&#34;
           Rx invalid nwid:0  Rx invalid crypt:0  Rx invalid frag:0
           Tx excessive retries:0  Invalid misc:203   Missed beacon:0
 docker0   no wireless extensions.
+# -&gt; Your wireless interface is wlo1
 
 # Disconnect the wireless adapter from managing a network
 sudo airmon-ng check kill
@@ -60,6 +84,7 @@ docker0   no wireless extensions.
 wlo1mon   IEEE 802.11  Mode:Monitor  Frequency:2.457 GHz  
           Retry short limit:7   RTS thr:off   Fragment thr:off
           Power Management:on
+# -&gt; Your wireless adapter with monitor mode is now wlo1mon
 
 # Capture packets
 sudo airodump-ng wlo1mon
@@ -83,7 +108,7 @@ Linuxhint: How to Install and Use Wireshark on Ubuntu (2018)
 <meta name="color-scheme" content="light dark"><meta property="og:url" content="https://dangpham112000.github.io/docs/research/security/packet_sniffing/">
   <meta property="og:site_name" content="The Engineer Blogs">
   <meta property="og:title" content="Packet Sniffing - Draft">
-  <meta property="og:description" content="Packet Sniffing # A type of MitM attack Description: The attacker uses tools like Wireshark, tcpdump, or Kismet to capture packets traveling through the Wi-Fi network Key Characteristics: Often passive (doesn’t modify the traffic, just listens) Works well on unencrypted networks or with weak encryption like WEP Prevention: Use strong encryption (WPA3 is ideal, WPA2 is acceptable) Avoid unencrypted public Wi-Fi Demo # # Install the Aircrack-ng suite, which includes airmon-ng sudo apt install aircrack-ng # Check wireless interface iwconfig # -&gt; E.g output lo no wireless extensions. enp4s0 no wireless extensions. wlo1 IEEE 802.11 ESSID:&#34;A14-01&#34; Mode:Managed Frequency:2.417 GHz Access Point: CC:71:90:62:9E:98 Bit Rate=130 Mb/s Tx-Power=22 dBm Retry short limit:7 RTS thr:off Fragment thr:off Power Management:on Link Quality=62/70 Signal level=-48 dBm Rx invalid nwid:0 Rx invalid crypt:0 Rx invalid frag:0 Tx excessive retries:0 Invalid misc:203 Missed beacon:0 docker0 no wireless extensions. # Disconnect the wireless adapter from managing a network sudo airmon-ng check kill # Enable monitor mode on your wireless adapter sudo airmon-ng start wlo1 # Verify iwconfig # -&gt; E.g output lo no wireless extensions. enp4s0 no wireless extensions. docker0 no wireless extensions. wlo1mon IEEE 802.11 Mode:Monitor Frequency:2.457 GHz Retry short limit:7 RTS thr:off Fragment thr:off Power Management:on # Capture packets sudo airodump-ng wlo1mon sudo wireshark # -&gt; Use Wireshark to capture packets on the wlo1mon interface Stop capturing packets (exit monitor mode) sudo airmon-ng stop wlo1mon sudo systemctl restart NetworkManager References # Wireshark: Turning on monitor mode (Aug 11th, 2020) Linuxhint: How to Install and Use Wireshark on Ubuntu (2018)">
+  <meta property="og:description" content="Packet Sniffing # A type of MitM attack Description: The attacker uses tools like Wireshark, tcpdump, or Kismet to capture packets traveling through the Wi-Fi network Key Characteristics: Often passive (doesn’t modify the traffic, just listens) Works well on unencrypted networks or with weak encryption like WEP Prevention: Use strong encryption (WPA3 is ideal, WPA2 is acceptable) Avoid unencrypted public Wi-Fi Demo # DISCLAIMER: This demo is for educational purposes only. The techniques should only be tested on systems you own or have explicit permission to analyze. Misuse of this information is unethical, may violate the law, and could lead to serious consequences. The author takes no responsibility for any damages or misuse arising from this content Install necessary packages # sudo apt update Aircrack-ng: Airmon-ng is a utility in the Aircrack-ng suite that helps set up a wireless network card into monitor mode Airodump-ng: Captures data packets from nearby wireless networks sudo apt install aircrack-ng Wireshark is a network packet analyzer sudo apt install wireshark Hand-on # # Check wireless interface iwconfig # -&gt; E.g output lo no wireless extensions. enp4s0 no wireless extensions. wlo1 IEEE 802.11 ESSID:&#34;A14-01&#34; Mode:Managed Frequency:2.417 GHz Access Point: CC:71:90:62:9E:98 Bit Rate=130 Mb/s Tx-Power=22 dBm Retry short limit:7 RTS thr:off Fragment thr:off Power Management:on Link Quality=62/70 Signal level=-48 dBm Rx invalid nwid:0 Rx invalid crypt:0 Rx invalid frag:0 Tx excessive retries:0 Invalid misc:203 Missed beacon:0 docker0 no wireless extensions. # -&gt; Your wireless interface is wlo1 # Disconnect the wireless adapter from managing a network sudo airmon-ng check kill # Enable monitor mode on your wireless adapter sudo airmon-ng start wlo1 # Verify iwconfig # -&gt; E.g output lo no wireless extensions. enp4s0 no wireless extensions. docker0 no wireless extensions. wlo1mon IEEE 802.11 Mode:Monitor Frequency:2.457 GHz Retry short limit:7 RTS thr:off Fragment thr:off Power Management:on # -&gt; Your wireless adapter with monitor mode is now wlo1mon # Capture packets sudo airodump-ng wlo1mon sudo wireshark # -&gt; Use Wireshark to capture packets on the wlo1mon interface Stop capturing packets (exit monitor mode) sudo airmon-ng stop wlo1mon sudo systemctl restart NetworkManager References # Wireshark: Turning on monitor mode (Aug 11th, 2020) Linuxhint: How to Install and Use Wireshark on Ubuntu (2018)">
   <meta property="og:locale" content="en_us">
   <meta property="og:type" content="article">
     <meta property="article:section" content="docs">
@@ -95,7 +120,7 @@ Linuxhint: How to Install and Use Wireshark on Ubuntu (2018)
 <link rel="canonical" href="https://dangpham112000.github.io/docs/research/security/packet_sniffing/">
 <link rel="stylesheet" href="/book.min.0ebfa1e81a7b241abaa8a9626be8325416e98d14702ea33197aea691fec27e9d.css" integrity="sha256-Dr&#43;h6Bp7JBq6qKlia&#43;gyVBbpjRRwLqMxl66mkf7Cfp0=" crossorigin="anonymous">
   <script defer src="/fuse.min.js"></script>
-  <script defer src="/en.search.min.ca2baecdf21f73cf301d7b015a8531f252ae05f67e124825f7cb7f69d14ec65e.js" integrity="sha256-yiuuzfIfc88wHXsBWoUx8lKuBfZ&#43;Ekgl98t/adFOxl4=" crossorigin="anonymous"></script>
+  <script defer src="/en.search.min.80ad0b52c842ed41631b600405d6ea593368189fc352b73f736514d767021773.js" integrity="sha256-gK0LUshC7UFjG2AEBdbqWTNoGJ/DUrc/c2UU12cCF3M=" crossorigin="anonymous"></script>
 <!--
 Made with Book Theme
 https://github.com/alex-shpak/hugo-book
@@ -647,7 +672,12 @@ https://github.com/alex-shpak/hugo-book
   
 <nav id="TableOfContents">
   <ul>
-    <li><a href="#demo">Demo</a></li>
+    <li><a href="#demo">Demo</a>
+      <ul>
+        <li><a href="#install-necessary-packages">Install necessary packages</a></li>
+        <li><a href="#hand-on">Hand-on</a></li>
+      </ul>
+    </li>
     <li><a href="#references">References</a></li>
   </ul>
 </nav>
@@ -685,10 +715,33 @@ https://github.com/alex-shpak/hugo-book
   Demo
   <a class="anchor" href="#demo">#</a>
 </h2>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span><span style="color:#75715e"># Install the Aircrack-ng suite, which includes airmon-ng</span>
-</span></span><span style="display:flex;"><span>sudo apt install aircrack-ng
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># Check wireless interface</span>
+<blockquote class="book-hint danger">
+  <strong>DISCLAIMER</strong>: This demo is for educational purposes only. The techniques should only be tested on systems you own or have explicit permission to analyze. Misuse of this information is unethical, may violate the law, and could lead to serious consequences. The author takes no responsibility for any damages or misuse arising from this content
+</blockquote>
+
+<h3 id="install-necessary-packages">
+  Install necessary packages
+  <a class="anchor" href="#install-necessary-packages">#</a>
+</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>sudo apt update
+</span></span></code></pre></div><ul>
+<li>Aircrack-ng:
+<ul>
+<li>Airmon-ng is a utility in the Aircrack-ng suite that helps set up a wireless network card into monitor mode</li>
+<li>Airodump-ng: Captures data packets from nearby wireless networks</li>
+</ul>
+</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>sudo apt install aircrack-ng
+</span></span></code></pre></div><ul>
+<li>Wireshark is a network packet analyzer</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>sudo apt install wireshark
+</span></span></code></pre></div><h3 id="hand-on">
+  Hand-on
+  <a class="anchor" href="#hand-on">#</a>
+</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span><span style="color:#75715e"># Check wireless interface</span>
 </span></span><span style="display:flex;"><span>iwconfig
 </span></span><span style="display:flex;"><span><span style="color:#75715e"># -&gt; E.g output</span>
 </span></span><span style="display:flex;"><span>lo        no wireless extensions.
@@ -702,6 +755,7 @@ https://github.com/alex-shpak/hugo-book
 </span></span><span style="display:flex;"><span>          Rx invalid nwid:0  Rx invalid crypt:0  Rx invalid frag:0
 </span></span><span style="display:flex;"><span>          Tx excessive retries:0  Invalid misc:203   Missed beacon:0
 </span></span><span style="display:flex;"><span>docker0   no wireless extensions.
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># -&gt; Your wireless interface is wlo1</span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#75715e"># Disconnect the wireless adapter from managing a network</span>
 </span></span><span style="display:flex;"><span>sudo airmon-ng check kill
@@ -718,6 +772,7 @@ https://github.com/alex-shpak/hugo-book
 </span></span><span style="display:flex;"><span>wlo1mon   IEEE 802.11  Mode:Monitor  Frequency:2.457 GHz  
 </span></span><span style="display:flex;"><span>          Retry short limit:7   RTS thr:off   Fragment thr:off
 </span></span><span style="display:flex;"><span>          Power Management:on
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># -&gt; Your wireless adapter with monitor mode is now wlo1mon</span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#75715e"># Capture packets</span>
 </span></span><span style="display:flex;"><span>sudo airodump-ng wlo1mon
@@ -777,7 +832,12 @@ https://github.com/alex-shpak/hugo-book
   
 <nav id="TableOfContents">
   <ul>
-    <li><a href="#demo">Demo</a></li>
+    <li><a href="#demo">Demo</a>
+      <ul>
+        <li><a href="#install-necessary-packages">Install necessary packages</a></li>
+        <li><a href="#hand-on">Hand-on</a></li>
+      </ul>
+    </li>
     <li><a href="#references">References</a></li>
   </ul>
 </nav>
