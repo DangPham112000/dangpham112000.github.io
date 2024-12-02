@@ -4,113 +4,74 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="
-  Backend Protocol
+  ARP Spoofing Attack
   #
 
 
-  What is a protocol?
+ARP: Address Resolution Protocol
+A type of MitM attack
+
+
+  How ARP Works
   #
 
 
-A system that allows two parties to communicate
-A protocol is designed with a set of properties
-Depending on the purpose of the protocol
-TCP, UDP, HTTP, gRPC, FTP
-The application protocols (HTTP/1.1, HTTP/2, HTTP/3) run on top of transport protocols (TCP, UDP)
+ARP Basics:
+
+ARP is used to map an IP address to a MAC address within a local network
+When a device wants to communicate with another, it broadcasts an ARP request: &ldquo;Who has IP 192.168.1.1? Tell me your MAC address.&rdquo;
+The device with the corresponding IP replies with its MAC address
 
 
-  Protocol properties
+Normal Communication:
+
+Once ARP resolves the IP-to-MAC mapping, devices communicate directly using MAC addresses
+
+
+
+
+  How ARP Spoofing Works
   #
 
 
-Data format
+The attacker sends forged ARP replies to the victim device and/or the router, claiming:
 
-Text based (plain text, JSON, XML)
-Binary (protobuf, RESP, h2, h3)
-
-
-Transfer mode
-
-Message based (UDP, HTTP)
-Stream (TCP, WebRTC)
+&ldquo;I am the router (192.168.1.1)&rdquo; to the victim
+&ldquo;I am the victim (192.168.1.100)&rdquo; to the router
 
 
-Addressing system
+Both the victim and the router update their ARP tables with the attacker&rsquo;s MAC address for the claimed IP
+As a result:
 
-DNS name, IP, MAC
-
-
-Directionality
-
-Bidirectional (TCP)
-Unidirectional (HTTP)
-Full/Half duplex
-
-
-State
-
-Stateful (TCP, gRPC, apache thrift)
-Stateless (UDP, HTTP)
-
-
-Routing
-
-Proxies, Gateways
-
-
-Flow &amp; Congestion control
-
-TCP (Flow &amp; Congestion)
-UDP (No control)
-
-
-Error management
-
-Error code
-Retries and timeouts
+All traffic from the victim to the router (and vice versa) flows through the attacker
+The attacker becomes a &ldquo;man-in-the-middle&rdquo; (MITM), able to intercept or modify traffic
 
 
 
 
-  Why do we need a communication model?
+  Diagram
   #
 
-
-Agnostic applications
-
-App doesn’t need to to know network medium
-Otherwise we need an App for WIFI, ethernet vs LTE vs fiber
-
-
-Network Equipment Management
-
-Without a standard model, upgrading network equipments becomes difficult
-Decoupled Innovation
-
-
-Innovations can be done in each layer separately without affecting the rest of the models
-
-
-  OSI Model
-  #
-
-7 Layers each describe a specific networking component:">
+Normal Traffic:
+Victim → Router → Internet">
 <meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff">
 <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#343a40">
-<meta name="color-scheme" content="light dark"><meta property="og:url" content="https://dangpham112000.github.io/docs/research/be_protocol/">
+<meta name="color-scheme" content="light dark"><meta property="og:url" content="https://dangpham112000.github.io/docs/research/security/arp_spoofing/">
   <meta property="og:site_name" content="Dante 0401">
-  <meta property="og:title" content="Backend Protocol">
-  <meta property="og:description" content="Backend Protocol # What is a protocol? # A system that allows two parties to communicate A protocol is designed with a set of properties Depending on the purpose of the protocol TCP, UDP, HTTP, gRPC, FTP The application protocols (HTTP/1.1, HTTP/2, HTTP/3) run on top of transport protocols (TCP, UDP) Protocol properties # Data format Text based (plain text, JSON, XML) Binary (protobuf, RESP, h2, h3) Transfer mode Message based (UDP, HTTP) Stream (TCP, WebRTC) Addressing system DNS name, IP, MAC Directionality Bidirectional (TCP) Unidirectional (HTTP) Full/Half duplex State Stateful (TCP, gRPC, apache thrift) Stateless (UDP, HTTP) Routing Proxies, Gateways Flow &amp; Congestion control TCP (Flow &amp; Congestion) UDP (No control) Error management Error code Retries and timeouts Why do we need a communication model? # Agnostic applications App doesn’t need to to know network medium Otherwise we need an App for WIFI, ethernet vs LTE vs fiber Network Equipment Management Without a standard model, upgrading network equipments becomes difficult Decoupled Innovation Innovations can be done in each layer separately without affecting the rest of the models OSI Model # 7 Layers each describe a specific networking component:">
+  <meta property="og:title" content="ARP Spoofing - Draft">
+  <meta property="og:description" content="ARP Spoofing Attack # ARP: Address Resolution Protocol A type of MitM attack How ARP Works # ARP Basics: ARP is used to map an IP address to a MAC address within a local network When a device wants to communicate with another, it broadcasts an ARP request: “Who has IP 192.168.1.1? Tell me your MAC address.” The device with the corresponding IP replies with its MAC address Normal Communication: Once ARP resolves the IP-to-MAC mapping, devices communicate directly using MAC addresses How ARP Spoofing Works # The attacker sends forged ARP replies to the victim device and/or the router, claiming: “I am the router (192.168.1.1)” to the victim “I am the victim (192.168.1.100)” to the router Both the victim and the router update their ARP tables with the attacker’s MAC address for the claimed IP As a result: All traffic from the victim to the router (and vice versa) flows through the attacker The attacker becomes a “man-in-the-middle” (MITM), able to intercept or modify traffic Diagram # Normal Traffic: Victim → Router → Internet">
   <meta property="og:locale" content="en_us">
-  <meta property="og:type" content="website">
-<title>Backend Protocol | Dante 0401</title>
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="docs">
+    <meta property="article:published_time" content="2024-06-15T01:47:46+07:00">
+    <meta property="article:modified_time" content="2024-06-15T01:47:46+07:00">
+<title>ARP Spoofing - Draft | Dante 0401</title>
 <link rel="manifest" href="/manifest.json">
 <link rel="icon" href="/favicon.png" >
-<link rel="canonical" href="https://dangpham112000.github.io/docs/research/be_protocol/">
+<link rel="canonical" href="https://dangpham112000.github.io/docs/research/security/arp_spoofing/">
 <link rel="stylesheet" href="/book.min.0ebfa1e81a7b241abaa8a9626be8325416e98d14702ea33197aea691fec27e9d.css" integrity="sha256-Dr&#43;h6Bp7JBq6qKlia&#43;gyVBbpjRRwLqMxl66mkf7Cfp0=" crossorigin="anonymous">
   <script defer src="/fuse.min.js"></script>
   <script defer src="/en.search.min.2e2757f0eefcfc56743c8aaa48b9685368402edace8b5dfdf48203fba6ffaf3d.js" integrity="sha256-LidX8O78/FZ0PIqqSLloU2hALtrOi1399IID&#43;6b/rz0=" crossorigin="anonymous"></script>
-<link rel="alternate" type="application/rss+xml" href="https://dangpham112000.github.io/docs/research/be_protocol/index.xml" title="Dante 0401" />
 <!--
 Made with Book Theme
 https://github.com/alex-shpak/hugo-book
@@ -215,7 +176,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="/docs/research/be_protocol/" class="active">Backend Protocol</a>
+    <a href="/docs/research/be_protocol/" class="">Backend Protocol</a>
   
 
           
@@ -454,7 +415,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="/docs/research/security/arp_spoofing/" class="">ARP Spoofing - Draft</a>
+    <a href="/docs/research/security/arp_spoofing/" class="active">ARP Spoofing - Draft</a>
   
 
         </li>
@@ -672,7 +633,7 @@ https://github.com/alex-shpak/hugo-book
     <img src="/svg/menu.svg" class="book-icon" alt="Menu" />
   </label>
 
-  <strong>Backend Protocol</strong>
+  <strong>ARP Spoofing - Draft</strong>
 
   <label for="toc-control">
     
@@ -688,20 +649,12 @@ https://github.com/alex-shpak/hugo-book
   
 <nav id="TableOfContents">
   <ul>
-    <li><a href="#what-is-a-protocol">What is a protocol?</a></li>
-    <li><a href="#protocol-properties">Protocol properties</a></li>
-    <li><a href="#why-do-we-need-a-communication-model">Why do we need a communication model?</a></li>
-    <li><a href="#osi-model">OSI Model</a>
-      <ul>
-        <li><a href="#data-across-network">Data across network</a></li>
-      </ul>
-    </li>
-    <li><a href="#tcpip-model">TCP/IP Model</a>
-      <ul>
-        <li><a href="#why">Why</a></li>
-      </ul>
-    </li>
-    <li><a href="#reference">Reference</a></li>
+    <li><a href="#how-arp-works">How ARP Works</a></li>
+    <li><a href="#how-arp-spoofing-works">How ARP Spoofing Works</a></li>
+    <li><a href="#diagram">Diagram</a></li>
+    <li><a href="#prevention">Prevention</a></li>
+    <li><a href="#demo">Demo</a></li>
+    <li><a href="#references">References</a></li>
   </ul>
 </nav>
 
@@ -714,138 +667,99 @@ https://github.com/alex-shpak/hugo-book
 
       
       
-  <article class="markdown book-article"><h1 id="backend-protocol">
-  Backend Protocol
-  <a class="anchor" href="#backend-protocol">#</a>
+  <article class="markdown book-article"><h1 id="arp-spoofing-attack">
+  ARP Spoofing Attack
+  <a class="anchor" href="#arp-spoofing-attack">#</a>
 </h1>
-<h2 id="what-is-a-protocol">
-  What is a protocol?
-  <a class="anchor" href="#what-is-a-protocol">#</a>
+<ul>
+<li>ARP: Address Resolution Protocol</li>
+<li>A type of MitM attack</li>
+</ul>
+<h2 id="how-arp-works">
+  How ARP Works
+  <a class="anchor" href="#how-arp-works">#</a>
 </h2>
 <ul>
-<li>A system that allows two parties to communicate</li>
-<li>A protocol is designed with a set of properties</li>
-<li>Depending on the purpose of the protocol</li>
-<li>TCP, UDP, HTTP, gRPC, FTP</li>
-<li>The application protocols (HTTP/1.1, HTTP/2, HTTP/3) run on top of transport protocols (TCP, UDP)</li>
+<li>ARP Basics:
+<ul>
+<li>ARP is used to map an IP address to a MAC address within a local network</li>
+<li>When a device wants to communicate with another, it broadcasts an ARP request: &ldquo;Who has IP 192.168.1.1? Tell me your MAC address.&rdquo;</li>
+<li>The device with the corresponding IP replies with its MAC address</li>
 </ul>
-<h2 id="protocol-properties">
-  Protocol properties
-  <a class="anchor" href="#protocol-properties">#</a>
+</li>
+<li>Normal Communication:
+<ul>
+<li>Once ARP resolves the IP-to-MAC mapping, devices communicate directly using MAC addresses</li>
+</ul>
+</li>
+</ul>
+<h2 id="how-arp-spoofing-works">
+  How ARP Spoofing Works
+  <a class="anchor" href="#how-arp-spoofing-works">#</a>
 </h2>
 <ul>
-<li>Data format
+<li>The attacker sends forged ARP replies to the victim device and/or the router, claiming:
 <ul>
-<li>Text based (plain text, JSON, XML)</li>
-<li>Binary (protobuf, RESP, h2, h3)</li>
+<li>&ldquo;I am the router (192.168.1.1)&rdquo; to the victim</li>
+<li>&ldquo;I am the victim (192.168.1.100)&rdquo; to the router</li>
 </ul>
 </li>
-<li>Transfer mode
+<li>Both the victim and the router update their ARP tables with the attacker&rsquo;s MAC address for the claimed IP</li>
+<li>As a result:
 <ul>
-<li>Message based (UDP, HTTP)</li>
-<li>Stream (TCP, WebRTC)</li>
-</ul>
-</li>
-<li>Addressing system
-<ul>
-<li>DNS name, IP, MAC</li>
-</ul>
-</li>
-<li>Directionality
-<ul>
-<li>Bidirectional (TCP)</li>
-<li>Unidirectional (HTTP)</li>
-<li>Full/Half duplex</li>
-</ul>
-</li>
-<li>State
-<ul>
-<li>Stateful (TCP, gRPC, apache thrift)</li>
-<li>Stateless (UDP, HTTP)</li>
-</ul>
-</li>
-<li>Routing
-<ul>
-<li>Proxies, Gateways</li>
-</ul>
-</li>
-<li>Flow &amp; Congestion control
-<ul>
-<li>TCP (Flow &amp; Congestion)</li>
-<li>UDP (No control)</li>
-</ul>
-</li>
-<li>Error management
-<ul>
-<li>Error code</li>
-<li>Retries and timeouts</li>
+<li>All traffic from the victim to the router (and vice versa) flows through the attacker</li>
+<li>The attacker becomes a &ldquo;man-in-the-middle&rdquo; (MITM), able to intercept or modify traffic</li>
 </ul>
 </li>
 </ul>
-<h2 id="why-do-we-need-a-communication-model">
-  Why do we need a communication model?
-  <a class="anchor" href="#why-do-we-need-a-communication-model">#</a>
+<h2 id="diagram">
+  Diagram
+  <a class="anchor" href="#diagram">#</a>
+</h2>
+<p>Normal Traffic:
+Victim → Router → Internet</p>
+<p>ARP Spoofing:
+Victim → Attacker → Router → Internet</p>
+<h2 id="prevention">
+  Prevention
+  <a class="anchor" href="#prevention">#</a>
 </h2>
 <ul>
-<li>Agnostic applications
-<ul>
-<li>App doesn’t need to to know network medium</li>
-<li>Otherwise we need an App for WIFI, ethernet vs LTE vs fiber</li>
+<li>Static ARP Entries: Manually map critical IPs to MAC addresses to prevent changes</li>
+<li>Use Encryption: Secure protocols (e.g., HTTPS, SSH, VPN) ensure data confidentiality even if traffic is intercepted</li>
+<li>Enable Dynamic ARP Inspection (DAI): On managed switches, DAI verifies ARP packets against a trusted database</li>
 </ul>
-</li>
-<li>Network Equipment Management
-<ul>
-<li>Without a standard model, upgrading network equipments becomes difficult</li>
-<li>Decoupled Innovation</li>
-</ul>
-</li>
-<li>Innovations can be done in each layer separately without affecting the rest of the models</li>
-</ul>
-<h2 id="osi-model">
-  OSI Model
-  <a class="anchor" href="#osi-model">#</a>
+<h2 id="demo">
+  Demo
+  <a class="anchor" href="#demo">#</a>
 </h2>
-<p>7 Layers each describe a specific networking component:</p>
-<ul>
-<li>Layer 7: Application - HTTP/FTP/gRPC</li>
-<li>Layer 6: Presentation - Encoding, Serialization</li>
-<li>Layer 5: Session - Connection establishment, TLS</li>
-<li>Layer 4: Transport - UDP/TCP</li>
-<li>Layer 3: Network - IP</li>
-<li>Layer 2: Data link - Frames, Mac address Ethernet</li>
-<li>Layer 1: Physical - Electric signals, fiber or radio waves</li>
-</ul>
-<p><img src="/research/be_protocol/index/osi.png" alt="osi" />
-<img src="/research/be_protocol/index/osi_2.png" alt="osi_2" /></p>
-<h3 id="data-across-network">
-  Data across network
-  <a class="anchor" href="#data-across-network">#</a>
-</h3>
-<p><img src="/research/be_protocol/index/data_across_network.png" alt="data_across_network" />
-<img src="/research/be_protocol/index/data_across_network_2.png" alt="data_across_network_2" /></p>
-<h2 id="tcpip-model">
-  TCP/IP Model
-  <a class="anchor" href="#tcpip-model">#</a>
-</h2>
-<p>Much simpler than OSI just 4 layers</p>
-<p><img src="/research/be_protocol/index/tcp_ip.png" alt="tcp_ip" /></p>
-<h3 id="why">
-  Why
-  <a class="anchor" href="#why">#</a>
-</h3>
-<ul>
-<li>OSI Model has too many layers which can be hard to comprehend</li>
-<li>Hard to argue about which layer does what</li>
-<li>Simpler to deal with Layers 5-6-7 as just one layer, application</li>
-<li>TCP/IP Model does just that</li>
-</ul>
-<h2 id="reference">
-  Reference
-  <a class="anchor" href="#reference">#</a>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Fake dns</span>
+</span></span><span style="display:flex;"><span>sudo bettercap -iface wlo1
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># In bettercap:</span>
+</span></span><span style="display:flex;"><span>net.probe on
+</span></span><span style="display:flex;"><span>net.show
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>set arp.spoof.targets 192.168.1.9
+</span></span><span style="display:flex;"><span>set dns.spoof.domains alo1411.team
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>arp.spoof on
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># -&gt; Output</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>sys.log<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>inf<span style="color:#f92672">]</span> arp.spoof arp spoofer started, probing <span style="color:#ae81ff">1</span> targets
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>dns.spoof on
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># E.g output</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>sys.log<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>inf<span style="color:#f92672">]</span> dns.spoof alo1411.team -&gt; 192.168.1.17
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>net.sniff
+</span></span></code></pre></div><h2 id="references">
+  References
+  <a class="anchor" href="#references">#</a>
 </h2>
 <ul>
-<li>Geeksforgeeks: <a href="https://www.geeksforgeeks.org/tcp-ip-model/">TCP/IP Model</a> (21 Jul, 2023)</li>
-<li>Udemy: <a href="https://www.udemy.com/course/fundamentals-of-backend-communications-and-protocols">Fundamentals of Backend Engineering</a> (Feb, 2024)</li>
+<li>Bettercap: <a href="https://www.bettercap.org/modules/ethernet/spoofers/dns.spoof/">dns.spoof</a></li>
+<li>Bettercap: <a href="https://www.bettercap.org/modules/ethernet/spoofers/arp.spoof/">arp.spoof</a></li>
 </ul>
 </article>
  
@@ -888,20 +802,12 @@ https://github.com/alex-shpak/hugo-book
   
 <nav id="TableOfContents">
   <ul>
-    <li><a href="#what-is-a-protocol">What is a protocol?</a></li>
-    <li><a href="#protocol-properties">Protocol properties</a></li>
-    <li><a href="#why-do-we-need-a-communication-model">Why do we need a communication model?</a></li>
-    <li><a href="#osi-model">OSI Model</a>
-      <ul>
-        <li><a href="#data-across-network">Data across network</a></li>
-      </ul>
-    </li>
-    <li><a href="#tcpip-model">TCP/IP Model</a>
-      <ul>
-        <li><a href="#why">Why</a></li>
-      </ul>
-    </li>
-    <li><a href="#reference">Reference</a></li>
+    <li><a href="#how-arp-works">How ARP Works</a></li>
+    <li><a href="#how-arp-spoofing-works">How ARP Spoofing Works</a></li>
+    <li><a href="#diagram">Diagram</a></li>
+    <li><a href="#prevention">Prevention</a></li>
+    <li><a href="#demo">Demo</a></li>
+    <li><a href="#references">References</a></li>
   </ul>
 </nav>
 

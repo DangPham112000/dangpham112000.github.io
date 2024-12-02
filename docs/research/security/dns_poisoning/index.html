@@ -4,113 +4,73 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="
-  Backend Protocol
+  DNS Poisoning Attack
   #
 
 
-  What is a protocol?
+A type of MitM attack
+
+
+  Prevention
   #
 
 
-A system that allows two parties to communicate
-A protocol is designed with a set of properties
-Depending on the purpose of the protocol
-TCP, UDP, HTTP, gRPC, FTP
-The application protocols (HTTP/1.1, HTTP/2, HTTP/3) run on top of transport protocols (TCP, UDP)
+Use Secure DNS: Configure DNS servers to use DNSSEC (Domain Name System Security Extensions), which adds cryptographic signatures to DNS records
+Enable HTTPS Everywhere: Even if DNS is poisoned, HTTPS with valid certificates will warn users when a site is untrusted
+Avoid Public Wi-Fi: Public networks are more susceptible to DNS poisoning attacks
+Set Trusted DNS Servers: Use reliable DNS resolvers like Google DNS (8.8.8.8) or Cloudflare (1.1.1.1)
+Monitor and Update Systems: Regularly patch DNS servers and network devices to address vulnerabilities
+Use a VPN: Encrypt traffic, bypassing rogue DNS responses on compromised networks
 
 
-  Protocol properties
+  Demo
   #
 
 
-Data format
+set ndp.spoof.neighbour fe80::53a:d4db:13e9:b774
+set ndp.spoof.targets 2001:ee0:4f51:2ed0:295c:1995:43bf:3e1b,2001:ee0:4f51:2ed0:c60d:3bd1:19b6:facb
 
-Text based (plain text, JSON, XML)
-Binary (protobuf, RESP, h2, h3)
+2001:ee0:4f51:2ed0:ed4b:6d8:6bd0:b97f
 
+set dns.spoof.domains mnptt.io.vn
+set dns.spoof.address 192.168.1.17
 
-Transfer mode
+set dhcp6.spoof.domains mnptt.io.vn
 
-Message based (UDP, HTTP)
-Stream (TCP, WebRTC)
+set arp.spoof.targets a4:34:d9:89:a0:58
 
+ndp.spoof on
+dhcp6.spoof on
+dns.spoof on
+arp.spoof on
 
-Addressing system
-
-DNS name, IP, MAC
-
-
-Directionality
-
-Bidirectional (TCP)
-Unidirectional (HTTP)
-Full/Half duplex
-
-
-State
-
-Stateful (TCP, gRPC, apache thrift)
-Stateless (UDP, HTTP)
-
-
-Routing
-
-Proxies, Gateways
-
-
-Flow &amp; Congestion control
-
-TCP (Flow &amp; Congestion)
-UDP (No control)
-
-
-Error management
-
-Error code
-Retries and timeouts
-
-
-
-
-  Why do we need a communication model?
+  References
   #
 
 
-Agnostic applications
-
-App doesn’t need to to know network medium
-Otherwise we need an App for WIFI, ethernet vs LTE vs fiber
-
-
-Network Equipment Management
-
-Without a standard model, upgrading network equipments becomes difficult
-Decoupled Innovation
-
-
-Innovations can be done in each layer separately without affecting the rest of the models
-
-
-  OSI Model
-  #
-
-7 Layers each describe a specific networking component:">
+Bettercap: ndp.spoof (IPv6)
+Bettercap: dhcp6.spoof
+Bettercap: dns.spoof
+Bettercap: arp.spoof
+">
 <meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff">
 <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#343a40">
-<meta name="color-scheme" content="light dark"><meta property="og:url" content="https://dangpham112000.github.io/docs/research/be_protocol/">
+<meta name="color-scheme" content="light dark"><meta property="og:url" content="https://dangpham112000.github.io/docs/research/security/dns_poisoning/">
   <meta property="og:site_name" content="Dante 0401">
-  <meta property="og:title" content="Backend Protocol">
-  <meta property="og:description" content="Backend Protocol # What is a protocol? # A system that allows two parties to communicate A protocol is designed with a set of properties Depending on the purpose of the protocol TCP, UDP, HTTP, gRPC, FTP The application protocols (HTTP/1.1, HTTP/2, HTTP/3) run on top of transport protocols (TCP, UDP) Protocol properties # Data format Text based (plain text, JSON, XML) Binary (protobuf, RESP, h2, h3) Transfer mode Message based (UDP, HTTP) Stream (TCP, WebRTC) Addressing system DNS name, IP, MAC Directionality Bidirectional (TCP) Unidirectional (HTTP) Full/Half duplex State Stateful (TCP, gRPC, apache thrift) Stateless (UDP, HTTP) Routing Proxies, Gateways Flow &amp; Congestion control TCP (Flow &amp; Congestion) UDP (No control) Error management Error code Retries and timeouts Why do we need a communication model? # Agnostic applications App doesn’t need to to know network medium Otherwise we need an App for WIFI, ethernet vs LTE vs fiber Network Equipment Management Without a standard model, upgrading network equipments becomes difficult Decoupled Innovation Innovations can be done in each layer separately without affecting the rest of the models OSI Model # 7 Layers each describe a specific networking component:">
+  <meta property="og:title" content="DNS Poisoning - Draft">
+  <meta property="og:description" content="DNS Poisoning Attack # A type of MitM attack Prevention # Use Secure DNS: Configure DNS servers to use DNSSEC (Domain Name System Security Extensions), which adds cryptographic signatures to DNS records Enable HTTPS Everywhere: Even if DNS is poisoned, HTTPS with valid certificates will warn users when a site is untrusted Avoid Public Wi-Fi: Public networks are more susceptible to DNS poisoning attacks Set Trusted DNS Servers: Use reliable DNS resolvers like Google DNS (8.8.8.8) or Cloudflare (1.1.1.1) Monitor and Update Systems: Regularly patch DNS servers and network devices to address vulnerabilities Use a VPN: Encrypt traffic, bypassing rogue DNS responses on compromised networks Demo # set ndp.spoof.neighbour fe80::53a:d4db:13e9:b774 set ndp.spoof.targets 2001:ee0:4f51:2ed0:295c:1995:43bf:3e1b,2001:ee0:4f51:2ed0:c60d:3bd1:19b6:facb 2001:ee0:4f51:2ed0:ed4b:6d8:6bd0:b97f set dns.spoof.domains mnptt.io.vn set dns.spoof.address 192.168.1.17 set dhcp6.spoof.domains mnptt.io.vn set arp.spoof.targets a4:34:d9:89:a0:58 ndp.spoof on dhcp6.spoof on dns.spoof on arp.spoof on References # Bettercap: ndp.spoof (IPv6) Bettercap: dhcp6.spoof Bettercap: dns.spoof Bettercap: arp.spoof">
   <meta property="og:locale" content="en_us">
-  <meta property="og:type" content="website">
-<title>Backend Protocol | Dante 0401</title>
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="docs">
+    <meta property="article:published_time" content="2024-06-15T01:47:46+07:00">
+    <meta property="article:modified_time" content="2024-06-15T01:47:46+07:00">
+<title>DNS Poisoning - Draft | Dante 0401</title>
 <link rel="manifest" href="/manifest.json">
 <link rel="icon" href="/favicon.png" >
-<link rel="canonical" href="https://dangpham112000.github.io/docs/research/be_protocol/">
+<link rel="canonical" href="https://dangpham112000.github.io/docs/research/security/dns_poisoning/">
 <link rel="stylesheet" href="/book.min.0ebfa1e81a7b241abaa8a9626be8325416e98d14702ea33197aea691fec27e9d.css" integrity="sha256-Dr&#43;h6Bp7JBq6qKlia&#43;gyVBbpjRRwLqMxl66mkf7Cfp0=" crossorigin="anonymous">
   <script defer src="/fuse.min.js"></script>
   <script defer src="/en.search.min.2e2757f0eefcfc56743c8aaa48b9685368402edace8b5dfdf48203fba6ffaf3d.js" integrity="sha256-LidX8O78/FZ0PIqqSLloU2hALtrOi1399IID&#43;6b/rz0=" crossorigin="anonymous"></script>
-<link rel="alternate" type="application/rss+xml" href="https://dangpham112000.github.io/docs/research/be_protocol/index.xml" title="Dante 0401" />
 <!--
 Made with Book Theme
 https://github.com/alex-shpak/hugo-book
@@ -215,7 +175,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="/docs/research/be_protocol/" class="active">Backend Protocol</a>
+    <a href="/docs/research/be_protocol/" class="">Backend Protocol</a>
   
 
           
@@ -467,7 +427,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="/docs/research/security/dns_poisoning/" class="">DNS Poisoning - Draft</a>
+    <a href="/docs/research/security/dns_poisoning/" class="active">DNS Poisoning - Draft</a>
   
 
         </li>
@@ -672,7 +632,7 @@ https://github.com/alex-shpak/hugo-book
     <img src="/svg/menu.svg" class="book-icon" alt="Menu" />
   </label>
 
-  <strong>Backend Protocol</strong>
+  <strong>DNS Poisoning - Draft</strong>
 
   <label for="toc-control">
     
@@ -688,20 +648,9 @@ https://github.com/alex-shpak/hugo-book
   
 <nav id="TableOfContents">
   <ul>
-    <li><a href="#what-is-a-protocol">What is a protocol?</a></li>
-    <li><a href="#protocol-properties">Protocol properties</a></li>
-    <li><a href="#why-do-we-need-a-communication-model">Why do we need a communication model?</a></li>
-    <li><a href="#osi-model">OSI Model</a>
-      <ul>
-        <li><a href="#data-across-network">Data across network</a></li>
-      </ul>
-    </li>
-    <li><a href="#tcpip-model">TCP/IP Model</a>
-      <ul>
-        <li><a href="#why">Why</a></li>
-      </ul>
-    </li>
-    <li><a href="#reference">Reference</a></li>
+    <li><a href="#prevention">Prevention</a></li>
+    <li><a href="#demo">Demo</a></li>
+    <li><a href="#references">References</a></li>
   </ul>
 </nav>
 
@@ -714,138 +663,55 @@ https://github.com/alex-shpak/hugo-book
 
       
       
-  <article class="markdown book-article"><h1 id="backend-protocol">
-  Backend Protocol
-  <a class="anchor" href="#backend-protocol">#</a>
+  <article class="markdown book-article"><h1 id="dns-poisoning-attack">
+  DNS Poisoning Attack
+  <a class="anchor" href="#dns-poisoning-attack">#</a>
 </h1>
-<h2 id="what-is-a-protocol">
-  What is a protocol?
-  <a class="anchor" href="#what-is-a-protocol">#</a>
+<ul>
+<li>A type of MitM attack</li>
+</ul>
+<h2 id="prevention">
+  Prevention
+  <a class="anchor" href="#prevention">#</a>
 </h2>
 <ul>
-<li>A system that allows two parties to communicate</li>
-<li>A protocol is designed with a set of properties</li>
-<li>Depending on the purpose of the protocol</li>
-<li>TCP, UDP, HTTP, gRPC, FTP</li>
-<li>The application protocols (HTTP/1.1, HTTP/2, HTTP/3) run on top of transport protocols (TCP, UDP)</li>
+<li>Use Secure DNS: Configure DNS servers to use DNSSEC (Domain Name System Security Extensions), which adds cryptographic signatures to DNS records</li>
+<li>Enable HTTPS Everywhere: Even if DNS is poisoned, HTTPS with valid certificates will warn users when a site is untrusted</li>
+<li>Avoid Public Wi-Fi: Public networks are more susceptible to DNS poisoning attacks</li>
+<li>Set Trusted DNS Servers: Use reliable DNS resolvers like Google DNS (8.8.8.8) or Cloudflare (1.1.1.1)</li>
+<li>Monitor and Update Systems: Regularly patch DNS servers and network devices to address vulnerabilities</li>
+<li>Use a VPN: Encrypt traffic, bypassing rogue DNS responses on compromised networks</li>
 </ul>
-<h2 id="protocol-properties">
-  Protocol properties
-  <a class="anchor" href="#protocol-properties">#</a>
+<h2 id="demo">
+  Demo
+  <a class="anchor" href="#demo">#</a>
+</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>set ndp.spoof.neighbour fe80::53a:d4db:13e9:b774
+</span></span><span style="display:flex;"><span>set ndp.spoof.targets 2001:ee0:4f51:2ed0:295c:1995:43bf:3e1b,2001:ee0:4f51:2ed0:c60d:3bd1:19b6:facb
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>2001:ee0:4f51:2ed0:ed4b:6d8:6bd0:b97f
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>set dns.spoof.domains mnptt.io.vn
+</span></span><span style="display:flex;"><span>set dns.spoof.address 192.168.1.17
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>set dhcp6.spoof.domains mnptt.io.vn
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>set arp.spoof.targets a4:34:d9:89:a0:58
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>ndp.spoof on
+</span></span><span style="display:flex;"><span>dhcp6.spoof on
+</span></span><span style="display:flex;"><span>dns.spoof on
+</span></span><span style="display:flex;"><span>arp.spoof on
+</span></span></code></pre></div><h2 id="references">
+  References
+  <a class="anchor" href="#references">#</a>
 </h2>
 <ul>
-<li>Data format
-<ul>
-<li>Text based (plain text, JSON, XML)</li>
-<li>Binary (protobuf, RESP, h2, h3)</li>
-</ul>
-</li>
-<li>Transfer mode
-<ul>
-<li>Message based (UDP, HTTP)</li>
-<li>Stream (TCP, WebRTC)</li>
-</ul>
-</li>
-<li>Addressing system
-<ul>
-<li>DNS name, IP, MAC</li>
-</ul>
-</li>
-<li>Directionality
-<ul>
-<li>Bidirectional (TCP)</li>
-<li>Unidirectional (HTTP)</li>
-<li>Full/Half duplex</li>
-</ul>
-</li>
-<li>State
-<ul>
-<li>Stateful (TCP, gRPC, apache thrift)</li>
-<li>Stateless (UDP, HTTP)</li>
-</ul>
-</li>
-<li>Routing
-<ul>
-<li>Proxies, Gateways</li>
-</ul>
-</li>
-<li>Flow &amp; Congestion control
-<ul>
-<li>TCP (Flow &amp; Congestion)</li>
-<li>UDP (No control)</li>
-</ul>
-</li>
-<li>Error management
-<ul>
-<li>Error code</li>
-<li>Retries and timeouts</li>
-</ul>
-</li>
-</ul>
-<h2 id="why-do-we-need-a-communication-model">
-  Why do we need a communication model?
-  <a class="anchor" href="#why-do-we-need-a-communication-model">#</a>
-</h2>
-<ul>
-<li>Agnostic applications
-<ul>
-<li>App doesn’t need to to know network medium</li>
-<li>Otherwise we need an App for WIFI, ethernet vs LTE vs fiber</li>
-</ul>
-</li>
-<li>Network Equipment Management
-<ul>
-<li>Without a standard model, upgrading network equipments becomes difficult</li>
-<li>Decoupled Innovation</li>
-</ul>
-</li>
-<li>Innovations can be done in each layer separately without affecting the rest of the models</li>
-</ul>
-<h2 id="osi-model">
-  OSI Model
-  <a class="anchor" href="#osi-model">#</a>
-</h2>
-<p>7 Layers each describe a specific networking component:</p>
-<ul>
-<li>Layer 7: Application - HTTP/FTP/gRPC</li>
-<li>Layer 6: Presentation - Encoding, Serialization</li>
-<li>Layer 5: Session - Connection establishment, TLS</li>
-<li>Layer 4: Transport - UDP/TCP</li>
-<li>Layer 3: Network - IP</li>
-<li>Layer 2: Data link - Frames, Mac address Ethernet</li>
-<li>Layer 1: Physical - Electric signals, fiber or radio waves</li>
-</ul>
-<p><img src="/research/be_protocol/index/osi.png" alt="osi" />
-<img src="/research/be_protocol/index/osi_2.png" alt="osi_2" /></p>
-<h3 id="data-across-network">
-  Data across network
-  <a class="anchor" href="#data-across-network">#</a>
-</h3>
-<p><img src="/research/be_protocol/index/data_across_network.png" alt="data_across_network" />
-<img src="/research/be_protocol/index/data_across_network_2.png" alt="data_across_network_2" /></p>
-<h2 id="tcpip-model">
-  TCP/IP Model
-  <a class="anchor" href="#tcpip-model">#</a>
-</h2>
-<p>Much simpler than OSI just 4 layers</p>
-<p><img src="/research/be_protocol/index/tcp_ip.png" alt="tcp_ip" /></p>
-<h3 id="why">
-  Why
-  <a class="anchor" href="#why">#</a>
-</h3>
-<ul>
-<li>OSI Model has too many layers which can be hard to comprehend</li>
-<li>Hard to argue about which layer does what</li>
-<li>Simpler to deal with Layers 5-6-7 as just one layer, application</li>
-<li>TCP/IP Model does just that</li>
-</ul>
-<h2 id="reference">
-  Reference
-  <a class="anchor" href="#reference">#</a>
-</h2>
-<ul>
-<li>Geeksforgeeks: <a href="https://www.geeksforgeeks.org/tcp-ip-model/">TCP/IP Model</a> (21 Jul, 2023)</li>
-<li>Udemy: <a href="https://www.udemy.com/course/fundamentals-of-backend-communications-and-protocols">Fundamentals of Backend Engineering</a> (Feb, 2024)</li>
+<li>Bettercap: <a href="https://www.bettercap.org/modules/ethernet/spoofers/ndp.spoof/">ndp.spoof (IPv6)</a></li>
+<li>Bettercap: <a href="https://www.bettercap.org/modules/ethernet/spoofers/dhcp6.spoof/">dhcp6.spoof</a></li>
+<li>Bettercap: <a href="https://www.bettercap.org/modules/ethernet/spoofers/dns.spoof/">dns.spoof</a></li>
+<li>Bettercap: <a href="https://www.bettercap.org/modules/ethernet/spoofers/arp.spoof/">arp.spoof</a></li>
 </ul>
 </article>
  
@@ -888,20 +754,9 @@ https://github.com/alex-shpak/hugo-book
   
 <nav id="TableOfContents">
   <ul>
-    <li><a href="#what-is-a-protocol">What is a protocol?</a></li>
-    <li><a href="#protocol-properties">Protocol properties</a></li>
-    <li><a href="#why-do-we-need-a-communication-model">Why do we need a communication model?</a></li>
-    <li><a href="#osi-model">OSI Model</a>
-      <ul>
-        <li><a href="#data-across-network">Data across network</a></li>
-      </ul>
-    </li>
-    <li><a href="#tcpip-model">TCP/IP Model</a>
-      <ul>
-        <li><a href="#why">Why</a></li>
-      </ul>
-    </li>
-    <li><a href="#reference">Reference</a></li>
+    <li><a href="#prevention">Prevention</a></li>
+    <li><a href="#demo">Demo</a></li>
+    <li><a href="#references">References</a></li>
   </ul>
 </nav>
 
