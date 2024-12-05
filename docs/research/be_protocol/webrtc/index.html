@@ -17,6 +17,150 @@ A protocol that connects peer to peer
 Find a peer to peer path to exchange video and audio in an efficient and low latency manner
 Standardized API
 Enables rich communications browsers, mobile, IOT devices
+
+
+  Demo
+  #
+
+&lt;!DOCTYPE html&gt;
+&lt;html lang=&#34;en&#34;&gt;
+&lt;head&gt;
+  &lt;meta charset=&#34;UTF-8&#34;&gt;
+  &lt;meta name=&#34;viewport&#34; content=&#34;width=device-width, initial-scale=1.0&#34;&gt;
+  &lt;title&gt;WebRTC Manual SDP Exchange&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;h1&gt;WebRTC Manual SDP Exchange&lt;/h1&gt;
+
+  &lt;div&gt;
+    &lt;h3&gt;Client 1 (Create Offer)&lt;/h3&gt;
+    &lt;button id=&#34;startChannel&#34;&gt;Start Channel&lt;/button&gt;
+    &lt;textarea id=&#34;offerSDP&#34; readonly placeholder=&#34;SDP Offer&#34; style=&#34;width: 100%; height: 100px;&#34;&gt;&lt;/textarea&gt;
+  &lt;/div&gt;
+  
+  &lt;div&gt;
+    &lt;h3&gt;Client 2 (Enter Offer and Respond)&lt;/h3&gt;
+    &lt;textarea id=&#34;offerInput&#34; placeholder=&#34;Paste SDP Offer Here&#34; style=&#34;width: 100%; height: 100px;&#34;&gt;&lt;/textarea&gt;
+    &lt;button id=&#34;respondOffer&#34;&gt;Respond to Offer&lt;/button&gt;
+    &lt;textarea id=&#34;answerSDP&#34; readonly placeholder=&#34;SDP Answer&#34; style=&#34;width: 100%; height: 100px;&#34;&gt;&lt;/textarea&gt;
+  &lt;/div&gt;
+
+  &lt;div&gt;
+    &lt;h3&gt;Client 1 (Set SDP Answer)&lt;/h3&gt;
+    &lt;textarea id=&#34;answerInput&#34; placeholder=&#34;Paste SDP Answer Here&#34; style=&#34;width: 100%; height: 100px;&#34;&gt;&lt;/textarea&gt;
+    &lt;button id=&#34;setAnswer&#34;&gt;Set Answer&lt;/button&gt;
+  &lt;/div&gt;
+
+  &lt;div&gt;
+    &lt;h3&gt;Communication&lt;/h3&gt;
+    &lt;textarea id=&#34;chatArea&#34; readonly style=&#34;width: 100%; height: 150px;&#34;&gt;&lt;/textarea&gt;
+    &lt;br /&gt;
+    &lt;input type=&#34;text&#34; id=&#34;messageInput&#34; placeholder=&#34;Type a message...&#34; style=&#34;width: 80%;&#34; /&gt;
+    &lt;button id=&#34;sendMessage&#34; disabled&gt;Send&lt;/button&gt;
+  &lt;/div&gt;
+
+  &lt;script src=&#34;webrtc-demo.js&#34;&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+const startChannelButton = document.getElementById(&#39;startChannel&#39;);
+const offerSDPTextarea = document.getElementById(&#39;offerSDP&#39;);
+const offerInputTextarea = document.getElementById(&#39;offerInput&#39;);
+const respondOfferButton = document.getElementById(&#39;respondOffer&#39;);
+const answerSDPTextarea = document.getElementById(&#39;answerSDP&#39;);
+const answerInputTextarea = document.getElementById(&#39;answerInput&#39;);
+const setAnswerButton = document.getElementById(&#39;setAnswer&#39;);
+const sendButton = document.getElementById(&#39;sendMessage&#39;);
+const chatArea = document.getElementById(&#39;chatArea&#39;);
+const messageInput = document.getElementById(&#39;messageInput&#39;);
+
+let localConnection, remoteConnection, sendChannel, receiveChannel;
+
+// Start channel and create SDP offer (Client 1)
+startChannelButton.onclick = async () =&gt; {
+  localConnection = new RTCPeerConnection();
+
+  // Create data channel
+  sendChannel = localConnection.createDataChannel(&#39;chat&#39;);
+  sendChannel.onopen = handleChannelStatusChange;
+  sendChannel.onclose = handleChannelStatusChange;
+
+  // Handle ICE candidates
+  localConnection.onicecandidate = e =&gt; {
+    if (!e.candidate) {
+      offerSDPTextarea.value = JSON.stringify(localConnection.localDescription);
+    }
+  };
+
+  // Create an SDP offer
+  const offer = await localConnection.createOffer();
+  await localConnection.setLocalDescription(offer);
+};
+
+// Respond to offer and create SDP answer (Client 2)
+respondOfferButton.onclick = async () =&gt; {
+  const offer = JSON.parse(offerInputTextarea.value);
+
+  remoteConnection = new RTCPeerConnection();
+  remoteConnection.onicecandidate = e =&gt; {
+    if (!e.candidate) {
+      answerSDPTextarea.value = JSON.stringify(remoteConnection.localDescription);
+    }
+  };
+
+  // Handle incoming data channel
+  remoteConnection.ondatachannel = e =&gt; {
+    receiveChannel = e.channel;
+    receiveChannel.onmessage = handleReceiveMessage;
+    receiveChannel.onopen = handleChannelStatusChange;
+    receiveChannel.onclose = handleChannelStatusChange;
+  };
+
+  // Set remote description from offer
+  await remoteConnection.setRemoteDescription(offer);
+
+  // Create an SDP answer
+  const answer = await remoteConnection.createAnswer();
+  await remoteConnection.setLocalDescription(answer);
+};
+
+// Set SDP answer on Client 1
+setAnswerButton.onclick = async () =&gt; {
+  const answer = JSON.parse(answerInputTextarea.value);
+  if (localConnection) {
+    await localConnection.setRemoteDescription(answer);
+  }
+};
+
+// Send messages
+sendButton.onclick = () =&gt; {
+  const message = messageInput.value.trim();
+  if (message &amp;&amp; sendChannel.readyState === &#39;open&#39;) {
+    sendChannel.send(message);
+    appendMessage(`You: ${message}`);
+    messageInput.value = &#39;&#39;;
+  }
+};
+
+// Append messages to chat area
+function appendMessage(message) {
+  chatArea.value &#43;= `${message}\n`;
+}
+
+// Handle received messages
+function handleReceiveMessage(event) {
+  appendMessage(`Peer: ${event.data}`);
+}
+
+// Handle channel status changes
+function handleChannelStatusChange() {
+  if (sendChannel &amp;&amp; sendChannel.readyState === &#39;open&#39;) {
+    messageInput.disabled = false;
+    sendButton.disabled = false;
+  } else {
+    messageInput.disabled = true;
+    sendButton.disabled = true;
+  }
+}
 ">
 <meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff">
 <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#343a40">
@@ -24,7 +168,7 @@ Enables rich communications browsers, mobile, IOT devices
   <meta property="og:site_name" content="Dante 0401">
   <meta property="og:title" content="WebRTC - Draft">
   <meta property="og:description" content="WebRTC # Web Real-Time Communication
-Overview # A protocol that connects peer to peer Find a peer to peer path to exchange video and audio in an efficient and low latency manner Standardized API Enables rich communications browsers, mobile, IOT devices">
+Overview # A protocol that connects peer to peer Find a peer to peer path to exchange video and audio in an efficient and low latency manner Standardized API Enables rich communications browsers, mobile, IOT devices Demo # &lt;!DOCTYPE html&gt; &lt;html lang=&#34;en&#34;&gt; &lt;head&gt; &lt;meta charset=&#34;UTF-8&#34;&gt; &lt;meta name=&#34;viewport&#34; content=&#34;width=device-width, initial-scale=1.0&#34;&gt; &lt;title&gt;WebRTC Manual SDP Exchange&lt;/title&gt; &lt;/head&gt; &lt;body&gt; &lt;h1&gt;WebRTC Manual SDP Exchange&lt;/h1&gt; &lt;div&gt; &lt;h3&gt;Client 1 (Create Offer)&lt;/h3&gt; &lt;button id=&#34;startChannel&#34;&gt;Start Channel&lt;/button&gt; &lt;textarea id=&#34;offerSDP&#34; readonly placeholder=&#34;SDP Offer&#34; style=&#34;width: 100%; height: 100px;&#34;&gt;&lt;/textarea&gt; &lt;/div&gt; &lt;div&gt; &lt;h3&gt;Client 2 (Enter Offer and Respond)&lt;/h3&gt; &lt;textarea id=&#34;offerInput&#34; placeholder=&#34;Paste SDP Offer Here&#34; style=&#34;width: 100%; height: 100px;&#34;&gt;&lt;/textarea&gt; &lt;button id=&#34;respondOffer&#34;&gt;Respond to Offer&lt;/button&gt; &lt;textarea id=&#34;answerSDP&#34; readonly placeholder=&#34;SDP Answer&#34; style=&#34;width: 100%; height: 100px;&#34;&gt;&lt;/textarea&gt; &lt;/div&gt; &lt;div&gt; &lt;h3&gt;Client 1 (Set SDP Answer)&lt;/h3&gt; &lt;textarea id=&#34;answerInput&#34; placeholder=&#34;Paste SDP Answer Here&#34; style=&#34;width: 100%; height: 100px;&#34;&gt;&lt;/textarea&gt; &lt;button id=&#34;setAnswer&#34;&gt;Set Answer&lt;/button&gt; &lt;/div&gt; &lt;div&gt; &lt;h3&gt;Communication&lt;/h3&gt; &lt;textarea id=&#34;chatArea&#34; readonly style=&#34;width: 100%; height: 150px;&#34;&gt;&lt;/textarea&gt; &lt;br /&gt; &lt;input type=&#34;text&#34; id=&#34;messageInput&#34; placeholder=&#34;Type a message...&#34; style=&#34;width: 80%;&#34; /&gt; &lt;button id=&#34;sendMessage&#34; disabled&gt;Send&lt;/button&gt; &lt;/div&gt; &lt;script src=&#34;webrtc-demo.js&#34;&gt;&lt;/script&gt; &lt;/body&gt; &lt;/html&gt; const startChannelButton = document.getElementById(&#39;startChannel&#39;); const offerSDPTextarea = document.getElementById(&#39;offerSDP&#39;); const offerInputTextarea = document.getElementById(&#39;offerInput&#39;); const respondOfferButton = document.getElementById(&#39;respondOffer&#39;); const answerSDPTextarea = document.getElementById(&#39;answerSDP&#39;); const answerInputTextarea = document.getElementById(&#39;answerInput&#39;); const setAnswerButton = document.getElementById(&#39;setAnswer&#39;); const sendButton = document.getElementById(&#39;sendMessage&#39;); const chatArea = document.getElementById(&#39;chatArea&#39;); const messageInput = document.getElementById(&#39;messageInput&#39;); let localConnection, remoteConnection, sendChannel, receiveChannel; // Start channel and create SDP offer (Client 1) startChannelButton.onclick = async () =&gt; { localConnection = new RTCPeerConnection(); // Create data channel sendChannel = localConnection.createDataChannel(&#39;chat&#39;); sendChannel.onopen = handleChannelStatusChange; sendChannel.onclose = handleChannelStatusChange; // Handle ICE candidates localConnection.onicecandidate = e =&gt; { if (!e.candidate) { offerSDPTextarea.value = JSON.stringify(localConnection.localDescription); } }; // Create an SDP offer const offer = await localConnection.createOffer(); await localConnection.setLocalDescription(offer); }; // Respond to offer and create SDP answer (Client 2) respondOfferButton.onclick = async () =&gt; { const offer = JSON.parse(offerInputTextarea.value); remoteConnection = new RTCPeerConnection(); remoteConnection.onicecandidate = e =&gt; { if (!e.candidate) { answerSDPTextarea.value = JSON.stringify(remoteConnection.localDescription); } }; // Handle incoming data channel remoteConnection.ondatachannel = e =&gt; { receiveChannel = e.channel; receiveChannel.onmessage = handleReceiveMessage; receiveChannel.onopen = handleChannelStatusChange; receiveChannel.onclose = handleChannelStatusChange; }; // Set remote description from offer await remoteConnection.setRemoteDescription(offer); // Create an SDP answer const answer = await remoteConnection.createAnswer(); await remoteConnection.setLocalDescription(answer); }; // Set SDP answer on Client 1 setAnswerButton.onclick = async () =&gt; { const answer = JSON.parse(answerInputTextarea.value); if (localConnection) { await localConnection.setRemoteDescription(answer); } }; // Send messages sendButton.onclick = () =&gt; { const message = messageInput.value.trim(); if (message &amp;&amp; sendChannel.readyState === &#39;open&#39;) { sendChannel.send(message); appendMessage(`You: ${message}`); messageInput.value = &#39;&#39;; } }; // Append messages to chat area function appendMessage(message) { chatArea.value &#43;= `${message}\n`; } // Handle received messages function handleReceiveMessage(event) { appendMessage(`Peer: ${event.data}`); } // Handle channel status changes function handleChannelStatusChange() { if (sendChannel &amp;&amp; sendChannel.readyState === &#39;open&#39;) { messageInput.disabled = false; sendButton.disabled = false; } else { messageInput.disabled = true; sendButton.disabled = true; } }">
   <meta property="og:locale" content="en_us">
   <meta property="og:type" content="article">
     <meta property="article:section" content="docs">
@@ -36,7 +180,7 @@ Overview # A protocol that connects peer to peer Find a peer to peer path to exc
 <link rel="canonical" href="https://dangpham112000.github.io/docs/research/be_protocol/webrtc/">
 <link rel="stylesheet" href="/book.min.0ebfa1e81a7b241abaa8a9626be8325416e98d14702ea33197aea691fec27e9d.css" integrity="sha256-Dr&#43;h6Bp7JBq6qKlia&#43;gyVBbpjRRwLqMxl66mkf7Cfp0=" crossorigin="anonymous">
   <script defer src="/fuse.min.js"></script>
-  <script defer src="/en.search.min.85a9b593252a1c2f4282aece8b9d2010f288e37807d1b3ddf8682c4474abd499.js" integrity="sha256-ham1kyUqHC9Cgq7Oi50gEPKI43gH0bPd&#43;GgsRHSr1Jk=" crossorigin="anonymous"></script>
+  <script defer src="/en.search.min.d85061315ce42acab954d758540d1509c469cee62d450b4e7ba79aad9b9d2bf1.js" integrity="sha256-2FBhMVzkKsq5VNdYVA0VCcRpzuYtRQtOe6earZudK/E=" crossorigin="anonymous"></script>
 <!--
 Made with Book Theme
 https://github.com/alex-shpak/hugo-book
@@ -628,6 +772,7 @@ https://github.com/alex-shpak/hugo-book
 <nav id="TableOfContents">
   <ul>
     <li><a href="#overview">Overview</a></li>
+    <li><a href="#demo">Demo</a></li>
   </ul>
 </nav>
 
@@ -655,7 +800,150 @@ https://github.com/alex-shpak/hugo-book
 <li>Standardized API</li>
 <li>Enables rich communications browsers, mobile, IOT devices</li>
 </ul>
-</article>
+<h2 id="demo">
+  Demo
+  <a class="anchor" href="#demo">#</a>
+</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span><span style="color:#75715e">&lt;!DOCTYPE html&gt;</span>
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">html</span> <span style="color:#a6e22e">lang</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;en&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">head</span>&gt;
+</span></span><span style="display:flex;"><span>  &lt;<span style="color:#f92672">meta</span> <span style="color:#a6e22e">charset</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;UTF-8&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>  &lt;<span style="color:#f92672">meta</span> <span style="color:#a6e22e">name</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;viewport&#34;</span> <span style="color:#a6e22e">content</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;width=device-width, initial-scale=1.0&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>  &lt;<span style="color:#f92672">title</span>&gt;WebRTC Manual SDP Exchange&lt;/<span style="color:#f92672">title</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">head</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">body</span>&gt;
+</span></span><span style="display:flex;"><span>  &lt;<span style="color:#f92672">h1</span>&gt;WebRTC Manual SDP Exchange&lt;/<span style="color:#f92672">h1</span>&gt;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  &lt;<span style="color:#f92672">div</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">h3</span>&gt;Client 1 (Create Offer)&lt;/<span style="color:#f92672">h3</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">button</span> <span style="color:#a6e22e">id</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;startChannel&#34;</span>&gt;Start Channel&lt;/<span style="color:#f92672">button</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">textarea</span> <span style="color:#a6e22e">id</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;offerSDP&#34;</span> <span style="color:#a6e22e">readonly</span> <span style="color:#a6e22e">placeholder</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;SDP Offer&#34;</span> <span style="color:#a6e22e">style</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;width: 100%; height: 100px;&#34;</span>&gt;&lt;/<span style="color:#f92672">textarea</span>&gt;
+</span></span><span style="display:flex;"><span>  &lt;/<span style="color:#f92672">div</span>&gt;
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>  &lt;<span style="color:#f92672">div</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">h3</span>&gt;Client 2 (Enter Offer and Respond)&lt;/<span style="color:#f92672">h3</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">textarea</span> <span style="color:#a6e22e">id</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;offerInput&#34;</span> <span style="color:#a6e22e">placeholder</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Paste SDP Offer Here&#34;</span> <span style="color:#a6e22e">style</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;width: 100%; height: 100px;&#34;</span>&gt;&lt;/<span style="color:#f92672">textarea</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">button</span> <span style="color:#a6e22e">id</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;respondOffer&#34;</span>&gt;Respond to Offer&lt;/<span style="color:#f92672">button</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">textarea</span> <span style="color:#a6e22e">id</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;answerSDP&#34;</span> <span style="color:#a6e22e">readonly</span> <span style="color:#a6e22e">placeholder</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;SDP Answer&#34;</span> <span style="color:#a6e22e">style</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;width: 100%; height: 100px;&#34;</span>&gt;&lt;/<span style="color:#f92672">textarea</span>&gt;
+</span></span><span style="display:flex;"><span>  &lt;/<span style="color:#f92672">div</span>&gt;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  &lt;<span style="color:#f92672">div</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">h3</span>&gt;Client 1 (Set SDP Answer)&lt;/<span style="color:#f92672">h3</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">textarea</span> <span style="color:#a6e22e">id</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;answerInput&#34;</span> <span style="color:#a6e22e">placeholder</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Paste SDP Answer Here&#34;</span> <span style="color:#a6e22e">style</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;width: 100%; height: 100px;&#34;</span>&gt;&lt;/<span style="color:#f92672">textarea</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">button</span> <span style="color:#a6e22e">id</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;setAnswer&#34;</span>&gt;Set Answer&lt;/<span style="color:#f92672">button</span>&gt;
+</span></span><span style="display:flex;"><span>  &lt;/<span style="color:#f92672">div</span>&gt;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  &lt;<span style="color:#f92672">div</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">h3</span>&gt;Communication&lt;/<span style="color:#f92672">h3</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">textarea</span> <span style="color:#a6e22e">id</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;chatArea&#34;</span> <span style="color:#a6e22e">readonly</span> <span style="color:#a6e22e">style</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;width: 100%; height: 150px;&#34;</span>&gt;&lt;/<span style="color:#f92672">textarea</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">br</span> /&gt;
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">input</span> <span style="color:#a6e22e">type</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;text&#34;</span> <span style="color:#a6e22e">id</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;messageInput&#34;</span> <span style="color:#a6e22e">placeholder</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Type a message...&#34;</span> <span style="color:#a6e22e">style</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;width: 80%;&#34;</span> /&gt;
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">button</span> <span style="color:#a6e22e">id</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;sendMessage&#34;</span> <span style="color:#a6e22e">disabled</span>&gt;Send&lt;/<span style="color:#f92672">button</span>&gt;
+</span></span><span style="display:flex;"><span>  &lt;/<span style="color:#f92672">div</span>&gt;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  &lt;<span style="color:#f92672">script</span> <span style="color:#a6e22e">src</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;webrtc-demo.js&#34;</span>&gt;&lt;/<span style="color:#f92672">script</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">body</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">html</span>&gt;
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">startChannelButton</span> <span style="color:#f92672">=</span> document.<span style="color:#a6e22e">getElementById</span>(<span style="color:#e6db74">&#39;startChannel&#39;</span>);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">offerSDPTextarea</span> <span style="color:#f92672">=</span> document.<span style="color:#a6e22e">getElementById</span>(<span style="color:#e6db74">&#39;offerSDP&#39;</span>);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">offerInputTextarea</span> <span style="color:#f92672">=</span> document.<span style="color:#a6e22e">getElementById</span>(<span style="color:#e6db74">&#39;offerInput&#39;</span>);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">respondOfferButton</span> <span style="color:#f92672">=</span> document.<span style="color:#a6e22e">getElementById</span>(<span style="color:#e6db74">&#39;respondOffer&#39;</span>);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">answerSDPTextarea</span> <span style="color:#f92672">=</span> document.<span style="color:#a6e22e">getElementById</span>(<span style="color:#e6db74">&#39;answerSDP&#39;</span>);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">answerInputTextarea</span> <span style="color:#f92672">=</span> document.<span style="color:#a6e22e">getElementById</span>(<span style="color:#e6db74">&#39;answerInput&#39;</span>);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">setAnswerButton</span> <span style="color:#f92672">=</span> document.<span style="color:#a6e22e">getElementById</span>(<span style="color:#e6db74">&#39;setAnswer&#39;</span>);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">sendButton</span> <span style="color:#f92672">=</span> document.<span style="color:#a6e22e">getElementById</span>(<span style="color:#e6db74">&#39;sendMessage&#39;</span>);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">chatArea</span> <span style="color:#f92672">=</span> document.<span style="color:#a6e22e">getElementById</span>(<span style="color:#e6db74">&#39;chatArea&#39;</span>);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">messageInput</span> <span style="color:#f92672">=</span> document.<span style="color:#a6e22e">getElementById</span>(<span style="color:#e6db74">&#39;messageInput&#39;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">let</span> <span style="color:#a6e22e">localConnection</span>, <span style="color:#a6e22e">remoteConnection</span>, <span style="color:#a6e22e">sendChannel</span>, <span style="color:#a6e22e">receiveChannel</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Start channel and create SDP offer (Client 1)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">startChannelButton</span>.<span style="color:#a6e22e">onclick</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">async</span> () =&gt; {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">localConnection</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">RTCPeerConnection</span>();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// Create data channel
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#a6e22e">sendChannel</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">localConnection</span>.<span style="color:#a6e22e">createDataChannel</span>(<span style="color:#e6db74">&#39;chat&#39;</span>);
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">sendChannel</span>.<span style="color:#a6e22e">onopen</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">handleChannelStatusChange</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">sendChannel</span>.<span style="color:#a6e22e">onclose</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">handleChannelStatusChange</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// Handle ICE candidates
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#a6e22e">localConnection</span>.<span style="color:#a6e22e">onicecandidate</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">e</span> =&gt; {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span><span style="color:#a6e22e">e</span>.<span style="color:#a6e22e">candidate</span>) {
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">offerSDPTextarea</span>.<span style="color:#a6e22e">value</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">JSON</span>.<span style="color:#a6e22e">stringify</span>(<span style="color:#a6e22e">localConnection</span>.<span style="color:#a6e22e">localDescription</span>);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>  };
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// Create an SDP offer
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">offer</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> <span style="color:#a6e22e">localConnection</span>.<span style="color:#a6e22e">createOffer</span>();
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">await</span> <span style="color:#a6e22e">localConnection</span>.<span style="color:#a6e22e">setLocalDescription</span>(<span style="color:#a6e22e">offer</span>);
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Respond to offer and create SDP answer (Client 2)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">respondOfferButton</span>.<span style="color:#a6e22e">onclick</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">async</span> () =&gt; {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">offer</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">JSON</span>.<span style="color:#a6e22e">parse</span>(<span style="color:#a6e22e">offerInputTextarea</span>.<span style="color:#a6e22e">value</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">remoteConnection</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">RTCPeerConnection</span>();
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">remoteConnection</span>.<span style="color:#a6e22e">onicecandidate</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">e</span> =&gt; {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span><span style="color:#a6e22e">e</span>.<span style="color:#a6e22e">candidate</span>) {
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">answerSDPTextarea</span>.<span style="color:#a6e22e">value</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">JSON</span>.<span style="color:#a6e22e">stringify</span>(<span style="color:#a6e22e">remoteConnection</span>.<span style="color:#a6e22e">localDescription</span>);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>  };
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// Handle incoming data channel
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#a6e22e">remoteConnection</span>.<span style="color:#a6e22e">ondatachannel</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">e</span> =&gt; {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">receiveChannel</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">e</span>.<span style="color:#a6e22e">channel</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">receiveChannel</span>.<span style="color:#a6e22e">onmessage</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">handleReceiveMessage</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">receiveChannel</span>.<span style="color:#a6e22e">onopen</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">handleChannelStatusChange</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">receiveChannel</span>.<span style="color:#a6e22e">onclose</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">handleChannelStatusChange</span>;
+</span></span><span style="display:flex;"><span>  };
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// Set remote description from offer
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#66d9ef">await</span> <span style="color:#a6e22e">remoteConnection</span>.<span style="color:#a6e22e">setRemoteDescription</span>(<span style="color:#a6e22e">offer</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// Create an SDP answer
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">answer</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> <span style="color:#a6e22e">remoteConnection</span>.<span style="color:#a6e22e">createAnswer</span>();
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">await</span> <span style="color:#a6e22e">remoteConnection</span>.<span style="color:#a6e22e">setLocalDescription</span>(<span style="color:#a6e22e">answer</span>);
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Set SDP answer on Client 1
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">setAnswerButton</span>.<span style="color:#a6e22e">onclick</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">async</span> () =&gt; {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">answer</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">JSON</span>.<span style="color:#a6e22e">parse</span>(<span style="color:#a6e22e">answerInputTextarea</span>.<span style="color:#a6e22e">value</span>);
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">localConnection</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">await</span> <span style="color:#a6e22e">localConnection</span>.<span style="color:#a6e22e">setRemoteDescription</span>(<span style="color:#a6e22e">answer</span>);
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Send messages
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">sendButton</span>.<span style="color:#a6e22e">onclick</span> <span style="color:#f92672">=</span> () =&gt; {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">message</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">messageInput</span>.<span style="color:#a6e22e">value</span>.<span style="color:#a6e22e">trim</span>();
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">message</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#a6e22e">sendChannel</span>.<span style="color:#a6e22e">readyState</span> <span style="color:#f92672">===</span> <span style="color:#e6db74">&#39;open&#39;</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">sendChannel</span>.<span style="color:#a6e22e">send</span>(<span style="color:#a6e22e">message</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">appendMessage</span>(<span style="color:#e6db74">`You: </span><span style="color:#e6db74">${</span><span style="color:#a6e22e">message</span><span style="color:#e6db74">}</span><span style="color:#e6db74">`</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">messageInput</span>.<span style="color:#a6e22e">value</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;&#39;</span>;
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Append messages to chat area
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">appendMessage</span>(<span style="color:#a6e22e">message</span>) {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">chatArea</span>.<span style="color:#a6e22e">value</span> <span style="color:#f92672">+=</span> <span style="color:#e6db74">`</span><span style="color:#e6db74">${</span><span style="color:#a6e22e">message</span><span style="color:#e6db74">}</span><span style="color:#e6db74">\n`</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Handle received messages
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">handleReceiveMessage</span>(<span style="color:#a6e22e">event</span>) {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">appendMessage</span>(<span style="color:#e6db74">`Peer: </span><span style="color:#e6db74">${</span><span style="color:#a6e22e">event</span>.<span style="color:#a6e22e">data</span><span style="color:#e6db74">}</span><span style="color:#e6db74">`</span>);
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Handle channel status changes
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">handleChannelStatusChange</span>() {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">sendChannel</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#a6e22e">sendChannel</span>.<span style="color:#a6e22e">readyState</span> <span style="color:#f92672">===</span> <span style="color:#e6db74">&#39;open&#39;</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">messageInput</span>.<span style="color:#a6e22e">disabled</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">false</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">sendButton</span>.<span style="color:#a6e22e">disabled</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">false</span>;
+</span></span><span style="display:flex;"><span>  } <span style="color:#66d9ef">else</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">messageInput</span>.<span style="color:#a6e22e">disabled</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">true</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">sendButton</span>.<span style="color:#a6e22e">disabled</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">true</span>;
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div></article>
  
       
 
@@ -697,6 +985,7 @@ https://github.com/alex-shpak/hugo-book
 <nav id="TableOfContents">
   <ul>
     <li><a href="#overview">Overview</a></li>
+    <li><a href="#demo">Demo</a></li>
   </ul>
 </nav>
 

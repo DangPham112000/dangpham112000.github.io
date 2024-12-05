@@ -8,6 +8,61 @@
   #
 
 
+  Explore your site&rsquo;s vulnerabilities
+  #
+
+# IPv4
+sudo nmap --script vuln [IPv4] 
+# IPv6 
+sudo nmap -6 --script vuln [IPv6]
+# E.g IPv4
+sudo nmap --script vuln 18.141.184.34
+# E.g IPv6
+sudo nmap -6 --script vuln 2606:4700:3033::ac43:b865
+# E.g output
+Starting Nmap 7.94SVN ( https://nmap.org ) at 2024-12-05 09:00 &#43;07
+Nmap scan report for ec2-18-141-184-34.ap-southeast-1.compute.amazonaws.com (18.141.184.34)
+Host is up (0.033s latency).
+Not shown: 997 filtered tcp ports (no-response)
+PORT    STATE SERVICE
+22/tcp  open  ssh
+80/tcp  open  http
+|_http-csrf: Couldn&#39;t find any CSRF vulnerabilities.
+|_http-dombased-xss: Couldn&#39;t find any DOM based XSS.
+| http-vuln-cve2011-3192: 
+|   VULNERABLE:
+|   Apache byterange filter DoS
+|     State: VULNERABLE
+|     IDs:  BID:49303  CVE:CVE-2011-3192
+|       The Apache web server is vulnerable to a denial of service attack when numerous
+|       overlapping byte ranges are requested.
+|     Disclosure date: 2011-08-19
+|     References:
+|       https://www.securityfocus.com/bid/49303
+|       https://www.tenable.com/plugins/nessus/55976
+|       https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2011-3192
+|_      https://seclists.org/fulldisclosure/2011/Aug/175
+|_http-stored-xss: Couldn&#39;t find any stored XSS vulnerabilities.
+443/tcp open  https
+|_http-csrf: Couldn&#39;t find any CSRF vulnerabilities.
+|_http-stored-xss: Couldn&#39;t find any stored XSS vulnerabilities.
+| http-vuln-cve2011-3192: 
+|   VULNERABLE:
+|   Apache byterange filter DoS
+|     State: VULNERABLE
+|     IDs:  BID:49303  CVE:CVE-2011-3192
+|       The Apache web server is vulnerable to a denial of service attack when numerous
+|       overlapping byte ranges are requested.
+|     Disclosure date: 2011-08-19
+|     References:
+|       https://www.securityfocus.com/bid/49303
+|       https://www.tenable.com/plugins/nessus/55976
+|       https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2011-3192
+|_      https://seclists.org/fulldisclosure/2011/Aug/175
+|_http-dombased-xss: Couldn&#39;t find any DOM based XSS.
+
+Nmap done: 1 IP address (1 host up) scanned in 193.10 seconds
+
   Brute Force Attack
   #
 
@@ -15,78 +70,13 @@
 Every password-based system and encryption key out there can be cracked using a brute force attack.
 There is only one problem with this attack: the time.
 
-
-
-Why does the hashing method matter when cracking passwords with a brute force attack? Bcrypt will take longer to crack than MD5
-
-
-  Use case
-  #
-
-
-Cracking passwords (SSH logins)
-Cracking encryption keys (API keys)
-
-
-  How it works
-  #
-
-
-The hacker have to run through every possible combination of characters before achieving their goal
-These attacks are often carried out by scripts or bots that target specific systems or accounts
-
-
-  Prevention
-  #
-
-
-Longer password
-Delay response: A system that responds immediately is not always good. Adding a delay when checking passwords, even a delay of a few seconds, can greatly weaken the effectiveness of a brute force attack
-Stronger hashing method
-Two-factor authentication
-Rate limit
-
-
-  Dictionary attack
-  #
-
-
-  Use case
-  #
-
-
-A dictionary attack is a method of breaking into a password-protected computer, network or other IT resource by systematically entering every word in a dictionary, or word list, as a password
-A dictionary attack can also be used in an attempt to find the key necessary to decrypt an encrypted message or document
-
-
-  How it works
-  #
-
-
-If it targets an organization or a particular person, the dictionary can collect all the closely related words around the target they want to hack. It can then combine all of them in all possible ways and try each combination to guess the password or key they want to hack
-
-
-  Prevention
-  #
-
-
-Avoid passwords: Passwords can&rsquo;t be hacked if we don&rsquo;t use them for login (I&rsquo;m joking). From a system perspective, we can completely avoid them by using password-free authentication solutions and biometric logins
-Random passwords: From a user perspective, don&rsquo;t use closely related information (like names, pets, birthdays) or easy-to-predict words (like &ldquo;password,&rdquo; &ldquo;abcd,&rdquo; &ldquo;xyz,&rdquo; &ldquo;123&rdquo;) to create a password. Instead, use random strings. If you find them difficult to remember, you can use a third-party password manager to store them (of course, you need to choose a trustworthy one).
-Two-factor authentication
-Limit login attempts
-Force resets
-
-
-  Malicious Network Redirects
-  #
-
-Attackers can inject fake DNS responses, redirecting you to malicious versions of websites">
+">
 <meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff">
 <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#343a40">
 <meta name="color-scheme" content="light dark"><meta property="og:url" content="https://dangpham112000.github.io/docs/research/security/">
   <meta property="og:site_name" content="Dante 0401">
   <meta property="og:title" content="Security - Draft">
-  <meta property="og:description" content="Security # Brute Force Attack # Every password-based system and encryption key out there can be cracked using a brute force attack. There is only one problem with this attack: the time. Why does the hashing method matter when cracking passwords with a brute force attack? Bcrypt will take longer to crack than MD5 Use case # Cracking passwords (SSH logins) Cracking encryption keys (API keys) How it works # The hacker have to run through every possible combination of characters before achieving their goal These attacks are often carried out by scripts or bots that target specific systems or accounts Prevention # Longer password Delay response: A system that responds immediately is not always good. Adding a delay when checking passwords, even a delay of a few seconds, can greatly weaken the effectiveness of a brute force attack Stronger hashing method Two-factor authentication Rate limit Dictionary attack # Use case # A dictionary attack is a method of breaking into a password-protected computer, network or other IT resource by systematically entering every word in a dictionary, or word list, as a password A dictionary attack can also be used in an attempt to find the key necessary to decrypt an encrypted message or document How it works # If it targets an organization or a particular person, the dictionary can collect all the closely related words around the target they want to hack. It can then combine all of them in all possible ways and try each combination to guess the password or key they want to hack Prevention # Avoid passwords: Passwords can’t be hacked if we don’t use them for login (I’m joking). From a system perspective, we can completely avoid them by using password-free authentication solutions and biometric logins Random passwords: From a user perspective, don’t use closely related information (like names, pets, birthdays) or easy-to-predict words (like “password,” “abcd,” “xyz,” “123”) to create a password. Instead, use random strings. If you find them difficult to remember, you can use a third-party password manager to store them (of course, you need to choose a trustworthy one). Two-factor authentication Limit login attempts Force resets Malicious Network Redirects # Attackers can inject fake DNS responses, redirecting you to malicious versions of websites">
+  <meta property="og:description" content="Security # Explore your site’s vulnerabilities # # IPv4 sudo nmap --script vuln [IPv4] # IPv6 sudo nmap -6 --script vuln [IPv6] # E.g IPv4 sudo nmap --script vuln 18.141.184.34 # E.g IPv6 sudo nmap -6 --script vuln 2606:4700:3033::ac43:b865 # E.g output Starting Nmap 7.94SVN ( https://nmap.org ) at 2024-12-05 09:00 &#43;07 Nmap scan report for ec2-18-141-184-34.ap-southeast-1.compute.amazonaws.com (18.141.184.34) Host is up (0.033s latency). Not shown: 997 filtered tcp ports (no-response) PORT STATE SERVICE 22/tcp open ssh 80/tcp open http |_http-csrf: Couldn&#39;t find any CSRF vulnerabilities. |_http-dombased-xss: Couldn&#39;t find any DOM based XSS. | http-vuln-cve2011-3192: | VULNERABLE: | Apache byterange filter DoS | State: VULNERABLE | IDs: BID:49303 CVE:CVE-2011-3192 | The Apache web server is vulnerable to a denial of service attack when numerous | overlapping byte ranges are requested. | Disclosure date: 2011-08-19 | References: | https://www.securityfocus.com/bid/49303 | https://www.tenable.com/plugins/nessus/55976 | https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2011-3192 |_ https://seclists.org/fulldisclosure/2011/Aug/175 |_http-stored-xss: Couldn&#39;t find any stored XSS vulnerabilities. 443/tcp open https |_http-csrf: Couldn&#39;t find any CSRF vulnerabilities. |_http-stored-xss: Couldn&#39;t find any stored XSS vulnerabilities. | http-vuln-cve2011-3192: | VULNERABLE: | Apache byterange filter DoS | State: VULNERABLE | IDs: BID:49303 CVE:CVE-2011-3192 | The Apache web server is vulnerable to a denial of service attack when numerous | overlapping byte ranges are requested. | Disclosure date: 2011-08-19 | References: | https://www.securityfocus.com/bid/49303 | https://www.tenable.com/plugins/nessus/55976 | https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2011-3192 |_ https://seclists.org/fulldisclosure/2011/Aug/175 |_http-dombased-xss: Couldn&#39;t find any DOM based XSS. Nmap done: 1 IP address (1 host up) scanned in 193.10 seconds Brute Force Attack # Every password-based system and encryption key out there can be cracked using a brute force attack. There is only one problem with this attack: the time.">
   <meta property="og:locale" content="en_us">
   <meta property="og:type" content="website">
 <title>Security - Draft | Dante 0401</title>
@@ -95,7 +85,7 @@ Attackers can inject fake DNS responses, redirecting you to malicious versions o
 <link rel="canonical" href="https://dangpham112000.github.io/docs/research/security/">
 <link rel="stylesheet" href="/book.min.0ebfa1e81a7b241abaa8a9626be8325416e98d14702ea33197aea691fec27e9d.css" integrity="sha256-Dr&#43;h6Bp7JBq6qKlia&#43;gyVBbpjRRwLqMxl66mkf7Cfp0=" crossorigin="anonymous">
   <script defer src="/fuse.min.js"></script>
-  <script defer src="/en.search.min.85a9b593252a1c2f4282aece8b9d2010f288e37807d1b3ddf8682c4474abd499.js" integrity="sha256-ham1kyUqHC9Cgq7Oi50gEPKI43gH0bPd&#43;GgsRHSr1Jk=" crossorigin="anonymous"></script>
+  <script defer src="/en.search.min.d85061315ce42acab954d758540d1509c469cee62d450b4e7ba79aad9b9d2bf1.js" integrity="sha256-2FBhMVzkKsq5VNdYVA0VCcRpzuYtRQtOe6earZudK/E=" crossorigin="anonymous"></script>
 <link rel="alternate" type="application/rss+xml" href="https://dangpham112000.github.io/docs/research/security/index.xml" title="Dante 0401" />
 <!--
 Made with Book Theme
@@ -687,6 +677,7 @@ https://github.com/alex-shpak/hugo-book
   
 <nav id="TableOfContents">
   <ul>
+    <li><a href="#explore-your-sites-vulnerabilities">Explore your site&rsquo;s vulnerabilities</a></li>
     <li><a href="#brute-force-attack">Brute Force Attack</a>
       <ul>
         <li><a href="#use-case">Use case</a></li>
@@ -745,7 +736,62 @@ https://github.com/alex-shpak/hugo-book
   Security
   <a class="anchor" href="#security">#</a>
 </h1>
-<h2 id="brute-force-attack">
+<h2 id="explore-your-sites-vulnerabilities">
+  Explore your site&rsquo;s vulnerabilities
+  <a class="anchor" href="#explore-your-sites-vulnerabilities">#</a>
+</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span><span style="color:#75715e"># IPv4</span>
+</span></span><span style="display:flex;"><span>sudo nmap --script vuln <span style="color:#f92672">[</span>IPv4<span style="color:#f92672">]</span> 
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># IPv6 </span>
+</span></span><span style="display:flex;"><span>sudo nmap -6 --script vuln <span style="color:#f92672">[</span>IPv6<span style="color:#f92672">]</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># E.g IPv4</span>
+</span></span><span style="display:flex;"><span>sudo nmap --script vuln 18.141.184.34
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># E.g IPv6</span>
+</span></span><span style="display:flex;"><span>sudo nmap -6 --script vuln 2606:4700:3033::ac43:b865
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># E.g output</span>
+</span></span><span style="display:flex;"><span>Starting Nmap 7.94SVN <span style="color:#f92672">(</span> https://nmap.org <span style="color:#f92672">)</span> at 2024-12-05 09:00 +07
+</span></span><span style="display:flex;"><span>Nmap scan report <span style="color:#66d9ef">for</span> ec2-18-141-184-34.ap-southeast-1.compute.amazonaws.com <span style="color:#f92672">(</span>18.141.184.34<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>Host is up <span style="color:#f92672">(</span>0.033s latency<span style="color:#f92672">)</span>.
+</span></span><span style="display:flex;"><span>Not shown: <span style="color:#ae81ff">997</span> filtered tcp ports <span style="color:#f92672">(</span>no-response<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>PORT    STATE SERVICE
+</span></span><span style="display:flex;"><span>22/tcp  open  ssh
+</span></span><span style="display:flex;"><span>80/tcp  open  http
+</span></span><span style="display:flex;"><span>|_http-csrf: Couldn<span style="color:#e6db74">&#39;t find any CSRF vulnerabilities.
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">|_http-dombased-xss: Couldn&#39;</span>t find any DOM based XSS.
+</span></span><span style="display:flex;"><span>| http-vuln-cve2011-3192: 
+</span></span><span style="display:flex;"><span>|   VULNERABLE:
+</span></span><span style="display:flex;"><span>|   Apache byterange filter DoS
+</span></span><span style="display:flex;"><span>|     State: VULNERABLE
+</span></span><span style="display:flex;"><span>|     IDs:  BID:49303  CVE:CVE-2011-3192
+</span></span><span style="display:flex;"><span>|       The Apache web server is vulnerable to a denial of service attack when numerous
+</span></span><span style="display:flex;"><span>|       overlapping byte ranges are requested.
+</span></span><span style="display:flex;"><span>|     Disclosure date: 2011-08-19
+</span></span><span style="display:flex;"><span>|     References:
+</span></span><span style="display:flex;"><span>|       https://www.securityfocus.com/bid/49303
+</span></span><span style="display:flex;"><span>|       https://www.tenable.com/plugins/nessus/55976
+</span></span><span style="display:flex;"><span>|       https://cve.mitre.org/cgi-bin/cvename.cgi?name<span style="color:#f92672">=</span>CVE-2011-3192
+</span></span><span style="display:flex;"><span>|_      https://seclists.org/fulldisclosure/2011/Aug/175
+</span></span><span style="display:flex;"><span>|_http-stored-xss: Couldn<span style="color:#e6db74">&#39;t find any stored XSS vulnerabilities.
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">443/tcp open  https
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">|_http-csrf: Couldn&#39;</span>t find any CSRF vulnerabilities.
+</span></span><span style="display:flex;"><span>|_http-stored-xss: Couldn<span style="color:#e6db74">&#39;t find any stored XSS vulnerabilities.
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">| http-vuln-cve2011-3192: 
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">|   VULNERABLE:
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">|   Apache byterange filter DoS
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">|     State: VULNERABLE
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">|     IDs:  BID:49303  CVE:CVE-2011-3192
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">|       The Apache web server is vulnerable to a denial of service attack when numerous
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">|       overlapping byte ranges are requested.
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">|     Disclosure date: 2011-08-19
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">|     References:
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">|       https://www.securityfocus.com/bid/49303
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">|       https://www.tenable.com/plugins/nessus/55976
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">|       https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2011-3192
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">|_      https://seclists.org/fulldisclosure/2011/Aug/175
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">|_http-dombased-xss: Couldn&#39;</span>t find any DOM based XSS.
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Nmap <span style="color:#66d9ef">done</span>: <span style="color:#ae81ff">1</span> IP address <span style="color:#f92672">(</span><span style="color:#ae81ff">1</span> host up<span style="color:#f92672">)</span> scanned in 193.10 seconds
+</span></span></code></pre></div><h2 id="brute-force-attack">
   Brute Force Attack
   <a class="anchor" href="#brute-force-attack">#</a>
 </h2>
@@ -956,6 +1002,7 @@ https://github.com/alex-shpak/hugo-book
   
 <nav id="TableOfContents">
   <ul>
+    <li><a href="#explore-your-sites-vulnerabilities">Explore your site&rsquo;s vulnerabilities</a></li>
     <li><a href="#brute-force-attack">Brute Force Attack</a>
       <ul>
         <li><a href="#use-case">Use case</a></li>
