@@ -44,9 +44,9 @@ Remote-tracking branches: References (in the form of origin/branch-name) that po
 <link rel="manifest" href="/manifest.json">
 <link rel="icon" href="/favicon.png" >
 <link rel="canonical" href="https://dangpham112000.github.io/docs/tips/002_git/">
-<link rel="stylesheet" href="/book.min.0ebfa1e81a7b241abaa8a9626be8325416e98d14702ea33197aea691fec27e9d.css" integrity="sha256-Dr&#43;h6Bp7JBq6qKlia&#43;gyVBbpjRRwLqMxl66mkf7Cfp0=" crossorigin="anonymous">
+<link rel="stylesheet" href="/book.min.ef1786281083252320100bd5f394f36844d3252afdbd5bfe72e5f440aaff402b.css" integrity="sha256-7xeGKBCDJSMgEAvV85TzaETTJSr9vVv&#43;cuX0QKr/QCs=" crossorigin="anonymous">
   <script defer src="/fuse.min.js"></script>
-  <script defer src="/en.search.min.d85061315ce42acab954d758540d1509c469cee62d450b4e7ba79aad9b9d2bf1.js" integrity="sha256-2FBhMVzkKsq5VNdYVA0VCcRpzuYtRQtOe6earZudK/E=" crossorigin="anonymous"></script>
+  <script defer src="/en.search.min.2368237607706a95cfd1f302b9c2027f1eef8ff33330e68f0e27bd74d1958460.js" integrity="sha256-I2gjdgdwapXP0fMCucICfx7vj/MzMOaPDie9dNGVhGA=" crossorigin="anonymous"></script>
 <!--
 Made with Book Theme
 https://github.com/alex-shpak/hugo-book
@@ -440,19 +440,6 @@ https://github.com/alex-shpak/hugo-book
         </li>
       
     
-      
-        <li>
-          
-  
-  
-
-  
-    <a href="/docs/research/social_media/" class="">Social Media - Draft</a>
-  
-
-        </li>
-      
-    
   </ul>
 
         </li>
@@ -658,7 +645,6 @@ https://github.com/alex-shpak/hugo-book
     <li><a href="#update-the-outdated-feature-branch">Update the outdated feature branch</a>
       <ul>
         <li><a href="#relocate-branch-rebase">Relocate branch: rebase</a></li>
-        <li><a href="#pull-origin">Pull origin</a></li>
       </ul>
     </li>
     <li><a href="#clean-up-messy-commits">Clean up messy commits</a>
@@ -668,11 +654,8 @@ https://github.com/alex-shpak/hugo-book
     </li>
     <li><a href="#delete-all-local-branches-except-main-branch">Delete all local branches except main branch</a></li>
     <li><a href="#clean-up-outdated-references">Clean up outdated references</a></li>
-    <li><a href="#refresh-outdated-local-branch">Refresh outdated local branch</a>
-      <ul>
-        <li><a href="#force-pull">Force pull</a></li>
-      </ul>
-    </li>
+    <li><a href="#refresh-outdated-local-branch">Refresh outdated local branch</a></li>
+    <li><a href="#ignore-all-modified-and-new-files-and-pull-the-latest-version">Ignore all modified and new files and pull the latest version</a></li>
     <li><a href="#merge-pr-but-get-stuck-in-conflict">Merge PR but get stuck in conflict</a>
       <ul>
         <li><a href="#relocate-branch-rebase-1">Relocate branch: rebase</a></li>
@@ -815,19 +798,6 @@ https://github.com/alex-shpak/hugo-book
 </span></span><span style="display:flex;"><span>git rebase master topic
 </span></span><span style="display:flex;"><span>git push -f
 </span></span></code></pre></div><p><ins>Note</ins>: topic branch will have code from <code>F</code> and <code>G</code> of main branch, but if it conflicts with topic branch, the solution will be the same <a href="#relocate-branch-rebase-1">here</a></p>
-<h3 id="pull-origin">
-  Pull origin
-  <a class="anchor" href="#pull-origin">#</a>
-</h3>
-<p>Collect code from master to feature branch. Feature branch in this example is topic branch</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>git checkout master
-</span></span><span style="display:flex;"><span>git pull
-</span></span><span style="display:flex;"><span>git checkout topic
-</span></span><span style="display:flex;"><span>git pull origin master
-</span></span></code></pre></div><p><ins>Note</ins>: <blockquote class="book-hint danger">
-  never ever tried it yet
-</blockquote>
-</p>
 <h2 id="clean-up-messy-commits">
   Clean up messy commits
   <a class="anchor" href="#clean-up-messy-commits">#</a>
@@ -918,15 +888,19 @@ https://github.com/alex-shpak/hugo-book
 </span></span><span style="display:flex;"><span>git branch -D feature-branch
 </span></span><span style="display:flex;"><span>git fetch
 </span></span><span style="display:flex;"><span>git checkout feature-branch
-</span></span></code></pre></div><h3 id="force-pull">
-  Force pull
-  <a class="anchor" href="#force-pull">#</a>
-</h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>git pull -f
-</span></span></code></pre></div><p><ins>Note</ins>: <blockquote class="book-hint danger">
-  never ever tried it yet
-</blockquote>
-</p>
+</span></span></code></pre></div><h2 id="ignore-all-modified-and-new-files-and-pull-the-latest-version">
+  Ignore all modified and new files and pull the latest version
+  <a class="anchor" href="#ignore-all-modified-and-new-files-and-pull-the-latest-version">#</a>
+</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span><span style="color:#75715e"># Discard local changes (tracked files)</span>
+</span></span><span style="display:flex;"><span>git reset --hard
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Clean untracked files</span>
+</span></span><span style="display:flex;"><span>git clean -fd
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Pull the latest</span>
+</span></span><span style="display:flex;"><span>git pull
+</span></span></code></pre></div><p><ins>Note</ins>: If you&rsquo;re unsure, stash your changes first so you can recover them later with <code>git stash</code></p>
 <h2 id="merge-pr-but-get-stuck-in-conflict">
   Merge PR but get stuck in conflict
   <a class="anchor" href="#merge-pr-but-get-stuck-in-conflict">#</a>
@@ -1141,7 +1115,6 @@ https://github.com/alex-shpak/hugo-book
     <li><a href="#update-the-outdated-feature-branch">Update the outdated feature branch</a>
       <ul>
         <li><a href="#relocate-branch-rebase">Relocate branch: rebase</a></li>
-        <li><a href="#pull-origin">Pull origin</a></li>
       </ul>
     </li>
     <li><a href="#clean-up-messy-commits">Clean up messy commits</a>
@@ -1151,11 +1124,8 @@ https://github.com/alex-shpak/hugo-book
     </li>
     <li><a href="#delete-all-local-branches-except-main-branch">Delete all local branches except main branch</a></li>
     <li><a href="#clean-up-outdated-references">Clean up outdated references</a></li>
-    <li><a href="#refresh-outdated-local-branch">Refresh outdated local branch</a>
-      <ul>
-        <li><a href="#force-pull">Force pull</a></li>
-      </ul>
-    </li>
+    <li><a href="#refresh-outdated-local-branch">Refresh outdated local branch</a></li>
+    <li><a href="#ignore-all-modified-and-new-files-and-pull-the-latest-version">Ignore all modified and new files and pull the latest version</a></li>
     <li><a href="#merge-pr-but-get-stuck-in-conflict">Merge PR but get stuck in conflict</a>
       <ul>
         <li><a href="#relocate-branch-rebase-1">Relocate branch: rebase</a></li>
