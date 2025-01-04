@@ -8,39 +8,41 @@
   #
 
 
-Provide one-time login for user
-Less access to database for password checking, user info, user role
+Senario: Each time a user accesses your website containing sensitive resources, such as posting a new blog, they are required to log in repeatedly every time they visit
+Problem: Is there a way to allow them to log in just once and avoid re-logging in, even if their previous session was two days ago?
+Solution: Access tokens were designed to solve this problem
 
 
-  Basic flow
+  Access token
   #
 
 
+Provide a one-time login for users
+Reduce database access for password verification, user information retrieval, and role checking
 
-  Token expired
+
+  Characteristics
   #
 
 
+Short-lived
+Stored in client-side storage
+Contains the user&rsquo;s identity
+Contains a set of claims, permissions, or roles of the user
+Grants access to the system
 
-  Threat mitigation strategy
+
+  Cons
   #
 
-
-
-  Access Token
-  #
-
-
-  Pros
-  #
-
-Do you notice some web page allow you go to a route like dashboard immediately just because you has been login before, but some other web app also have dashboard but they request you login every time you go to them">
+If we only use AT for authentication
+So when hacker stolen AT successfully, they can impersonate the user">
 <meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff">
 <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#343a40">
 <meta name="color-scheme" content="light dark"><meta property="og:url" content="https://dangpham112000.github.io/docs/research/token_based_authentication/">
   <meta property="og:site_name" content="Dante 0401">
   <meta property="og:title" content="Token-based Authentication">
-  <meta property="og:description" content="Token-based authentication # Provide one-time login for user Less access to database for password checking, user info, user role Basic flow # Token expired # Threat mitigation strategy # Access Token # Pros # Do you notice some web page allow you go to a route like dashboard immediately just because you has been login before, but some other web app also have dashboard but they request you login every time you go to them">
+  <meta property="og:description" content="Token-based authentication # Senario: Each time a user accesses your website containing sensitive resources, such as posting a new blog, they are required to log in repeatedly every time they visit Problem: Is there a way to allow them to log in just once and avoid re-logging in, even if their previous session was two days ago? Solution: Access tokens were designed to solve this problem Access token # Provide a one-time login for users Reduce database access for password verification, user information retrieval, and role checking Characteristics # Short-lived Stored in client-side storage Contains the user’s identity Contains a set of claims, permissions, or roles of the user Grants access to the system Cons # If we only use AT for authentication So when hacker stolen AT successfully, they can impersonate the user">
   <meta property="og:locale" content="en_us">
   <meta property="og:type" content="article">
     <meta property="article:section" content="docs">
@@ -52,7 +54,7 @@ Do you notice some web page allow you go to a route like dashboard immediately j
 <link rel="canonical" href="https://dangpham112000.github.io/docs/research/token_based_authentication/">
 <link rel="stylesheet" href="/book.min.ef1786281083252320100bd5f394f36844d3252afdbd5bfe72e5f440aaff402b.css" integrity="sha256-7xeGKBCDJSMgEAvV85TzaETTJSr9vVv&#43;cuX0QKr/QCs=" crossorigin="anonymous">
   <script defer src="/fuse.min.js"></script>
-  <script defer src="/en.search.min.5ebdda770e44b5fd7ca87795e4417e341f85eeeef1d0887b174590e755647cef.js" integrity="sha256-Xr3adw5Etf18qHeV5EF&#43;NB&#43;F7u7x0Ih7F0WQ51VkfO8=" crossorigin="anonymous"></script>
+  <script defer src="/en.search.min.ff84c256a0faddf219568a699fd38884f291926ac9742ea559805b09758f5c48.js" integrity="sha256-/4TCVqD63fIZVoppn9OIhPKRkmrJdC6lWYBbCXWPXEg=" crossorigin="anonymous"></script>
 <!--
 Made with Book Theme
 https://github.com/alex-shpak/hugo-book
@@ -630,12 +632,21 @@ https://github.com/alex-shpak/hugo-book
   
 <nav id="TableOfContents">
   <ul>
-    <li><a href="#basic-flow">Basic flow</a></li>
-    <li><a href="#token-expired">Token expired</a></li>
-    <li><a href="#threat-mitigation-strategy">Threat mitigation strategy</a>
+    <li><a href="#access-token">Access token</a>
       <ul>
-        <li><a href="#access-token">Access Token</a></li>
-        <li><a href="#refresh-token">Refresh Token</a></li>
+        <li><a href="#characteristics">Characteristics</a></li>
+      </ul>
+    </li>
+    <li><a href="#refresh-token">Refresh token</a>
+      <ul>
+        <li><a href="#characteristics-1">Characteristics</a></li>
+      </ul>
+    </li>
+    <li><a href="#how-do-they-work-together">How do they work together?</a>
+      <ul>
+        <li><a href="#basic-flow">Basic flow</a></li>
+        <li><a href="#token-expired">Token expired</a></li>
+        <li><a href="#threat-mitigation-strategy">Threat mitigation strategy</a></li>
         <li><a href="#third-party-authen-concept">Third party authen concept</a></li>
       </ul>
     </li>
@@ -658,35 +669,29 @@ https://github.com/alex-shpak/hugo-book
   <a class="anchor" href="#token-based-authentication">#</a>
 </h1>
 <ul>
-<li>Provide one-time login for user</li>
-<li>Less access to database for password checking, user info, user role</li>
+<li><strong>Senario</strong>: Each time a user accesses your website containing <strong>sensitive</strong> resources, such as posting a new blog, they are required to log in <strong>repeatedly</strong> every time they visit</li>
+<li><strong>Problem</strong>: Is there a way to allow them to log in just <strong>once</strong> and avoid re-logging in, even if their previous session was two days ago?</li>
+<li><strong>Solution</strong>: Access tokens were designed to solve this problem</li>
 </ul>
-<h2 id="basic-flow">
-  Basic flow
-  <a class="anchor" href="#basic-flow">#</a>
-</h2>
-<p><img src="/research/token_based_authentication/basic_flow.png" alt="basic_flow" /></p>
-<h2 id="token-expired">
-  Token expired
-  <a class="anchor" href="#token-expired">#</a>
-</h2>
-<p><img src="/research/token_based_authentication/token_expired.png" alt="token_expired" /></p>
-<h2 id="threat-mitigation-strategy">
-  Threat mitigation strategy
-  <a class="anchor" href="#threat-mitigation-strategy">#</a>
-</h2>
-<p><img src="/research/token_based_authentication/threat_mitigation.png" alt="threat_mitigation" /></p>
-<h3 id="access-token">
-  Access Token
+<h2 id="access-token">
+  Access token
   <a class="anchor" href="#access-token">#</a>
+</h2>
+<ul>
+<li>Provide a one-time login for users</li>
+<li>Reduce database access for password verification, user information retrieval, and role checking</li>
+</ul>
+<h3 id="characteristics">
+  Characteristics
+  <a class="anchor" href="#characteristics">#</a>
 </h3>
-<h4 id="pros">
-  Pros
-  <a class="anchor" href="#pros">#</a>
-</h4>
-<p>Do you notice some web page allow you go to a route like dashboard immediately just because you has been login before, but some other web app also have dashboard but they request you login every time you go to them</p>
-<p>&ndash;&gt; Bad UX</p>
-<p>If we use AT, they do not need re-login</p>
+<ul>
+<li>Short-lived</li>
+<li>Stored in client-side storage</li>
+<li>Contains the user&rsquo;s identity</li>
+<li>Contains a set of claims, permissions, or roles of the user</li>
+<li><strong>Grants access to the system</strong></li>
+</ul>
 <h4 id="cons">
   Cons
   <a class="anchor" href="#cons">#</a>
@@ -705,17 +710,46 @@ Our server can grant several AT and somehow one of them be stolen by hacker, if 
 &ndash;&gt; BUT we will increase the I/O cost in DB because too much AT used to check and store</li>
 </ul>
 <p>&ndash;&gt; So we design RT</p>
-<h3 id="refresh-token">
-  Refresh Token
+<h2 id="refresh-token">
+  Refresh token
   <a class="anchor" href="#refresh-token">#</a>
-</h3>
+</h2>
 <p>In order to prevent hacker stolen AT, we decide AT only live in a short time
 So refresh token born as a factor to re-grant AT when they are expired and user then can be continue their session with our resource without re-login and don&rsquo;t worry about impersonation</p>
+<h3 id="characteristics-1">
+  Characteristics
+  <a class="anchor" href="#characteristics-1">#</a>
+</h3>
+<ul>
+<li>Long-lived</li>
+<li>Single-use</li>
+<li>Stored on the server and the client</li>
+<li><strong>Used to obtain a new pair of access and refresh tokens</strong></li>
+</ul>
 <h4 id="each-rt-can-only-be-used-once">
   Each RT can only be used once
   <a class="anchor" href="#each-rt-can-only-be-used-once">#</a>
 </h4>
 <p>Whenever we see the reused RT, we must right away clear all token and it&rsquo;s keys, then force user to re-login to the system</p>
+<h2 id="how-do-they-work-together">
+  How do they work together?
+  <a class="anchor" href="#how-do-they-work-together">#</a>
+</h2>
+<h3 id="basic-flow">
+  Basic flow
+  <a class="anchor" href="#basic-flow">#</a>
+</h3>
+<p><img src="/research/token_based_authentication/basic_flow.png" alt="basic_flow" /></p>
+<h3 id="token-expired">
+  Token expired
+  <a class="anchor" href="#token-expired">#</a>
+</h3>
+<p><img src="/research/token_based_authentication/token_expired.png" alt="token_expired" /></p>
+<h3 id="threat-mitigation-strategy">
+  Threat mitigation strategy
+  <a class="anchor" href="#threat-mitigation-strategy">#</a>
+</h3>
+<p><img src="/research/token_based_authentication/threat_mitigation.png" alt="threat_mitigation" /></p>
 <h3 id="third-party-authen-concept">
   Third party authen concept
   <a class="anchor" href="#third-party-authen-concept">#</a>
@@ -942,7 +976,7 @@ So refresh token born as a factor to re-grant AT when they are expired and user 
   <a class="anchor" href="#reference">#</a>
 </h2>
 <ul>
-<li>: <a href=""></a> ()</li>
+<li>Medium: <a href="https://medium.com/@lakshyakumarsingh.2003.va/understanding-access-tokens-and-refresh-tokens-2ec4bc4f9a4f">Understanding Access Tokens and Refresh Tokens</a> (Mar 23, 2024)</li>
 </ul>
 <style>
     .feedback-card {
@@ -1104,12 +1138,21 @@ So refresh token born as a factor to re-grant AT when they are expired and user 
   
 <nav id="TableOfContents">
   <ul>
-    <li><a href="#basic-flow">Basic flow</a></li>
-    <li><a href="#token-expired">Token expired</a></li>
-    <li><a href="#threat-mitigation-strategy">Threat mitigation strategy</a>
+    <li><a href="#access-token">Access token</a>
       <ul>
-        <li><a href="#access-token">Access Token</a></li>
-        <li><a href="#refresh-token">Refresh Token</a></li>
+        <li><a href="#characteristics">Characteristics</a></li>
+      </ul>
+    </li>
+    <li><a href="#refresh-token">Refresh token</a>
+      <ul>
+        <li><a href="#characteristics-1">Characteristics</a></li>
+      </ul>
+    </li>
+    <li><a href="#how-do-they-work-together">How do they work together?</a>
+      <ul>
+        <li><a href="#basic-flow">Basic flow</a></li>
+        <li><a href="#token-expired">Token expired</a></li>
+        <li><a href="#threat-mitigation-strategy">Threat mitigation strategy</a></li>
         <li><a href="#third-party-authen-concept">Third party authen concept</a></li>
       </ul>
     </li>
