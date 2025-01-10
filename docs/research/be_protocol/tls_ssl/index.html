@@ -8,6 +8,9 @@
   #
 
 
+TODO: capture network flow to show how much steps tls1.2 vs tls1.3
+
+
   Problem
   #
 
@@ -22,29 +25,13 @@ Demo listen plain packet from wifi if user browse a website using http with and 
 A protocol for encrypting, securing, and authenticating communications that take place on the Internet
 SSL was replaced by an updated protocol called TLS some time ago, SSL is still a commonly used term for this technology
 
-
-
-To see which TLS version of a website (For Chrome):
-
-Open the Developer Tools (Ctrl&#43;Shift&#43;I)
-Select the Security tab
-Navigate to the Origin you want to inspect
-At the Connection section, check the results which TLS protocol is used
-
-
-
-
-
-  TLS 1.2
-  #
-
 ">
 <meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff">
 <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#343a40">
 <meta name="color-scheme" content="light dark"><meta property="og:url" content="https://dangpham112000.github.io/docs/research/be_protocol/tls_ssl/">
   <meta property="og:site_name" content="Dante 0401">
   <meta property="og:title" content="TLS - SSL - Draft">
-  <meta property="og:description" content="TLS - SSL # Problem # Demo listen plain packet from wifi if user browse a website using http with and without ssl/tls: Link Overview # A protocol for encrypting, securing, and authenticating communications that take place on the Internet SSL was replaced by an updated protocol called TLS some time ago, SSL is still a commonly used term for this technology To see which TLS version of a website (For Chrome): Open the Developer Tools (Ctrl&#43;Shift&#43;I) Select the Security tab Navigate to the Origin you want to inspect At the Connection section, check the results which TLS protocol is used TLS 1.2 #">
+  <meta property="og:description" content="TLS - SSL # TODO: capture network flow to show how much steps tls1.2 vs tls1.3 Problem # Demo listen plain packet from wifi if user browse a website using http with and without ssl/tls: Link Overview # A protocol for encrypting, securing, and authenticating communications that take place on the Internet SSL was replaced by an updated protocol called TLS some time ago, SSL is still a commonly used term for this technology">
   <meta property="og:locale" content="en_us">
   <meta property="og:type" content="article">
     <meta property="article:section" content="docs">
@@ -56,7 +43,7 @@ At the Connection section, check the results which TLS protocol is used
 <link rel="canonical" href="https://dangpham112000.github.io/docs/research/be_protocol/tls_ssl/">
 <link rel="stylesheet" href="/book.min.ef1786281083252320100bd5f394f36844d3252afdbd5bfe72e5f440aaff402b.css" integrity="sha256-7xeGKBCDJSMgEAvV85TzaETTJSr9vVv&#43;cuX0QKr/QCs=" crossorigin="anonymous">
   <script defer src="/fuse.min.js"></script>
-  <script defer src="/en.search.min.ad3a22eae391402359fffbe77b03efb5d7cbdc08f7572b30d3d05945615ccd4f.js" integrity="sha256-rToi6uORQCNZ//vnewPvtdfL3Aj3Vysw09BZRWFczU8=" crossorigin="anonymous"></script>
+  <script defer src="/en.search.min.97ac8f2437060dbdc99a9a92cdabf8ea4cc952cf0b98986f75050e307ca224be.js" integrity="sha256-l6yPJDcGDb3JmpqSzav46kzJUs8LmJhvdQUOMHyiJL4=" crossorigin="anonymous"></script>
 <!--
 Made with Book Theme
 https://github.com/alex-shpak/hugo-book
@@ -673,6 +660,9 @@ https://github.com/alex-shpak/hugo-book
   TLS - SSL
   <a class="anchor" href="#tls---ssl">#</a>
 </h1>
+<ul>
+<li>TODO: capture network flow to show how much steps tls1.2 vs tls1.3</li>
+</ul>
 <h2 id="problem">
   Problem
   <a class="anchor" href="#problem">#</a>
@@ -704,7 +694,7 @@ https://github.com/alex-shpak/hugo-book
   TLS 1.2
   <a class="anchor" href="#tls-12">#</a>
 </h2>
-<p><img src="/research/be_protocol/tls_ssl/tls_1.2_handsake.png" alt="tls_1.2_handsake" /></p>
+<p><img src="/research/be_protocol/tls_ssl/tls_1_2_flow.png" alt="tls_1_2_flow" /></p>
 <h3 id="setup">
   Setup
   <a class="anchor" href="#setup">#</a>
@@ -1018,6 +1008,7 @@ https://github.com/alex-shpak/hugo-book
 <li>Cloudflare: <a href="https://www.cloudflare.com/learning/ssl/how-does-ssl-work/">How does SSL work?</a></li>
 <li>Cloudflare: <a href="https://www.cloudflare.com/learning/ssl/types-of-ssl-certificates/">Types of SSL certificates: SSL certificate types explained</a></li>
 <li>Gigamon: <a href="https://blog.gigamon.com/2021/07/14/what-is-tls-1-2-and-why-should-you-still-care/">What Is TLS 1.2, and Why Should You (Still) Care?</a></li>
+<li>Xargs: <a href="https://tls13.xargs.org/">The Illustrated TLS 1.3 Connection</a> (Nov 13th, 2024)</li>
 <li>Wikipedia: <a href="https://en.wikipedia.org/wiki/Transport_Layer_Security">Transport Layer Security</a> (Mar 1st, 2024)</li>
 <li>Youtube: <a href="https://www.youtube.com/watch?v=jrR_WfgmWEw">Let&rsquo;s Encrypt Explained: Free SSL</a> (Oct 25th, 2020)</li>
 <li>Youtube: <a href="https://www.youtube.com/watch?v=yjk36fv3Km4">Are Free SSL Certificates Really Good Enough for Your Website?</a> (Sep 1st, 2022)</li>

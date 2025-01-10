@@ -49,15 +49,15 @@ Scenario:
   <meta property="og:locale" content="en_us">
   <meta property="og:type" content="article">
     <meta property="article:section" content="docs">
-    <meta property="article:published_time" content="2023-11-15T01:47:46+07:00">
-    <meta property="article:modified_time" content="2023-11-15T01:47:46+07:00">
+    <meta property="article:published_time" content="2024-01-06T00:00:00+00:00">
+    <meta property="article:modified_time" content="2024-01-06T00:00:00+00:00">
 <title>Unit Test | Dante 0401</title>
 <link rel="manifest" href="/manifest.json">
 <link rel="icon" href="/favicon.png" >
 <link rel="canonical" href="https://dangpham112000.github.io/docs/tips/001_unit_test/">
 <link rel="stylesheet" href="/book.min.ef1786281083252320100bd5f394f36844d3252afdbd5bfe72e5f440aaff402b.css" integrity="sha256-7xeGKBCDJSMgEAvV85TzaETTJSr9vVv&#43;cuX0QKr/QCs=" crossorigin="anonymous">
   <script defer src="/fuse.min.js"></script>
-  <script defer src="/en.search.min.ad3a22eae391402359fffbe77b03efb5d7cbdc08f7572b30d3d05945615ccd4f.js" integrity="sha256-rToi6uORQCNZ//vnewPvtdfL3Aj3Vysw09BZRWFczU8=" crossorigin="anonymous"></script>
+  <script defer src="/en.search.min.97ac8f2437060dbdc99a9a92cdabf8ea4cc952cf0b98986f75050e307ca224be.js" integrity="sha256-l6yPJDcGDb3JmpqSzav46kzJUs8LmJhvdQUOMHyiJL4=" crossorigin="anonymous"></script>
 <!--
 Made with Book Theme
 https://github.com/alex-shpak/hugo-book
@@ -967,7 +967,126 @@ https://github.com/alex-shpak/hugo-book
 </span></span><span style="display:flex;"><span>    });
 </span></span><span style="display:flex;"><span>  });
 </span></span><span style="display:flex;"><span>});
-</span></span></code></pre></div></article>
+</span></span></code></pre></div><style>
+    .feedback-card {
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        padding: 20px;
+        max-width: 100%;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        background-color: #f9f9fb;
+    }
+    .feedback-card h2 {
+        font-size: 20px;
+        margin-top: 0px;
+        margin-bottom: 10px;
+    }
+    .feedback-card .buttons {
+        margin: 10px 0;
+    }
+    .feedback-card button {
+        border: none;
+        background-color: #f0f0f0;
+        border-radius: 4px;
+        padding: 10px 15px;
+        margin-right: 10px;
+        cursor: pointer;
+        font-size: 16px;
+    }
+    .feedback-card button:hover {
+        background-color: #e0e0e0;
+    }
+    .feedback-card a {
+        color: #0074d9;
+        text-decoration: none;
+    }
+    .feedback-card a:hover {
+        text-decoration: underline;
+    }
+    .feedback-card p {
+        font-size: 14px;
+        color: #555;
+    }
+
+     
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border-radius: 7px;
+      padding-bottom: 50px;
+
+      background-color: rgba(0, 0, 0, 0.5);
+      justify-content: center;
+      align-items: flex-end;
+    }
+
+    .modal-content {
+      background-color: white;
+      padding: 20px;
+      border-radius: 5px;
+      width: 300px;
+    }
+
+    .modal input {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 10px;
+    }
+</style>
+<div class="feedback-card" id="feedbackCard">
+    <h2>Help improve my blog</h2>
+    <p>Was this page helpful to you?</p>
+    <div class="buttons">
+        <button id="yesBtn">👍 Yes</button>
+        <button id="noBtn">👎 No</button>
+    </div>
+    <p>This page was last modified at <strong>2024-01-06</strong></p>
+    <ul>
+        <li><a href="https://github.com/DangPham112000/blog" target="_blank">View this page on GitHub</a></li>
+        <li><a href="#" class="link-button" id="linkButton">Report a problem with this content</a></li>
+    </ul>
+</div>
+
+<div class="modal" id="formModal">
+    <div class="feedback-card">
+        <h2>Can I know your name?</h2>
+        <form id="form">
+            <input type="text" name="username" placeholder="Enter your name">
+            <button type="submit">Yes</button>
+            <button type="submit">No</button>
+        </form>
+    </div>
+</div>
+
+<script>
+    const feedbackCardEle = document.getElementById("feedbackCard");
+    const formModalEle = document.getElementById('formModal');
+    const elesToShowForm = ['linkButton', 'yesBtn', 'noBtn'];
+
+    for (const ele of elesToShowForm) {
+        document.getElementById(ele).addEventListener('click', function(e) {
+            e.preventDefault();
+            formModalEle.style.display = 'flex';
+        });
+    }
+
+    window.onclick = function(event) {
+        if (event.target === formModalEle) {
+            formModalEle.style.display = 'none';
+        }
+    };
+
+    document.getElementById('form').addEventListener('submit', function(e) {
+        e.preventDefault(); 
+        alert('This feature is currently being developed');
+        formModalEle.style.display = 'none'; 
+    });
+</script>
+</article>
  
       
 
