@@ -8,20 +8,19 @@
   #
 
 
-TODO: capture network flow to show how much steps tls1.2 vs tls1.3
-
-
   Problem
   #
 
 
-Demo listen plain packet from wifi if user browse a website using http with and without ssl/tls: Link
+If a website uses HTTP without SSL/TLS, all packets sent over the internet can easily be captured and read (see packet sniffing demonstration)
+How can a user determine if the website they are currently visiting is the original or a look-alike website created by a hacker to impersonate it? (see dns poisoning demonstration)
 
 
   Overview
   #
 
 
+The internet&rsquo;s official birthday is January 1, 1983
 A protocol for encrypting, securing, and authenticating communications that take place on the Internet
 SSL was replaced by an updated protocol called TLS some time ago, SSL is still a commonly used term for this technology
 
@@ -30,20 +29,20 @@ SSL was replaced by an updated protocol called TLS some time ago, SSL is still a
 <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#343a40">
 <meta name="color-scheme" content="light dark"><meta property="og:url" content="https://dangpham112000.github.io/docs/research/be_protocol/tls_ssl/">
   <meta property="og:site_name" content="Dante 0401">
-  <meta property="og:title" content="TLS - SSL - Draft">
-  <meta property="og:description" content="TLS - SSL # TODO: capture network flow to show how much steps tls1.2 vs tls1.3 Problem # Demo listen plain packet from wifi if user browse a website using http with and without ssl/tls: Link Overview # A protocol for encrypting, securing, and authenticating communications that take place on the Internet SSL was replaced by an updated protocol called TLS some time ago, SSL is still a commonly used term for this technology">
+  <meta property="og:title" content="TLS - SSL">
+  <meta property="og:description" content="TLS - SSL # Problem # If a website uses HTTP without SSL/TLS, all packets sent over the internet can easily be captured and read (see packet sniffing demonstration) How can a user determine if the website they are currently visiting is the original or a look-alike website created by a hacker to impersonate it? (see dns poisoning demonstration) Overview # The internet’s official birthday is January 1, 1983 A protocol for encrypting, securing, and authenticating communications that take place on the Internet SSL was replaced by an updated protocol called TLS some time ago, SSL is still a commonly used term for this technology">
   <meta property="og:locale" content="en_us">
   <meta property="og:type" content="article">
     <meta property="article:section" content="docs">
-    <meta property="article:published_time" content="2023-11-15T01:47:46+07:00">
-    <meta property="article:modified_time" content="2023-11-15T01:47:46+07:00">
-<title>TLS - SSL - Draft | Dante 0401</title>
+    <meta property="article:published_time" content="2024-01-14T00:00:00+00:00">
+    <meta property="article:modified_time" content="2024-01-14T00:00:00+00:00">
+<title>TLS - SSL | Dante 0401</title>
 <link rel="manifest" href="/manifest.json">
 <link rel="icon" href="/favicon.png" >
 <link rel="canonical" href="https://dangpham112000.github.io/docs/research/be_protocol/tls_ssl/">
 <link rel="stylesheet" href="/book.min.ef1786281083252320100bd5f394f36844d3252afdbd5bfe72e5f440aaff402b.css" integrity="sha256-7xeGKBCDJSMgEAvV85TzaETTJSr9vVv&#43;cuX0QKr/QCs=" crossorigin="anonymous">
   <script defer src="/fuse.min.js"></script>
-  <script defer src="/en.search.min.97ac8f2437060dbdc99a9a92cdabf8ea4cc952cf0b98986f75050e307ca224be.js" integrity="sha256-l6yPJDcGDb3JmpqSzav46kzJUs8LmJhvdQUOMHyiJL4=" crossorigin="anonymous"></script>
+  <script defer src="/en.search.min.c8f6e7ad43794c7ed096be3ae5f7f11bdbd4d9b81d0167ef1710544c7bf57170.js" integrity="sha256-yPbnrUN5TH7Qlr465ffxG9vU2bgdAWfvFxBUTHv1cXA=" crossorigin="anonymous"></script>
 <!--
 Made with Book Theme
 https://github.com/alex-shpak/hugo-book
@@ -187,7 +186,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="/docs/research/be_protocol/tls_ssl/" class="active">TLS - SSL - Draft</a>
+    <a href="/docs/research/be_protocol/tls_ssl/" class="active">TLS - SSL</a>
   
 
         </li>
@@ -605,7 +604,7 @@ https://github.com/alex-shpak/hugo-book
     <img src="/svg/menu.svg" class="book-icon" alt="Menu" />
   </label>
 
-  <strong>TLS - SSL - Draft</strong>
+  <strong>TLS - SSL</strong>
 
   <label for="toc-control">
     
@@ -625,21 +624,21 @@ https://github.com/alex-shpak/hugo-book
     <li><a href="#overview">Overview</a></li>
     <li><a href="#tls-12">TLS 1.2</a>
       <ul>
-        <li><a href="#setup">Setup</a></li>
+        <li><a href="#flow">Flow</a></li>
+        <li><a href="#set-up-your-server-using-tls-12">Set up your server using TLS 1.2</a></li>
       </ul>
     </li>
     <li><a href="#tls-13">TLS 1.3</a>
       <ul>
         <li><a href="#diffie-hellman">Diffie-Hellman</a></li>
-        <li><a href="#tls-13-1">TLS 1.3</a></li>
-        <li><a href="#setup-1">Setup</a></li>
+        <li><a href="#flow-1">Flow</a></li>
+        <li><a href="#set-up-your-server-using-tls-13">Set up your server using TLS 1.3</a></li>
       </ul>
     </li>
     <li><a href="#ssl-certificate">SSL Certificate</a>
       <ul>
         <li><a href="#validation-levels">Validation levels</a></li>
         <li><a href="#types">Types</a></li>
-        <li><a href="#why-we-need-ssl-certificate">Why we need SSL Certificate?</a></li>
         <li><a href="#how-to-setup-ssl-certificate">How to setup SSL Certificate?</a></li>
       </ul>
     </li>
@@ -660,27 +659,26 @@ https://github.com/alex-shpak/hugo-book
   TLS - SSL
   <a class="anchor" href="#tls---ssl">#</a>
 </h1>
-<ul>
-<li>TODO: capture network flow to show how much steps tls1.2 vs tls1.3</li>
-</ul>
 <h2 id="problem">
   Problem
   <a class="anchor" href="#problem">#</a>
 </h2>
 <ul>
-<li>Demo listen plain packet from wifi if user browse a website using http with and without ssl/tls: <a href="/docs/research/security/packet_sniffing/">Link</a></li>
+<li>If a website uses HTTP without SSL/TLS, all packets sent over the internet can easily be captured and read (see <a href="/docs/research/security/packet_sniffing/">packet sniffing demonstration</a>)</li>
+<li>How can a user determine if the website they are currently visiting is the original or a look-alike website created by a hacker to impersonate it? (see <a href="/docs/research/security/dns_poisoning/">dns poisoning demonstration</a>)</li>
 </ul>
 <h2 id="overview">
   Overview
   <a class="anchor" href="#overview">#</a>
 </h2>
 <ul>
+<li>The internet&rsquo;s official birthday is January 1, 1983</li>
 <li>A protocol for encrypting, securing, and authenticating communications that take place on the Internet</li>
 <li>SSL was replaced by an updated protocol called TLS some time ago, SSL is still a commonly used term for this technology</li>
 </ul>
 <p><img src="/research/be_protocol/tls_ssl/evolution.png" alt="evolution" /></p>
 <ul>
-<li>To see which TLS version of a website (For Chrome):
+<li>To see which TLS version of a website (on Chrome):
 <ol>
 <li>Open the <strong>Developer Tools</strong> (Ctrl+Shift+I)</li>
 <li>Select the <strong>Security</strong> tab</li>
@@ -694,10 +692,19 @@ https://github.com/alex-shpak/hugo-book
   TLS 1.2
   <a class="anchor" href="#tls-12">#</a>
 </h2>
+<ul>
+<li>Key exchange algorithm: <a href="/docs/research/encryption/#asymmetric-encryption">RSA</a></li>
+<li>Round trip time: 2 RTT</li>
+<li>Compatibility: <a href="https://caniuse.com/?search=tls%201.2">Supported by both older and newer versions of all browsers</a></li>
+</ul>
+<h3 id="flow">
+  Flow
+  <a class="anchor" href="#flow">#</a>
+</h3>
 <p><img src="/research/be_protocol/tls_ssl/tls_1_2_flow.png" alt="tls_1_2_flow" /></p>
-<h3 id="setup">
-  Setup
-  <a class="anchor" href="#setup">#</a>
+<h3 id="set-up-your-server-using-tls-12">
+  Set up your server using TLS 1.2
+  <a class="anchor" href="#set-up-your-server-using-tls-12">#</a>
 </h3>
 <details ><summary><strong>Nginx</strong></summary>
   <div class="markdown-inner">
@@ -753,17 +760,33 @@ https://github.com/alex-shpak/hugo-book
   TLS 1.3
   <a class="anchor" href="#tls-13">#</a>
 </h2>
+<ul>
+<li>Key exchange algorithm: Diffie-Hellman</li>
+<li>Round trip time: 1 RTT</li>
+<li>Compatibility: <a href="https://caniuse.com/?search=tls%201.3">Supported by newer versions of most browsers</a></li>
+</ul>
 <h3 id="diffie-hellman">
   Diffie-Hellman
   <a class="anchor" href="#diffie-hellman">#</a>
 </h3>
-<h3 id="tls-13-1">
-  TLS 1.3
-  <a class="anchor" href="#tls-13-1">#</a>
+<h4 id="concept">
+  Concept
+  <a class="anchor" href="#concept">#</a>
+</h4>
+<p><img src="/research/be_protocol/tls_ssl/diffie_hellman_concept.png" alt="diffie_hellman_concept" /></p>
+<h4 id="example">
+  Example
+  <a class="anchor" href="#example">#</a>
+</h4>
+<p><img src="/research/be_protocol/tls_ssl/diffie_hellman_example.png" alt="diffie_hellman_example" /></p>
+<h3 id="flow-1">
+  Flow
+  <a class="anchor" href="#flow-1">#</a>
 </h3>
-<h3 id="setup-1">
-  Setup
-  <a class="anchor" href="#setup-1">#</a>
+<p><img src="/research/be_protocol/tls_ssl/tls_1_3_flow.png" alt="tls_1_3_flow" /></p>
+<h3 id="set-up-your-server-using-tls-13">
+  Set up your server using TLS 1.3
+  <a class="anchor" href="#set-up-your-server-using-tls-13">#</a>
 </h3>
 <details ><summary><strong>Nginx</strong></summary>
   <div class="markdown-inner">
@@ -978,20 +1001,6 @@ https://github.com/alex-shpak/hugo-book
 <li>Multiple distinct domains will be listed on a certificate</li>
 </ul>
 <p><img src="/research/be_protocol/tls_ssl/multi-domain.png" alt="multi-domain" /></p>
-<h3 id="why-we-need-ssl-certificate">
-  Why we need SSL Certificate?
-  <a class="anchor" href="#why-we-need-ssl-certificate">#</a>
-</h3>
-<ul>
-<li>Prevent:
-<ul>
-<li><a href="https://www.cloudflare.com/learning/security/threats/on-path-attack/">On-path attack</a> <!-- raw HTML omitted --></li>
-<li>Domain spoofing</li>
-<li>Other methods attackers use to impersonate a website and trick users</li>
-</ul>
-</li>
-<li>Establish HTTPS</li>
-</ul>
 <h3 id="how-to-setup-ssl-certificate">
   How to setup SSL Certificate?
   <a class="anchor" href="#how-to-setup-ssl-certificate">#</a>
@@ -1010,11 +1019,131 @@ https://github.com/alex-shpak/hugo-book
 <li>Gigamon: <a href="https://blog.gigamon.com/2021/07/14/what-is-tls-1-2-and-why-should-you-still-care/">What Is TLS 1.2, and Why Should You (Still) Care?</a></li>
 <li>Xargs: <a href="https://tls13.xargs.org/">The Illustrated TLS 1.3 Connection</a> (Nov 13th, 2024)</li>
 <li>Wikipedia: <a href="https://en.wikipedia.org/wiki/Transport_Layer_Security">Transport Layer Security</a> (Mar 1st, 2024)</li>
+<li>Cloudflare: <a href="https://blog.cloudflare.com/rfc-8446-aka-tls-1-3/">A Detailed Look at RFC 8446 (a.k.a. TLS 1.3)</a> (Aug 10th, 2018)</li>
 <li>Youtube: <a href="https://www.youtube.com/watch?v=jrR_WfgmWEw">Let&rsquo;s Encrypt Explained: Free SSL</a> (Oct 25th, 2020)</li>
 <li>Youtube: <a href="https://www.youtube.com/watch?v=yjk36fv3Km4">Are Free SSL Certificates Really Good Enough for Your Website?</a> (Sep 1st, 2022)</li>
 <li>Mozilla: <a href="https://ssl-config.mozilla.org/">SSL Configuration Generator</a> (Nov 13th, 2024)</li>
 <li>Networkoptix: <a href="https://support.networkoptix.com/hc/en-us/articles/17314112665111-How-to-check-and-or-change-the-TLS-version">How to check and/or change the TLS version</a> (Nov 11th, 2024)</li>
 </ul>
+<style>
+    .feedback-card {
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        padding: 20px;
+        max-width: 100%;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        background-color: #f9f9fb;
+    }
+    .feedback-card h2 {
+        font-size: 20px;
+        margin-top: 0px;
+        margin-bottom: 10px;
+    }
+    .feedback-card .buttons {
+        margin: 10px 0;
+    }
+    .feedback-card button {
+        border: none;
+        background-color: #f0f0f0;
+        border-radius: 4px;
+        padding: 10px 15px;
+        margin-right: 10px;
+        cursor: pointer;
+        font-size: 16px;
+    }
+    .feedback-card button:hover {
+        background-color: #e0e0e0;
+    }
+    .feedback-card a {
+        color: #0074d9;
+        text-decoration: none;
+    }
+    .feedback-card a:hover {
+        text-decoration: underline;
+    }
+    .feedback-card p {
+        font-size: 14px;
+        color: #555;
+    }
+
+     
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border-radius: 7px;
+      padding-bottom: 50px;
+
+      background-color: rgba(0, 0, 0, 0.5);
+      justify-content: center;
+      align-items: flex-end;
+    }
+
+    .modal-content {
+      background-color: white;
+      padding: 20px;
+      border-radius: 5px;
+      width: 300px;
+    }
+
+    .modal input {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 10px;
+    }
+</style>
+<div class="feedback-card" id="feedbackCard">
+    <h2>Help improve my blog</h2>
+    <p>Was this page helpful to you?</p>
+    <div class="buttons">
+        <button id="yesBtn">👍 Yes</button>
+        <button id="noBtn">👎 No</button>
+    </div>
+    <p>This page was last modified at <strong>2024-01-14</strong></p>
+    <ul>
+        <li><a href="https://github.com/DangPham112000/blog" target="_blank">View this page on GitHub</a></li>
+        <li><a href="#" class="link-button" id="linkButton">Report a problem with this content</a></li>
+    </ul>
+</div>
+
+<div class="modal" id="formModal">
+    <div class="feedback-card">
+        <h2>Can I know your name?</h2>
+        <form id="form">
+            <input type="text" name="username" placeholder="Enter your name">
+            <button type="submit">Yes</button>
+            <button type="submit">No</button>
+        </form>
+    </div>
+</div>
+
+<script>
+    const feedbackCardEle = document.getElementById("feedbackCard");
+    const formModalEle = document.getElementById('formModal');
+    const elesToShowForm = ['linkButton', 'yesBtn', 'noBtn'];
+
+    for (const ele of elesToShowForm) {
+        document.getElementById(ele).addEventListener('click', function(e) {
+            e.preventDefault();
+            formModalEle.style.display = 'flex';
+        });
+    }
+
+    window.onclick = function(event) {
+        if (event.target === formModalEle) {
+            formModalEle.style.display = 'none';
+        }
+    };
+
+    document.getElementById('form').addEventListener('submit', function(e) {
+        e.preventDefault(); 
+        alert('This feature is currently being developed');
+        formModalEle.style.display = 'none'; 
+    });
+</script>
 </article>
  
       
@@ -1060,21 +1189,21 @@ https://github.com/alex-shpak/hugo-book
     <li><a href="#overview">Overview</a></li>
     <li><a href="#tls-12">TLS 1.2</a>
       <ul>
-        <li><a href="#setup">Setup</a></li>
+        <li><a href="#flow">Flow</a></li>
+        <li><a href="#set-up-your-server-using-tls-12">Set up your server using TLS 1.2</a></li>
       </ul>
     </li>
     <li><a href="#tls-13">TLS 1.3</a>
       <ul>
         <li><a href="#diffie-hellman">Diffie-Hellman</a></li>
-        <li><a href="#tls-13-1">TLS 1.3</a></li>
-        <li><a href="#setup-1">Setup</a></li>
+        <li><a href="#flow-1">Flow</a></li>
+        <li><a href="#set-up-your-server-using-tls-13">Set up your server using TLS 1.3</a></li>
       </ul>
     </li>
     <li><a href="#ssl-certificate">SSL Certificate</a>
       <ul>
         <li><a href="#validation-levels">Validation levels</a></li>
         <li><a href="#types">Types</a></li>
-        <li><a href="#why-we-need-ssl-certificate">Why we need SSL Certificate?</a></li>
         <li><a href="#how-to-setup-ssl-certificate">How to setup SSL Certificate?</a></li>
       </ul>
     </li>
