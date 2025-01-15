@@ -74,7 +74,7 @@ Use case # HTTPS with SSL/TLS: Session key Data Transmission Data Storage Demo c
 <link rel="canonical" href="https://dangpham112000.github.io/docs/research/encryption/">
 <link rel="stylesheet" href="/book.min.ef1786281083252320100bd5f394f36844d3252afdbd5bfe72e5f440aaff402b.css" integrity="sha256-7xeGKBCDJSMgEAvV85TzaETTJSr9vVv&#43;cuX0QKr/QCs=" crossorigin="anonymous">
   <script defer src="/fuse.min.js"></script>
-  <script defer src="/en.search.min.c8f6e7ad43794c7ed096be3ae5f7f11bdbd4d9b81d0167ef1710544c7bf57170.js" integrity="sha256-yPbnrUN5TH7Qlr465ffxG9vU2bgdAWfvFxBUTHv1cXA=" crossorigin="anonymous"></script>
+  <script defer src="/en.search.min.e133d3b4e431d145b00b24b632569790ecdcac3957602b57cfdc468bb7b88a5f.js" integrity="sha256-4TPTtOQx0UWwCyS2MlaXkOzcrDlXYCtXz9xGi7e4il8=" crossorigin="anonymous"></script>
 <!--
 Made with Book Theme
 https://github.com/alex-shpak/hugo-book
@@ -677,7 +677,7 @@ https://github.com/alex-shpak/hugo-book
     <li><a href="#key-exchange">Key Exchange</a></li>
     <li><a href="#appendix">Appendix</a>
       <ul>
-        <li><a href="#why-bcrypt-will-take-longer-time-to-crack-your-password-than-md5">Why Bcrypt will take longer time to crack your password than MD5?</a></li>
+        <li><a href="#bcrypt-cracking-password-time-vs-md5">Bcrypt cracking password time vs MD5</a></li>
       </ul>
     </li>
     <li><a href="#reference">Reference</a></li>
@@ -1350,12 +1350,20 @@ https://github.com/alex-shpak/hugo-book
   Appendix
   <a class="anchor" href="#appendix">#</a>
 </h2>
-<h3 id="why-bcrypt-will-take-longer-time-to-crack-your-password-than-md5">
-  Why Bcrypt will take longer time to crack your password than MD5?
-  <a class="anchor" href="#why-bcrypt-will-take-longer-time-to-crack-your-password-than-md5">#</a>
+<h3 id="bcrypt-cracking-password-time-vs-md5">
+  Bcrypt cracking password time vs MD5
+  <a class="anchor" href="#bcrypt-cracking-password-time-vs-md5">#</a>
 </h3>
-<p><img src="/research/encription/2024_Password_Table_MD5.png" alt="2024_Password_Table_MD5" />
-<img src="/research/encription/2024_Password_Table_bcrypt.png" alt="2024_Password_Table_bcrypt" /></p>
+<h4 id="md5">
+  MD5
+  <a class="anchor" href="#md5">#</a>
+</h4>
+<p><img src="/research/encription/2024_Password_Table_MD5.png" alt="2024_Password_Table_MD5" /></p>
+<h4 id="bcrypt">
+  Bcrypt
+  <a class="anchor" href="#bcrypt">#</a>
+</h4>
+<p><img src="/research/encription/2024_Password_Table_bcrypt.png" alt="2024_Password_Table_bcrypt" /></p>
 <h2 id="reference">
   Reference
   <a class="anchor" href="#reference">#</a>
@@ -1365,6 +1373,7 @@ https://github.com/alex-shpak/hugo-book
 <li>Cryptobook: <a href="https://cryptobook.nakov.com/cryptography-overview">Cryptography - Overview</a> (Jun 19, 2019)</li>
 <li>Hivesystems: <a href="https://www.hivesystems.com/blog/are-your-passwords-in-the-green">Are Your Passwords in the Green?</a> (2024)</li>
 <li>DangPham112000: <a href="https://github.com/DangPham112000/blog-demo">Examples code</a> (2024)</li>
+<li>Hackernoon: <a href="https://hackernoon.com/hmac-and-message-authentication-codes-why-using-hashing-alone-is-not-enough-for-data-integrity">HMAC &amp; Message Authentication Codes</a> (Aug 15th, 2023)</li>
 </ul>
 </article>
  
@@ -1432,7 +1441,7 @@ https://github.com/alex-shpak/hugo-book
     <li><a href="#key-exchange">Key Exchange</a></li>
     <li><a href="#appendix">Appendix</a>
       <ul>
-        <li><a href="#why-bcrypt-will-take-longer-time-to-crack-your-password-than-md5">Why Bcrypt will take longer time to crack your password than MD5?</a></li>
+        <li><a href="#bcrypt-cracking-password-time-vs-md5">Bcrypt cracking password time vs MD5</a></li>
       </ul>
     </li>
     <li><a href="#reference">Reference</a></li>

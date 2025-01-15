@@ -32,17 +32,47 @@ Contains a set of claims, permissions, or roles of the user
 Grants access to the system
 
 
-  Cons
+  New problems
   #
 
-If we only use AT for authentication
-So when hacker stolen AT successfully, they can impersonate the user">
+
+Problem 1: When a hacker successfully steals an access token, they can impersonate the user
+Solution 1: Use short-term access tokens to minimize the risk of misuse if a hacker steals one
+Problem 2: Requiring users to re-login every time an access token is granted leads to a poor user experience
+Solution 2: Refresh tokens were introduced to address this issue by allowing the generation of new access tokens without requiring the user to log in again
+
+
+  Refresh token
+  #
+
+
+To prevent hackers from stealing access tokens, access tokens were designed to be valid for a short duration
+Refresh tokens were introduced to re-grant access tokens when they expire, allowing users to continue their sessions seamlessly without re-login while reducing the risk of impersonation.
+
+
+  Characteristics
+  #
+
+
+Long-lived
+Stored on the server and the client
+Used to obtain a new pair of access and refresh tokens
+
+
+  How do they work together?
+  #
+
+
+  Basic flow
+  #
+
+">
 <meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff">
 <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#343a40">
 <meta name="color-scheme" content="light dark"><meta property="og:url" content="https://dangpham112000.github.io/docs/research/token_based_authentication/">
   <meta property="og:site_name" content="Dante 0401">
   <meta property="og:title" content="Token-based Authentication">
-  <meta property="og:description" content="Token-based authentication # Senario: Each time a user accesses your website containing sensitive resources, such as posting a new blog, they are required to log in repeatedly every time they visit Problem: Is there a way to allow them to log in just once and avoid re-logging in, even if their previous session was two days ago? Solution: Access tokens were designed to solve this problem Access token # Provide a one-time login for users Reduce database access for password verification, user information retrieval, and role checking Characteristics # Short-lived Stored in client-side storage Contains the user’s identity Contains a set of claims, permissions, or roles of the user Grants access to the system Cons # If we only use AT for authentication So when hacker stolen AT successfully, they can impersonate the user">
+  <meta property="og:description" content="Token-based authentication # Senario: Each time a user accesses your website containing sensitive resources, such as posting a new blog, they are required to log in repeatedly every time they visit Problem: Is there a way to allow them to log in just once and avoid re-logging in, even if their previous session was two days ago? Solution: Access tokens were designed to solve this problem Access token # Provide a one-time login for users Reduce database access for password verification, user information retrieval, and role checking Characteristics # Short-lived Stored in client-side storage Contains the user’s identity Contains a set of claims, permissions, or roles of the user Grants access to the system New problems # Problem 1: When a hacker successfully steals an access token, they can impersonate the user Solution 1: Use short-term access tokens to minimize the risk of misuse if a hacker steals one Problem 2: Requiring users to re-login every time an access token is granted leads to a poor user experience Solution 2: Refresh tokens were introduced to address this issue by allowing the generation of new access tokens without requiring the user to log in again Refresh token # To prevent hackers from stealing access tokens, access tokens were designed to be valid for a short duration Refresh tokens were introduced to re-grant access tokens when they expire, allowing users to continue their sessions seamlessly without re-login while reducing the risk of impersonation. Characteristics # Long-lived Stored on the server and the client Used to obtain a new pair of access and refresh tokens How do they work together? # Basic flow #">
   <meta property="og:locale" content="en_us">
   <meta property="og:type" content="article">
     <meta property="article:section" content="docs">
@@ -54,7 +84,7 @@ So when hacker stolen AT successfully, they can impersonate the user">
 <link rel="canonical" href="https://dangpham112000.github.io/docs/research/token_based_authentication/">
 <link rel="stylesheet" href="/book.min.ef1786281083252320100bd5f394f36844d3252afdbd5bfe72e5f440aaff402b.css" integrity="sha256-7xeGKBCDJSMgEAvV85TzaETTJSr9vVv&#43;cuX0QKr/QCs=" crossorigin="anonymous">
   <script defer src="/fuse.min.js"></script>
-  <script defer src="/en.search.min.c8f6e7ad43794c7ed096be3ae5f7f11bdbd4d9b81d0167ef1710544c7bf57170.js" integrity="sha256-yPbnrUN5TH7Qlr465ffxG9vU2bgdAWfvFxBUTHv1cXA=" crossorigin="anonymous"></script>
+  <script defer src="/en.search.min.e133d3b4e431d145b00b24b632569790ecdcac3957602b57cfdc468bb7b88a5f.js" integrity="sha256-4TPTtOQx0UWwCyS2MlaXkOzcrDlXYCtXz9xGi7e4il8=" crossorigin="anonymous"></script>
 <!--
 Made with Book Theme
 https://github.com/alex-shpak/hugo-book
@@ -647,10 +677,11 @@ https://github.com/alex-shpak/hugo-book
         <li><a href="#basic-flow">Basic flow</a></li>
         <li><a href="#token-expired">Token expired</a></li>
         <li><a href="#threat-mitigation-strategy">Threat mitigation strategy</a></li>
-        <li><a href="#third-party-authen-concept">Third party authen concept</a></li>
+        <li><a href="#authentication-server-standalone-concept">Authentication server standalone concept</a></li>
       </ul>
     </li>
     <li><a href="#demo-code">Demo code</a></li>
+    <li><a href="#discussion">Discussion</a></li>
     <li><a href="#reference">Reference</a></li>
   </ul>
 </nav>
@@ -692,45 +723,33 @@ https://github.com/alex-shpak/hugo-book
 <li>Contains a set of claims, permissions, or roles of the user</li>
 <li><strong>Grants access to the system</strong></li>
 </ul>
-<h4 id="cons">
-  Cons
-  <a class="anchor" href="#cons">#</a>
+<h4 id="new-problems">
+  New problems
+  <a class="anchor" href="#new-problems">#</a>
 </h4>
-<p>If we only use AT for authentication
-So when hacker stolen AT successfully, they can impersonate the user</p>
-<p>How about short-term AT?</p>
 <ul>
-<li>Each time we grant AT we need to force user re-login
-&ndash;&gt; Bad UX</li>
+<li><strong>Problem 1</strong>: When a hacker successfully steals an access token, they can impersonate the user</li>
+<li><strong>Solution 1</strong>: Use short-term access tokens to minimize the risk of misuse if a hacker steals one</li>
+<li><strong>Problem 2</strong>: Requiring users to re-login every time an access token is granted leads to a poor user experience</li>
+<li><strong>Solution 2</strong>: Refresh tokens were introduced to address this issue by allowing the generation of new access tokens without requiring the user to log in again</li>
 </ul>
-<p>How about combine short-term AT and store AT in DB?
-Our server can grant several AT and somehow one of them be stolen by hacker, if we store current AT-list and used-AT list. Then if we renew an AT for hacker or user and then another try to renew a used AT we can clear all of them and then force user to re-login</p>
-<ul>
-<li>This approach is totally possible
-&ndash;&gt; BUT we will increase the I/O cost in DB because too much AT used to check and store</li>
-</ul>
-<p>&ndash;&gt; So we design RT</p>
 <h2 id="refresh-token">
   Refresh token
   <a class="anchor" href="#refresh-token">#</a>
 </h2>
-<p>In order to prevent hacker stolen AT, we decide AT only live in a short time
-So refresh token born as a factor to re-grant AT when they are expired and user then can be continue their session with our resource without re-login and don&rsquo;t worry about impersonation</p>
+<ul>
+<li>To prevent hackers from stealing access tokens, access tokens were designed to be valid for a short duration</li>
+<li>Refresh tokens were introduced to re-grant access tokens when they expire, allowing users to continue their sessions seamlessly without re-login while reducing the risk of impersonation.</li>
+</ul>
 <h3 id="characteristics-1">
   Characteristics
   <a class="anchor" href="#characteristics-1">#</a>
 </h3>
 <ul>
 <li>Long-lived</li>
-<li>Single-use</li>
 <li>Stored on the server and the client</li>
 <li><strong>Used to obtain a new pair of access and refresh tokens</strong></li>
 </ul>
-<h4 id="each-rt-can-only-be-used-once">
-  Each RT can only be used once
-  <a class="anchor" href="#each-rt-can-only-be-used-once">#</a>
-</h4>
-<p>Whenever we see the reused RT, we must right away clear all token and it&rsquo;s keys, then force user to re-login to the system</p>
 <h2 id="how-do-they-work-together">
   How do they work together?
   <a class="anchor" href="#how-do-they-work-together">#</a>
@@ -740,6 +759,9 @@ So refresh token born as a factor to re-grant AT when they are expired and user 
   <a class="anchor" href="#basic-flow">#</a>
 </h3>
 <p><img src="/research/token_based_authentication/basic_flow.png" alt="basic_flow" /></p>
+<ul>
+<li>You may be curious why using separate keys for creating and verifying tokens (see <a href="#authentication-server-standalone-concept">this use case</a>)</li>
+</ul>
 <h3 id="token-expired">
   Token expired
   <a class="anchor" href="#token-expired">#</a>
@@ -749,12 +771,28 @@ So refresh token born as a factor to re-grant AT when they are expired and user 
   Threat mitigation strategy
   <a class="anchor" href="#threat-mitigation-strategy">#</a>
 </h3>
+<ul>
+<li>Each refresh token (RT) can only be used once</li>
+<li>If a reused RT is detected, we must immediately clear all tokens and their associated keys, then force the user to re-login to the system</li>
+</ul>
 <p><img src="/research/token_based_authentication/threat_mitigation.png" alt="threat_mitigation" /></p>
-<h3 id="third-party-authen-concept">
-  Third party authen concept
-  <a class="anchor" href="#third-party-authen-concept">#</a>
+<details ><summary>Why does this only mitigate the hacking and not prevent it?</summary>
+  <div class="markdown-inner">
+    <ul>
+<li>In the picture above, if you switch the positions of the hacker and the user, you&rsquo;ll see that if the hacker comes first, they will be granted a new AT and RT, and can access resources as many times as they want until the second token renewal process occurs, forcing them to re-login</li>
+</ul>
+
+  </div>
+</details>
+
+<h3 id="authentication-server-standalone-concept">
+  Authentication server standalone concept
+  <a class="anchor" href="#authentication-server-standalone-concept">#</a>
 </h3>
-<p><img src="/research/token_based_authentication/3rd_auth.png" alt="3rd_auth" /></p>
+<ul>
+<li>This explains why you should use a key pair to create and verify tokens separately, instead of using a single key for both actions</li>
+</ul>
+<p><img src="/research/token_based_authentication/authen_server_standalone.png" alt="authen_server_standalone" /></p>
 <h2 id="demo-code">
   Demo code
   <a class="anchor" href="#demo-code">#</a>
@@ -770,56 +808,51 @@ So refresh token born as a factor to re-grant AT when they are expired and user 
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> <span style="color:#a6e22e">crypto</span> <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#34;crypto&#34;</span>;
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">genKeyPairRSA</span> <span style="color:#f92672">=</span> () =&gt; {
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">try</span> {
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">const</span> { <span style="color:#a6e22e">privateKey</span>, <span style="color:#a6e22e">publicKey</span> } <span style="color:#f92672">=</span> <span style="color:#a6e22e">crypto</span>.<span style="color:#a6e22e">generateKeyPairSync</span>(<span style="color:#e6db74">&#34;rsa&#34;</span>, {
-</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">modulusLength</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">4096</span>,
-</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">publicKeyEncoding</span><span style="color:#f92672">:</span> {
-</span></span><span style="display:flex;"><span>                <span style="color:#a6e22e">type</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;pkcs1&#34;</span>,
-</span></span><span style="display:flex;"><span>                <span style="color:#a6e22e">format</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;pem&#34;</span>,
-</span></span><span style="display:flex;"><span>            },
-</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">privateKeyEncoding</span><span style="color:#f92672">:</span> {
-</span></span><span style="display:flex;"><span>                <span style="color:#a6e22e">type</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;pkcs1&#34;</span>,
-</span></span><span style="display:flex;"><span>                <span style="color:#a6e22e">format</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;pem&#34;</span>,
-</span></span><span style="display:flex;"><span>            },
-</span></span><span style="display:flex;"><span>        });
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> { <span style="color:#a6e22e">privateKey</span>, <span style="color:#a6e22e">publicKey</span> };
-</span></span><span style="display:flex;"><span>    } <span style="color:#66d9ef">catch</span> (<span style="color:#a6e22e">error</span>) {
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">throw</span> <span style="color:#a6e22e">error</span>;
-</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">try</span> {
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">const</span> { <span style="color:#a6e22e">privateKey</span>, <span style="color:#a6e22e">publicKey</span> } <span style="color:#f92672">=</span> <span style="color:#a6e22e">crypto</span>.<span style="color:#a6e22e">generateKeyPairSync</span>(<span style="color:#e6db74">&#34;rsa&#34;</span>, {
+</span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">modulusLength</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">4096</span>,
+</span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">publicKeyEncoding</span><span style="color:#f92672">:</span> {
+</span></span><span style="display:flex;"><span>				<span style="color:#a6e22e">type</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;pkcs1&#34;</span>,
+</span></span><span style="display:flex;"><span>				<span style="color:#a6e22e">format</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;pem&#34;</span>,
+</span></span><span style="display:flex;"><span>			},
+</span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">privateKeyEncoding</span><span style="color:#f92672">:</span> {
+</span></span><span style="display:flex;"><span>				<span style="color:#a6e22e">type</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;pkcs1&#34;</span>,
+</span></span><span style="display:flex;"><span>				<span style="color:#a6e22e">format</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;pem&#34;</span>,
+</span></span><span style="display:flex;"><span>			},
+</span></span><span style="display:flex;"><span>		});
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">return</span> { <span style="color:#a6e22e">privateKey</span>, <span style="color:#a6e22e">publicKey</span> };
+</span></span><span style="display:flex;"><span>	} <span style="color:#66d9ef">catch</span> (<span style="color:#a6e22e">error</span>) {
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">throw</span> <span style="color:#66d9ef">new</span> Error(<span style="color:#e6db74">&#34;crypto.generateKeyPairSync got error&#34;</span>);
+</span></span><span style="display:flex;"><span>	}
 </span></span><span style="display:flex;"><span>};
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">createTokenPair</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">async</span> (<span style="color:#a6e22e">payload</span>, <span style="color:#a6e22e">publicKey</span>, <span style="color:#a6e22e">privateKey</span>) =&gt; {
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">createTokenPair</span> <span style="color:#f92672">=</span> (<span style="color:#a6e22e">payload</span>, <span style="color:#a6e22e">privateKey</span>) =&gt; {
 </span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">try</span> {
-</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">accessToken</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> <span style="color:#a6e22e">jwt</span>.<span style="color:#a6e22e">sign</span>(<span style="color:#a6e22e">payload</span>, <span style="color:#a6e22e">privateKey</span>, {
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">accessToken</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">jwt</span>.<span style="color:#a6e22e">sign</span>(<span style="color:#a6e22e">payload</span>, <span style="color:#a6e22e">privateKey</span>, {
 </span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">algorithm</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;RS256&#34;</span>,
-</span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">expiresIn</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;2 days&#34;</span>,
-</span></span><span style="display:flex;"><span>		});
-</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">refreshToken</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> <span style="color:#a6e22e">jwt</span>.<span style="color:#a6e22e">sign</span>(<span style="color:#a6e22e">payload</span>, <span style="color:#a6e22e">privateKey</span>, {
+</span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">expiresIn</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;60000&#34;</span>, <span style="color:#75715e">// 1min
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>		});
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">refreshToken</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">jwt</span>.<span style="color:#a6e22e">sign</span>(<span style="color:#a6e22e">payload</span>, <span style="color:#a6e22e">privateKey</span>, {
 </span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">algorithm</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;RS256&#34;</span>,
 </span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">expiresIn</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;7 days&#34;</span>,
 </span></span><span style="display:flex;"><span>		});
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// Just ensure the encryption is implemented correctly
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>		<span style="color:#a6e22e">jwt</span>.<span style="color:#a6e22e">verify</span>(<span style="color:#a6e22e">accessToken</span>, <span style="color:#a6e22e">publicKey</span>, (<span style="color:#a6e22e">err</span>, <span style="color:#a6e22e">decode</span>) =&gt; {
-</span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">err</span>) {
-</span></span><span style="display:flex;"><span>				<span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#34;error verify: &#34;</span>, <span style="color:#a6e22e">err</span>);
-</span></span><span style="display:flex;"><span>			} <span style="color:#66d9ef">else</span> {
-</span></span><span style="display:flex;"><span>				<span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#34;decode verify: &#34;</span>, <span style="color:#a6e22e">decode</span>);
-</span></span><span style="display:flex;"><span>			}
-</span></span><span style="display:flex;"><span>		});
-</span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">return</span> { <span style="color:#a6e22e">accessToken</span>, <span style="color:#a6e22e">refreshToken</span> };
 </span></span><span style="display:flex;"><span>	} <span style="color:#66d9ef">catch</span> (<span style="color:#a6e22e">error</span>) {
-</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">throw</span> <span style="color:#a6e22e">error</span>;
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">throw</span> <span style="color:#66d9ef">new</span> Error(<span style="color:#e6db74">&#34;jwt.sign got error&#34;</span>);
 </span></span><span style="display:flex;"><span>	}
 </span></span><span style="display:flex;"><span>};
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">authentication</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">async</span> (<span style="color:#a6e22e">req</span>, <span style="color:#a6e22e">res</span>, <span style="color:#a6e22e">next</span>) =&gt; {
 </span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">userId</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">req</span>.<span style="color:#a6e22e">headers</span>[<span style="color:#a6e22e">HEADER</span>.<span style="color:#a6e22e">CLIENT_ID</span>];
-</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span><span style="color:#a6e22e">userId</span>) <span style="color:#66d9ef">throw</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">AuthFailureError</span>(<span style="color:#e6db74">&#34;Invalid request&#34;</span>);
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span><span style="color:#a6e22e">userId</span>) {
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">throw</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">AuthFailureError</span>(<span style="color:#e6db74">&#34;Invalid request&#34;</span>);
+</span></span><span style="display:flex;"><span>	}
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">keyStore</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> <span style="color:#a6e22e">KeyTokenService</span>.<span style="color:#a6e22e">findByUserId</span>(<span style="color:#a6e22e">userId</span>);
-</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span><span style="color:#a6e22e">keyStore</span>) <span style="color:#66d9ef">throw</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">NotFoundError</span>(<span style="color:#e6db74">&#34;Not found keyStore&#34;</span>);
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span><span style="color:#a6e22e">keyStore</span>) {
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">throw</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">NotFoundError</span>(<span style="color:#e6db74">&#34;Not found any keys and token match this user&#34;</span>);
+</span></span><span style="display:flex;"><span>	}
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">refreshToken</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">req</span>.<span style="color:#a6e22e">headers</span>[<span style="color:#a6e22e">HEADER</span>.<span style="color:#a6e22e">REFRESHTOKEN</span>];
 </span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">refreshToken</span>) {
@@ -828,7 +861,6 @@ So refresh token born as a factor to re-grant AT when they are expired and user 
 </span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">userId</span> <span style="color:#f92672">!==</span> <span style="color:#a6e22e">decodeUser</span>.<span style="color:#a6e22e">userId</span>) {
 </span></span><span style="display:flex;"><span>				<span style="color:#66d9ef">throw</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">AuthFailureError</span>(<span style="color:#e6db74">&#34;Invalid userId&#34;</span>);
 </span></span><span style="display:flex;"><span>			}
-</span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">req</span>.<span style="color:#a6e22e">keyStore</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">keyStore</span>;
 </span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">req</span>.<span style="color:#a6e22e">user</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">decodeUser</span>; <span style="color:#75715e">// {userId, email}
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>			<span style="color:#a6e22e">req</span>.<span style="color:#a6e22e">refreshToken</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">refreshToken</span>;
 </span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">next</span>();
@@ -845,7 +877,6 @@ So refresh token born as a factor to re-grant AT when they are expired and user 
 </span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">userId</span> <span style="color:#f92672">!==</span> <span style="color:#a6e22e">decodeUser</span>.<span style="color:#a6e22e">userId</span>) {
 </span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">throw</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">AuthFailureError</span>(<span style="color:#e6db74">&#34;Invalid userId&#34;</span>);
 </span></span><span style="display:flex;"><span>		}
-</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">req</span>.<span style="color:#a6e22e">keyStore</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">keyStore</span>;
 </span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">req</span>.<span style="color:#a6e22e">user</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">decodeUser</span>; <span style="color:#75715e">// {userId, email}
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>		<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">next</span>();
 </span></span><span style="display:flex;"><span>	} <span style="color:#66d9ef">catch</span> (<span style="color:#a6e22e">error</span>) {
@@ -862,47 +893,43 @@ So refresh token born as a factor to re-grant AT when they are expired and user 
     <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">import</span> <span style="color:#a6e22e">bcrypt</span> <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#34;bcrypt&#34;</span>;
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> <span style="color:#a6e22e">KeyTokenService</span> <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#34;./keyToken.service.js&#34;</span>;
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> {
-</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">createTokenPair</span>,
-</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">genKeyPairRSA</span>,
-</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">verifyJWT</span>,
-</span></span><span style="display:flex;"><span>} <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#34;../auth/authUtils.js&#34;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">createTokenPair</span>, <span style="color:#a6e22e">genKeyPairRSA</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#34;../auth/authUtils.js&#34;</span>;
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">AccessService</span> {
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">static</span> <span style="color:#a6e22e">login</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">async</span> ({ <span style="color:#a6e22e">email</span>, <span style="color:#a6e22e">password</span> }) =&gt; {
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">foundUser</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> <span style="color:#a6e22e">findByEmail</span>({ <span style="color:#a6e22e">email</span> });
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span><span style="color:#a6e22e">foundUser</span>) <span style="color:#66d9ef">throw</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">BadRequestError</span>(<span style="color:#e6db74">&#34;User not yet registered&#34;</span>);
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">static</span> <span style="color:#a6e22e">login</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">async</span> ({ <span style="color:#a6e22e">email</span>, <span style="color:#a6e22e">password</span> }) =&gt; {
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">foundUser</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> <span style="color:#a6e22e">findByEmail</span>({ <span style="color:#a6e22e">email</span> });
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span><span style="color:#a6e22e">foundUser</span>) {
+</span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">throw</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">BadRequestError</span>(<span style="color:#e6db74">&#34;User not yet registered&#34;</span>);
+</span></span><span style="display:flex;"><span>		}
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">match</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> <span style="color:#a6e22e">bcrypt</span>.<span style="color:#a6e22e">compare</span>(<span style="color:#a6e22e">password</span>, <span style="color:#a6e22e">foundUser</span>.<span style="color:#a6e22e">password</span>);
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span><span style="color:#a6e22e">match</span>) {
+</span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">throw</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">AuthFailureError</span>(<span style="color:#e6db74">&#34;Authentication error&#34;</span>);
+</span></span><span style="display:flex;"><span>		}
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">match</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> <span style="color:#a6e22e">bcrypt</span>.<span style="color:#a6e22e">compare</span>(<span style="color:#a6e22e">password</span>, <span style="color:#a6e22e">foundUser</span>.<span style="color:#a6e22e">password</span>);
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span><span style="color:#a6e22e">match</span>) <span style="color:#66d9ef">throw</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">AuthFailureError</span>(<span style="color:#e6db74">&#34;Authentication error&#34;</span>);
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">const</span> { <span style="color:#a6e22e">privateKey</span>, <span style="color:#a6e22e">publicKey</span> } <span style="color:#f92672">=</span> <span style="color:#a6e22e">genKeyPairRSA</span>();
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">const</span> { <span style="color:#a6e22e">privateKey</span>, <span style="color:#a6e22e">publicKey</span> } <span style="color:#f92672">=</span> <span style="color:#a6e22e">genKeyPairRSA</span>();
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">const</span> { <span style="color:#a6e22e">_id</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">userId</span> } <span style="color:#f92672">=</span> <span style="color:#a6e22e">foundUser</span>;
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">const</span> { <span style="color:#a6e22e">_id</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">userId</span> } <span style="color:#f92672">=</span> <span style="color:#a6e22e">foundUser</span>;
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">tokens</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">createTokenPair</span>({ <span style="color:#a6e22e">userId</span>, <span style="color:#a6e22e">email</span> }, <span style="color:#a6e22e">privateKey</span>);
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">tokens</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> <span style="color:#a6e22e">createTokenPair</span>(
-</span></span><span style="display:flex;"><span>            { <span style="color:#a6e22e">userId</span>, <span style="color:#a6e22e">email</span> }, <span style="color:#75715e">// for token payload
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>            <span style="color:#a6e22e">publicKey</span>, 
-</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">privateKey</span>
-</span></span><span style="display:flex;"><span>        );
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">await</span> <span style="color:#a6e22e">KeyTokenService</span>.<span style="color:#a6e22e">createKeyToken</span>({
+</span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">userId</span>,
+</span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">publicKey</span>,
+</span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">privateKey</span>,
+</span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">refreshToken</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">tokens</span>.<span style="color:#a6e22e">refreshToken</span>,
+</span></span><span style="display:flex;"><span>		});
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// Store publicKey, privateKey and refreshToken with correct userId to DB
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#66d9ef">await</span> <span style="color:#a6e22e">KeyTokenService</span>.<span style="color:#a6e22e">createKeyToken</span>({
-</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">userId</span>,
-</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">publicKey</span>,
-</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">privateKey</span>,
-</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">refreshToken</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">tokens</span>.<span style="color:#a6e22e">refreshToken</span>,
-</span></span><span style="display:flex;"><span>        });
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">return</span> {
+</span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">user</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">foundUser</span>,
+</span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">tokens</span>,
+</span></span><span style="display:flex;"><span>		};
+</span></span><span style="display:flex;"><span>	};
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> {
-</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">user</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">foundUser</span>,
-</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">tokens</span>,
-</span></span><span style="display:flex;"><span>        };
-</span></span><span style="display:flex;"><span>    };
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">static</span> <span style="color:#a6e22e">handleRefreshToken</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">async</span> ({ <span style="color:#a6e22e">refreshToken</span>, <span style="color:#a6e22e">user</span>, <span style="color:#a6e22e">keyStore</span> }) =&gt; {
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">static</span> <span style="color:#a6e22e">handleRefreshToken</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">async</span> ({ <span style="color:#a6e22e">refreshToken</span>, <span style="color:#a6e22e">user</span> }) =&gt; {
 </span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">const</span> { <span style="color:#a6e22e">userId</span>, <span style="color:#a6e22e">email</span> } <span style="color:#f92672">=</span> <span style="color:#a6e22e">user</span>;
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">keyStore</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> <span style="color:#a6e22e">KeyTokenService</span>.<span style="color:#a6e22e">findByUserId</span>(<span style="color:#a6e22e">userId</span>);
+</span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">keyStore</span>.<span style="color:#a6e22e">refreshTokensUsed</span>.<span style="color:#a6e22e">includes</span>(<span style="color:#a6e22e">refreshToken</span>)) {
 </span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">await</span> <span style="color:#a6e22e">KeyTokenService</span>.<span style="color:#a6e22e">removeByUserId</span>(<span style="color:#a6e22e">userId</span>);
 </span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">throw</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">ForbiddenError</span>(<span style="color:#e6db74">&#34;Something wrong happen. Pls relogin&#34;</span>);
@@ -917,23 +944,20 @@ So refresh token born as a factor to re-grant AT when they are expired and user 
 </span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">throw</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">AuthFailureError</span>(<span style="color:#e6db74">&#34;User is deleted or never exist&#34;</span>);
 </span></span><span style="display:flex;"><span>		}
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">tokens</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> <span style="color:#a6e22e">createTokenPair</span>(
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">newTokens</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">createTokenPair</span>(
 </span></span><span style="display:flex;"><span>			{ <span style="color:#a6e22e">userId</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">foundUser</span>.<span style="color:#a6e22e">_id</span>, <span style="color:#a6e22e">email</span> },
-</span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">keyStore</span>.<span style="color:#a6e22e">publicKey</span>,
 </span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">keyStore</span>.<span style="color:#a6e22e">privateKey</span>
 </span></span><span style="display:flex;"><span>		);
-</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">await</span> <span style="color:#a6e22e">keyStore</span>.<span style="color:#a6e22e">updateOne</span>({
-</span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">$set</span><span style="color:#f92672">:</span> {
-</span></span><span style="display:flex;"><span>				<span style="color:#a6e22e">refreshToken</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">tokens</span>.<span style="color:#a6e22e">refreshToken</span>,
-</span></span><span style="display:flex;"><span>			},
-</span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">$addToSet</span><span style="color:#f92672">:</span> {
-</span></span><span style="display:flex;"><span>				<span style="color:#a6e22e">refreshTokensUsed</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">refreshToken</span>,
-</span></span><span style="display:flex;"><span>			},
-</span></span><span style="display:flex;"><span>		});
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">await</span> <span style="color:#a6e22e">KeyTokenService</span>.<span style="color:#a6e22e">updateRefreshToken</span>(
+</span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">userId</span>,
+</span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">newTokens</span>.<span style="color:#a6e22e">refreshToken</span>,
+</span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">refreshToken</span>
+</span></span><span style="display:flex;"><span>		);
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">return</span> {
 </span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">user</span>,
-</span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">tokens</span>,
+</span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">tokens</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">newTokens</span>,
 </span></span><span style="display:flex;"><span>		};
 </span></span><span style="display:flex;"><span>	};
 </span></span><span style="display:flex;"><span>}
@@ -944,10 +968,41 @@ So refresh token born as a factor to re-grant AT when they are expired and user 
 </details>
 
 </br>
+<details ><summary>access.controller.js</summary>
+  <div class="markdown-inner">
+    <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">CREATED</span>, <span style="color:#a6e22e">SuccessResponse</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#34;../core/success.response.js&#34;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> <span style="color:#a6e22e">AccessService</span> <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#34;../services/access.service.js&#34;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">AccessController</span> {
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">login</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">async</span> (<span style="color:#a6e22e">req</span>, <span style="color:#a6e22e">res</span>, <span style="color:#a6e22e">next</span>) =&gt; {
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">new</span> <span style="color:#a6e22e">SuccessResponse</span>({
+</span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">metatdata</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">await</span> <span style="color:#a6e22e">AccessService</span>.<span style="color:#a6e22e">login</span>(<span style="color:#a6e22e">req</span>.<span style="color:#a6e22e">body</span>),
+</span></span><span style="display:flex;"><span>		}).<span style="color:#a6e22e">send</span>(<span style="color:#a6e22e">res</span>);
+</span></span><span style="display:flex;"><span>	};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">handleRefreshToken</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">async</span> (<span style="color:#a6e22e">req</span>, <span style="color:#a6e22e">res</span>, <span style="color:#a6e22e">next</span>) =&gt; {
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">new</span> <span style="color:#a6e22e">SuccessResponse</span>({
+</span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">message</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;Update token success&#34;</span>,
+</span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">metatdata</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">await</span> <span style="color:#a6e22e">AccessService</span>.<span style="color:#a6e22e">handleRefreshToken</span>({
+</span></span><span style="display:flex;"><span>				<span style="color:#a6e22e">refreshToken</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">req</span>.<span style="color:#a6e22e">refreshToken</span>,
+</span></span><span style="display:flex;"><span>				<span style="color:#a6e22e">user</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">req</span>.<span style="color:#a6e22e">user</span>,
+</span></span><span style="display:flex;"><span>			}),
+</span></span><span style="display:flex;"><span>		}).<span style="color:#a6e22e">send</span>(<span style="color:#a6e22e">res</span>);
+</span></span><span style="display:flex;"><span>	};
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">default</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">AccessController</span>();
+</span></span></code></pre></div>
+  </div>
+</details>
+
+</br>
 <details ><summary>routes.js</summary>
   <div class="markdown-inner">
     <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">import</span> <span style="color:#a6e22e">express</span> <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#34;express&#34;</span>;
+</span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> <span style="color:#a6e22e">accessController</span> <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#34;../../controllers/access.controller.js&#34;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> <span style="color:#a6e22e">postController</span> <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#34;../../controllers/post.controller.js&#34;</span>;
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">authentication</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#34;../../auth/authUtils.js&#34;</span>;
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">router</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">express</span>.<span style="color:#a6e22e">Router</span>();
@@ -971,12 +1026,32 @@ So refresh token born as a factor to re-grant AT when they are expired and user 
   </div>
 </details>
 
+<h2 id="discussion">
+  Discussion
+  <a class="anchor" href="#discussion">#</a>
+</h2>
+<ul>
+<li><strong>Question</strong>: Why do we need two tokens? Can we combine them?</li>
+<li><strong>New approach</strong>: Use short-term access tokens (AT) and store them in the database. Track the current AT list and the used AT list. If one of the current tokens is stolen by a hacker and the hacker tries to renew the token, the old token will be stored in the used AT list. When the user attempts to renew using the old token, our server can invalidate all tokens and force both the user and the hacker to re-login</li>
+</ul>
+<details ><summary><strong>Problem</strong></summary>
+  <div class="markdown-inner">
+    <ul>
+<li><strong>This approach has one weakness</strong>: Access tokens are exposed more frequently to retrieve resources, increasing the potential for them to be captured and stolen</li>
+<li><strong>Conclusion</strong>: By keeping the refresh token separate and less exposed, the chances of a hacker being able to maintain access to our resources are reduced</li>
+<li><strong>Do you think this approach have any other weaknesses?</strong></li>
+</ul>
+
+  </div>
+</details>
+
 <h2 id="reference">
   Reference
   <a class="anchor" href="#reference">#</a>
 </h2>
 <ul>
 <li>Geeksforgeeks: <a href="https://www.geeksforgeeks.org/access-token-vs-refresh-token-a-breakdown/">Access Token vs Refresh Token: A Breakdown</a> (27 Sep, 2024)</li>
+<li>Auth0: <a href="https://auth0.com/blog/refresh-tokens-what-are-they-and-when-to-use-them/#When-to-Use-Refresh-Tokens">What Are Refresh Tokens and How to Use Them Securely</a> (Oct 7th, 2021)</li>
 <li>Medium: <a href="https://medium.com/@lakshyakumarsingh.2003.va/understanding-access-tokens-and-refresh-tokens-2ec4bc4f9a4f">Understanding Access Tokens and Refresh Tokens</a> (Mar 23, 2024)</li>
 </ul>
 <style>
@@ -1154,10 +1229,11 @@ So refresh token born as a factor to re-grant AT when they are expired and user 
         <li><a href="#basic-flow">Basic flow</a></li>
         <li><a href="#token-expired">Token expired</a></li>
         <li><a href="#threat-mitigation-strategy">Threat mitigation strategy</a></li>
-        <li><a href="#third-party-authen-concept">Third party authen concept</a></li>
+        <li><a href="#authentication-server-standalone-concept">Authentication server standalone concept</a></li>
       </ul>
     </li>
     <li><a href="#demo-code">Demo code</a></li>
+    <li><a href="#discussion">Discussion</a></li>
     <li><a href="#reference">Reference</a></li>
   </ul>
 </nav>

@@ -19,8 +19,9 @@ sudo nmap -6 --script vuln [IPv6]
 sudo nmap --script vuln 18.141.184.34
 # E.g IPv6
 sudo nmap -6 --script vuln 2606:4700:3033::ac43:b865
-# E.g output
-Starting Nmap 7.94SVN ( https://nmap.org ) at 2024-12-05 09:00 &#43;07
+Example output
+  
+    Starting Nmap 7.94SVN ( https://nmap.org ) at 2024-12-05 09:00 &#43;07
 Nmap scan report for ec2-18-141-184-34.ap-southeast-1.compute.amazonaws.com (18.141.184.34)
 Host is up (0.033s latency).
 Not shown: 997 filtered tcp ports (no-response)
@@ -63,6 +64,10 @@ PORT    STATE SERVICE
 
 Nmap done: 1 IP address (1 host up) scanned in 193.10 seconds
 
+  
+
+
+
   Brute Force Attack
   #
 
@@ -76,7 +81,7 @@ There is only one problem with this attack: the time.
 <meta name="color-scheme" content="light dark"><meta property="og:url" content="https://dangpham112000.github.io/docs/research/security/">
   <meta property="og:site_name" content="Dante 0401">
   <meta property="og:title" content="Security - Draft">
-  <meta property="og:description" content="Security # Explore your site’s vulnerabilities # # IPv4 sudo nmap --script vuln [IPv4] # IPv6 sudo nmap -6 --script vuln [IPv6] # E.g IPv4 sudo nmap --script vuln 18.141.184.34 # E.g IPv6 sudo nmap -6 --script vuln 2606:4700:3033::ac43:b865 # E.g output Starting Nmap 7.94SVN ( https://nmap.org ) at 2024-12-05 09:00 &#43;07 Nmap scan report for ec2-18-141-184-34.ap-southeast-1.compute.amazonaws.com (18.141.184.34) Host is up (0.033s latency). Not shown: 997 filtered tcp ports (no-response) PORT STATE SERVICE 22/tcp open ssh 80/tcp open http |_http-csrf: Couldn&#39;t find any CSRF vulnerabilities. |_http-dombased-xss: Couldn&#39;t find any DOM based XSS. | http-vuln-cve2011-3192: | VULNERABLE: | Apache byterange filter DoS | State: VULNERABLE | IDs: BID:49303 CVE:CVE-2011-3192 | The Apache web server is vulnerable to a denial of service attack when numerous | overlapping byte ranges are requested. | Disclosure date: 2011-08-19 | References: | https://www.securityfocus.com/bid/49303 | https://www.tenable.com/plugins/nessus/55976 | https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2011-3192 |_ https://seclists.org/fulldisclosure/2011/Aug/175 |_http-stored-xss: Couldn&#39;t find any stored XSS vulnerabilities. 443/tcp open https |_http-csrf: Couldn&#39;t find any CSRF vulnerabilities. |_http-stored-xss: Couldn&#39;t find any stored XSS vulnerabilities. | http-vuln-cve2011-3192: | VULNERABLE: | Apache byterange filter DoS | State: VULNERABLE | IDs: BID:49303 CVE:CVE-2011-3192 | The Apache web server is vulnerable to a denial of service attack when numerous | overlapping byte ranges are requested. | Disclosure date: 2011-08-19 | References: | https://www.securityfocus.com/bid/49303 | https://www.tenable.com/plugins/nessus/55976 | https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2011-3192 |_ https://seclists.org/fulldisclosure/2011/Aug/175 |_http-dombased-xss: Couldn&#39;t find any DOM based XSS. Nmap done: 1 IP address (1 host up) scanned in 193.10 seconds Brute Force Attack # Every password-based system and encryption key out there can be cracked using a brute force attack. There is only one problem with this attack: the time.">
+  <meta property="og:description" content="Security # Explore your site’s vulnerabilities # # IPv4 sudo nmap --script vuln [IPv4] # IPv6 sudo nmap -6 --script vuln [IPv6] # E.g IPv4 sudo nmap --script vuln 18.141.184.34 # E.g IPv6 sudo nmap -6 --script vuln 2606:4700:3033::ac43:b865 Example output Starting Nmap 7.94SVN ( https://nmap.org ) at 2024-12-05 09:00 &#43;07 Nmap scan report for ec2-18-141-184-34.ap-southeast-1.compute.amazonaws.com (18.141.184.34) Host is up (0.033s latency). Not shown: 997 filtered tcp ports (no-response) PORT STATE SERVICE 22/tcp open ssh 80/tcp open http |_http-csrf: Couldn&#39;t find any CSRF vulnerabilities. |_http-dombased-xss: Couldn&#39;t find any DOM based XSS. | http-vuln-cve2011-3192: | VULNERABLE: | Apache byterange filter DoS | State: VULNERABLE | IDs: BID:49303 CVE:CVE-2011-3192 | The Apache web server is vulnerable to a denial of service attack when numerous | overlapping byte ranges are requested. | Disclosure date: 2011-08-19 | References: | https://www.securityfocus.com/bid/49303 | https://www.tenable.com/plugins/nessus/55976 | https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2011-3192 |_ https://seclists.org/fulldisclosure/2011/Aug/175 |_http-stored-xss: Couldn&#39;t find any stored XSS vulnerabilities. 443/tcp open https |_http-csrf: Couldn&#39;t find any CSRF vulnerabilities. |_http-stored-xss: Couldn&#39;t find any stored XSS vulnerabilities. | http-vuln-cve2011-3192: | VULNERABLE: | Apache byterange filter DoS | State: VULNERABLE | IDs: BID:49303 CVE:CVE-2011-3192 | The Apache web server is vulnerable to a denial of service attack when numerous | overlapping byte ranges are requested. | Disclosure date: 2011-08-19 | References: | https://www.securityfocus.com/bid/49303 | https://www.tenable.com/plugins/nessus/55976 | https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2011-3192 |_ https://seclists.org/fulldisclosure/2011/Aug/175 |_http-dombased-xss: Couldn&#39;t find any DOM based XSS. Nmap done: 1 IP address (1 host up) scanned in 193.10 seconds Brute Force Attack # Every password-based system and encryption key out there can be cracked using a brute force attack. There is only one problem with this attack: the time.">
   <meta property="og:locale" content="en_us">
   <meta property="og:type" content="website">
 <title>Security - Draft | Dante 0401</title>
@@ -85,7 +90,7 @@ There is only one problem with this attack: the time.
 <link rel="canonical" href="https://dangpham112000.github.io/docs/research/security/">
 <link rel="stylesheet" href="/book.min.ef1786281083252320100bd5f394f36844d3252afdbd5bfe72e5f440aaff402b.css" integrity="sha256-7xeGKBCDJSMgEAvV85TzaETTJSr9vVv&#43;cuX0QKr/QCs=" crossorigin="anonymous">
   <script defer src="/fuse.min.js"></script>
-  <script defer src="/en.search.min.c8f6e7ad43794c7ed096be3ae5f7f11bdbd4d9b81d0167ef1710544c7bf57170.js" integrity="sha256-yPbnrUN5TH7Qlr465ffxG9vU2bgdAWfvFxBUTHv1cXA=" crossorigin="anonymous"></script>
+  <script defer src="/en.search.min.e133d3b4e431d145b00b24b632569790ecdcac3957602b57cfdc468bb7b88a5f.js" integrity="sha256-4TPTtOQx0UWwCyS2MlaXkOzcrDlXYCtXz9xGi7e4il8=" crossorigin="anonymous"></script>
 <link rel="alternate" type="application/rss+xml" href="https://dangpham112000.github.io/docs/research/security/index.xml" title="Dante 0401" />
 <!--
 Made with Book Theme
@@ -735,8 +740,9 @@ https://github.com/alex-shpak/hugo-book
 </span></span><span style="display:flex;"><span>sudo nmap --script vuln 18.141.184.34
 </span></span><span style="display:flex;"><span><span style="color:#75715e"># E.g IPv6</span>
 </span></span><span style="display:flex;"><span>sudo nmap -6 --script vuln 2606:4700:3033::ac43:b865
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># E.g output</span>
-</span></span><span style="display:flex;"><span>Starting Nmap 7.94SVN <span style="color:#f92672">(</span> https://nmap.org <span style="color:#f92672">)</span> at 2024-12-05 09:00 +07
+</span></span></code></pre></div><details ><summary>Example output</summary>
+  <div class="markdown-inner">
+    <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>Starting Nmap 7.94SVN <span style="color:#f92672">(</span> https://nmap.org <span style="color:#f92672">)</span> at 2024-12-05 09:00 +07
 </span></span><span style="display:flex;"><span>Nmap scan report <span style="color:#66d9ef">for</span> ec2-18-141-184-34.ap-southeast-1.compute.amazonaws.com <span style="color:#f92672">(</span>18.141.184.34<span style="color:#f92672">)</span>
 </span></span><span style="display:flex;"><span>Host is up <span style="color:#f92672">(</span>0.033s latency<span style="color:#f92672">)</span>.
 </span></span><span style="display:flex;"><span>Not shown: <span style="color:#ae81ff">997</span> filtered tcp ports <span style="color:#f92672">(</span>no-response<span style="color:#f92672">)</span>
@@ -778,7 +784,11 @@ https://github.com/alex-shpak/hugo-book
 </span></span></span><span style="display:flex;"><span><span style="color:#e6db74">|_http-dombased-xss: Couldn&#39;</span>t find any DOM based XSS.
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>Nmap <span style="color:#66d9ef">done</span>: <span style="color:#ae81ff">1</span> IP address <span style="color:#f92672">(</span><span style="color:#ae81ff">1</span> host up<span style="color:#f92672">)</span> scanned in 193.10 seconds
-</span></span></code></pre></div><h2 id="brute-force-attack">
+</span></span></code></pre></div>
+  </div>
+</details>
+
+<h2 id="brute-force-attack">
   Brute Force Attack
   <a class="anchor" href="#brute-force-attack">#</a>
 </h2>
