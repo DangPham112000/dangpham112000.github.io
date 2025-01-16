@@ -16,12 +16,15 @@ Often passive (doesn’t modify the traffic, just listens)
 Works well on unencrypted networks or with weak encryption like WEP
 
 
-Prevention:
+
+
+  Prevention:
+  #
+
 
 Use strong encryption (WPA3 is ideal, WPA2 is acceptable)
 Avoid unencrypted public Wi-Fi
-
-
+Encrypt all messages that go through the internet
 
 
   Demo
@@ -108,7 +111,7 @@ Linuxhint: How to Install and Use Wireshark on Ubuntu (2018)
 <meta name="color-scheme" content="light dark"><meta property="og:url" content="https://dangpham112000.github.io/docs/research/security/packet_sniffing/">
   <meta property="og:site_name" content="Dante 0401">
   <meta property="og:title" content="Packet Sniffing - Draft">
-  <meta property="og:description" content="Packet Sniffing # A type of MitM attack Description: The attacker uses tools like Wireshark, tcpdump, or Kismet to capture packets traveling through the Wi-Fi network Key Characteristics: Often passive (doesn’t modify the traffic, just listens) Works well on unencrypted networks or with weak encryption like WEP Prevention: Use strong encryption (WPA3 is ideal, WPA2 is acceptable) Avoid unencrypted public Wi-Fi Demo # DISCLAIMER: This demo is for educational purposes only. The techniques should only be tested on systems you own or have explicit permission to analyze. Misuse of this information is unethical, may violate the law, and could lead to serious consequences. The author takes no responsibility for any damages or misuse arising from this content Install necessary packages # sudo apt update Aircrack-ng: Airmon-ng is a utility in the Aircrack-ng suite that helps set up a wireless network card into monitor mode Airodump-ng: Captures data packets from nearby wireless networks sudo apt install aircrack-ng Wireshark is a network packet analyzer sudo apt install wireshark Let’s go # # Check wireless interface iwconfig # -&gt; E.g output lo no wireless extensions. enp4s0 no wireless extensions. wlo1 IEEE 802.11 ESSID:&#34;A14-01&#34; Mode:Managed Frequency:2.417 GHz Access Point: CC:71:90:62:9E:98 Bit Rate=130 Mb/s Tx-Power=22 dBm Retry short limit:7 RTS thr:off Fragment thr:off Power Management:on Link Quality=62/70 Signal level=-48 dBm Rx invalid nwid:0 Rx invalid crypt:0 Rx invalid frag:0 Tx excessive retries:0 Invalid misc:203 Missed beacon:0 docker0 no wireless extensions. # -&gt; Your wireless interface is wlo1 # Disconnect the wireless adapter from managing a network sudo airmon-ng check kill # Enable monitor mode on your wireless adapter sudo airmon-ng start wlo1 # Verify iwconfig # -&gt; E.g output lo no wireless extensions. enp4s0 no wireless extensions. docker0 no wireless extensions. wlo1mon IEEE 802.11 Mode:Monitor Frequency:2.457 GHz Retry short limit:7 RTS thr:off Fragment thr:off Power Management:on # -&gt; Your wireless adapter with monitor mode is now wlo1mon # Capture packets sudo airodump-ng wlo1mon sudo wireshark # -&gt; Use Wireshark to capture packets on the wlo1mon interface Stop capturing packets (exit monitor mode) sudo airmon-ng stop wlo1mon sudo systemctl restart NetworkManager References # Wireshark: Turning on monitor mode (Aug 11th, 2020) Linuxhint: How to Install and Use Wireshark on Ubuntu (2018)">
+  <meta property="og:description" content="Packet Sniffing # A type of MitM attack Description: The attacker uses tools like Wireshark, tcpdump, or Kismet to capture packets traveling through the Wi-Fi network Key Characteristics: Often passive (doesn’t modify the traffic, just listens) Works well on unencrypted networks or with weak encryption like WEP Prevention: # Use strong encryption (WPA3 is ideal, WPA2 is acceptable) Avoid unencrypted public Wi-Fi Encrypt all messages that go through the internet Demo # DISCLAIMER: This demo is for educational purposes only. The techniques should only be tested on systems you own or have explicit permission to analyze. Misuse of this information is unethical, may violate the law, and could lead to serious consequences. The author takes no responsibility for any damages or misuse arising from this content Install necessary packages # sudo apt update Aircrack-ng: Airmon-ng is a utility in the Aircrack-ng suite that helps set up a wireless network card into monitor mode Airodump-ng: Captures data packets from nearby wireless networks sudo apt install aircrack-ng Wireshark is a network packet analyzer sudo apt install wireshark Let’s go # # Check wireless interface iwconfig # -&gt; E.g output lo no wireless extensions. enp4s0 no wireless extensions. wlo1 IEEE 802.11 ESSID:&#34;A14-01&#34; Mode:Managed Frequency:2.417 GHz Access Point: CC:71:90:62:9E:98 Bit Rate=130 Mb/s Tx-Power=22 dBm Retry short limit:7 RTS thr:off Fragment thr:off Power Management:on Link Quality=62/70 Signal level=-48 dBm Rx invalid nwid:0 Rx invalid crypt:0 Rx invalid frag:0 Tx excessive retries:0 Invalid misc:203 Missed beacon:0 docker0 no wireless extensions. # -&gt; Your wireless interface is wlo1 # Disconnect the wireless adapter from managing a network sudo airmon-ng check kill # Enable monitor mode on your wireless adapter sudo airmon-ng start wlo1 # Verify iwconfig # -&gt; E.g output lo no wireless extensions. enp4s0 no wireless extensions. docker0 no wireless extensions. wlo1mon IEEE 802.11 Mode:Monitor Frequency:2.457 GHz Retry short limit:7 RTS thr:off Fragment thr:off Power Management:on # -&gt; Your wireless adapter with monitor mode is now wlo1mon # Capture packets sudo airodump-ng wlo1mon sudo wireshark # -&gt; Use Wireshark to capture packets on the wlo1mon interface Stop capturing packets (exit monitor mode) sudo airmon-ng stop wlo1mon sudo systemctl restart NetworkManager References # Wireshark: Turning on monitor mode (Aug 11th, 2020) Linuxhint: How to Install and Use Wireshark on Ubuntu (2018)">
   <meta property="og:locale" content="en_us">
   <meta property="og:type" content="article">
     <meta property="article:section" content="docs">
@@ -120,7 +123,7 @@ Linuxhint: How to Install and Use Wireshark on Ubuntu (2018)
 <link rel="canonical" href="https://dangpham112000.github.io/docs/research/security/packet_sniffing/">
 <link rel="stylesheet" href="/book.min.ef1786281083252320100bd5f394f36844d3252afdbd5bfe72e5f440aaff402b.css" integrity="sha256-7xeGKBCDJSMgEAvV85TzaETTJSr9vVv&#43;cuX0QKr/QCs=" crossorigin="anonymous">
   <script defer src="/fuse.min.js"></script>
-  <script defer src="/en.search.min.e133d3b4e431d145b00b24b632569790ecdcac3957602b57cfdc468bb7b88a5f.js" integrity="sha256-4TPTtOQx0UWwCyS2MlaXkOzcrDlXYCtXz9xGi7e4il8=" crossorigin="anonymous"></script>
+  <script defer src="/en.search.min.496e65ceaf48c230fdc595740c2c51fe1f1fccc99a4ce85400cf40347a248b5f.js" integrity="sha256-SW5lzq9IwjD9xZV0DCxR/h8fzMmaTOhUAM9ANHoki18=" crossorigin="anonymous"></script>
 <!--
 Made with Book Theme
 https://github.com/alex-shpak/hugo-book
@@ -496,6 +499,19 @@ https://github.com/alex-shpak/hugo-book
         </li>
       
     
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/research/security/bit_flipping/" class="">Bit Flipping</a>
+  
+
+        </li>
+      
+    
   </ul>
 
         </li>
@@ -508,7 +524,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="/docs/research/scale/" class="">Scale - draft</a>
+    <a href="/docs/research/scale/" class="">Scale</a>
   
 
         </li>
@@ -698,6 +714,7 @@ https://github.com/alex-shpak/hugo-book
   
 <nav id="TableOfContents">
   <ul>
+    <li><a href="#prevention">Prevention:</a></li>
     <li><a href="#demo">Demo</a>
       <ul>
         <li><a href="#install-necessary-packages">Install necessary packages</a></li>
@@ -730,12 +747,15 @@ https://github.com/alex-shpak/hugo-book
 <li>Works well on unencrypted networks or with weak encryption like WEP</li>
 </ul>
 </li>
-<li>Prevention:
+</ul>
+<h2 id="prevention">
+  Prevention:
+  <a class="anchor" href="#prevention">#</a>
+</h2>
 <ul>
 <li>Use strong encryption (WPA3 is ideal, WPA2 is acceptable)</li>
 <li>Avoid unencrypted public Wi-Fi</li>
-</ul>
-</li>
+<li>Encrypt all messages that go through the internet</li>
 </ul>
 <h2 id="demo">
   Demo
@@ -858,6 +878,7 @@ https://github.com/alex-shpak/hugo-book
   
 <nav id="TableOfContents">
   <ul>
+    <li><a href="#prevention">Prevention:</a></li>
     <li><a href="#demo">Demo</a>
       <ul>
         <li><a href="#install-necessary-packages">Install necessary packages</a></li>

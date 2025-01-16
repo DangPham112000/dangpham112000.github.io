@@ -1,0 +1,978 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="
+  Bit Flipping Attack
+  #
+
+
+As you can see in the Packet Sniffing section, we have a discussion about how messages that go through the internet can easily be seen by hackers. One of our protection solutions is to encrypt all packets that go through the internet, but is it enough?
+
+
+  Use case
+  #
+
+
+Attacking financial systems
+
+
+  How it works
+  #
+
+
+An attacker alters bits in the ciphertext to produce a predictable change in the plaintext
+By flipping specific bits, the attacker can control certain parts of the plaintext, potentially altering critical information
+This manipulation allows the attacker to modify the encrypted message without needing to decrypt it first
+
+">
+<meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff">
+<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#343a40">
+<meta name="color-scheme" content="light dark"><meta property="og:url" content="https://dangpham112000.github.io/docs/research/security/bit_flipping/">
+  <meta property="og:site_name" content="Dante 0401">
+  <meta property="og:title" content="Bit Flipping">
+  <meta property="og:description" content="Bit Flipping Attack # As you can see in the Packet Sniffing section, we have a discussion about how messages that go through the internet can easily be seen by hackers. One of our protection solutions is to encrypt all packets that go through the internet, but is it enough? Use case # Attacking financial systems How it works # An attacker alters bits in the ciphertext to produce a predictable change in the plaintext By flipping specific bits, the attacker can control certain parts of the plaintext, potentially altering critical information This manipulation allows the attacker to modify the encrypted message without needing to decrypt it first">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="docs">
+    <meta property="article:published_time" content="2025-01-16T00:00:00+00:00">
+    <meta property="article:modified_time" content="2025-01-16T00:00:00+00:00">
+<title>Bit Flipping | Dante 0401</title>
+<link rel="manifest" href="/manifest.json">
+<link rel="icon" href="/favicon.png" >
+<link rel="canonical" href="https://dangpham112000.github.io/docs/research/security/bit_flipping/">
+<link rel="stylesheet" href="/book.min.ef1786281083252320100bd5f394f36844d3252afdbd5bfe72e5f440aaff402b.css" integrity="sha256-7xeGKBCDJSMgEAvV85TzaETTJSr9vVv&#43;cuX0QKr/QCs=" crossorigin="anonymous">
+  <script defer src="/fuse.min.js"></script>
+  <script defer src="/en.search.min.496e65ceaf48c230fdc595740c2c51fe1f1fccc99a4ce85400cf40347a248b5f.js" integrity="sha256-SW5lzq9IwjD9xZV0DCxR/h8fzMmaTOhUAM9ANHoki18=" crossorigin="anonymous"></script>
+<!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+  
+</head>
+<body dir="ltr">
+  <input type="checkbox" class="hidden toggle" id="menu-control" />
+  <input type="checkbox" class="hidden toggle" id="toc-control" />
+  <main class="container flex">
+    <aside class="book-menu">
+      <div class="book-menu-content">
+        
+  <nav>
+<h2 class="book-brand">
+  <a class="flex align-center" href="/"><span>Dante 0401</span>
+  </a>
+</h2>
+
+
+<div class="book-search hidden">
+  <input type="text" id="book-search-input" placeholder="Search" aria-label="Search" maxlength="64" data-hotkeys="s/" />
+  <div class="book-search-spinner hidden"></div>
+  <ul id="book-search-results"></ul>
+</div>
+<script>document.querySelector(".book-search").classList.remove("hidden")</script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <ul>
+    
+      
+        <li class="book-section-flat" >
+          
+  
+  
+
+  
+    <span>RESEARCH</span>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/research/process_vs_thread/" class="">Process vs Thread</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/research/chrome_architecture/" class="">Chrome Architecture</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/research/aws_overview/" class="">AWS Overview</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/research/be_protocol/" class="">Backend Protocol</a>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/research/be_protocol/tcp_udp/" class="">TCP - UDP - Draft</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/research/be_protocol/http/" class="">HTTP - Draft</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/research/be_protocol/tls_ssl/" class="">TLS - SSL</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/research/be_protocol/https/" class="">HTTPS - Draft</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/research/be_protocol/webrtc/" class="">WebRTC - Draft</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/research/be_protocol/websocket/" class="">Websocket - Draft</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/research/be_protocol/grpc/" class="">gRPC - Draft</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/research/be_protocol/communication/" class="">Communication - Draft</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/research/encryption/" class="">Encryption - Draft</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/research/token_based_authentication/" class="">Token-based Authentication</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/research/event_loop/" class="">Event loop - Draft</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/research/security/" class="">Security - Draft</a>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/research/security/cors/" class="">CORS - draft</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/research/security/xss/" class="">XSS - Draft</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/research/security/csrf/" class="">CSRF - Draft</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/research/security/packet_sniffing/" class="">Packet Sniffing - Draft</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/research/security/evil_twin/" class="">Evil Twin - Draft</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/research/security/arp_spoofing/" class="">ARP Spoofing - Draft</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/research/security/dns_poisoning/" class="">DNS Poisoning - Draft</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/research/security/hsts/" class="">HSTS - Draft</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/research/security/bit_flipping/" class="active">Bit Flipping</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/research/scale/" class="">Scale</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li class="book-section-flat" >
+          
+  
+  
+
+  
+    <span>TIPS</span>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/tips/001_unit_test/" class="">Unit Test</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/tips/002_git/" class="">Git</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/tips/003_docker/" class="">Docker</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/tips/004_ops/" class="">Ops</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/tips/005_passion/" class="">Spark Passion</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li class="book-section-flat" >
+          
+  
+  
+
+  
+    <span>PROBLEMS</span>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/problems/knight_dialer/" class="">Knight Dialer</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/problems/design_hashmap/" class="">Design HashMap - Draft</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</nav>
+
+
+
+
+  <script>(function(){var e=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(){localStorage.setItem("menu.scrollTop",e.scrollTop)}),e.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
+
+
+ 
+      </div>
+    </aside>
+
+    <div class="book-page">
+      <header class="book-header">
+        
+  <div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="/svg/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <strong>Bit Flipping</strong>
+
+  <label for="toc-control">
+    
+    <img src="/svg/toc.svg" class="book-icon" alt="Table of Contents" />
+    
+  </label>
+</div>
+
+
+  
+  <aside class="hidden clearfix">
+    
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#use-case">Use case</a></li>
+    <li><a href="#how-it-works">How it works</a></li>
+    <li><a href="#prevention">Prevention</a></li>
+    <li><a href="#demo">Demo</a></li>
+    <li><a href="#references">References</a></li>
+  </ul>
+</nav>
+
+
+
+  </aside>
+  
+ 
+      </header>
+
+      
+      
+  <article class="markdown book-article"><h1 id="bit-flipping-attack">
+  Bit Flipping Attack
+  <a class="anchor" href="#bit-flipping-attack">#</a>
+</h1>
+<ul>
+<li>As you can see in the <a href="/docs/research/security/packet_sniffing/">Packet Sniffing</a> section, we have a discussion about how messages that go through the internet can easily be seen by hackers. One of our protection solutions is to <strong>encrypt all packets that go through the internet</strong>, but <strong>is it enough?</strong></li>
+</ul>
+<h2 id="use-case">
+  Use case
+  <a class="anchor" href="#use-case">#</a>
+</h2>
+<ul>
+<li>Attacking financial systems</li>
+</ul>
+<h2 id="how-it-works">
+  How it works
+  <a class="anchor" href="#how-it-works">#</a>
+</h2>
+<ul>
+<li>An attacker alters bits in the ciphertext to produce a predictable change in the plaintext</li>
+<li>By flipping specific bits, the attacker can control certain parts of the plaintext, potentially altering critical information</li>
+<li>This manipulation allows the attacker to modify the encrypted message without needing to decrypt it first</li>
+</ul>
+<p><img src="/research/security/bit_flipping/bit_flipping.png" alt="bit_flipping" /></p>
+<h2 id="prevention">
+  Prevention
+  <a class="anchor" href="#prevention">#</a>
+</h2>
+<ul>
+<li>Implement <a href="/docs/research/encryption/#hmac">HMAC</a></li>
+</ul>
+<h2 id="demo">
+  Demo
+  <a class="anchor" href="#demo">#</a>
+</h2>
+<blockquote class="book-hint danger">
+  <strong>DISCLAIMER</strong>: This demo is for educational purposes only. The techniques should only be tested on systems you own or have explicit permission to analyze. Misuse of this information is unethical, may violate the law, and could lead to serious consequences. The author takes no responsibility for any damages or misuse arising from this content
+</blockquote>
+
+<blockquote class="book-hint info">
+  This demo can be run directly in the console of the Chrome browser
+</blockquote>
+
+<p><strong>Javascript</strong></p>
+<details ><summary>Prepare</summary>
+  <div class="markdown-inner">
+    <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">iv</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">crypto</span>.<span style="color:#a6e22e">getRandomValues</span>(<span style="color:#66d9ef">new</span> <span style="color:#a6e22e">Uint8Array</span>(<span style="color:#ae81ff">16</span>));
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">let</span> <span style="color:#a6e22e">key</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>(<span style="color:#66d9ef">async</span> () =&gt; {
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">key</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> <span style="color:#a6e22e">crypto</span>.<span style="color:#a6e22e">subtle</span>.<span style="color:#a6e22e">generateKey</span>(
+</span></span><span style="display:flex;"><span>		{
+</span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">name</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;AES-CBC&#34;</span>,
+</span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">length</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">128</span>,
+</span></span><span style="display:flex;"><span>		},
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">true</span>,
+</span></span><span style="display:flex;"><span>		[<span style="color:#e6db74">&#34;encrypt&#34;</span>, <span style="color:#e6db74">&#34;decrypt&#34;</span>]
+</span></span><span style="display:flex;"><span>	);
+</span></span><span style="display:flex;"><span>})();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">async</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">encryptData</span>(<span style="color:#a6e22e">plaintext</span>) {
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">encoder</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">TextEncoder</span>();
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">data</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">encoder</span>.<span style="color:#a6e22e">encode</span>(<span style="color:#a6e22e">plaintext</span>);
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">ciphertext</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> <span style="color:#a6e22e">crypto</span>.<span style="color:#a6e22e">subtle</span>.<span style="color:#a6e22e">encrypt</span>(
+</span></span><span style="display:flex;"><span>		{
+</span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">name</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;AES-CBC&#34;</span>,
+</span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">iv</span>,
+</span></span><span style="display:flex;"><span>		},
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">key</span>,
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">data</span>
+</span></span><span style="display:flex;"><span>	);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">return</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">Uint8Array</span>(<span style="color:#a6e22e">ciphertext</span>);
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">async</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">decryptData</span>(<span style="color:#a6e22e">ciphertext</span>) {
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">plaintextBuffer</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> <span style="color:#a6e22e">crypto</span>.<span style="color:#a6e22e">subtle</span>.<span style="color:#a6e22e">decrypt</span>(
+</span></span><span style="display:flex;"><span>		{
+</span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">name</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;AES-CBC&#34;</span>,
+</span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">iv</span>,
+</span></span><span style="display:flex;"><span>		},
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">key</span>,
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">ciphertext</span>
+</span></span><span style="display:flex;"><span>	);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">decoder</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">TextDecoder</span>();
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">decoder</span>.<span style="color:#a6e22e">decode</span>(<span style="color:#a6e22e">plaintextBuffer</span>);
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">ord</span>(<span style="color:#a6e22e">string</span>) {
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">string</span>.<span style="color:#a6e22e">charCodeAt</span>(<span style="color:#ae81ff">0</span>);
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div>
+  </div>
+</details>
+
+</br>
+<details ><summary>Main flow</summary>
+  <div class="markdown-inner">
+    <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span>(<span style="color:#66d9ef">async</span> () =&gt; {
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// User
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">plaintext</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;{ Message: &#39;Doing  charity  work!&#39;, Money: 001 $, To: Beggar }&#34;</span>;
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">ciphertext</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> <span style="color:#a6e22e">encryptData</span>(<span style="color:#a6e22e">plaintext</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Hacker
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#a6e22e">ciphertext</span>[<span style="color:#ae81ff">43</span> <span style="color:#f92672">-</span> <span style="color:#ae81ff">16</span>] <span style="color:#f92672">=</span> <span style="color:#a6e22e">ord</span>(<span style="color:#e6db74">&#34;0&#34;</span>) <span style="color:#f92672">^</span> <span style="color:#a6e22e">ciphertext</span>[<span style="color:#ae81ff">43</span> <span style="color:#f92672">-</span> <span style="color:#ae81ff">16</span>] <span style="color:#f92672">^</span> <span style="color:#a6e22e">ord</span>(<span style="color:#e6db74">&#34;9&#34;</span>);
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">ciphertext</span>[<span style="color:#ae81ff">44</span> <span style="color:#f92672">-</span> <span style="color:#ae81ff">16</span>] <span style="color:#f92672">=</span> <span style="color:#a6e22e">ord</span>(<span style="color:#e6db74">&#34;0&#34;</span>) <span style="color:#f92672">^</span> <span style="color:#a6e22e">ciphertext</span>[<span style="color:#ae81ff">44</span> <span style="color:#f92672">-</span> <span style="color:#ae81ff">16</span>] <span style="color:#f92672">^</span> <span style="color:#a6e22e">ord</span>(<span style="color:#e6db74">&#34;9&#34;</span>);
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">ciphertext</span>[<span style="color:#ae81ff">45</span> <span style="color:#f92672">-</span> <span style="color:#ae81ff">16</span>] <span style="color:#f92672">=</span> <span style="color:#a6e22e">ord</span>(<span style="color:#e6db74">&#34;1&#34;</span>) <span style="color:#f92672">^</span> <span style="color:#a6e22e">ciphertext</span>[<span style="color:#ae81ff">45</span> <span style="color:#f92672">-</span> <span style="color:#ae81ff">16</span>] <span style="color:#f92672">^</span> <span style="color:#a6e22e">ord</span>(<span style="color:#e6db74">&#34;9&#34;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Bank
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">decryptedText</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> <span style="color:#a6e22e">decryptData</span>(<span style="color:#a6e22e">ciphertext</span>);
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#34;Decrypted Text:&#34;</span>, <span style="color:#a6e22e">decryptedText</span>);
+</span></span><span style="display:flex;"><span>})();
+</span></span></code></pre></div>
+  </div>
+</details>
+
+</br>
+<details ><summary>Output</summary>
+  <div class="markdown-inner">
+    <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>&gt; Decrypted Text: { Message: &#39;Doin��iQ���&#39;BT_�&#34;!&#39;, Money: 999 $, To: Beggar }
+</span></span></code></pre></div>
+  </div>
+</details>
+
+<h2 id="references">
+  References
+  <a class="anchor" href="#references">#</a>
+</h2>
+<ul>
+<li>Twingate: <a href="https://www.twingate.com/blog/glossary/bit-flipping-attack">What Is A Bit Flipping Attack? How It Works &amp; Examples</a> (Aug 15th, 2024)</li>
+<li>Hackernoon: <a href="https://hackernoon.com/hmac-and-message-authentication-codes-why-using-hashing-alone-is-not-enough-for-data-integrity">Why Using Hashing Alone is NOT Enough for Data Integrity</a> (Aug 15th, 2023)</li>
+<li>Bigous: <a href="https://www.bigous.me/2023/11/17/CBC-bit-flipping-en.html">A deep look into Cipher Block Chaining (CBC) Algorithm Bit Flipping</a> (Nov 17th, 2023)</li>
+</ul>
+<style>
+    .feedback-card {
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        padding: 20px;
+        max-width: 100%;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        background-color: #f9f9fb;
+    }
+    .feedback-card h2 {
+        font-size: 20px;
+        margin-top: 0px;
+        margin-bottom: 10px;
+    }
+    .feedback-card .buttons {
+        margin: 10px 0;
+    }
+    .feedback-card button {
+        border: none;
+        background-color: #f0f0f0;
+        border-radius: 4px;
+        padding: 10px 15px;
+        margin-right: 10px;
+        cursor: pointer;
+        font-size: 16px;
+    }
+    .feedback-card button:hover {
+        background-color: #e0e0e0;
+    }
+    .feedback-card a {
+        color: #0074d9;
+        text-decoration: none;
+    }
+    .feedback-card a:hover {
+        text-decoration: underline;
+    }
+    .feedback-card p {
+        font-size: 14px;
+        color: #555;
+    }
+
+     
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border-radius: 7px;
+      padding-bottom: 50px;
+
+      background-color: rgba(0, 0, 0, 0.5);
+      justify-content: center;
+      align-items: flex-end;
+    }
+
+    .modal-content {
+      background-color: white;
+      padding: 20px;
+      border-radius: 5px;
+      width: 300px;
+    }
+
+    .modal input {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 10px;
+    }
+</style>
+<div class="feedback-card" id="feedbackCard">
+    <h2>Help improve my blog</h2>
+    <p>Was this page helpful to you?</p>
+    <div class="buttons">
+        <button id="yesBtn">👍 Yes</button>
+        <button id="noBtn">👎 No</button>
+    </div>
+    <p>This page was last modified at <strong>2025-01-16</strong></p>
+    <ul>
+        <li><a href="https://github.com/DangPham112000/blog" target="_blank">View this page on GitHub</a></li>
+        <li><a href="#" class="link-button" id="linkButton">Report a problem with this content</a></li>
+    </ul>
+</div>
+
+<div class="modal" id="formModal">
+    <div class="feedback-card">
+        <h2>Can I know your name?</h2>
+        <form id="form">
+            <input type="text" name="username" placeholder="Enter your name">
+            <button type="submit">Yes</button>
+            <button type="submit">No</button>
+        </form>
+    </div>
+</div>
+
+<script>
+    const feedbackCardEle = document.getElementById("feedbackCard");
+    const formModalEle = document.getElementById('formModal');
+    const elesToShowForm = ['linkButton', 'yesBtn', 'noBtn'];
+
+    for (const ele of elesToShowForm) {
+        document.getElementById(ele).addEventListener('click', function(e) {
+            e.preventDefault();
+            formModalEle.style.display = 'flex';
+        });
+    }
+
+    window.onclick = function(event) {
+        if (event.target === formModalEle) {
+            formModalEle.style.display = 'none';
+        }
+    };
+
+    document.getElementById('form').addEventListener('submit', function(e) {
+        e.preventDefault(); 
+        alert('This feature is currently being developed');
+        formModalEle.style.display = 'none'; 
+    });
+</script>
+</article>
+ 
+      
+
+      <footer class="book-footer">
+        
+  <div class="flex flex-wrap justify-between">
+
+
+
+
+
+</div>
+
+
+
+  <script>(function(){function e(e){const t=window.getSelection(),n=document.createRange();n.selectNodeContents(e),t.removeAllRanges(),t.addRange(n)}document.querySelectorAll("pre code").forEach(t=>{t.addEventListener("click",function(){if(window.getSelection().toString())return;e(t.parentElement),navigator.clipboard&&navigator.clipboard.writeText(t.parentElement.textContent)})})})()</script>
+
+
+ 
+        
+      </footer>
+
+      
+  
+  <div class="book-comments">
+
+</div>
+  
+ 
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
+    </div>
+
+    
+    <aside class="book-toc">
+      <div class="book-toc-content">
+        
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#use-case">Use case</a></li>
+    <li><a href="#how-it-works">How it works</a></li>
+    <li><a href="#prevention">Prevention</a></li>
+    <li><a href="#demo">Demo</a></li>
+    <li><a href="#references">References</a></li>
+  </ul>
+</nav>
+
+
+ 
+      </div>
+    </aside>
+    
+  </main>
+
+  
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
