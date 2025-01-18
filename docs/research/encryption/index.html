@@ -64,7 +64,7 @@ Good hash function # Fast One-way function Collision resistance Use case # Check
 <link rel="canonical" href="https://dangpham112000.github.io/docs/research/encryption/">
 <link rel="stylesheet" href="/book.min.ef1786281083252320100bd5f394f36844d3252afdbd5bfe72e5f440aaff402b.css" integrity="sha256-7xeGKBCDJSMgEAvV85TzaETTJSr9vVv&#43;cuX0QKr/QCs=" crossorigin="anonymous">
   <script defer src="/fuse.min.js"></script>
-  <script defer src="/en.search.min.eec24488444c9f40d371dc27246ed1a24faea6836ebdd3568d736f0e170de270.js" integrity="sha256-7sJEiERMn0DTcdwnJG7Rok&#43;upoNuvdNWjXNvDhcN4nA=" crossorigin="anonymous"></script>
+  <script defer src="/en.search.min.cd97e111f91cf6d0a675ec89227243a521f38a56a36426a99043da7b93c90e6a.js" integrity="sha256-zZfhEfkc9tCmdeyJInJDpSHzilajZCapkEPae5PJDmo=" crossorigin="anonymous"></script>
 <!--
 Made with Book Theme
 https://github.com/alex-shpak/hugo-book
@@ -317,19 +317,6 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="/docs/research/event_loop/" class="">Event loop - Draft</a>
-  
-
-        </li>
-      
-    
-      
-        <li>
-          
-  
-  
-
-  
     <a href="/docs/research/security/" class="">Security - Draft</a>
   
 
@@ -370,19 +357,6 @@ https://github.com/alex-shpak/hugo-book
 
   
     <a href="/docs/research/security/csrf/" class="">CSRF - Draft</a>
-  
-
-        </li>
-      
-    
-      
-        <li>
-          
-  
-  
-
-  
-    <a href="/docs/research/security/packet_sniffing/" class="">Packet Sniffing - Draft</a>
   
 
         </li>
@@ -677,8 +651,14 @@ https://github.com/alex-shpak/hugo-book
     </li>
     <li><a href="#asymmetric-encryption">Asymmetric encryption</a>
       <ul>
-        <li><a href="#demo-of-public-key-encryption-and-private-key-decryption">Demo of public key encryption and private key decryption</a></li>
-        <li><a href="#digital-signatures">Digital signatures</a></li>
+        <li><a href="#public-key-encryption-and-private-key-decryption">Public key encryption and private key decryption</a></li>
+        <li><a href="#private-key-encryption-and-public-key-decryption">Private key encryption and public key decryption</a></li>
+      </ul>
+    </li>
+    <li><a href="#digital-signatures">Digital signatures</a>
+      <ul>
+        <li><a href="#how">How</a></li>
+        <li><a href="#use-cases">Use cases</a></li>
       </ul>
     </li>
     <li><a href="#appendix">Appendix</a>
@@ -722,7 +702,7 @@ https://github.com/alex-shpak/hugo-book
 </h3>
 <ul>
 <li>Fast</li>
-<li>One-way function</li>
+<li><strong>One-way function</strong></li>
 <li>Collision resistance</li>
 </ul>
 <h3 id="use-case">
@@ -1117,9 +1097,9 @@ e99f33420f577ee8ce54b67080<strong>2</strong>80d1ec69821bcb6a8839396f965<strong>a
 <p>Uses a public-key cryptosystem (like RSA or ECC) and a key-pair: encryption key and corresponding decryption key</p>
 <p>Encryption algorithms are often combined in encryption schemes (like AES-256-CTR-HMAC-SHA-256, ChaCha20-Poly1305 or ECIES-secp256k1-AES-128-GCM)</p>
 <p><img src="/research/encription/Asymmetric.png" alt="Asymmetric" /></p>
-<h3 id="demo-of-public-key-encryption-and-private-key-decryption">
-  Demo of public key encryption and private key decryption
-  <a class="anchor" href="#demo-of-public-key-encryption-and-private-key-decryption">#</a>
+<h3 id="public-key-encryption-and-private-key-decryption">
+  Public key encryption and private key decryption
+  <a class="anchor" href="#public-key-encryption-and-private-key-decryption">#</a>
 </h3>
 <p>This example demonstrates asymmetric encryption using an RSA <strong>public key to encrypt</strong> and an RSA <strong>private key to decrypt</strong> a message in Node.js with the crypto module</p>
 <p><strong>NodeJS</strong></p>
@@ -1304,28 +1284,10 @@ e99f33420f577ee8ce54b67080<strong>2</strong>80d1ec69821bcb6a8839396f965<strong>a
   </div>
 </details>
 
-<h3 id="digital-signatures">
-  Digital signatures
-  <a class="anchor" href="#digital-signatures">#</a>
+<h3 id="private-key-encryption-and-public-key-decryption">
+  Private key encryption and public key decryption
+  <a class="anchor" href="#private-key-encryption-and-public-key-decryption">#</a>
 </h3>
-<ul>
-<li>prove message <strong>authenticity</strong> and integrity</li>
-</ul>
-<p>Most digital signature algorithms (like DSA, ECDSA and EdDSA) use asymmetric key pair (private and public key):</p>
-<ul>
-<li>the message is signed by the private key</li>
-<li>the signature is verified by the corresponding public key</li>
-</ul>
-<p>Use cases:</p>
-<ul>
-<li>In the bank systems digital signatures are used to sign and approve payments</li>
-<li>In blockchain signed transactions allow users to transfer a blockchain asset from one address to another</li>
-</ul>
-<p><img src="/research/encription/digital_signature.png" alt="digital_signature" /></p>
-<h4 id="demo-of-private-key-encryption-and-public-key-decryption">
-  Demo of private key encryption and public key decryption
-  <a class="anchor" href="#demo-of-private-key-encryption-and-public-key-decryption">#</a>
-</h4>
 <p>This example demonstrates RSA encryption and decryption in a way that mimics JWT behavior, where the <strong>private key is used to sign (encrypt)</strong> the message, and the <strong>public key is used to verify (decrypt)</strong> it</p>
 <p><strong>NodeJS</strong></p>
 <details ><summary>Init necessary functions</summary>
@@ -1558,6 +1520,32 @@ e99f33420f577ee8ce54b67080<strong>2</strong>80d1ec69821bcb6a8839396f965<strong>a
   </div>
 </details>
 
+<h2 id="digital-signatures">
+  Digital signatures
+  <a class="anchor" href="#digital-signatures">#</a>
+</h2>
+<ul>
+<li>Prove message <strong>authenticity</strong> and <strong>integrity</strong></li>
+<li>Non-repudiation</li>
+<li>Use asymmetric encryption</li>
+</ul>
+<h3 id="how">
+  How
+  <a class="anchor" href="#how">#</a>
+</h3>
+<ul>
+<li>The message is signed by the private key</li>
+<li>The signature is verified by the corresponding public key</li>
+</ul>
+<p><img src="/research/encription/digital_signature.png" alt="digital_signature" /></p>
+<h3 id="use-cases">
+  Use cases
+  <a class="anchor" href="#use-cases">#</a>
+</h3>
+<ul>
+<li>Sign and approve payments in the <strong>bank systems</strong></li>
+<li>Signed transactions allow users to transfer a <strong>blockchain</strong> asset from one address to another</li>
+</ul>
 <h2 id="appendix">
   Appendix
   <a class="anchor" href="#appendix">#</a>
@@ -1654,8 +1642,14 @@ e99f33420f577ee8ce54b67080<strong>2</strong>80d1ec69821bcb6a8839396f965<strong>a
     </li>
     <li><a href="#asymmetric-encryption">Asymmetric encryption</a>
       <ul>
-        <li><a href="#demo-of-public-key-encryption-and-private-key-decryption">Demo of public key encryption and private key decryption</a></li>
-        <li><a href="#digital-signatures">Digital signatures</a></li>
+        <li><a href="#public-key-encryption-and-private-key-decryption">Public key encryption and private key decryption</a></li>
+        <li><a href="#private-key-encryption-and-public-key-decryption">Private key encryption and public key decryption</a></li>
+      </ul>
+    </li>
+    <li><a href="#digital-signatures">Digital signatures</a>
+      <ul>
+        <li><a href="#how">How</a></li>
+        <li><a href="#use-cases">Use cases</a></li>
       </ul>
     </li>
     <li><a href="#appendix">Appendix</a>

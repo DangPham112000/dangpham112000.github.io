@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en-us" dir="ltr">
-<head>
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="
@@ -108,7 +108,7 @@ Linuxhint: How to Install and Use Wireshark on Ubuntu (2018)
 ">
 <meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff">
 <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#343a40">
-<meta name="color-scheme" content="light dark"><meta property="og:url" content="https://dangpham112000.github.io/docs/research/security/packet_sniffing/">
+<meta name="color-scheme" content="light dark"><meta property="og:url" content="http://localhost:1313/docs/research/security/packet_sniffing/">
   <meta property="og:site_name" content="Dante 0401">
   <meta property="og:title" content="Packet Sniffing - Draft">
   <meta property="og:description" content="Packet Sniffing # A type of MitM attack Description: The attacker uses tools like Wireshark, tcpdump, or Kismet to capture packets traveling through the Wi-Fi network Key Characteristics: Often passive (doesn’t modify the traffic, just listens) Works well on unencrypted networks or with weak encryption like WEP Prevention: # Use strong encryption (WPA3 is ideal, WPA2 is acceptable) Avoid unencrypted public Wi-Fi Encrypt all messages that go through the internet Demo # DISCLAIMER: This demo is for educational purposes only. The techniques should only be tested on systems you own or have explicit permission to analyze. Misuse of this information is unethical, may violate the law, and could lead to serious consequences. The author takes no responsibility for any damages or misuse arising from this content Install necessary packages # sudo apt update Aircrack-ng: Airmon-ng is a utility in the Aircrack-ng suite that helps set up a wireless network card into monitor mode Airodump-ng: Captures data packets from nearby wireless networks sudo apt install aircrack-ng Wireshark is a network packet analyzer sudo apt install wireshark Let’s go # # Check wireless interface iwconfig # -&gt; E.g output lo no wireless extensions. enp4s0 no wireless extensions. wlo1 IEEE 802.11 ESSID:&#34;A14-01&#34; Mode:Managed Frequency:2.417 GHz Access Point: CC:71:90:62:9E:98 Bit Rate=130 Mb/s Tx-Power=22 dBm Retry short limit:7 RTS thr:off Fragment thr:off Power Management:on Link Quality=62/70 Signal level=-48 dBm Rx invalid nwid:0 Rx invalid crypt:0 Rx invalid frag:0 Tx excessive retries:0 Invalid misc:203 Missed beacon:0 docker0 no wireless extensions. # -&gt; Your wireless interface is wlo1 # Disconnect the wireless adapter from managing a network sudo airmon-ng check kill # Enable monitor mode on your wireless adapter sudo airmon-ng start wlo1 # Verify iwconfig # -&gt; E.g output lo no wireless extensions. enp4s0 no wireless extensions. docker0 no wireless extensions. wlo1mon IEEE 802.11 Mode:Monitor Frequency:2.457 GHz Retry short limit:7 RTS thr:off Fragment thr:off Power Management:on # -&gt; Your wireless adapter with monitor mode is now wlo1mon # Capture packets sudo airodump-ng wlo1mon sudo wireshark # -&gt; Use Wireshark to capture packets on the wlo1mon interface Stop capturing packets (exit monitor mode) sudo airmon-ng stop wlo1mon sudo systemctl restart NetworkManager References # Wireshark: Turning on monitor mode (Aug 11th, 2020) Linuxhint: How to Install and Use Wireshark on Ubuntu (2018)">
@@ -120,7 +120,7 @@ Linuxhint: How to Install and Use Wireshark on Ubuntu (2018)
 <title>Packet Sniffing - Draft | Dante 0401</title>
 <link rel="manifest" href="/manifest.json">
 <link rel="icon" href="/favicon.png" >
-<link rel="canonical" href="https://dangpham112000.github.io/docs/research/security/packet_sniffing/">
+<link rel="canonical" href="http://localhost:1313/docs/research/security/packet_sniffing/">
 <link rel="stylesheet" href="/book.min.ef1786281083252320100bd5f394f36844d3252afdbd5bfe72e5f440aaff402b.css" integrity="sha256-7xeGKBCDJSMgEAvV85TzaETTJSr9vVv&#43;cuX0QKr/QCs=" crossorigin="anonymous">
   <script defer src="/fuse.min.js"></script>
   <script defer src="/en.search.min.eec24488444c9f40d371dc27246ed1a24faea6836ebdd3568d736f0e170de270.js" integrity="sha256-7sJEiERMn0DTcdwnJG7Rok&#43;upoNuvdNWjXNvDhcN4nA=" crossorigin="anonymous"></script>
@@ -364,19 +364,6 @@ https://github.com/alex-shpak/hugo-book
 
   
     <a href="/docs/research/token_based_authentication/" class="">Token-based Authentication</a>
-  
-
-        </li>
-      
-    
-      
-        <li>
-          
-  
-  
-
-  
-    <a href="/docs/research/event_loop/" class="">Event loop - Draft</a>
   
 
         </li>
