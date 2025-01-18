@@ -90,7 +90,7 @@ There is only one problem with this attack: the time.
 <link rel="canonical" href="https://dangpham112000.github.io/docs/research/security/">
 <link rel="stylesheet" href="/book.min.ef1786281083252320100bd5f394f36844d3252afdbd5bfe72e5f440aaff402b.css" integrity="sha256-7xeGKBCDJSMgEAvV85TzaETTJSr9vVv&#43;cuX0QKr/QCs=" crossorigin="anonymous">
   <script defer src="/fuse.min.js"></script>
-  <script defer src="/en.search.min.cd97e111f91cf6d0a675ec89227243a521f38a56a36426a99043da7b93c90e6a.js" integrity="sha256-zZfhEfkc9tCmdeyJInJDpSHzilajZCapkEPae5PJDmo=" crossorigin="anonymous"></script>
+  <script defer src="/en.search.min.6d1c7f2d21bb32b7760ba7e188694aa2751724cbc5a8f4771e7b56d156aa2d7b.js" integrity="sha256-bRx/LSG7Mrd2C6fhiGlKonUXJMvFqPR3HntW0VaqLXs=" crossorigin="anonymous"></script>
 <link rel="alternate" type="application/rss+xml" href="https://dangpham112000.github.io/docs/research/security/index.xml" title="Dante 0401" />
 <!--
 Made with Book Theme
@@ -209,32 +209,6 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="/docs/research/be_protocol/tcp_udp/" class="">TCP - UDP - Draft</a>
-  
-
-        </li>
-      
-    
-      
-        <li>
-          
-  
-  
-
-  
-    <a href="/docs/research/be_protocol/http/" class="">HTTP - Draft</a>
-  
-
-        </li>
-      
-    
-      
-        <li>
-          
-  
-  
-
-  
     <a href="/docs/research/be_protocol/tls_ssl/" class="">TLS - SSL</a>
   
 
@@ -261,33 +235,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="/docs/research/be_protocol/webrtc/" class="">WebRTC - Draft</a>
-  
-
-        </li>
-      
-    
-      
-        <li>
-          
-  
-  
-
-  
     <a href="/docs/research/be_protocol/websocket/" class="">Websocket - Draft</a>
-  
-
-        </li>
-      
-    
-      
-        <li>
-          
-  
-  
-
-  
-    <a href="/docs/research/be_protocol/grpc/" class="">gRPC - Draft</a>
   
 
         </li>
@@ -357,85 +305,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="/docs/research/security/cors/" class="">CORS - draft</a>
-  
-
-        </li>
-      
-    
-      
-        <li>
-          
-  
-  
-
-  
-    <a href="/docs/research/security/xss/" class="">XSS - Draft</a>
-  
-
-        </li>
-      
-    
-      
-        <li>
-          
-  
-  
-
-  
-    <a href="/docs/research/security/csrf/" class="">CSRF - Draft</a>
-  
-
-        </li>
-      
-    
-      
-        <li>
-          
-  
-  
-
-  
-    <a href="/docs/research/security/evil_twin/" class="">Evil Twin - Draft</a>
-  
-
-        </li>
-      
-    
-      
-        <li>
-          
-  
-  
-
-  
-    <a href="/docs/research/security/arp_spoofing/" class="">ARP Spoofing - Draft</a>
-  
-
-        </li>
-      
-    
-      
-        <li>
-          
-  
-  
-
-  
-    <a href="/docs/research/security/dns_poisoning/" class="">DNS Poisoning - Draft</a>
-  
-
-        </li>
-      
-    
-      
-        <li>
-          
-  
-  
-
-  
-    <a href="/docs/research/security/hsts/" class="">HSTS - Draft</a>
+    <a href="/docs/research/security/hsts/" class="">HSTS</a>
   
 
         </li>
@@ -586,19 +456,6 @@ https://github.com/alex-shpak/hugo-book
         </li>
       
     
-      
-        <li>
-          
-  
-  
-
-  
-    <a href="/docs/problems/design_hashmap/" class="">Design HashMap - Draft</a>
-  
-
-        </li>
-      
-    
   </ul>
 
         </li>
@@ -671,6 +528,7 @@ https://github.com/alex-shpak/hugo-book
         <li><a href="#prevention-1">Prevention</a></li>
       </ul>
     </li>
+    <li><a href="#man-in-the-middle-attack">Man in the middle attack</a></li>
     <li><a href="#malicious-network-redirects">Malicious Network Redirects</a>
       <ul>
         <li><a href="#how-it-works-2">How it works</a></li>
@@ -688,14 +546,6 @@ https://github.com/alex-shpak/hugo-book
     <li><a href="#idor-attack">IDOR attack</a></li>
     <li><a href="#cross-domain-access-attack">Cross-domain access attack</a></li>
     <li><a href="#syn-flood-attack">Syn flood attack</a></li>
-    <li><a href="#man-in-the-middle-attack">Man in the middle attack</a></li>
-    <li><a href="#replay-attack">Replay attack</a></li>
-    <li><a href="#relay-attack">Relay attack</a>
-      <ul>
-        <li><a href="#request-modify">request modify</a></li>
-        <li><a href="#response-modify">response modify</a></li>
-      </ul>
-    </li>
     <li><a href="#references">References</a></li>
   </ul>
 </nav>
@@ -783,7 +633,7 @@ https://github.com/alex-shpak/hugo-book
 </ul>
 <p><img src="/research/security/2024-Crack-Password-Table.png" alt="2024-Crack-Password-Table" /></p>
 <ul>
-<li>Why does the hashing method matter when cracking passwords with a brute force attack? <a href="/docs/research/encryption/#why-bcrypt-will-take-longer-time-to-crack-your-password-than-md5">Bcrypt will take longer to crack than MD5</a></li>
+<li>Why does the hashing method matter when cracking passwords with a brute force attack? <a href="/docs/research/encryption/#bcrypt-vs-md5">Bcrypt will take longer to crack than MD5</a></li>
 </ul>
 <h3 id="use-case">
   Use case
@@ -842,6 +692,17 @@ https://github.com/alex-shpak/hugo-book
 <li><strong>Limit login attempts</strong></li>
 <li><strong>Force resets</strong></li>
 </ul>
+<h2 id="man-in-the-middle-attack">
+  Man in the middle attack
+  <a class="anchor" href="#man-in-the-middle-attack">#</a>
+</h2>
+<ul>
+<li><a href="/docs/research/security/packet_sniffing/">Packet Sniffing</a></li>
+<li><a href="/docs/research/security/arp_spoofing/">ARP Spoofing</a></li>
+<li><a href="/docs/research/security/evil_twin/">Evil Twin</a></li>
+<li><a href="/docs/research/security/dns_poisoning">DNS Poisoning</a></li>
+<li><a href="/docs/research/security/bit_flipping">Bit Flipping</a></li>
+</ul>
 <h2 id="malicious-network-redirects">
   Malicious Network Redirects
   <a class="anchor" href="#malicious-network-redirects">#</a>
@@ -852,7 +713,7 @@ https://github.com/alex-shpak/hugo-book
   <a class="anchor" href="#how-it-works-2">#</a>
 </h3>
 <ul>
-<li>Hacker hijacking the unsecured Wi-Fi you access</li>
+<li>Hacker hijacking the unsecured Wi-Fi you access (more detail: <a href="/docs/research/security/dns_poisoning">DNS Poisoning</a>)</li>
 <li>Malware in your computer edit your Host file (the file work like the DNS in your computer)</li>
 </ul>
 <h3 id="prevention-2">
@@ -898,34 +759,6 @@ https://github.com/alex-shpak/hugo-book
   Syn flood attack
   <a class="anchor" href="#syn-flood-attack">#</a>
 </h2>
-<h2 id="man-in-the-middle-attack">
-  Man in the middle attack
-  <a class="anchor" href="#man-in-the-middle-attack">#</a>
-</h2>
-<ul>
-<li><a href="/docs/research/security/packet_sniffing/">Packet Sniffing</a></li>
-<li>ARP Spoofing</li>
-<li><a href="/docs/research/security/evil_twin/">Evil Twin Attack</a></li>
-<li>Deauthentication Attack</li>
-<li>DNS Spoofing</li>
-<li>TODO: Setup server in front of real server</li>
-</ul>
-<h2 id="replay-attack">
-  Replay attack
-  <a class="anchor" href="#replay-attack">#</a>
-</h2>
-<h2 id="relay-attack">
-  Relay attack
-  <a class="anchor" href="#relay-attack">#</a>
-</h2>
-<h3 id="request-modify">
-  request modify
-  <a class="anchor" href="#request-modify">#</a>
-</h3>
-<h3 id="response-modify">
-  response modify
-  <a class="anchor" href="#response-modify">#</a>
-</h3>
 <h2 id="references">
   References
   <a class="anchor" href="#references">#</a>
@@ -991,6 +824,7 @@ https://github.com/alex-shpak/hugo-book
         <li><a href="#prevention-1">Prevention</a></li>
       </ul>
     </li>
+    <li><a href="#man-in-the-middle-attack">Man in the middle attack</a></li>
     <li><a href="#malicious-network-redirects">Malicious Network Redirects</a>
       <ul>
         <li><a href="#how-it-works-2">How it works</a></li>
@@ -1008,14 +842,6 @@ https://github.com/alex-shpak/hugo-book
     <li><a href="#idor-attack">IDOR attack</a></li>
     <li><a href="#cross-domain-access-attack">Cross-domain access attack</a></li>
     <li><a href="#syn-flood-attack">Syn flood attack</a></li>
-    <li><a href="#man-in-the-middle-attack">Man in the middle attack</a></li>
-    <li><a href="#replay-attack">Replay attack</a></li>
-    <li><a href="#relay-attack">Relay attack</a>
-      <ul>
-        <li><a href="#request-modify">request modify</a></li>
-        <li><a href="#response-modify">response modify</a></li>
-      </ul>
-    </li>
     <li><a href="#references">References</a></li>
   </ul>
 </nav>

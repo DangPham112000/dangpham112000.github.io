@@ -64,7 +64,7 @@ Good hash function # Fast One-way function Collision resistance Use case # Check
 <link rel="canonical" href="https://dangpham112000.github.io/docs/research/encryption/">
 <link rel="stylesheet" href="/book.min.ef1786281083252320100bd5f394f36844d3252afdbd5bfe72e5f440aaff402b.css" integrity="sha256-7xeGKBCDJSMgEAvV85TzaETTJSr9vVv&#43;cuX0QKr/QCs=" crossorigin="anonymous">
   <script defer src="/fuse.min.js"></script>
-  <script defer src="/en.search.min.cd97e111f91cf6d0a675ec89227243a521f38a56a36426a99043da7b93c90e6a.js" integrity="sha256-zZfhEfkc9tCmdeyJInJDpSHzilajZCapkEPae5PJDmo=" crossorigin="anonymous"></script>
+  <script defer src="/en.search.min.6d1c7f2d21bb32b7760ba7e188694aa2751724cbc5a8f4771e7b56d156aa2d7b.js" integrity="sha256-bRx/LSG7Mrd2C6fhiGlKonUXJMvFqPR3HntW0VaqLXs=" crossorigin="anonymous"></script>
 <!--
 Made with Book Theme
 https://github.com/alex-shpak/hugo-book
@@ -182,32 +182,6 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="/docs/research/be_protocol/tcp_udp/" class="">TCP - UDP - Draft</a>
-  
-
-        </li>
-      
-    
-      
-        <li>
-          
-  
-  
-
-  
-    <a href="/docs/research/be_protocol/http/" class="">HTTP - Draft</a>
-  
-
-        </li>
-      
-    
-      
-        <li>
-          
-  
-  
-
-  
     <a href="/docs/research/be_protocol/tls_ssl/" class="">TLS - SSL</a>
   
 
@@ -234,33 +208,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="/docs/research/be_protocol/webrtc/" class="">WebRTC - Draft</a>
-  
-
-        </li>
-      
-    
-      
-        <li>
-          
-  
-  
-
-  
     <a href="/docs/research/be_protocol/websocket/" class="">Websocket - Draft</a>
-  
-
-        </li>
-      
-    
-      
-        <li>
-          
-  
-  
-
-  
-    <a href="/docs/research/be_protocol/grpc/" class="">gRPC - Draft</a>
   
 
         </li>
@@ -330,85 +278,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="/docs/research/security/cors/" class="">CORS - draft</a>
-  
-
-        </li>
-      
-    
-      
-        <li>
-          
-  
-  
-
-  
-    <a href="/docs/research/security/xss/" class="">XSS - Draft</a>
-  
-
-        </li>
-      
-    
-      
-        <li>
-          
-  
-  
-
-  
-    <a href="/docs/research/security/csrf/" class="">CSRF - Draft</a>
-  
-
-        </li>
-      
-    
-      
-        <li>
-          
-  
-  
-
-  
-    <a href="/docs/research/security/evil_twin/" class="">Evil Twin - Draft</a>
-  
-
-        </li>
-      
-    
-      
-        <li>
-          
-  
-  
-
-  
-    <a href="/docs/research/security/arp_spoofing/" class="">ARP Spoofing - Draft</a>
-  
-
-        </li>
-      
-    
-      
-        <li>
-          
-  
-  
-
-  
-    <a href="/docs/research/security/dns_poisoning/" class="">DNS Poisoning - Draft</a>
-  
-
-        </li>
-      
-    
-      
-        <li>
-          
-  
-  
-
-  
-    <a href="/docs/research/security/hsts/" class="">HSTS - Draft</a>
+    <a href="/docs/research/security/hsts/" class="">HSTS</a>
   
 
         </li>
@@ -559,19 +429,6 @@ https://github.com/alex-shpak/hugo-book
         </li>
       
     
-      
-        <li>
-          
-  
-  
-
-  
-    <a href="/docs/problems/design_hashmap/" class="">Design HashMap - Draft</a>
-  
-
-        </li>
-      
-    
   </ul>
 
         </li>
@@ -651,8 +508,8 @@ https://github.com/alex-shpak/hugo-book
     </li>
     <li><a href="#asymmetric-encryption">Asymmetric encryption</a>
       <ul>
-        <li><a href="#public-key-encryption-and-private-key-decryption">Public key encryption and private key decryption</a></li>
-        <li><a href="#private-key-encryption-and-public-key-decryption">Private key encryption and public key decryption</a></li>
+        <li><a href="#public-encryption--private-decryption">Public encryption / private decryption</a></li>
+        <li><a href="#private-sign-encryption--public-verify-decryption">Private sign (encryption) / public verify (decryption)</a></li>
       </ul>
     </li>
     <li><a href="#digital-signatures">Digital signatures</a>
@@ -663,7 +520,7 @@ https://github.com/alex-shpak/hugo-book
     </li>
     <li><a href="#appendix">Appendix</a>
       <ul>
-        <li><a href="#bcrypt-cracking-password-time-vs-md5">Bcrypt cracking password time vs MD5</a></li>
+        <li><a href="#bcrypt-vs-md5">Bcrypt vs MD5</a></li>
       </ul>
     </li>
     <li><a href="#reference">Reference</a></li>
@@ -787,7 +644,7 @@ e99f33420f577ee8ce54b67080<strong>2</strong>80d1ec69821bcb6a8839396f965<strong>a
   <a class="anchor" href="#use-case-1">#</a>
 </h3>
 <ul>
-<li>HTTPS with SSL/TLS: Session key</li>
+<li>HTTP over SSL/TLS: Session key</li>
 <li>Data Transmission</li>
 <li>Data Storage</li>
 </ul>
@@ -1097,11 +954,14 @@ e99f33420f577ee8ce54b67080<strong>2</strong>80d1ec69821bcb6a8839396f965<strong>a
 <p>Uses a public-key cryptosystem (like RSA or ECC) and a key-pair: encryption key and corresponding decryption key</p>
 <p>Encryption algorithms are often combined in encryption schemes (like AES-256-CTR-HMAC-SHA-256, ChaCha20-Poly1305 or ECIES-secp256k1-AES-128-GCM)</p>
 <p><img src="/research/encription/Asymmetric.png" alt="Asymmetric" /></p>
-<h3 id="public-key-encryption-and-private-key-decryption">
-  Public key encryption and private key decryption
-  <a class="anchor" href="#public-key-encryption-and-private-key-decryption">#</a>
+<h3 id="public-encryption--private-decryption">
+  Public encryption / private decryption
+  <a class="anchor" href="#public-encryption--private-decryption">#</a>
 </h3>
-<p>This example demonstrates asymmetric encryption using an RSA <strong>public key to encrypt</strong> and an RSA <strong>private key to decrypt</strong> a message in Node.js with the crypto module</p>
+<ul>
+<li>Common usage</li>
+<li>HTTP over SSL/TLS 1.2: Key exchange</li>
+</ul>
 <p><strong>NodeJS</strong></p>
 <details ><summary>Init necessary functions</summary>
   <div class="markdown-inner">
@@ -1284,11 +1144,14 @@ e99f33420f577ee8ce54b67080<strong>2</strong>80d1ec69821bcb6a8839396f965<strong>a
   </div>
 </details>
 
-<h3 id="private-key-encryption-and-public-key-decryption">
-  Private key encryption and public key decryption
-  <a class="anchor" href="#private-key-encryption-and-public-key-decryption">#</a>
+<h3 id="private-sign-encryption--public-verify-decryption">
+  Private sign (encryption) / public verify (decryption)
+  <a class="anchor" href="#private-sign-encryption--public-verify-decryption">#</a>
 </h3>
-<p>This example demonstrates RSA encryption and decryption in a way that mimics JWT behavior, where the <strong>private key is used to sign (encrypt)</strong> the message, and the <strong>public key is used to verify (decrypt)</strong> it</p>
+<ul>
+<li>Token-based authentication</li>
+<li>Digital signatures</li>
+</ul>
 <p><strong>NodeJS</strong></p>
 <details ><summary>Init necessary functions</summary>
   <div class="markdown-inner">
@@ -1543,6 +1406,7 @@ e99f33420f577ee8ce54b67080<strong>2</strong>80d1ec69821bcb6a8839396f965<strong>a
   <a class="anchor" href="#use-cases">#</a>
 </h3>
 <ul>
+<li>Sign contracts</li>
 <li>Sign and approve payments in the <strong>bank systems</strong></li>
 <li>Signed transactions allow users to transfer a <strong>blockchain</strong> asset from one address to another</li>
 </ul>
@@ -1550,10 +1414,13 @@ e99f33420f577ee8ce54b67080<strong>2</strong>80d1ec69821bcb6a8839396f965<strong>a
   Appendix
   <a class="anchor" href="#appendix">#</a>
 </h2>
-<h3 id="bcrypt-cracking-password-time-vs-md5">
-  Bcrypt cracking password time vs MD5
-  <a class="anchor" href="#bcrypt-cracking-password-time-vs-md5">#</a>
+<h3 id="bcrypt-vs-md5">
+  Bcrypt vs MD5
+  <a class="anchor" href="#bcrypt-vs-md5">#</a>
 </h3>
+<ul>
+<li>Cracking password time</li>
+</ul>
 <h4 id="md5">
   MD5
   <a class="anchor" href="#md5">#</a>
@@ -1642,8 +1509,8 @@ e99f33420f577ee8ce54b67080<strong>2</strong>80d1ec69821bcb6a8839396f965<strong>a
     </li>
     <li><a href="#asymmetric-encryption">Asymmetric encryption</a>
       <ul>
-        <li><a href="#public-key-encryption-and-private-key-decryption">Public key encryption and private key decryption</a></li>
-        <li><a href="#private-key-encryption-and-public-key-decryption">Private key encryption and public key decryption</a></li>
+        <li><a href="#public-encryption--private-decryption">Public encryption / private decryption</a></li>
+        <li><a href="#private-sign-encryption--public-verify-decryption">Private sign (encryption) / public verify (decryption)</a></li>
       </ul>
     </li>
     <li><a href="#digital-signatures">Digital signatures</a>
@@ -1654,7 +1521,7 @@ e99f33420f577ee8ce54b67080<strong>2</strong>80d1ec69821bcb6a8839396f965<strong>a
     </li>
     <li><a href="#appendix">Appendix</a>
       <ul>
-        <li><a href="#bcrypt-cracking-password-time-vs-md5">Bcrypt cracking password time vs MD5</a></li>
+        <li><a href="#bcrypt-vs-md5">Bcrypt vs MD5</a></li>
       </ul>
     </li>
     <li><a href="#reference">Reference</a></li>

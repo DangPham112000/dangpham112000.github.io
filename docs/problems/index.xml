@@ -6,7 +6,7 @@
     <description>Recent content in PROBLEMS on Dante 0401</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 12 Feb 2024 01:47:46 +0700</lastBuildDate>
+    <lastBuildDate>Wed, 15 Nov 2023 01:47:46 +0700</lastBuildDate>
     <atom:link href="https://dangpham112000.github.io/docs/problems/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Knight Dialer</title>
@@ -14,13 +14,6 @@
       <pubDate>Wed, 15 Nov 2023 01:47:46 +0700</pubDate>
       <guid>https://dangpham112000.github.io/docs/problems/knight_dialer/</guid>
       <description>&lt;h1 id=&#34;knight-dialer&#34;&gt;&#xA;  Knight dialer&#xA;  &lt;a class=&#34;anchor&#34; href=&#34;#knight-dialer&#34;&gt;#&lt;/a&gt;&#xA;&lt;/h1&gt;&#xA;&lt;h2 id=&#34;description&#34;&gt;&#xA;  Description&#xA;  &lt;a class=&#34;anchor&#34; href=&#34;#description&#34;&gt;#&lt;/a&gt;&#xA;&lt;/h2&gt;&#xA;&lt;p&gt;The chess knight has a &lt;strong&gt;unique movement&lt;/strong&gt;, it may move two squares vertically and one square horizontally, or two squares horizontally and one square vertically (with both forming the shape of an &lt;strong&gt;L&lt;/strong&gt;). The possible movements of chess knight are shown in this diagaram:&lt;/p&gt;&#xA;&lt;p&gt;A chess knight can move as indicated in the chess diagram below:&lt;/br&gt;&#xA;&lt;img src=&#34;https://dangpham112000.github.io/problems/knight_dialer/chess_table.jpg&#34; alt=&#34;chess_table&#34; /&gt;&lt;/p&gt;&#xA;&lt;p&gt;We have a chess knight and a phone pad as shown below, the knight &lt;strong&gt;can only stand on a numeric cell&lt;/strong&gt; (i.e. blue cell).&lt;/br&gt;&#xA;&lt;img src=&#34;https://dangpham112000.github.io/problems/knight_dialer/phone_pad.jpg&#34; alt=&#34;phone&#34; /&gt;&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>Design HashMap - Draft</title>
-      <link>https://dangpham112000.github.io/docs/problems/design_hashmap/</link>
-      <pubDate>Mon, 12 Feb 2024 01:47:46 +0700</pubDate>
-      <guid>https://dangpham112000.github.io/docs/problems/design_hashmap/</guid>
-      <description>&lt;h1 id=&#34;design-hashmap&#34;&gt;&#xA;  Design HashMap&#xA;  &lt;a class=&#34;anchor&#34; href=&#34;#design-hashmap&#34;&gt;#&lt;/a&gt;&#xA;&lt;/h1&gt;&#xA;&lt;h2 id=&#34;overview&#34;&gt;&#xA;  Overview&#xA;  &lt;a class=&#34;anchor&#34; href=&#34;#overview&#34;&gt;#&lt;/a&gt;&#xA;&lt;/h2&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;Its other names: hash table, map, unordered map, dictionary&lt;/p&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;A hash table is a data structure that you can use to store data in key-value format with direct access to its items in constant time&lt;/p&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;The most valuable aspect of a hash table over other abstract data structures is its speed to perform insertion, deletion, and search operations. Hash tables can do them all in constant time&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>

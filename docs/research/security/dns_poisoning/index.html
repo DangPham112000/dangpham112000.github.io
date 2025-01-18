@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en-us" dir="ltr">
-<head>
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="
@@ -25,6 +25,10 @@ Use a VPN: Encrypt traffic, bypassing rogue DNS responses on compromised network
 
   Demo
   #
+
+
+  DISCLAIMER: This demo is for educational purposes only. The techniques should only be tested on systems you own or have explicit permission to analyze. Misuse of this information is unethical, may violate the law, and could lead to serious consequences. The author takes no responsibility for any damages or misuse arising from this content
+
 
 
 set ndp.spoof.neighbour fe80::53a:d4db:13e9:b774
@@ -55,10 +59,10 @@ Bettercap: arp.spoof
 ">
 <meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff">
 <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#343a40">
-<meta name="color-scheme" content="light dark"><meta property="og:url" content="https://dangpham112000.github.io/docs/research/security/dns_poisoning/">
+<meta name="color-scheme" content="light dark"><meta property="og:url" content="http://localhost:1313/docs/research/security/dns_poisoning/">
   <meta property="og:site_name" content="Dante 0401">
   <meta property="og:title" content="DNS Poisoning - Draft">
-  <meta property="og:description" content="DNS Poisoning Attack # A type of MitM attack Prevention # Use Secure DNS: Configure DNS servers to use DNSSEC (Domain Name System Security Extensions), which adds cryptographic signatures to DNS records Enable HTTPS Everywhere: Even if DNS is poisoned, HTTPS with valid certificates will warn users when a site is untrusted Avoid Public Wi-Fi: Public networks are more susceptible to DNS poisoning attacks Set Trusted DNS Servers: Use reliable DNS resolvers like Google DNS (8.8.8.8) or Cloudflare (1.1.1.1) Monitor and Update Systems: Regularly patch DNS servers and network devices to address vulnerabilities Use a VPN: Encrypt traffic, bypassing rogue DNS responses on compromised networks Demo # set ndp.spoof.neighbour fe80::53a:d4db:13e9:b774 set ndp.spoof.targets 2001:ee0:4f51:2ed0:295c:1995:43bf:3e1b,2001:ee0:4f51:2ed0:c60d:3bd1:19b6:facb 2001:ee0:4f51:2ed0:ed4b:6d8:6bd0:b97f set dns.spoof.domains mnptt.io.vn set dns.spoof.address 192.168.1.17 set dhcp6.spoof.domains mnptt.io.vn set arp.spoof.targets a4:34:d9:89:a0:58 ndp.spoof on dhcp6.spoof on dns.spoof on arp.spoof on References # Bettercap: ndp.spoof (IPv6) Bettercap: dhcp6.spoof Bettercap: dns.spoof Bettercap: arp.spoof">
+  <meta property="og:description" content="DNS Poisoning Attack # A type of MitM attack Prevention # Use Secure DNS: Configure DNS servers to use DNSSEC (Domain Name System Security Extensions), which adds cryptographic signatures to DNS records Enable HTTPS Everywhere: Even if DNS is poisoned, HTTPS with valid certificates will warn users when a site is untrusted Avoid Public Wi-Fi: Public networks are more susceptible to DNS poisoning attacks Set Trusted DNS Servers: Use reliable DNS resolvers like Google DNS (8.8.8.8) or Cloudflare (1.1.1.1) Monitor and Update Systems: Regularly patch DNS servers and network devices to address vulnerabilities Use a VPN: Encrypt traffic, bypassing rogue DNS responses on compromised networks Demo # DISCLAIMER: This demo is for educational purposes only. The techniques should only be tested on systems you own or have explicit permission to analyze. Misuse of this information is unethical, may violate the law, and could lead to serious consequences. The author takes no responsibility for any damages or misuse arising from this content set ndp.spoof.neighbour fe80::53a:d4db:13e9:b774 set ndp.spoof.targets 2001:ee0:4f51:2ed0:295c:1995:43bf:3e1b,2001:ee0:4f51:2ed0:c60d:3bd1:19b6:facb 2001:ee0:4f51:2ed0:ed4b:6d8:6bd0:b97f set dns.spoof.domains mnptt.io.vn set dns.spoof.address 192.168.1.17 set dhcp6.spoof.domains mnptt.io.vn set arp.spoof.targets a4:34:d9:89:a0:58 ndp.spoof on dhcp6.spoof on dns.spoof on arp.spoof on References # Bettercap: ndp.spoof (IPv6) Bettercap: dhcp6.spoof Bettercap: dns.spoof Bettercap: arp.spoof">
   <meta property="og:locale" content="en_us">
   <meta property="og:type" content="article">
     <meta property="article:section" content="docs">
@@ -67,7 +71,7 @@ Bettercap: arp.spoof
 <title>DNS Poisoning - Draft | Dante 0401</title>
 <link rel="manifest" href="/manifest.json">
 <link rel="icon" href="/favicon.png" >
-<link rel="canonical" href="https://dangpham112000.github.io/docs/research/security/dns_poisoning/">
+<link rel="canonical" href="http://localhost:1313/docs/research/security/dns_poisoning/">
 <link rel="stylesheet" href="/book.min.ef1786281083252320100bd5f394f36844d3252afdbd5bfe72e5f440aaff402b.css" integrity="sha256-7xeGKBCDJSMgEAvV85TzaETTJSr9vVv&#43;cuX0QKr/QCs=" crossorigin="anonymous">
   <script defer src="/fuse.min.js"></script>
   <script defer src="/en.search.min.cd97e111f91cf6d0a675ec89227243a521f38a56a36426a99043da7b93c90e6a.js" integrity="sha256-zZfhEfkc9tCmdeyJInJDpSHzilajZCapkEPae5PJDmo=" crossorigin="anonymous"></script>
@@ -188,32 +192,6 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="/docs/research/be_protocol/tcp_udp/" class="">TCP - UDP - Draft</a>
-  
-
-        </li>
-      
-    
-      
-        <li>
-          
-  
-  
-
-  
-    <a href="/docs/research/be_protocol/http/" class="">HTTP - Draft</a>
-  
-
-        </li>
-      
-    
-      
-        <li>
-          
-  
-  
-
-  
     <a href="/docs/research/be_protocol/tls_ssl/" class="">TLS - SSL</a>
   
 
@@ -240,33 +218,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="/docs/research/be_protocol/webrtc/" class="">WebRTC - Draft</a>
-  
-
-        </li>
-      
-    
-      
-        <li>
-          
-  
-  
-
-  
     <a href="/docs/research/be_protocol/websocket/" class="">Websocket - Draft</a>
-  
-
-        </li>
-      
-    
-      
-        <li>
-          
-  
-  
-
-  
-    <a href="/docs/research/be_protocol/grpc/" class="">gRPC - Draft</a>
   
 
         </li>
@@ -336,71 +288,6 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="/docs/research/security/cors/" class="">CORS - draft</a>
-  
-
-        </li>
-      
-    
-      
-        <li>
-          
-  
-  
-
-  
-    <a href="/docs/research/security/xss/" class="">XSS - Draft</a>
-  
-
-        </li>
-      
-    
-      
-        <li>
-          
-  
-  
-
-  
-    <a href="/docs/research/security/csrf/" class="">CSRF - Draft</a>
-  
-
-        </li>
-      
-    
-      
-        <li>
-          
-  
-  
-
-  
-    <a href="/docs/research/security/evil_twin/" class="">Evil Twin - Draft</a>
-  
-
-        </li>
-      
-    
-      
-        <li>
-          
-  
-  
-
-  
-    <a href="/docs/research/security/arp_spoofing/" class="">ARP Spoofing - Draft</a>
-  
-
-        </li>
-      
-    
-      
-        <li>
-          
-  
-  
-
-  
     <a href="/docs/research/security/dns_poisoning/" class="active">DNS Poisoning - Draft</a>
   
 
@@ -414,7 +301,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="/docs/research/security/hsts/" class="">HSTS - Draft</a>
+    <a href="/docs/research/security/hsts/" class="">HSTS</a>
   
 
         </li>
@@ -565,19 +452,6 @@ https://github.com/alex-shpak/hugo-book
         </li>
       
     
-      
-        <li>
-          
-  
-  
-
-  
-    <a href="/docs/problems/design_hashmap/" class="">Design HashMap - Draft</a>
-  
-
-        </li>
-      
-    
   </ul>
 
         </li>
@@ -673,6 +547,10 @@ https://github.com/alex-shpak/hugo-book
   Demo
   <a class="anchor" href="#demo">#</a>
 </h2>
+<blockquote class="book-hint danger">
+  <strong>DISCLAIMER</strong>: This demo is for educational purposes only. The techniques should only be tested on systems you own or have explicit permission to analyze. Misuse of this information is unethical, may violate the law, and could lead to serious consequences. The author takes no responsibility for any damages or misuse arising from this content
+</blockquote>
+
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>set ndp.spoof.neighbour fe80::53a:d4db:13e9:b774
 </span></span><span style="display:flex;"><span>set ndp.spoof.targets 2001:ee0:4f51:2ed0:295c:1995:43bf:3e1b,2001:ee0:4f51:2ed0:c60d:3bd1:19b6:facb

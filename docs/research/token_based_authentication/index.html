@@ -47,7 +47,7 @@ Solution 2: Refresh tokens were introduced to address this issue by allowing the
 
 
 To prevent hackers from stealing access tokens, access tokens were designed to be valid for a short duration
-Refresh tokens were introduced to re-grant access tokens when they expire, allowing users to continue their sessions seamlessly without re-login while reducing the risk of impersonation.
+Refresh tokens were introduced to re-grant access tokens when they expire, allowing users to continue their sessions seamlessly without re-login while reducing the risk of impersonation
 
 
   Characteristics
@@ -72,7 +72,7 @@ Used to obtain a new pair of access and refresh tokens
 <meta name="color-scheme" content="light dark"><meta property="og:url" content="https://dangpham112000.github.io/docs/research/token_based_authentication/">
   <meta property="og:site_name" content="Dante 0401">
   <meta property="og:title" content="Token-based Authentication">
-  <meta property="og:description" content="Token-based authentication # Senario: Each time a user accesses your website containing sensitive resources, such as posting a new blog, they are required to log in repeatedly every time they visit Problem: Is there a way to allow them to log in just once and avoid re-logging in, even if their previous session was two days ago? Solution: Access tokens were designed to solve this problem Access token # Provide a one-time login for users Reduce database access for password verification, user information retrieval, and role checking Characteristics # Short-lived Stored in client-side storage Contains the user’s identity Contains a set of claims, permissions, or roles of the user Grants access to the system New problems # Problem 1: When a hacker successfully steals an access token, they can impersonate the user Solution 1: Use short-term access tokens to minimize the risk of misuse if a hacker steals one Problem 2: Requiring users to re-login every time an access token is granted leads to a poor user experience Solution 2: Refresh tokens were introduced to address this issue by allowing the generation of new access tokens without requiring the user to log in again Refresh token # To prevent hackers from stealing access tokens, access tokens were designed to be valid for a short duration Refresh tokens were introduced to re-grant access tokens when they expire, allowing users to continue their sessions seamlessly without re-login while reducing the risk of impersonation. Characteristics # Long-lived Stored on the server and the client Used to obtain a new pair of access and refresh tokens How do they work together? # Basic flow #">
+  <meta property="og:description" content="Token-based authentication # Senario: Each time a user accesses your website containing sensitive resources, such as posting a new blog, they are required to log in repeatedly every time they visit Problem: Is there a way to allow them to log in just once and avoid re-logging in, even if their previous session was two days ago? Solution: Access tokens were designed to solve this problem Access token # Provide a one-time login for users Reduce database access for password verification, user information retrieval, and role checking Characteristics # Short-lived Stored in client-side storage Contains the user’s identity Contains a set of claims, permissions, or roles of the user Grants access to the system New problems # Problem 1: When a hacker successfully steals an access token, they can impersonate the user Solution 1: Use short-term access tokens to minimize the risk of misuse if a hacker steals one Problem 2: Requiring users to re-login every time an access token is granted leads to a poor user experience Solution 2: Refresh tokens were introduced to address this issue by allowing the generation of new access tokens without requiring the user to log in again Refresh token # To prevent hackers from stealing access tokens, access tokens were designed to be valid for a short duration Refresh tokens were introduced to re-grant access tokens when they expire, allowing users to continue their sessions seamlessly without re-login while reducing the risk of impersonation Characteristics # Long-lived Stored on the server and the client Used to obtain a new pair of access and refresh tokens How do they work together? # Basic flow #">
   <meta property="og:locale" content="en_us">
   <meta property="og:type" content="article">
     <meta property="article:section" content="docs">
@@ -84,7 +84,7 @@ Used to obtain a new pair of access and refresh tokens
 <link rel="canonical" href="https://dangpham112000.github.io/docs/research/token_based_authentication/">
 <link rel="stylesheet" href="/book.min.ef1786281083252320100bd5f394f36844d3252afdbd5bfe72e5f440aaff402b.css" integrity="sha256-7xeGKBCDJSMgEAvV85TzaETTJSr9vVv&#43;cuX0QKr/QCs=" crossorigin="anonymous">
   <script defer src="/fuse.min.js"></script>
-  <script defer src="/en.search.min.cd97e111f91cf6d0a675ec89227243a521f38a56a36426a99043da7b93c90e6a.js" integrity="sha256-zZfhEfkc9tCmdeyJInJDpSHzilajZCapkEPae5PJDmo=" crossorigin="anonymous"></script>
+  <script defer src="/en.search.min.6d1c7f2d21bb32b7760ba7e188694aa2751724cbc5a8f4771e7b56d156aa2d7b.js" integrity="sha256-bRx/LSG7Mrd2C6fhiGlKonUXJMvFqPR3HntW0VaqLXs=" crossorigin="anonymous"></script>
 <!--
 Made with Book Theme
 https://github.com/alex-shpak/hugo-book
@@ -202,32 +202,6 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="/docs/research/be_protocol/tcp_udp/" class="">TCP - UDP - Draft</a>
-  
-
-        </li>
-      
-    
-      
-        <li>
-          
-  
-  
-
-  
-    <a href="/docs/research/be_protocol/http/" class="">HTTP - Draft</a>
-  
-
-        </li>
-      
-    
-      
-        <li>
-          
-  
-  
-
-  
     <a href="/docs/research/be_protocol/tls_ssl/" class="">TLS - SSL</a>
   
 
@@ -254,33 +228,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="/docs/research/be_protocol/webrtc/" class="">WebRTC - Draft</a>
-  
-
-        </li>
-      
-    
-      
-        <li>
-          
-  
-  
-
-  
     <a href="/docs/research/be_protocol/websocket/" class="">Websocket - Draft</a>
-  
-
-        </li>
-      
-    
-      
-        <li>
-          
-  
-  
-
-  
-    <a href="/docs/research/be_protocol/grpc/" class="">gRPC - Draft</a>
   
 
         </li>
@@ -350,85 +298,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="/docs/research/security/cors/" class="">CORS - draft</a>
-  
-
-        </li>
-      
-    
-      
-        <li>
-          
-  
-  
-
-  
-    <a href="/docs/research/security/xss/" class="">XSS - Draft</a>
-  
-
-        </li>
-      
-    
-      
-        <li>
-          
-  
-  
-
-  
-    <a href="/docs/research/security/csrf/" class="">CSRF - Draft</a>
-  
-
-        </li>
-      
-    
-      
-        <li>
-          
-  
-  
-
-  
-    <a href="/docs/research/security/evil_twin/" class="">Evil Twin - Draft</a>
-  
-
-        </li>
-      
-    
-      
-        <li>
-          
-  
-  
-
-  
-    <a href="/docs/research/security/arp_spoofing/" class="">ARP Spoofing - Draft</a>
-  
-
-        </li>
-      
-    
-      
-        <li>
-          
-  
-  
-
-  
-    <a href="/docs/research/security/dns_poisoning/" class="">DNS Poisoning - Draft</a>
-  
-
-        </li>
-      
-    
-      
-        <li>
-          
-  
-  
-
-  
-    <a href="/docs/research/security/hsts/" class="">HSTS - Draft</a>
+    <a href="/docs/research/security/hsts/" class="">HSTS</a>
   
 
         </li>
@@ -579,19 +449,6 @@ https://github.com/alex-shpak/hugo-book
         </li>
       
     
-      
-        <li>
-          
-  
-  
-
-  
-    <a href="/docs/problems/design_hashmap/" class="">Design HashMap - Draft</a>
-  
-
-        </li>
-      
-    
   </ul>
 
         </li>
@@ -652,6 +509,7 @@ https://github.com/alex-shpak/hugo-book
     <li><a href="#access-token">Access token</a>
       <ul>
         <li><a href="#characteristics">Characteristics</a></li>
+        <li><a href="#new-problems">New problems</a></li>
       </ul>
     </li>
     <li><a href="#refresh-token">Refresh token</a>
@@ -710,10 +568,10 @@ https://github.com/alex-shpak/hugo-book
 <li>Contains a set of claims, permissions, or roles of the user</li>
 <li><strong>Grants access to the system</strong></li>
 </ul>
-<h4 id="new-problems">
+<h3 id="new-problems">
   New problems
   <a class="anchor" href="#new-problems">#</a>
-</h4>
+</h3>
 <ul>
 <li><strong>Problem 1</strong>: When a hacker successfully steals an access token, they can impersonate the user</li>
 <li><strong>Solution 1</strong>: Use short-term access tokens to minimize the risk of misuse if a hacker steals one</li>
@@ -726,7 +584,7 @@ https://github.com/alex-shpak/hugo-book
 </h2>
 <ul>
 <li>To prevent hackers from stealing access tokens, access tokens were designed to be valid for a short duration</li>
-<li>Refresh tokens were introduced to re-grant access tokens when they expire, allowing users to continue their sessions seamlessly without re-login while reducing the risk of impersonation.</li>
+<li>Refresh tokens were introduced to re-grant access tokens when they expire, allowing users to continue their sessions seamlessly without re-login while reducing the risk of impersonation</li>
 </ul>
 <h3 id="characteristics-1">
   Characteristics
@@ -1204,6 +1062,7 @@ https://github.com/alex-shpak/hugo-book
     <li><a href="#access-token">Access token</a>
       <ul>
         <li><a href="#characteristics">Characteristics</a></li>
+        <li><a href="#new-problems">New problems</a></li>
       </ul>
     </li>
     <li><a href="#refresh-token">Refresh token</a>
