@@ -8,15 +8,12 @@
   #
 
 
-TODO: compare speed
-
-
   Hash
   #
 
 
 Can take a message of arbitrary length and transform it into a fixed-length digest
-Some of the commonly used hashing algorithms: MD5, SHA1, SHA256, SHA512, and etc
+Some of the commonly used hashing algorithms: Bcrypt, MD5, SHA1, SHA256, SHA512, and etc
 
 MD5(&#39;hello&#39;) = 5d41402abc4b2a76b9719d911017c592
 Note: An 8-bit byte is represented as 2 characters, from 00 to FF, in hexadecimal
@@ -25,7 +22,7 @@ Note: An 8-bit byte is represented as 2 characters, from 00 to FF, in hexadecima
   #
 
 
-Fast
+Fast (exclude Bcrypt)
 One-way function
 Collision resistance
 
@@ -50,21 +47,21 @@ Digital signatures
 <meta name="color-scheme" content="light dark"><meta property="og:url" content="https://dangpham112000.github.io/docs/research/encryption/">
   <meta property="og:site_name" content="Dante 0401">
   <meta property="og:title" content="Encryption">
-  <meta property="og:description" content="Encryption # TODO: compare speed Hash # Can take a message of arbitrary length and transform it into a fixed-length digest Some of the commonly used hashing algorithms: MD5, SHA1, SHA256, SHA512, and etc MD5(&#39;hello&#39;) = 5d41402abc4b2a76b9719d911017c592
+  <meta property="og:description" content="Encryption # Hash # Can take a message of arbitrary length and transform it into a fixed-length digest Some of the commonly used hashing algorithms: Bcrypt, MD5, SHA1, SHA256, SHA512, and etc MD5(&#39;hello&#39;) = 5d41402abc4b2a76b9719d911017c592
 Note: An 8-bit byte is represented as 2 characters, from 00 to FF, in hexadecimal
-Good hash function # Fast One-way function Collision resistance Use case # Checking file integrity Indexing in in-memory databases (Eg: Redis) Hashing passwords (&#43; salt) Message authentication code (MAC) Digital signatures Collision #">
+Good hash function # Fast (exclude Bcrypt) One-way function Collision resistance Use case # Checking file integrity Indexing in in-memory databases (Eg: Redis) Hashing passwords (&#43; salt) Message authentication code (MAC) Digital signatures Collision #">
   <meta property="og:locale" content="en_us">
   <meta property="og:type" content="article">
     <meta property="article:section" content="docs">
-    <meta property="article:published_time" content="2023-11-15T01:47:46+07:00">
-    <meta property="article:modified_time" content="2023-11-15T01:47:46+07:00">
+    <meta property="article:published_time" content="2024-11-15T00:00:00+00:00">
+    <meta property="article:modified_time" content="2024-11-15T00:00:00+00:00">
 <title>Encryption | Dante 0401</title>
 <link rel="manifest" href="/manifest.json">
 <link rel="icon" href="/favicon.png" >
 <link rel="canonical" href="https://dangpham112000.github.io/docs/research/encryption/">
 <link rel="stylesheet" href="/book.min.ef1786281083252320100bd5f394f36844d3252afdbd5bfe72e5f440aaff402b.css" integrity="sha256-7xeGKBCDJSMgEAvV85TzaETTJSr9vVv&#43;cuX0QKr/QCs=" crossorigin="anonymous">
   <script defer src="/fuse.min.js"></script>
-  <script defer src="/en.search.min.6d1c7f2d21bb32b7760ba7e188694aa2751724cbc5a8f4771e7b56d156aa2d7b.js" integrity="sha256-bRx/LSG7Mrd2C6fhiGlKonUXJMvFqPR3HntW0VaqLXs=" crossorigin="anonymous"></script>
+  <script defer src="/en.search.min.6094dc5e86d7caa4661e7713ed7433796563d4b73468822677d104d64653cb03.js" integrity="sha256-YJTcXobXyqRmHncT7XQzeWVj1Lc0aIImd9EE1kZTywM=" crossorigin="anonymous"></script>
 <!--
 Made with Book Theme
 https://github.com/alex-shpak/hugo-book
@@ -516,11 +513,13 @@ https://github.com/alex-shpak/hugo-book
       <ul>
         <li><a href="#how">How</a></li>
         <li><a href="#use-cases">Use cases</a></li>
+        <li><a href="#demo-1">Demo</a></li>
       </ul>
     </li>
     <li><a href="#appendix">Appendix</a>
       <ul>
         <li><a href="#bcrypt-vs-md5">Bcrypt vs MD5</a></li>
+        <li><a href="#compare-speed">Compare speed</a></li>
       </ul>
     </li>
     <li><a href="#reference">Reference</a></li>
@@ -540,16 +539,13 @@ https://github.com/alex-shpak/hugo-book
   Encryption
   <a class="anchor" href="#encryption">#</a>
 </h1>
-<ul>
-<li>TODO: compare speed</li>
-</ul>
 <h2 id="hash">
   Hash
   <a class="anchor" href="#hash">#</a>
 </h2>
 <ul>
 <li>Can take a message of <strong>arbitrary length</strong> and transform it into a <strong>fixed-length</strong> digest</li>
-<li>Some of the commonly used hashing algorithms: MD5, SHA1, SHA256, SHA512, and etc</li>
+<li>Some of the commonly used hashing algorithms: <strong>Bcrypt</strong>, MD5, SHA1, SHA256, SHA512, and etc</li>
 </ul>
 <p><code>MD5('hello') = 5d41402abc4b2a76b9719d911017c592</code></p>
 <p><em>Note: An 8-bit byte is represented as 2 characters, from 00 to FF, in hexadecimal</em></p>
@@ -558,7 +554,7 @@ https://github.com/alex-shpak/hugo-book
   <a class="anchor" href="#good-hash-function">#</a>
 </h3>
 <ul>
-<li>Fast</li>
+<li>Fast (exclude Bcrypt)</li>
 <li><strong>One-way function</strong></li>
 <li>Collision resistance</li>
 </ul>
@@ -951,8 +947,16 @@ e99f33420f577ee8ce54b67080<strong>2</strong>80d1ec69821bcb6a8839396f965<strong>a
   Asymmetric encryption
   <a class="anchor" href="#asymmetric-encryption">#</a>
 </h2>
-<p>Uses a public-key cryptosystem (like RSA or ECC) and a key-pair: encryption key and corresponding decryption key</p>
-<p>Encryption algorithms are often combined in encryption schemes (like AES-256-CTR-HMAC-SHA-256, ChaCha20-Poly1305 or ECIES-secp256k1-AES-128-GCM)</p>
+<ul>
+<li>There are generally three things asymmetric algorithms can do:
+<ul>
+<li><strong>Encrypt/decrypt</strong>: RSA, EC ElGamal</li>
+<li><strong>Sign/verify</strong>: RSA, DSA, ECDSA</li>
+<li><strong>Key exchange</strong>: Diffie-Hellman, ECDH</li>
+</ul>
+</li>
+<li>The <strong>amount of data</strong> that can be encrypted <strong>depends on</strong> the <strong>modulus length</strong> and the <strong>type</strong> (e.g., RSA 2048-bit modulus length with PKCS#1 can encrypt a maximum of (<strong>2048</strong> / 8) - 42 = 214 bytes)</li>
+</ul>
 <p><img src="/research/encription/Asymmetric.png" alt="Asymmetric" /></p>
 <h3 id="public-encryption--private-decryption">
   Public encryption / private decryption
@@ -1410,6 +1414,105 @@ e99f33420f577ee8ce54b67080<strong>2</strong>80d1ec69821bcb6a8839396f965<strong>a
 <li>Sign and approve payments in the <strong>bank systems</strong></li>
 <li>Signed transactions allow users to transfer a <strong>blockchain</strong> asset from one address to another</li>
 </ul>
+<h3 id="demo-1">
+  Demo
+  <a class="anchor" href="#demo-1">#</a>
+</h3>
+<blockquote class="book-hint info">
+  This demo can be run directly in the console of the Chrome browser
+</blockquote>
+
+<p><strong>Javascript</strong></p>
+<details ><summary>Prepare</summary>
+  <div class="markdown-inner">
+    <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">generateKeyPair</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">async</span> () =&gt; {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">keyPair</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> <span style="color:#a6e22e">crypto</span>.<span style="color:#a6e22e">subtle</span>.<span style="color:#a6e22e">generateKey</span>(
+</span></span><span style="display:flex;"><span>        {
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">name</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;RSASSA-PKCS1-v1_5&#34;</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">modulusLength</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">2048</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">publicExponent</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">Uint8Array</span>([<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>]),
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">hash</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;SHA-256&#34;</span>,
+</span></span><span style="display:flex;"><span>        },
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">true</span>,
+</span></span><span style="display:flex;"><span>        [<span style="color:#e6db74">&#34;sign&#34;</span>, <span style="color:#e6db74">&#34;verify&#34;</span>]
+</span></span><span style="display:flex;"><span>    );
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">keyPair</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">signMessage</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">async</span> (<span style="color:#a6e22e">message</span>, <span style="color:#a6e22e">privateKey</span>) =&gt; {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">encodedMessage</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">TextEncoder</span>().<span style="color:#a6e22e">encode</span>(<span style="color:#a6e22e">message</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">signature</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> <span style="color:#a6e22e">crypto</span>.<span style="color:#a6e22e">subtle</span>.<span style="color:#a6e22e">sign</span>(
+</span></span><span style="display:flex;"><span>        {
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">name</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;RSASSA-PKCS1-v1_5&#34;</span>,
+</span></span><span style="display:flex;"><span>        },
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">privateKey</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">encodedMessage</span>
+</span></span><span style="display:flex;"><span>    );
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">arrayBufferToHex</span>(<span style="color:#a6e22e">signature</span>);
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">verifySignature</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">async</span> (<span style="color:#a6e22e">message</span>, <span style="color:#a6e22e">hexSignature</span>, <span style="color:#a6e22e">publicKey</span>) =&gt; {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">encodedMessage</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">TextEncoder</span>().<span style="color:#a6e22e">encode</span>(<span style="color:#a6e22e">message</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">signatureBuffer</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">hexToArrayBuffer</span>(<span style="color:#a6e22e">hexSignature</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">await</span> <span style="color:#a6e22e">crypto</span>.<span style="color:#a6e22e">subtle</span>.<span style="color:#a6e22e">verify</span>(
+</span></span><span style="display:flex;"><span>        {
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">name</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;RSASSA-PKCS1-v1_5&#34;</span>,
+</span></span><span style="display:flex;"><span>        },
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">publicKey</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">signatureBuffer</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">encodedMessage</span>
+</span></span><span style="display:flex;"><span>    );
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">arrayBufferToHex</span> <span style="color:#f92672">=</span> (<span style="color:#a6e22e">buffer</span>) =&gt; {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> Array.<span style="color:#a6e22e">from</span>(<span style="color:#66d9ef">new</span> <span style="color:#a6e22e">Uint8Array</span>(<span style="color:#a6e22e">buffer</span>))
+</span></span><span style="display:flex;"><span>        .<span style="color:#a6e22e">map</span>((<span style="color:#66d9ef">byte</span>) =&gt; <span style="color:#66d9ef">byte</span>.<span style="color:#a6e22e">toString</span>(<span style="color:#ae81ff">16</span>).<span style="color:#a6e22e">padStart</span>(<span style="color:#ae81ff">2</span>, <span style="color:#e6db74">&#39;0&#39;</span>))
+</span></span><span style="display:flex;"><span>        .<span style="color:#a6e22e">join</span>(<span style="color:#e6db74">&#39;&#39;</span>);
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">hexToArrayBuffer</span> <span style="color:#f92672">=</span> (<span style="color:#a6e22e">hex</span>) =&gt; {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">typedArray</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">Uint8Array</span>(<span style="color:#a6e22e">hex</span>.<span style="color:#a6e22e">match</span>(<span style="color:#e6db74">/[\da-f]{2}/gi</span>).<span style="color:#a6e22e">map</span>((<span style="color:#a6e22e">h</span>) =&gt; parseInt(<span style="color:#a6e22e">h</span>, <span style="color:#ae81ff">16</span>)));
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">typedArray</span>.<span style="color:#a6e22e">buffer</span>;
+</span></span><span style="display:flex;"><span>};
+</span></span></code></pre></div>
+  </div>
+</details>
+
+</br>
+<details ><summary>Main flow</summary>
+  <div class="markdown-inner">
+    <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span>(<span style="color:#66d9ef">async</span> () =&gt; {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> { <span style="color:#a6e22e">privateKey</span>, <span style="color:#a6e22e">publicKey</span> } <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> <span style="color:#a6e22e">generateKeyPair</span>();
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">message</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;I&lt;3U&#34;</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#34;Message:&#34;</span>, <span style="color:#a6e22e">message</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// ST-Sender signs the message
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">signatureHex</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> <span style="color:#a6e22e">signMessage</span>(<span style="color:#a6e22e">message</span>, <span style="color:#a6e22e">privateKey</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#34;Signature (Hex):&#34;</span>, <span style="color:#a6e22e">signatureHex</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// HT-Hacker modifies the original message
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">message</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;I hate you&#34;</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#34;Message:&#34;</span>, <span style="color:#a6e22e">message</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Rose-Receiver verifies the signature
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">isValid</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> <span style="color:#a6e22e">verifySignature</span>(<span style="color:#a6e22e">message</span>, <span style="color:#a6e22e">signatureHex</span>, <span style="color:#a6e22e">publicKey</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#34;Is the signature valid?&#34;</span>, <span style="color:#a6e22e">isValid</span>);
+</span></span><span style="display:flex;"><span>})();
+</span></span></code></pre></div>
+  </div>
+</details>
+
+</br>
+<details ><summary>Output</summary>
+  <div class="markdown-inner">
+    <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>&gt; Message: I&lt;3U
+</span></span><span style="display:flex;"><span>&gt; Signature (Hex): 02195d3ee8155a2581f7bf3f784347f2dfbbf352113c5a4489721a7dc5f6b2b2304d3dba1a83f596cd8420e8b8b2beb3bc0e6872d83eb4d430382603c2fb75f875698d19d1212b926c79ee2b8ef08b03a6715bb0eb7d518b7b773d28805aef533836a6f906034fa602958ce769ffa436d8223ba6bf5c144f596ffa64ce0bbaa917157b54d58a0c50c877c7a38583bdcd6ed3d55d2d9d5fd3d8227d387a9b42e3c6d20b7b24d4febf32d771557ed87863cab19db293da28100a7ee2eaba706156f93dba44c20c39c73ef1ae51cdbf511acf063441040d6917fbc68a077ec1a17dfa68cc2208ffb6b06085674fcbe316dfe7102b07ac8dca029ec2e17d4a8ec173
+</span></span><span style="display:flex;"><span>&gt; Message: I hate you
+</span></span><span style="display:flex;"><span>&gt; Is the signature valid? false
+</span></span></code></pre></div>
+  </div>
+</details>
+
 <h2 id="appendix">
   Appendix
   <a class="anchor" href="#appendix">#</a>
@@ -1421,31 +1524,308 @@ e99f33420f577ee8ce54b67080<strong>2</strong>80d1ec69821bcb6a8839396f965<strong>a
 <ul>
 <li>Cracking password time</li>
 </ul>
-<h4 id="md5">
-  MD5
-  <a class="anchor" href="#md5">#</a>
-</h4>
-<p><img src="/research/encription/2024_Password_Table_MD5.png" alt="2024_Password_Table_MD5" /></p>
 <h4 id="bcrypt">
   Bcrypt
   <a class="anchor" href="#bcrypt">#</a>
 </h4>
 <p><img src="/research/encription/2024_Password_Table_bcrypt.png" alt="2024_Password_Table_bcrypt" /></p>
+<h4 id="md5">
+  MD5
+  <a class="anchor" href="#md5">#</a>
+</h4>
+<p><img src="/research/encription/2024_Password_Table_MD5.png" alt="2024_Password_Table_MD5" /></p>
+<h3 id="compare-speed">
+  Compare speed
+  <a class="anchor" href="#compare-speed">#</a>
+</h3>
+<table>
+  <thead>
+      <tr>
+          <th>Name</th>
+          <th>Ecrypt</th>
+          <th>Decrypt</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>SHA512</td>
+          <td>0.34 ms</td>
+          <td>N/A</td>
+      </tr>
+      <tr>
+          <td>AES-256-GCM</td>
+          <td>0.43 ms</td>
+          <td>0.14 ms</td>
+      </tr>
+      <tr>
+          <td>RSA-4096-PKCS1-encrypt</td>
+          <td>0.30 ms</td>
+          <td>2.83 ms</td>
+      </tr>
+      <tr>
+          <td>RSA-4096-PKCS1-sign</td>
+          <td>2.66 ms</td>
+          <td>0.16 ms</td>
+      </tr>
+  </tbody>
+</table>
+<details ><summary>NodeJS</summary>
+  <div class="markdown-inner">
+    <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">crypto</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span>(<span style="color:#e6db74">&#39;crypto&#39;</span>);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> { <span style="color:#a6e22e">performance</span> } <span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span>(<span style="color:#e6db74">&#39;perf_hooks&#39;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">measurePerformance</span>(<span style="color:#a6e22e">func</span>, ...<span style="color:#a6e22e">args</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">startTime</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">performance</span>.<span style="color:#a6e22e">now</span>();
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">result</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">func</span>(...<span style="color:#a6e22e">args</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">endTime</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">performance</span>.<span style="color:#a6e22e">now</span>();
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">`</span><span style="color:#e6db74">${</span><span style="color:#a6e22e">func</span>.<span style="color:#a6e22e">name</span><span style="color:#e6db74">}</span><span style="color:#e6db74"> execution time:`</span>, (<span style="color:#a6e22e">endTime</span> <span style="color:#f92672">-</span> <span style="color:#a6e22e">startTime</span>).<span style="color:#a6e22e">toFixed</span>(<span style="color:#ae81ff">2</span>), <span style="color:#e6db74">&#39;ms&#39;</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">result</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">hashSHA512</span>(<span style="color:#a6e22e">message</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">hash</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">crypto</span>.<span style="color:#a6e22e">createHash</span>(<span style="color:#e6db74">&#39;sha512&#39;</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">hash</span>.<span style="color:#a6e22e">update</span>(<span style="color:#a6e22e">message</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">hash</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">generateKeyAndIV</span>() {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">key</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">crypto</span>.<span style="color:#a6e22e">randomBytes</span>(<span style="color:#ae81ff">32</span>); <span style="color:#75715e">// 256-bit key (32 bytes, the longest allowed by AES)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">iv</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">crypto</span>.<span style="color:#a6e22e">randomBytes</span>(<span style="color:#ae81ff">12</span>); <span style="color:#75715e">// 96-bit IV (12 bytes, recommended for GCM)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">return</span> { <span style="color:#a6e22e">key</span>, <span style="color:#a6e22e">iv</span> };
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">encryptAESGCM</span>(<span style="color:#a6e22e">key</span>, <span style="color:#a6e22e">iv</span>, <span style="color:#a6e22e">plaintext</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">cipher</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">crypto</span>.<span style="color:#a6e22e">createCipheriv</span>(<span style="color:#e6db74">&#39;aes-256-gcm&#39;</span>, <span style="color:#a6e22e">key</span>, <span style="color:#a6e22e">iv</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">encryptedAES</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">Buffer</span>.<span style="color:#a6e22e">concat</span>([<span style="color:#a6e22e">cipher</span>.<span style="color:#a6e22e">update</span>(<span style="color:#a6e22e">plaintext</span>, <span style="color:#e6db74">&#39;utf8&#39;</span>), <span style="color:#a6e22e">cipher</span>.<span style="color:#66d9ef">final</span>()]);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">authTag</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">cipher</span>.<span style="color:#a6e22e">getAuthTag</span>()
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> { <span style="color:#a6e22e">encryptedAES</span>, <span style="color:#a6e22e">authTag</span> };
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">decryptAESGCM</span>(<span style="color:#a6e22e">key</span>, <span style="color:#a6e22e">iv</span>, <span style="color:#a6e22e">encrypted</span>, <span style="color:#a6e22e">authTag</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">decipher</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">crypto</span>.<span style="color:#a6e22e">createDecipheriv</span>(<span style="color:#e6db74">&#39;aes-256-gcm&#39;</span>, <span style="color:#a6e22e">key</span>, <span style="color:#a6e22e">iv</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">decipher</span>.<span style="color:#a6e22e">setAuthTag</span>(<span style="color:#a6e22e">authTag</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">decrypted</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">Buffer</span>.<span style="color:#a6e22e">concat</span>([<span style="color:#a6e22e">decipher</span>.<span style="color:#a6e22e">update</span>(<span style="color:#a6e22e">encrypted</span>), <span style="color:#a6e22e">decipher</span>.<span style="color:#66d9ef">final</span>()]);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">decrypted</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">generateKeyPair</span> <span style="color:#f92672">=</span> () =&gt; {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">crypto</span>.<span style="color:#a6e22e">generateKeyPairSync</span>(<span style="color:#e6db74">&#39;rsa&#39;</span>, {
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">modulusLength</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">4096</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">publicKeyEncoding</span><span style="color:#f92672">:</span> {
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">type</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;pkcs1&#39;</span>, <span style="color:#75715e">// Public Key Cryptography Standards 1
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>            <span style="color:#a6e22e">format</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;pem&#39;</span>  <span style="color:#75715e">// Output as PEM (Base64 encoded)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        },
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">privateKeyEncoding</span><span style="color:#f92672">:</span> {
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">type</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;pkcs1&#39;</span>, <span style="color:#75715e">// Private Key Cryptography Standards 1
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>            <span style="color:#a6e22e">format</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;pem&#39;</span>  <span style="color:#75715e">// Output as PEM (Base64 encoded)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        }
+</span></span><span style="display:flex;"><span>    });
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">encryptWithPublicKey</span>(<span style="color:#a6e22e">publicKeyPem</span>, <span style="color:#a6e22e">message</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">encrypted</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">crypto</span>.<span style="color:#a6e22e">publicEncrypt</span>(<span style="color:#a6e22e">publicKeyPem</span>, <span style="color:#a6e22e">Buffer</span>.<span style="color:#a6e22e">from</span>(<span style="color:#a6e22e">message</span>));
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">encrypted</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">decryptWithPrivateKey</span>(<span style="color:#a6e22e">privateKeyPem</span>, <span style="color:#a6e22e">encryptedMessage</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">decrypted</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">crypto</span>.<span style="color:#a6e22e">privateDecrypt</span>(<span style="color:#a6e22e">privateKeyPem</span>, <span style="color:#a6e22e">encryptedMessage</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">decrypted</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">signWithPrivateKey</span>(<span style="color:#a6e22e">privateKeyPem</span>, <span style="color:#a6e22e">message</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">encrypted</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">crypto</span>.<span style="color:#a6e22e">privateEncrypt</span>(<span style="color:#a6e22e">privateKeyPem</span>, <span style="color:#a6e22e">Buffer</span>.<span style="color:#a6e22e">from</span>(<span style="color:#a6e22e">message</span>));
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">encrypted</span>; 
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">verifyWithPublicKey</span>(<span style="color:#a6e22e">publicKeyPem</span>, <span style="color:#a6e22e">encryptedMessage</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">decrypted</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">crypto</span>.<span style="color:#a6e22e">publicDecrypt</span>(<span style="color:#a6e22e">publicKeyPem</span>, <span style="color:#a6e22e">encryptedMessage</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">decrypted</span>; 
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">generateDummyText</span>(<span style="color:#a6e22e">byteLength</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">characters</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789&#39;</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">charactersLength</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">characters</span>.<span style="color:#a6e22e">length</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">result</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;&#39;</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">currentLength</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">while</span> (<span style="color:#a6e22e">currentLength</span> <span style="color:#f92672">&lt;</span> <span style="color:#a6e22e">byteLength</span>) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">char</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">characters</span>.<span style="color:#a6e22e">charAt</span>(Math.<span style="color:#a6e22e">floor</span>(Math.<span style="color:#a6e22e">random</span>() <span style="color:#f92672">*</span> <span style="color:#a6e22e">charactersLength</span>));
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">result</span> <span style="color:#f92672">+=</span> <span style="color:#66d9ef">char</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">currentLength</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">Buffer</span>.<span style="color:#a6e22e">byteLength</span>(<span style="color:#a6e22e">result</span>, <span style="color:#e6db74">&#39;utf8&#39;</span>);
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">currentLength</span> <span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">byteLength</span>) {
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">result</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">result</span>.<span style="color:#a6e22e">slice</span>(<span style="color:#ae81ff">0</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>);
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">break</span>;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">result</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">message</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">generateDummyText</span>(<span style="color:#ae81ff">470</span>); <span style="color:#75715e">// Maximun byte RSA-4096-PKCS1 can encrypt
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#34;Original Message:&#34;</span>, <span style="color:#a6e22e">message</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> { <span style="color:#a6e22e">publicKey</span>, <span style="color:#a6e22e">privateKey</span> } <span style="color:#f92672">=</span> <span style="color:#a6e22e">generateKeyPair</span>();
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> { <span style="color:#a6e22e">key</span>, <span style="color:#a6e22e">iv</span> } <span style="color:#f92672">=</span> <span style="color:#a6e22e">generateKeyAndIV</span>();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">hash</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">measurePerformance</span>(<span style="color:#a6e22e">hashSHA512</span>, <span style="color:#a6e22e">message</span>);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> { <span style="color:#a6e22e">encryptedAES</span>, <span style="color:#a6e22e">authTag</span> } <span style="color:#f92672">=</span> <span style="color:#a6e22e">measurePerformance</span>(<span style="color:#a6e22e">encryptAESGCM</span>, <span style="color:#a6e22e">key</span>, <span style="color:#a6e22e">iv</span>, <span style="color:#a6e22e">message</span>)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">decryptedAES</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">measurePerformance</span>(<span style="color:#a6e22e">decryptAESGCM</span>, <span style="color:#a6e22e">key</span>, <span style="color:#a6e22e">iv</span>, <span style="color:#a6e22e">encryptedAES</span>, <span style="color:#a6e22e">authTag</span>);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">encryptedMessage</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">measurePerformance</span>(<span style="color:#a6e22e">encryptWithPublicKey</span>, <span style="color:#a6e22e">publicKey</span>, <span style="color:#a6e22e">message</span>);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">decryptedMessage</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">measurePerformance</span>(<span style="color:#a6e22e">decryptWithPrivateKey</span>, <span style="color:#a6e22e">privateKey</span>, <span style="color:#a6e22e">encryptedMessage</span>);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">signedMessage</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">measurePerformance</span>(<span style="color:#a6e22e">signWithPrivateKey</span>, <span style="color:#a6e22e">privateKey</span>, <span style="color:#a6e22e">message</span>);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">verifiedMessage</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">measurePerformance</span>(<span style="color:#a6e22e">verifyWithPublicKey</span>, <span style="color:#a6e22e">publicKey</span>, <span style="color:#a6e22e">signedMessage</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#34;SHA-512 hashed message:&#34;</span>, <span style="color:#a6e22e">hash</span>.<span style="color:#a6e22e">digest</span>(<span style="color:#e6db74">&#39;hex&#39;</span>));
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#34;AES decrypted message:&#34;</span>, <span style="color:#a6e22e">decryptedAES</span>.<span style="color:#a6e22e">toString</span>(<span style="color:#e6db74">&#39;utf8&#39;</span>));
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#34;RSA decrypted message:&#34;</span>, <span style="color:#a6e22e">decryptedMessage</span>.<span style="color:#a6e22e">toString</span>(<span style="color:#e6db74">&#39;utf8&#39;</span>));
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#34;RSA verified message:&#34;</span>, <span style="color:#a6e22e">verifiedMessage</span>.<span style="color:#a6e22e">toString</span>(<span style="color:#e6db74">&#39;utf8&#39;</span>));
+</span></span></code></pre></div>
+  </div>
+</details>
+
 <h2 id="reference">
   Reference
   <a class="anchor" href="#reference">#</a>
 </h2>
 <ul>
+<li>Cryptobook: <a href="https://cryptobook.nakov.com/cryptography-overview">Cryptography - Overview</a> (Jun 19th, 2019)</li>
 <li>Jscape: <a href="https://www.jscape.com/blog/understanding-hashing">Understanding Hashing</a> (May 18th, 2024)</li>
 <li>IBM: <a href="https://www.ibm.com/docs/en/i/7.4?topic=sf-hash-md5-hash-sha1-hash-sha256-hash-sha512">HASH_MD5, HASH_SHA1, HASH_SHA256, and HASH_SHA512</a> (Apr 11th, 2023)</li>
 <li>Dalhousie University: <a href="https://www.mscs.dal.ca/~selinger/md5collision/">MD5 Collision Demo</a> (Oct 11th, 2011)</li>
 <li>Hackernoon: <a href="https://hackernoon.com/hmac-and-message-authentication-codes-why-using-hashing-alone-is-not-enough-for-data-integrity">HMAC &amp; Message Authentication Codes</a> (Aug 15th, 2023)</li>
 <li>Linkedin: <a href="https://www.linkedin.com/advice/3/what-some-common-use-cases-best-practices-hmac-web-applications">What are some common use cases and best practices for HMAC in web applications?</a></li>
 <li>Jscape: <a href="https://www.jscape.com/blog/what-is-hmac-and-how-does-it-secure-file-transfers">What Is HMAC, And How Does It Secure File Transfers?</a> (May 18th, 2024)</li>
-<li>Cryptobook: <a href="https://cryptobook.nakov.com/cryptography-overview">Cryptography - Overview</a> (Jun 19th, 2019)</li>
+<li>Digicert: <a href="https://dev.digicert.com/en/trustcore-sdk/nanocrypto/asymmetric-algorithms.html">Asymmetric algorithms</a></li>
+<li>Jscape: <a href="https://www.jscape.com/blog/what-is-a-digital-signature">What is a Digital Signature?</a> (Dec 11th, 2022)</li>
 <li>Hivesystems: <a href="https://www.hivesystems.com/blog/are-your-passwords-in-the-green">Are Your Passwords in the Green?</a> (2024)</li>
+<li>Wikipedia: <a href="https://en.wikipedia.org/wiki/Key_size">Key size</a> (Sep 18th, 2024)</li>
+<li>Townsend Security: <a href="https://info.townsendsecurity.com/bid/29195/how-much-data-can-you-encrypt-with-rsa-keys">How Much Data Can You Encrypt with RSA Keys?</a> (Apr 1st, 2011)</li>
 <li>DangPham112000: <a href="https://github.com/DangPham112000/blog-demo">Examples code</a> (2024)</li>
 </ul>
+<style>
+    .feedback-card {
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        padding: 20px;
+        max-width: 100%;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        background-color: #f9f9fb;
+    }
+    .feedback-card h2 {
+        font-size: 20px;
+        margin-top: 0px;
+        margin-bottom: 10px;
+    }
+    .feedback-card .buttons {
+        margin: 10px 0;
+    }
+    .feedback-card button {
+        border: none;
+        background-color: #f0f0f0;
+        border-radius: 4px;
+        padding: 10px 15px;
+        margin-right: 10px;
+        cursor: pointer;
+        font-size: 16px;
+    }
+    .feedback-card button:hover {
+        background-color: #e0e0e0;
+    }
+    .feedback-card a {
+        color: #0074d9;
+        text-decoration: none;
+    }
+    .feedback-card a:hover {
+        text-decoration: underline;
+    }
+    .feedback-card p {
+        font-size: 14px;
+        color: #555;
+    }
+
+     
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border-radius: 7px;
+      padding-bottom: 50px;
+
+      background-color: rgba(0, 0, 0, 0.5);
+      justify-content: center;
+      align-items: flex-end;
+    }
+
+    .modal-content {
+      background-color: white;
+      padding: 20px;
+      border-radius: 5px;
+      width: 300px;
+    }
+
+    .modal input {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 10px;
+    }
+</style>
+<div class="feedback-card" id="feedbackCard">
+    <h2>Help improve my blog</h2>
+    <p>Was this page helpful to you?</p>
+    <div class="buttons">
+        <button id="yesBtn">👍 Yes</button>
+        <button id="noBtn">👎 No</button>
+    </div>
+    <p>This page was last modified at <strong>2024-11-15</strong></p>
+    <ul>
+        <li><a href="https://github.com/DangPham112000/blog" target="_blank">View this page on GitHub</a></li>
+        <li><a href="#" class="link-button" id="linkButton">Report a problem with this content</a></li>
+    </ul>
+</div>
+
+<div class="modal" id="formModal">
+    <div class="feedback-card">
+        <h2>Can I know your name?</h2>
+        <form id="form">
+            <input type="text" name="username" placeholder="Enter your name">
+            <button type="submit">Yes</button>
+            <button type="submit">No</button>
+        </form>
+    </div>
+</div>
+
+<script>
+    const feedbackCardEle = document.getElementById("feedbackCard");
+    const formModalEle = document.getElementById('formModal');
+    const elesToShowForm = ['linkButton', 'yesBtn', 'noBtn'];
+
+    for (const ele of elesToShowForm) {
+        document.getElementById(ele).addEventListener('click', function(e) {
+            e.preventDefault();
+            formModalEle.style.display = 'flex';
+        });
+    }
+
+    window.onclick = function(event) {
+        if (event.target === formModalEle) {
+            formModalEle.style.display = 'none';
+        }
+    };
+
+    document.getElementById('form').addEventListener('submit', function(e) {
+        e.preventDefault(); 
+        alert('This feature is currently being developed');
+        formModalEle.style.display = 'none'; 
+    });
+</script>
 </article>
  
       
@@ -1517,11 +1897,13 @@ e99f33420f577ee8ce54b67080<strong>2</strong>80d1ec69821bcb6a8839396f965<strong>a
       <ul>
         <li><a href="#how">How</a></li>
         <li><a href="#use-cases">Use cases</a></li>
+        <li><a href="#demo-1">Demo</a></li>
       </ul>
     </li>
     <li><a href="#appendix">Appendix</a>
       <ul>
         <li><a href="#bcrypt-vs-md5">Bcrypt vs MD5</a></li>
+        <li><a href="#compare-speed">Compare speed</a></li>
       </ul>
     </li>
     <li><a href="#reference">Reference</a></li>
