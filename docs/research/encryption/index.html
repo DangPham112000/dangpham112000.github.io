@@ -61,7 +61,7 @@ Good hash function # Fast (exclude Bcrypt) One-way function Collision resistance
 <link rel="canonical" href="https://dangpham112000.github.io/docs/research/encryption/">
 <link rel="stylesheet" href="/book.min.ef1786281083252320100bd5f394f36844d3252afdbd5bfe72e5f440aaff402b.css" integrity="sha256-7xeGKBCDJSMgEAvV85TzaETTJSr9vVv&#43;cuX0QKr/QCs=" crossorigin="anonymous">
   <script defer src="/fuse.min.js"></script>
-  <script defer src="/en.search.min.6094dc5e86d7caa4661e7713ed7433796563d4b73468822677d104d64653cb03.js" integrity="sha256-YJTcXobXyqRmHncT7XQzeWVj1Lc0aIImd9EE1kZTywM=" crossorigin="anonymous"></script>
+  <script defer src="/en.search.min.2ffad3ab17aeb3e63c4161da4a28bfb8994abf74ef978ba851cbd01822eb145e.js" integrity="sha256-L/rTqxeus&#43;Y8QWHaSii/uJlKv3Tvl4uoUcvQGCLrFF4=" crossorigin="anonymous"></script>
 <!--
 Made with Book Theme
 https://github.com/alex-shpak/hugo-book
@@ -507,6 +507,12 @@ https://github.com/alex-shpak/hugo-book
       <ul>
         <li><a href="#public-encryption--private-decryption">Public encryption / private decryption</a></li>
         <li><a href="#private-sign-encryption--public-verify-decryption">Private sign (encryption) / public verify (decryption)</a></li>
+      </ul>
+    </li>
+    <li><a href="#key-exchange">Key exchange</a>
+      <ul>
+        <li><a href="#diffie-hellman">Diffie-Hellman</a></li>
+        <li><a href="#elliptic-curve-diffie-hellman-ecdh">Elliptic-curve Diffie-Hellman (ECDH)</a></li>
       </ul>
     </li>
     <li><a href="#digital-signatures">Digital signatures</a>
@@ -955,7 +961,7 @@ e99f33420f577ee8ce54b67080<strong>2</strong>80d1ec69821bcb6a8839396f965<strong>a
 <li><strong>Key exchange</strong>: Diffie-Hellman, ECDH</li>
 </ul>
 </li>
-<li>The <strong>amount of data</strong> that can be encrypted <strong>depends on</strong> the <strong>modulus length</strong> and the <strong>type</strong> (e.g., RSA 2048-bit modulus length with PKCS#1 can encrypt a maximum of (<strong>2048</strong> / 8) - 42 = 214 bytes)</li>
+<li>The <strong>amount of data</strong> that can be encrypted <strong>depends on</strong> the <strong>modulus length</strong> and the <strong>type</strong> (e.g., RSA 2048-bit modulus length with PKCS#1 can encrypt a maximum of (<code>(&lt;modulus length&gt; / 8) - 42</code> = <strong>2048</strong> / 8) - 42 = 214 bytes)</li>
 </ul>
 <p><img src="/research/encription/Asymmetric.png" alt="Asymmetric" /></p>
 <h3 id="public-encryption--private-decryption">
@@ -963,8 +969,9 @@ e99f33420f577ee8ce54b67080<strong>2</strong>80d1ec69821bcb6a8839396f965<strong>a
   <a class="anchor" href="#public-encryption--private-decryption">#</a>
 </h3>
 <ul>
+<li>Algorithms: RSA, EC ElGamal</li>
 <li>Common usage</li>
-<li>HTTP over SSL/TLS 1.2: Key exchange</li>
+<li>Use cases: <a href="/docs/research/be_protocol/tls_ssl/#tls-12">Key exchange in SSL/TLS 1.2</a></li>
 </ul>
 <p><strong>NodeJS</strong></p>
 <details ><summary>Init necessary functions</summary>
@@ -1153,8 +1160,8 @@ e99f33420f577ee8ce54b67080<strong>2</strong>80d1ec69821bcb6a8839396f965<strong>a
   <a class="anchor" href="#private-sign-encryption--public-verify-decryption">#</a>
 </h3>
 <ul>
-<li>Token-based authentication</li>
-<li>Digital signatures</li>
+<li>Algorithms: RSA, DSA, ECDSA</li>
+<li>Use cases: <a href="/docs/research/token_based_authentication">Token-based authentication</a>, <a href="#digital-signatures">digital signatures</a></li>
 </ul>
 <p><strong>NodeJS</strong></p>
 <details ><summary>Init necessary functions</summary>
@@ -1387,6 +1394,66 @@ e99f33420f577ee8ce54b67080<strong>2</strong>80d1ec69821bcb6a8839396f965<strong>a
   </div>
 </details>
 
+<h2 id="key-exchange">
+  Key exchange
+  <a class="anchor" href="#key-exchange">#</a>
+</h2>
+<ul>
+<li>Algorithms: Diffie-Hellman, ECDH</li>
+<li>Use cases: <a href="/docs/research/be_protocol/tls_ssl/#tls-13">SSL/TLS 1.3</a></li>
+</ul>
+<h3 id="diffie-hellman">
+  Diffie-Hellman
+  <a class="anchor" href="#diffie-hellman">#</a>
+</h3>
+<p><img src="/research/encription/diffie_hellman.png" alt="diffie_hellman" /></p>
+<details ><summary>Concept</summary>
+  <div class="markdown-inner">
+    <img src="/research/encription/diffie_hellman_concept.png" alt="diffie_hellman_concept" />
+  </div>
+</details>
+
+</br>
+<details ><summary>Example</summary>
+  <div class="markdown-inner">
+    <img src="/research/encription/diffie_hellman_example.png" alt="diffie_hellman_example" />
+  </div>
+</details>
+
+</br>
+<details ><summary>Demo code</summary>
+  <div class="markdown-inner">
+    <p><strong>NodeJS</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">crypto</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span>(<span style="color:#e6db74">&#39;crypto&#39;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// J5
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">J5</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">crypto</span>.<span style="color:#a6e22e">createDiffieHellman</span>(<span style="color:#ae81ff">2048</span>); <span style="color:#75715e">// Prime will be 2048bit long
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">G</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">J5</span>.<span style="color:#a6e22e">getGenerator</span>();
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">P</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">J5</span>.<span style="color:#a6e22e">getPrime</span>();
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">J5_PublicKey</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">J5</span>.<span style="color:#a6e22e">generateKeys</span>();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// ST
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">ST</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">crypto</span>.<span style="color:#a6e22e">createDiffieHellman</span>(<span style="color:#a6e22e">P</span>, <span style="color:#a6e22e">G</span>);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">ST_PublicKey</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">ST</span>.<span style="color:#a6e22e">generateKeys</span>();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Exchange public keys and compute the session key
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">J5_SessionKey</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">J5</span>.<span style="color:#a6e22e">computeSecret</span>(<span style="color:#a6e22e">ST_PublicKey</span>);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">ST_SessionKey</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">ST</span>.<span style="color:#a6e22e">computeSecret</span>(<span style="color:#a6e22e">J5_PublicKey</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#34;J5 SessionKey: &#34;</span>, <span style="color:#a6e22e">J5_SessionKey</span>.<span style="color:#a6e22e">toString</span>(<span style="color:#e6db74">&#39;hex&#39;</span>));
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#34;ST SessionKey: &#34;</span>, <span style="color:#a6e22e">ST_SessionKey</span>.<span style="color:#a6e22e">toString</span>(<span style="color:#e6db74">&#39;hex&#39;</span>));
+</span></span></code></pre></div><p><strong>Output</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>J5 SessionKey:  8b93d7a9d70c156ffa80a4fd5ed9420626028046c650cf9c94c175cc08baaa68726858dd4b9adb9729226e96a8d1c0566ef2e60239dadbc2c83c47888598be411ca56f537c9e4135d1064e378c6a811165cbde22f8ef1bbdc53aeda8d3484d1d88b737437f9b589f28a23891881e7d51cf1e99145ddc72783dee5dade38b2890eb64fa38c74cddf13803cbff8a4eb9718f08b2bc414722535233d390e8cca3d5c8005b287ea0ddb39527925c939690ac034fc2bff56babcec6386ef16f5ec88407c9733cc6835ce61d60803407b69e538b3052680958e3e50d24229374c46672ef0a32d144d5cd1b76626548b48b6ab71c22cab8ec154df48e257e86d8f5d33e
+</span></span><span style="display:flex;"><span>ST SessionKey:  8b93d7a9d70c156ffa80a4fd5ed9420626028046c650cf9c94c175cc08baaa68726858dd4b9adb9729226e96a8d1c0566ef2e60239dadbc2c83c47888598be411ca56f537c9e4135d1064e378c6a811165cbde22f8ef1bbdc53aeda8d3484d1d88b737437f9b589f28a23891881e7d51cf1e99145ddc72783dee5dade38b2890eb64fa38c74cddf13803cbff8a4eb9718f08b2bc414722535233d390e8cca3d5c8005b287ea0ddb39527925c939690ac034fc2bff56babcec6386ef16f5ec88407c9733cc6835ce61d60803407b69e538b3052680958e3e50d24229374c46672ef0a32d144d5cd1b76626548b48b6ab71c22cab8ec154df48e257e86d8f5d33e
+</span></span></code></pre></div>
+  </div>
+</details>
+
+<h3 id="elliptic-curve-diffie-hellman-ecdh">
+  Elliptic-curve Diffie-Hellman (ECDH)
+  <a class="anchor" href="#elliptic-curve-diffie-hellman-ecdh">#</a>
+</h3>
+<p><img src="/research/encription/ecdh.png" alt="ecdh" /></p>
 <h2 id="digital-signatures">
   Digital signatures
   <a class="anchor" href="#digital-signatures">#</a>
@@ -1538,11 +1605,14 @@ e99f33420f577ee8ce54b67080<strong>2</strong>80d1ec69821bcb6a8839396f965<strong>a
   Compare speed
   <a class="anchor" href="#compare-speed">#</a>
 </h3>
+<ul>
+<li>Maximun byte RSA-4096-PKCS1 can encrypt: 470 bytes</li>
+</ul>
 <table>
   <thead>
       <tr>
           <th>Name</th>
-          <th>Ecrypt</th>
+          <th>Encrypt</th>
           <th>Decrypt</th>
       </tr>
   </thead>
@@ -1891,6 +1961,12 @@ e99f33420f577ee8ce54b67080<strong>2</strong>80d1ec69821bcb6a8839396f965<strong>a
       <ul>
         <li><a href="#public-encryption--private-decryption">Public encryption / private decryption</a></li>
         <li><a href="#private-sign-encryption--public-verify-decryption">Private sign (encryption) / public verify (decryption)</a></li>
+      </ul>
+    </li>
+    <li><a href="#key-exchange">Key exchange</a>
+      <ul>
+        <li><a href="#diffie-hellman">Diffie-Hellman</a></li>
+        <li><a href="#elliptic-curve-diffie-hellman-ecdh">Elliptic-curve Diffie-Hellman (ECDH)</a></li>
       </ul>
     </li>
     <li><a href="#digital-signatures">Digital signatures</a>

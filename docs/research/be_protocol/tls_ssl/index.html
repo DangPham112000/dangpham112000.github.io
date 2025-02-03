@@ -42,7 +42,7 @@ SSL was replaced by an updated protocol called TLS some time ago, SSL is still a
 <link rel="canonical" href="https://dangpham112000.github.io/docs/research/be_protocol/tls_ssl/">
 <link rel="stylesheet" href="/book.min.ef1786281083252320100bd5f394f36844d3252afdbd5bfe72e5f440aaff402b.css" integrity="sha256-7xeGKBCDJSMgEAvV85TzaETTJSr9vVv&#43;cuX0QKr/QCs=" crossorigin="anonymous">
   <script defer src="/fuse.min.js"></script>
-  <script defer src="/en.search.min.6094dc5e86d7caa4661e7713ed7433796563d4b73468822677d104d64653cb03.js" integrity="sha256-YJTcXobXyqRmHncT7XQzeWVj1Lc0aIImd9EE1kZTywM=" crossorigin="anonymous"></script>
+  <script defer src="/en.search.min.2ffad3ab17aeb3e63c4161da4a28bfb8994abf74ef978ba851cbd01822eb145e.js" integrity="sha256-L/rTqxeus&#43;Y8QWHaSii/uJlKv3Tvl4uoUcvQGCLrFF4=" crossorigin="anonymous"></script>
 <!--
 Made with Book Theme
 https://github.com/alex-shpak/hugo-book
@@ -474,7 +474,6 @@ https://github.com/alex-shpak/hugo-book
     </li>
     <li><a href="#tls-13">TLS 1.3</a>
       <ul>
-        <li><a href="#diffie-hellman">Diffie-Hellman</a></li>
         <li><a href="#flow-1">Flow</a></li>
         <li><a href="#set-up-your-server-using-tls-13">Set up your server using TLS 1.3</a></li>
       </ul>
@@ -537,7 +536,7 @@ https://github.com/alex-shpak/hugo-book
   <a class="anchor" href="#tls-12">#</a>
 </h2>
 <ul>
-<li>Key exchange algorithm: <a href="/docs/research/encryption/#asymmetric-encryption">RSA</a></li>
+<li>Key exchange algorithm: <a href="/docs/research/encryption/#public-encryption--private-decryption">Utilize the encryption and decryption capabilities of asymmetric encryption</a></li>
 <li>Round trip time: 2 RTT</li>
 <li>Compatibility: <a href="https://caniuse.com/?search=tls%201.2">Supported by both older and newer versions of all browsers</a></li>
 </ul>
@@ -605,24 +604,10 @@ https://github.com/alex-shpak/hugo-book
   <a class="anchor" href="#tls-13">#</a>
 </h2>
 <ul>
-<li>Key exchange algorithm: Diffie-Hellman, Elliptic-curve Diffie-Hellman (ECDH)</li>
+<li>Key exchange algorithm: <a href="/docs/research/encryption/#key-exchange">Diffie-Hellman, Elliptic-curve Diffie-Hellman (ECDH)</a></li>
 <li>Round trip time: 1 RTT</li>
 <li>Compatibility: <a href="https://caniuse.com/?search=tls%201.3">Supported by newer versions of most browsers</a></li>
 </ul>
-<h3 id="diffie-hellman">
-  Diffie-Hellman
-  <a class="anchor" href="#diffie-hellman">#</a>
-</h3>
-<h4 id="concept">
-  Concept
-  <a class="anchor" href="#concept">#</a>
-</h4>
-<p><img src="/research/be_protocol/tls_ssl/diffie_hellman_concept.png" alt="diffie_hellman_concept" /></p>
-<h4 id="example">
-  Example
-  <a class="anchor" href="#example">#</a>
-</h4>
-<p><img src="/research/be_protocol/tls_ssl/diffie_hellman_example.png" alt="diffie_hellman_example" /></p>
 <h3 id="flow-1">
   Flow
   <a class="anchor" href="#flow-1">#</a>
@@ -701,7 +686,7 @@ https://github.com/alex-shpak/hugo-book
 <ul>
 <li>Domain name it&rsquo;s issued for</li>
 <li>Certificate Authority (CA)</li>
-<li>Validity Period</li>
+<li>Validity period</li>
 <li>Website&rsquo;s public key</li>
 <li>Other information</li>
 </ul>
@@ -1039,7 +1024,6 @@ https://github.com/alex-shpak/hugo-book
     </li>
     <li><a href="#tls-13">TLS 1.3</a>
       <ul>
-        <li><a href="#diffie-hellman">Diffie-Hellman</a></li>
         <li><a href="#flow-1">Flow</a></li>
         <li><a href="#set-up-your-server-using-tls-13">Set up your server using TLS 1.3</a></li>
       </ul>

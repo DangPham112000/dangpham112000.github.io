@@ -35,7 +35,7 @@ Browser Architecture # When you start an application, a process is created. The 
 <link rel="canonical" href="https://dangpham112000.github.io/docs/research/chrome_architecture/">
 <link rel="stylesheet" href="/book.min.ef1786281083252320100bd5f394f36844d3252afdbd5bfe72e5f440aaff402b.css" integrity="sha256-7xeGKBCDJSMgEAvV85TzaETTJSr9vVv&#43;cuX0QKr/QCs=" crossorigin="anonymous">
   <script defer src="/fuse.min.js"></script>
-  <script defer src="/en.search.min.6094dc5e86d7caa4661e7713ed7433796563d4b73468822677d104d64653cb03.js" integrity="sha256-YJTcXobXyqRmHncT7XQzeWVj1Lc0aIImd9EE1kZTywM=" crossorigin="anonymous"></script>
+  <script defer src="/en.search.min.2ffad3ab17aeb3e63c4161da4a28bfb8994abf74ef978ba851cbd01822eb145e.js" integrity="sha256-L/rTqxeus&#43;Y8QWHaSii/uJlKv3Tvl4uoUcvQGCLrFF4=" crossorigin="anonymous"></script>
 <!--
 Made with Book Theme
 https://github.com/alex-shpak/hugo-book
@@ -499,7 +499,7 @@ https://github.com/alex-shpak/hugo-book
   <a class="anchor" href="#browser-architecture">#</a>
 </h2>
 <p>When you start an application, a process is created. The program might create thread(s) to help it do work, but that&rsquo;s optional. The Operating System gives the process a &ldquo;slab&rdquo; of memory to work with and all application state is kept in that private memory space. When you close the application, the process also goes away and the Operating System frees up the memory</p>
-<p>A process can ask the Operating System to spin up another process to run different tasks. When this happens, different parts of the memory are allocated for the new process. If two processes need to talk, they can do so by using <strong>I</strong>nter <strong>P</strong>rocess <strong>C</strong>ommunication (<strong>IPC</strong>). Many applications are designed to work this way so that if a worker process get unresponsive, it can be restarted without stopping other processes which are running different parts of the application.</p>
+<p>A process can ask the Operating System to spin up another process to run different tasks. When this happens, different parts of the memory are allocated for the new process. If two processes need to talk, they can do so by using <strong>I</strong>nter <strong>P</strong>rocess <strong>C</strong>ommunication (<strong>IPC</strong>). Many applications are designed to work this way so that if a worker process get unresponsive, it can be restarted without stopping other processes which are running different parts of the application</p>
 <p><img src="/research/chrome_architecture/snap_process.png" alt="snap_process" /></p>
 <p>There is no standard specification on how one might build a web browser. One browser’s approach may be completely different from another</p>
 <blockquote class="book-hint info">
@@ -657,7 +657,7 @@ Why? Because JavaScript can change the shape of the document using things like <
 <li><strong>Optimizer Thread</strong>: uses the statistics and insights collected by the Statistics collector Thread to make performance optimizations over your code (Caching, Inlining, etc.)</li>
 <li><strong>Garbage Collector Thread</strong>: removes unconnected (<strong>no more referenceable from the ROOT node</strong>) JavaScript objects to free up memory using a mark-and-sweep algorithm. We don’t know when this will happen and have no control over it. AFAIK the browser uses this thread to track whose objects to remove and do useful stuff, but when it needs to remove them it actually blocks the main thread and uses it. From the Firefox blog Q:”Silly question here, why must garbage collection stop UI events and js execution? Couldn’t the GC just run in a separate thread?”, R:”It can be done, but the garbage collector is looking at the same objects that the JS currently running is touching, so it must be done carefully. That said, the Firefox GC actually does do some work on a separate thread: some types of objects can be thrown away once they are known to be garbage without affecting the main thread.”</li>
 <li><strong>Rasterizer Thread</strong>: rasterize your graphic into frames</li>
-<li>Etc.</li>
+<li>Etc</li>
 </ul>
 <h2 id="appendix">
   Appendix
