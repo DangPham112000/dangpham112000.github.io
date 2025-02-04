@@ -61,7 +61,7 @@ Good hash function # Fast (exclude Bcrypt) One-way function Collision resistance
 <link rel="canonical" href="https://dangpham112000.github.io/docs/research/encryption/">
 <link rel="stylesheet" href="/book.min.ef1786281083252320100bd5f394f36844d3252afdbd5bfe72e5f440aaff402b.css" integrity="sha256-7xeGKBCDJSMgEAvV85TzaETTJSr9vVv&#43;cuX0QKr/QCs=" crossorigin="anonymous">
   <script defer src="/fuse.min.js"></script>
-  <script defer src="/en.search.min.2ffad3ab17aeb3e63c4161da4a28bfb8994abf74ef978ba851cbd01822eb145e.js" integrity="sha256-L/rTqxeus&#43;Y8QWHaSii/uJlKv3Tvl4uoUcvQGCLrFF4=" crossorigin="anonymous"></script>
+  <script defer src="/en.search.min.3bbedb2545ee821d4d23c1a778f94b4cf022bfdb22a925b3c9a83a5ad8b16f50.js" integrity="sha256-O77bJUXugh1NI8GnePlLTPAiv9siqSWzyag6Wtixb1A=" crossorigin="anonymous"></script>
 <!--
 Made with Book Theme
 https://github.com/alex-shpak/hugo-book
@@ -180,19 +180,6 @@ https://github.com/alex-shpak/hugo-book
 
   
     <a href="/docs/research/be_protocol/tls_ssl/" class="">TLS - SSL</a>
-  
-
-        </li>
-      
-    
-      
-        <li>
-          
-  
-  
-
-  
-    <a href="/docs/research/be_protocol/https/" class="">HTTPS - Draft</a>
   
 
         </li>
@@ -580,7 +567,7 @@ https://github.com/alex-shpak/hugo-book
   <a class="anchor" href="#collision">#</a>
 </h3>
 <p><img src="/research/encription/hashing_collision.png" alt="hashing_collision" /></p>
-<details ><summary>MD5 Collision Demo</summary>
+<details ><summary><strong>MD5 Collision Demo</strong></summary>
   <div class="markdown-inner">
     <p>d131dd02c5e6eec4693d9a0698aff95c2fcab5<strong>8</strong>712467eab4004583eb8fb7f89
 55ad340609f4b30283e4888325<strong>7</strong>1415a085125e8f7cdc99fd91dbd<strong>f</strong>280373c5b
@@ -1407,21 +1394,21 @@ e99f33420f577ee8ce54b67080<strong>2</strong>80d1ec69821bcb6a8839396f965<strong>a
   <a class="anchor" href="#diffie-hellman">#</a>
 </h3>
 <p><img src="/research/encription/diffie_hellman.png" alt="diffie_hellman" /></p>
-<details ><summary>Concept</summary>
+<details ><summary><strong>Concept</strong></summary>
   <div class="markdown-inner">
     <img src="/research/encription/diffie_hellman_concept.png" alt="diffie_hellman_concept" />
   </div>
 </details>
 
 </br>
-<details ><summary>Example</summary>
+<details ><summary><strong>Example</strong></summary>
   <div class="markdown-inner">
     <img src="/research/encription/diffie_hellman_example.png" alt="diffie_hellman_example" />
   </div>
 </details>
 
 </br>
-<details ><summary>Demo code</summary>
+<details ><summary><strong>Demo code</strong></summary>
   <div class="markdown-inner">
     <p><strong>NodeJS</strong></p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">crypto</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span>(<span style="color:#e6db74">&#39;crypto&#39;</span>);
@@ -1430,21 +1417,43 @@ e99f33420f577ee8ce54b67080<strong>2</strong>80d1ec69821bcb6a8839396f965<strong>a
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">J5</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">crypto</span>.<span style="color:#a6e22e">createDiffieHellman</span>(<span style="color:#ae81ff">2048</span>); <span style="color:#75715e">// Prime will be 2048bit long
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">G</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">J5</span>.<span style="color:#a6e22e">getGenerator</span>();
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">P</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">J5</span>.<span style="color:#a6e22e">getPrime</span>();
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">J5_PublicKey</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">J5</span>.<span style="color:#a6e22e">generateKeys</span>();
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#34;P:&#34;</span>, <span style="color:#a6e22e">P</span>.<span style="color:#a6e22e">toString</span>(<span style="color:#e6db74">&#34;hex&#34;</span>));
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#34;G:&#34;</span>, <span style="color:#a6e22e">G</span>.<span style="color:#a6e22e">toString</span>(<span style="color:#e6db74">&#34;hex&#34;</span>));
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#39;------&#39;</span>);
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">J5</span>.<span style="color:#a6e22e">generateKeys</span>();
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">J5_privateKey</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">J5</span>.<span style="color:#a6e22e">getPrivateKey</span>();
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">J5_publicKey</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">J5</span>.<span style="color:#a6e22e">getPublicKey</span>();
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#34;J5 Private Key:&#34;</span>, <span style="color:#a6e22e">J5_privateKey</span>.<span style="color:#a6e22e">toString</span>(<span style="color:#e6db74">&#39;hex&#39;</span>));
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#34;J5 Public Key:&#34;</span>, <span style="color:#a6e22e">J5_publicKey</span>.<span style="color:#a6e22e">toString</span>(<span style="color:#e6db74">&#39;hex&#39;</span>));
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#39;------&#39;</span>);
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#75715e">// ST
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">ST</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">crypto</span>.<span style="color:#a6e22e">createDiffieHellman</span>(<span style="color:#a6e22e">P</span>, <span style="color:#a6e22e">G</span>);
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">ST_PublicKey</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">ST</span>.<span style="color:#a6e22e">generateKeys</span>();
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">ST</span>.<span style="color:#a6e22e">generateKeys</span>();
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">ST_privateKey</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">ST</span>.<span style="color:#a6e22e">getPrivateKey</span>();
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">ST_publicKey</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">ST</span>.<span style="color:#a6e22e">getPublicKey</span>();
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#34;ST Private Key:&#34;</span>, <span style="color:#a6e22e">ST_privateKey</span>.<span style="color:#a6e22e">toString</span>(<span style="color:#e6db74">&#34;hex&#34;</span>));
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#34;ST Public Key:&#34;</span>, <span style="color:#a6e22e">ST_publicKey</span>.<span style="color:#a6e22e">toString</span>(<span style="color:#e6db74">&#34;hex&#34;</span>));
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#39;------&#39;</span>);
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#75715e">// Exchange public keys and compute the session key
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">J5_SessionKey</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">J5</span>.<span style="color:#a6e22e">computeSecret</span>(<span style="color:#a6e22e">ST_PublicKey</span>);
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">ST_SessionKey</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">ST</span>.<span style="color:#a6e22e">computeSecret</span>(<span style="color:#a6e22e">J5_PublicKey</span>);
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">J5_SessionKey</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">J5</span>.<span style="color:#a6e22e">computeSecret</span>(<span style="color:#a6e22e">ST_publicKey</span>);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">ST_SessionKey</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">ST</span>.<span style="color:#a6e22e">computeSecret</span>(<span style="color:#a6e22e">J5_publicKey</span>);
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#34;J5 SessionKey: &#34;</span>, <span style="color:#a6e22e">J5_SessionKey</span>.<span style="color:#a6e22e">toString</span>(<span style="color:#e6db74">&#39;hex&#39;</span>));
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#34;ST SessionKey: &#34;</span>, <span style="color:#a6e22e">ST_SessionKey</span>.<span style="color:#a6e22e">toString</span>(<span style="color:#e6db74">&#39;hex&#39;</span>));
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#34;J5 Session Key:&#34;</span>, <span style="color:#a6e22e">J5_SessionKey</span>.<span style="color:#a6e22e">toString</span>(<span style="color:#e6db74">&#39;hex&#39;</span>));
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#34;ST Session Key:&#34;</span>, <span style="color:#a6e22e">ST_SessionKey</span>.<span style="color:#a6e22e">toString</span>(<span style="color:#e6db74">&#39;hex&#39;</span>));
 </span></span></code></pre></div><p><strong>Output</strong></p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>J5 SessionKey:  8b93d7a9d70c156ffa80a4fd5ed9420626028046c650cf9c94c175cc08baaa68726858dd4b9adb9729226e96a8d1c0566ef2e60239dadbc2c83c47888598be411ca56f537c9e4135d1064e378c6a811165cbde22f8ef1bbdc53aeda8d3484d1d88b737437f9b589f28a23891881e7d51cf1e99145ddc72783dee5dade38b2890eb64fa38c74cddf13803cbff8a4eb9718f08b2bc414722535233d390e8cca3d5c8005b287ea0ddb39527925c939690ac034fc2bff56babcec6386ef16f5ec88407c9733cc6835ce61d60803407b69e538b3052680958e3e50d24229374c46672ef0a32d144d5cd1b76626548b48b6ab71c22cab8ec154df48e257e86d8f5d33e
-</span></span><span style="display:flex;"><span>ST SessionKey:  8b93d7a9d70c156ffa80a4fd5ed9420626028046c650cf9c94c175cc08baaa68726858dd4b9adb9729226e96a8d1c0566ef2e60239dadbc2c83c47888598be411ca56f537c9e4135d1064e378c6a811165cbde22f8ef1bbdc53aeda8d3484d1d88b737437f9b589f28a23891881e7d51cf1e99145ddc72783dee5dade38b2890eb64fa38c74cddf13803cbff8a4eb9718f08b2bc414722535233d390e8cca3d5c8005b287ea0ddb39527925c939690ac034fc2bff56babcec6386ef16f5ec88407c9733cc6835ce61d60803407b69e538b3052680958e3e50d24229374c46672ef0a32d144d5cd1b76626548b48b6ab71c22cab8ec154df48e257e86d8f5d33e
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>P: b811e65181d3cc8942efa49832bc09fc4f608ea03d9ccf70a082509b4f31024665ad50e8915a2146b3da8a59d0c1fd32b26dc410f29e9ef265956b6f060b9d70f9be4c2c2b1e4b87391da617962a096a3995be117aa64196d198aa1d4e28769130f7d79bb4ea5c9a21dcce9d6e5b542de3478e860ab304ce97d162334040bb7c24e5d1edfac7bd9223cd848394f001c45078282145a3c32aa127a9e917ac5d896e153800832daa56765cf33f004ee256f23011633ac260bf8a560a131d8f3e39c9692e58fc788ce58a68db7cbb3d2faec198604b4854ade3fd6847480c93a5cae3143ac12632f75aa19dc33cbf8724c421e59fd756706d7c05fe970bb849bc2f
+</span></span><span style="display:flex;"><span>G: 02
+</span></span><span style="display:flex;"><span>------
+</span></span><span style="display:flex;"><span>J5 Private Key: 5b39e6ae9b1edb2907b32bd4be76226b19d7f1b45637a6551fcd83f9ce374bd802ab050c9ddcae9d4a895a9c6d604e285ef18148e2f0952cb250047167052dd026f8229cbce07a1a8eb8aa0917a45ca6af7a43efd793816fcbb2e3bbd37e0afccd787cc0604f511d191e365a8bcd7353484e64b602ac198d22237f2803ab0d70da71d9567044bddc36a41c9d674832af9a0c9e0e058e5be336158b0d7636641171ffce5df77ad1c5f9dc732aec932af1625def4ac267735caff756edbb764f0870055b3f2ab754009080558b3f84643072dd289507dc30b2135934d3d11ab7657ad85971d550615c4bd8b690232e787232ffe58550a08d2cc71ae7f6ecdec593
+</span></span><span style="display:flex;"><span>J5 Public Key: 5b7843a2d16ecf3065db80bdc82e104eeab48d04a0fe1364cba37b865698cb9166e28eac4d0d7e2ed1ef3f23dbabbdc326b4ce6bbf998da1892ee9632ada41a07209e3c8896df1e27c336601d2be777e168110f6b4e3ddcd5096dd12ed3db535a6b8616ed55646d5f42cb5b8788b693e1e7706ff40ba70de6f1293a63f03aa0520e1857a51e6f44dfbefdeb8daa61b33621a543e4d7242142e51aac08484a9c93e311daaab86f51bfa34660076a57a8169175db79982bf779246d2040c37cfc4e66bfce3bad8e2cef138c57e9f9939fc6f088cd62de0944d1f73d2653778bbe665ea8ce15d06a22dce2387c274d641331562018d2a37281db03335a3789688f8
+</span></span><span style="display:flex;"><span>------
+</span></span><span style="display:flex;"><span>ST Private Key: 46d4b3e40b0a45f9bfab045faff7fb157dce4dc5c71caf4411df231428e83f3b0139f9fb4d2e9bd878a2b0a83a145abf463a32ae37caaea0b679a369b7a4567e3b1e42a57af016e47d6540a9802f2771fdf53c9f8506b637854bf483da590ded287fb43b4f3edfc8801aa32f358b76b89a83dfd192154bc45291caf31244f6c7fe8eee8e44091564bd2b1c82faa3a2bd8c79db56ccb140c84ef92fc4ce6a8647eaaeeda3eaa6720c96e696c982cd76d51fe404280ee7096db53ff01087699b9f2ab816b0c61f9725afde4afe9a270fb87d208b3b927913c1f11be002b7589008c892790deddb67f4c63aab04bcb00dc7c8bba4dec5fe4f966e2c1a332d35faef
+</span></span><span style="display:flex;"><span>ST Public Key: 78bbdc4d210d5784bab05bdc68e3c170f77f7adcede7a0c205df4e5416fddd0482717e5020d7f871bd8c04b8e851e0c5da72af96dd124259b759a6ebecbc230e44dfc3eeeef02221ebc7bab20704d1935480bb03605bfcfac31c5e66803771cfabbe029e28620de3f0f4637de4ad5871227d451710b33d9d8eae801e3657d5ee864c6e96951bfadee6e398b71ceda31e61e24685c765b9a63d16bd75cbac34e4093c6f7ba833f447abd5b4778fba145ab5b18e02ad2cc70bc217f85d568ba3445bc9f2a83d446047cb11f2f902078d2dd71250f5443bd634c286334916e1d4d99294a73af6fffa8fb722b39b7a4ca00cf7205663bb61d8f0314ed110ed619fab
+</span></span><span style="display:flex;"><span>------
+</span></span><span style="display:flex;"><span>J5 Session Key: 1e30adb4b9488cbdae04e5c4bb01228ef3f9dcda83f643243ab13199bef55d6e0a828d54f01bd2f8192f89eaca6f221749e172bdd81a0e16c38d1f7775cc2ab4c673a1ac3a05cd39511e5e1ee03a1c741453cfd599f8a49a3ddb8011decc1edaaccda5d276ab4950de6b1e04ff0d770f5d6624a1b3ec6d564a0e1fd4440c08f68c07c633299ae575531117d56e7385f402238c78440dbbd37cf78b70c66a9de5087f911e76056f8f88ab29bb44448b092757e9d3a4224748383584fd5022c070766423a65957eeeff55cba16f991b445d3c93d6b03f2808df199e5d43ac87b4573f641ca0a978695392975f0d6b4d2c035e34bf2ab3c8b1b184bce645fd53eb3
+</span></span><span style="display:flex;"><span>ST Session Key: 1e30adb4b9488cbdae04e5c4bb01228ef3f9dcda83f643243ab13199bef55d6e0a828d54f01bd2f8192f89eaca6f221749e172bdd81a0e16c38d1f7775cc2ab4c673a1ac3a05cd39511e5e1ee03a1c741453cfd599f8a49a3ddb8011decc1edaaccda5d276ab4950de6b1e04ff0d770f5d6624a1b3ec6d564a0e1fd4440c08f68c07c633299ae575531117d56e7385f402238c78440dbbd37cf78b70c66a9de5087f911e76056f8f88ab29bb44448b092757e9d3a4224748383584fd5022c070766423a65957eeeff55cba16f991b445d3c93d6b03f2808df199e5d43ac87b4573f641ca0a978695392975f0d6b4d2c035e34bf2ab3c8b1b184bce645fd53eb3
 </span></span></code></pre></div>
   </div>
 </details>
@@ -1454,6 +1463,48 @@ e99f33420f577ee8ce54b67080<strong>2</strong>80d1ec69821bcb6a8839396f965<strong>a
   <a class="anchor" href="#elliptic-curve-diffie-hellman-ecdh">#</a>
 </h3>
 <p><img src="/research/encription/ecdh.png" alt="ecdh" /></p>
+<details ><summary><strong>Demo code</strong></summary>
+  <div class="markdown-inner">
+    <p><strong>NodeJS</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">crypto</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span>(<span style="color:#e6db74">&#39;crypto&#39;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// J5
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">J5</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">crypto</span>.<span style="color:#a6e22e">createECDH</span>(<span style="color:#e6db74">&#39;secp256k1&#39;</span>); <span style="color:#75715e">// Use secp256k1 curve
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">J5</span>.<span style="color:#a6e22e">generateKeys</span>();
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">J5_privateKey</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">J5</span>.<span style="color:#a6e22e">getPrivateKey</span>();
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">J5_publicKey</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">J5</span>.<span style="color:#a6e22e">getPublicKey</span>();
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#34;J5 Private Key:&#34;</span>, <span style="color:#a6e22e">J5_privateKey</span>.<span style="color:#a6e22e">toString</span>(<span style="color:#e6db74">&#39;hex&#39;</span>));
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#34;J5 Public Key:&#34;</span>, <span style="color:#a6e22e">J5_publicKey</span>.<span style="color:#a6e22e">toString</span>(<span style="color:#e6db74">&#39;hex&#39;</span>));
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#39;------&#39;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// ST
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">ST</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">crypto</span>.<span style="color:#a6e22e">createECDH</span>(<span style="color:#e6db74">&#39;secp256k1&#39;</span>);
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">ST</span>.<span style="color:#a6e22e">generateKeys</span>();
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">ST_privateKey</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">ST</span>.<span style="color:#a6e22e">getPrivateKey</span>();
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">ST_publicKey</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">ST</span>.<span style="color:#a6e22e">getPublicKey</span>();
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#34;ST Private Key:&#34;</span>, <span style="color:#a6e22e">ST_privateKey</span>.<span style="color:#a6e22e">toString</span>(<span style="color:#e6db74">&#34;hex&#34;</span>));
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#34;ST Public Key:&#34;</span>, <span style="color:#a6e22e">ST_publicKey</span>.<span style="color:#a6e22e">toString</span>(<span style="color:#e6db74">&#34;hex&#34;</span>));
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#39;------&#39;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Exchange public keys and compute the session key
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">J5_SessionKey</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">J5</span>.<span style="color:#a6e22e">computeSecret</span>(<span style="color:#a6e22e">ST_publicKey</span>);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">ST_SessionKey</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">ST</span>.<span style="color:#a6e22e">computeSecret</span>(<span style="color:#a6e22e">J5_publicKey</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#34;J5 Session Key:&#34;</span>, <span style="color:#a6e22e">J5_SessionKey</span>.<span style="color:#a6e22e">toString</span>(<span style="color:#e6db74">&#39;hex&#39;</span>));
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#34;ST Session Key:&#34;</span>, <span style="color:#a6e22e">ST_SessionKey</span>.<span style="color:#a6e22e">toString</span>(<span style="color:#e6db74">&#39;hex&#39;</span>));
+</span></span></code></pre></div><p><strong>Output</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>J5 Private Key: b63f1be5cbccc1a2600e00e1df88b9ad5da603e05cc04c6e0c36185c01ed76f1
+</span></span><span style="display:flex;"><span>J5 Public Key: 04b814f0659792bb510b682bdd1a00ab729abaa2ad177a04453670ae79f7de5342931c773eed012195a1ff0e9fb60eef13310b0938e472d5b51bdb7659a961a4db
+</span></span><span style="display:flex;"><span>------
+</span></span><span style="display:flex;"><span>ST Private Key: 5749d6da1161b582a463a49759627bcb1dcd2d77592d7509bedb86abe046e62a
+</span></span><span style="display:flex;"><span>ST Public Key: 046c8f16a93320a034926af4f62300d138686e80d90b25de30c87550d4483e4245440142c4ff386d48fadc46b7ebe280b767bd49c6daf643dc50ae3c941c5655db
+</span></span><span style="display:flex;"><span>------
+</span></span><span style="display:flex;"><span>J5 Session Key: 157d9a740b720f62bd057888d02e806f5f50cebf9e0ffab831243d71152def41
+</span></span><span style="display:flex;"><span>ST Session Key: 157d9a740b720f62bd057888d02e806f5f50cebf9e0ffab831243d71152def41
+</span></span></code></pre></div>
+  </div>
+</details>
+
 <h2 id="digital-signatures">
   Digital signatures
   <a class="anchor" href="#digital-signatures">#</a>
@@ -1771,6 +1822,7 @@ e99f33420f577ee8ce54b67080<strong>2</strong>80d1ec69821bcb6a8839396f965<strong>a
 <li>Linkedin: <a href="https://www.linkedin.com/advice/3/what-some-common-use-cases-best-practices-hmac-web-applications">What are some common use cases and best practices for HMAC in web applications?</a></li>
 <li>Jscape: <a href="https://www.jscape.com/blog/what-is-hmac-and-how-does-it-secure-file-transfers">What Is HMAC, And How Does It Secure File Transfers?</a> (May 18th, 2024)</li>
 <li>Digicert: <a href="https://dev.digicert.com/en/trustcore-sdk/nanocrypto/asymmetric-algorithms.html">Asymmetric algorithms</a></li>
+<li>Geeksforgeeks: <a href="https://www.geeksforgeeks.org/node-js-crypto-createecdh-method/">Node.js crypto.createECDH() Method</a> (Oct 11th, 2021)</li>
 <li>Jscape: <a href="https://www.jscape.com/blog/what-is-a-digital-signature">What is a Digital Signature?</a> (Dec 11th, 2022)</li>
 <li>Hivesystems: <a href="https://www.hivesystems.com/blog/are-your-passwords-in-the-green">Are Your Passwords in the Green?</a> (2024)</li>
 <li>Wikipedia: <a href="https://en.wikipedia.org/wiki/Key_size">Key size</a> (Sep 18th, 2024)</li>
