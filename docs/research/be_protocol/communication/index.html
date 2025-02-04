@@ -16,51 +16,103 @@
   Overview
   #
 
-The Request-Response pattern is a fundamental communication pattern where a client sends a request to a server, and the server processes the request and sends back a response. It&rsquo;s one of the most common patterns for communication in distributed systems, client-server architectures, and web applications
 
-  Push
+Fundamental communication pattern
+The most common patterns for communication in client-server architectures
+
+
+  Demo
   #
 
-Real time notification
+Server code
+  
+    // server.js
+const http = require(&#39;http&#39;);
+
+const server = http.createServer((req, res) =&gt; {
+    console.log(`Received request: ${req.method} ${req.url}`);
+
+    if (req.url === &#39;/hello&#39;) {
+        if (req.method === &#39;POST&#39;) {
+            let body = &#39;&#39;;
+
+            req.on(&#39;data&#39;, chunk =&gt; {
+                body &#43;= chunk.toString(); // Convert buffer to string
+            });
+
+            req.on(&#39;end&#39;, () =&gt; {
+                res.writeHead(200, { &#39;Content-Type&#39;: &#39;text/plain&#39; });
+                if (body.trim() === &#34;ping&#34;) {
+                    res.end(&#39;pong&#39;);
+                } else {
+                    res.end(&#39;&#39;);
+                }
+            });
+
+        } else {
+            res.writeHead(200, { &#39;Content-Type&#39;: &#39;text/plain&#39; });
+            res.end(&#39;world&#39;);
+        }
+    } else {
+        res.writeHead(404, { &#39;Content-Type&#39;: &#39;text/plain&#39; });
+        res.end(&#39;Not Found&#39;);
+    }
+});
+
+server.listen(2000, () =&gt; {
+    console.log(&#39;Server is listening on port 2000&#39;);
+});
+
+  
 
 
-  Overview
-  #
+
+Client code
+  
+    fetch(&#39;http://localhost:2000/hello&#39;, {
+    method: &#39;POST&#39;,
+    headers: { &#39;Content-Type&#39;: &#39;text/plain&#39; },
+    body: &#39;ping&#39;
+})
+.then(response =&gt; response.text())
+.then(data =&gt; console.log(data))  // Should log: &#34;pong&#34;
+
+  
 
 
-Used by RabbitMQ
+
+Instruction
+  
+    
+Start the server by running node server.js
+1.1. Your terminal will display: Server is listening on port 2000
+Open your browser and enter: http://localhost:2000/hello
+2.1. Your terminal will first log: Received request: GET /hello
+2.2. Then, your browser will display: world
+Open the browser console and run Client code
+3.1. Your terminal will first log: Received request: POST /hello
+3.2. Then, your browser console will display: pong
 
 
-  Implementation
-  #
+  
 
-
-  Concept:
-  #
-
-
-Client connects to a server
-Server sends data to the client
-Client doesn’t have to request anything
-Protocol must be bidirectional
-
-
-  Example code:
-  #
 
 
   Short Polling
   #
 
-Request is taking a while, I’ll check with you later">
+">
 <meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff">
 <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#343a40">
 <meta name="color-scheme" content="light dark"><meta property="og:url" content="https://dangpham112000.github.io/docs/research/be_protocol/communication/">
   <meta property="og:site_name" content="Dante 0401">
   <meta property="og:title" content="Communication - Draft">
-  <meta property="og:description" content="Communication # Request-Response # Overview # The Request-Response pattern is a fundamental communication pattern where a client sends a request to a server, and the server processes the request and sends back a response. It’s one of the most common patterns for communication in distributed systems, client-server architectures, and web applications
-Push # Real time notification
-Overview # Used by RabbitMQ Implementation # Concept: # Client connects to a server Server sends data to the client Client doesn’t have to request anything Protocol must be bidirectional Example code: # Short Polling # Request is taking a while, I’ll check with you later">
+  <meta property="og:description" content="Communication # Request-Response # Overview # Fundamental communication pattern The most common patterns for communication in client-server architectures Demo # Server code // server.js const http = require(&#39;http&#39;); const server = http.createServer((req, res) =&gt; { console.log(`Received request: ${req.method} ${req.url}`); if (req.url === &#39;/hello&#39;) { if (req.method === &#39;POST&#39;) { let body = &#39;&#39;; req.on(&#39;data&#39;, chunk =&gt; { body &#43;= chunk.toString(); // Convert buffer to string }); req.on(&#39;end&#39;, () =&gt; { res.writeHead(200, { &#39;Content-Type&#39;: &#39;text/plain&#39; }); if (body.trim() === &#34;ping&#34;) { res.end(&#39;pong&#39;); } else { res.end(&#39;&#39;); } }); } else { res.writeHead(200, { &#39;Content-Type&#39;: &#39;text/plain&#39; }); res.end(&#39;world&#39;); } } else { res.writeHead(404, { &#39;Content-Type&#39;: &#39;text/plain&#39; }); res.end(&#39;Not Found&#39;); } }); server.listen(2000, () =&gt; { console.log(&#39;Server is listening on port 2000&#39;); }); Client code fetch(&#39;http://localhost:2000/hello&#39;, { method: &#39;POST&#39;, headers: { &#39;Content-Type&#39;: &#39;text/plain&#39; }, body: &#39;ping&#39; }) .then(response =&gt; response.text()) .then(data =&gt; console.log(data)) // Should log: &#34;pong&#34; Instruction Start the server by running node server.js
+1.1. Your terminal will display: Server is listening on port 2000 Open your browser and enter: http://localhost:2000/hello
+2.1. Your terminal will first log: Received request: GET /hello
+2.2. Then, your browser will display: world Open the browser console and run Client code
+3.1. Your terminal will first log: Received request: POST /hello
+3.2. Then, your browser console will display: pong Short Polling #">
   <meta property="og:locale" content="en_us">
   <meta property="og:type" content="article">
     <meta property="article:section" content="docs">
@@ -72,7 +124,7 @@ Overview # Used by RabbitMQ Implementation # Concept: # Client connects to a ser
 <link rel="canonical" href="https://dangpham112000.github.io/docs/research/be_protocol/communication/">
 <link rel="stylesheet" href="/book.min.ef1786281083252320100bd5f394f36844d3252afdbd5bfe72e5f440aaff402b.css" integrity="sha256-7xeGKBCDJSMgEAvV85TzaETTJSr9vVv&#43;cuX0QKr/QCs=" crossorigin="anonymous">
   <script defer src="/fuse.min.js"></script>
-  <script defer src="/en.search.min.3bbedb2545ee821d4d23c1a778f94b4cf022bfdb22a925b3c9a83a5ad8b16f50.js" integrity="sha256-O77bJUXugh1NI8GnePlLTPAiv9siqSWzyag6Wtixb1A=" crossorigin="anonymous"></script>
+  <script defer src="/en.search.min.8b54cce899662e942630344145e1ac49da8f3c7149ff7950e73ceefba94b5c80.js" integrity="sha256-i1TM6JlmLpQmMDRBReGsSdqPPHFJ/3lQ5zzu&#43;6lLXIA=" crossorigin="anonymous"></script>
 <!--
 Made with Book Theme
 https://github.com/alex-shpak/hugo-book
@@ -177,7 +229,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="/docs/research/be_protocol/" class="">Backend Protocol</a>
+    <a href="/docs/research/be_protocol/" class="">Backend</a>
   
 
           
@@ -191,19 +243,6 @@ https://github.com/alex-shpak/hugo-book
 
   
     <a href="/docs/research/be_protocol/tls_ssl/" class="">TLS - SSL</a>
-  
-
-        </li>
-      
-    
-      
-        <li>
-          
-  
-  
-
-  
-    <a href="/docs/research/be_protocol/websocket/" class="">Websocket - Draft</a>
   
 
         </li>
@@ -484,37 +523,40 @@ https://github.com/alex-shpak/hugo-book
     <li><a href="#request-response">Request-Response</a>
       <ul>
         <li><a href="#overview">Overview</a></li>
-      </ul>
-    </li>
-    <li><a href="#push">Push</a>
-      <ul>
-        <li><a href="#overview-1">Overview</a></li>
-        <li><a href="#implementation">Implementation</a></li>
+        <li><a href="#demo">Demo</a></li>
       </ul>
     </li>
     <li><a href="#short-polling">Short Polling</a>
       <ul>
-        <li><a href="#implementation-1">Implementation</a></li>
+        <li><a href="#overview-1">Overview</a></li>
+        <li><a href="#use-case">Use case</a></li>
+        <li><a href="#demo-1">Demo</a></li>
       </ul>
     </li>
     <li><a href="#long-polling">Long Polling</a>
       <ul>
-        <li><a href="#implementation-2">Implementation</a></li>
+        <li><a href="#implementation">Implementation</a></li>
+      </ul>
+    </li>
+    <li><a href="#push">Push</a>
+      <ul>
+        <li><a href="#overview-2">Overview</a></li>
+        <li><a href="#implementation-1">Implementation</a></li>
       </ul>
     </li>
     <li><a href="#server-sent-events">Server sent events</a>
       <ul>
-        <li><a href="#implementation-3">Implementation</a></li>
+        <li><a href="#implementation-2">Implementation</a></li>
       </ul>
     </li>
     <li><a href="#message-queue">Message Queue</a>
       <ul>
-        <li><a href="#overview-2">Overview</a></li>
+        <li><a href="#overview-3">Overview</a></li>
       </ul>
     </li>
     <li><a href="#publish-subcribe">Publish Subcribe</a>
       <ul>
-        <li><a href="#implementation-4">Implementation</a></li>
+        <li><a href="#implementation-3">Implementation</a></li>
       </ul>
     </li>
     <li><a href="#reference">Reference</a></li>
@@ -543,20 +585,181 @@ https://github.com/alex-shpak/hugo-book
   Overview
   <a class="anchor" href="#overview">#</a>
 </h3>
-<p>The Request-Response pattern is a fundamental communication pattern where a client sends a request to a server, and the server processes the request and sends back a response. It&rsquo;s one of the most common patterns for communication in distributed systems, client-server architectures, and web applications</p>
-<h2 id="push">
-  Push
-  <a class="anchor" href="#push">#</a>
+<ul>
+<li>Fundamental communication pattern</li>
+<li>The most common patterns for communication in client-server architectures</li>
+</ul>
+<h3 id="demo">
+  Demo
+  <a class="anchor" href="#demo">#</a>
+</h3>
+<details ><summary>Server code</summary>
+  <div class="markdown-inner">
+    <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#75715e">// server.js
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">http</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span>(<span style="color:#e6db74">&#39;http&#39;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">server</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">http</span>.<span style="color:#a6e22e">createServer</span>((<span style="color:#a6e22e">req</span>, <span style="color:#a6e22e">res</span>) =&gt; {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">`Received request: </span><span style="color:#e6db74">${</span><span style="color:#a6e22e">req</span>.<span style="color:#a6e22e">method</span><span style="color:#e6db74">}</span><span style="color:#e6db74"> </span><span style="color:#e6db74">${</span><span style="color:#a6e22e">req</span>.<span style="color:#a6e22e">url</span><span style="color:#e6db74">}</span><span style="color:#e6db74">`</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">req</span>.<span style="color:#a6e22e">url</span> <span style="color:#f92672">===</span> <span style="color:#e6db74">&#39;/hello&#39;</span>) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">req</span>.<span style="color:#a6e22e">method</span> <span style="color:#f92672">===</span> <span style="color:#e6db74">&#39;POST&#39;</span>) {
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">body</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;&#39;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">req</span>.<span style="color:#a6e22e">on</span>(<span style="color:#e6db74">&#39;data&#39;</span>, <span style="color:#a6e22e">chunk</span> =&gt; {
+</span></span><span style="display:flex;"><span>                <span style="color:#a6e22e">body</span> <span style="color:#f92672">+=</span> <span style="color:#a6e22e">chunk</span>.<span style="color:#a6e22e">toString</span>(); <span style="color:#75715e">// Convert buffer to string
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>            });
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">req</span>.<span style="color:#a6e22e">on</span>(<span style="color:#e6db74">&#39;end&#39;</span>, () =&gt; {
+</span></span><span style="display:flex;"><span>                <span style="color:#a6e22e">res</span>.<span style="color:#a6e22e">writeHead</span>(<span style="color:#ae81ff">200</span>, { <span style="color:#e6db74">&#39;Content-Type&#39;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;text/plain&#39;</span> });
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">body</span>.<span style="color:#a6e22e">trim</span>() <span style="color:#f92672">===</span> <span style="color:#e6db74">&#34;ping&#34;</span>) {
+</span></span><span style="display:flex;"><span>                    <span style="color:#a6e22e">res</span>.<span style="color:#a6e22e">end</span>(<span style="color:#e6db74">&#39;pong&#39;</span>);
+</span></span><span style="display:flex;"><span>                } <span style="color:#66d9ef">else</span> {
+</span></span><span style="display:flex;"><span>                    <span style="color:#a6e22e">res</span>.<span style="color:#a6e22e">end</span>(<span style="color:#e6db74">&#39;&#39;</span>);
+</span></span><span style="display:flex;"><span>                }
+</span></span><span style="display:flex;"><span>            });
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        } <span style="color:#66d9ef">else</span> {
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">res</span>.<span style="color:#a6e22e">writeHead</span>(<span style="color:#ae81ff">200</span>, { <span style="color:#e6db74">&#39;Content-Type&#39;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;text/plain&#39;</span> });
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">res</span>.<span style="color:#a6e22e">end</span>(<span style="color:#e6db74">&#39;world&#39;</span>);
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    } <span style="color:#66d9ef">else</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">res</span>.<span style="color:#a6e22e">writeHead</span>(<span style="color:#ae81ff">404</span>, { <span style="color:#e6db74">&#39;Content-Type&#39;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;text/plain&#39;</span> });
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">res</span>.<span style="color:#a6e22e">end</span>(<span style="color:#e6db74">&#39;Not Found&#39;</span>);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>});
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">server</span>.<span style="color:#a6e22e">listen</span>(<span style="color:#ae81ff">2000</span>, () =&gt; {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#39;Server is listening on port 2000&#39;</span>);
+</span></span><span style="display:flex;"><span>});
+</span></span></code></pre></div>
+  </div>
+</details>
+
+</br>
+<details ><summary>Client code</summary>
+  <div class="markdown-inner">
+    <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#a6e22e">fetch</span>(<span style="color:#e6db74">&#39;http://localhost:2000/hello&#39;</span>, {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">method</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;POST&#39;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">headers</span><span style="color:#f92672">:</span> { <span style="color:#e6db74">&#39;Content-Type&#39;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;text/plain&#39;</span> },
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">body</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;ping&#39;</span>
+</span></span><span style="display:flex;"><span>})
+</span></span><span style="display:flex;"><span>.<span style="color:#a6e22e">then</span>(<span style="color:#a6e22e">response</span> =&gt; <span style="color:#a6e22e">response</span>.<span style="color:#a6e22e">text</span>())
+</span></span><span style="display:flex;"><span>.<span style="color:#a6e22e">then</span>(<span style="color:#a6e22e">data</span> =&gt; <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">data</span>))  <span style="color:#75715e">// Should log: &#34;pong&#34;
+</span></span></span></code></pre></div>
+  </div>
+</details>
+
+</br>
+<details ><summary>Instruction</summary>
+  <div class="markdown-inner">
+    <ol>
+<li>Start the server by running <code>node server.js</code><br>
+1.1. Your terminal will display: <code>Server is listening on port 2000</code></li>
+<li>Open your browser and enter: <code>http://localhost:2000/hello</code><br>
+2.1. Your terminal will first log: <code>Received request: GET /hello</code><br>
+2.2. Then, your browser will display: <code>world</code></li>
+<li>Open the browser console and run <strong>Client code</strong><br>
+3.1. Your terminal will first log: <code>Received request: POST /hello</code><br>
+3.2. Then, your browser console will display: <code>pong</code></li>
+</ol>
+
+  </div>
+</details>
+
+<h2 id="short-polling">
+  Short Polling
+  <a class="anchor" href="#short-polling">#</a>
 </h2>
-<p>Real time notification</p>
-<p><img src="/research/be_protocol/communication/push.png" alt="push" /></p>
+<p><img src="/research/be_protocol/communication/short_polling.png" alt="short_polling" /></p>
 <h3 id="overview-1">
   Overview
   <a class="anchor" href="#overview-1">#</a>
 </h3>
 <ul>
-<li>Used by RabbitMQ</li>
+<li>Based on the Request-Response design pattern</li>
+<li>Continuously polls the server for new updates</li>
+<li>Near real-time updates</li>
+<li>Client controls the frequency</li>
 </ul>
+<h3 id="use-case">
+  Use case
+  <a class="anchor" href="#use-case">#</a>
+</h3>
+<ul>
+<li>Monitor stocks or cryptocurrencies</li>
+<li>Fetch status updates</li>
+<li>User notifications</li>
+</ul>
+<h3 id="demo-1">
+  Demo
+  <a class="anchor" href="#demo-1">#</a>
+</h3>
+<details ><summary>Server code</summary>
+  <div class="markdown-inner">
+    <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#75715e">// server.js
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">express</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span>(<span style="color:#e6db74">&#39;express&#39;</span>);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">app</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">express</span>();
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">port</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">2000</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">app</span>.<span style="color:#a6e22e">get</span>(<span style="color:#e6db74">&#39;/&#39;</span>, (<span style="color:#a6e22e">req</span>, <span style="color:#a6e22e">res</span>) =&gt; {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">res</span>.<span style="color:#a6e22e">send</span>(<span style="color:#e6db74">&#39;Hello world&#39;</span>);
+</span></span><span style="display:flex;"><span>});
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">app</span>.<span style="color:#a6e22e">get</span>(<span style="color:#e6db74">&#39;/bitcoin&#39;</span>, (<span style="color:#a6e22e">req</span>, <span style="color:#a6e22e">res</span>) =&gt; {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">randomValue</span> <span style="color:#f92672">=</span> Math.<span style="color:#a6e22e">floor</span>(Math.<span style="color:#a6e22e">random</span>() <span style="color:#f92672">*</span> <span style="color:#ae81ff">111</span>) <span style="color:#f92672">-</span> <span style="color:#ae81ff">10</span>; <span style="color:#75715e">// Random value between -10 and +100
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">res</span>.<span style="color:#a6e22e">json</span>({ <span style="color:#a6e22e">coins</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">randomValue</span> });
+</span></span><span style="display:flex;"><span>});
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">app</span>.<span style="color:#a6e22e">listen</span>(<span style="color:#a6e22e">port</span>, () =&gt; {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">`Server is running at http://localhost:</span><span style="color:#e6db74">${</span><span style="color:#a6e22e">port</span><span style="color:#e6db74">}</span><span style="color:#e6db74">`</span>);
+</span></span><span style="display:flex;"><span>});
+</span></span></code></pre></div>
+  </div>
+</details>
+
+</br>
+<details ><summary>Client code</summary>
+  <div class="markdown-inner">
+    <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">fetchBitcoinData</span>() {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">fetch</span>(<span style="color:#e6db74">&#39;http://localhost:2000/bitcoin&#39;</span>)
+</span></span><span style="display:flex;"><span>        .<span style="color:#a6e22e">then</span>(<span style="color:#a6e22e">response</span> =&gt; <span style="color:#a6e22e">response</span>.<span style="color:#a6e22e">json</span>())
+</span></span><span style="display:flex;"><span>        .<span style="color:#a6e22e">then</span>(<span style="color:#a6e22e">data</span> =&gt; {
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">`Bitcoin value: </span><span style="color:#e6db74">${</span><span style="color:#a6e22e">data</span>.<span style="color:#a6e22e">coins</span><span style="color:#e6db74">}</span><span style="color:#e6db74">`</span>);
+</span></span><span style="display:flex;"><span>        });
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">setInterval</span>(<span style="color:#a6e22e">fetchBitcoinData</span>, <span style="color:#ae81ff">1000</span>);
+</span></span></code></pre></div>
+  </div>
+</details>
+
+</br>
+<details ><summary>Instruction</summary>
+  <div class="markdown-inner">
+    <ol>
+<li>Start the server by running <code>node server.js</code><br>
+1.1. Your terminal will display: <code>Server is running at http://localhost:2000</code></li>
+<li>Open your browser and enter: <code>http://localhost:2000</code><br>
+2.1. Your browser will display: <code>Hello world</code></li>
+<li>Open the browser console and run <strong>Client code</strong><br>
+3.1. Your browser console will continuously display:
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>&gt;&gt; Bitcoin value: 10
+</span></span><span style="display:flex;"><span>&gt;&gt; Bitcoin value: 100
+</span></span><span style="display:flex;"><span>&gt;&gt; Bitcoin value: 26
+</span></span><span style="display:flex;"><span>&gt;&gt; Bitcoin value: -6
+</span></span><span style="display:flex;"><span>&gt;&gt; Bitcoin value: 65
+</span></span><span style="display:flex;"><span>...
+</span></span></code></pre></div></li>
+</ol>
+
+  </div>
+</details>
+
+<h2 id="long-polling">
+  Long Polling
+  <a class="anchor" href="#long-polling">#</a>
+</h2>
+<p><img src="/research/be_protocol/communication/long_polling.png" alt="long_polling" /></p>
 <h3 id="implementation">
   Implementation
   <a class="anchor" href="#implementation">#</a>
@@ -564,6 +767,36 @@ https://github.com/alex-shpak/hugo-book
 <h4 id="concept">
   Concept:
   <a class="anchor" href="#concept">#</a>
+</h4>
+<ul>
+<li>Client sends a request</li>
+<li>Server responds immediately with a handle</li>
+<li>Server continues to process the request</li>
+<li>Client uses that handle to check for status</li>
+<li>Server DOES not reply until it has the response</li>
+<li>So we got a handle, we can disconnect and we are less chatty</li>
+<li>Some variation has timeouts too</li>
+</ul>
+<h2 id="push">
+  Push
+  <a class="anchor" href="#push">#</a>
+</h2>
+<p>Real time notification</p>
+<p><img src="/research/be_protocol/communication/push.png" alt="push" /></p>
+<h3 id="overview-2">
+  Overview
+  <a class="anchor" href="#overview-2">#</a>
+</h3>
+<ul>
+<li>Used by RabbitMQ</li>
+</ul>
+<h3 id="implementation-1">
+  Implementation
+  <a class="anchor" href="#implementation-1">#</a>
+</h3>
+<h4 id="concept-1">
+  Concept:
+  <a class="anchor" href="#concept-1">#</a>
 </h4>
 <ul>
 <li>Client connects to a server</li>
@@ -575,32 +808,11 @@ https://github.com/alex-shpak/hugo-book
   Example code:
   <a class="anchor" href="#example-code">#</a>
 </h4>
-<h2 id="short-polling">
-  Short Polling
-  <a class="anchor" href="#short-polling">#</a>
+<h2 id="server-sent-events">
+  Server sent events
+  <a class="anchor" href="#server-sent-events">#</a>
 </h2>
-<p>Request is taking a while, I’ll check with you later</p>
-<p><img src="/research/be_protocol/communication/short_polling.png" alt="short_polling" /></p>
-<h3 id="implementation-1">
-  Implementation
-  <a class="anchor" href="#implementation-1">#</a>
-</h3>
-<h4 id="concept-1">
-  Concept:
-  <a class="anchor" href="#concept-1">#</a>
-</h4>
-<ul>
-<li>Client sends a request</li>
-<li>Server responds immediately with a handle</li>
-<li>Server continues to process the request</li>
-<li>Client uses that handle to check for status</li>
-<li>Multiple “short” request response as polls</li>
-</ul>
-<h2 id="long-polling">
-  Long Polling
-  <a class="anchor" href="#long-polling">#</a>
-</h2>
-<p><img src="/research/be_protocol/communication/long_polling.png" alt="long_polling" /></p>
+<p><img src="/research/be_protocol/communication/server_sent_events.png" alt="server_sent_events" /></p>
 <h3 id="implementation-2">
   Implementation
   <a class="anchor" href="#implementation-2">#</a>
@@ -608,28 +820,6 @@ https://github.com/alex-shpak/hugo-book
 <h4 id="concept-2">
   Concept:
   <a class="anchor" href="#concept-2">#</a>
-</h4>
-<ul>
-<li>Client sends a request</li>
-<li>Server responds immediately with a handle</li>
-<li>Server continues to process the request</li>
-<li>Client uses that handle to check for status</li>
-<li>Server DOES not reply until it has the response</li>
-<li>So we got a handle, we can disconnect and we are less chatty</li>
-<li>Some variation has timeouts too</li>
-</ul>
-<h2 id="server-sent-events">
-  Server sent events
-  <a class="anchor" href="#server-sent-events">#</a>
-</h2>
-<p><img src="/research/be_protocol/communication/server_sent_events.png" alt="server_sent_events" /></p>
-<h3 id="implementation-3">
-  Implementation
-  <a class="anchor" href="#implementation-3">#</a>
-</h3>
-<h4 id="concept-3">
-  Concept:
-  <a class="anchor" href="#concept-3">#</a>
 </h4>
 <ul>
 <li>A response has start and end</li>
@@ -646,9 +836,9 @@ https://github.com/alex-shpak/hugo-book
 </h2>
 <p>Asynchronous messaging for batching jobs and decoupling applications</p>
 <p><img src="/research/be_protocol/communication/message_queue.png" alt="message_queue" /></p>
-<h3 id="overview-2">
+<h3 id="overview-3">
   Overview
-  <a class="anchor" href="#overview-2">#</a>
+  <a class="anchor" href="#overview-3">#</a>
 </h3>
 <p>A message queue is a form of asynchronous service-to-service communication used in serverless and microservices architectures. Messages are stored on the queue until they are processed and deleted. Each message is processed only once, by a single consumer. Message queues can be used to decouple heavyweight processing, to buffer or batch work, and to smooth spiky workloads.</p>
 <h2 id="publish-subcribe">
@@ -657,23 +847,23 @@ https://github.com/alex-shpak/hugo-book
 </h2>
 <p>One publisher many readers</p>
 <p><img src="/research/be_protocol/communication/pub_sub.png" alt="pub_sub" /></p>
-<h3 id="implementation-4">
+<h3 id="implementation-3">
   Implementation
-  <a class="anchor" href="#implementation-4">#</a>
+  <a class="anchor" href="#implementation-3">#</a>
 </h3>
-<h4 id="concept-4">
+<h4 id="concept-3">
   Concept:
-  <a class="anchor" href="#concept-4">#</a>
+  <a class="anchor" href="#concept-3">#</a>
 </h4>
 <h2 id="reference">
   Reference
   <a class="anchor" href="#reference">#</a>
 </h2>
 <ul>
-<li>Linkedin: <a href="https://www.linkedin.com/pulse/backend-communication-design-patterns-muhammad-iftekhar-ul-alam/">Backend Communication Design Patterns</a> (Sep 13, 2023)</li>
-<li>Freecodecamp: <a href="https://www.freecodecamp.org/news/communication-design-patterns-for-backend-development/">Communication Design Patterns for Backend Development</a></li>
-<li>Amazon: <a href="https://aws.amazon.com/message-queue/">Message Queues</a></li>
+<li>Freecodecamp: <a href="https://www.freecodecamp.org/news/communication-design-patterns-for-backend-development/">Communication Design Patterns for Backend Development</a> (Sep 12th, 2023)</li>
 <li>Udemy: <a href="https://www.udemy.com/course/fundamentals-of-backend-communications-and-protocols">Fundamentals of Backend Engineering</a> (Feb, 2024)</li>
+<li>Linkedin: <a href="https://www.linkedin.com/pulse/understanding-short-polling-simple-backend-pattern-rubayet-mnwec/">Understanding Short Polling: A Simple Backend Communication Pattern</a> (Aug 7th, 2024)</li>
+<li>Amazon: <a href="https://aws.amazon.com/message-queue/">Message Queues</a></li>
 </ul>
 </article>
  
@@ -719,37 +909,40 @@ https://github.com/alex-shpak/hugo-book
     <li><a href="#request-response">Request-Response</a>
       <ul>
         <li><a href="#overview">Overview</a></li>
-      </ul>
-    </li>
-    <li><a href="#push">Push</a>
-      <ul>
-        <li><a href="#overview-1">Overview</a></li>
-        <li><a href="#implementation">Implementation</a></li>
+        <li><a href="#demo">Demo</a></li>
       </ul>
     </li>
     <li><a href="#short-polling">Short Polling</a>
       <ul>
-        <li><a href="#implementation-1">Implementation</a></li>
+        <li><a href="#overview-1">Overview</a></li>
+        <li><a href="#use-case">Use case</a></li>
+        <li><a href="#demo-1">Demo</a></li>
       </ul>
     </li>
     <li><a href="#long-polling">Long Polling</a>
       <ul>
-        <li><a href="#implementation-2">Implementation</a></li>
+        <li><a href="#implementation">Implementation</a></li>
+      </ul>
+    </li>
+    <li><a href="#push">Push</a>
+      <ul>
+        <li><a href="#overview-2">Overview</a></li>
+        <li><a href="#implementation-1">Implementation</a></li>
       </ul>
     </li>
     <li><a href="#server-sent-events">Server sent events</a>
       <ul>
-        <li><a href="#implementation-3">Implementation</a></li>
+        <li><a href="#implementation-2">Implementation</a></li>
       </ul>
     </li>
     <li><a href="#message-queue">Message Queue</a>
       <ul>
-        <li><a href="#overview-2">Overview</a></li>
+        <li><a href="#overview-3">Overview</a></li>
       </ul>
     </li>
     <li><a href="#publish-subcribe">Publish Subcribe</a>
       <ul>
-        <li><a href="#implementation-4">Implementation</a></li>
+        <li><a href="#implementation-3">Implementation</a></li>
       </ul>
     </li>
     <li><a href="#reference">Reference</a></li>
