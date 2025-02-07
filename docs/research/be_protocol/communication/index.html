@@ -124,7 +124,7 @@ Open the browser console and run Client code
 <link rel="canonical" href="https://dangpham112000.github.io/docs/research/be_protocol/communication/">
 <link rel="stylesheet" href="/book.min.ef1786281083252320100bd5f394f36844d3252afdbd5bfe72e5f440aaff402b.css" integrity="sha256-7xeGKBCDJSMgEAvV85TzaETTJSr9vVv&#43;cuX0QKr/QCs=" crossorigin="anonymous">
   <script defer src="/fuse.min.js"></script>
-  <script defer src="/en.search.min.26f7639ed994321e78c0478293989d66f2ad973918ca1226ef6488477e79a32b.js" integrity="sha256-JvdjntmUMh54wEeCk5idZvKtlzkYyhIm72SIR355oys=" crossorigin="anonymous"></script>
+  <script defer src="/en.search.min.fe73c06595260f58967d2293e918c25870b5fa43513b0407c7abf1a01953c7bf.js" integrity="sha256-/nPAZZUmD1iWfSKT6RjCWHC1&#43;kNROwQHx6vxoBlTx78=" crossorigin="anonymous"></script>
 <!--
 Made with Book Theme
 https://github.com/alex-shpak/hugo-book
@@ -544,12 +544,8 @@ https://github.com/alex-shpak/hugo-book
       <ul>
         <li><a href="#overview-3">Overview</a></li>
         <li><a href="#use-case-2">Use case</a></li>
-        <li><a href="#demo-3">Demo</a></li>
-      </ul>
-    </li>
-    <li><a href="#server-sent-events">Server sent events</a>
-      <ul>
-        <li><a href="#implementation">Implementation</a></li>
+        <li><a href="#demo-websocket">Demo Websocket</a></li>
+        <li><a href="#demo-server-sent-events">Demo Server-sent events</a></li>
       </ul>
     </li>
     <li><a href="#message-queue">Message Queue</a>
@@ -862,7 +858,6 @@ https://github.com/alex-shpak/hugo-book
   <a class="anchor" href="#overview-3">#</a>
 </h3>
 <ul>
-<li><strong>Bidirectional</strong> communication</li>
 <li>Real-time updates</li>
 </ul>
 <h3 id="use-case-2">
@@ -873,10 +868,13 @@ https://github.com/alex-shpak/hugo-book
 <li>Chat and messaging apps</li>
 <li>Notification systems</li>
 </ul>
-<h3 id="demo-3">
-  Demo
-  <a class="anchor" href="#demo-3">#</a>
+<h3 id="demo-websocket">
+  Demo Websocket
+  <a class="anchor" href="#demo-websocket">#</a>
 </h3>
+<ul>
+<li><strong>Bidirectional</strong> communication</li>
+</ul>
 <details ><summary>Server code</summary>
   <div class="markdown-inner">
     <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#75715e">// server.js
@@ -996,28 +994,152 @@ https://github.com/alex-shpak/hugo-book
   </div>
 </details>
 
-<h2 id="server-sent-events">
-  Server sent events
-  <a class="anchor" href="#server-sent-events">#</a>
-</h2>
-<p><img src="/research/be_protocol/communication/server_sent_events.png" alt="server_sent_events" /></p>
-<h3 id="implementation">
-  Implementation
-  <a class="anchor" href="#implementation">#</a>
+<h3 id="demo-server-sent-events">
+  Demo Server-sent events
+  <a class="anchor" href="#demo-server-sent-events">#</a>
 </h3>
-<h4 id="concept">
-  Concept:
-  <a class="anchor" href="#concept">#</a>
-</h4>
 <ul>
-<li>A response has start and end</li>
-<li>Client sends a request</li>
-<li>Server sends logical events as part of response</li>
-<li>Server never writes the end of the response</li>
-<li>It is still a request but an unending response</li>
-<li>Client parses the streams data looking for events</li>
-<li>Works with request/response (HTTP)</li>
+<li><strong>Unidirectional</strong> communication</li>
 </ul>
+<details ><summary>Server code</summary>
+  <div class="markdown-inner">
+    <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#75715e">// server.js
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">http</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span>(<span style="color:#e6db74">&#39;http&#39;</span>);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">port</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">2000</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">let</span> <span style="color:#a6e22e">currentProgress</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">server</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">http</span>.<span style="color:#a6e22e">createServer</span>((<span style="color:#a6e22e">req</span>, <span style="color:#a6e22e">res</span>) =&gt; {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">req</span>.<span style="color:#a6e22e">method</span> <span style="color:#f92672">===</span> <span style="color:#e6db74">&#39;GET&#39;</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#a6e22e">req</span>.<span style="color:#a6e22e">url</span> <span style="color:#f92672">===</span> <span style="color:#e6db74">&#39;/&#39;</span>) {
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">res</span>.<span style="color:#a6e22e">writeHead</span>(<span style="color:#ae81ff">200</span>, { <span style="color:#e6db74">&#39;Content-Type&#39;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;text/plain&#39;</span> });
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">res</span>.<span style="color:#a6e22e">end</span>(<span style="color:#e6db74">&#39;Hello, World!&#39;</span>);
+</span></span><span style="display:flex;"><span>    } <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">req</span>.<span style="color:#a6e22e">method</span> <span style="color:#f92672">===</span> <span style="color:#e6db74">&#39;POST&#39;</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#a6e22e">req</span>.<span style="color:#a6e22e">url</span> <span style="color:#f92672">===</span> <span style="color:#e6db74">&#39;/upload&#39;</span>) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">body</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;&#39;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">req</span>.<span style="color:#a6e22e">on</span>(<span style="color:#e6db74">&#39;data&#39;</span>, <span style="color:#a6e22e">chunk</span> =&gt; {
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">body</span> <span style="color:#f92672">+=</span> <span style="color:#a6e22e">chunk</span>.<span style="color:#a6e22e">toString</span>();
+</span></span><span style="display:flex;"><span>        });
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">req</span>.<span style="color:#a6e22e">on</span>(<span style="color:#e6db74">&#39;end&#39;</span>, () =&gt; {
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#39;Received music data:&#39;</span>, <span style="color:#a6e22e">body</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">currentProgress</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">interval</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">setInterval</span>(() =&gt; {
+</span></span><span style="display:flex;"><span>                <span style="color:#a6e22e">currentProgress</span> <span style="color:#f92672">+=</span> Math.<span style="color:#a6e22e">floor</span>(Math.<span style="color:#a6e22e">random</span>() <span style="color:#f92672">*</span> <span style="color:#ae81ff">10</span>) <span style="color:#f92672">+</span> <span style="color:#ae81ff">10</span>; <span style="color:#75715e">// Random progress between 10% - 20%
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>                <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">currentProgress</span> <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">100</span>) {
+</span></span><span style="display:flex;"><span>                    <span style="color:#a6e22e">currentProgress</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">100</span>;
+</span></span><span style="display:flex;"><span>                    <span style="color:#a6e22e">clearInterval</span>(<span style="color:#a6e22e">interval</span>);
+</span></span><span style="display:flex;"><span>                }
+</span></span><span style="display:flex;"><span>            }, <span style="color:#ae81ff">1000</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">res</span>.<span style="color:#a6e22e">writeHead</span>(<span style="color:#ae81ff">200</span>, { <span style="color:#e6db74">&#39;Content-Type&#39;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;text/plain&#39;</span> });
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">res</span>.<span style="color:#a6e22e">end</span>(<span style="color:#e6db74">&#39;Music data received and processing started&#39;</span>);
+</span></span><span style="display:flex;"><span>        });
+</span></span><span style="display:flex;"><span>    } <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">req</span>.<span style="color:#a6e22e">method</span> <span style="color:#f92672">===</span> <span style="color:#e6db74">&#39;GET&#39;</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#a6e22e">req</span>.<span style="color:#a6e22e">url</span> <span style="color:#f92672">===</span> <span style="color:#e6db74">&#39;/uploadprogress&#39;</span>) {
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// Set headers for SSE
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#a6e22e">res</span>.<span style="color:#a6e22e">writeHead</span>(<span style="color:#ae81ff">200</span>, {
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#39;Content-Type&#39;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;text/event-stream&#39;</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#39;Cache-Control&#39;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;no-cache&#39;</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#39;Connection&#39;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;keep-alive&#39;</span>
+</span></span><span style="display:flex;"><span>        });
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">interval</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">null</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">sendProgress</span> <span style="color:#f92672">=</span> () =&gt; {
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">currentProgress</span> <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">100</span>) {
+</span></span><span style="display:flex;"><span>                <span style="color:#a6e22e">res</span>.<span style="color:#a6e22e">write</span>(<span style="color:#e6db74">`data: </span><span style="color:#e6db74">${</span><span style="color:#a6e22e">JSON</span>.<span style="color:#a6e22e">stringify</span>({ <span style="color:#a6e22e">status</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;in-progress&#39;</span>, <span style="color:#a6e22e">progress</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">currentProgress</span> <span style="color:#e6db74">}</span><span style="color:#e6db74">)}\n\n`</span>);
+</span></span><span style="display:flex;"><span>            } <span style="color:#66d9ef">else</span> {
+</span></span><span style="display:flex;"><span>                <span style="color:#a6e22e">res</span>.<span style="color:#a6e22e">write</span>(<span style="color:#e6db74">`data: </span><span style="color:#e6db74">${</span><span style="color:#a6e22e">JSON</span>.<span style="color:#a6e22e">stringify</span>({ <span style="color:#a6e22e">status</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;complete&#39;</span>, <span style="color:#a6e22e">message</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;Music validation complete and valid!&#39;</span> <span style="color:#e6db74">}</span><span style="color:#e6db74">)}\n\n`</span>);
+</span></span><span style="display:flex;"><span>                <span style="color:#a6e22e">clearInterval</span>(<span style="color:#a6e22e">interval</span>);
+</span></span><span style="display:flex;"><span>                <span style="color:#a6e22e">res</span>.<span style="color:#a6e22e">end</span>(); 
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>        };
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">interval</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">setInterval</span>(<span style="color:#a6e22e">sendProgress</span>, <span style="color:#ae81ff">1000</span>);
+</span></span><span style="display:flex;"><span>    } <span style="color:#66d9ef">else</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">res</span>.<span style="color:#a6e22e">writeHead</span>(<span style="color:#ae81ff">404</span>, { <span style="color:#e6db74">&#39;Content-Type&#39;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;text/plain&#39;</span> });
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">res</span>.<span style="color:#a6e22e">end</span>(<span style="color:#e6db74">&#39;Not Found&#39;</span>);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>});
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">server</span>.<span style="color:#a6e22e">listen</span>(<span style="color:#a6e22e">port</span>, () =&gt; {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">`Server running on http://localhost:</span><span style="color:#e6db74">${</span><span style="color:#a6e22e">port</span><span style="color:#e6db74">}</span><span style="color:#e6db74">`</span>);
+</span></span><span style="display:flex;"><span>});
+</span></span></code></pre></div>
+  </div>
+</details>
+
+</br>
+<details ><summary>Client code</summary>
+  <div class="markdown-inner">
+    <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">uploadMusicData</span>() {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">musicData</span> <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">title</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;My Awesome Track&#39;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">size</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">1234</span>
+</span></span><span style="display:flex;"><span>    };
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">fetch</span>(<span style="color:#e6db74">&#39;http://localhost:2000/upload&#39;</span>, {
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">method</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;POST&#39;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">headers</span><span style="color:#f92672">:</span> {
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#39;Content-Type&#39;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;application/json&#39;</span>
+</span></span><span style="display:flex;"><span>        },
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">body</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">JSON</span>.<span style="color:#a6e22e">stringify</span>(<span style="color:#a6e22e">musicData</span>)
+</span></span><span style="display:flex;"><span>    })
+</span></span><span style="display:flex;"><span>    .<span style="color:#a6e22e">then</span>(<span style="color:#a6e22e">response</span> =&gt; <span style="color:#a6e22e">response</span>.<span style="color:#a6e22e">text</span>())
+</span></span><span style="display:flex;"><span>    .<span style="color:#a6e22e">then</span>(<span style="color:#a6e22e">data</span> =&gt; {
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">data</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// Create an EventSource connection to the server
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">eventSource</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">EventSource</span>(<span style="color:#e6db74">&#39;http://localhost:2000/uploadprogress&#39;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">eventSource</span>.<span style="color:#a6e22e">onmessage</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">event</span>) {
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">data</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">JSON</span>.<span style="color:#a6e22e">parse</span>(<span style="color:#a6e22e">event</span>.<span style="color:#a6e22e">data</span>);
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">data</span>.<span style="color:#a6e22e">status</span> <span style="color:#f92672">===</span> <span style="color:#e6db74">&#39;in-progress&#39;</span>) {
+</span></span><span style="display:flex;"><span>                <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">`Validation progress: </span><span style="color:#e6db74">${</span><span style="color:#a6e22e">data</span>.<span style="color:#a6e22e">progress</span><span style="color:#e6db74">}</span><span style="color:#e6db74">%`</span>);
+</span></span><span style="display:flex;"><span>            } <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">data</span>.<span style="color:#a6e22e">status</span> <span style="color:#f92672">===</span> <span style="color:#e6db74">&#39;complete&#39;</span>) {
+</span></span><span style="display:flex;"><span>                <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">data</span>.<span style="color:#a6e22e">message</span>);
+</span></span><span style="display:flex;"><span>                <span style="color:#a6e22e">eventSource</span>.<span style="color:#a6e22e">close</span>();
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>        };
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">eventSource</span>.<span style="color:#a6e22e">onopen</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">function</span>() {
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#39;Connected to the server for progress updates&#39;</span>);
+</span></span><span style="display:flex;"><span>        };
+</span></span><span style="display:flex;"><span>    });
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">uploadMusicData</span>();
+</span></span></code></pre></div>
+  </div>
+</details>
+
+</br>
+<details ><summary>Instruction</summary>
+  <div class="markdown-inner">
+    <ol>
+<li>Start the server by running <code>node server.js</code><br>
+1.1. Your terminal will display: <code>Server running on http://localhost:2000</code></li>
+<li>Open your browser and enter: <code>http://localhost:2000</code><br>
+2.1. Your browser will display: <code>Hello world</code></li>
+<li>Open the browser console and run <strong>Client code</strong><br>
+3.1. Your terminal will first log: <code>Received music data: {&quot;title&quot;:&quot;My Awesome Track&quot;,&quot;size&quot;:1234}</code>
+3.2. Then, your browser console will display:
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>&gt;&gt; Music data received and processing started
+</span></span><span style="display:flex;"><span>&gt;&gt; Connected to the server for progress updates
+</span></span><span style="display:flex;"><span>&gt;&gt; Validation progress: 18%
+</span></span><span style="display:flex;"><span>&gt;&gt; Validation progress: 28%
+</span></span><span style="display:flex;"><span>&gt;&gt; Validation progress: 39%
+</span></span><span style="display:flex;"><span>&gt;&gt; Validation progress: 50%
+</span></span><span style="display:flex;"><span>&gt;&gt; Validation progress: 65%
+</span></span><span style="display:flex;"><span>&gt;&gt; Validation progress: 80%
+</span></span><span style="display:flex;"><span>&gt;&gt; Validation progress: 97%
+</span></span><span style="display:flex;"><span>&gt;&gt; Music validation complete and valid!
+</span></span></code></pre></div></li>
+</ol>
+
+  </div>
+</details>
+
 <h2 id="message-queue">
   Message Queue
   <a class="anchor" href="#message-queue">#</a>
@@ -1043,6 +1165,7 @@ https://github.com/alex-shpak/hugo-book
 <li>Freecodecamp: <a href="https://www.freecodecamp.org/news/communication-design-patterns-for-backend-development/">Communication Design Patterns for Backend Development</a> (Sep 12th, 2023)</li>
 <li>Udemy: <a href="https://www.udemy.com/course/fundamentals-of-backend-communications-and-protocols">Fundamentals of Backend Engineering</a> (Feb, 2024)</li>
 <li>Linkedin: <a href="https://www.linkedin.com/pulse/understanding-short-polling-simple-backend-pattern-rubayet-mnwec/">Understanding Short Polling: A Simple Backend Communication Pattern</a> (Aug 7th, 2024)</li>
+<li>Stackoverflow: <a href="https://stackoverflow.com/questions/5195452/websockets-vs-server-sent-events-eventsource">WebSockets vs. Server-Sent events/EventSource</a> (Mar 16th, 2011)</li>
 <li>Amazon: <a href="https://aws.amazon.com/message-queue/">Message Queues</a></li>
 </ul>
 <style>
@@ -1229,12 +1352,8 @@ https://github.com/alex-shpak/hugo-book
       <ul>
         <li><a href="#overview-3">Overview</a></li>
         <li><a href="#use-case-2">Use case</a></li>
-        <li><a href="#demo-3">Demo</a></li>
-      </ul>
-    </li>
-    <li><a href="#server-sent-events">Server sent events</a>
-      <ul>
-        <li><a href="#implementation">Implementation</a></li>
+        <li><a href="#demo-websocket">Demo Websocket</a></li>
+        <li><a href="#demo-server-sent-events">Demo Server-sent events</a></li>
       </ul>
     </li>
     <li><a href="#message-queue">Message Queue</a>
