@@ -124,7 +124,7 @@ Open the browser console and run Client code
 <link rel="canonical" href="https://dangpham112000.github.io/docs/research/be_protocol/communication/">
 <link rel="stylesheet" href="/book.min.ef1786281083252320100bd5f394f36844d3252afdbd5bfe72e5f440aaff402b.css" integrity="sha256-7xeGKBCDJSMgEAvV85TzaETTJSr9vVv&#43;cuX0QKr/QCs=" crossorigin="anonymous">
   <script defer src="/fuse.min.js"></script>
-  <script defer src="/en.search.min.fe73c06595260f58967d2293e918c25870b5fa43513b0407c7abf1a01953c7bf.js" integrity="sha256-/nPAZZUmD1iWfSKT6RjCWHC1&#43;kNROwQHx6vxoBlTx78=" crossorigin="anonymous"></script>
+  <script defer src="/en.search.min.fb81b5b486aea6301379c0b81514fcd3810ada735a91e9059603d96775231dae.js" integrity="sha256-&#43;4G1tIaupjATecC4FRT804EK2nNakekFlgPZZ3UjHa4=" crossorigin="anonymous"></script>
 <!--
 Made with Book Theme
 https://github.com/alex-shpak/hugo-book
@@ -548,12 +548,12 @@ https://github.com/alex-shpak/hugo-book
         <li><a href="#demo-server-sent-events">Demo Server-sent events</a></li>
       </ul>
     </li>
-    <li><a href="#message-queue">Message Queue</a>
+    <li><a href="#publish-subcribe">Publish-Subcribe</a>
       <ul>
-        <li><a href="#overview-4">Overview</a></li>
+        <li><a href="#rabbitmq">RabbitMQ</a></li>
+        <li><a href="#kafka">Kafka</a></li>
       </ul>
     </li>
-    <li><a href="#publish-subcribe">Publish Subcribe</a></li>
     <li><a href="#reference">Reference</a></li>
   </ul>
 </nav>
@@ -1140,23 +1140,34 @@ https://github.com/alex-shpak/hugo-book
   </div>
 </details>
 
-<h2 id="message-queue">
-  Message Queue
-  <a class="anchor" href="#message-queue">#</a>
-</h2>
-<p>Asynchronous messaging for batching jobs and decoupling applications</p>
-<p><img src="/research/be_protocol/communication/message_queue.png" alt="message_queue" /></p>
-<h3 id="overview-4">
-  Overview
-  <a class="anchor" href="#overview-4">#</a>
-</h3>
-<p>A message queue is a form of asynchronous service-to-service communication used in serverless and microservices architectures. Messages are stored on the queue until they are processed and deleted. Each message is processed only once, by a single consumer. Message queues can be used to decouple heavyweight processing, to buffer or batch work, and to smooth spiky workloads.</p>
 <h2 id="publish-subcribe">
-  Publish Subcribe
+  Publish-Subcribe
   <a class="anchor" href="#publish-subcribe">#</a>
 </h2>
-<p>One publisher many readers</p>
-<p><img src="/research/be_protocol/communication/pub_sub.png" alt="pub_sub" /></p>
+<ul>
+<li>Also known as <strong>Message Queue</strong> Design Pattern</li>
+<li>Used in microservices architectures</li>
+</ul>
+<p><img src="/research/be_protocol/communication/message_queue.png" alt="message_queue" /></p>
+<h3 id="rabbitmq">
+  RabbitMQ
+  <a class="anchor" href="#rabbitmq">#</a>
+</h3>
+<ul>
+<li>Producer sends and monitors if the message reaches the intended consumer</li>
+<li>Designed for complex message routing</li>
+<li>Support message priorities</li>
+<li>Messages are deleted once consumed</li>
+</ul>
+<h3 id="kafka">
+  Kafka
+  <a class="anchor" href="#kafka">#</a>
+</h3>
+<ul>
+<li>Consumers keep track of message retrieval with an offset tracker</li>
+<li>Retain messages according to the retention policy</li>
+<li>There’s no message priority</li>
+</ul>
 <h2 id="reference">
   Reference
   <a class="anchor" href="#reference">#</a>
@@ -1167,6 +1178,7 @@ https://github.com/alex-shpak/hugo-book
 <li>Linkedin: <a href="https://www.linkedin.com/pulse/understanding-short-polling-simple-backend-pattern-rubayet-mnwec/">Understanding Short Polling: A Simple Backend Communication Pattern</a> (Aug 7th, 2024)</li>
 <li>Stackoverflow: <a href="https://stackoverflow.com/questions/5195452/websockets-vs-server-sent-events-eventsource">WebSockets vs. Server-Sent events/EventSource</a> (Mar 16th, 2011)</li>
 <li>Amazon: <a href="https://aws.amazon.com/message-queue/">Message Queues</a></li>
+<li>Amazon: <a href="https://aws.amazon.com/compare/the-difference-between-rabbitmq-and-kafka/">What’s the Difference Between Kafka and RabbitMQ?</a></li>
 </ul>
 <style>
     .feedback-card {
@@ -1356,12 +1368,12 @@ https://github.com/alex-shpak/hugo-book
         <li><a href="#demo-server-sent-events">Demo Server-sent events</a></li>
       </ul>
     </li>
-    <li><a href="#message-queue">Message Queue</a>
+    <li><a href="#publish-subcribe">Publish-Subcribe</a>
       <ul>
-        <li><a href="#overview-4">Overview</a></li>
+        <li><a href="#rabbitmq">RabbitMQ</a></li>
+        <li><a href="#kafka">Kafka</a></li>
       </ul>
     </li>
-    <li><a href="#publish-subcribe">Publish Subcribe</a></li>
     <li><a href="#reference">Reference</a></li>
   </ul>
 </nav>
