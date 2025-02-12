@@ -43,7 +43,7 @@ Dockerfile # You will write all the instructions here, guild the Docker engine w
 <link rel="canonical" href="https://dangpham112000.github.io/docs/tips/003_docker/">
 <link rel="stylesheet" href="/book.min.ef1786281083252320100bd5f394f36844d3252afdbd5bfe72e5f440aaff402b.css" integrity="sha256-7xeGKBCDJSMgEAvV85TzaETTJSr9vVv&#43;cuX0QKr/QCs=" crossorigin="anonymous">
   <script defer src="/fuse.min.js"></script>
-  <script defer src="/en.search.min.26ae2c5dc45775515840271721e3fb0f350ef0405323415fedb951a39fd9556e.js" integrity="sha256-Jq4sXcRXdVFYQCcXIeP7DzUO8EBTI0Ff7blRo5/ZVW4=" crossorigin="anonymous"></script>
+  <script defer src="/en.search.min.04b10d350c43b3c38a2a7ab1d3c0f1afc544066a8d18830e61256c5238463ac5.js" integrity="sha256-BLENNQxDs8OKKnqx08Dxr8VEBmqNGIMOYSVsUjhGOsU=" crossorigin="anonymous"></script>
 <!--
 Made with Book Theme
 https://github.com/alex-shpak/hugo-book
@@ -493,7 +493,12 @@ https://github.com/alex-shpak/hugo-book
         <li><a href="#hard">Hard</a></li>
       </ul>
     </li>
-    <li><a href="#remove">Remove</a></li>
+    <li><a href="#remove">Remove</a>
+      <ul>
+        <li><a href="#remove-stopped-container">Remove stopped container</a></li>
+        <li><a href="#remove-all-stopped-containers-and-images">Remove all stopped containers and images</a></li>
+      </ul>
+    </li>
     <li><a href="#log">Log</a></li>
   </ul>
 </nav>
@@ -752,6 +757,15 @@ https://github.com/alex-shpak/hugo-book
   Remove
   <a class="anchor" href="#remove">#</a>
 </h2>
+<h3 id="remove-stopped-container">
+  Remove stopped container
+  <a class="anchor" href="#remove-stopped-container">#</a>
+</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>docker rm &lt;name&gt;
+</span></span></code></pre></div><h3 id="remove-all-stopped-containers-and-images">
+  Remove all stopped containers and images
+  <a class="anchor" href="#remove-all-stopped-containers-and-images">#</a>
+</h3>
 <p>Remove all stopped containers in your machine and also clear your docker cache. It means you must re-download it from docker-hub in the next run</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>docker system prune
 </span></span></code></pre></div><h2 id="log">
@@ -961,7 +975,12 @@ https://github.com/alex-shpak/hugo-book
         <li><a href="#hard">Hard</a></li>
       </ul>
     </li>
-    <li><a href="#remove">Remove</a></li>
+    <li><a href="#remove">Remove</a>
+      <ul>
+        <li><a href="#remove-stopped-container">Remove stopped container</a></li>
+        <li><a href="#remove-all-stopped-containers-and-images">Remove all stopped containers and images</a></li>
+      </ul>
+    </li>
     <li><a href="#log">Log</a></li>
   </ul>
 </nav>

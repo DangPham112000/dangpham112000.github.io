@@ -58,7 +58,7 @@ Route messages to queues based on wildcard matches between the routing key and t
 <link rel="canonical" href="https://dangpham112000.github.io/docs/research/be_protocol/rabbitmq/">
 <link rel="stylesheet" href="/book.min.ef1786281083252320100bd5f394f36844d3252afdbd5bfe72e5f440aaff402b.css" integrity="sha256-7xeGKBCDJSMgEAvV85TzaETTJSr9vVv&#43;cuX0QKr/QCs=" crossorigin="anonymous">
   <script defer src="/fuse.min.js"></script>
-  <script defer src="/en.search.min.26ae2c5dc45775515840271721e3fb0f350ef0405323415fedb951a39fd9556e.js" integrity="sha256-Jq4sXcRXdVFYQCcXIeP7DzUO8EBTI0Ff7blRo5/ZVW4=" crossorigin="anonymous"></script>
+  <script defer src="/en.search.min.04b10d350c43b3c38a2a7ab1d3c0f1afc544066a8d18830e61256c5238463ac5.js" integrity="sha256-BLENNQxDs8OKKnqx08Dxr8VEBmqNGIMOYSVsUjhGOsU=" crossorigin="anonymous"></script>
 <!--
 Made with Book Theme
 https://github.com/alex-shpak/hugo-book
@@ -476,7 +476,13 @@ https://github.com/alex-shpak/hugo-book
         <li><a href="#dead-letter-exchange">Dead Letter Exchange</a></li>
       </ul>
     </li>
-    <li><a href="#demo">Demo</a></li>
+    <li><a href="#demo">Demo</a>
+      <ul>
+        <li><a href="#setup-rabbitmq-broker">Setup RabbitMQ Broker</a></li>
+        <li><a href="#setup-services">Setup services</a></li>
+        <li><a href="#scenario">Scenario</a></li>
+      </ul>
+    </li>
     <li><a href="#reference">Reference</a></li>
   </ul>
 </nav>
@@ -542,7 +548,7 @@ https://github.com/alex-shpak/hugo-book
 </h3>
 <ul>
 <li>Similar to topic exchanges</li>
-<li>Route messages based on header values instead of routing keys</li>
+<li>Route messages based on <strong>header values instead of routing keys</strong></li>
 </ul>
 <h3 id="dead-letter-exchange">
   Dead Letter Exchange
@@ -556,11 +562,17 @@ https://github.com/alex-shpak/hugo-book
   <a class="anchor" href="#demo">#</a>
 </h2>
 <p><img src="/research/be_protocol/rabbitmq/direct_demo.png" alt="direct_demo" /></p>
-<p>Pull the official RabbitMQ image:</p>
-<p><code>sudo docker pull rabbitmq:4.0.5-management</code></p>
-<p>Start a RabbitMQ</p>
-<p><code>sudo docker run --name rabbitmq -p 5672:5672 -p 15672:15672 rabbitmq:4.0.5-management</code></p>
-<ul>
+<h3 id="setup-rabbitmq-broker">
+  Setup RabbitMQ Broker
+  <a class="anchor" href="#setup-rabbitmq-broker">#</a>
+</h3>
+<ol>
+<li>Pull the official RabbitMQ image:
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>sudo docker pull rabbitmq:4.0.5-management
+</span></span></code></pre></div></li>
+<li>Start a RabbitMQ:
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>sudo docker run --name rabbitmq -p 5672:5672 -p 15672:15672 rabbitmq:4.0.5-management
+</span></span></code></pre></div><ul>
 <li><code>--name</code> assigns a name to the container</li>
 <li><code>-p</code> maps the ports from the container to your host machine
 <ul>
@@ -569,12 +581,229 @@ https://github.com/alex-shpak/hugo-book
 </ul>
 </li>
 </ul>
-<p>Access the RabbitMQ Management Console:</p>
+</li>
+<li>Access the RabbitMQ Management Console:
 <ul>
-<li>Open a web browser and navigate to <code>http://localhost:15672/</code></li>
+<li>Open a web browser and navigate to <a href="http://localhost:15672/">http://localhost:15672/</a></li>
 <li>Log in with the default username <code>guest</code> and password <code>guest</code></li>
 </ul>
-<p><code>AMQP</code> is the data transfer protocol for communication with RabbitMQ</p>
+</li>
+</ol>
+<h3 id="setup-services">
+  Setup services
+  <a class="anchor" href="#setup-services">#</a>
+</h3>
+<ul>
+<li><code>AMQP</code> is the data transfer protocol for communication with RabbitMQ</li>
+</ul>
+<details ><summary><strong>Prepare</strong></summary>
+  <div class="markdown-inner">
+    <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#75715e">// config.js
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">module</span>.<span style="color:#a6e22e">exports</span> <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">rabbitMQ</span><span style="color:#f92672">:</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">url</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;amqp://localhost&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">exchangeName</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;logExchange&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">exchangeType</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;direct&#34;</span>,
+</span></span><span style="display:flex;"><span>  },
+</span></span><span style="display:flex;"><span>};
+</span></span></code></pre></div><p>You can run this code block bellow with <strong>REST Client</strong> VScode extension</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>### post.http
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>@url=http://localhost:3000
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>### Info log
+</span></span><span style="display:flex;"><span>POST {{url}}/sendLog
+</span></span><span style="display:flex;"><span>Content-Type: application/json
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    &#34;logType&#34;: &#34;Info&#34;,
+</span></span><span style="display:flex;"><span>    &#34;message&#34;: &#34;Everything works OK&#34;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>### Warning log
+</span></span><span style="display:flex;"><span>POST {{url}}/sendLog
+</span></span><span style="display:flex;"><span>Content-Type: application/json
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    &#34;logType&#34;: &#34;Warning&#34;,
+</span></span><span style="display:flex;"><span>    &#34;message&#34;: &#34;Chrome is moving towards a new experience that allows users to choose to browse without third-party cookies&#34;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>### Error log
+</span></span><span style="display:flex;"><span>POST {{url}}/sendLog
+</span></span><span style="display:flex;"><span>Content-Type: application/json
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    &#34;logType&#34;: &#34;Error&#34;,
+</span></span><span style="display:flex;"><span>    &#34;message&#34;: &#34;Unchecked runtime.lastError: The message port closed before a response was received&#34;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div>
+  </div>
+</details>
+
+</br>
+<details ><summary><strong>Logger service</strong></summary>
+  <div class="markdown-inner">
+    <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#75715e">// loggerService.js
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">amqp</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span>(<span style="color:#e6db74">&#34;amqplib&#34;</span>);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">config</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span>(<span style="color:#e6db74">&#34;./config&#34;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Producer</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">channel</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">async</span> <span style="color:#a6e22e">createChannel</span>() {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">rabbitmqUrl</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">config</span>.<span style="color:#a6e22e">rabbitMQ</span>.<span style="color:#a6e22e">url</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">connection</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> <span style="color:#a6e22e">amqp</span>.<span style="color:#a6e22e">connect</span>(<span style="color:#a6e22e">rabbitmqUrl</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">channel</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> <span style="color:#a6e22e">connection</span>.<span style="color:#a6e22e">createChannel</span>();
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">async</span> <span style="color:#a6e22e">publishMessage</span>(<span style="color:#a6e22e">routingKey</span>, <span style="color:#a6e22e">message</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span><span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">channel</span>) {
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">await</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">createChannel</span>();
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">exchangeName</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">config</span>.<span style="color:#a6e22e">rabbitMQ</span>.<span style="color:#a6e22e">exchangeName</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">exchangeType</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">config</span>.<span style="color:#a6e22e">rabbitMQ</span>.<span style="color:#a6e22e">exchangeType</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">await</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">channel</span>.<span style="color:#a6e22e">assertExchange</span>(<span style="color:#a6e22e">exchangeName</span>, <span style="color:#a6e22e">exchangeType</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">logDetails</span> <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">logType</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">routingKey</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">message</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">message</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">dateTime</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">new</span> Date(),
+</span></span><span style="display:flex;"><span>    };
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">await</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">channel</span>.<span style="color:#a6e22e">publish</span>(
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">exchangeName</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">routingKey</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">Buffer</span>.<span style="color:#a6e22e">from</span>(<span style="color:#a6e22e">JSON</span>.<span style="color:#a6e22e">stringify</span>(<span style="color:#a6e22e">logDetails</span>))
+</span></span><span style="display:flex;"><span>    );
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(
+</span></span><span style="display:flex;"><span>      <span style="color:#e6db74">`The new </span><span style="color:#e6db74">${</span><span style="color:#a6e22e">routingKey</span><span style="color:#e6db74">}</span><span style="color:#e6db74"> log is sent to exchange </span><span style="color:#e6db74">${</span><span style="color:#a6e22e">exchangeName</span><span style="color:#e6db74">}</span><span style="color:#e6db74">`</span>
+</span></span><span style="display:flex;"><span>    );
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">express</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span>(<span style="color:#e6db74">&#34;express&#34;</span>);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">app</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">express</span>();
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">producer</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">Producer</span>();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">app</span>.<span style="color:#a6e22e">use</span>(<span style="color:#a6e22e">express</span>.<span style="color:#a6e22e">json</span>());
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">app</span>.<span style="color:#a6e22e">post</span>(<span style="color:#e6db74">&#34;/sendLog&#34;</span>, <span style="color:#66d9ef">async</span> (<span style="color:#a6e22e">req</span>, <span style="color:#a6e22e">res</span>) =&gt; {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">await</span> <span style="color:#a6e22e">producer</span>.<span style="color:#a6e22e">publishMessage</span>(<span style="color:#a6e22e">req</span>.<span style="color:#a6e22e">body</span>.<span style="color:#a6e22e">logType</span>, <span style="color:#a6e22e">req</span>.<span style="color:#a6e22e">body</span>.<span style="color:#a6e22e">message</span>);
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">res</span>.<span style="color:#a6e22e">send</span>();
+</span></span><span style="display:flex;"><span>});
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">app</span>.<span style="color:#a6e22e">listen</span>(<span style="color:#ae81ff">3000</span>, () =&gt; {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#34;Server started...&#34;</span>);
+</span></span><span style="display:flex;"><span>});
+</span></span></code></pre></div>
+  </div>
+</details>
+
+</br>
+<details ><summary><strong>Info service</strong></summary>
+  <div class="markdown-inner">
+    <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#75715e">// loggerService.js
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">amqp</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span>(<span style="color:#e6db74">&#34;amqplib&#34;</span>);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">config</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span>(<span style="color:#e6db74">&#34;./config&#34;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">async</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">consumeMessages</span>() {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">rabbitmqUrl</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">config</span>.<span style="color:#a6e22e">rabbitMQ</span>.<span style="color:#a6e22e">url</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">connection</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> <span style="color:#a6e22e">amqp</span>.<span style="color:#a6e22e">connect</span>(<span style="color:#a6e22e">rabbitmqUrl</span>);
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">channel</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> <span style="color:#a6e22e">connection</span>.<span style="color:#a6e22e">createChannel</span>();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">exchangeName</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">config</span>.<span style="color:#a6e22e">rabbitMQ</span>.<span style="color:#a6e22e">exchangeName</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">exchangeType</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">config</span>.<span style="color:#a6e22e">rabbitMQ</span>.<span style="color:#a6e22e">exchangeType</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">await</span> <span style="color:#a6e22e">channel</span>.<span style="color:#a6e22e">assertExchange</span>(<span style="color:#a6e22e">exchangeName</span>, <span style="color:#a6e22e">exchangeType</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">q</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> <span style="color:#a6e22e">channel</span>.<span style="color:#a6e22e">assertQueue</span>(<span style="color:#e6db74">&#34;InfoQueue&#34;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">await</span> <span style="color:#a6e22e">channel</span>.<span style="color:#a6e22e">bindQueue</span>(<span style="color:#a6e22e">q</span>.<span style="color:#a6e22e">queue</span>, <span style="color:#a6e22e">exchangeName</span>, <span style="color:#e6db74">&#34;Info&#34;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">channel</span>.<span style="color:#a6e22e">consume</span>(<span style="color:#a6e22e">q</span>.<span style="color:#a6e22e">queue</span>, (<span style="color:#a6e22e">msg</span>) =&gt; {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">data</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">JSON</span>.<span style="color:#a6e22e">parse</span>(<span style="color:#a6e22e">msg</span>.<span style="color:#a6e22e">content</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">data</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">channel</span>.<span style="color:#a6e22e">ack</span>(<span style="color:#a6e22e">msg</span>);
+</span></span><span style="display:flex;"><span>  });
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">consumeMessages</span>();
+</span></span></code></pre></div>
+  </div>
+</details>
+
+</br>
+<details ><summary><strong>Warning service</strong></summary>
+  <div class="markdown-inner">
+    <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#75715e">// warningService.js
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">amqp</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span>(<span style="color:#e6db74">&#34;amqplib&#34;</span>);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">config</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span>(<span style="color:#e6db74">&#34;./config&#34;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">async</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">consumeMessages</span>() {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">connection</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> <span style="color:#a6e22e">amqp</span>.<span style="color:#a6e22e">connect</span>(<span style="color:#a6e22e">config</span>.<span style="color:#a6e22e">rabbitMQ</span>.<span style="color:#a6e22e">url</span>);
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">channel</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> <span style="color:#a6e22e">connection</span>.<span style="color:#a6e22e">createChannel</span>();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">exchangeName</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">config</span>.<span style="color:#a6e22e">rabbitMQ</span>.<span style="color:#a6e22e">exchangeName</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">exchangeType</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">config</span>.<span style="color:#a6e22e">rabbitMQ</span>.<span style="color:#a6e22e">exchangeType</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">await</span> <span style="color:#a6e22e">channel</span>.<span style="color:#a6e22e">assertExchange</span>(<span style="color:#a6e22e">exchangeName</span>, <span style="color:#a6e22e">exchangeType</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">q</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> <span style="color:#a6e22e">channel</span>.<span style="color:#a6e22e">assertQueue</span>(<span style="color:#e6db74">&#34;WarningQueue&#34;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">await</span> <span style="color:#a6e22e">channel</span>.<span style="color:#a6e22e">bindQueue</span>(<span style="color:#a6e22e">q</span>.<span style="color:#a6e22e">queue</span>, <span style="color:#a6e22e">exchangeName</span>, <span style="color:#e6db74">&#34;Warning&#34;</span>);
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">await</span> <span style="color:#a6e22e">channel</span>.<span style="color:#a6e22e">bindQueue</span>(<span style="color:#a6e22e">q</span>.<span style="color:#a6e22e">queue</span>, <span style="color:#a6e22e">exchangeName</span>, <span style="color:#e6db74">&#34;Error&#34;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">channel</span>.<span style="color:#a6e22e">consume</span>(<span style="color:#a6e22e">q</span>.<span style="color:#a6e22e">queue</span>, (<span style="color:#a6e22e">msg</span>) =&gt; {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">data</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">JSON</span>.<span style="color:#a6e22e">parse</span>(<span style="color:#a6e22e">msg</span>.<span style="color:#a6e22e">content</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">data</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">channel</span>.<span style="color:#a6e22e">ack</span>(<span style="color:#a6e22e">msg</span>);
+</span></span><span style="display:flex;"><span>  });
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">consumeMessages</span>();
+</span></span></code></pre></div>
+  </div>
+</details>
+
+<ol>
+<li>Create a folder to hold all services in one place, such as <code>RabbitMQ_Demo</code></li>
+<li>Initialize Node.js with: <code>npm init -y</code></li>
+<li>Install necessary libraries:
+<ul>
+<li><code>amqplib</code>: <code>npm i amqplib</code></li>
+<li><code>express</code>: <code>npm i express</code></li>
+</ul>
+</li>
+<li>Prepare the necessary files: <code>config.js</code>, <code>post.http</code>, <code>loggerService.js</code>, <code>infoService.js</code>, and <code>warningService.js</code></li>
+<li>Start the services:
+<ul>
+<li>Logger service: <code>node loggerService.js</code></li>
+<li>Info service: <code>node infoService.js</code></li>
+<li>Warning service: <code>node warningService.js</code></li>
+</ul>
+</li>
+</ol>
+<h3 id="scenario">
+  Scenario
+  <a class="anchor" href="#scenario">#</a>
+</h3>
+<ul>
+<li>Send info, warning, or error messages to the Logger service
+<ul>
+<li><strong>Expect</strong>: They are routed to the corresponding consumer services</li>
+</ul>
+</li>
+<li>Try sending some messages with a logType that does not exist in any services
+<ul>
+<li><strong>Expect</strong>: The logger service announces that the message was sent to the Exchange, but none of the consumer services receive the message</li>
+</ul>
+</li>
+<li>Try commenting out the code line in the Consumer service&rsquo;s code block: <code>channel.ack(msg);</code>
+<ul>
+<li><strong>Expect</strong>: Consumer services receive messages normally, but when we start them again, they will receive all unacknowledged messages again</li>
+</ul>
+</li>
+</ul>
 <h2 id="reference">
   Reference
   <a class="anchor" href="#reference">#</a>
@@ -754,7 +983,13 @@ https://github.com/alex-shpak/hugo-book
         <li><a href="#dead-letter-exchange">Dead Letter Exchange</a></li>
       </ul>
     </li>
-    <li><a href="#demo">Demo</a></li>
+    <li><a href="#demo">Demo</a>
+      <ul>
+        <li><a href="#setup-rabbitmq-broker">Setup RabbitMQ Broker</a></li>
+        <li><a href="#setup-services">Setup services</a></li>
+        <li><a href="#scenario">Scenario</a></li>
+      </ul>
+    </li>
     <li><a href="#reference">Reference</a></li>
   </ul>
 </nav>
