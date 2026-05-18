@@ -1,11 +1,1 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>Categories on Dante 0401</title>
-    <link>https://dangpham112000.github.io/categories/</link>
-    <description>Recent content in Categories on Dante 0401</description>
-    <generator>Hugo</generator>
-    <language>en-us</language>
-    <atom:link href="https://dangpham112000.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
-  </channel>
-</rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Categories on Dante 0401</title><link>https://dangpham112000.github.io/categories/</link><description>Recent content in Categories on Dante 0401</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Mon, 20 May 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://dangpham112000.github.io/categories/index.xml" rel="self" type="application/rss+xml"/><item><title>Backend Development</title><link>https://dangpham112000.github.io/categories/backend-development/</link><pubDate>Mon, 20 May 2024 00:00:00 +0000</pubDate><guid>https://dangpham112000.github.io/categories/backend-development/</guid><description/></item><item><title>System Design</title><link>https://dangpham112000.github.io/categories/system-design/</link><pubDate>Mon, 20 May 2024 00:00:00 +0000</pubDate><guid>https://dangpham112000.github.io/categories/system-design/</guid><description/></item></channel></rss>

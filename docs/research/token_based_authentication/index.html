@@ -1,9 +1,4 @@
-<!DOCTYPE html>
-<html lang="en-us" dir="ltr">
-<head>
-  <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="
+<!doctype html><html lang=en-us dir=ltr><head><meta charset=UTF-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="
   Token-based authentication
   #
 
@@ -66,1043 +61,221 @@ Used to obtain a new pair of access and refresh tokens
   Basic flow
   #
 
-">
-<meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff">
-<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#343a40">
-<meta name="color-scheme" content="light dark"><meta property="og:url" content="https://dangpham112000.github.io/docs/research/token_based_authentication/">
-  <meta property="og:site_name" content="Dante 0401">
-  <meta property="og:title" content="Token-based Authentication">
-  <meta property="og:description" content="Token-based authentication # Senario: Each time a user accesses your website containing sensitive resources, such as posting a new blog, they are required to log in repeatedly every time they visit Problem: Is there a way to allow them to log in just once and avoid re-logging in, even if their previous session was two days ago? Solution: Access tokens were designed to solve this problem Access token # Provide a one-time login for users Reduce database access for password verification, user information retrieval, and role checking Characteristics # Short-lived Stored in client-side storage Contains the user’s identity Contains a set of claims, permissions, or roles of the user Grants access to the system New problems # Problem 1: When a hacker successfully steals an access token, they can impersonate the user Solution 1: Use short-term access tokens to minimize the risk of misuse if a hacker steals one Problem 2: Requiring users to re-login every time an access token is granted leads to a poor user experience Solution 2: Refresh tokens were introduced to address this issue by allowing the generation of new access tokens without requiring the user to log in again Refresh token # To prevent hackers from stealing access tokens, access tokens were designed to be valid for a short duration Refresh tokens were introduced to re-grant access tokens when they expire, allowing users to continue their sessions seamlessly without re-login while reducing the risk of impersonation Characteristics # Long-lived Stored on the server and the client Used to obtain a new pair of access and refresh tokens How do they work together? # Basic flow #">
-  <meta property="og:locale" content="en_us">
-  <meta property="og:type" content="article">
-    <meta property="article:section" content="docs">
-    <meta property="article:published_time" content="2025-01-03T01:47:46+07:00">
-    <meta property="article:modified_time" content="2025-01-03T01:47:46+07:00">
-<title>Token-based Authentication | Dante 0401</title>
-<link rel="manifest" href="/manifest.json">
-<link rel="icon" href="/favicon.png" >
-<link rel="canonical" href="https://dangpham112000.github.io/docs/research/token_based_authentication/">
-<link rel="stylesheet" href="/book.min.ef1786281083252320100bd5f394f36844d3252afdbd5bfe72e5f440aaff402b.css" integrity="sha256-7xeGKBCDJSMgEAvV85TzaETTJSr9vVv&#43;cuX0QKr/QCs=" crossorigin="anonymous">
-  <script defer src="/fuse.min.js"></script>
-  <script defer src="/en.search.min.8cd250da139fc136773875cc0c5c476270e41dde5b32a6624b24175c7dd7d37b.js" integrity="sha256-jNJQ2hOfwTZ3OHXMDFxHYnDkHd5bMqZiSyQXXH3X03s=" crossorigin="anonymous"></script>
-<!--
-Made with Book Theme
-https://github.com/alex-shpak/hugo-book
--->
-  
-</head>
-<body dir="ltr">
-  <input type="checkbox" class="hidden toggle" id="menu-control" />
-  <input type="checkbox" class="hidden toggle" id="toc-control" />
-  <main class="container flex">
-    <aside class="book-menu">
-      <div class="book-menu-content">
-        
-  <nav>
-<h2 class="book-brand">
-  <a class="flex align-center" href="/"><span>Dante 0401</span>
-  </a>
-</h2>
-
-
-<div class="book-search hidden">
-  <input type="text" id="book-search-input" placeholder="Search" aria-label="Search" maxlength="64" data-hotkeys="s/" />
-  <div class="book-search-spinner hidden"></div>
-  <ul id="book-search-results"></ul>
-</div>
-<script>document.querySelector(".book-search").classList.remove("hidden")</script>
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
-
-
-  
-  <ul>
-    
-      
-        <li class="book-section-flat" >
-          
-  
-  
-
-  
-    <span>RESEARCH</span>
-  
-
-          
-  <ul>
-    
-      
-        <li>
-          
-  
-  
-
-  
-    <a href="/docs/research/process_vs_thread/" class="">Process vs Thread</a>
-  
-
-        </li>
-      
-    
-      
-        <li>
-          
-  
-  
-
-  
-    <a href="/docs/research/chrome_architecture/" class="">Chrome Architecture</a>
-  
-
-        </li>
-      
-    
-      
-        <li>
-          
-  
-  
-
-  
-    <a href="/docs/research/aws_overview/" class="">AWS Overview</a>
-  
-
-        </li>
-      
-    
-      
-        <li>
-          
-  
-  
-
-  
-    <a href="/docs/research/be_protocol/" class="">Backend</a>
-  
-
-          
-  <ul>
-    
-      
-        <li>
-          
-  
-  
-
-  
-    <a href="/docs/research/be_protocol/tls_ssl/" class="">TLS - SSL</a>
-  
-
-        </li>
-      
-    
-      
-        <li>
-          
-  
-  
-
-  
-    <a href="/docs/research/be_protocol/communication/" class="">Communication</a>
-  
-
-        </li>
-      
-    
-      
-        <li>
-          
-  
-  
-
-  
-    <a href="/docs/research/be_protocol/rabbitmq/" class="">RabbitMQ</a>
-  
-
-        </li>
-      
-    
-      
-        <li>
-          
-  
-  
-
-  
-    <a href="/docs/research/be_protocol/kafka/" class="">Kafka - Draft</a>
-  
-
-        </li>
-      
-    
-  </ul>
-
-        </li>
-      
-    
-      
-        <li>
-          
-  
-  
-
-  
-    <a href="/docs/research/encryption/" class="">Encryption</a>
-  
-
-        </li>
-      
-    
-      
-        <li>
-          
-  
-  
-
-  
-    <a href="/docs/research/token_based_authentication/" class="active">Token-based Authentication</a>
-  
-
-        </li>
-      
-    
-      
-        <li>
-          
-  
-  
-
-  
-    <a href="/docs/research/security/" class="">Security - Draft</a>
-  
-
-          
-  <ul>
-    
-      
-        <li>
-          
-  
-  
-
-  
-    <a href="/docs/research/security/hsts/" class="">HSTS</a>
-  
-
-        </li>
-      
-    
-      
-        <li>
-          
-  
-  
-
-  
-    <a href="/docs/research/security/bit_flipping/" class="">Bit Flipping</a>
-  
-
-        </li>
-      
-    
-  </ul>
-
-        </li>
-      
-    
-      
-        <li>
-          
-  
-  
-
-  
-    <a href="/docs/research/scale/" class="">Scale</a>
-  
-
-        </li>
-      
-    
-  </ul>
-
-        </li>
-      
-    
-      
-        <li class="book-section-flat" >
-          
-  
-  
-
-  
-    <span>TIPS</span>
-  
-
-          
-  <ul>
-    
-      
-        <li>
-          
-  
-  
-
-  
-    <a href="/docs/tips/001_unit_test/" class="">Unit Test</a>
-  
-
-        </li>
-      
-    
-      
-        <li>
-          
-  
-  
-
-  
-    <a href="/docs/tips/002_git/" class="">Git</a>
-  
-
-        </li>
-      
-    
-      
-        <li>
-          
-  
-  
-
-  
-    <a href="/docs/tips/003_docker/" class="">Docker</a>
-  
-
-        </li>
-      
-    
-      
-        <li>
-          
-  
-  
-
-  
-    <a href="/docs/tips/004_ops/" class="">Ops</a>
-  
-
-        </li>
-      
-    
-      
-        <li>
-          
-  
-  
-
-  
-    <a href="/docs/tips/005_passion/" class="">Spark Passion</a>
-  
-
-        </li>
-      
-    
-  </ul>
-
-        </li>
-      
-    
-      
-        <li class="book-section-flat" >
-          
-  
-  
-
-  
-    <span>PROBLEMS</span>
-  
-
-          
-  <ul>
-    
-      
-        <li>
-          
-  
-  
-
-  
-    <a href="/docs/problems/knight_dialer/" class="">Knight Dialer</a>
-  
-
-        </li>
-      
-    
-  </ul>
-
-        </li>
-      
-    
-  </ul>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-</nav>
-
-
-
-
-  <script>(function(){var e=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(){localStorage.setItem("menu.scrollTop",e.scrollTop)}),e.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
-
-
- 
-      </div>
-    </aside>
-
-    <div class="book-page">
-      <header class="book-header">
-        
-  <div class="flex align-center justify-between">
-  <label for="menu-control">
-    <img src="/svg/menu.svg" class="book-icon" alt="Menu" />
-  </label>
-
-  <strong>Token-based Authentication</strong>
-
-  <label for="toc-control">
-    
-    <img src="/svg/toc.svg" class="book-icon" alt="Table of Contents" />
-    
-  </label>
-</div>
-
-
-  
-  <aside class="hidden clearfix">
-    
-  
-<nav id="TableOfContents">
-  <ul>
-    <li><a href="#access-token">Access token</a>
-      <ul>
-        <li><a href="#characteristics">Characteristics</a></li>
-        <li><a href="#new-problems">New problems</a></li>
-      </ul>
-    </li>
-    <li><a href="#refresh-token">Refresh token</a>
-      <ul>
-        <li><a href="#characteristics-1">Characteristics</a></li>
-      </ul>
-    </li>
-    <li><a href="#how-do-they-work-together">How do they work together?</a>
-      <ul>
-        <li><a href="#basic-flow">Basic flow</a></li>
-        <li><a href="#token-expired">Token expired</a></li>
-        <li><a href="#threat-mitigation-strategy">Threat mitigation strategy</a></li>
-        <li><a href="#authentication-server-standalone-concept">Authentication server standalone concept</a></li>
-      </ul>
-    </li>
-    <li><a href="#demo-code">Demo code</a></li>
-    <li><a href="#discussion">Discussion</a></li>
-    <li><a href="#reference">Reference</a></li>
-  </ul>
-</nav>
-
-
-
-  </aside>
-  
- 
-      </header>
-
-      
-      
-  <article class="markdown book-article"><h1 id="token-based-authentication">
-  Token-based authentication
-  <a class="anchor" href="#token-based-authentication">#</a>
-</h1>
-<ul>
-<li><strong>Senario</strong>: Each time a user accesses your website containing <strong>sensitive</strong> resources, such as posting a new blog, they are required to log in <strong>repeatedly</strong> every time they visit</li>
-<li><strong>Problem</strong>: Is there a way to allow them to log in just <strong>once</strong> and avoid re-logging in, even if their previous session was two days ago?</li>
-<li><strong>Solution</strong>: Access tokens were designed to solve this problem</li>
-</ul>
-<h2 id="access-token">
-  Access token
-  <a class="anchor" href="#access-token">#</a>
-</h2>
-<ul>
-<li>Provide a one-time login for users</li>
-<li>Reduce database access for password verification, user information retrieval, and role checking</li>
-</ul>
-<h3 id="characteristics">
-  Characteristics
-  <a class="anchor" href="#characteristics">#</a>
-</h3>
-<ul>
-<li>Short-lived</li>
-<li>Stored in client-side storage</li>
-<li>Contains the user&rsquo;s identity</li>
-<li>Contains a set of claims, permissions, or roles of the user</li>
-<li><strong>Grants access to the system</strong></li>
-</ul>
-<h3 id="new-problems">
-  New problems
-  <a class="anchor" href="#new-problems">#</a>
-</h3>
-<ul>
-<li><strong>Problem 1</strong>: When a hacker successfully steals an access token, they can impersonate the user</li>
-<li><strong>Solution 1</strong>: Use short-term access tokens to minimize the risk of misuse if a hacker steals one</li>
-<li><strong>Problem 2</strong>: Requiring users to re-login every time an access token is granted leads to a poor user experience</li>
-<li><strong>Solution 2</strong>: Refresh tokens were introduced to address this issue by allowing the generation of new access tokens without requiring the user to log in again</li>
-</ul>
-<h2 id="refresh-token">
-  Refresh token
-  <a class="anchor" href="#refresh-token">#</a>
-</h2>
-<ul>
-<li>To prevent hackers from stealing access tokens, access tokens were designed to be valid for a short duration</li>
-<li>Refresh tokens were introduced to re-grant access tokens when they expire, allowing users to continue their sessions seamlessly without re-login while reducing the risk of impersonation</li>
-</ul>
-<h3 id="characteristics-1">
-  Characteristics
-  <a class="anchor" href="#characteristics-1">#</a>
-</h3>
-<ul>
-<li>Long-lived</li>
-<li>Stored on the server and the client</li>
-<li><strong>Used to obtain a new pair of access and refresh tokens</strong></li>
-</ul>
-<h2 id="how-do-they-work-together">
-  How do they work together?
-  <a class="anchor" href="#how-do-they-work-together">#</a>
-</h2>
-<h3 id="basic-flow">
-  Basic flow
-  <a class="anchor" href="#basic-flow">#</a>
-</h3>
-<p><img src="/research/token_based_authentication/basic_flow.png" alt="basic_flow" /></p>
-<ul>
-<li>You may be curious why using separate keys for creating and verifying tokens (see <a href="#authentication-server-standalone-concept">this use case</a>)</li>
-</ul>
-<h3 id="token-expired">
-  Token expired
-  <a class="anchor" href="#token-expired">#</a>
-</h3>
-<p><img src="/research/token_based_authentication/token_expired.png" alt="token_expired" /></p>
-<h3 id="threat-mitigation-strategy">
-  Threat mitigation strategy
-  <a class="anchor" href="#threat-mitigation-strategy">#</a>
-</h3>
-<ul>
-<li>Each refresh token (RT) can only be used once</li>
-<li>If a reused RT is detected, we must immediately clear all tokens and their associated keys, then force the user to re-login to the system</li>
-</ul>
-<p><img src="/research/token_based_authentication/threat_mitigation.png" alt="threat_mitigation" /></p>
-<details ><summary>Why does this only mitigate the hacking and not prevent it?</summary>
-  <div class="markdown-inner">
-    <ul>
-<li>In the picture above, if you switch the positions of the hacker and the user, you&rsquo;ll see that if the hacker comes first, they will be granted a new AT and RT, and can access resources as many times as they want until the second token renewal process occurs, forcing them to re-login</li>
-</ul>
-
-  </div>
-</details>
-
-<h3 id="authentication-server-standalone-concept">
-  Authentication server standalone concept
-  <a class="anchor" href="#authentication-server-standalone-concept">#</a>
-</h3>
-<ul>
-<li>This explains why you should use a key pair to create and verify tokens separately, instead of using a single key for both actions</li>
-</ul>
-<p><img src="/research/token_based_authentication/authen_server_standalone.png" alt="authen_server_standalone" /></p>
-<h2 id="demo-code">
-  Demo code
-  <a class="anchor" href="#demo-code">#</a>
-</h2>
-<ul>
-<li>This code is intended to give you insight into implementing token-based authentication; it is not my full authentication implementation</li>
-<li>You can find my complete code implementation on <a href="https://github.com/DangPham112000/fakebut">GitHub</a></li>
-</ul>
-<p><strong>NodeJS</strong></p>
-<details ><summary>authUtils.js</summary>
-  <div class="markdown-inner">
-    <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">import</span> <span style="color:#a6e22e">jwt</span> <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#34;jsonwebtoken&#34;</span>;
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> <span style="color:#a6e22e">crypto</span> <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#34;crypto&#34;</span>;
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">genKeyPairRSA</span> <span style="color:#f92672">=</span> () =&gt; {
-</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">try</span> {
-</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">const</span> { <span style="color:#a6e22e">privateKey</span>, <span style="color:#a6e22e">publicKey</span> } <span style="color:#f92672">=</span> <span style="color:#a6e22e">crypto</span>.<span style="color:#a6e22e">generateKeyPairSync</span>(<span style="color:#e6db74">&#34;rsa&#34;</span>, {
-</span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">modulusLength</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">4096</span>,
-</span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">publicKeyEncoding</span><span style="color:#f92672">:</span> {
-</span></span><span style="display:flex;"><span>				<span style="color:#a6e22e">type</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;pkcs1&#34;</span>,
-</span></span><span style="display:flex;"><span>				<span style="color:#a6e22e">format</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;pem&#34;</span>,
-</span></span><span style="display:flex;"><span>			},
-</span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">privateKeyEncoding</span><span style="color:#f92672">:</span> {
-</span></span><span style="display:flex;"><span>				<span style="color:#a6e22e">type</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;pkcs1&#34;</span>,
-</span></span><span style="display:flex;"><span>				<span style="color:#a6e22e">format</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;pem&#34;</span>,
-</span></span><span style="display:flex;"><span>			},
-</span></span><span style="display:flex;"><span>		});
-</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">return</span> { <span style="color:#a6e22e">privateKey</span>, <span style="color:#a6e22e">publicKey</span> };
-</span></span><span style="display:flex;"><span>	} <span style="color:#66d9ef">catch</span> (<span style="color:#a6e22e">error</span>) {
-</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">throw</span> <span style="color:#66d9ef">new</span> Error(<span style="color:#e6db74">&#34;crypto.generateKeyPairSync got error&#34;</span>);
-</span></span><span style="display:flex;"><span>	}
-</span></span><span style="display:flex;"><span>};
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">createTokenPair</span> <span style="color:#f92672">=</span> (<span style="color:#a6e22e">payload</span>, <span style="color:#a6e22e">privateKey</span>) =&gt; {
-</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">try</span> {
-</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">accessToken</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">jwt</span>.<span style="color:#a6e22e">sign</span>(<span style="color:#a6e22e">payload</span>, <span style="color:#a6e22e">privateKey</span>, {
-</span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">algorithm</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;RS256&#34;</span>,
-</span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">expiresIn</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;60000&#34;</span>, <span style="color:#75715e">// 1min
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>		});
-</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">refreshToken</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">jwt</span>.<span style="color:#a6e22e">sign</span>(<span style="color:#a6e22e">payload</span>, <span style="color:#a6e22e">privateKey</span>, {
-</span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">algorithm</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;RS256&#34;</span>,
-</span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">expiresIn</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;7 days&#34;</span>,
-</span></span><span style="display:flex;"><span>		});
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">return</span> { <span style="color:#a6e22e">accessToken</span>, <span style="color:#a6e22e">refreshToken</span> };
-</span></span><span style="display:flex;"><span>	} <span style="color:#66d9ef">catch</span> (<span style="color:#a6e22e">error</span>) {
-</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">throw</span> <span style="color:#66d9ef">new</span> Error(<span style="color:#e6db74">&#34;jwt.sign got error&#34;</span>);
-</span></span><span style="display:flex;"><span>	}
-</span></span><span style="display:flex;"><span>};
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">authentication</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">async</span> (<span style="color:#a6e22e">req</span>, <span style="color:#a6e22e">res</span>, <span style="color:#a6e22e">next</span>) =&gt; {
-</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">userId</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">req</span>.<span style="color:#a6e22e">headers</span>[<span style="color:#a6e22e">HEADER</span>.<span style="color:#a6e22e">CLIENT_ID</span>];
-</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span><span style="color:#a6e22e">userId</span>) {
-</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">throw</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">AuthFailureError</span>(<span style="color:#e6db74">&#34;Invalid request&#34;</span>);
-</span></span><span style="display:flex;"><span>	}
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">keyStore</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> <span style="color:#a6e22e">KeyTokenService</span>.<span style="color:#a6e22e">findByUserId</span>(<span style="color:#a6e22e">userId</span>);
-</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span><span style="color:#a6e22e">keyStore</span>) {
-</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">throw</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">NotFoundError</span>(<span style="color:#e6db74">&#34;Not found any keys and token match this user&#34;</span>);
-</span></span><span style="display:flex;"><span>	}
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">refreshToken</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">req</span>.<span style="color:#a6e22e">headers</span>[<span style="color:#a6e22e">HEADER</span>.<span style="color:#a6e22e">REFRESHTOKEN</span>];
-</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">refreshToken</span>) {
-</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">try</span> {
-</span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">decodeUser</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">jwt</span>.<span style="color:#a6e22e">verify</span>(<span style="color:#a6e22e">refreshToken</span>, <span style="color:#a6e22e">keyStore</span>.<span style="color:#a6e22e">publicKey</span>);
-</span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">userId</span> <span style="color:#f92672">!==</span> <span style="color:#a6e22e">decodeUser</span>.<span style="color:#a6e22e">userId</span>) {
-</span></span><span style="display:flex;"><span>				<span style="color:#66d9ef">throw</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">AuthFailureError</span>(<span style="color:#e6db74">&#34;Invalid userId&#34;</span>);
-</span></span><span style="display:flex;"><span>			}
-</span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">req</span>.<span style="color:#a6e22e">user</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">decodeUser</span>; <span style="color:#75715e">// {userId, email}
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>			<span style="color:#a6e22e">req</span>.<span style="color:#a6e22e">refreshToken</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">refreshToken</span>;
-</span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">next</span>();
-</span></span><span style="display:flex;"><span>		} <span style="color:#66d9ef">catch</span> (<span style="color:#a6e22e">error</span>) {
-</span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">throw</span> <span style="color:#a6e22e">error</span>;
-</span></span><span style="display:flex;"><span>		}
-</span></span><span style="display:flex;"><span>	}
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">accessToken</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">req</span>.<span style="color:#a6e22e">headers</span>[<span style="color:#a6e22e">HEADER</span>.<span style="color:#a6e22e">AUTHORIZATION</span>];
-</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span><span style="color:#a6e22e">accessToken</span>) <span style="color:#66d9ef">throw</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">AuthFailureError</span>(<span style="color:#e6db74">&#34;Invalid request&#34;</span>);
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">try</span> {
-</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">decodeUser</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">jwt</span>.<span style="color:#a6e22e">verify</span>(<span style="color:#a6e22e">accessToken</span>, <span style="color:#a6e22e">keyStore</span>.<span style="color:#a6e22e">publicKey</span>);
-</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">userId</span> <span style="color:#f92672">!==</span> <span style="color:#a6e22e">decodeUser</span>.<span style="color:#a6e22e">userId</span>) {
-</span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">throw</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">AuthFailureError</span>(<span style="color:#e6db74">&#34;Invalid userId&#34;</span>);
-</span></span><span style="display:flex;"><span>		}
-</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">req</span>.<span style="color:#a6e22e">user</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">decodeUser</span>; <span style="color:#75715e">// {userId, email}
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>		<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">next</span>();
-</span></span><span style="display:flex;"><span>	} <span style="color:#66d9ef">catch</span> (<span style="color:#a6e22e">error</span>) {
-</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">throw</span> <span style="color:#a6e22e">error</span>;
-</span></span><span style="display:flex;"><span>	}
-</span></span><span style="display:flex;"><span>};
-</span></span></code></pre></div>
-  </div>
-</details>
-
-</br>
-<details ><summary>access.service.js</summary>
-  <div class="markdown-inner">
-    <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">import</span> <span style="color:#a6e22e">bcrypt</span> <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#34;bcrypt&#34;</span>;
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> <span style="color:#a6e22e">KeyTokenService</span> <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#34;./keyToken.service.js&#34;</span>;
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">createTokenPair</span>, <span style="color:#a6e22e">genKeyPairRSA</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#34;../auth/authUtils.js&#34;</span>;
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">AccessService</span> {
-</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">static</span> <span style="color:#a6e22e">login</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">async</span> ({ <span style="color:#a6e22e">email</span>, <span style="color:#a6e22e">password</span> }) =&gt; {
-</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">foundUser</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> <span style="color:#a6e22e">findByEmail</span>({ <span style="color:#a6e22e">email</span> });
-</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span><span style="color:#a6e22e">foundUser</span>) {
-</span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">throw</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">BadRequestError</span>(<span style="color:#e6db74">&#34;User not yet registered&#34;</span>);
-</span></span><span style="display:flex;"><span>		}
-</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">match</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> <span style="color:#a6e22e">bcrypt</span>.<span style="color:#a6e22e">compare</span>(<span style="color:#a6e22e">password</span>, <span style="color:#a6e22e">foundUser</span>.<span style="color:#a6e22e">password</span>);
-</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span><span style="color:#a6e22e">match</span>) {
-</span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">throw</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">AuthFailureError</span>(<span style="color:#e6db74">&#34;Authentication error&#34;</span>);
-</span></span><span style="display:flex;"><span>		}
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">const</span> { <span style="color:#a6e22e">privateKey</span>, <span style="color:#a6e22e">publicKey</span> } <span style="color:#f92672">=</span> <span style="color:#a6e22e">genKeyPairRSA</span>();
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">const</span> { <span style="color:#a6e22e">_id</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">userId</span> } <span style="color:#f92672">=</span> <span style="color:#a6e22e">foundUser</span>;
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">tokens</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">createTokenPair</span>({ <span style="color:#a6e22e">userId</span>, <span style="color:#a6e22e">email</span> }, <span style="color:#a6e22e">privateKey</span>);
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">await</span> <span style="color:#a6e22e">KeyTokenService</span>.<span style="color:#a6e22e">createKeyToken</span>({
-</span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">userId</span>,
-</span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">publicKey</span>,
-</span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">privateKey</span>,
-</span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">refreshToken</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">tokens</span>.<span style="color:#a6e22e">refreshToken</span>,
-</span></span><span style="display:flex;"><span>		});
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">return</span> {
-</span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">user</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">foundUser</span>,
-</span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">tokens</span>,
-</span></span><span style="display:flex;"><span>		};
-</span></span><span style="display:flex;"><span>	};
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">static</span> <span style="color:#a6e22e">handleRefreshToken</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">async</span> ({ <span style="color:#a6e22e">refreshToken</span>, <span style="color:#a6e22e">user</span> }) =&gt; {
-</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">const</span> { <span style="color:#a6e22e">userId</span>, <span style="color:#a6e22e">email</span> } <span style="color:#f92672">=</span> <span style="color:#a6e22e">user</span>;
-</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">keyStore</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> <span style="color:#a6e22e">KeyTokenService</span>.<span style="color:#a6e22e">findByUserId</span>(<span style="color:#a6e22e">userId</span>);
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">keyStore</span>.<span style="color:#a6e22e">refreshTokensUsed</span>.<span style="color:#a6e22e">includes</span>(<span style="color:#a6e22e">refreshToken</span>)) {
-</span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">await</span> <span style="color:#a6e22e">KeyTokenService</span>.<span style="color:#a6e22e">removeByUserId</span>(<span style="color:#a6e22e">userId</span>);
-</span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">throw</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">ForbiddenError</span>(<span style="color:#e6db74">&#34;Something wrong happen. Pls relogin&#34;</span>);
-</span></span><span style="display:flex;"><span>		}
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">keyStore</span>.<span style="color:#a6e22e">refreshToken</span> <span style="color:#f92672">!==</span> <span style="color:#a6e22e">refreshToken</span>) {
-</span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">throw</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">AuthFailureError</span>(<span style="color:#e6db74">&#34;Token is deleted or never exist&#34;</span>);
-</span></span><span style="display:flex;"><span>		}
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">foundUser</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> <span style="color:#a6e22e">findByEmail</span>({ <span style="color:#a6e22e">email</span> });
-</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span><span style="color:#a6e22e">foundUser</span>) {
-</span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">throw</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">AuthFailureError</span>(<span style="color:#e6db74">&#34;User is deleted or never exist&#34;</span>);
-</span></span><span style="display:flex;"><span>		}
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">newTokens</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">createTokenPair</span>(
-</span></span><span style="display:flex;"><span>			{ <span style="color:#a6e22e">userId</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">foundUser</span>.<span style="color:#a6e22e">_id</span>, <span style="color:#a6e22e">email</span> },
-</span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">keyStore</span>.<span style="color:#a6e22e">privateKey</span>
-</span></span><span style="display:flex;"><span>		);
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">await</span> <span style="color:#a6e22e">KeyTokenService</span>.<span style="color:#a6e22e">updateRefreshToken</span>(
-</span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">userId</span>,
-</span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">newTokens</span>.<span style="color:#a6e22e">refreshToken</span>,
-</span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">refreshToken</span>
-</span></span><span style="display:flex;"><span>		);
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">return</span> {
-</span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">user</span>,
-</span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">tokens</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">newTokens</span>,
-</span></span><span style="display:flex;"><span>		};
-</span></span><span style="display:flex;"><span>	};
-</span></span><span style="display:flex;"><span>}
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">default</span> <span style="color:#a6e22e">AccessService</span>;
-</span></span></code></pre></div>
-  </div>
-</details>
-
-</br>
-<details ><summary>access.controller.js</summary>
-  <div class="markdown-inner">
-    <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">CREATED</span>, <span style="color:#a6e22e">SuccessResponse</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#34;../core/success.response.js&#34;</span>;
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> <span style="color:#a6e22e">AccessService</span> <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#34;../services/access.service.js&#34;</span>;
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">AccessController</span> {
-</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">login</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">async</span> (<span style="color:#a6e22e">req</span>, <span style="color:#a6e22e">res</span>, <span style="color:#a6e22e">next</span>) =&gt; {
-</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">new</span> <span style="color:#a6e22e">SuccessResponse</span>({
-</span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">metatdata</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">await</span> <span style="color:#a6e22e">AccessService</span>.<span style="color:#a6e22e">login</span>(<span style="color:#a6e22e">req</span>.<span style="color:#a6e22e">body</span>),
-</span></span><span style="display:flex;"><span>		}).<span style="color:#a6e22e">send</span>(<span style="color:#a6e22e">res</span>);
-</span></span><span style="display:flex;"><span>	};
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">handleRefreshToken</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">async</span> (<span style="color:#a6e22e">req</span>, <span style="color:#a6e22e">res</span>, <span style="color:#a6e22e">next</span>) =&gt; {
-</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">new</span> <span style="color:#a6e22e">SuccessResponse</span>({
-</span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">message</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;Update token success&#34;</span>,
-</span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">metatdata</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">await</span> <span style="color:#a6e22e">AccessService</span>.<span style="color:#a6e22e">handleRefreshToken</span>({
-</span></span><span style="display:flex;"><span>				<span style="color:#a6e22e">refreshToken</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">req</span>.<span style="color:#a6e22e">refreshToken</span>,
-</span></span><span style="display:flex;"><span>				<span style="color:#a6e22e">user</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">req</span>.<span style="color:#a6e22e">user</span>,
-</span></span><span style="display:flex;"><span>			}),
-</span></span><span style="display:flex;"><span>		}).<span style="color:#a6e22e">send</span>(<span style="color:#a6e22e">res</span>);
-</span></span><span style="display:flex;"><span>	};
-</span></span><span style="display:flex;"><span>}
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">default</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">AccessController</span>();
-</span></span></code></pre></div>
-  </div>
-</details>
-
-</br>
-<details ><summary>routes.js</summary>
-  <div class="markdown-inner">
-    <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">import</span> <span style="color:#a6e22e">express</span> <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#34;express&#34;</span>;
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> <span style="color:#a6e22e">accessController</span> <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#34;../../controllers/access.controller.js&#34;</span>;
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> <span style="color:#a6e22e">postController</span> <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#34;../../controllers/post.controller.js&#34;</span>;
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">authentication</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#34;../../auth/authUtils.js&#34;</span>;
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">router</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">express</span>.<span style="color:#a6e22e">Router</span>();
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">asyncHandler</span> <span style="color:#f92672">=</span> (<span style="color:#a6e22e">fn</span>) =&gt; {
-</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">return</span> (<span style="color:#a6e22e">req</span>, <span style="color:#a6e22e">res</span>, <span style="color:#a6e22e">next</span>) =&gt; {
-</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">fn</span>(<span style="color:#a6e22e">req</span>, <span style="color:#a6e22e">res</span>, <span style="color:#a6e22e">next</span>).<span style="color:#66d9ef">catch</span>(<span style="color:#a6e22e">next</span>);
-</span></span><span style="display:flex;"><span>	};
-</span></span><span style="display:flex;"><span>};
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">router</span>.<span style="color:#a6e22e">post</span>(<span style="color:#e6db74">&#34;/user/login&#34;</span>, <span style="color:#a6e22e">asyncHandler</span>(<span style="color:#a6e22e">accessController</span>.<span style="color:#a6e22e">login</span>));
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">// Authenticate before using restricted resources
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">router</span>.<span style="color:#a6e22e">use</span>(<span style="color:#a6e22e">asyncHandler</span>(<span style="color:#a6e22e">authentication</span>));
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">router</span>.<span style="color:#a6e22e">post</span>(<span style="color:#e6db74">&#34;/user/handleRefreshToken&#34;</span>, <span style="color:#a6e22e">asyncHandler</span>(<span style="color:#a6e22e">accessController</span>.<span style="color:#a6e22e">handleRefreshToken</span>));
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">router</span>.<span style="color:#a6e22e">post</span>(<span style="color:#e6db74">&#34;&#34;</span>, <span style="color:#a6e22e">asyncHandler</span>(<span style="color:#a6e22e">postController</span>.<span style="color:#a6e22e">createPost</span>));
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">router</span>.<span style="color:#a6e22e">patch</span>(<span style="color:#e6db74">&#34;/:postId&#34;</span>, <span style="color:#a6e22e">asyncHandler</span>(<span style="color:#a6e22e">postController</span>.<span style="color:#a6e22e">updatePost</span>));
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">router</span>.<span style="color:#a6e22e">get</span>(<span style="color:#e6db74">&#34;/drafts/all&#34;</span>, <span style="color:#a6e22e">asyncHandler</span>(<span style="color:#a6e22e">postController</span>.<span style="color:#a6e22e">findAllDraftsOfUser</span>));
-</span></span></code></pre></div>
-  </div>
-</details>
-
-<h2 id="discussion">
-  Discussion
-  <a class="anchor" href="#discussion">#</a>
-</h2>
-<ul>
-<li><strong>Question</strong>: Why do we need two tokens? Can we combine them?</li>
-<li><strong>New approach</strong>: Use short-term access tokens (AT) and store them in the database. Track the current AT list and the used AT list. If one of the current tokens is stolen by a hacker and the hacker tries to renew the token, the old token will be stored in the used AT list. When the user attempts to renew using the old token, our server can invalidate all tokens and force both the user and the hacker to re-login</li>
-</ul>
-<details ><summary><strong>Problem</strong></summary>
-  <div class="markdown-inner">
-    <ul>
-<li><strong>This approach has one weakness</strong>: Access tokens are exposed more frequently to retrieve resources, increasing the potential for them to be captured and stolen</li>
-<li><strong>Conclusion</strong>: By keeping the refresh token separate and less exposed, the chances of a hacker being able to maintain access to our resources are reduced</li>
-<li><strong>Do you think this approach have any other weaknesses?</strong></li>
-</ul>
-
-  </div>
-</details>
-
-<h2 id="reference">
-  Reference
-  <a class="anchor" href="#reference">#</a>
-</h2>
-<ul>
-<li>Geeksforgeeks: <a href="https://www.geeksforgeeks.org/access-token-vs-refresh-token-a-breakdown/">Access Token vs Refresh Token: A Breakdown</a> (27 Sep, 2024)</li>
-<li>Auth0: <a href="https://auth0.com/blog/refresh-tokens-what-are-they-and-when-to-use-them/#When-to-Use-Refresh-Tokens">What Are Refresh Tokens and How to Use Them Securely</a> (Oct 7th, 2021)</li>
-<li>Medium: <a href="https://medium.com/@lakshyakumarsingh.2003.va/understanding-access-tokens-and-refresh-tokens-2ec4bc4f9a4f">Understanding Access Tokens and Refresh Tokens</a> (Mar 23, 2024)</li>
-</ul>
-<style>
-    .feedback-card {
-        border: 1px solid #ddd;
-        border-radius: 8px;
-        padding: 20px;
-        max-width: 100%;
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-        background-color: #f9f9fb;
-    }
-    .feedback-card h2 {
-        font-size: 20px;
-        margin-top: 0px;
-        margin-bottom: 10px;
-    }
-    .feedback-card .buttons {
-        margin: 10px 0;
-    }
-    .feedback-card button {
-        border: none;
-        background-color: #f0f0f0;
-        border-radius: 4px;
-        padding: 10px 15px;
-        margin-right: 10px;
-        cursor: pointer;
-        font-size: 16px;
-    }
-    .feedback-card button:hover {
-        background-color: #e0e0e0;
-    }
-    .feedback-card a {
-        color: #0074d9;
-        text-decoration: none;
-    }
-    .feedback-card a:hover {
-        text-decoration: underline;
-    }
-    .feedback-card p {
-        font-size: 14px;
-        color: #555;
-    }
-
-     
-    .modal {
-      display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      border-radius: 7px;
-      padding-bottom: 50px;
-
-      background-color: rgba(0, 0, 0, 0.5);
-      justify-content: center;
-      align-items: flex-end;
-    }
-
-    .modal-content {
-      background-color: white;
-      padding: 20px;
-      border-radius: 5px;
-      width: 300px;
-    }
-
-    .modal input {
-      width: 100%;
-      padding: 10px;
-      margin-bottom: 10px;
-    }
-</style>
-<div class="feedback-card" id="feedbackCard">
-    <h2>Help improve my blog</h2>
-    <p>Was this page helpful to you?</p>
-    <div class="buttons">
-        <button id="yesBtn">👍 Yes</button>
-        <button id="noBtn">👎 No</button>
-    </div>
-    <p>This page was last modified at <strong>2025-01-03</strong></p>
-    <ul>
-        <li><a href="https://github.com/DangPham112000/blog" target="_blank">View this page on GitHub</a></li>
-        <li><a href="#" class="link-button" id="linkButton">Report a problem with this content</a></li>
-    </ul>
-</div>
-
-<div class="modal" id="formModal">
-    <div class="feedback-card">
-        <h2>Can I know your name?</h2>
-        <form id="form">
-            <input type="text" name="username" placeholder="Enter your name">
-            <button type="submit">Yes</button>
-            <button type="submit">No</button>
-        </form>
-    </div>
-</div>
-
-<script>
-    const feedbackCardEle = document.getElementById("feedbackCard");
-    const formModalEle = document.getElementById('formModal');
-    const elesToShowForm = ['linkButton', 'yesBtn', 'noBtn'];
-
-    for (const ele of elesToShowForm) {
-        document.getElementById(ele).addEventListener('click', function(e) {
-            e.preventDefault();
-            formModalEle.style.display = 'flex';
-        });
-    }
-
-    window.onclick = function(event) {
-        if (event.target === formModalEle) {
-            formModalEle.style.display = 'none';
-        }
-    };
-
-    document.getElementById('form').addEventListener('submit', function(e) {
-        e.preventDefault(); 
-        alert('This feature is currently being developed');
-        formModalEle.style.display = 'none'; 
-    });
-</script>
-</article>
- 
-      
-
-      <footer class="book-footer">
-        
-  <div class="flex flex-wrap justify-between">
-
-
-
-
-
-</div>
-
-
-
-  <script>(function(){function e(e){const t=window.getSelection(),n=document.createRange();n.selectNodeContents(e),t.removeAllRanges(),t.addRange(n)}document.querySelectorAll("pre code").forEach(t=>{t.addEventListener("click",function(){if(window.getSelection().toString())return;e(t.parentElement),navigator.clipboard&&navigator.clipboard.writeText(t.parentElement.textContent)})})})()</script>
-
-
- 
-        
-      </footer>
-
-      
-  
-  <div class="book-comments">
-
-</div>
-  
- 
-
-      <label for="menu-control" class="hidden book-menu-overlay"></label>
-    </div>
-
-    
-    <aside class="book-toc">
-      <div class="book-toc-content">
-        
-  
-<nav id="TableOfContents">
-  <ul>
-    <li><a href="#access-token">Access token</a>
-      <ul>
-        <li><a href="#characteristics">Characteristics</a></li>
-        <li><a href="#new-problems">New problems</a></li>
-      </ul>
-    </li>
-    <li><a href="#refresh-token">Refresh token</a>
-      <ul>
-        <li><a href="#characteristics-1">Characteristics</a></li>
-      </ul>
-    </li>
-    <li><a href="#how-do-they-work-together">How do they work together?</a>
-      <ul>
-        <li><a href="#basic-flow">Basic flow</a></li>
-        <li><a href="#token-expired">Token expired</a></li>
-        <li><a href="#threat-mitigation-strategy">Threat mitigation strategy</a></li>
-        <li><a href="#authentication-server-standalone-concept">Authentication server standalone concept</a></li>
-      </ul>
-    </li>
-    <li><a href="#demo-code">Demo code</a></li>
-    <li><a href="#discussion">Discussion</a></li>
-    <li><a href="#reference">Reference</a></li>
-  </ul>
-</nav>
-
-
- 
-      </div>
-    </aside>
-    
-  </main>
-
-  
-</body>
-</html>
-
-
-
-
-
-
-
-
-
-
-
-
+"><meta name=theme-color media="(prefers-color-scheme: light)" content="#ffffff"><meta name=theme-color media="(prefers-color-scheme: dark)" content="#343a40"><meta name=color-scheme content="light dark"><meta property="og:url" content="https://dangpham112000.github.io/docs/research/token_based_authentication/"><meta property="og:site_name" content="Dante 0401"><meta property="og:title" content="Token-based Authentication"><meta property="og:description" content="Token-based authentication # Senario: Each time a user accesses your website containing sensitive resources, such as posting a new blog, they are required to log in repeatedly every time they visit Problem: Is there a way to allow them to log in just once and avoid re-logging in, even if their previous session was two days ago? Solution: Access tokens were designed to solve this problem Access token # Provide a one-time login for users Reduce database access for password verification, user information retrieval, and role checking Characteristics # Short-lived Stored in client-side storage Contains the user’s identity Contains a set of claims, permissions, or roles of the user Grants access to the system New problems # Problem 1: When a hacker successfully steals an access token, they can impersonate the user Solution 1: Use short-term access tokens to minimize the risk of misuse if a hacker steals one Problem 2: Requiring users to re-login every time an access token is granted leads to a poor user experience Solution 2: Refresh tokens were introduced to address this issue by allowing the generation of new access tokens without requiring the user to log in again Refresh token # To prevent hackers from stealing access tokens, access tokens were designed to be valid for a short duration Refresh tokens were introduced to re-grant access tokens when they expire, allowing users to continue their sessions seamlessly without re-login while reducing the risk of impersonation Characteristics # Long-lived Stored on the server and the client Used to obtain a new pair of access and refresh tokens How do they work together? # Basic flow #"><meta property="og:locale" content="en_us"><meta property="og:type" content="article"><meta property="article:section" content="docs"><meta property="article:published_time" content="2025-01-03T01:47:46+07:00"><meta property="article:modified_time" content="2025-01-03T01:47:46+07:00"><title>Token-based Authentication | Dante 0401</title><link rel=manifest href=/manifest.json><link rel=icon href=/favicon.png><link rel=canonical href=https://dangpham112000.github.io/docs/research/token_based_authentication/><link rel=stylesheet href=/book.min.95535ae437871e725b7f7b2fb47d6446b8247773f5f22345e8c0aafa00c5db9b.css integrity="sha256-lVNa5DeHHnJbf3svtH1kRrgkd3P18iNF6MCq+gDF25s=" crossorigin=anonymous><script defer src=/fuse.min.js></script><script defer src=/en.search.min.b7403c70329304a8d4de17873d6d0681a5a205e052f3bdbca43f342b899d2958.js integrity="sha256-t0A8cDKTBKjU3heHPW0GgaWiBeBS8728pD80K4mdKVg=" crossorigin=anonymous></script></head><body dir=ltr><input type=checkbox class="hidden toggle" id=menu-control>
+<input type=checkbox class="hidden toggle" id=toc-control><main class="container flex"><aside class=book-menu><div class=book-menu-content><nav><h2 class=book-brand><a class="flex align-center" href=/><span>Dante 0401</span></a></h2><div class="book-search hidden"><input type=text id=book-search-input placeholder=Search aria-label=Search maxlength=64 data-hotkeys=s/><div class="book-search-spinner hidden"></div><ul id=book-search-results></ul></div><script>document.querySelector(".book-search").classList.remove("hidden")</script><ul><li class=book-section-flat><span>RESEARCH</span><ul><li><a href=/docs/research/mcp-server-tutorial/>Building an MCP Server from Scratch: An E-commerce Case Study</a></li><li><a href=/docs/research/process_vs_thread/>Process vs Thread</a></li><li><a href=/docs/research/chrome_architecture/>Chrome Architecture</a></li><li><a href=/docs/research/aws_overview/>AWS Overview</a></li><li><a href=/docs/research/be_protocol/>Backend</a><ul><li><a href=/docs/research/be_protocol/tls_ssl/>TLS - SSL</a></li><li><a href=/docs/research/be_protocol/communication/>Communication</a></li><li><a href=/docs/research/be_protocol/rabbitmq/>RabbitMQ</a></li><li><a href=/docs/research/be_protocol/kafka/>Kafka - Draft</a></li></ul></li><li><a href=/docs/research/encryption/>Encryption</a></li><li><a href=/docs/research/token_based_authentication/ class=active>Token-based Authentication</a></li><li><a href=/docs/research/security/>Security - Draft</a><ul><li><a href=/docs/research/security/hsts/>HSTS</a></li><li><a href=/docs/research/security/bit_flipping/>Bit Flipping</a></li></ul></li><li><a href=/docs/research/scale/>Scale</a></li></ul></li><li class=book-section-flat><span>TIPS</span><ul><li><a href=/docs/tips/001_unit_test/>Unit Test</a></li><li><a href=/docs/tips/002_git/>Git</a></li><li><a href=/docs/tips/003_docker/>Docker</a></li><li><a href=/docs/tips/004_ops/>Ops</a></li><li><a href=/docs/tips/005_passion/>Spark Passion</a></li></ul></li><li class=book-section-flat><span>PROBLEMS</span><ul><li><a href=/docs/problems/knight_dialer/>Knight Dialer</a></li></ul></li></ul></nav><script>(function(){var e=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(){localStorage.setItem("menu.scrollTop",e.scrollTop)}),e.scrollTop=localStorage.getItem("menu.scrollTop")})()</script></div></aside><div class=book-page><header class=book-header><div class="flex align-center justify-between"><label for=menu-control><img src=/svg/menu.svg class=book-icon alt=Menu>
+</label><strong>Token-based Authentication</strong>
+<label for=toc-control><img src=/svg/toc.svg class=book-icon alt="Table of Contents"></label></div><aside class="hidden clearfix"><nav id=TableOfContents><ul><li><a href=#access-token>Access token</a><ul><li><a href=#characteristics>Characteristics</a></li><li><a href=#new-problems>New problems</a></li></ul></li><li><a href=#refresh-token>Refresh token</a><ul><li><a href=#characteristics-1>Characteristics</a></li></ul></li><li><a href=#how-do-they-work-together>How do they work together?</a><ul><li><a href=#basic-flow>Basic flow</a></li><li><a href=#token-expired>Token expired</a></li><li><a href=#threat-mitigation-strategy>Threat mitigation strategy</a></li><li><a href=#authentication-server-standalone-concept>Authentication server standalone concept</a></li></ul></li><li><a href=#demo-code>Demo code</a></li><li><a href=#discussion>Discussion</a></li><li><a href=#reference>Reference</a></li></ul></nav></aside></header><article class="markdown book-article"><h1 id=token-based-authentication>Token-based authentication
+<a class=anchor href=#token-based-authentication>#</a></h1><ul><li><strong>Senario</strong>: Each time a user accesses your website containing <strong>sensitive</strong> resources, such as posting a new blog, they are required to log in <strong>repeatedly</strong> every time they visit</li><li><strong>Problem</strong>: Is there a way to allow them to log in just <strong>once</strong> and avoid re-logging in, even if their previous session was two days ago?</li><li><strong>Solution</strong>: Access tokens were designed to solve this problem</li></ul><h2 id=access-token>Access token
+<a class=anchor href=#access-token>#</a></h2><ul><li>Provide a one-time login for users</li><li>Reduce database access for password verification, user information retrieval, and role checking</li></ul><h3 id=characteristics>Characteristics
+<a class=anchor href=#characteristics>#</a></h3><ul><li>Short-lived</li><li>Stored in client-side storage</li><li>Contains the user&rsquo;s identity</li><li>Contains a set of claims, permissions, or roles of the user</li><li><strong>Grants access to the system</strong></li></ul><h3 id=new-problems>New problems
+<a class=anchor href=#new-problems>#</a></h3><ul><li><strong>Problem 1</strong>: When a hacker successfully steals an access token, they can impersonate the user</li><li><strong>Solution 1</strong>: Use short-term access tokens to minimize the risk of misuse if a hacker steals one</li><li><strong>Problem 2</strong>: Requiring users to re-login every time an access token is granted leads to a poor user experience</li><li><strong>Solution 2</strong>: Refresh tokens were introduced to address this issue by allowing the generation of new access tokens without requiring the user to log in again</li></ul><h2 id=refresh-token>Refresh token
+<a class=anchor href=#refresh-token>#</a></h2><ul><li>To prevent hackers from stealing access tokens, access tokens were designed to be valid for a short duration</li><li>Refresh tokens were introduced to re-grant access tokens when they expire, allowing users to continue their sessions seamlessly without re-login while reducing the risk of impersonation</li></ul><h3 id=characteristics-1>Characteristics
+<a class=anchor href=#characteristics-1>#</a></h3><ul><li>Long-lived</li><li>Stored on the server and the client</li><li><strong>Used to obtain a new pair of access and refresh tokens</strong></li></ul><h2 id=how-do-they-work-together>How do they work together?
+<a class=anchor href=#how-do-they-work-together>#</a></h2><h3 id=basic-flow>Basic flow
+<a class=anchor href=#basic-flow>#</a></h3><p><img src=/research/token_based_authentication/basic_flow.png alt=basic_flow></p><ul><li>You may be curious why using separate keys for creating and verifying tokens (see <a href=#authentication-server-standalone-concept>this use case</a>)</li></ul><h3 id=token-expired>Token expired
+<a class=anchor href=#token-expired>#</a></h3><p><img src=/research/token_based_authentication/token_expired.png alt=token_expired></p><h3 id=threat-mitigation-strategy>Threat mitigation strategy
+<a class=anchor href=#threat-mitigation-strategy>#</a></h3><ul><li>Each refresh token (RT) can only be used once</li><li>If a reused RT is detected, we must immediately clear all tokens and their associated keys, then force the user to re-login to the system</li></ul><p><img src=/research/token_based_authentication/threat_mitigation.png alt=threat_mitigation></p><details><summary>Why does this only mitigate the hacking and not prevent it?</summary><div class=markdown-inner><ul><li>In the picture above, if you switch the positions of the hacker and the user, you&rsquo;ll see that if the hacker comes first, they will be granted a new AT and RT, and can access resources as many times as they want until the second token renewal process occurs, forcing them to re-login</li></ul></div></details><h3 id=authentication-server-standalone-concept>Authentication server standalone concept
+<a class=anchor href=#authentication-server-standalone-concept>#</a></h3><ul><li>This explains why you should use a key pair to create and verify tokens separately, instead of using a single key for both actions</li></ul><p><img src=/research/token_based_authentication/authen_server_standalone.png alt=authen_server_standalone></p><h2 id=demo-code>Demo code
+<a class=anchor href=#demo-code>#</a></h2><ul><li>This code is intended to give you insight into implementing token-based authentication; it is not my full authentication implementation</li><li>You can find my complete code implementation on <a href=https://github.com/DangPham112000/fakebut>GitHub</a></li></ul><p><strong>NodeJS</strong></p><details><summary>authUtils.js</summary><div class=markdown-inner><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-js data-lang=js><span style=display:flex><span><span style=color:#66d9ef>import</span> <span style=color:#a6e22e>jwt</span> <span style=color:#a6e22e>from</span> <span style=color:#e6db74>&#34;jsonwebtoken&#34;</span>;
+</span></span><span style=display:flex><span><span style=color:#66d9ef>import</span> <span style=color:#a6e22e>crypto</span> <span style=color:#a6e22e>from</span> <span style=color:#e6db74>&#34;crypto&#34;</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>export</span> <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>genKeyPairRSA</span> <span style=color:#f92672>=</span> () =&gt; {
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>try</span> {
+</span></span><span style=display:flex><span>		<span style=color:#66d9ef>const</span> { <span style=color:#a6e22e>privateKey</span>, <span style=color:#a6e22e>publicKey</span> } <span style=color:#f92672>=</span> <span style=color:#a6e22e>crypto</span>.<span style=color:#a6e22e>generateKeyPairSync</span>(<span style=color:#e6db74>&#34;rsa&#34;</span>, {
+</span></span><span style=display:flex><span>			<span style=color:#a6e22e>modulusLength</span><span style=color:#f92672>:</span> <span style=color:#ae81ff>4096</span>,
+</span></span><span style=display:flex><span>			<span style=color:#a6e22e>publicKeyEncoding</span><span style=color:#f92672>:</span> {
+</span></span><span style=display:flex><span>				<span style=color:#a6e22e>type</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;pkcs1&#34;</span>,
+</span></span><span style=display:flex><span>				<span style=color:#a6e22e>format</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;pem&#34;</span>,
+</span></span><span style=display:flex><span>			},
+</span></span><span style=display:flex><span>			<span style=color:#a6e22e>privateKeyEncoding</span><span style=color:#f92672>:</span> {
+</span></span><span style=display:flex><span>				<span style=color:#a6e22e>type</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;pkcs1&#34;</span>,
+</span></span><span style=display:flex><span>				<span style=color:#a6e22e>format</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;pem&#34;</span>,
+</span></span><span style=display:flex><span>			},
+</span></span><span style=display:flex><span>		});
+</span></span><span style=display:flex><span>		<span style=color:#66d9ef>return</span> { <span style=color:#a6e22e>privateKey</span>, <span style=color:#a6e22e>publicKey</span> };
+</span></span><span style=display:flex><span>	} <span style=color:#66d9ef>catch</span> (<span style=color:#a6e22e>error</span>) {
+</span></span><span style=display:flex><span>		<span style=color:#66d9ef>throw</span> <span style=color:#66d9ef>new</span> Error(<span style=color:#e6db74>&#34;crypto.generateKeyPairSync got error&#34;</span>);
+</span></span><span style=display:flex><span>	}
+</span></span><span style=display:flex><span>};
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>export</span> <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>createTokenPair</span> <span style=color:#f92672>=</span> (<span style=color:#a6e22e>payload</span>, <span style=color:#a6e22e>privateKey</span>) =&gt; {
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>try</span> {
+</span></span><span style=display:flex><span>		<span style=color:#66d9ef>const</span> <span style=color:#a6e22e>accessToken</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>jwt</span>.<span style=color:#a6e22e>sign</span>(<span style=color:#a6e22e>payload</span>, <span style=color:#a6e22e>privateKey</span>, {
+</span></span><span style=display:flex><span>			<span style=color:#a6e22e>algorithm</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;RS256&#34;</span>,
+</span></span><span style=display:flex><span>			<span style=color:#a6e22e>expiresIn</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;60000&#34;</span>, <span style=color:#75715e>// 1min
+</span></span></span><span style=display:flex><span>		});
+</span></span><span style=display:flex><span>		<span style=color:#66d9ef>const</span> <span style=color:#a6e22e>refreshToken</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>jwt</span>.<span style=color:#a6e22e>sign</span>(<span style=color:#a6e22e>payload</span>, <span style=color:#a6e22e>privateKey</span>, {
+</span></span><span style=display:flex><span>			<span style=color:#a6e22e>algorithm</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;RS256&#34;</span>,
+</span></span><span style=display:flex><span>			<span style=color:#a6e22e>expiresIn</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;7 days&#34;</span>,
+</span></span><span style=display:flex><span>		});
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>		<span style=color:#66d9ef>return</span> { <span style=color:#a6e22e>accessToken</span>, <span style=color:#a6e22e>refreshToken</span> };
+</span></span><span style=display:flex><span>	} <span style=color:#66d9ef>catch</span> (<span style=color:#a6e22e>error</span>) {
+</span></span><span style=display:flex><span>		<span style=color:#66d9ef>throw</span> <span style=color:#66d9ef>new</span> Error(<span style=color:#e6db74>&#34;jwt.sign got error&#34;</span>);
+</span></span><span style=display:flex><span>	}
+</span></span><span style=display:flex><span>};
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>export</span> <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>authentication</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>async</span> (<span style=color:#a6e22e>req</span>, <span style=color:#a6e22e>res</span>, <span style=color:#a6e22e>next</span>) =&gt; {
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>const</span> <span style=color:#a6e22e>userId</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>req</span>.<span style=color:#a6e22e>headers</span>[<span style=color:#a6e22e>HEADER</span>.<span style=color:#a6e22e>CLIENT_ID</span>];
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>if</span> (<span style=color:#f92672>!</span><span style=color:#a6e22e>userId</span>) {
+</span></span><span style=display:flex><span>		<span style=color:#66d9ef>throw</span> <span style=color:#66d9ef>new</span> <span style=color:#a6e22e>AuthFailureError</span>(<span style=color:#e6db74>&#34;Invalid request&#34;</span>);
+</span></span><span style=display:flex><span>	}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>const</span> <span style=color:#a6e22e>keyStore</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>await</span> <span style=color:#a6e22e>KeyTokenService</span>.<span style=color:#a6e22e>findByUserId</span>(<span style=color:#a6e22e>userId</span>);
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>if</span> (<span style=color:#f92672>!</span><span style=color:#a6e22e>keyStore</span>) {
+</span></span><span style=display:flex><span>		<span style=color:#66d9ef>throw</span> <span style=color:#66d9ef>new</span> <span style=color:#a6e22e>NotFoundError</span>(<span style=color:#e6db74>&#34;Not found any keys and token match this user&#34;</span>);
+</span></span><span style=display:flex><span>	}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>const</span> <span style=color:#a6e22e>refreshToken</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>req</span>.<span style=color:#a6e22e>headers</span>[<span style=color:#a6e22e>HEADER</span>.<span style=color:#a6e22e>REFRESHTOKEN</span>];
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>if</span> (<span style=color:#a6e22e>refreshToken</span>) {
+</span></span><span style=display:flex><span>		<span style=color:#66d9ef>try</span> {
+</span></span><span style=display:flex><span>			<span style=color:#66d9ef>const</span> <span style=color:#a6e22e>decodeUser</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>jwt</span>.<span style=color:#a6e22e>verify</span>(<span style=color:#a6e22e>refreshToken</span>, <span style=color:#a6e22e>keyStore</span>.<span style=color:#a6e22e>publicKey</span>);
+</span></span><span style=display:flex><span>			<span style=color:#66d9ef>if</span> (<span style=color:#a6e22e>userId</span> <span style=color:#f92672>!==</span> <span style=color:#a6e22e>decodeUser</span>.<span style=color:#a6e22e>userId</span>) {
+</span></span><span style=display:flex><span>				<span style=color:#66d9ef>throw</span> <span style=color:#66d9ef>new</span> <span style=color:#a6e22e>AuthFailureError</span>(<span style=color:#e6db74>&#34;Invalid userId&#34;</span>);
+</span></span><span style=display:flex><span>			}
+</span></span><span style=display:flex><span>			<span style=color:#a6e22e>req</span>.<span style=color:#a6e22e>user</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>decodeUser</span>; <span style=color:#75715e>// {userId, email}
+</span></span></span><span style=display:flex><span>			<span style=color:#a6e22e>req</span>.<span style=color:#a6e22e>refreshToken</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>refreshToken</span>;
+</span></span><span style=display:flex><span>			<span style=color:#66d9ef>return</span> <span style=color:#a6e22e>next</span>();
+</span></span><span style=display:flex><span>		} <span style=color:#66d9ef>catch</span> (<span style=color:#a6e22e>error</span>) {
+</span></span><span style=display:flex><span>			<span style=color:#66d9ef>throw</span> <span style=color:#a6e22e>error</span>;
+</span></span><span style=display:flex><span>		}
+</span></span><span style=display:flex><span>	}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>const</span> <span style=color:#a6e22e>accessToken</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>req</span>.<span style=color:#a6e22e>headers</span>[<span style=color:#a6e22e>HEADER</span>.<span style=color:#a6e22e>AUTHORIZATION</span>];
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>if</span> (<span style=color:#f92672>!</span><span style=color:#a6e22e>accessToken</span>) <span style=color:#66d9ef>throw</span> <span style=color:#66d9ef>new</span> <span style=color:#a6e22e>AuthFailureError</span>(<span style=color:#e6db74>&#34;Invalid request&#34;</span>);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>try</span> {
+</span></span><span style=display:flex><span>		<span style=color:#66d9ef>const</span> <span style=color:#a6e22e>decodeUser</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>jwt</span>.<span style=color:#a6e22e>verify</span>(<span style=color:#a6e22e>accessToken</span>, <span style=color:#a6e22e>keyStore</span>.<span style=color:#a6e22e>publicKey</span>);
+</span></span><span style=display:flex><span>		<span style=color:#66d9ef>if</span> (<span style=color:#a6e22e>userId</span> <span style=color:#f92672>!==</span> <span style=color:#a6e22e>decodeUser</span>.<span style=color:#a6e22e>userId</span>) {
+</span></span><span style=display:flex><span>			<span style=color:#66d9ef>throw</span> <span style=color:#66d9ef>new</span> <span style=color:#a6e22e>AuthFailureError</span>(<span style=color:#e6db74>&#34;Invalid userId&#34;</span>);
+</span></span><span style=display:flex><span>		}
+</span></span><span style=display:flex><span>		<span style=color:#a6e22e>req</span>.<span style=color:#a6e22e>user</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>decodeUser</span>; <span style=color:#75715e>// {userId, email}
+</span></span></span><span style=display:flex><span>		<span style=color:#66d9ef>return</span> <span style=color:#a6e22e>next</span>();
+</span></span><span style=display:flex><span>	} <span style=color:#66d9ef>catch</span> (<span style=color:#a6e22e>error</span>) {
+</span></span><span style=display:flex><span>		<span style=color:#66d9ef>throw</span> <span style=color:#a6e22e>error</span>;
+</span></span><span style=display:flex><span>	}
+</span></span><span style=display:flex><span>};
+</span></span></code></pre></div></div></details></br><details><summary>access.service.js</summary><div class=markdown-inner><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-js data-lang=js><span style=display:flex><span><span style=color:#66d9ef>import</span> <span style=color:#a6e22e>bcrypt</span> <span style=color:#a6e22e>from</span> <span style=color:#e6db74>&#34;bcrypt&#34;</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>import</span> <span style=color:#a6e22e>KeyTokenService</span> <span style=color:#a6e22e>from</span> <span style=color:#e6db74>&#34;./keyToken.service.js&#34;</span>;
+</span></span><span style=display:flex><span><span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>createTokenPair</span>, <span style=color:#a6e22e>genKeyPairRSA</span> } <span style=color:#a6e22e>from</span> <span style=color:#e6db74>&#34;../auth/authUtils.js&#34;</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>AccessService</span> {
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>static</span> <span style=color:#a6e22e>login</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>async</span> ({ <span style=color:#a6e22e>email</span>, <span style=color:#a6e22e>password</span> }) =&gt; {
+</span></span><span style=display:flex><span>		<span style=color:#66d9ef>const</span> <span style=color:#a6e22e>foundUser</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>await</span> <span style=color:#a6e22e>findByEmail</span>({ <span style=color:#a6e22e>email</span> });
+</span></span><span style=display:flex><span>		<span style=color:#66d9ef>if</span> (<span style=color:#f92672>!</span><span style=color:#a6e22e>foundUser</span>) {
+</span></span><span style=display:flex><span>			<span style=color:#66d9ef>throw</span> <span style=color:#66d9ef>new</span> <span style=color:#a6e22e>BadRequestError</span>(<span style=color:#e6db74>&#34;User not yet registered&#34;</span>);
+</span></span><span style=display:flex><span>		}
+</span></span><span style=display:flex><span>		<span style=color:#66d9ef>const</span> <span style=color:#a6e22e>match</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>await</span> <span style=color:#a6e22e>bcrypt</span>.<span style=color:#a6e22e>compare</span>(<span style=color:#a6e22e>password</span>, <span style=color:#a6e22e>foundUser</span>.<span style=color:#a6e22e>password</span>);
+</span></span><span style=display:flex><span>		<span style=color:#66d9ef>if</span> (<span style=color:#f92672>!</span><span style=color:#a6e22e>match</span>) {
+</span></span><span style=display:flex><span>			<span style=color:#66d9ef>throw</span> <span style=color:#66d9ef>new</span> <span style=color:#a6e22e>AuthFailureError</span>(<span style=color:#e6db74>&#34;Authentication error&#34;</span>);
+</span></span><span style=display:flex><span>		}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>		<span style=color:#66d9ef>const</span> { <span style=color:#a6e22e>privateKey</span>, <span style=color:#a6e22e>publicKey</span> } <span style=color:#f92672>=</span> <span style=color:#a6e22e>genKeyPairRSA</span>();
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>		<span style=color:#66d9ef>const</span> { <span style=color:#a6e22e>_id</span><span style=color:#f92672>:</span> <span style=color:#a6e22e>userId</span> } <span style=color:#f92672>=</span> <span style=color:#a6e22e>foundUser</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>		<span style=color:#66d9ef>const</span> <span style=color:#a6e22e>tokens</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>createTokenPair</span>({ <span style=color:#a6e22e>userId</span>, <span style=color:#a6e22e>email</span> }, <span style=color:#a6e22e>privateKey</span>);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>		<span style=color:#66d9ef>await</span> <span style=color:#a6e22e>KeyTokenService</span>.<span style=color:#a6e22e>createKeyToken</span>({
+</span></span><span style=display:flex><span>			<span style=color:#a6e22e>userId</span>,
+</span></span><span style=display:flex><span>			<span style=color:#a6e22e>publicKey</span>,
+</span></span><span style=display:flex><span>			<span style=color:#a6e22e>privateKey</span>,
+</span></span><span style=display:flex><span>			<span style=color:#a6e22e>refreshToken</span><span style=color:#f92672>:</span> <span style=color:#a6e22e>tokens</span>.<span style=color:#a6e22e>refreshToken</span>,
+</span></span><span style=display:flex><span>		});
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>		<span style=color:#66d9ef>return</span> {
+</span></span><span style=display:flex><span>			<span style=color:#a6e22e>user</span><span style=color:#f92672>:</span> <span style=color:#a6e22e>foundUser</span>,
+</span></span><span style=display:flex><span>			<span style=color:#a6e22e>tokens</span>,
+</span></span><span style=display:flex><span>		};
+</span></span><span style=display:flex><span>	};
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>static</span> <span style=color:#a6e22e>handleRefreshToken</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>async</span> ({ <span style=color:#a6e22e>refreshToken</span>, <span style=color:#a6e22e>user</span> }) =&gt; {
+</span></span><span style=display:flex><span>		<span style=color:#66d9ef>const</span> { <span style=color:#a6e22e>userId</span>, <span style=color:#a6e22e>email</span> } <span style=color:#f92672>=</span> <span style=color:#a6e22e>user</span>;
+</span></span><span style=display:flex><span>		<span style=color:#66d9ef>const</span> <span style=color:#a6e22e>keyStore</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>await</span> <span style=color:#a6e22e>KeyTokenService</span>.<span style=color:#a6e22e>findByUserId</span>(<span style=color:#a6e22e>userId</span>);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>		<span style=color:#66d9ef>if</span> (<span style=color:#a6e22e>keyStore</span>.<span style=color:#a6e22e>refreshTokensUsed</span>.<span style=color:#a6e22e>includes</span>(<span style=color:#a6e22e>refreshToken</span>)) {
+</span></span><span style=display:flex><span>			<span style=color:#66d9ef>await</span> <span style=color:#a6e22e>KeyTokenService</span>.<span style=color:#a6e22e>removeByUserId</span>(<span style=color:#a6e22e>userId</span>);
+</span></span><span style=display:flex><span>			<span style=color:#66d9ef>throw</span> <span style=color:#66d9ef>new</span> <span style=color:#a6e22e>ForbiddenError</span>(<span style=color:#e6db74>&#34;Something wrong happen. Pls relogin&#34;</span>);
+</span></span><span style=display:flex><span>		}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>		<span style=color:#66d9ef>if</span> (<span style=color:#a6e22e>keyStore</span>.<span style=color:#a6e22e>refreshToken</span> <span style=color:#f92672>!==</span> <span style=color:#a6e22e>refreshToken</span>) {
+</span></span><span style=display:flex><span>			<span style=color:#66d9ef>throw</span> <span style=color:#66d9ef>new</span> <span style=color:#a6e22e>AuthFailureError</span>(<span style=color:#e6db74>&#34;Token is deleted or never exist&#34;</span>);
+</span></span><span style=display:flex><span>		}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>		<span style=color:#66d9ef>const</span> <span style=color:#a6e22e>foundUser</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>await</span> <span style=color:#a6e22e>findByEmail</span>({ <span style=color:#a6e22e>email</span> });
+</span></span><span style=display:flex><span>		<span style=color:#66d9ef>if</span> (<span style=color:#f92672>!</span><span style=color:#a6e22e>foundUser</span>) {
+</span></span><span style=display:flex><span>			<span style=color:#66d9ef>throw</span> <span style=color:#66d9ef>new</span> <span style=color:#a6e22e>AuthFailureError</span>(<span style=color:#e6db74>&#34;User is deleted or never exist&#34;</span>);
+</span></span><span style=display:flex><span>		}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>		<span style=color:#66d9ef>const</span> <span style=color:#a6e22e>newTokens</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>createTokenPair</span>(
+</span></span><span style=display:flex><span>			{ <span style=color:#a6e22e>userId</span><span style=color:#f92672>:</span> <span style=color:#a6e22e>foundUser</span>.<span style=color:#a6e22e>_id</span>, <span style=color:#a6e22e>email</span> },
+</span></span><span style=display:flex><span>			<span style=color:#a6e22e>keyStore</span>.<span style=color:#a6e22e>privateKey</span>
+</span></span><span style=display:flex><span>		);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>		<span style=color:#66d9ef>await</span> <span style=color:#a6e22e>KeyTokenService</span>.<span style=color:#a6e22e>updateRefreshToken</span>(
+</span></span><span style=display:flex><span>			<span style=color:#a6e22e>userId</span>,
+</span></span><span style=display:flex><span>			<span style=color:#a6e22e>newTokens</span>.<span style=color:#a6e22e>refreshToken</span>,
+</span></span><span style=display:flex><span>			<span style=color:#a6e22e>refreshToken</span>
+</span></span><span style=display:flex><span>		);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>		<span style=color:#66d9ef>return</span> {
+</span></span><span style=display:flex><span>			<span style=color:#a6e22e>user</span>,
+</span></span><span style=display:flex><span>			<span style=color:#a6e22e>tokens</span><span style=color:#f92672>:</span> <span style=color:#a6e22e>newTokens</span>,
+</span></span><span style=display:flex><span>		};
+</span></span><span style=display:flex><span>	};
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>export</span> <span style=color:#66d9ef>default</span> <span style=color:#a6e22e>AccessService</span>;
+</span></span></code></pre></div></div></details></br><details><summary>access.controller.js</summary><div class=markdown-inner><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-js data-lang=js><span style=display:flex><span><span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>CREATED</span>, <span style=color:#a6e22e>SuccessResponse</span> } <span style=color:#a6e22e>from</span> <span style=color:#e6db74>&#34;../core/success.response.js&#34;</span>;
+</span></span><span style=display:flex><span><span style=color:#66d9ef>import</span> <span style=color:#a6e22e>AccessService</span> <span style=color:#a6e22e>from</span> <span style=color:#e6db74>&#34;../services/access.service.js&#34;</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>AccessController</span> {
+</span></span><span style=display:flex><span>	<span style=color:#a6e22e>login</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>async</span> (<span style=color:#a6e22e>req</span>, <span style=color:#a6e22e>res</span>, <span style=color:#a6e22e>next</span>) =&gt; {
+</span></span><span style=display:flex><span>		<span style=color:#66d9ef>new</span> <span style=color:#a6e22e>SuccessResponse</span>({
+</span></span><span style=display:flex><span>			<span style=color:#a6e22e>metatdata</span><span style=color:#f92672>:</span> <span style=color:#66d9ef>await</span> <span style=color:#a6e22e>AccessService</span>.<span style=color:#a6e22e>login</span>(<span style=color:#a6e22e>req</span>.<span style=color:#a6e22e>body</span>),
+</span></span><span style=display:flex><span>		}).<span style=color:#a6e22e>send</span>(<span style=color:#a6e22e>res</span>);
+</span></span><span style=display:flex><span>	};
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>	<span style=color:#a6e22e>handleRefreshToken</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>async</span> (<span style=color:#a6e22e>req</span>, <span style=color:#a6e22e>res</span>, <span style=color:#a6e22e>next</span>) =&gt; {
+</span></span><span style=display:flex><span>		<span style=color:#66d9ef>new</span> <span style=color:#a6e22e>SuccessResponse</span>({
+</span></span><span style=display:flex><span>			<span style=color:#a6e22e>message</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;Update token success&#34;</span>,
+</span></span><span style=display:flex><span>			<span style=color:#a6e22e>metatdata</span><span style=color:#f92672>:</span> <span style=color:#66d9ef>await</span> <span style=color:#a6e22e>AccessService</span>.<span style=color:#a6e22e>handleRefreshToken</span>({
+</span></span><span style=display:flex><span>				<span style=color:#a6e22e>refreshToken</span><span style=color:#f92672>:</span> <span style=color:#a6e22e>req</span>.<span style=color:#a6e22e>refreshToken</span>,
+</span></span><span style=display:flex><span>				<span style=color:#a6e22e>user</span><span style=color:#f92672>:</span> <span style=color:#a6e22e>req</span>.<span style=color:#a6e22e>user</span>,
+</span></span><span style=display:flex><span>			}),
+</span></span><span style=display:flex><span>		}).<span style=color:#a6e22e>send</span>(<span style=color:#a6e22e>res</span>);
+</span></span><span style=display:flex><span>	};
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>export</span> <span style=color:#66d9ef>default</span> <span style=color:#66d9ef>new</span> <span style=color:#a6e22e>AccessController</span>();
+</span></span></code></pre></div></div></details></br><details><summary>routes.js</summary><div class=markdown-inner><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-js data-lang=js><span style=display:flex><span><span style=color:#66d9ef>import</span> <span style=color:#a6e22e>express</span> <span style=color:#a6e22e>from</span> <span style=color:#e6db74>&#34;express&#34;</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>import</span> <span style=color:#a6e22e>accessController</span> <span style=color:#a6e22e>from</span> <span style=color:#e6db74>&#34;../../controllers/access.controller.js&#34;</span>;
+</span></span><span style=display:flex><span><span style=color:#66d9ef>import</span> <span style=color:#a6e22e>postController</span> <span style=color:#a6e22e>from</span> <span style=color:#e6db74>&#34;../../controllers/post.controller.js&#34;</span>;
+</span></span><span style=display:flex><span><span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>authentication</span> } <span style=color:#a6e22e>from</span> <span style=color:#e6db74>&#34;../../auth/authUtils.js&#34;</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>router</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>express</span>.<span style=color:#a6e22e>Router</span>();
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>asyncHandler</span> <span style=color:#f92672>=</span> (<span style=color:#a6e22e>fn</span>) =&gt; {
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>return</span> (<span style=color:#a6e22e>req</span>, <span style=color:#a6e22e>res</span>, <span style=color:#a6e22e>next</span>) =&gt; {
+</span></span><span style=display:flex><span>		<span style=color:#a6e22e>fn</span>(<span style=color:#a6e22e>req</span>, <span style=color:#a6e22e>res</span>, <span style=color:#a6e22e>next</span>).<span style=color:#66d9ef>catch</span>(<span style=color:#a6e22e>next</span>);
+</span></span><span style=display:flex><span>	};
+</span></span><span style=display:flex><span>};
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>router</span>.<span style=color:#a6e22e>post</span>(<span style=color:#e6db74>&#34;/user/login&#34;</span>, <span style=color:#a6e22e>asyncHandler</span>(<span style=color:#a6e22e>accessController</span>.<span style=color:#a6e22e>login</span>));
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>// Authenticate before using restricted resources
+</span></span></span><span style=display:flex><span><span style=color:#a6e22e>router</span>.<span style=color:#a6e22e>use</span>(<span style=color:#a6e22e>asyncHandler</span>(<span style=color:#a6e22e>authentication</span>));
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>router</span>.<span style=color:#a6e22e>post</span>(<span style=color:#e6db74>&#34;/user/handleRefreshToken&#34;</span>, <span style=color:#a6e22e>asyncHandler</span>(<span style=color:#a6e22e>accessController</span>.<span style=color:#a6e22e>handleRefreshToken</span>));
+</span></span><span style=display:flex><span><span style=color:#a6e22e>router</span>.<span style=color:#a6e22e>post</span>(<span style=color:#e6db74>&#34;&#34;</span>, <span style=color:#a6e22e>asyncHandler</span>(<span style=color:#a6e22e>postController</span>.<span style=color:#a6e22e>createPost</span>));
+</span></span><span style=display:flex><span><span style=color:#a6e22e>router</span>.<span style=color:#a6e22e>patch</span>(<span style=color:#e6db74>&#34;/:postId&#34;</span>, <span style=color:#a6e22e>asyncHandler</span>(<span style=color:#a6e22e>postController</span>.<span style=color:#a6e22e>updatePost</span>));
+</span></span><span style=display:flex><span><span style=color:#a6e22e>router</span>.<span style=color:#a6e22e>get</span>(<span style=color:#e6db74>&#34;/drafts/all&#34;</span>, <span style=color:#a6e22e>asyncHandler</span>(<span style=color:#a6e22e>postController</span>.<span style=color:#a6e22e>findAllDraftsOfUser</span>));
+</span></span></code></pre></div></div></details><h2 id=discussion>Discussion
+<a class=anchor href=#discussion>#</a></h2><ul><li><strong>Question</strong>: Why do we need two tokens? Can we combine them?</li><li><strong>New approach</strong>: Use short-term access tokens (AT) and store them in the database. Track the current AT list and the used AT list. If one of the current tokens is stolen by a hacker and the hacker tries to renew the token, the old token will be stored in the used AT list. When the user attempts to renew using the old token, our server can invalidate all tokens and force both the user and the hacker to re-login</li></ul><details><summary><strong>Problem</strong></summary><div class=markdown-inner><ul><li><strong>This approach has one weakness</strong>: Access tokens are exposed more frequently to retrieve resources, increasing the potential for them to be captured and stolen</li><li><strong>Conclusion</strong>: By keeping the refresh token separate and less exposed, the chances of a hacker being able to maintain access to our resources are reduced</li><li><strong>Do you think this approach have any other weaknesses?</strong></li></ul></div></details><h2 id=reference>Reference
+<a class=anchor href=#reference>#</a></h2><ul><li>Geeksforgeeks: <a href=https://www.geeksforgeeks.org/access-token-vs-refresh-token-a-breakdown/>Access Token vs Refresh Token: A Breakdown</a> (27 Sep, 2024)</li><li>Auth0: <a href=https://auth0.com/blog/refresh-tokens-what-are-they-and-when-to-use-them/#When-to-Use-Refresh-Tokens>What Are Refresh Tokens and How to Use Them Securely</a> (Oct 7th, 2021)</li><li>Medium: <a href=https://medium.com/@lakshyakumarsingh.2003.va/understanding-access-tokens-and-refresh-tokens-2ec4bc4f9a4f>Understanding Access Tokens and Refresh Tokens</a> (Mar 23, 2024)</li></ul><style>.feedback-card{border:1px solid #ddd;border-radius:8px;padding:20px;max-width:100%;box-shadow:0 2px 5px rgba(0,0,0,.1);background-color:#f9f9fb}.feedback-card h2{font-size:20px;margin-top:0;margin-bottom:10px}.feedback-card .buttons{margin:10px 0}.feedback-card button{border:none;background-color:#f0f0f0;border-radius:4px;padding:10px 15px;margin-right:10px;cursor:pointer;font-size:16px}.feedback-card button:hover{background-color:#e0e0e0}.feedback-card a{color:#0074d9;text-decoration:none}.feedback-card a:hover{text-decoration:underline}.feedback-card p{font-size:14px;color:#555}.modal{display:none;position:fixed;top:0;left:0;width:100%;height:100%;border-radius:7px;padding-bottom:50px;background-color:rgba(0,0,0,.5);justify-content:center;align-items:flex-end}.modal-content{background-color:#fff;padding:20px;border-radius:5px;width:300px}.modal input{width:100%;padding:10px;margin-bottom:10px}</style><div class=feedback-card id=feedbackCard><h2>Help improve my blog</h2><p>Was this page helpful to you?</p><div class=buttons><button id=yesBtn>👍 Yes</button>
+<button id=noBtn>👎 No</button></div><p>This page was last modified at <strong>2025-01-03</strong></p><ul><li><a href=https://github.com/DangPham112000/blog target=_blank>View this page on GitHub</a></li><li><a href=# class=link-button id=linkButton>Report a problem with this content</a></li></ul></div><div class=modal id=formModal><div class=feedback-card><h2>Can I know your name?</h2><form id=form><input type=text name=username placeholder="Enter your name">
+<button type=submit>Yes</button>
+<button type=submit>No</button></form></div></div><script>const feedbackCardEle=document.getElementById("feedbackCard"),formModalEle=document.getElementById("formModal"),elesToShowForm=["linkButton","yesBtn","noBtn"];for(const e of elesToShowForm)document.getElementById(e).addEventListener("click",function(e){e.preventDefault(),formModalEle.style.display="flex"});window.onclick=function(e){e.target===formModalEle&&(formModalEle.style.display="none")},document.getElementById("form").addEventListener("submit",function(e){e.preventDefault(),alert("This feature is currently being developed"),formModalEle.style.display="none"})</script></article><footer class=book-footer><div class="flex flex-wrap justify-between"></div><script>(function(){function e(e){const t=window.getSelection(),n=document.createRange();n.selectNodeContents(e),t.removeAllRanges(),t.addRange(n)}document.querySelectorAll("pre code").forEach(t=>{t.addEventListener("click",function(){if(window.getSelection().toString())return;e(t.parentElement),navigator.clipboard&&navigator.clipboard.writeText(t.parentElement.textContent)})})})()</script></footer><div class=book-comments></div><label for=menu-control class="hidden book-menu-overlay"></label></div><aside class=book-toc><div class=book-toc-content><nav id=TableOfContents><ul><li><a href=#access-token>Access token</a><ul><li><a href=#characteristics>Characteristics</a></li><li><a href=#new-problems>New problems</a></li></ul></li><li><a href=#refresh-token>Refresh token</a><ul><li><a href=#characteristics-1>Characteristics</a></li></ul></li><li><a href=#how-do-they-work-together>How do they work together?</a><ul><li><a href=#basic-flow>Basic flow</a></li><li><a href=#token-expired>Token expired</a></li><li><a href=#threat-mitigation-strategy>Threat mitigation strategy</a></li><li><a href=#authentication-server-standalone-concept>Authentication server standalone concept</a></li></ul></li><li><a href=#demo-code>Demo code</a></li><li><a href=#discussion>Discussion</a></li><li><a href=#reference>Reference</a></li></ul></nav></div></aside></main></body></html>

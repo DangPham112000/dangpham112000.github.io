@@ -1,9 +1,4 @@
-<!DOCTYPE html>
-<html lang="en-us" dir="ltr">
-<head>
-  <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="
+<!doctype html><html lang=en-us dir=ltr><head><meta charset=UTF-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="
   Operation Tips
   #
 
@@ -23,7 +18,7 @@ ip address show
   Show detail a command
   #
 
-man &lt;command&gt;
+man <command>
 # E.g
 man vim
 # Then press q to quit
@@ -37,7 +32,7 @@ sudo apt upgrade
   Show package detail
   #
 
-apt show &lt;package-name&gt;
+apt show <package-name>
 # E.g 
 apt show ssh
 E.g output
@@ -48,11 +43,11 @@ Priority: optional
 Section: net
 Source: openssh
 Origin: Ubuntu
-Maintainer: Ubuntu Developers &lt;ubuntu-devel-discuss@lists.ubuntu.com&gt;
-Original-Maintainer: Debian OpenSSH Maintainers &lt;debian-ssh@lists.debian.org&gt;
-Bugs: https://bugs.launchpad.net/ubuntu/&#43;filebug
+Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+Original-Maintainer: Debian OpenSSH Maintainers <debian-ssh@lists.debian.org>
+Bugs: https://bugs.launchpad.net/ubuntu/+filebug
 Installed-Size: 57.3 kB
-Depends: openssh-client (&gt;= 1:9.6p1-3ubuntu13.5), openssh-server (&gt;= 1:9.6p1-3ubuntu13.5)
+Depends: openssh-client (>= 1:9.6p1-3ubuntu13.5), openssh-server (>= 1:9.6p1-3ubuntu13.5)
 Homepage: https://www.openssh.com/
 Download-Size: 4,658 B
 APT-Sources: http://vn.archive.ubuntu.com/ubuntu noble-updates/main amd64 Packages
@@ -73,19 +68,19 @@ pwd
   Copy
   #
 
-cp &lt;source&gt; &lt;destination&gt;
+cp <source> <destination>
 # E.g
 cp readme.md readyou.md # create a copy named readyou with the same content as readme
 
   Clear directory
   #
 
-rm -rf &lt;directory-name&gt;
+rm -rf <directory-name>
 
   Move
   #
 
-mv &lt;source&gt; &lt;destination&gt;
+mv <source> <destination>
 # E.g
 mv readme.md .. # Move readme file to parent dir
 mv ../readme.md . # Move readme from parent dir to current dir
@@ -96,7 +91,7 @@ mv ../readme.md . # Move readme from parent dir to current dir
 
 If you move a file within the current directory, that means you are renaming it
 
-mv &lt;old-name&gt; &lt;new-name&gt;
+mv <old-name> <new-name>
 # E.g
 mv readme.md readyou.md
 
@@ -104,14 +99,14 @@ mv readme.md readyou.md
   #
 
 # Directory: 
-mkdir &lt;dir-name&gt;
+mkdir <dir-name>
 # File: 
-touch &lt;file-name&gt;
+touch <file-name>
 
   Print file content
   #
 
-cat &lt;file-name&gt;
+cat <file-name>
 
   Echo
   #
@@ -122,12 +117,12 @@ cat &lt;file-name&gt;
 
 echo $USER
 # E.g result: 
-# &gt;&gt; dangpham112  
+# >> dangpham112  
 
   Add content to file
   #
 
-echo Hello $USER &gt; readme.md
+echo Hello $USER > readme.md
 # readme file now have a content: Hello dangpham112
 
   Systemctl
@@ -137,14 +132,14 @@ echo Hello $USER &gt; readme.md
   Restart
   #
 
-systemctl restart &lt;service-name&gt;
+systemctl restart <service-name>
 # E.g
 systemctl restart ssh
 
   Check status
   #
 
-systemctl status &lt;service-name&gt;
+systemctl status <service-name>
 # E.g
 systemctl status ssh
 
@@ -161,25 +156,25 @@ SSH Hardening Guides
   #
 
 # Access SSH server 
-ssh &lt;username&gt;@&lt;ip-address || domain-name&gt;
+ssh <username>@<ip-address || domain-name>
 # Then typing password and press enter
 
   Login with username and password
   #
 
-ssh &lt;host-username&gt;@&lt;host-ip || host-domain&gt;
-# -&gt; SSH will promt you to enter the password
+ssh <host-username>@<host-ip || host-domain>
+# -> SSH will promt you to enter the password
 
   Login via private-key file
   #
 
 # Change permissions to read-only for the private key file
-chmod 400 &lt;private-key&gt;
+chmod 400 <private-key>
 # E.g 
 chmod 400 MyServer
 
 # Log in via SSH (notice host-username)
-ssh -i &lt;private-key&gt; &lt;host-username&gt;@&lt;host-ip || host-domain&gt;
+ssh -i <private-key> <host-username>@<host-ip || host-domain>
 # E.g 1: If you use EC2 Ubuntu, the host-username maybe ubuntu
 ssh -i MyServer.pem ubuntu@54.251.177.159
 # E.g 2: If you use EC2 Amazon Linux, the host-username maybe ec2-user
@@ -190,12 +185,12 @@ ssh -i gcp-key dangpham112000@34.55.160.169
 Where is private-key file?
 
 E.g 1: While you create EC2 instance, you can create key-pair for login in aws console, then they will give you private-key to store on your SSH-client
-E.g 2: With GCP VM instance, you need to create your own key-pair and upload the public-key&rsquo;s content to SSH-KEYS (Compute Engine &gt; Settings &gt; Metadata &gt; SSH-KEYS)
+E.g 2: With GCP VM instance, you need to create your own key-pair and upload the public-key&rsquo;s content to SSH-KEYS (Compute Engine > Settings > Metadata > SSH-KEYS)
 
 
 
 # Create key-pair on SSH-Client with username is your account username
-ssh-keygen -t rsa -f &lt;keypair-name&gt; -C &lt;username&gt;
+ssh-keygen -t rsa -f <keypair-name> -C <username>
 # E.g
 ssh-keygen -t rsa -f gcp-key -C dangpham112000
 
@@ -205,25 +200,25 @@ ssh-keygen -t rsa -f gcp-key -C dangpham112000
 # On SSH client
 # Generate a new SSH key pair using the Ed25519 algorithm
 ssh-keygen -t ed25519
-# -&gt; You can leave all the command prompts empty, just press enter
-# -&gt; You should notice the location of file *.pub for further actions 
+# -> You can leave all the command prompts empty, just press enter
+# -> You should notice the location of file *.pub for further actions 
 
 # Copy the public SSH key to the SSH server 
-ssh-copy-id -i &lt;public-key-file-location&gt; &lt;host-username&gt;@&lt;host-ip || host-domain&gt;
+ssh-copy-id -i <public-key-file-location> <host-username>@<host-ip || host-domain>
 # E.g
 ssh-copy-id -i /root/.ssh/id_ed25519.pub ubuntu@123.213.32.1
 # Test the connection
-ssh &lt;host-username&gt;@&lt;host-ip || host-domain&gt;
-# -&gt; SSH server will no longer ask you a password
+ssh <host-username>@<host-ip || host-domain>
+# -> SSH server will no longer ask you a password
 
   Disable root login
   #
 
 # Open the SSH daemon configuration file
 vim /etc/ssh/sshd_config
-# in [sshd_config] -&gt; Find PermitRootLogin and set it to no
+# in [sshd_config] -> Find PermitRootLogin and set it to no
 PermitRootLogin no
-# in [sshd_config] -&gt; Find PasswordAuthentication and set it to no
+# in [sshd_config] -> Find PasswordAuthentication and set it to no
 PasswordAuthentication no
 # Restart the SSH Service
 systemctl restart ssh
@@ -238,20 +233,20 @@ systemctl restart ssh
 # On SSH-client
 
 # From SSH-Client to SSH-Server
-scp &lt;path-to-file&gt; &lt;host-username&gt;@&lt;host-ip&gt;:&lt;destination&gt;
+scp <path-to-file> <host-username>@<host-ip>:<destination>
 # E.g
 scp ~/Documents/readme.md ubuntu@18.141.184.34:~/Document/
 # Or
-scp -i &lt;private-key&gt;.pem &lt;path-to-file&gt; &lt;host-username&gt;@&lt;host-ip&gt;:&lt;destination&gt;
+scp -i <private-key>.pem <path-to-file> <host-username>@<host-ip>:<destination>
 # E.g
 scp -i ~/Auth/MyServer.pem ~/Documents/readme.md ubuntu@18.141.184.34:~/Document/
 
 # From SSH-Server to SSH-Client
-scp &lt;host-username&gt;@&lt;host-ip&gt;:&lt;path-to-file&gt; &lt;destination-on-client&gt;
+scp <host-username>@<host-ip>:<path-to-file> <destination-on-client>
 # E.g
 scp ubuntu@18.141.184.34:~/Document/readyou.md ~/Documents
 # Or
-scp -i &lt;private-key&gt;.pem &lt;host-username&gt;@&lt;host-ip&gt;:&lt;path-to-file&gt; &lt;destination-on-client&gt;
+scp -i <private-key>.pem <host-username>@<host-ip>:<path-to-file> <destination-on-client>
 # E.g
 scp -i ~/Auth/MyServer.pem ubuntu@18.141.184.34:~/Document/readyou.md ~/Documents
 
@@ -265,7 +260,7 @@ A default text editor of some OS
   Open file
   #
 
-nano &lt;file-name&gt;
+nano <file-name>
 # E.g
 nano index.html
 
@@ -273,7 +268,7 @@ nano index.html
   #
 
 
-Press Ctrl &#43; x
+Press Ctrl + x
 Press y
 Press enter
 
@@ -288,7 +283,7 @@ If your root user does not yet have a password
 sudo su
 # Set a Password
 passwd root
-# -&gt; Enter and confirm the password
+# -> Enter and confirm the password
 
   Nginx
   #
@@ -301,1296 +296,281 @@ Capacity: 2MB
   #
 
 sudo apt install nginx
-==&gt; Press Tab -&raquo; Choose OK and then press enter">
-<meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff">
-<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#343a40">
-<meta name="color-scheme" content="light dark"><meta property="og:url" content="https://dangpham112000.github.io/docs/tips/004_ops/">
-  <meta property="og:site_name" content="Dante 0401">
-  <meta property="og:title" content="Ops">
-  <meta property="og:description" content="Operation Tips # Common Commands # IP address # # Public curl ipinfo.io/ip # Local ip address show Show detail a command # man &lt;command&gt; # E.g man vim # Then press q to quit Best practice before install anything # sudo apt update sudo apt upgrade Show package detail # apt show &lt;package-name&gt; # E.g apt show ssh E.g output Package: ssh Version: 1:9.6p1-3ubuntu13.5 Priority: optional Section: net Source: openssh Origin: Ubuntu Maintainer: Ubuntu Developers &lt;ubuntu-devel-discuss@lists.ubuntu.com&gt; Original-Maintainer: Debian OpenSSH Maintainers &lt;debian-ssh@lists.debian.org&gt; Bugs: https://bugs.launchpad.net/ubuntu/&#43;filebug Installed-Size: 57.3 kB Depends: openssh-client (&gt;= 1:9.6p1-3ubuntu13.5), openssh-server (&gt;= 1:9.6p1-3ubuntu13.5) Homepage: https://www.openssh.com/ Download-Size: 4,658 B APT-Sources: http://vn.archive.ubuntu.com/ubuntu noble-updates/main amd64 Packages Description: secure shell client and server (metapackage) This metapackage is a convenient way to install both the OpenSSH client and the OpenSSH server. It provides nothing in and of itself, so you may remove it if nothing depends on it. Print working directory # pwd Copy # cp &lt;source&gt; &lt;destination&gt; # E.g cp readme.md readyou.md # create a copy named readyou with the same content as readme Clear directory # rm -rf &lt;directory-name&gt; Move # mv &lt;source&gt; &lt;destination&gt; # E.g mv readme.md .. # Move readme file to parent dir mv ../readme.md . # Move readme from parent dir to current dir Rename # If you move a file within the current directory, that means you are renaming it mv &lt;old-name&gt; &lt;new-name&gt; # E.g mv readme.md readyou.md Create # # Directory: mkdir &lt;dir-name&gt; # File: touch &lt;file-name&gt; Print file content # cat &lt;file-name&gt; Echo # Print env variable # echo $USER # E.g result: # &gt;&gt; dangpham112 Add content to file # echo Hello $USER &gt; readme.md # readme file now have a content: Hello dangpham112 Systemctl # Restart # systemctl restart &lt;service-name&gt; # E.g systemctl restart ssh Check status # systemctl status &lt;service-name&gt; # E.g systemctl status ssh SSH # Stand for Secure Shell Check SSH score SSH Hardening Guides Connect # # Access SSH server ssh &lt;username&gt;@&lt;ip-address || domain-name&gt; # Then typing password and press enter Login with username and password # ssh &lt;host-username&gt;@&lt;host-ip || host-domain&gt; # -&gt; SSH will promt you to enter the password Login via private-key file # # Change permissions to read-only for the private key file chmod 400 &lt;private-key&gt; # E.g chmod 400 MyServer # Log in via SSH (notice host-username) ssh -i &lt;private-key&gt; &lt;host-username&gt;@&lt;host-ip || host-domain&gt; # E.g 1: If you use EC2 Ubuntu, the host-username maybe ubuntu ssh -i MyServer.pem ubuntu@54.251.177.159 # E.g 2: If you use EC2 Amazon Linux, the host-username maybe ec2-user ssh -i MyServer.pem ec2-user@18.141.175.126 # E.g 3: If you use GCP, the host-username is your account username ssh -i gcp-key dangpham112000@34.55.160.169 Where is private-key file? E.g 1: While you create EC2 instance, you can create key-pair for login in aws console, then they will give you private-key to store on your SSH-client E.g 2: With GCP VM instance, you need to create your own key-pair and upload the public-key’s content to SSH-KEYS (Compute Engine &gt; Settings &gt; Metadata &gt; SSH-KEYS) # Create key-pair on SSH-Client with username is your account username ssh-keygen -t rsa -f &lt;keypair-name&gt; -C &lt;username&gt; # E.g ssh-keygen -t rsa -f gcp-key -C dangpham112000 Setup passwordless authentication # # On SSH client # Generate a new SSH key pair using the Ed25519 algorithm ssh-keygen -t ed25519 # -&gt; You can leave all the command prompts empty, just press enter # -&gt; You should notice the location of file *.pub for further actions # Copy the public SSH key to the SSH server ssh-copy-id -i &lt;public-key-file-location&gt; &lt;host-username&gt;@&lt;host-ip || host-domain&gt; # E.g ssh-copy-id -i /root/.ssh/id_ed25519.pub ubuntu@123.213.32.1 # Test the connection ssh &lt;host-username&gt;@&lt;host-ip || host-domain&gt; # -&gt; SSH server will no longer ask you a password Disable root login # # Open the SSH daemon configuration file vim /etc/ssh/sshd_config # in [sshd_config] -&gt; Find PermitRootLogin and set it to no PermitRootLogin no # in [sshd_config] -&gt; Find PasswordAuthentication and set it to no PasswordAuthentication no # Restart the SSH Service systemctl restart ssh Secure copy # From SSH-client to SSH-server # # On SSH-client # From SSH-Client to SSH-Server scp &lt;path-to-file&gt; &lt;host-username&gt;@&lt;host-ip&gt;:&lt;destination&gt; # E.g scp ~/Documents/readme.md ubuntu@18.141.184.34:~/Document/ # Or scp -i &lt;private-key&gt;.pem &lt;path-to-file&gt; &lt;host-username&gt;@&lt;host-ip&gt;:&lt;destination&gt; # E.g scp -i ~/Auth/MyServer.pem ~/Documents/readme.md ubuntu@18.141.184.34:~/Document/ # From SSH-Server to SSH-Client scp &lt;host-username&gt;@&lt;host-ip&gt;:&lt;path-to-file&gt; &lt;destination-on-client&gt; # E.g scp ubuntu@18.141.184.34:~/Document/readyou.md ~/Documents # Or scp -i &lt;private-key&gt;.pem &lt;host-username&gt;@&lt;host-ip&gt;:&lt;path-to-file&gt; &lt;destination-on-client&gt; # E.g scp -i ~/Auth/MyServer.pem ubuntu@18.141.184.34:~/Document/readyou.md ~/Documents Nano # A default text editor of some OS Open file # nano &lt;file-name&gt; # E.g nano index.html Save # Press Ctrl &#43; x Press y Press enter Setup root password # If your root user does not yet have a password # Gain root privileges sudo su # Set a Password passwd root # -&gt; Enter and confirm the password Nginx # Capacity: 2MB Install # sudo apt install nginx ==&gt; Press Tab -» Choose OK and then press enter">
-  <meta property="og:locale" content="en_us">
-  <meta property="og:type" content="article">
-    <meta property="article:section" content="docs">
-    <meta property="article:published_time" content="2024-11-27T01:47:46+07:00">
-    <meta property="article:modified_time" content="2024-11-27T01:47:46+07:00">
-<title>Ops | Dante 0401</title>
-<link rel="manifest" href="/manifest.json">
-<link rel="icon" href="/favicon.png" >
-<link rel="canonical" href="https://dangpham112000.github.io/docs/tips/004_ops/">
-<link rel="stylesheet" href="/book.min.ef1786281083252320100bd5f394f36844d3252afdbd5bfe72e5f440aaff402b.css" integrity="sha256-7xeGKBCDJSMgEAvV85TzaETTJSr9vVv&#43;cuX0QKr/QCs=" crossorigin="anonymous">
-  <script defer src="/fuse.min.js"></script>
-  <script defer src="/en.search.min.8cd250da139fc136773875cc0c5c476270e41dde5b32a6624b24175c7dd7d37b.js" integrity="sha256-jNJQ2hOfwTZ3OHXMDFxHYnDkHd5bMqZiSyQXXH3X03s=" crossorigin="anonymous"></script>
-<!--
-Made with Book Theme
-https://github.com/alex-shpak/hugo-book
--->
-  
-</head>
-<body dir="ltr">
-  <input type="checkbox" class="hidden toggle" id="menu-control" />
-  <input type="checkbox" class="hidden toggle" id="toc-control" />
-  <main class="container flex">
-    <aside class="book-menu">
-      <div class="book-menu-content">
-        
-  <nav>
-<h2 class="book-brand">
-  <a class="flex align-center" href="/"><span>Dante 0401</span>
-  </a>
-</h2>
-
-
-<div class="book-search hidden">
-  <input type="text" id="book-search-input" placeholder="Search" aria-label="Search" maxlength="64" data-hotkeys="s/" />
-  <div class="book-search-spinner hidden"></div>
-  <ul id="book-search-results"></ul>
-</div>
-<script>document.querySelector(".book-search").classList.remove("hidden")</script>
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
-
-
-  
-  <ul>
-    
-      
-        <li class="book-section-flat" >
-          
-  
-  
-
-  
-    <span>RESEARCH</span>
-  
-
-          
-  <ul>
-    
-      
-        <li>
-          
-  
-  
-
-  
-    <a href="/docs/research/process_vs_thread/" class="">Process vs Thread</a>
-  
-
-        </li>
-      
-    
-      
-        <li>
-          
-  
-  
-
-  
-    <a href="/docs/research/chrome_architecture/" class="">Chrome Architecture</a>
-  
-
-        </li>
-      
-    
-      
-        <li>
-          
-  
-  
-
-  
-    <a href="/docs/research/aws_overview/" class="">AWS Overview</a>
-  
-
-        </li>
-      
-    
-      
-        <li>
-          
-  
-  
-
-  
-    <a href="/docs/research/be_protocol/" class="">Backend</a>
-  
-
-          
-  <ul>
-    
-      
-        <li>
-          
-  
-  
-
-  
-    <a href="/docs/research/be_protocol/tls_ssl/" class="">TLS - SSL</a>
-  
-
-        </li>
-      
-    
-      
-        <li>
-          
-  
-  
-
-  
-    <a href="/docs/research/be_protocol/communication/" class="">Communication</a>
-  
-
-        </li>
-      
-    
-      
-        <li>
-          
-  
-  
-
-  
-    <a href="/docs/research/be_protocol/rabbitmq/" class="">RabbitMQ</a>
-  
-
-        </li>
-      
-    
-      
-        <li>
-          
-  
-  
-
-  
-    <a href="/docs/research/be_protocol/kafka/" class="">Kafka - Draft</a>
-  
-
-        </li>
-      
-    
-  </ul>
-
-        </li>
-      
-    
-      
-        <li>
-          
-  
-  
-
-  
-    <a href="/docs/research/encryption/" class="">Encryption</a>
-  
-
-        </li>
-      
-    
-      
-        <li>
-          
-  
-  
-
-  
-    <a href="/docs/research/token_based_authentication/" class="">Token-based Authentication</a>
-  
-
-        </li>
-      
-    
-      
-        <li>
-          
-  
-  
-
-  
-    <a href="/docs/research/security/" class="">Security - Draft</a>
-  
-
-          
-  <ul>
-    
-      
-        <li>
-          
-  
-  
-
-  
-    <a href="/docs/research/security/hsts/" class="">HSTS</a>
-  
-
-        </li>
-      
-    
-      
-        <li>
-          
-  
-  
-
-  
-    <a href="/docs/research/security/bit_flipping/" class="">Bit Flipping</a>
-  
-
-        </li>
-      
-    
-  </ul>
-
-        </li>
-      
-    
-      
-        <li>
-          
-  
-  
-
-  
-    <a href="/docs/research/scale/" class="">Scale</a>
-  
-
-        </li>
-      
-    
-  </ul>
-
-        </li>
-      
-    
-      
-        <li class="book-section-flat" >
-          
-  
-  
-
-  
-    <span>TIPS</span>
-  
-
-          
-  <ul>
-    
-      
-        <li>
-          
-  
-  
-
-  
-    <a href="/docs/tips/001_unit_test/" class="">Unit Test</a>
-  
-
-        </li>
-      
-    
-      
-        <li>
-          
-  
-  
-
-  
-    <a href="/docs/tips/002_git/" class="">Git</a>
-  
-
-        </li>
-      
-    
-      
-        <li>
-          
-  
-  
-
-  
-    <a href="/docs/tips/003_docker/" class="">Docker</a>
-  
-
-        </li>
-      
-    
-      
-        <li>
-          
-  
-  
-
-  
-    <a href="/docs/tips/004_ops/" class="active">Ops</a>
-  
-
-        </li>
-      
-    
-      
-        <li>
-          
-  
-  
-
-  
-    <a href="/docs/tips/005_passion/" class="">Spark Passion</a>
-  
-
-        </li>
-      
-    
-  </ul>
-
-        </li>
-      
-    
-      
-        <li class="book-section-flat" >
-          
-  
-  
-
-  
-    <span>PROBLEMS</span>
-  
-
-          
-  <ul>
-    
-      
-        <li>
-          
-  
-  
-
-  
-    <a href="/docs/problems/knight_dialer/" class="">Knight Dialer</a>
-  
-
-        </li>
-      
-    
-  </ul>
-
-        </li>
-      
-    
-  </ul>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-</nav>
-
-
-
-
-  <script>(function(){var e=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(){localStorage.setItem("menu.scrollTop",e.scrollTop)}),e.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
-
-
- 
-      </div>
-    </aside>
-
-    <div class="book-page">
-      <header class="book-header">
-        
-  <div class="flex align-center justify-between">
-  <label for="menu-control">
-    <img src="/svg/menu.svg" class="book-icon" alt="Menu" />
-  </label>
-
-  <strong>Ops</strong>
-
-  <label for="toc-control">
-    
-    <img src="/svg/toc.svg" class="book-icon" alt="Table of Contents" />
-    
-  </label>
-</div>
-
-
-  
-  <aside class="hidden clearfix">
-    
-  
-<nav id="TableOfContents">
-  <ul>
-    <li><a href="#common-commands">Common Commands</a>
-      <ul>
-        <li><a href="#ip-address">IP address</a></li>
-        <li><a href="#show-detail-a-command">Show detail a command</a></li>
-        <li><a href="#best-practice-before-install-anything">Best practice before install anything</a></li>
-        <li><a href="#show-package-detail">Show package detail</a></li>
-        <li><a href="#print-working-directory">Print working directory</a></li>
-        <li><a href="#copy">Copy</a></li>
-        <li><a href="#clear-directory">Clear directory</a></li>
-        <li><a href="#move">Move</a></li>
-        <li><a href="#rename">Rename</a></li>
-        <li><a href="#create">Create</a></li>
-        <li><a href="#print-file-content">Print file content</a></li>
-        <li><a href="#echo">Echo</a></li>
-      </ul>
-    </li>
-    <li><a href="#systemctl">Systemctl</a>
-      <ul>
-        <li><a href="#restart">Restart</a></li>
-        <li><a href="#check-status">Check status</a></li>
-      </ul>
-    </li>
-    <li><a href="#ssh">SSH</a>
-      <ul>
-        <li><a href="#connect">Connect</a></li>
-        <li><a href="#login-with-username-and-password">Login with username and password</a></li>
-        <li><a href="#login-via-private-key-file">Login via private-key file</a></li>
-        <li><a href="#setup-passwordless-authentication">Setup passwordless authentication</a></li>
-        <li><a href="#disable-root-login">Disable root login</a></li>
-        <li><a href="#secure-copy">Secure copy</a></li>
-      </ul>
-    </li>
-    <li><a href="#nano">Nano</a>
-      <ul>
-        <li><a href="#open-file">Open file</a></li>
-        <li><a href="#save">Save</a></li>
-      </ul>
-    </li>
-    <li><a href="#setup-root-password">Setup root password</a></li>
-    <li><a href="#nginx">Nginx</a>
-      <ul>
-        <li><a href="#install">Install</a></li>
-        <li><a href="#open-ports">Open ports</a></li>
-        <li><a href="#locate-the-index-file">Locate the index file</a></li>
-        <li><a href="#locate-configuration-file">Locate configuration file</a></li>
-      </ul>
-    </li>
-    <li><a href="#well-known-ports-link"><a href="https://en.wikipedia.org/wiki/List_of_TCP_and_UDP_port_numbers#Well-known_ports">Well-known ports (Link)</a></a></li>
-    <li><a href="#ssl-certificate">SSL Certificate</a>
-      <ul>
-        <li><a href="#lets-encrypt-ssltls-certificate">Let&rsquo;s Encrypt SSL/TLS certificate</a></li>
-        <li><a href="#certificates-for-localhost">Certificates for localhost</a></li>
-      </ul>
-    </li>
-    <li><a href="#references">References</a></li>
-  </ul>
-</nav>
-
-
-
-  </aside>
-  
- 
-      </header>
-
-      
-      
-  <article class="markdown book-article"><h1 id="operation-tips">
-  Operation Tips
-  <a class="anchor" href="#operation-tips">#</a>
-</h1>
-<h2 id="common-commands">
-  Common Commands
-  <a class="anchor" href="#common-commands">#</a>
-</h2>
-<h3 id="ip-address">
-  IP address
-  <a class="anchor" href="#ip-address">#</a>
-</h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span><span style="color:#75715e"># Public</span>
-</span></span><span style="display:flex;"><span>curl ipinfo.io/ip
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># Local</span>
-</span></span><span style="display:flex;"><span>ip address show 
-</span></span></code></pre></div><h3 id="show-detail-a-command">
-  Show detail a command
-  <a class="anchor" href="#show-detail-a-command">#</a>
-</h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>man &lt;command&gt;
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># E.g</span>
-</span></span><span style="display:flex;"><span>man vim
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># Then press q to quit</span>
-</span></span></code></pre></div><h3 id="best-practice-before-install-anything">
-  Best practice before install anything
-  <a class="anchor" href="#best-practice-before-install-anything">#</a>
-</h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>sudo apt update
-</span></span><span style="display:flex;"><span>sudo apt upgrade
-</span></span></code></pre></div><h3 id="show-package-detail">
-  Show package detail
-  <a class="anchor" href="#show-package-detail">#</a>
-</h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>apt show &lt;package-name&gt;
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># E.g </span>
-</span></span><span style="display:flex;"><span>apt show ssh
-</span></span></code></pre></div><details ><summary>E.g output</summary>
-  <div class="markdown-inner">
-    <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yml" data-lang="yml"><span style="display:flex;"><span><span style="color:#f92672">Package</span>: <span style="color:#ae81ff">ssh</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">Version</span>: <span style="color:#ae81ff">1</span>:<span style="color:#ae81ff">9.</span><span style="color:#ae81ff">6p1-3ubuntu13.5</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">Priority</span>: <span style="color:#ae81ff">optional</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">Section</span>: <span style="color:#ae81ff">net</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">Source</span>: <span style="color:#ae81ff">openssh</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">Origin</span>: <span style="color:#ae81ff">Ubuntu</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">Maintainer</span>: <span style="color:#ae81ff">Ubuntu Developers &lt;ubuntu-devel-discuss@lists.ubuntu.com&gt;</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">Original-Maintainer</span>: <span style="color:#ae81ff">Debian OpenSSH Maintainers &lt;debian-ssh@lists.debian.org&gt;</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">Bugs</span>: <span style="color:#ae81ff">https://bugs.launchpad.net/ubuntu/+filebug</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">Installed-Size</span>: <span style="color:#ae81ff">57.3</span> <span style="color:#ae81ff">kB</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">Depends</span>: <span style="color:#ae81ff">openssh-client (&gt;= 1:9.6p1-3ubuntu13.5), openssh-server (&gt;= 1:9.6p1-3ubuntu13.5)</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">Homepage</span>: <span style="color:#ae81ff">https://www.openssh.com/</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">Download-Size</span>: <span style="color:#ae81ff">4</span>,<span style="color:#ae81ff">658</span> <span style="color:#ae81ff">B</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">APT-Sources</span>: <span style="color:#ae81ff">http://vn.archive.ubuntu.com/ubuntu noble-updates/main amd64 Packages</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">Description</span>: <span style="color:#ae81ff">secure shell client and server (metapackage)</span>
-</span></span><span style="display:flex;"><span> <span style="color:#ae81ff">This metapackage is a convenient way to install both the OpenSSH client</span>
-</span></span><span style="display:flex;"><span> <span style="color:#ae81ff">and the OpenSSH server. It provides nothing in and of itself, so you</span>
-</span></span><span style="display:flex;"><span> <span style="color:#ae81ff">may remove it if nothing depends on it.</span>
-</span></span></code></pre></div>
-  </div>
-</details>
-
-<h3 id="print-working-directory">
-  Print working directory
-  <a class="anchor" href="#print-working-directory">#</a>
-</h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>pwd
-</span></span></code></pre></div><h3 id="copy">
-  Copy
-  <a class="anchor" href="#copy">#</a>
-</h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>cp &lt;source&gt; &lt;destination&gt;
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># E.g</span>
-</span></span><span style="display:flex;"><span>cp readme.md readyou.md <span style="color:#75715e"># create a copy named readyou with the same content as readme</span>
-</span></span></code></pre></div><h3 id="clear-directory">
-  Clear directory
-  <a class="anchor" href="#clear-directory">#</a>
-</h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>rm -rf &lt;directory-name&gt;
-</span></span></code></pre></div><h3 id="move">
-  Move
-  <a class="anchor" href="#move">#</a>
-</h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>mv &lt;source&gt; &lt;destination&gt;
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># E.g</span>
-</span></span><span style="display:flex;"><span>mv readme.md .. <span style="color:#75715e"># Move readme file to parent dir</span>
-</span></span><span style="display:flex;"><span>mv ../readme.md . <span style="color:#75715e"># Move readme from parent dir to current dir</span>
-</span></span></code></pre></div><h3 id="rename">
-  Rename
-  <a class="anchor" href="#rename">#</a>
-</h3>
-<ul>
-<li>If you move a file within the current directory, that means you are renaming it</li>
-</ul>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>mv &lt;old-name&gt; &lt;new-name&gt;
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># E.g</span>
-</span></span><span style="display:flex;"><span>mv readme.md readyou.md
-</span></span></code></pre></div><h3 id="create">
-  Create
-  <a class="anchor" href="#create">#</a>
-</h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span><span style="color:#75715e"># Directory: </span>
-</span></span><span style="display:flex;"><span>mkdir &lt;dir-name&gt;
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># File: </span>
-</span></span><span style="display:flex;"><span>touch &lt;file-name&gt;
-</span></span></code></pre></div><h3 id="print-file-content">
-  Print file content
-  <a class="anchor" href="#print-file-content">#</a>
-</h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>cat &lt;file-name&gt;
-</span></span></code></pre></div><h3 id="echo">
-  Echo
-  <a class="anchor" href="#echo">#</a>
-</h3>
-<h4 id="print-env-variable">
-  Print env variable
-  <a class="anchor" href="#print-env-variable">#</a>
-</h4>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>echo $USER
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># E.g result: </span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># &gt;&gt; dangpham112  </span>
-</span></span></code></pre></div><h4 id="add-content-to-file">
-  Add content to file
-  <a class="anchor" href="#add-content-to-file">#</a>
-</h4>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>echo Hello $USER &gt; readme.md
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># readme file now have a content: Hello dangpham112</span>
-</span></span></code></pre></div><h2 id="systemctl">
-  Systemctl
-  <a class="anchor" href="#systemctl">#</a>
-</h2>
-<h3 id="restart">
-  Restart
-  <a class="anchor" href="#restart">#</a>
-</h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>systemctl restart &lt;service-name&gt;
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># E.g</span>
-</span></span><span style="display:flex;"><span>systemctl restart ssh
-</span></span></code></pre></div><h3 id="check-status">
-  Check status
-  <a class="anchor" href="#check-status">#</a>
-</h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>systemctl status &lt;service-name&gt;
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># E.g</span>
-</span></span><span style="display:flex;"><span>systemctl status ssh
-</span></span></code></pre></div><h2 id="ssh">
-  SSH
-  <a class="anchor" href="#ssh">#</a>
-</h2>
-<ul>
-<li>Stand for Secure Shell</li>
-<li><a href="https://ssh-audit.com/">Check SSH score</a></li>
-<li><a href="https://ssh-audit.com/hardening_guides.html">SSH Hardening Guides</a></li>
-</ul>
-<h3 id="connect">
-  Connect
-  <a class="anchor" href="#connect">#</a>
-</h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span><span style="color:#75715e"># Access SSH server </span>
-</span></span><span style="display:flex;"><span>ssh &lt;username&gt;@&lt;ip-address <span style="color:#f92672">||</span> domain-name&gt;
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># Then typing password and press enter</span>
-</span></span></code></pre></div><h3 id="login-with-username-and-password">
-  Login with username and password
-  <a class="anchor" href="#login-with-username-and-password">#</a>
-</h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>ssh &lt;host-username&gt;@&lt;host-ip <span style="color:#f92672">||</span> host-domain&gt;
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># -&gt; SSH will promt you to enter the password</span>
-</span></span></code></pre></div><h3 id="login-via-private-key-file">
-  Login via private-key file
-  <a class="anchor" href="#login-via-private-key-file">#</a>
-</h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span><span style="color:#75715e"># Change permissions to read-only for the private key file</span>
-</span></span><span style="display:flex;"><span>chmod <span style="color:#ae81ff">400</span> &lt;private-key&gt;
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># E.g </span>
-</span></span><span style="display:flex;"><span>chmod <span style="color:#ae81ff">400</span> MyServer
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># Log in via SSH (notice host-username)</span>
-</span></span><span style="display:flex;"><span>ssh -i &lt;private-key&gt; &lt;host-username&gt;@&lt;host-ip <span style="color:#f92672">||</span> host-domain&gt;
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># E.g 1: If you use EC2 Ubuntu, the host-username maybe ubuntu</span>
-</span></span><span style="display:flex;"><span>ssh -i MyServer.pem ubuntu@54.251.177.159
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># E.g 2: If you use EC2 Amazon Linux, the host-username maybe ec2-user</span>
-</span></span><span style="display:flex;"><span>ssh -i MyServer.pem ec2-user@18.141.175.126
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># E.g 3: If you use GCP, the host-username is your account username</span>
-</span></span><span style="display:flex;"><span>ssh -i gcp-key dangpham112000@34.55.160.169
-</span></span></code></pre></div><ul>
-<li>Where is private-key file?
-<ul>
-<li>E.g 1: While you create <strong>EC2</strong> instance, you can create key-pair for login in aws console, then they will give you <code>private-key</code> to store on your SSH-client</li>
-<li>E.g 2: With <strong>GCP</strong> VM instance, you need to create your own key-pair and upload the public-key&rsquo;s content to <code>SSH-KEYS</code> (<code>Compute Engine</code> &gt; <code>Settings</code> &gt; <code>Metadata</code> &gt; <code>SSH-KEYS</code>)</li>
-</ul>
-</li>
-</ul>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span><span style="color:#75715e"># Create key-pair on SSH-Client with username is your account username</span>
-</span></span><span style="display:flex;"><span>ssh-keygen -t rsa -f &lt;keypair-name&gt; -C &lt;username&gt;
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># E.g</span>
-</span></span><span style="display:flex;"><span>ssh-keygen -t rsa -f gcp-key -C dangpham112000
-</span></span></code></pre></div><h3 id="setup-passwordless-authentication">
-  Setup passwordless authentication
-  <a class="anchor" href="#setup-passwordless-authentication">#</a>
-</h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span><span style="color:#75715e"># On SSH client</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># Generate a new SSH key pair using the Ed25519 algorithm</span>
-</span></span><span style="display:flex;"><span>ssh-keygen -t ed25519
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># -&gt; You can leave all the command prompts empty, just press enter</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># -&gt; You should notice the location of file *.pub for further actions </span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># Copy the public SSH key to the SSH server </span>
-</span></span><span style="display:flex;"><span>ssh-copy-id -i &lt;public-key-file-location&gt; &lt;host-username&gt;@&lt;host-ip <span style="color:#f92672">||</span> host-domain&gt;
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># E.g</span>
-</span></span><span style="display:flex;"><span>ssh-copy-id -i /root/.ssh/id_ed25519.pub ubuntu@123.213.32.1
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># Test the connection</span>
-</span></span><span style="display:flex;"><span>ssh &lt;host-username&gt;@&lt;host-ip <span style="color:#f92672">||</span> host-domain&gt;
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># -&gt; SSH server will no longer ask you a password</span>
-</span></span></code></pre></div><h3 id="disable-root-login">
-  Disable root login
-  <a class="anchor" href="#disable-root-login">#</a>
-</h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span><span style="color:#75715e"># Open the SSH daemon configuration file</span>
-</span></span><span style="display:flex;"><span>vim /etc/ssh/sshd_config
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># in [sshd_config] -&gt; Find PermitRootLogin and set it to no</span>
-</span></span><span style="display:flex;"><span>PermitRootLogin no
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># in [sshd_config] -&gt; Find PasswordAuthentication and set it to no</span>
-</span></span><span style="display:flex;"><span>PasswordAuthentication no
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># Restart the SSH Service</span>
-</span></span><span style="display:flex;"><span>systemctl restart ssh
-</span></span></code></pre></div><h3 id="secure-copy">
-  Secure copy
-  <a class="anchor" href="#secure-copy">#</a>
-</h3>
-<h4 id="from-ssh-client-to-ssh-server">
-  From SSH-client to SSH-server
-  <a class="anchor" href="#from-ssh-client-to-ssh-server">#</a>
-</h4>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span><span style="color:#75715e"># On SSH-client</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># From SSH-Client to SSH-Server</span>
-</span></span><span style="display:flex;"><span>scp &lt;path-to-file&gt; &lt;host-username&gt;@&lt;host-ip&gt;:&lt;destination&gt;
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># E.g</span>
-</span></span><span style="display:flex;"><span>scp ~/Documents/readme.md ubuntu@18.141.184.34:~/Document/
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># Or</span>
-</span></span><span style="display:flex;"><span>scp -i &lt;private-key&gt;.pem &lt;path-to-file&gt; &lt;host-username&gt;@&lt;host-ip&gt;:&lt;destination&gt;
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># E.g</span>
-</span></span><span style="display:flex;"><span>scp -i ~/Auth/MyServer.pem ~/Documents/readme.md ubuntu@18.141.184.34:~/Document/
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># From SSH-Server to SSH-Client</span>
-</span></span><span style="display:flex;"><span>scp &lt;host-username&gt;@&lt;host-ip&gt;:&lt;path-to-file&gt; &lt;destination-on-client&gt;
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># E.g</span>
-</span></span><span style="display:flex;"><span>scp ubuntu@18.141.184.34:~/Document/readyou.md ~/Documents
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># Or</span>
-</span></span><span style="display:flex;"><span>scp -i &lt;private-key&gt;.pem &lt;host-username&gt;@&lt;host-ip&gt;:&lt;path-to-file&gt; &lt;destination-on-client&gt;
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># E.g</span>
-</span></span><span style="display:flex;"><span>scp -i ~/Auth/MyServer.pem ubuntu@18.141.184.34:~/Document/readyou.md ~/Documents
-</span></span></code></pre></div><h2 id="nano">
-  Nano
-  <a class="anchor" href="#nano">#</a>
-</h2>
-<ul>
-<li>A default text editor of some OS</li>
-</ul>
-<h3 id="open-file">
-  Open file
-  <a class="anchor" href="#open-file">#</a>
-</h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>nano &lt;file-name&gt;
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># E.g</span>
-</span></span><span style="display:flex;"><span>nano index.html
-</span></span></code></pre></div><h3 id="save">
-  Save
-  <a class="anchor" href="#save">#</a>
-</h3>
-<ol>
-<li>Press <code>Ctrl</code> + <code>x</code></li>
-<li>Press <code>y</code></li>
-<li>Press <code>enter</code></li>
-</ol>
-<h2 id="setup-root-password">
-  Setup root password
-  <a class="anchor" href="#setup-root-password">#</a>
-</h2>
-<ul>
-<li>If your root user does not yet have a password</li>
-</ul>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span><span style="color:#75715e"># Gain root privileges</span>
-</span></span><span style="display:flex;"><span>sudo su
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># Set a Password</span>
-</span></span><span style="display:flex;"><span>passwd root
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># -&gt; Enter and confirm the password</span>
-</span></span></code></pre></div><h2 id="nginx">
-  Nginx
-  <a class="anchor" href="#nginx">#</a>
-</h2>
-<ul>
-<li>Capacity: 2MB</li>
-</ul>
-<h3 id="install">
-  Install
-  <a class="anchor" href="#install">#</a>
-</h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>sudo apt install nginx
-</span></span></code></pre></div><p>==&gt; Press <code>Tab</code> -&raquo; Choose <code>OK</code> and then press <code>enter</code></p>
-<h3 id="open-ports">
-  Open ports
-  <a class="anchor" href="#open-ports">#</a>
-</h3>
-<ul>
-<li>After installing Nginx, we may not be able to access our website because the firewall is enabled by default</li>
-<li>If you use EC2, the firewall is disabled by default, but your EC2 <code>Security Group</code> will block access to your website
-<ul>
-<li>You must edit the inbound rules to allow traffic on HTTP (port 80) and HTTPS (port 443)</li>
-</ul>
-</li>
-</ul>
-<h4 id="check-firewall-status">
-  Check firewall status
-  <a class="anchor" href="#check-firewall-status">#</a>
-</h4>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>sudo ufw status
-</span></span></code></pre></div><ul>
-<li><code>ufw</code>: ubuntu firewall</li>
-</ul>
-<h4 id="lets-firewall-allow-nginx">
-  Let&rsquo;s firewall allow nginx
-  <a class="anchor" href="#lets-firewall-allow-nginx">#</a>
-</h4>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>sudo ufw allow <span style="color:#e6db74">&#34;Nginx Full&#34;</span>
-</span></span></code></pre></div><h3 id="locate-the-index-file">
-  Locate the index file
-  <a class="anchor" href="#locate-the-index-file">#</a>
-</h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>/var/www/html/
-</span></span></code></pre></div><h3 id="locate-configuration-file">
-  Locate configuration file
-  <a class="anchor" href="#locate-configuration-file">#</a>
-</h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>/etc/nginx/sites-available/
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># Activate the configuration for Nginx</span>
-</span></span><span style="display:flex;"><span>sudo ln -s /etc/nginx/sites-available/&lt;my-config&gt;.conf /etc/nginx/sites-enabled/
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># Test config syntax</span>
-</span></span><span style="display:flex;"><span>sudo nginx -t
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># Restart nginx</span>
-</span></span><span style="display:flex;"><span>sudo systemctl restart nginx
-</span></span></code></pre></div><h2 id="well-known-ports-link">
-  <a href="https://en.wikipedia.org/wiki/List_of_TCP_and_UDP_port_numbers#Well-known_ports">Well-known ports (Link)</a>
-  <a class="anchor" href="#well-known-ports-link">#</a>
-</h2>
-<h2 id="ssl-certificate">
-  SSL Certificate
-  <a class="anchor" href="#ssl-certificate">#</a>
-</h2>
-<h3 id="lets-encrypt-ssltls-certificate">
-  Let&rsquo;s Encrypt SSL/TLS certificate
-  <a class="anchor" href="#lets-encrypt-ssltls-certificate">#</a>
-</h3>
-<ul>
-<li>Issued at <strong>no cost</strong> by the Let&rsquo;s Encrypt Certificate Authority</li>
-<li>Provides <a href="/docs/research/be_protocol/tls_ssl/#domain-validation"><strong>Domain Validation (DV)</strong></a> certificates</li>
-<li>Certificates are valid for <strong>90 days</strong>, but they can be <strong>renewed automatically</strong> with <strong>Certbot</strong></li>
-</ul>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span><span style="color:#75715e"># Install Snap</span>
-</span></span><span style="display:flex;"><span>sudo apt install snapd
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># Ensure stability and compatibility for all snap packages</span>
-</span></span><span style="display:flex;"><span>sudo snap install core; sudo snap refresh core
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># Install Certbot</span>
-</span></span><span style="display:flex;"><span>sudo snap install --classic certbot
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># Ensures that Certbot is accessible system-wide</span>
-</span></span><span style="display:flex;"><span>sudo ln -s /snap/bin/certbot /usr/bin/certbot
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># Obtain and install a certificate for a website running on Nginx</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># Automatically configuring Nginx to use HTTPS</span>
-</span></span><span style="display:flex;"><span>sudo certbot --nginx
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># -&gt; Certbot will prompt you to provide some information (domain, email, ads)</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># Test automatic renewal</span>
-</span></span><span style="display:flex;"><span>sudo certbot renew --dry-run
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># -&gt; If the dry run is successful, you&#39;ll see output similar to:</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># Congratulations, all renewals succeeded</span>
-</span></span></code></pre></div><ul>
-<li><strong>Certbot</strong>: A popular tool for obtaining and managing SSL/TLS certificates from the <strong>Let&rsquo;s Encrypt</strong> Certificate Authority</li>
-</ul>
-<h3 id="certificates-for-localhost">
-  Certificates for localhost
-  <a class="anchor" href="#certificates-for-localhost">#</a>
-</h3>
-<h4 id="create-ca-certificate">
-  Create CA certificate
-  <a class="anchor" href="#create-ca-certificate">#</a>
-</h4>
-<ul>
-<li>Generate <code>RootCA.pem</code>, <code>RootCA.key</code>, and <code>RootCA.crt</code>:</li>
-</ul>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span><span style="color:#75715e"># Generate a Root CA Certificate</span>
-</span></span><span style="display:flex;"><span>openssl req -x509 -nodes -new -sha256 -days <span style="color:#ae81ff">1024</span> -newkey rsa:2048 -keyout RootCA.key -out RootCA.pem -subj <span style="color:#e6db74">&#34;/C=US/CN=Example-Root-CA&#34;</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># -&gt; RootCA.key &amp; RootCA.pem</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># Convert the Certificate to .crt Format</span>
-</span></span><span style="display:flex;"><span>openssl x509 -outform pem -in RootCA.pem -out RootCA.crt
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># -&gt; RootCA.crt</span>
-</span></span></code></pre></div><ul>
-<li><code>RootCA.key</code>: Private key for the Root CA</li>
-<li><code>RootCA.pem</code>: Self-signed certificate for the Root CA in PEM format</li>
-<li><code>RootCA.crt</code>: Contains the same information as <code>RootCA.pem</code>, but they are often distinguished by convention</li>
-</ul>
-<h4 id="create-a-configuration-snippet">
-  Create a configuration snippet
-  <a class="anchor" href="#create-a-configuration-snippet">#</a>
-</h4>
-<ul>
-<li>Create a file <code>domains.ext</code></li>
-</ul>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ini" data-lang="ini"><span style="display:flex;"><span><span style="color:#75715e"># domains.ext</span>
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">authorityKeyIdentifier</span><span style="color:#f92672">=</span><span style="color:#e6db74">keyid,issuer</span>
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">basicConstraints</span><span style="color:#f92672">=</span><span style="color:#e6db74">CA:FALSE</span>
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">keyUsage</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">digitalSignature, nonRepudiation, keyEncipherment, dataEncipherment</span>
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">subjectAltName</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">@alt_names</span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">[alt_names]</span>
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">DNS.1</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">localhost</span>
-</span></span></code></pre></div><h4 id="generating-a-signed-certificate-for-localhost">
-  Generating a signed certificate for localhost
-  <a class="anchor" href="#generating-a-signed-certificate-for-localhost">#</a>
-</h4>
-<ul>
-<li>Generate <code>localhost.key</code>, <code>localhost.csr</code>, and <code>localhost.crt</code></li>
-</ul>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span><span style="color:#75715e"># Generate a CSR (Certificate Signing Request) for localhost</span>
-</span></span><span style="display:flex;"><span>openssl req -new -nodes -newkey rsa:2048 -keyout localhost.key -out localhost.csr -subj <span style="color:#e6db74">&#34;/C=US/ST=YourState/L=YourCity/O=Example-Certificates/CN=localhost&#34;</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># -&gt; localhost.key &amp; localhost.csr</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># Sign the CSR with a Root CA to generate the signed certificate</span>
-</span></span><span style="display:flex;"><span>openssl x509 -req -sha256 -days <span style="color:#ae81ff">1024</span> -in localhost.csr -CA RootCA.pem -CAkey RootCA.key -CAcreateserial -extfile domains.ext -out localhost.crt
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># -&gt; localhost.crt</span>
-</span></span></code></pre></div><ul>
-<li><code>localhost.key</code>: Private key for the certificate</li>
-<li><code>localhost.csr</code>: Certificate Signing Request (CSR) that can be sent to a Certificate Authority (CA) for signing</li>
-<li><code>localhost.crt</code>: The final signed certificate for localhost generated by your Root CA</li>
-</ul>
-<h4 id="configure-your-webserver">
-  Configure your webserver
-  <a class="anchor" href="#configure-your-webserver">#</a>
-</h4>
-<details ><summary><strong>Nginx</strong></summary>
-  <div class="markdown-inner">
-    <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-nginx" data-lang="nginx"><span style="display:flex;"><span><span style="color:#66d9ef">server</span> {
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">listen</span> <span style="color:#ae81ff">443</span> <span style="color:#e6db74">ssl</span> <span style="color:#e6db74">default_server</span>;
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">listen</span> <span style="color:#e6db74">[::]:443</span> <span style="color:#e6db74">ssl</span> <span style="color:#e6db74">default_server</span>;
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">ssl_certificate</span> <span style="color:#e6db74">/home/dangpham/Auth/ssl_cert/localhost.crt</span>;
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">ssl_certificate_key</span> <span style="color:#e6db74">/home/dangpham/Auth/ssl_cert/localhost.key</span>;
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">root</span> <span style="color:#e6db74">/var/www/html</span>;
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">index</span> <span style="color:#e6db74">index.html</span> <span style="color:#e6db74">index.htm</span> <span style="color:#e6db74">index.nginx-debian.html</span>;
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">server_name</span> <span style="color:#e6db74">localhost</span>;
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">location</span> <span style="color:#e6db74">/</span> {
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">try_files</span> $uri $uri/ =<span style="color:#ae81ff">404</span>;
-</span></span><span style="display:flex;"><span>  }
-</span></span><span style="display:flex;"><span>}
-</span></span></code></pre></div>
-  </div>
-</details>
-
-</br>
-<details ><summary><strong>Nodejs</strong></summary>
-  <div class="markdown-inner">
-    <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">https</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span>(<span style="color:#e6db74">&#39;https&#39;</span>);
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">fs</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span>(<span style="color:#e6db74">&#39;fs&#39;</span>);
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">path</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span>(<span style="color:#e6db74">&#39;path&#39;</span>);
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">certLocation</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;/home/dangpham/Auth/ssl_cert&#39;</span>;
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">options</span> <span style="color:#f92672">=</span> {
-</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">key</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">fs</span>.<span style="color:#a6e22e">readFileSync</span>(<span style="color:#a6e22e">path</span>.<span style="color:#a6e22e">resolve</span>(<span style="color:#a6e22e">certLocation</span>, <span style="color:#e6db74">&#39;localhost.key&#39;</span>)), 
-</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">cert</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">fs</span>.<span style="color:#a6e22e">readFileSync</span>(<span style="color:#a6e22e">path</span>.<span style="color:#a6e22e">resolve</span>(<span style="color:#a6e22e">certLocation</span>, <span style="color:#e6db74">&#39;localhost.crt&#39;</span>)), 
-</span></span><span style="display:flex;"><span>};
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">server</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">https</span>.<span style="color:#a6e22e">createServer</span>(<span style="color:#a6e22e">options</span>,(<span style="color:#a6e22e">req</span>, <span style="color:#a6e22e">res</span>) =&gt; {
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">req</span>.<span style="color:#a6e22e">url</span> <span style="color:#f92672">===</span> <span style="color:#e6db74">&#39;/hello&#39;</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#a6e22e">req</span>.<span style="color:#a6e22e">method</span> <span style="color:#f92672">===</span> <span style="color:#e6db74">&#39;GET&#39;</span>) {
-</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">res</span>.<span style="color:#a6e22e">writeHead</span>(<span style="color:#ae81ff">200</span>, { <span style="color:#e6db74">&#39;Content-Type&#39;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;text/plain&#39;</span> });
-</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">res</span>.<span style="color:#a6e22e">end</span>(<span style="color:#e6db74">&#39;world&#39;</span>);
-</span></span><span style="display:flex;"><span>    } <span style="color:#66d9ef">else</span> {
-</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">res</span>.<span style="color:#a6e22e">writeHead</span>(<span style="color:#ae81ff">404</span>, { <span style="color:#e6db74">&#39;Content-Type&#39;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;text/plain&#39;</span> });
-</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">res</span>.<span style="color:#a6e22e">end</span>(<span style="color:#e6db74">&#39;Not Found&#39;</span>);
-</span></span><span style="display:flex;"><span>    }
-</span></span><span style="display:flex;"><span>});
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">server</span>.<span style="color:#a6e22e">listen</span>(<span style="color:#ae81ff">443</span>, () =&gt; {
-</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#39;Server is listening on port 443&#39;</span>);
-</span></span><span style="display:flex;"><span>});
-</span></span></code></pre></div>
-  </div>
-</details>
-
-<h4 id="add-new-local-ca-to-the-trusted-root-certificate-authorities">
-  Add new local CA to the trusted Root Certificate Authorities
-  <a class="anchor" href="#add-new-local-ca-to-the-trusted-root-certificate-authorities">#</a>
-</h4>
-<details ><summary><strong>Chrome</strong></summary>
-  <div class="markdown-inner">
-    <ol>
-<li>Browse <code>chrome://settings/certificates</code></li>
-<li>Choose <code>Authorities</code> then <code>Import</code></li>
-<li>Import <code>RootCA.pem</code> we created above</li>
-<li>Check all options</li>
-</ol>
-
-  </div>
-</details>
-
-</br>
-<details ><summary><strong>Firefox</strong></summary>
-  <div class="markdown-inner">
-    <ul>
-<li>Make Firefox trusted Root CAs:
-<ol>
-<li>Browse <code>about:config</code></li>
-<li>Type <code>security.enterprise_roots.enabled</code></li>
-<li>Enable it to <code>true</code></li>
-</ol>
-</li>
-<li>Import CA certificate:
-<ol>
-<li>Browse <code>about:preferences#privacy</code></li>
-<li>Find <code>Certificats</code> section</li>
-<li>Choose <code>View Certificates</code> and then <code>Import</code></li>
-<li>Import <code>RootCA.pem</code> we created above</li>
-<li>Confirm</li>
-</ol>
-</li>
-</ul>
-
-  </div>
-</details>
-
-<h2 id="references">
-  References
-  <a class="anchor" href="#references">#</a>
-</h2>
-<ul>
-<li>Wikipedia: <a href="https://en.wikipedia.org/wiki/List_of_TCP_and_UDP_port_numbers">List of TCP and UDP port numbers</a> (Nov 13th, 2024)</li>
-<li>Certbot: <a href="https://certbot.eff.org/instructions?ws=nginx&amp;os=snap">Certbot Instructions Nginx on Linux (snap)</a></li>
-<li>Letsencrypt: <a href="https://letsencrypt.org/docs/certificates-for-localhost/">Certificates for localhost</a> (Dec 21st, 2017)</li>
-<li>Github: <a href="https://gist.github.com/cecilemuller/9492b848eb8fe46d462abeb26656c4f8">How to create an HTTPS certificate for localhost domains</a> (2019)</li>
-</ul>
-<style>
-    .feedback-card {
-        border: 1px solid #ddd;
-        border-radius: 8px;
-        padding: 20px;
-        max-width: 100%;
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-        background-color: #f9f9fb;
-    }
-    .feedback-card h2 {
-        font-size: 20px;
-        margin-top: 0px;
-        margin-bottom: 10px;
-    }
-    .feedback-card .buttons {
-        margin: 10px 0;
-    }
-    .feedback-card button {
-        border: none;
-        background-color: #f0f0f0;
-        border-radius: 4px;
-        padding: 10px 15px;
-        margin-right: 10px;
-        cursor: pointer;
-        font-size: 16px;
-    }
-    .feedback-card button:hover {
-        background-color: #e0e0e0;
-    }
-    .feedback-card a {
-        color: #0074d9;
-        text-decoration: none;
-    }
-    .feedback-card a:hover {
-        text-decoration: underline;
-    }
-    .feedback-card p {
-        font-size: 14px;
-        color: #555;
-    }
-
-     
-    .modal {
-      display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      border-radius: 7px;
-      padding-bottom: 50px;
-
-      background-color: rgba(0, 0, 0, 0.5);
-      justify-content: center;
-      align-items: flex-end;
-    }
-
-    .modal-content {
-      background-color: white;
-      padding: 20px;
-      border-radius: 5px;
-      width: 300px;
-    }
-
-    .modal input {
-      width: 100%;
-      padding: 10px;
-      margin-bottom: 10px;
-    }
-</style>
-<div class="feedback-card" id="feedbackCard">
-    <h2>Help improve my blog</h2>
-    <p>Was this page helpful to you?</p>
-    <div class="buttons">
-        <button id="yesBtn">👍 Yes</button>
-        <button id="noBtn">👎 No</button>
-    </div>
-    <p>This page was last modified at <strong>2024-11-27</strong></p>
-    <ul>
-        <li><a href="https://github.com/DangPham112000/blog" target="_blank">View this page on GitHub</a></li>
-        <li><a href="#" class="link-button" id="linkButton">Report a problem with this content</a></li>
-    </ul>
-</div>
-
-<div class="modal" id="formModal">
-    <div class="feedback-card">
-        <h2>Can I know your name?</h2>
-        <form id="form">
-            <input type="text" name="username" placeholder="Enter your name">
-            <button type="submit">Yes</button>
-            <button type="submit">No</button>
-        </form>
-    </div>
-</div>
-
-<script>
-    const feedbackCardEle = document.getElementById("feedbackCard");
-    const formModalEle = document.getElementById('formModal');
-    const elesToShowForm = ['linkButton', 'yesBtn', 'noBtn'];
-
-    for (const ele of elesToShowForm) {
-        document.getElementById(ele).addEventListener('click', function(e) {
-            e.preventDefault();
-            formModalEle.style.display = 'flex';
-        });
-    }
-
-    window.onclick = function(event) {
-        if (event.target === formModalEle) {
-            formModalEle.style.display = 'none';
-        }
-    };
-
-    document.getElementById('form').addEventListener('submit', function(e) {
-        e.preventDefault(); 
-        alert('This feature is currently being developed');
-        formModalEle.style.display = 'none'; 
-    });
-</script>
-</article>
- 
-      
-
-      <footer class="book-footer">
-        
-  <div class="flex flex-wrap justify-between">
-
-
-
-
-
-</div>
-
-
-
-  <script>(function(){function e(e){const t=window.getSelection(),n=document.createRange();n.selectNodeContents(e),t.removeAllRanges(),t.addRange(n)}document.querySelectorAll("pre code").forEach(t=>{t.addEventListener("click",function(){if(window.getSelection().toString())return;e(t.parentElement),navigator.clipboard&&navigator.clipboard.writeText(t.parentElement.textContent)})})})()</script>
-
-
- 
-        
-      </footer>
-
-      
-  
-  <div class="book-comments">
-
-</div>
-  
- 
-
-      <label for="menu-control" class="hidden book-menu-overlay"></label>
-    </div>
-
-    
-    <aside class="book-toc">
-      <div class="book-toc-content">
-        
-  
-<nav id="TableOfContents">
-  <ul>
-    <li><a href="#common-commands">Common Commands</a>
-      <ul>
-        <li><a href="#ip-address">IP address</a></li>
-        <li><a href="#show-detail-a-command">Show detail a command</a></li>
-        <li><a href="#best-practice-before-install-anything">Best practice before install anything</a></li>
-        <li><a href="#show-package-detail">Show package detail</a></li>
-        <li><a href="#print-working-directory">Print working directory</a></li>
-        <li><a href="#copy">Copy</a></li>
-        <li><a href="#clear-directory">Clear directory</a></li>
-        <li><a href="#move">Move</a></li>
-        <li><a href="#rename">Rename</a></li>
-        <li><a href="#create">Create</a></li>
-        <li><a href="#print-file-content">Print file content</a></li>
-        <li><a href="#echo">Echo</a></li>
-      </ul>
-    </li>
-    <li><a href="#systemctl">Systemctl</a>
-      <ul>
-        <li><a href="#restart">Restart</a></li>
-        <li><a href="#check-status">Check status</a></li>
-      </ul>
-    </li>
-    <li><a href="#ssh">SSH</a>
-      <ul>
-        <li><a href="#connect">Connect</a></li>
-        <li><a href="#login-with-username-and-password">Login with username and password</a></li>
-        <li><a href="#login-via-private-key-file">Login via private-key file</a></li>
-        <li><a href="#setup-passwordless-authentication">Setup passwordless authentication</a></li>
-        <li><a href="#disable-root-login">Disable root login</a></li>
-        <li><a href="#secure-copy">Secure copy</a></li>
-      </ul>
-    </li>
-    <li><a href="#nano">Nano</a>
-      <ul>
-        <li><a href="#open-file">Open file</a></li>
-        <li><a href="#save">Save</a></li>
-      </ul>
-    </li>
-    <li><a href="#setup-root-password">Setup root password</a></li>
-    <li><a href="#nginx">Nginx</a>
-      <ul>
-        <li><a href="#install">Install</a></li>
-        <li><a href="#open-ports">Open ports</a></li>
-        <li><a href="#locate-the-index-file">Locate the index file</a></li>
-        <li><a href="#locate-configuration-file">Locate configuration file</a></li>
-      </ul>
-    </li>
-    <li><a href="#well-known-ports-link"><a href="https://en.wikipedia.org/wiki/List_of_TCP_and_UDP_port_numbers#Well-known_ports">Well-known ports (Link)</a></a></li>
-    <li><a href="#ssl-certificate">SSL Certificate</a>
-      <ul>
-        <li><a href="#lets-encrypt-ssltls-certificate">Let&rsquo;s Encrypt SSL/TLS certificate</a></li>
-        <li><a href="#certificates-for-localhost">Certificates for localhost</a></li>
-      </ul>
-    </li>
-    <li><a href="#references">References</a></li>
-  </ul>
-</nav>
-
-
- 
-      </div>
-    </aside>
-    
-  </main>
-
-  
-</body>
-</html>
-
-
-
-
-
-
-
-
-
-
-
-
+==> Press Tab -&#187; Choose OK and then press enter"><meta name=theme-color media="(prefers-color-scheme: light)" content="#ffffff"><meta name=theme-color media="(prefers-color-scheme: dark)" content="#343a40"><meta name=color-scheme content="light dark"><meta property="og:url" content="https://dangpham112000.github.io/docs/tips/004_ops/"><meta property="og:site_name" content="Dante 0401"><meta property="og:title" content="Ops"><meta property="og:description" content="Operation Tips # Common Commands # IP address # # Public curl ipinfo.io/ip # Local ip address show Show detail a command # man <command> # E.g man vim # Then press q to quit Best practice before install anything # sudo apt update sudo apt upgrade Show package detail # apt show <package-name> # E.g apt show ssh E.g output Package: ssh Version: 1:9.6p1-3ubuntu13.5 Priority: optional Section: net Source: openssh Origin: Ubuntu Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com> Original-Maintainer: Debian OpenSSH Maintainers <debian-ssh@lists.debian.org> Bugs: https://bugs.launchpad.net/ubuntu/+filebug Installed-Size: 57.3 kB Depends: openssh-client (>= 1:9.6p1-3ubuntu13.5), openssh-server (>= 1:9.6p1-3ubuntu13.5) Homepage: https://www.openssh.com/ Download-Size: 4,658 B APT-Sources: http://vn.archive.ubuntu.com/ubuntu noble-updates/main amd64 Packages Description: secure shell client and server (metapackage) This metapackage is a convenient way to install both the OpenSSH client and the OpenSSH server. It provides nothing in and of itself, so you may remove it if nothing depends on it. Print working directory # pwd Copy # cp <source> <destination> # E.g cp readme.md readyou.md # create a copy named readyou with the same content as readme Clear directory # rm -rf <directory-name> Move # mv <source> <destination> # E.g mv readme.md .. # Move readme file to parent dir mv ../readme.md . # Move readme from parent dir to current dir Rename # If you move a file within the current directory, that means you are renaming it mv <old-name> <new-name> # E.g mv readme.md readyou.md Create # # Directory: mkdir <dir-name> # File: touch <file-name> Print file content # cat <file-name> Echo # Print env variable # echo $USER # E.g result: # >> dangpham112 Add content to file # echo Hello $USER > readme.md # readme file now have a content: Hello dangpham112 Systemctl # Restart # systemctl restart <service-name> # E.g systemctl restart ssh Check status # systemctl status <service-name> # E.g systemctl status ssh SSH # Stand for Secure Shell Check SSH score SSH Hardening Guides Connect # # Access SSH server ssh <username>@<ip-address || domain-name> # Then typing password and press enter Login with username and password # ssh <host-username>@<host-ip || host-domain> # -> SSH will promt you to enter the password Login via private-key file # # Change permissions to read-only for the private key file chmod 400 <private-key> # E.g chmod 400 MyServer # Log in via SSH (notice host-username) ssh -i <private-key> <host-username>@<host-ip || host-domain> # E.g 1: If you use EC2 Ubuntu, the host-username maybe ubuntu ssh -i MyServer.pem ubuntu@54.251.177.159 # E.g 2: If you use EC2 Amazon Linux, the host-username maybe ec2-user ssh -i MyServer.pem ec2-user@18.141.175.126 # E.g 3: If you use GCP, the host-username is your account username ssh -i gcp-key dangpham112000@34.55.160.169 Where is private-key file? E.g 1: While you create EC2 instance, you can create key-pair for login in aws console, then they will give you private-key to store on your SSH-client E.g 2: With GCP VM instance, you need to create your own key-pair and upload the public-key’s content to SSH-KEYS (Compute Engine > Settings > Metadata > SSH-KEYS) # Create key-pair on SSH-Client with username is your account username ssh-keygen -t rsa -f <keypair-name> -C <username> # E.g ssh-keygen -t rsa -f gcp-key -C dangpham112000 Setup passwordless authentication # # On SSH client # Generate a new SSH key pair using the Ed25519 algorithm ssh-keygen -t ed25519 # -> You can leave all the command prompts empty, just press enter # -> You should notice the location of file *.pub for further actions # Copy the public SSH key to the SSH server ssh-copy-id -i <public-key-file-location> <host-username>@<host-ip || host-domain> # E.g ssh-copy-id -i /root/.ssh/id_ed25519.pub ubuntu@123.213.32.1 # Test the connection ssh <host-username>@<host-ip || host-domain> # -> SSH server will no longer ask you a password Disable root login # # Open the SSH daemon configuration file vim /etc/ssh/sshd_config # in [sshd_config] -> Find PermitRootLogin and set it to no PermitRootLogin no # in [sshd_config] -> Find PasswordAuthentication and set it to no PasswordAuthentication no # Restart the SSH Service systemctl restart ssh Secure copy # From SSH-client to SSH-server # # On SSH-client # From SSH-Client to SSH-Server scp <path-to-file> <host-username>@<host-ip>:<destination> # E.g scp ~/Documents/readme.md ubuntu@18.141.184.34:~/Document/ # Or scp -i <private-key>.pem <path-to-file> <host-username>@<host-ip>:<destination> # E.g scp -i ~/Auth/MyServer.pem ~/Documents/readme.md ubuntu@18.141.184.34:~/Document/ # From SSH-Server to SSH-Client scp <host-username>@<host-ip>:<path-to-file> <destination-on-client> # E.g scp ubuntu@18.141.184.34:~/Document/readyou.md ~/Documents # Or scp -i <private-key>.pem <host-username>@<host-ip>:<path-to-file> <destination-on-client> # E.g scp -i ~/Auth/MyServer.pem ubuntu@18.141.184.34:~/Document/readyou.md ~/Documents Nano # A default text editor of some OS Open file # nano <file-name> # E.g nano index.html Save # Press Ctrl + x Press y Press enter Setup root password # If your root user does not yet have a password # Gain root privileges sudo su # Set a Password passwd root # -> Enter and confirm the password Nginx # Capacity: 2MB Install # sudo apt install nginx ==> Press Tab -» Choose OK and then press enter"><meta property="og:locale" content="en_us"><meta property="og:type" content="article"><meta property="article:section" content="docs"><meta property="article:published_time" content="2024-11-27T01:47:46+07:00"><meta property="article:modified_time" content="2024-11-27T01:47:46+07:00"><title>Ops | Dante 0401</title><link rel=manifest href=/manifest.json><link rel=icon href=/favicon.png><link rel=canonical href=https://dangpham112000.github.io/docs/tips/004_ops/><link rel=stylesheet href=/book.min.95535ae437871e725b7f7b2fb47d6446b8247773f5f22345e8c0aafa00c5db9b.css integrity="sha256-lVNa5DeHHnJbf3svtH1kRrgkd3P18iNF6MCq+gDF25s=" crossorigin=anonymous><script defer src=/fuse.min.js></script><script defer src=/en.search.min.b7403c70329304a8d4de17873d6d0681a5a205e052f3bdbca43f342b899d2958.js integrity="sha256-t0A8cDKTBKjU3heHPW0GgaWiBeBS8728pD80K4mdKVg=" crossorigin=anonymous></script></head><body dir=ltr><input type=checkbox class="hidden toggle" id=menu-control>
+<input type=checkbox class="hidden toggle" id=toc-control><main class="container flex"><aside class=book-menu><div class=book-menu-content><nav><h2 class=book-brand><a class="flex align-center" href=/><span>Dante 0401</span></a></h2><div class="book-search hidden"><input type=text id=book-search-input placeholder=Search aria-label=Search maxlength=64 data-hotkeys=s/><div class="book-search-spinner hidden"></div><ul id=book-search-results></ul></div><script>document.querySelector(".book-search").classList.remove("hidden")</script><ul><li class=book-section-flat><span>RESEARCH</span><ul><li><a href=/docs/research/mcp-server-tutorial/>Building an MCP Server from Scratch: An E-commerce Case Study</a></li><li><a href=/docs/research/process_vs_thread/>Process vs Thread</a></li><li><a href=/docs/research/chrome_architecture/>Chrome Architecture</a></li><li><a href=/docs/research/aws_overview/>AWS Overview</a></li><li><a href=/docs/research/be_protocol/>Backend</a><ul><li><a href=/docs/research/be_protocol/tls_ssl/>TLS - SSL</a></li><li><a href=/docs/research/be_protocol/communication/>Communication</a></li><li><a href=/docs/research/be_protocol/rabbitmq/>RabbitMQ</a></li><li><a href=/docs/research/be_protocol/kafka/>Kafka - Draft</a></li></ul></li><li><a href=/docs/research/encryption/>Encryption</a></li><li><a href=/docs/research/token_based_authentication/>Token-based Authentication</a></li><li><a href=/docs/research/security/>Security - Draft</a><ul><li><a href=/docs/research/security/hsts/>HSTS</a></li><li><a href=/docs/research/security/bit_flipping/>Bit Flipping</a></li></ul></li><li><a href=/docs/research/scale/>Scale</a></li></ul></li><li class=book-section-flat><span>TIPS</span><ul><li><a href=/docs/tips/001_unit_test/>Unit Test</a></li><li><a href=/docs/tips/002_git/>Git</a></li><li><a href=/docs/tips/003_docker/>Docker</a></li><li><a href=/docs/tips/004_ops/ class=active>Ops</a></li><li><a href=/docs/tips/005_passion/>Spark Passion</a></li></ul></li><li class=book-section-flat><span>PROBLEMS</span><ul><li><a href=/docs/problems/knight_dialer/>Knight Dialer</a></li></ul></li></ul></nav><script>(function(){var e=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(){localStorage.setItem("menu.scrollTop",e.scrollTop)}),e.scrollTop=localStorage.getItem("menu.scrollTop")})()</script></div></aside><div class=book-page><header class=book-header><div class="flex align-center justify-between"><label for=menu-control><img src=/svg/menu.svg class=book-icon alt=Menu>
+</label><strong>Ops</strong>
+<label for=toc-control><img src=/svg/toc.svg class=book-icon alt="Table of Contents"></label></div><aside class="hidden clearfix"><nav id=TableOfContents><ul><li><a href=#common-commands>Common Commands</a><ul><li><a href=#ip-address>IP address</a></li><li><a href=#show-detail-a-command>Show detail a command</a></li><li><a href=#best-practice-before-install-anything>Best practice before install anything</a></li><li><a href=#show-package-detail>Show package detail</a></li><li><a href=#print-working-directory>Print working directory</a></li><li><a href=#copy>Copy</a></li><li><a href=#clear-directory>Clear directory</a></li><li><a href=#move>Move</a></li><li><a href=#rename>Rename</a></li><li><a href=#create>Create</a></li><li><a href=#print-file-content>Print file content</a></li><li><a href=#echo>Echo</a></li></ul></li><li><a href=#systemctl>Systemctl</a><ul><li><a href=#restart>Restart</a></li><li><a href=#check-status>Check status</a></li></ul></li><li><a href=#ssh>SSH</a><ul><li><a href=#connect>Connect</a></li><li><a href=#login-with-username-and-password>Login with username and password</a></li><li><a href=#login-via-private-key-file>Login via private-key file</a></li><li><a href=#setup-passwordless-authentication>Setup passwordless authentication</a></li><li><a href=#disable-root-login>Disable root login</a></li><li><a href=#secure-copy>Secure copy</a></li></ul></li><li><a href=#nano>Nano</a><ul><li><a href=#open-file>Open file</a></li><li><a href=#save>Save</a></li></ul></li><li><a href=#setup-root-password>Setup root password</a></li><li><a href=#nginx>Nginx</a><ul><li><a href=#install>Install</a></li><li><a href=#open-ports>Open ports</a></li><li><a href=#locate-the-index-file>Locate the index file</a></li><li><a href=#locate-configuration-file>Locate configuration file</a></li></ul></li><li><a href=#well-known-ports-link>Well-known ports (Link)</a></li><li><a href=#ssl-certificate>SSL Certificate</a><ul><li><a href=#lets-encrypt-ssltls-certificate>Let&rsquo;s Encrypt SSL/TLS certificate</a></li><li><a href=#certificates-for-localhost>Certificates for localhost</a></li></ul></li><li><a href=#references>References</a></li></ul></nav></aside></header><article class="markdown book-article"><h1 id=operation-tips>Operation Tips
+<a class=anchor href=#operation-tips>#</a></h1><h2 id=common-commands>Common Commands
+<a class=anchor href=#common-commands>#</a></h2><h3 id=ip-address>IP address
+<a class=anchor href=#ip-address>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-sh data-lang=sh><span style=display:flex><span><span style=color:#75715e># Public</span>
+</span></span><span style=display:flex><span>curl ipinfo.io/ip
+</span></span><span style=display:flex><span><span style=color:#75715e># Local</span>
+</span></span><span style=display:flex><span>ip address show 
+</span></span></code></pre></div><h3 id=show-detail-a-command>Show detail a command
+<a class=anchor href=#show-detail-a-command>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-sh data-lang=sh><span style=display:flex><span>man &lt;command&gt;
+</span></span><span style=display:flex><span><span style=color:#75715e># E.g</span>
+</span></span><span style=display:flex><span>man vim
+</span></span><span style=display:flex><span><span style=color:#75715e># Then press q to quit</span>
+</span></span></code></pre></div><h3 id=best-practice-before-install-anything>Best practice before install anything
+<a class=anchor href=#best-practice-before-install-anything>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-sh data-lang=sh><span style=display:flex><span>sudo apt update
+</span></span><span style=display:flex><span>sudo apt upgrade
+</span></span></code></pre></div><h3 id=show-package-detail>Show package detail
+<a class=anchor href=#show-package-detail>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-sh data-lang=sh><span style=display:flex><span>apt show &lt;package-name&gt;
+</span></span><span style=display:flex><span><span style=color:#75715e># E.g </span>
+</span></span><span style=display:flex><span>apt show ssh
+</span></span></code></pre></div><details><summary>E.g output</summary><div class=markdown-inner><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-yml data-lang=yml><span style=display:flex><span><span style=color:#f92672>Package</span>: <span style=color:#ae81ff>ssh</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>Version</span>: <span style=color:#ae81ff>1</span>:<span style=color:#ae81ff>9.</span><span style=color:#ae81ff>6p1-3ubuntu13.5</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>Priority</span>: <span style=color:#ae81ff>optional</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>Section</span>: <span style=color:#ae81ff>net</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>Source</span>: <span style=color:#ae81ff>openssh</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>Origin</span>: <span style=color:#ae81ff>Ubuntu</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>Maintainer</span>: <span style=color:#ae81ff>Ubuntu Developers &lt;ubuntu-devel-discuss@lists.ubuntu.com&gt;</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>Original-Maintainer</span>: <span style=color:#ae81ff>Debian OpenSSH Maintainers &lt;debian-ssh@lists.debian.org&gt;</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>Bugs</span>: <span style=color:#ae81ff>https://bugs.launchpad.net/ubuntu/+filebug</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>Installed-Size</span>: <span style=color:#ae81ff>57.3</span> <span style=color:#ae81ff>kB</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>Depends</span>: <span style=color:#ae81ff>openssh-client (&gt;= 1:9.6p1-3ubuntu13.5), openssh-server (&gt;= 1:9.6p1-3ubuntu13.5)</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>Homepage</span>: <span style=color:#ae81ff>https://www.openssh.com/</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>Download-Size</span>: <span style=color:#ae81ff>4</span>,<span style=color:#ae81ff>658</span> <span style=color:#ae81ff>B</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>APT-Sources</span>: <span style=color:#ae81ff>http://vn.archive.ubuntu.com/ubuntu noble-updates/main amd64 Packages</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>Description</span>: <span style=color:#ae81ff>secure shell client and server (metapackage)</span>
+</span></span><span style=display:flex><span> <span style=color:#ae81ff>This metapackage is a convenient way to install both the OpenSSH client</span>
+</span></span><span style=display:flex><span> <span style=color:#ae81ff>and the OpenSSH server. It provides nothing in and of itself, so you</span>
+</span></span><span style=display:flex><span> <span style=color:#ae81ff>may remove it if nothing depends on it.</span>
+</span></span></code></pre></div></div></details><h3 id=print-working-directory>Print working directory
+<a class=anchor href=#print-working-directory>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-sh data-lang=sh><span style=display:flex><span>pwd
+</span></span></code></pre></div><h3 id=copy>Copy
+<a class=anchor href=#copy>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-sh data-lang=sh><span style=display:flex><span>cp &lt;source&gt; &lt;destination&gt;
+</span></span><span style=display:flex><span><span style=color:#75715e># E.g</span>
+</span></span><span style=display:flex><span>cp readme.md readyou.md <span style=color:#75715e># create a copy named readyou with the same content as readme</span>
+</span></span></code></pre></div><h3 id=clear-directory>Clear directory
+<a class=anchor href=#clear-directory>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-sh data-lang=sh><span style=display:flex><span>rm -rf &lt;directory-name&gt;
+</span></span></code></pre></div><h3 id=move>Move
+<a class=anchor href=#move>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-sh data-lang=sh><span style=display:flex><span>mv &lt;source&gt; &lt;destination&gt;
+</span></span><span style=display:flex><span><span style=color:#75715e># E.g</span>
+</span></span><span style=display:flex><span>mv readme.md .. <span style=color:#75715e># Move readme file to parent dir</span>
+</span></span><span style=display:flex><span>mv ../readme.md . <span style=color:#75715e># Move readme from parent dir to current dir</span>
+</span></span></code></pre></div><h3 id=rename>Rename
+<a class=anchor href=#rename>#</a></h3><ul><li>If you move a file within the current directory, that means you are renaming it</li></ul><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-sh data-lang=sh><span style=display:flex><span>mv &lt;old-name&gt; &lt;new-name&gt;
+</span></span><span style=display:flex><span><span style=color:#75715e># E.g</span>
+</span></span><span style=display:flex><span>mv readme.md readyou.md
+</span></span></code></pre></div><h3 id=create>Create
+<a class=anchor href=#create>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-sh data-lang=sh><span style=display:flex><span><span style=color:#75715e># Directory: </span>
+</span></span><span style=display:flex><span>mkdir &lt;dir-name&gt;
+</span></span><span style=display:flex><span><span style=color:#75715e># File: </span>
+</span></span><span style=display:flex><span>touch &lt;file-name&gt;
+</span></span></code></pre></div><h3 id=print-file-content>Print file content
+<a class=anchor href=#print-file-content>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-sh data-lang=sh><span style=display:flex><span>cat &lt;file-name&gt;
+</span></span></code></pre></div><h3 id=echo>Echo
+<a class=anchor href=#echo>#</a></h3><h4 id=print-env-variable>Print env variable
+<a class=anchor href=#print-env-variable>#</a></h4><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-sh data-lang=sh><span style=display:flex><span>echo $USER
+</span></span><span style=display:flex><span><span style=color:#75715e># E.g result: </span>
+</span></span><span style=display:flex><span><span style=color:#75715e># &gt;&gt; dangpham112  </span>
+</span></span></code></pre></div><h4 id=add-content-to-file>Add content to file
+<a class=anchor href=#add-content-to-file>#</a></h4><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-sh data-lang=sh><span style=display:flex><span>echo Hello $USER &gt; readme.md
+</span></span><span style=display:flex><span><span style=color:#75715e># readme file now have a content: Hello dangpham112</span>
+</span></span></code></pre></div><h2 id=systemctl>Systemctl
+<a class=anchor href=#systemctl>#</a></h2><h3 id=restart>Restart
+<a class=anchor href=#restart>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-sh data-lang=sh><span style=display:flex><span>systemctl restart &lt;service-name&gt;
+</span></span><span style=display:flex><span><span style=color:#75715e># E.g</span>
+</span></span><span style=display:flex><span>systemctl restart ssh
+</span></span></code></pre></div><h3 id=check-status>Check status
+<a class=anchor href=#check-status>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-sh data-lang=sh><span style=display:flex><span>systemctl status &lt;service-name&gt;
+</span></span><span style=display:flex><span><span style=color:#75715e># E.g</span>
+</span></span><span style=display:flex><span>systemctl status ssh
+</span></span></code></pre></div><h2 id=ssh>SSH
+<a class=anchor href=#ssh>#</a></h2><ul><li>Stand for Secure Shell</li><li><a href=https://ssh-audit.com/>Check SSH score</a></li><li><a href=https://ssh-audit.com/hardening_guides.html>SSH Hardening Guides</a></li></ul><h3 id=connect>Connect
+<a class=anchor href=#connect>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-sh data-lang=sh><span style=display:flex><span><span style=color:#75715e># Access SSH server </span>
+</span></span><span style=display:flex><span>ssh &lt;username&gt;@&lt;ip-address <span style=color:#f92672>||</span> domain-name&gt;
+</span></span><span style=display:flex><span><span style=color:#75715e># Then typing password and press enter</span>
+</span></span></code></pre></div><h3 id=login-with-username-and-password>Login with username and password
+<a class=anchor href=#login-with-username-and-password>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-sh data-lang=sh><span style=display:flex><span>ssh &lt;host-username&gt;@&lt;host-ip <span style=color:#f92672>||</span> host-domain&gt;
+</span></span><span style=display:flex><span><span style=color:#75715e># -&gt; SSH will promt you to enter the password</span>
+</span></span></code></pre></div><h3 id=login-via-private-key-file>Login via private-key file
+<a class=anchor href=#login-via-private-key-file>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-sh data-lang=sh><span style=display:flex><span><span style=color:#75715e># Change permissions to read-only for the private key file</span>
+</span></span><span style=display:flex><span>chmod <span style=color:#ae81ff>400</span> &lt;private-key&gt;
+</span></span><span style=display:flex><span><span style=color:#75715e># E.g </span>
+</span></span><span style=display:flex><span>chmod <span style=color:#ae81ff>400</span> MyServer
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># Log in via SSH (notice host-username)</span>
+</span></span><span style=display:flex><span>ssh -i &lt;private-key&gt; &lt;host-username&gt;@&lt;host-ip <span style=color:#f92672>||</span> host-domain&gt;
+</span></span><span style=display:flex><span><span style=color:#75715e># E.g 1: If you use EC2 Ubuntu, the host-username maybe ubuntu</span>
+</span></span><span style=display:flex><span>ssh -i MyServer.pem ubuntu@54.251.177.159
+</span></span><span style=display:flex><span><span style=color:#75715e># E.g 2: If you use EC2 Amazon Linux, the host-username maybe ec2-user</span>
+</span></span><span style=display:flex><span>ssh -i MyServer.pem ec2-user@18.141.175.126
+</span></span><span style=display:flex><span><span style=color:#75715e># E.g 3: If you use GCP, the host-username is your account username</span>
+</span></span><span style=display:flex><span>ssh -i gcp-key dangpham112000@34.55.160.169
+</span></span></code></pre></div><ul><li>Where is private-key file?<ul><li>E.g 1: While you create <strong>EC2</strong> instance, you can create key-pair for login in aws console, then they will give you <code>private-key</code> to store on your SSH-client</li><li>E.g 2: With <strong>GCP</strong> VM instance, you need to create your own key-pair and upload the public-key&rsquo;s content to <code>SSH-KEYS</code> (<code>Compute Engine</code> > <code>Settings</code> > <code>Metadata</code> > <code>SSH-KEYS</code>)</li></ul></li></ul><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-sh data-lang=sh><span style=display:flex><span><span style=color:#75715e># Create key-pair on SSH-Client with username is your account username</span>
+</span></span><span style=display:flex><span>ssh-keygen -t rsa -f &lt;keypair-name&gt; -C &lt;username&gt;
+</span></span><span style=display:flex><span><span style=color:#75715e># E.g</span>
+</span></span><span style=display:flex><span>ssh-keygen -t rsa -f gcp-key -C dangpham112000
+</span></span></code></pre></div><h3 id=setup-passwordless-authentication>Setup passwordless authentication
+<a class=anchor href=#setup-passwordless-authentication>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-sh data-lang=sh><span style=display:flex><span><span style=color:#75715e># On SSH client</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># Generate a new SSH key pair using the Ed25519 algorithm</span>
+</span></span><span style=display:flex><span>ssh-keygen -t ed25519
+</span></span><span style=display:flex><span><span style=color:#75715e># -&gt; You can leave all the command prompts empty, just press enter</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># -&gt; You should notice the location of file *.pub for further actions </span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># Copy the public SSH key to the SSH server </span>
+</span></span><span style=display:flex><span>ssh-copy-id -i &lt;public-key-file-location&gt; &lt;host-username&gt;@&lt;host-ip <span style=color:#f92672>||</span> host-domain&gt;
+</span></span><span style=display:flex><span><span style=color:#75715e># E.g</span>
+</span></span><span style=display:flex><span>ssh-copy-id -i /root/.ssh/id_ed25519.pub ubuntu@123.213.32.1
+</span></span><span style=display:flex><span><span style=color:#75715e># Test the connection</span>
+</span></span><span style=display:flex><span>ssh &lt;host-username&gt;@&lt;host-ip <span style=color:#f92672>||</span> host-domain&gt;
+</span></span><span style=display:flex><span><span style=color:#75715e># -&gt; SSH server will no longer ask you a password</span>
+</span></span></code></pre></div><h3 id=disable-root-login>Disable root login
+<a class=anchor href=#disable-root-login>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-sh data-lang=sh><span style=display:flex><span><span style=color:#75715e># Open the SSH daemon configuration file</span>
+</span></span><span style=display:flex><span>vim /etc/ssh/sshd_config
+</span></span><span style=display:flex><span><span style=color:#75715e># in [sshd_config] -&gt; Find PermitRootLogin and set it to no</span>
+</span></span><span style=display:flex><span>PermitRootLogin no
+</span></span><span style=display:flex><span><span style=color:#75715e># in [sshd_config] -&gt; Find PasswordAuthentication and set it to no</span>
+</span></span><span style=display:flex><span>PasswordAuthentication no
+</span></span><span style=display:flex><span><span style=color:#75715e># Restart the SSH Service</span>
+</span></span><span style=display:flex><span>systemctl restart ssh
+</span></span></code></pre></div><h3 id=secure-copy>Secure copy
+<a class=anchor href=#secure-copy>#</a></h3><h4 id=from-ssh-client-to-ssh-server>From SSH-client to SSH-server
+<a class=anchor href=#from-ssh-client-to-ssh-server>#</a></h4><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-sh data-lang=sh><span style=display:flex><span><span style=color:#75715e># On SSH-client</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># From SSH-Client to SSH-Server</span>
+</span></span><span style=display:flex><span>scp &lt;path-to-file&gt; &lt;host-username&gt;@&lt;host-ip&gt;:&lt;destination&gt;
+</span></span><span style=display:flex><span><span style=color:#75715e># E.g</span>
+</span></span><span style=display:flex><span>scp ~/Documents/readme.md ubuntu@18.141.184.34:~/Document/
+</span></span><span style=display:flex><span><span style=color:#75715e># Or</span>
+</span></span><span style=display:flex><span>scp -i &lt;private-key&gt;.pem &lt;path-to-file&gt; &lt;host-username&gt;@&lt;host-ip&gt;:&lt;destination&gt;
+</span></span><span style=display:flex><span><span style=color:#75715e># E.g</span>
+</span></span><span style=display:flex><span>scp -i ~/Auth/MyServer.pem ~/Documents/readme.md ubuntu@18.141.184.34:~/Document/
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># From SSH-Server to SSH-Client</span>
+</span></span><span style=display:flex><span>scp &lt;host-username&gt;@&lt;host-ip&gt;:&lt;path-to-file&gt; &lt;destination-on-client&gt;
+</span></span><span style=display:flex><span><span style=color:#75715e># E.g</span>
+</span></span><span style=display:flex><span>scp ubuntu@18.141.184.34:~/Document/readyou.md ~/Documents
+</span></span><span style=display:flex><span><span style=color:#75715e># Or</span>
+</span></span><span style=display:flex><span>scp -i &lt;private-key&gt;.pem &lt;host-username&gt;@&lt;host-ip&gt;:&lt;path-to-file&gt; &lt;destination-on-client&gt;
+</span></span><span style=display:flex><span><span style=color:#75715e># E.g</span>
+</span></span><span style=display:flex><span>scp -i ~/Auth/MyServer.pem ubuntu@18.141.184.34:~/Document/readyou.md ~/Documents
+</span></span></code></pre></div><h2 id=nano>Nano
+<a class=anchor href=#nano>#</a></h2><ul><li>A default text editor of some OS</li></ul><h3 id=open-file>Open file
+<a class=anchor href=#open-file>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-sh data-lang=sh><span style=display:flex><span>nano &lt;file-name&gt;
+</span></span><span style=display:flex><span><span style=color:#75715e># E.g</span>
+</span></span><span style=display:flex><span>nano index.html
+</span></span></code></pre></div><h3 id=save>Save
+<a class=anchor href=#save>#</a></h3><ol><li>Press <code>Ctrl</code> + <code>x</code></li><li>Press <code>y</code></li><li>Press <code>enter</code></li></ol><h2 id=setup-root-password>Setup root password
+<a class=anchor href=#setup-root-password>#</a></h2><ul><li>If your root user does not yet have a password</li></ul><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-sh data-lang=sh><span style=display:flex><span><span style=color:#75715e># Gain root privileges</span>
+</span></span><span style=display:flex><span>sudo su
+</span></span><span style=display:flex><span><span style=color:#75715e># Set a Password</span>
+</span></span><span style=display:flex><span>passwd root
+</span></span><span style=display:flex><span><span style=color:#75715e># -&gt; Enter and confirm the password</span>
+</span></span></code></pre></div><h2 id=nginx>Nginx
+<a class=anchor href=#nginx>#</a></h2><ul><li>Capacity: 2MB</li></ul><h3 id=install>Install
+<a class=anchor href=#install>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-sh data-lang=sh><span style=display:flex><span>sudo apt install nginx
+</span></span></code></pre></div><p>==> Press <code>Tab</code> -&#187; Choose <code>OK</code> and then press <code>enter</code></p><h3 id=open-ports>Open ports
+<a class=anchor href=#open-ports>#</a></h3><ul><li>After installing Nginx, we may not be able to access our website because the firewall is enabled by default</li><li>If you use EC2, the firewall is disabled by default, but your EC2 <code>Security Group</code> will block access to your website<ul><li>You must edit the inbound rules to allow traffic on HTTP (port 80) and HTTPS (port 443)</li></ul></li></ul><h4 id=check-firewall-status>Check firewall status
+<a class=anchor href=#check-firewall-status>#</a></h4><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-sh data-lang=sh><span style=display:flex><span>sudo ufw status
+</span></span></code></pre></div><ul><li><code>ufw</code>: ubuntu firewall</li></ul><h4 id=lets-firewall-allow-nginx>Let&rsquo;s firewall allow nginx
+<a class=anchor href=#lets-firewall-allow-nginx>#</a></h4><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-sh data-lang=sh><span style=display:flex><span>sudo ufw allow <span style=color:#e6db74>&#34;Nginx Full&#34;</span>
+</span></span></code></pre></div><h3 id=locate-the-index-file>Locate the index file
+<a class=anchor href=#locate-the-index-file>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-sh data-lang=sh><span style=display:flex><span>/var/www/html/
+</span></span></code></pre></div><h3 id=locate-configuration-file>Locate configuration file
+<a class=anchor href=#locate-configuration-file>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-sh data-lang=sh><span style=display:flex><span>/etc/nginx/sites-available/
+</span></span><span style=display:flex><span><span style=color:#75715e># Activate the configuration for Nginx</span>
+</span></span><span style=display:flex><span>sudo ln -s /etc/nginx/sites-available/&lt;my-config&gt;.conf /etc/nginx/sites-enabled/
+</span></span><span style=display:flex><span><span style=color:#75715e># Test config syntax</span>
+</span></span><span style=display:flex><span>sudo nginx -t
+</span></span><span style=display:flex><span><span style=color:#75715e># Restart nginx</span>
+</span></span><span style=display:flex><span>sudo systemctl restart nginx
+</span></span></code></pre></div><h2 id=well-known-ports-link><a href=https://en.wikipedia.org/wiki/List_of_TCP_and_UDP_port_numbers#Well-known_ports>Well-known ports (Link)</a>
+<a class=anchor href=#well-known-ports-link>#</a></h2><h2 id=ssl-certificate>SSL Certificate
+<a class=anchor href=#ssl-certificate>#</a></h2><h3 id=lets-encrypt-ssltls-certificate>Let&rsquo;s Encrypt SSL/TLS certificate
+<a class=anchor href=#lets-encrypt-ssltls-certificate>#</a></h3><ul><li>Issued at <strong>no cost</strong> by the Let&rsquo;s Encrypt Certificate Authority</li><li>Provides <a href=/docs/research/be_protocol/tls_ssl/#domain-validation><strong>Domain Validation (DV)</strong></a> certificates</li><li>Certificates are valid for <strong>90 days</strong>, but they can be <strong>renewed automatically</strong> with <strong>Certbot</strong></li></ul><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-sh data-lang=sh><span style=display:flex><span><span style=color:#75715e># Install Snap</span>
+</span></span><span style=display:flex><span>sudo apt install snapd
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># Ensure stability and compatibility for all snap packages</span>
+</span></span><span style=display:flex><span>sudo snap install core; sudo snap refresh core
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># Install Certbot</span>
+</span></span><span style=display:flex><span>sudo snap install --classic certbot
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># Ensures that Certbot is accessible system-wide</span>
+</span></span><span style=display:flex><span>sudo ln -s /snap/bin/certbot /usr/bin/certbot
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># Obtain and install a certificate for a website running on Nginx</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># Automatically configuring Nginx to use HTTPS</span>
+</span></span><span style=display:flex><span>sudo certbot --nginx
+</span></span><span style=display:flex><span><span style=color:#75715e># -&gt; Certbot will prompt you to provide some information (domain, email, ads)</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># Test automatic renewal</span>
+</span></span><span style=display:flex><span>sudo certbot renew --dry-run
+</span></span><span style=display:flex><span><span style=color:#75715e># -&gt; If the dry run is successful, you&#39;ll see output similar to:</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># Congratulations, all renewals succeeded</span>
+</span></span></code></pre></div><ul><li><strong>Certbot</strong>: A popular tool for obtaining and managing SSL/TLS certificates from the <strong>Let&rsquo;s Encrypt</strong> Certificate Authority</li></ul><h3 id=certificates-for-localhost>Certificates for localhost
+<a class=anchor href=#certificates-for-localhost>#</a></h3><h4 id=create-ca-certificate>Create CA certificate
+<a class=anchor href=#create-ca-certificate>#</a></h4><ul><li>Generate <code>RootCA.pem</code>, <code>RootCA.key</code>, and <code>RootCA.crt</code>:</li></ul><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-sh data-lang=sh><span style=display:flex><span><span style=color:#75715e># Generate a Root CA Certificate</span>
+</span></span><span style=display:flex><span>openssl req -x509 -nodes -new -sha256 -days <span style=color:#ae81ff>1024</span> -newkey rsa:2048 -keyout RootCA.key -out RootCA.pem -subj <span style=color:#e6db74>&#34;/C=US/CN=Example-Root-CA&#34;</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># -&gt; RootCA.key &amp; RootCA.pem</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># Convert the Certificate to .crt Format</span>
+</span></span><span style=display:flex><span>openssl x509 -outform pem -in RootCA.pem -out RootCA.crt
+</span></span><span style=display:flex><span><span style=color:#75715e># -&gt; RootCA.crt</span>
+</span></span></code></pre></div><ul><li><code>RootCA.key</code>: Private key for the Root CA</li><li><code>RootCA.pem</code>: Self-signed certificate for the Root CA in PEM format</li><li><code>RootCA.crt</code>: Contains the same information as <code>RootCA.pem</code>, but they are often distinguished by convention</li></ul><h4 id=create-a-configuration-snippet>Create a configuration snippet
+<a class=anchor href=#create-a-configuration-snippet>#</a></h4><ul><li>Create a file <code>domains.ext</code></li></ul><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-ini data-lang=ini><span style=display:flex><span><span style=color:#75715e># domains.ext</span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>authorityKeyIdentifier</span><span style=color:#f92672>=</span><span style=color:#e6db74>keyid,issuer</span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>basicConstraints</span><span style=color:#f92672>=</span><span style=color:#e6db74>CA:FALSE</span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>keyUsage</span> <span style=color:#f92672>=</span> <span style=color:#e6db74>digitalSignature, nonRepudiation, keyEncipherment, dataEncipherment</span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>subjectAltName</span> <span style=color:#f92672>=</span> <span style=color:#e6db74>@alt_names</span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>[alt_names]</span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>DNS.1</span> <span style=color:#f92672>=</span> <span style=color:#e6db74>localhost</span>
+</span></span></code></pre></div><h4 id=generating-a-signed-certificate-for-localhost>Generating a signed certificate for localhost
+<a class=anchor href=#generating-a-signed-certificate-for-localhost>#</a></h4><ul><li>Generate <code>localhost.key</code>, <code>localhost.csr</code>, and <code>localhost.crt</code></li></ul><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-sh data-lang=sh><span style=display:flex><span><span style=color:#75715e># Generate a CSR (Certificate Signing Request) for localhost</span>
+</span></span><span style=display:flex><span>openssl req -new -nodes -newkey rsa:2048 -keyout localhost.key -out localhost.csr -subj <span style=color:#e6db74>&#34;/C=US/ST=YourState/L=YourCity/O=Example-Certificates/CN=localhost&#34;</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># -&gt; localhost.key &amp; localhost.csr</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># Sign the CSR with a Root CA to generate the signed certificate</span>
+</span></span><span style=display:flex><span>openssl x509 -req -sha256 -days <span style=color:#ae81ff>1024</span> -in localhost.csr -CA RootCA.pem -CAkey RootCA.key -CAcreateserial -extfile domains.ext -out localhost.crt
+</span></span><span style=display:flex><span><span style=color:#75715e># -&gt; localhost.crt</span>
+</span></span></code></pre></div><ul><li><code>localhost.key</code>: Private key for the certificate</li><li><code>localhost.csr</code>: Certificate Signing Request (CSR) that can be sent to a Certificate Authority (CA) for signing</li><li><code>localhost.crt</code>: The final signed certificate for localhost generated by your Root CA</li></ul><h4 id=configure-your-webserver>Configure your webserver
+<a class=anchor href=#configure-your-webserver>#</a></h4><details><summary><strong>Nginx</strong></summary><div class=markdown-inner><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-nginx data-lang=nginx><span style=display:flex><span><span style=color:#66d9ef>server</span> {
+</span></span><span style=display:flex><span>  <span style=color:#f92672>listen</span> <span style=color:#ae81ff>443</span> <span style=color:#e6db74>ssl</span> <span style=color:#e6db74>default_server</span>;
+</span></span><span style=display:flex><span>  <span style=color:#f92672>listen</span> <span style=color:#e6db74>[::]:443</span> <span style=color:#e6db74>ssl</span> <span style=color:#e6db74>default_server</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  <span style=color:#f92672>ssl_certificate</span> <span style=color:#e6db74>/home/dangpham/Auth/ssl_cert/localhost.crt</span>;
+</span></span><span style=display:flex><span>  <span style=color:#f92672>ssl_certificate_key</span> <span style=color:#e6db74>/home/dangpham/Auth/ssl_cert/localhost.key</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  <span style=color:#f92672>root</span> <span style=color:#e6db74>/var/www/html</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  <span style=color:#f92672>index</span> <span style=color:#e6db74>index.html</span> <span style=color:#e6db74>index.htm</span> <span style=color:#e6db74>index.nginx-debian.html</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  <span style=color:#f92672>server_name</span> <span style=color:#e6db74>localhost</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  <span style=color:#f92672>location</span> <span style=color:#e6db74>/</span> {
+</span></span><span style=display:flex><span>    <span style=color:#f92672>try_files</span> $uri $uri/ =<span style=color:#ae81ff>404</span>;
+</span></span><span style=display:flex><span>  }
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div></div></details></br><details><summary><strong>Nodejs</strong></summary><div class=markdown-inner><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-js data-lang=js><span style=display:flex><span><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>https</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>require</span>(<span style=color:#e6db74>&#39;https&#39;</span>);
+</span></span><span style=display:flex><span><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>fs</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>require</span>(<span style=color:#e6db74>&#39;fs&#39;</span>);
+</span></span><span style=display:flex><span><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>path</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>require</span>(<span style=color:#e6db74>&#39;path&#39;</span>);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>certLocation</span> <span style=color:#f92672>=</span> <span style=color:#e6db74>&#39;/home/dangpham/Auth/ssl_cert&#39;</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>options</span> <span style=color:#f92672>=</span> {
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>key</span><span style=color:#f92672>:</span> <span style=color:#a6e22e>fs</span>.<span style=color:#a6e22e>readFileSync</span>(<span style=color:#a6e22e>path</span>.<span style=color:#a6e22e>resolve</span>(<span style=color:#a6e22e>certLocation</span>, <span style=color:#e6db74>&#39;localhost.key&#39;</span>)), 
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>cert</span><span style=color:#f92672>:</span> <span style=color:#a6e22e>fs</span>.<span style=color:#a6e22e>readFileSync</span>(<span style=color:#a6e22e>path</span>.<span style=color:#a6e22e>resolve</span>(<span style=color:#a6e22e>certLocation</span>, <span style=color:#e6db74>&#39;localhost.crt&#39;</span>)), 
+</span></span><span style=display:flex><span>};
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>server</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>https</span>.<span style=color:#a6e22e>createServer</span>(<span style=color:#a6e22e>options</span>,(<span style=color:#a6e22e>req</span>, <span style=color:#a6e22e>res</span>) =&gt; {
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>if</span> (<span style=color:#a6e22e>req</span>.<span style=color:#a6e22e>url</span> <span style=color:#f92672>===</span> <span style=color:#e6db74>&#39;/hello&#39;</span> <span style=color:#f92672>&amp;&amp;</span> <span style=color:#a6e22e>req</span>.<span style=color:#a6e22e>method</span> <span style=color:#f92672>===</span> <span style=color:#e6db74>&#39;GET&#39;</span>) {
+</span></span><span style=display:flex><span>        <span style=color:#a6e22e>res</span>.<span style=color:#a6e22e>writeHead</span>(<span style=color:#ae81ff>200</span>, { <span style=color:#e6db74>&#39;Content-Type&#39;</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#39;text/plain&#39;</span> });
+</span></span><span style=display:flex><span>        <span style=color:#a6e22e>res</span>.<span style=color:#a6e22e>end</span>(<span style=color:#e6db74>&#39;world&#39;</span>);
+</span></span><span style=display:flex><span>    } <span style=color:#66d9ef>else</span> {
+</span></span><span style=display:flex><span>        <span style=color:#a6e22e>res</span>.<span style=color:#a6e22e>writeHead</span>(<span style=color:#ae81ff>404</span>, { <span style=color:#e6db74>&#39;Content-Type&#39;</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#39;text/plain&#39;</span> });
+</span></span><span style=display:flex><span>        <span style=color:#a6e22e>res</span>.<span style=color:#a6e22e>end</span>(<span style=color:#e6db74>&#39;Not Found&#39;</span>);
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>});
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>server</span>.<span style=color:#a6e22e>listen</span>(<span style=color:#ae81ff>443</span>, () =&gt; {
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#e6db74>&#39;Server is listening on port 443&#39;</span>);
+</span></span><span style=display:flex><span>});
+</span></span></code></pre></div></div></details><h4 id=add-new-local-ca-to-the-trusted-root-certificate-authorities>Add new local CA to the trusted Root Certificate Authorities
+<a class=anchor href=#add-new-local-ca-to-the-trusted-root-certificate-authorities>#</a></h4><details><summary><strong>Chrome</strong></summary><div class=markdown-inner><ol><li>Browse <code>chrome://settings/certificates</code></li><li>Choose <code>Authorities</code> then <code>Import</code></li><li>Import <code>RootCA.pem</code> we created above</li><li>Check all options</li></ol></div></details></br><details><summary><strong>Firefox</strong></summary><div class=markdown-inner><ul><li>Make Firefox trusted Root CAs:<ol><li>Browse <code>about:config</code></li><li>Type <code>security.enterprise_roots.enabled</code></li><li>Enable it to <code>true</code></li></ol></li><li>Import CA certificate:<ol><li>Browse <code>about:preferences#privacy</code></li><li>Find <code>Certificats</code> section</li><li>Choose <code>View Certificates</code> and then <code>Import</code></li><li>Import <code>RootCA.pem</code> we created above</li><li>Confirm</li></ol></li></ul></div></details><h2 id=references>References
+<a class=anchor href=#references>#</a></h2><ul><li>Wikipedia: <a href=https://en.wikipedia.org/wiki/List_of_TCP_and_UDP_port_numbers>List of TCP and UDP port numbers</a> (Nov 13th, 2024)</li><li>Certbot: <a href="https://certbot.eff.org/instructions?ws=nginx&amp;os=snap">Certbot Instructions Nginx on Linux (snap)</a></li><li>Letsencrypt: <a href=https://letsencrypt.org/docs/certificates-for-localhost/>Certificates for localhost</a> (Dec 21st, 2017)</li><li>Github: <a href=https://gist.github.com/cecilemuller/9492b848eb8fe46d462abeb26656c4f8>How to create an HTTPS certificate for localhost domains</a> (2019)</li></ul><style>.feedback-card{border:1px solid #ddd;border-radius:8px;padding:20px;max-width:100%;box-shadow:0 2px 5px rgba(0,0,0,.1);background-color:#f9f9fb}.feedback-card h2{font-size:20px;margin-top:0;margin-bottom:10px}.feedback-card .buttons{margin:10px 0}.feedback-card button{border:none;background-color:#f0f0f0;border-radius:4px;padding:10px 15px;margin-right:10px;cursor:pointer;font-size:16px}.feedback-card button:hover{background-color:#e0e0e0}.feedback-card a{color:#0074d9;text-decoration:none}.feedback-card a:hover{text-decoration:underline}.feedback-card p{font-size:14px;color:#555}.modal{display:none;position:fixed;top:0;left:0;width:100%;height:100%;border-radius:7px;padding-bottom:50px;background-color:rgba(0,0,0,.5);justify-content:center;align-items:flex-end}.modal-content{background-color:#fff;padding:20px;border-radius:5px;width:300px}.modal input{width:100%;padding:10px;margin-bottom:10px}</style><div class=feedback-card id=feedbackCard><h2>Help improve my blog</h2><p>Was this page helpful to you?</p><div class=buttons><button id=yesBtn>👍 Yes</button>
+<button id=noBtn>👎 No</button></div><p>This page was last modified at <strong>2024-11-27</strong></p><ul><li><a href=https://github.com/DangPham112000/blog target=_blank>View this page on GitHub</a></li><li><a href=# class=link-button id=linkButton>Report a problem with this content</a></li></ul></div><div class=modal id=formModal><div class=feedback-card><h2>Can I know your name?</h2><form id=form><input type=text name=username placeholder="Enter your name">
+<button type=submit>Yes</button>
+<button type=submit>No</button></form></div></div><script>const feedbackCardEle=document.getElementById("feedbackCard"),formModalEle=document.getElementById("formModal"),elesToShowForm=["linkButton","yesBtn","noBtn"];for(const e of elesToShowForm)document.getElementById(e).addEventListener("click",function(e){e.preventDefault(),formModalEle.style.display="flex"});window.onclick=function(e){e.target===formModalEle&&(formModalEle.style.display="none")},document.getElementById("form").addEventListener("submit",function(e){e.preventDefault(),alert("This feature is currently being developed"),formModalEle.style.display="none"})</script></article><footer class=book-footer><div class="flex flex-wrap justify-between"></div><script>(function(){function e(e){const t=window.getSelection(),n=document.createRange();n.selectNodeContents(e),t.removeAllRanges(),t.addRange(n)}document.querySelectorAll("pre code").forEach(t=>{t.addEventListener("click",function(){if(window.getSelection().toString())return;e(t.parentElement),navigator.clipboard&&navigator.clipboard.writeText(t.parentElement.textContent)})})})()</script></footer><div class=book-comments></div><label for=menu-control class="hidden book-menu-overlay"></label></div><aside class=book-toc><div class=book-toc-content><nav id=TableOfContents><ul><li><a href=#common-commands>Common Commands</a><ul><li><a href=#ip-address>IP address</a></li><li><a href=#show-detail-a-command>Show detail a command</a></li><li><a href=#best-practice-before-install-anything>Best practice before install anything</a></li><li><a href=#show-package-detail>Show package detail</a></li><li><a href=#print-working-directory>Print working directory</a></li><li><a href=#copy>Copy</a></li><li><a href=#clear-directory>Clear directory</a></li><li><a href=#move>Move</a></li><li><a href=#rename>Rename</a></li><li><a href=#create>Create</a></li><li><a href=#print-file-content>Print file content</a></li><li><a href=#echo>Echo</a></li></ul></li><li><a href=#systemctl>Systemctl</a><ul><li><a href=#restart>Restart</a></li><li><a href=#check-status>Check status</a></li></ul></li><li><a href=#ssh>SSH</a><ul><li><a href=#connect>Connect</a></li><li><a href=#login-with-username-and-password>Login with username and password</a></li><li><a href=#login-via-private-key-file>Login via private-key file</a></li><li><a href=#setup-passwordless-authentication>Setup passwordless authentication</a></li><li><a href=#disable-root-login>Disable root login</a></li><li><a href=#secure-copy>Secure copy</a></li></ul></li><li><a href=#nano>Nano</a><ul><li><a href=#open-file>Open file</a></li><li><a href=#save>Save</a></li></ul></li><li><a href=#setup-root-password>Setup root password</a></li><li><a href=#nginx>Nginx</a><ul><li><a href=#install>Install</a></li><li><a href=#open-ports>Open ports</a></li><li><a href=#locate-the-index-file>Locate the index file</a></li><li><a href=#locate-configuration-file>Locate configuration file</a></li></ul></li><li><a href=#well-known-ports-link>Well-known ports (Link)</a></li><li><a href=#ssl-certificate>SSL Certificate</a><ul><li><a href=#lets-encrypt-ssltls-certificate>Let&rsquo;s Encrypt SSL/TLS certificate</a></li><li><a href=#certificates-for-localhost>Certificates for localhost</a></li></ul></li><li><a href=#references>References</a></li></ul></nav></div></aside></main></body></html>

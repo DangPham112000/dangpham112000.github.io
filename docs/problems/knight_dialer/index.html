@@ -1,9 +1,4 @@
-<!DOCTYPE html>
-<html lang="en-us" dir="ltr">
-<head>
-  <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="
+<!doctype html><html lang=en-us dir=ltr><head><meta charset=UTF-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="
   Knight dialer
   #
 
@@ -15,1020 +10,133 @@ The chess knight has a unique movement, it may move two squares vertically and o
 A chess knight can move as indicated in the chess diagram below:
 
 We have a chess knight and a phone pad as shown below, the knight can only stand on a numeric cell (i.e. blue cell).
-">
-<meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff">
-<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#343a40">
-<meta name="color-scheme" content="light dark"><meta property="og:url" content="https://dangpham112000.github.io/docs/problems/knight_dialer/">
-  <meta property="og:site_name" content="Dante 0401">
-  <meta property="og:title" content="Knight Dialer">
-  <meta property="og:description" content="Knight dialer # Description # The chess knight has a unique movement, it may move two squares vertically and one square horizontally, or two squares horizontally and one square vertically (with both forming the shape of an L). The possible movements of chess knight are shown in this diagaram:
-A chess knight can move as indicated in the chess diagram below: We have a chess knight and a phone pad as shown below, the knight can only stand on a numeric cell (i.e. blue cell).">
-  <meta property="og:locale" content="en_us">
-  <meta property="og:type" content="article">
-    <meta property="article:section" content="docs">
-    <meta property="article:published_time" content="2023-11-15T01:47:46+07:00">
-    <meta property="article:modified_time" content="2023-11-15T01:47:46+07:00">
-<title>Knight Dialer | Dante 0401</title>
-<link rel="manifest" href="/manifest.json">
-<link rel="icon" href="/favicon.png" >
-<link rel="canonical" href="https://dangpham112000.github.io/docs/problems/knight_dialer/">
-<link rel="stylesheet" href="/book.min.ef1786281083252320100bd5f394f36844d3252afdbd5bfe72e5f440aaff402b.css" integrity="sha256-7xeGKBCDJSMgEAvV85TzaETTJSr9vVv&#43;cuX0QKr/QCs=" crossorigin="anonymous">
-  <script defer src="/fuse.min.js"></script>
-  <script defer src="/en.search.min.8cd250da139fc136773875cc0c5c476270e41dde5b32a6624b24175c7dd7d37b.js" integrity="sha256-jNJQ2hOfwTZ3OHXMDFxHYnDkHd5bMqZiSyQXXH3X03s=" crossorigin="anonymous"></script>
-<!--
-Made with Book Theme
-https://github.com/alex-shpak/hugo-book
--->
-  
-</head>
-<body dir="ltr">
-  <input type="checkbox" class="hidden toggle" id="menu-control" />
-  <input type="checkbox" class="hidden toggle" id="toc-control" />
-  <main class="container flex">
-    <aside class="book-menu">
-      <div class="book-menu-content">
-        
-  <nav>
-<h2 class="book-brand">
-  <a class="flex align-center" href="/"><span>Dante 0401</span>
-  </a>
-</h2>
-
-
-<div class="book-search hidden">
-  <input type="text" id="book-search-input" placeholder="Search" aria-label="Search" maxlength="64" data-hotkeys="s/" />
-  <div class="book-search-spinner hidden"></div>
-  <ul id="book-search-results"></ul>
-</div>
-<script>document.querySelector(".book-search").classList.remove("hidden")</script>
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
-
-
-  
-  <ul>
-    
-      
-        <li class="book-section-flat" >
-          
-  
-  
-
-  
-    <span>RESEARCH</span>
-  
-
-          
-  <ul>
-    
-      
-        <li>
-          
-  
-  
-
-  
-    <a href="/docs/research/process_vs_thread/" class="">Process vs Thread</a>
-  
-
-        </li>
-      
-    
-      
-        <li>
-          
-  
-  
-
-  
-    <a href="/docs/research/chrome_architecture/" class="">Chrome Architecture</a>
-  
-
-        </li>
-      
-    
-      
-        <li>
-          
-  
-  
-
-  
-    <a href="/docs/research/aws_overview/" class="">AWS Overview</a>
-  
-
-        </li>
-      
-    
-      
-        <li>
-          
-  
-  
-
-  
-    <a href="/docs/research/be_protocol/" class="">Backend</a>
-  
-
-          
-  <ul>
-    
-      
-        <li>
-          
-  
-  
-
-  
-    <a href="/docs/research/be_protocol/tls_ssl/" class="">TLS - SSL</a>
-  
-
-        </li>
-      
-    
-      
-        <li>
-          
-  
-  
-
-  
-    <a href="/docs/research/be_protocol/communication/" class="">Communication</a>
-  
-
-        </li>
-      
-    
-      
-        <li>
-          
-  
-  
-
-  
-    <a href="/docs/research/be_protocol/rabbitmq/" class="">RabbitMQ</a>
-  
-
-        </li>
-      
-    
-      
-        <li>
-          
-  
-  
-
-  
-    <a href="/docs/research/be_protocol/kafka/" class="">Kafka - Draft</a>
-  
-
-        </li>
-      
-    
-  </ul>
-
-        </li>
-      
-    
-      
-        <li>
-          
-  
-  
-
-  
-    <a href="/docs/research/encryption/" class="">Encryption</a>
-  
-
-        </li>
-      
-    
-      
-        <li>
-          
-  
-  
-
-  
-    <a href="/docs/research/token_based_authentication/" class="">Token-based Authentication</a>
-  
-
-        </li>
-      
-    
-      
-        <li>
-          
-  
-  
-
-  
-    <a href="/docs/research/security/" class="">Security - Draft</a>
-  
-
-          
-  <ul>
-    
-      
-        <li>
-          
-  
-  
-
-  
-    <a href="/docs/research/security/hsts/" class="">HSTS</a>
-  
-
-        </li>
-      
-    
-      
-        <li>
-          
-  
-  
-
-  
-    <a href="/docs/research/security/bit_flipping/" class="">Bit Flipping</a>
-  
-
-        </li>
-      
-    
-  </ul>
-
-        </li>
-      
-    
-      
-        <li>
-          
-  
-  
-
-  
-    <a href="/docs/research/scale/" class="">Scale</a>
-  
-
-        </li>
-      
-    
-  </ul>
-
-        </li>
-      
-    
-      
-        <li class="book-section-flat" >
-          
-  
-  
-
-  
-    <span>TIPS</span>
-  
-
-          
-  <ul>
-    
-      
-        <li>
-          
-  
-  
-
-  
-    <a href="/docs/tips/001_unit_test/" class="">Unit Test</a>
-  
-
-        </li>
-      
-    
-      
-        <li>
-          
-  
-  
-
-  
-    <a href="/docs/tips/002_git/" class="">Git</a>
-  
-
-        </li>
-      
-    
-      
-        <li>
-          
-  
-  
-
-  
-    <a href="/docs/tips/003_docker/" class="">Docker</a>
-  
-
-        </li>
-      
-    
-      
-        <li>
-          
-  
-  
-
-  
-    <a href="/docs/tips/004_ops/" class="">Ops</a>
-  
-
-        </li>
-      
-    
-      
-        <li>
-          
-  
-  
-
-  
-    <a href="/docs/tips/005_passion/" class="">Spark Passion</a>
-  
-
-        </li>
-      
-    
-  </ul>
-
-        </li>
-      
-    
-      
-        <li class="book-section-flat" >
-          
-  
-  
-
-  
-    <span>PROBLEMS</span>
-  
-
-          
-  <ul>
-    
-      
-        <li>
-          
-  
-  
-
-  
-    <a href="/docs/problems/knight_dialer/" class="active">Knight Dialer</a>
-  
-
-        </li>
-      
-    
-  </ul>
-
-        </li>
-      
-    
-  </ul>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-</nav>
-
-
-
-
-  <script>(function(){var e=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(){localStorage.setItem("menu.scrollTop",e.scrollTop)}),e.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
-
-
- 
-      </div>
-    </aside>
-
-    <div class="book-page">
-      <header class="book-header">
-        
-  <div class="flex align-center justify-between">
-  <label for="menu-control">
-    <img src="/svg/menu.svg" class="book-icon" alt="Menu" />
-  </label>
-
-  <strong>Knight Dialer</strong>
-
-  <label for="toc-control">
-    
-    <img src="/svg/toc.svg" class="book-icon" alt="Table of Contents" />
-    
-  </label>
-</div>
-
-
-  
-  <aside class="hidden clearfix">
-    
-  
-<nav id="TableOfContents">
-  <ul>
-    <li><a href="#description">Description</a></li>
-    <li><a href="#solution">Solution</a>
-      <ul>
-        <li><a href="#high-level">High level</a></li>
-        <li><a href="#low-level">Low level</a></li>
-      </ul>
-    </li>
-    <li><a href="#optimize">Optimize</a>
-      <ul>
-        <li><a href="#retrospective">Retrospective</a></li>
-        <li><a href="#new-way">New way</a></li>
-        <li><a href="#time-and-space-complexity-optimize">Time and space complexity optimize</a></li>
-      </ul>
-    </li>
-    <li><a href="#reference">Reference</a></li>
-  </ul>
-</nav>
-
-
-
-  </aside>
-  
- 
-      </header>
-
-      
-      
-  <article class="markdown book-article"><h1 id="knight-dialer">
-  Knight dialer
-  <a class="anchor" href="#knight-dialer">#</a>
-</h1>
-<h2 id="description">
-  Description
-  <a class="anchor" href="#description">#</a>
-</h2>
-<p>The chess knight has a <strong>unique movement</strong>, it may move two squares vertically and one square horizontally, or two squares horizontally and one square vertically (with both forming the shape of an <strong>L</strong>). The possible movements of chess knight are shown in this diagaram:</p>
-<p>A chess knight can move as indicated in the chess diagram below:</br>
-<img src="/problems/knight_dialer/chess_table.jpg" alt="chess_table" /></p>
-<p>We have a chess knight and a phone pad as shown below, the knight <strong>can only stand on a numeric cell</strong> (i.e. blue cell).</br>
-<img src="/problems/knight_dialer/phone_pad.jpg" alt="phone" /></p>
-<p>Given an integer <code>n</code>, return how many distinct phone numbers of length <code>n</code> we can dial.</p>
-<p>You are allowed to place the knight <strong>on any numeric cell</strong> initially<br>
-and then you should perform <code>n - 1</code> jumps to dial a number of length n. All jumps should be <strong>valid</strong> knight jumps.</p>
-<p>As the answer may be very large, <strong>return the answer modulo</strong> 
-<link rel="stylesheet" href="/katex/katex.min.css" />
-<script defer src="/katex/katex.min.js"></script>
-<script defer src="/katex/auto-render.min.js" onload="renderMathInElement(document.body);"></script><span>
-  \(10^9 &#43; 7\)
-</span>
-</p>
-<p><strong>Example 1:</strong></p>
-<blockquote>
-<p><strong>Input</strong>: n = 1<br>
-<strong>Output</strong>: 10<br>
-<strong>Explanation</strong>: We need to dial a number of length 1, so placing the knight over any numeric cell of the 10 cells is sufficient</p></blockquote>
-<p><strong>Example 2:</strong></p>
-<blockquote>
-<p><strong>Input</strong>: n = 2<br>
-<strong>Output</strong>: 20<br>
-<strong>Explanation</strong>: All the valid number we can dial are [04, 06, 16, 18, 27, 29, 34, 38, 40, 43, 49, 60, 61, 67, 72, 76, 81, 83, 92, 94]</p></blockquote>
-<p><strong>Example 3:</strong></p>
-<blockquote>
-<p><strong>Input</strong>: n = 3131<br>
-<strong>Output</strong>: 136006598<br>
-<strong>Explanation</strong>: Please take care of the mod</p></blockquote>
-<p><strong>Constraints</strong>:</p>
-<ul>
-<li><code>1 &lt;= n &lt;= 5000</code></li>
-</ul>
-<h2 id="solution">
-  Solution
-  <a class="anchor" href="#solution">#</a>
-</h2>
-<h3 id="high-level">
-  High level
-  <a class="anchor" href="#high-level">#</a>
-</h3>
-<ul>
-<li>Có thể thấy bàn phím điện thoại khá nhỏ</li>
-<li>Ta có thể tận dụng các giới hạn này để giải quyết bài toán thay vì đâm đầu vào một công thức tổng quát:
-<ul>
-<li>Ở một vị trí chỉ có thể nhảy đến 1 tập giới hạn các vị trí khác</li>
-<li>Số cách di chuyển ở mỗi vị trí là hằng số và có thể liệt kê được</li>
-</ul>
-</li>
-</ul>
-<h3 id="low-level">
-  Low level
-  <a class="anchor" href="#low-level">#</a>
-</h3>
-<blockquote>
-<p>Ta nên bắt đầu bằng 1 ví dụ: đẹp nhất là <code>n = 3</code></p></blockquote>
-<ul>
-<li>Ở lần đầu thì vị trí là tất cả các nút</li>
-<li>Ở lần 2 thì cần duyệt qua từ 0 đến 9
-<ul>
-<li>vị trí 0 sẽ có thể nhảy đến 4 và</li>
-<li>vị trí 1 sẽ có thể nhảy đến 8 và</li>
-<li>&hellip;</li>
-</ul>
-</li>
-<li>Ở lần 3 thì
-<ul>
-<li>ta sẽ duyệt tiếp bên trong vị trí 0 ở lần 2
-<ul>
-<li>vị trí 4 sẽ có thể nhảy đến 3, 9 và 0</li>
-<li>vị trí 6 sẽ có thể nhảy đến 1, 7 và 0</li>
-</ul>
-</li>
-<li>trong vị trí 1 ở lần 2
-<ul>
-<li>8 =&gt; 1, 3</li>
-<li>6 =&gt; 1, 7, 0</li>
-</ul>
-</li>
-<li>&hellip;</li>
-</ul>
-</li>
-</ul>
-<p>Các kết quả cần tìm</p>
-<ul>
-<li>Với n = 1, return 10</li>
-<li>Với n = 2,
-<ul>
-<li>0 có thể đến 4 và 6,</li>
-<li>1 có thể đến 8 và 6</li>
-</ul>
-</li>
-<li>Với n = 3,
-<ul>
-<li>0 có thể đến 3, 9, 0, 1, 7, 0</li>
-<li>1 có thể đến 1, 3, 1, 7, 0</li>
-</ul>
-</li>
-</ul>
-<p>Kết quả là tổng sống lượng vị trí có thể đến</p>
-<ul>
-<li>Cần tạo 1 mảng chứa các vị trí khả dụng qua mỗi lần lặp n</li>
-</ul>
-<blockquote>
-<p>Có thể thấy ta có thể tạo 2 mảng</p></blockquote>
-<ul>
-<li>Mảng số vị trí khả dụng kế tiếp khi ở vị trí i: <code>[[4, 6], [8, 6], []]</code></li>
-<li>Có thể thấy để dùng được mảng vị trí khả dụng thì n phải &gt;= 2</li>
-<li>Vậy thì thuật toán cần tìm phải bắt đầu ít nhất từ 2</li>
-</ul>
-<details ><summary><strong>Code</strong></summary>
-  <div class="markdown-inner">
-    <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#75715e">/**
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * @param {number} n
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * @return {number}
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> */</span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">knightDialer</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">function</span> (<span style="color:#a6e22e">n</span>) {
-</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">nextPlaces</span> <span style="color:#f92672">=</span> [
-</span></span><span style="display:flex;"><span>    [<span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">6</span>],
-</span></span><span style="display:flex;"><span>    [<span style="color:#ae81ff">6</span>, <span style="color:#ae81ff">8</span>],
-</span></span><span style="display:flex;"><span>    [<span style="color:#ae81ff">7</span>, <span style="color:#ae81ff">9</span>],
-</span></span><span style="display:flex;"><span>    [<span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">8</span>],
-</span></span><span style="display:flex;"><span>    [<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">9</span>],
-</span></span><span style="display:flex;"><span>    [],
-</span></span><span style="display:flex;"><span>    [<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">7</span>],
-</span></span><span style="display:flex;"><span>    [<span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">6</span>],
-</span></span><span style="display:flex;"><span>    [<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">3</span>],
-</span></span><span style="display:flex;"><span>    [<span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">4</span>],
-</span></span><span style="display:flex;"><span>  ];
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">n</span> <span style="color:#f92672">===</span> <span style="color:#ae81ff">1</span>) <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">10</span>;
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">validPlaces</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">JSON</span>.<span style="color:#a6e22e">parse</span>(<span style="color:#a6e22e">JSON</span>.<span style="color:#a6e22e">stringify</span>(<span style="color:#a6e22e">nextPlaces</span>));
-</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">let</span> <span style="color:#a6e22e">time</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">3</span>; <span style="color:#a6e22e">time</span> <span style="color:#f92672">&lt;=</span> <span style="color:#a6e22e">n</span>; <span style="color:#a6e22e">time</span><span style="color:#f92672">++</span>) {
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">let</span> <span style="color:#a6e22e">place</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; <span style="color:#a6e22e">place</span> <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">9</span>; <span style="color:#a6e22e">place</span><span style="color:#f92672">++</span>) {
-</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">newPlaces</span> <span style="color:#f92672">=</span> [];
-</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">let</span> <span style="color:#a6e22e">i</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; <span style="color:#a6e22e">i</span> <span style="color:#f92672">&lt;</span> <span style="color:#a6e22e">validPlaces</span>[<span style="color:#a6e22e">place</span>].<span style="color:#a6e22e">length</span>; <span style="color:#a6e22e">i</span><span style="color:#f92672">++</span>) {
-</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">newPlaces</span>.<span style="color:#a6e22e">push</span>(...<span style="color:#a6e22e">nextPlaces</span>[<span style="color:#a6e22e">validPlaces</span>[<span style="color:#a6e22e">place</span>][<span style="color:#a6e22e">i</span>]]);
-</span></span><span style="display:flex;"><span>      }
-</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">validPlaces</span>[<span style="color:#a6e22e">place</span>] <span style="color:#f92672">=</span> <span style="color:#a6e22e">newPlaces</span>;
-</span></span><span style="display:flex;"><span>    }
-</span></span><span style="display:flex;"><span>  }
-</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">totalWays</span> <span style="color:#f92672">=</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">validPlaces</span>.<span style="color:#a6e22e">reduce</span>((<span style="color:#a6e22e">acc</span>, <span style="color:#a6e22e">currentArray</span>) =&gt; <span style="color:#a6e22e">acc</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">currentArray</span>.<span style="color:#a6e22e">length</span>, <span style="color:#ae81ff">0</span>) <span style="color:#f92672">%</span>
-</span></span><span style="display:flex;"><span>    (Math.<span style="color:#a6e22e">pow</span>(<span style="color:#ae81ff">10</span>, <span style="color:#ae81ff">9</span>) <span style="color:#f92672">+</span> <span style="color:#ae81ff">7</span>);
-</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">totalWays</span>;
-</span></span><span style="display:flex;"><span>};
-</span></span></code></pre></div>
-  </div>
-</details>
-
-<blockquote class="book-hint danger">
-  <p>Xuất hiện lỗi <code>runtime error</code>: Cụ thể thì là do <code>out of memory</code></p>
-<p><img src="/problems/knight_dialer/err_msg.png" alt="err_msg" /></p>
-
-</blockquote>
-
-<ul>
-<li>Khi thử với các test case nhỏ thì dễ thấy hàm của chúng ta work như mong đợi</li>
-<li>Nhưng khi thử với số lớn thì sẽ xuất hiện lỗi <code>out of memory</code>
-<ul>
-<li>Giải thuật chưa tối ưu bộ nhớ ?</li>
-<li>Chọn cấu trúc dữ liệu chưa phù hợp ?</li>
-</ul>
-</li>
-</ul>
-<h2 id="optimize">
-  Optimize
-  <a class="anchor" href="#optimize">#</a>
-</h2>
-<h3 id="retrospective">
-  Retrospective
-  <a class="anchor" href="#retrospective">#</a>
-</h3>
-<p>Cùng nhìn lại cách diễn giải ban đầu:</p>
-<ul>
-<li>n = 1: tất cả các nút<br>
-==&gt; <code>[[0], [1], [2], [3], [4], [5], [6], [7], [8], [9]]</code></li>
-<li>n = 2:
-<ul>
-<li>0 có thể đến 4 và 6</li>
-<li>1 có thể đến 8 và 6</li>
-<li>2 có thể đến 7 và 9</li>
-<li>&hellip;<br>
-==&gt; <code>[[4, 6], [6, 8], [7, 9], [4, 8], [0, 3, 9], [], [0, 1, 7], [2, 6], [1, 3], [2, 4]]</code></li>
-</ul>
-</li>
-<li>n = 3:
-<ul>
-<li>0 có thể đến 3, 9, 0, 1, 7, 0</li>
-<li>1 có thể đến 1, 3, 1, 7, 0</li>
-<li>&hellip;<br>
-==&gt; <code>[[3, 9, 0, 1, 7, 0], [1, 3, 1, 7, 0], ...]</code></li>
-</ul>
-</li>
-<li>&hellip;</li>
-</ul>
-<blockquote class="book-hint warning">
-  <ul>
-<li>Dễ thấy n càng cao số phần từ trùng lặp lại trong mảng càng cao</li>
-<li>Với mỗi phần tử trùng ấy ta lại có cùng một công việc cho chúng</li>
-<li>Kết quả cần tìm lại là đếm số lượng phần tử của từng mảng</li>
-</ul>
-
-</blockquote>
-
-<p><strong>==&gt; Nếu có thể áp dụng cấu trúc Dictionary sẽ là một phương pháp tối ưu</strong></p>
-<h3 id="new-way">
-  New way
-  <a class="anchor" href="#new-way">#</a>
-</h3>
-<p>Cách diễn dãi mới</p>
-<ul>
-<li>n = 1<br>
-==&gt; <code>dic = {0: 1, 1: 1, 2: 1, 3: 1, 4: 1, 5: 1, 6: 1, 7: 1, 8: 1, 9: 1}</code><br>
-==&gt; <code>dic = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1]</code><br>
-==&gt; Nên chọn array vì key chúng ta cần chỉ là các con số từ 0-&gt;9</li>
-<li>n = 2
-<ul>
-<li>0 có thể đến 4 và 6 =&gt; <code>newDic[4] += dic[0]</code> và <code>newDic[6] += dic[0]</code>
-<ul>
-<li><code>newDic[4] += dic[0]</code> vì giả sử vị trí 0 đang chứa 2 khả năng, thì 2 khả năng đó đều đi đến được 4</li>
-<li>Dùng <code>newDic</code> là để trạng thái cũ k bị xáo trộn khi đang duyệt</li>
-</ul>
-</li>
-<li>1 có thể đến 8 và 6 =&gt; <code>newDic[8] += dic[1]</code> và <code>newDic[6] += dic[1]</code></li>
-<li>&hellip;</li>
-</ul>
-</li>
-</ul>
-<details ><summary><strong>Code</strong></summary>
-  <div class="markdown-inner">
-    <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#75715e">/**
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * @param {number} n
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * @return {number}
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> */</span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">knightDialer</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">function</span> (<span style="color:#a6e22e">n</span>) {
-</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">nextPlaces</span> <span style="color:#f92672">=</span> [
-</span></span><span style="display:flex;"><span>    [<span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">6</span>],
-</span></span><span style="display:flex;"><span>    [<span style="color:#ae81ff">6</span>, <span style="color:#ae81ff">8</span>],
-</span></span><span style="display:flex;"><span>    [<span style="color:#ae81ff">7</span>, <span style="color:#ae81ff">9</span>],
-</span></span><span style="display:flex;"><span>    [<span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">8</span>],
-</span></span><span style="display:flex;"><span>    [<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">9</span>],
-</span></span><span style="display:flex;"><span>    [],
-</span></span><span style="display:flex;"><span>    [<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">7</span>],
-</span></span><span style="display:flex;"><span>    [<span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">6</span>],
-</span></span><span style="display:flex;"><span>    [<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">3</span>],
-</span></span><span style="display:flex;"><span>    [<span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">4</span>],
-</span></span><span style="display:flex;"><span>  ];
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">n</span> <span style="color:#f92672">===</span> <span style="color:#ae81ff">1</span>) <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">10</span>;
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">dic</span> <span style="color:#f92672">=</span> [<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>];
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">let</span> <span style="color:#a6e22e">time</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>; <span style="color:#a6e22e">time</span> <span style="color:#f92672">&lt;=</span> <span style="color:#a6e22e">n</span>; <span style="color:#a6e22e">time</span><span style="color:#f92672">++</span>) {
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">newDic</span> <span style="color:#f92672">=</span> [<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>];
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">let</span> <span style="color:#a6e22e">place</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; <span style="color:#a6e22e">place</span> <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">9</span>; <span style="color:#a6e22e">place</span><span style="color:#f92672">++</span>) {
-</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">let</span> <span style="color:#a6e22e">i</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; <span style="color:#a6e22e">i</span> <span style="color:#f92672">&lt;</span> <span style="color:#a6e22e">nextPlaces</span>[<span style="color:#a6e22e">place</span>].<span style="color:#a6e22e">length</span>; <span style="color:#a6e22e">i</span><span style="color:#f92672">++</span>) {
-</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">newDic</span>[<span style="color:#a6e22e">nextPlaces</span>[<span style="color:#a6e22e">place</span>][<span style="color:#a6e22e">i</span>]] <span style="color:#f92672">+=</span> <span style="color:#a6e22e">dic</span>[<span style="color:#a6e22e">place</span>] <span style="color:#f92672">%</span> (Math.<span style="color:#a6e22e">pow</span>(<span style="color:#ae81ff">10</span>, <span style="color:#ae81ff">9</span>) <span style="color:#f92672">+</span> <span style="color:#ae81ff">7</span>);
-</span></span><span style="display:flex;"><span>      }
-</span></span><span style="display:flex;"><span>    }
-</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">dic</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">newDic</span>;
-</span></span><span style="display:flex;"><span>  }
-</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">totalWays</span> <span style="color:#f92672">=</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">dic</span>.<span style="color:#a6e22e">reduce</span>((<span style="color:#a6e22e">acc</span>, <span style="color:#a6e22e">item</span>) =&gt; <span style="color:#a6e22e">acc</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">item</span>, <span style="color:#ae81ff">0</span>) <span style="color:#f92672">%</span> (Math.<span style="color:#a6e22e">pow</span>(<span style="color:#ae81ff">10</span>, <span style="color:#ae81ff">9</span>) <span style="color:#f92672">+</span> <span style="color:#ae81ff">7</span>);
-</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">totalWays</span>;
-</span></span><span style="display:flex;"><span>};
-</span></span></code></pre></div>
-  </div>
-</details>
-
-<blockquote class="book-hint info">
-  <img src="/problems/knight_dialer/result.png" alt="result" />
-</blockquote>
-
-<h3 id="time-and-space-complexity-optimize">
-  Time and space complexity optimize
-  <a class="anchor" href="#time-and-space-complexity-optimize">#</a>
-</h3>
-<details ><summary><strong>Code</strong></summary>
-  <div class="markdown-inner">
-    <h4 id="tiêu-chí-là-ít-tính-toán-lại-và-tận-dụng-nhiều-hơn">
-  Tiêu chí là ít tính toán lại và tận dụng nhiều hơn
-  <a class="anchor" href="#ti%c3%aau-ch%c3%ad-l%c3%a0-%c3%adt-t%c3%adnh-to%c3%a1n-l%e1%ba%a1i-v%c3%a0-t%e1%ba%adn-d%e1%bb%a5ng-nhi%e1%bb%81u-h%c6%a1n">#</a>
-</h4>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#75715e">/**
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * @param {number} n
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * @return {number}
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> */</span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">knightDialer</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">function</span> (<span style="color:#a6e22e">n</span>) {
-</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">nextPlaces</span> <span style="color:#f92672">=</span> [
-</span></span><span style="display:flex;"><span>    [<span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">6</span>],
-</span></span><span style="display:flex;"><span>    [<span style="color:#ae81ff">6</span>, <span style="color:#ae81ff">8</span>],
-</span></span><span style="display:flex;"><span>    [<span style="color:#ae81ff">7</span>, <span style="color:#ae81ff">9</span>],
-</span></span><span style="display:flex;"><span>    [<span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">8</span>],
-</span></span><span style="display:flex;"><span>    [<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">9</span>],
-</span></span><span style="display:flex;"><span>    [],
-</span></span><span style="display:flex;"><span>    [<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">7</span>],
-</span></span><span style="display:flex;"><span>    [<span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">6</span>],
-</span></span><span style="display:flex;"><span>    [<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">3</span>],
-</span></span><span style="display:flex;"><span>    [<span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">4</span>],
-</span></span><span style="display:flex;"><span>  ];
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">n</span> <span style="color:#f92672">===</span> <span style="color:#ae81ff">1</span>) <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">10</span>;
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">mod</span> <span style="color:#f92672">=</span> Math.<span style="color:#a6e22e">pow</span>(<span style="color:#ae81ff">10</span>, <span style="color:#ae81ff">9</span>) <span style="color:#f92672">+</span> <span style="color:#ae81ff">7</span>;
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">dic</span> <span style="color:#f92672">=</span> [<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>],
-</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">newDic</span> <span style="color:#f92672">=</span> [<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>],
-</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">place</span>,
-</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">i</span>;
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">let</span> <span style="color:#a6e22e">time</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>; <span style="color:#a6e22e">time</span> <span style="color:#f92672">&lt;=</span> <span style="color:#a6e22e">n</span>; <span style="color:#a6e22e">time</span><span style="color:#f92672">++</span>) {
-</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">newDic</span> <span style="color:#f92672">=</span> [<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>];
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> (<span style="color:#a6e22e">place</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; <span style="color:#a6e22e">place</span> <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">9</span>; <span style="color:#a6e22e">place</span><span style="color:#f92672">++</span>) {
-</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">place</span> <span style="color:#f92672">===</span> <span style="color:#ae81ff">5</span>) <span style="color:#66d9ef">continue</span>;
-</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">for</span> (<span style="color:#a6e22e">i</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; <span style="color:#a6e22e">i</span> <span style="color:#f92672">&lt;</span> <span style="color:#a6e22e">nextPlaces</span>[<span style="color:#a6e22e">place</span>].<span style="color:#a6e22e">length</span>; <span style="color:#a6e22e">i</span><span style="color:#f92672">++</span>) {
-</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">newDic</span>[<span style="color:#a6e22e">nextPlaces</span>[<span style="color:#a6e22e">place</span>][<span style="color:#a6e22e">i</span>]] <span style="color:#f92672">+=</span> <span style="color:#a6e22e">dic</span>[<span style="color:#a6e22e">place</span>] <span style="color:#f92672">%</span> <span style="color:#a6e22e">mod</span>;
-</span></span><span style="display:flex;"><span>      }
-</span></span><span style="display:flex;"><span>    }
-</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">dic</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">newDic</span>;
-</span></span><span style="display:flex;"><span>  }
-</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">totalWays</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">dic</span>.<span style="color:#a6e22e">reduce</span>((<span style="color:#a6e22e">acc</span>, <span style="color:#a6e22e">item</span>) =&gt; <span style="color:#a6e22e">acc</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">item</span>, <span style="color:#ae81ff">0</span>) <span style="color:#f92672">%</span> <span style="color:#a6e22e">mod</span>;
-</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">totalWays</span>;
-</span></span><span style="display:flex;"><span>};
-</span></span></code></pre></div>
-  </div>
-</details>
-
-<blockquote class="book-hint info">
-  <img src="/problems/knight_dialer/optimized_result.png" alt="optimized_result" />
-</blockquote>
-
-<h2 id="reference">
-  Reference
-  <a class="anchor" href="#reference">#</a>
-</h2>
-<ul>
-<li>Leetcode: <a href="https://leetcode.com/problems/knight-dialer">knight dialer</a></li>
-</ul>
-<style>
-    .feedback-card {
-        border: 1px solid #ddd;
-        border-radius: 8px;
-        padding: 20px;
-        max-width: 100%;
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-        background-color: #f9f9fb;
-    }
-    .feedback-card h2 {
-        font-size: 20px;
-        margin-top: 0px;
-        margin-bottom: 10px;
-    }
-    .feedback-card .buttons {
-        margin: 10px 0;
-    }
-    .feedback-card button {
-        border: none;
-        background-color: #f0f0f0;
-        border-radius: 4px;
-        padding: 10px 15px;
-        margin-right: 10px;
-        cursor: pointer;
-        font-size: 16px;
-    }
-    .feedback-card button:hover {
-        background-color: #e0e0e0;
-    }
-    .feedback-card a {
-        color: #0074d9;
-        text-decoration: none;
-    }
-    .feedback-card a:hover {
-        text-decoration: underline;
-    }
-    .feedback-card p {
-        font-size: 14px;
-        color: #555;
-    }
-
-     
-    .modal {
-      display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      border-radius: 7px;
-      padding-bottom: 50px;
-
-      background-color: rgba(0, 0, 0, 0.5);
-      justify-content: center;
-      align-items: flex-end;
-    }
-
-    .modal-content {
-      background-color: white;
-      padding: 20px;
-      border-radius: 5px;
-      width: 300px;
-    }
-
-    .modal input {
-      width: 100%;
-      padding: 10px;
-      margin-bottom: 10px;
-    }
-</style>
-<div class="feedback-card" id="feedbackCard">
-    <h2>Help improve my blog</h2>
-    <p>Was this page helpful to you?</p>
-    <div class="buttons">
-        <button id="yesBtn">👍 Yes</button>
-        <button id="noBtn">👎 No</button>
-    </div>
-    <p>This page was last modified at <strong>2023-11-15</strong></p>
-    <ul>
-        <li><a href="https://github.com/DangPham112000/blog" target="_blank">View this page on GitHub</a></li>
-        <li><a href="#" class="link-button" id="linkButton">Report a problem with this content</a></li>
-    </ul>
-</div>
-
-<div class="modal" id="formModal">
-    <div class="feedback-card">
-        <h2>Can I know your name?</h2>
-        <form id="form">
-            <input type="text" name="username" placeholder="Enter your name">
-            <button type="submit">Yes</button>
-            <button type="submit">No</button>
-        </form>
-    </div>
-</div>
-
-<script>
-    const feedbackCardEle = document.getElementById("feedbackCard");
-    const formModalEle = document.getElementById('formModal');
-    const elesToShowForm = ['linkButton', 'yesBtn', 'noBtn'];
-
-    for (const ele of elesToShowForm) {
-        document.getElementById(ele).addEventListener('click', function(e) {
-            e.preventDefault();
-            formModalEle.style.display = 'flex';
-        });
-    }
-
-    window.onclick = function(event) {
-        if (event.target === formModalEle) {
-            formModalEle.style.display = 'none';
-        }
-    };
-
-    document.getElementById('form').addEventListener('submit', function(e) {
-        e.preventDefault(); 
-        alert('This feature is currently being developed');
-        formModalEle.style.display = 'none'; 
-    });
-</script>
-</article>
- 
-      
-
-      <footer class="book-footer">
-        
-  <div class="flex flex-wrap justify-between">
-
-
-
-
-
-</div>
-
-
-
-  <script>(function(){function e(e){const t=window.getSelection(),n=document.createRange();n.selectNodeContents(e),t.removeAllRanges(),t.addRange(n)}document.querySelectorAll("pre code").forEach(t=>{t.addEventListener("click",function(){if(window.getSelection().toString())return;e(t.parentElement),navigator.clipboard&&navigator.clipboard.writeText(t.parentElement.textContent)})})})()</script>
-
-
- 
-        
-      </footer>
-
-      
-  
-  <div class="book-comments">
-
-</div>
-  
- 
-
-      <label for="menu-control" class="hidden book-menu-overlay"></label>
-    </div>
-
-    
-    <aside class="book-toc">
-      <div class="book-toc-content">
-        
-  
-<nav id="TableOfContents">
-  <ul>
-    <li><a href="#description">Description</a></li>
-    <li><a href="#solution">Solution</a>
-      <ul>
-        <li><a href="#high-level">High level</a></li>
-        <li><a href="#low-level">Low level</a></li>
-      </ul>
-    </li>
-    <li><a href="#optimize">Optimize</a>
-      <ul>
-        <li><a href="#retrospective">Retrospective</a></li>
-        <li><a href="#new-way">New way</a></li>
-        <li><a href="#time-and-space-complexity-optimize">Time and space complexity optimize</a></li>
-      </ul>
-    </li>
-    <li><a href="#reference">Reference</a></li>
-  </ul>
-</nav>
-
-
- 
-      </div>
-    </aside>
-    
-  </main>
-
-  
-</body>
-</html>
-
-
-
-
-
-
-
-
-
-
-
-
+"><meta name=theme-color media="(prefers-color-scheme: light)" content="#ffffff"><meta name=theme-color media="(prefers-color-scheme: dark)" content="#343a40"><meta name=color-scheme content="light dark"><meta property="og:url" content="https://dangpham112000.github.io/docs/problems/knight_dialer/"><meta property="og:site_name" content="Dante 0401"><meta property="og:title" content="Knight Dialer"><meta property="og:description" content="Knight dialer # Description # The chess knight has a unique movement, it may move two squares vertically and one square horizontally, or two squares horizontally and one square vertically (with both forming the shape of an L). The possible movements of chess knight are shown in this diagaram:
+A chess knight can move as indicated in the chess diagram below: We have a chess knight and a phone pad as shown below, the knight can only stand on a numeric cell (i.e. blue cell)."><meta property="og:locale" content="en_us"><meta property="og:type" content="article"><meta property="article:section" content="docs"><meta property="article:published_time" content="2023-11-15T01:47:46+07:00"><meta property="article:modified_time" content="2023-11-15T01:47:46+07:00"><title>Knight Dialer | Dante 0401</title><link rel=manifest href=/manifest.json><link rel=icon href=/favicon.png><link rel=canonical href=https://dangpham112000.github.io/docs/problems/knight_dialer/><link rel=stylesheet href=/book.min.95535ae437871e725b7f7b2fb47d6446b8247773f5f22345e8c0aafa00c5db9b.css integrity="sha256-lVNa5DeHHnJbf3svtH1kRrgkd3P18iNF6MCq+gDF25s=" crossorigin=anonymous><script defer src=/fuse.min.js></script><script defer src=/en.search.min.b7403c70329304a8d4de17873d6d0681a5a205e052f3bdbca43f342b899d2958.js integrity="sha256-t0A8cDKTBKjU3heHPW0GgaWiBeBS8728pD80K4mdKVg=" crossorigin=anonymous></script></head><body dir=ltr><input type=checkbox class="hidden toggle" id=menu-control>
+<input type=checkbox class="hidden toggle" id=toc-control><main class="container flex"><aside class=book-menu><div class=book-menu-content><nav><h2 class=book-brand><a class="flex align-center" href=/><span>Dante 0401</span></a></h2><div class="book-search hidden"><input type=text id=book-search-input placeholder=Search aria-label=Search maxlength=64 data-hotkeys=s/><div class="book-search-spinner hidden"></div><ul id=book-search-results></ul></div><script>document.querySelector(".book-search").classList.remove("hidden")</script><ul><li class=book-section-flat><span>RESEARCH</span><ul><li><a href=/docs/research/mcp-server-tutorial/>Building an MCP Server from Scratch: An E-commerce Case Study</a></li><li><a href=/docs/research/process_vs_thread/>Process vs Thread</a></li><li><a href=/docs/research/chrome_architecture/>Chrome Architecture</a></li><li><a href=/docs/research/aws_overview/>AWS Overview</a></li><li><a href=/docs/research/be_protocol/>Backend</a><ul><li><a href=/docs/research/be_protocol/tls_ssl/>TLS - SSL</a></li><li><a href=/docs/research/be_protocol/communication/>Communication</a></li><li><a href=/docs/research/be_protocol/rabbitmq/>RabbitMQ</a></li><li><a href=/docs/research/be_protocol/kafka/>Kafka - Draft</a></li></ul></li><li><a href=/docs/research/encryption/>Encryption</a></li><li><a href=/docs/research/token_based_authentication/>Token-based Authentication</a></li><li><a href=/docs/research/security/>Security - Draft</a><ul><li><a href=/docs/research/security/hsts/>HSTS</a></li><li><a href=/docs/research/security/bit_flipping/>Bit Flipping</a></li></ul></li><li><a href=/docs/research/scale/>Scale</a></li></ul></li><li class=book-section-flat><span>TIPS</span><ul><li><a href=/docs/tips/001_unit_test/>Unit Test</a></li><li><a href=/docs/tips/002_git/>Git</a></li><li><a href=/docs/tips/003_docker/>Docker</a></li><li><a href=/docs/tips/004_ops/>Ops</a></li><li><a href=/docs/tips/005_passion/>Spark Passion</a></li></ul></li><li class=book-section-flat><span>PROBLEMS</span><ul><li><a href=/docs/problems/knight_dialer/ class=active>Knight Dialer</a></li></ul></li></ul></nav><script>(function(){var e=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(){localStorage.setItem("menu.scrollTop",e.scrollTop)}),e.scrollTop=localStorage.getItem("menu.scrollTop")})()</script></div></aside><div class=book-page><header class=book-header><div class="flex align-center justify-between"><label for=menu-control><img src=/svg/menu.svg class=book-icon alt=Menu>
+</label><strong>Knight Dialer</strong>
+<label for=toc-control><img src=/svg/toc.svg class=book-icon alt="Table of Contents"></label></div><aside class="hidden clearfix"><nav id=TableOfContents><ul><li><a href=#description>Description</a></li><li><a href=#solution>Solution</a><ul><li><a href=#high-level>High level</a></li><li><a href=#low-level>Low level</a></li></ul></li><li><a href=#optimize>Optimize</a><ul><li><a href=#retrospective>Retrospective</a></li><li><a href=#new-way>New way</a></li><li><a href=#time-and-space-complexity-optimize>Time and space complexity optimize</a></li></ul></li><li><a href=#reference>Reference</a></li></ul></nav></aside></header><article class="markdown book-article"><h1 id=knight-dialer>Knight dialer
+<a class=anchor href=#knight-dialer>#</a></h1><h2 id=description>Description
+<a class=anchor href=#description>#</a></h2><p>The chess knight has a <strong>unique movement</strong>, it may move two squares vertically and one square horizontally, or two squares horizontally and one square vertically (with both forming the shape of an <strong>L</strong>). The possible movements of chess knight are shown in this diagaram:</p><p>A chess knight can move as indicated in the chess diagram below:</br><img src=/problems/knight_dialer/chess_table.jpg alt=chess_table></p><p>We have a chess knight and a phone pad as shown below, the knight <strong>can only stand on a numeric cell</strong> (i.e. blue cell).</br><img src=/problems/knight_dialer/phone_pad.jpg alt=phone></p><p>Given an integer <code>n</code>, return how many distinct phone numbers of length <code>n</code> we can dial.</p><p>You are allowed to place the knight <strong>on any numeric cell</strong> initially<br>and then you should perform <code>n - 1</code> jumps to dial a number of length n. All jumps should be <strong>valid</strong> knight jumps.</p><p>As the answer may be very large, <strong>return the answer modulo</strong>
+<link rel=stylesheet href=/katex/katex.min.css><script defer src=/katex/katex.min.js></script><script defer src=/katex/auto-render.min.js onload=renderMathInElement(document.body)></script><span>\(10^9 + 7\)</span></p><p><strong>Example 1:</strong></p><blockquote><p><strong>Input</strong>: n = 1<br><strong>Output</strong>: 10<br><strong>Explanation</strong>: We need to dial a number of length 1, so placing the knight over any numeric cell of the 10 cells is sufficient</p></blockquote><p><strong>Example 2:</strong></p><blockquote><p><strong>Input</strong>: n = 2<br><strong>Output</strong>: 20<br><strong>Explanation</strong>: All the valid number we can dial are [04, 06, 16, 18, 27, 29, 34, 38, 40, 43, 49, 60, 61, 67, 72, 76, 81, 83, 92, 94]</p></blockquote><p><strong>Example 3:</strong></p><blockquote><p><strong>Input</strong>: n = 3131<br><strong>Output</strong>: 136006598<br><strong>Explanation</strong>: Please take care of the mod</p></blockquote><p><strong>Constraints</strong>:</p><ul><li><code>1 &lt;= n &lt;= 5000</code></li></ul><h2 id=solution>Solution
+<a class=anchor href=#solution>#</a></h2><h3 id=high-level>High level
+<a class=anchor href=#high-level>#</a></h3><ul><li>Có thể thấy bàn phím điện thoại khá nhỏ</li><li>Ta có thể tận dụng các giới hạn này để giải quyết bài toán thay vì đâm đầu vào một công thức tổng quát:<ul><li>Ở một vị trí chỉ có thể nhảy đến 1 tập giới hạn các vị trí khác</li><li>Số cách di chuyển ở mỗi vị trí là hằng số và có thể liệt kê được</li></ul></li></ul><h3 id=low-level>Low level
+<a class=anchor href=#low-level>#</a></h3><blockquote><p>Ta nên bắt đầu bằng 1 ví dụ: đẹp nhất là <code>n = 3</code></p></blockquote><ul><li>Ở lần đầu thì vị trí là tất cả các nút</li><li>Ở lần 2 thì cần duyệt qua từ 0 đến 9<ul><li>vị trí 0 sẽ có thể nhảy đến 4 và</li><li>vị trí 1 sẽ có thể nhảy đến 8 và</li><li>&mldr;</li></ul></li><li>Ở lần 3 thì<ul><li>ta sẽ duyệt tiếp bên trong vị trí 0 ở lần 2<ul><li>vị trí 4 sẽ có thể nhảy đến 3, 9 và 0</li><li>vị trí 6 sẽ có thể nhảy đến 1, 7 và 0</li></ul></li><li>trong vị trí 1 ở lần 2<ul><li>8 => 1, 3</li><li>6 => 1, 7, 0</li></ul></li><li>&mldr;</li></ul></li></ul><p>Các kết quả cần tìm</p><ul><li>Với n = 1, return 10</li><li>Với n = 2,<ul><li>0 có thể đến 4 và 6,</li><li>1 có thể đến 8 và 6</li></ul></li><li>Với n = 3,<ul><li>0 có thể đến 3, 9, 0, 1, 7, 0</li><li>1 có thể đến 1, 3, 1, 7, 0</li></ul></li></ul><p>Kết quả là tổng sống lượng vị trí có thể đến</p><ul><li>Cần tạo 1 mảng chứa các vị trí khả dụng qua mỗi lần lặp n</li></ul><blockquote><p>Có thể thấy ta có thể tạo 2 mảng</p></blockquote><ul><li>Mảng số vị trí khả dụng kế tiếp khi ở vị trí i: <code>[[4, 6], [8, 6], []]</code></li><li>Có thể thấy để dùng được mảng vị trí khả dụng thì n phải >= 2</li><li>Vậy thì thuật toán cần tìm phải bắt đầu ít nhất từ 2</li></ul><details><summary><strong>Code</strong></summary><div class=markdown-inner><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-js data-lang=js><span style=display:flex><span><span style=color:#75715e>/**
+</span></span></span><span style=display:flex><span><span style=color:#75715e> * @param {number} n
+</span></span></span><span style=display:flex><span><span style=color:#75715e> * @return {number}
+</span></span></span><span style=display:flex><span><span style=color:#75715e> */</span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>var</span> <span style=color:#a6e22e>knightDialer</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>function</span> (<span style=color:#a6e22e>n</span>) {
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>nextPlaces</span> <span style=color:#f92672>=</span> [
+</span></span><span style=display:flex><span>    [<span style=color:#ae81ff>4</span>, <span style=color:#ae81ff>6</span>],
+</span></span><span style=display:flex><span>    [<span style=color:#ae81ff>6</span>, <span style=color:#ae81ff>8</span>],
+</span></span><span style=display:flex><span>    [<span style=color:#ae81ff>7</span>, <span style=color:#ae81ff>9</span>],
+</span></span><span style=display:flex><span>    [<span style=color:#ae81ff>4</span>, <span style=color:#ae81ff>8</span>],
+</span></span><span style=display:flex><span>    [<span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>3</span>, <span style=color:#ae81ff>9</span>],
+</span></span><span style=display:flex><span>    [],
+</span></span><span style=display:flex><span>    [<span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>7</span>],
+</span></span><span style=display:flex><span>    [<span style=color:#ae81ff>2</span>, <span style=color:#ae81ff>6</span>],
+</span></span><span style=display:flex><span>    [<span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>3</span>],
+</span></span><span style=display:flex><span>    [<span style=color:#ae81ff>2</span>, <span style=color:#ae81ff>4</span>],
+</span></span><span style=display:flex><span>  ];
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>if</span> (<span style=color:#a6e22e>n</span> <span style=color:#f92672>===</span> <span style=color:#ae81ff>1</span>) <span style=color:#66d9ef>return</span> <span style=color:#ae81ff>10</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>validPlaces</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>JSON</span>.<span style=color:#a6e22e>parse</span>(<span style=color:#a6e22e>JSON</span>.<span style=color:#a6e22e>stringify</span>(<span style=color:#a6e22e>nextPlaces</span>));
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>for</span> (<span style=color:#66d9ef>let</span> <span style=color:#a6e22e>time</span> <span style=color:#f92672>=</span> <span style=color:#ae81ff>3</span>; <span style=color:#a6e22e>time</span> <span style=color:#f92672>&lt;=</span> <span style=color:#a6e22e>n</span>; <span style=color:#a6e22e>time</span><span style=color:#f92672>++</span>) {
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>for</span> (<span style=color:#66d9ef>let</span> <span style=color:#a6e22e>place</span> <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>; <span style=color:#a6e22e>place</span> <span style=color:#f92672>&lt;=</span> <span style=color:#ae81ff>9</span>; <span style=color:#a6e22e>place</span><span style=color:#f92672>++</span>) {
+</span></span><span style=display:flex><span>      <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>newPlaces</span> <span style=color:#f92672>=</span> [];
+</span></span><span style=display:flex><span>      <span style=color:#66d9ef>for</span> (<span style=color:#66d9ef>let</span> <span style=color:#a6e22e>i</span> <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>; <span style=color:#a6e22e>i</span> <span style=color:#f92672>&lt;</span> <span style=color:#a6e22e>validPlaces</span>[<span style=color:#a6e22e>place</span>].<span style=color:#a6e22e>length</span>; <span style=color:#a6e22e>i</span><span style=color:#f92672>++</span>) {
+</span></span><span style=display:flex><span>        <span style=color:#a6e22e>newPlaces</span>.<span style=color:#a6e22e>push</span>(...<span style=color:#a6e22e>nextPlaces</span>[<span style=color:#a6e22e>validPlaces</span>[<span style=color:#a6e22e>place</span>][<span style=color:#a6e22e>i</span>]]);
+</span></span><span style=display:flex><span>      }
+</span></span><span style=display:flex><span>      <span style=color:#a6e22e>validPlaces</span>[<span style=color:#a6e22e>place</span>] <span style=color:#f92672>=</span> <span style=color:#a6e22e>newPlaces</span>;
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>  }
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>totalWays</span> <span style=color:#f92672>=</span>
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>validPlaces</span>.<span style=color:#a6e22e>reduce</span>((<span style=color:#a6e22e>acc</span>, <span style=color:#a6e22e>currentArray</span>) =&gt; <span style=color:#a6e22e>acc</span> <span style=color:#f92672>+</span> <span style=color:#a6e22e>currentArray</span>.<span style=color:#a6e22e>length</span>, <span style=color:#ae81ff>0</span>) <span style=color:#f92672>%</span>
+</span></span><span style=display:flex><span>    (Math.<span style=color:#a6e22e>pow</span>(<span style=color:#ae81ff>10</span>, <span style=color:#ae81ff>9</span>) <span style=color:#f92672>+</span> <span style=color:#ae81ff>7</span>);
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>return</span> <span style=color:#a6e22e>totalWays</span>;
+</span></span><span style=display:flex><span>};
+</span></span></code></pre></div></div></details><blockquote class="book-hint danger"><p>Xuất hiện lỗi <code>runtime error</code>: Cụ thể thì là do <code>out of memory</code></p><p><img src=/problems/knight_dialer/err_msg.png alt=err_msg></p></blockquote><ul><li>Khi thử với các test case nhỏ thì dễ thấy hàm của chúng ta work như mong đợi</li><li>Nhưng khi thử với số lớn thì sẽ xuất hiện lỗi <code>out of memory</code><ul><li>Giải thuật chưa tối ưu bộ nhớ ?</li><li>Chọn cấu trúc dữ liệu chưa phù hợp ?</li></ul></li></ul><h2 id=optimize>Optimize
+<a class=anchor href=#optimize>#</a></h2><h3 id=retrospective>Retrospective
+<a class=anchor href=#retrospective>#</a></h3><p>Cùng nhìn lại cách diễn giải ban đầu:</p><ul><li>n = 1: tất cả các nút<br>==> <code>[[0], [1], [2], [3], [4], [5], [6], [7], [8], [9]]</code></li><li>n = 2:<ul><li>0 có thể đến 4 và 6</li><li>1 có thể đến 8 và 6</li><li>2 có thể đến 7 và 9</li><li>&mldr;<br>==> <code>[[4, 6], [6, 8], [7, 9], [4, 8], [0, 3, 9], [], [0, 1, 7], [2, 6], [1, 3], [2, 4]]</code></li></ul></li><li>n = 3:<ul><li>0 có thể đến 3, 9, 0, 1, 7, 0</li><li>1 có thể đến 1, 3, 1, 7, 0</li><li>&mldr;<br>==> <code>[[3, 9, 0, 1, 7, 0], [1, 3, 1, 7, 0], ...]</code></li></ul></li><li>&mldr;</li></ul><blockquote class="book-hint warning"><ul><li>Dễ thấy n càng cao số phần từ trùng lặp lại trong mảng càng cao</li><li>Với mỗi phần tử trùng ấy ta lại có cùng một công việc cho chúng</li><li>Kết quả cần tìm lại là đếm số lượng phần tử của từng mảng</li></ul></blockquote><p><strong>==> Nếu có thể áp dụng cấu trúc Dictionary sẽ là một phương pháp tối ưu</strong></p><h3 id=new-way>New way
+<a class=anchor href=#new-way>#</a></h3><p>Cách diễn dãi mới</p><ul><li>n = 1<br>==> <code>dic = {0: 1, 1: 1, 2: 1, 3: 1, 4: 1, 5: 1, 6: 1, 7: 1, 8: 1, 9: 1}</code><br>==> <code>dic = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1]</code><br>==> Nên chọn array vì key chúng ta cần chỉ là các con số từ 0->9</li><li>n = 2<ul><li>0 có thể đến 4 và 6 => <code>newDic[4] += dic[0]</code> và <code>newDic[6] += dic[0]</code><ul><li><code>newDic[4] += dic[0]</code> vì giả sử vị trí 0 đang chứa 2 khả năng, thì 2 khả năng đó đều đi đến được 4</li><li>Dùng <code>newDic</code> là để trạng thái cũ k bị xáo trộn khi đang duyệt</li></ul></li><li>1 có thể đến 8 và 6 => <code>newDic[8] += dic[1]</code> và <code>newDic[6] += dic[1]</code></li><li>&mldr;</li></ul></li></ul><details><summary><strong>Code</strong></summary><div class=markdown-inner><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-js data-lang=js><span style=display:flex><span><span style=color:#75715e>/**
+</span></span></span><span style=display:flex><span><span style=color:#75715e> * @param {number} n
+</span></span></span><span style=display:flex><span><span style=color:#75715e> * @return {number}
+</span></span></span><span style=display:flex><span><span style=color:#75715e> */</span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>var</span> <span style=color:#a6e22e>knightDialer</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>function</span> (<span style=color:#a6e22e>n</span>) {
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>nextPlaces</span> <span style=color:#f92672>=</span> [
+</span></span><span style=display:flex><span>    [<span style=color:#ae81ff>4</span>, <span style=color:#ae81ff>6</span>],
+</span></span><span style=display:flex><span>    [<span style=color:#ae81ff>6</span>, <span style=color:#ae81ff>8</span>],
+</span></span><span style=display:flex><span>    [<span style=color:#ae81ff>7</span>, <span style=color:#ae81ff>9</span>],
+</span></span><span style=display:flex><span>    [<span style=color:#ae81ff>4</span>, <span style=color:#ae81ff>8</span>],
+</span></span><span style=display:flex><span>    [<span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>3</span>, <span style=color:#ae81ff>9</span>],
+</span></span><span style=display:flex><span>    [],
+</span></span><span style=display:flex><span>    [<span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>7</span>],
+</span></span><span style=display:flex><span>    [<span style=color:#ae81ff>2</span>, <span style=color:#ae81ff>6</span>],
+</span></span><span style=display:flex><span>    [<span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>3</span>],
+</span></span><span style=display:flex><span>    [<span style=color:#ae81ff>2</span>, <span style=color:#ae81ff>4</span>],
+</span></span><span style=display:flex><span>  ];
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>if</span> (<span style=color:#a6e22e>n</span> <span style=color:#f92672>===</span> <span style=color:#ae81ff>1</span>) <span style=color:#66d9ef>return</span> <span style=color:#ae81ff>10</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>let</span> <span style=color:#a6e22e>dic</span> <span style=color:#f92672>=</span> [<span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>1</span>];
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>for</span> (<span style=color:#66d9ef>let</span> <span style=color:#a6e22e>time</span> <span style=color:#f92672>=</span> <span style=color:#ae81ff>2</span>; <span style=color:#a6e22e>time</span> <span style=color:#f92672>&lt;=</span> <span style=color:#a6e22e>n</span>; <span style=color:#a6e22e>time</span><span style=color:#f92672>++</span>) {
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>newDic</span> <span style=color:#f92672>=</span> [<span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>0</span>];
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>for</span> (<span style=color:#66d9ef>let</span> <span style=color:#a6e22e>place</span> <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>; <span style=color:#a6e22e>place</span> <span style=color:#f92672>&lt;=</span> <span style=color:#ae81ff>9</span>; <span style=color:#a6e22e>place</span><span style=color:#f92672>++</span>) {
+</span></span><span style=display:flex><span>      <span style=color:#66d9ef>for</span> (<span style=color:#66d9ef>let</span> <span style=color:#a6e22e>i</span> <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>; <span style=color:#a6e22e>i</span> <span style=color:#f92672>&lt;</span> <span style=color:#a6e22e>nextPlaces</span>[<span style=color:#a6e22e>place</span>].<span style=color:#a6e22e>length</span>; <span style=color:#a6e22e>i</span><span style=color:#f92672>++</span>) {
+</span></span><span style=display:flex><span>        <span style=color:#a6e22e>newDic</span>[<span style=color:#a6e22e>nextPlaces</span>[<span style=color:#a6e22e>place</span>][<span style=color:#a6e22e>i</span>]] <span style=color:#f92672>+=</span> <span style=color:#a6e22e>dic</span>[<span style=color:#a6e22e>place</span>] <span style=color:#f92672>%</span> (Math.<span style=color:#a6e22e>pow</span>(<span style=color:#ae81ff>10</span>, <span style=color:#ae81ff>9</span>) <span style=color:#f92672>+</span> <span style=color:#ae81ff>7</span>);
+</span></span><span style=display:flex><span>      }
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>dic</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>newDic</span>;
+</span></span><span style=display:flex><span>  }
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>totalWays</span> <span style=color:#f92672>=</span>
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>dic</span>.<span style=color:#a6e22e>reduce</span>((<span style=color:#a6e22e>acc</span>, <span style=color:#a6e22e>item</span>) =&gt; <span style=color:#a6e22e>acc</span> <span style=color:#f92672>+</span> <span style=color:#a6e22e>item</span>, <span style=color:#ae81ff>0</span>) <span style=color:#f92672>%</span> (Math.<span style=color:#a6e22e>pow</span>(<span style=color:#ae81ff>10</span>, <span style=color:#ae81ff>9</span>) <span style=color:#f92672>+</span> <span style=color:#ae81ff>7</span>);
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>return</span> <span style=color:#a6e22e>totalWays</span>;
+</span></span><span style=display:flex><span>};
+</span></span></code></pre></div></div></details><blockquote class="book-hint info"><img src=/problems/knight_dialer/result.png alt=result></blockquote><h3 id=time-and-space-complexity-optimize>Time and space complexity optimize
+<a class=anchor href=#time-and-space-complexity-optimize>#</a></h3><details><summary><strong>Code</strong></summary><div class=markdown-inner><h4 id=tiêu-chí-là-ít-tính-toán-lại-và-tận-dụng-nhiều-hơn>Tiêu chí là ít tính toán lại và tận dụng nhiều hơn
+<a class=anchor href=#ti%c3%aau-ch%c3%ad-l%c3%a0-%c3%adt-t%c3%adnh-to%c3%a1n-l%e1%ba%a1i-v%c3%a0-t%e1%ba%adn-d%e1%bb%a5ng-nhi%e1%bb%81u-h%c6%a1n>#</a></h4><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-js data-lang=js><span style=display:flex><span><span style=color:#75715e>/**
+</span></span></span><span style=display:flex><span><span style=color:#75715e> * @param {number} n
+</span></span></span><span style=display:flex><span><span style=color:#75715e> * @return {number}
+</span></span></span><span style=display:flex><span><span style=color:#75715e> */</span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>var</span> <span style=color:#a6e22e>knightDialer</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>function</span> (<span style=color:#a6e22e>n</span>) {
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>nextPlaces</span> <span style=color:#f92672>=</span> [
+</span></span><span style=display:flex><span>    [<span style=color:#ae81ff>4</span>, <span style=color:#ae81ff>6</span>],
+</span></span><span style=display:flex><span>    [<span style=color:#ae81ff>6</span>, <span style=color:#ae81ff>8</span>],
+</span></span><span style=display:flex><span>    [<span style=color:#ae81ff>7</span>, <span style=color:#ae81ff>9</span>],
+</span></span><span style=display:flex><span>    [<span style=color:#ae81ff>4</span>, <span style=color:#ae81ff>8</span>],
+</span></span><span style=display:flex><span>    [<span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>3</span>, <span style=color:#ae81ff>9</span>],
+</span></span><span style=display:flex><span>    [],
+</span></span><span style=display:flex><span>    [<span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>7</span>],
+</span></span><span style=display:flex><span>    [<span style=color:#ae81ff>2</span>, <span style=color:#ae81ff>6</span>],
+</span></span><span style=display:flex><span>    [<span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>3</span>],
+</span></span><span style=display:flex><span>    [<span style=color:#ae81ff>2</span>, <span style=color:#ae81ff>4</span>],
+</span></span><span style=display:flex><span>  ];
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>if</span> (<span style=color:#a6e22e>n</span> <span style=color:#f92672>===</span> <span style=color:#ae81ff>1</span>) <span style=color:#66d9ef>return</span> <span style=color:#ae81ff>10</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>mod</span> <span style=color:#f92672>=</span> Math.<span style=color:#a6e22e>pow</span>(<span style=color:#ae81ff>10</span>, <span style=color:#ae81ff>9</span>) <span style=color:#f92672>+</span> <span style=color:#ae81ff>7</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>let</span> <span style=color:#a6e22e>dic</span> <span style=color:#f92672>=</span> [<span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>1</span>],
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>newDic</span> <span style=color:#f92672>=</span> [<span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>0</span>],
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>place</span>,
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>i</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>for</span> (<span style=color:#66d9ef>let</span> <span style=color:#a6e22e>time</span> <span style=color:#f92672>=</span> <span style=color:#ae81ff>2</span>; <span style=color:#a6e22e>time</span> <span style=color:#f92672>&lt;=</span> <span style=color:#a6e22e>n</span>; <span style=color:#a6e22e>time</span><span style=color:#f92672>++</span>) {
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>newDic</span> <span style=color:#f92672>=</span> [<span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>0</span>];
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>for</span> (<span style=color:#a6e22e>place</span> <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>; <span style=color:#a6e22e>place</span> <span style=color:#f92672>&lt;=</span> <span style=color:#ae81ff>9</span>; <span style=color:#a6e22e>place</span><span style=color:#f92672>++</span>) {
+</span></span><span style=display:flex><span>      <span style=color:#66d9ef>if</span> (<span style=color:#a6e22e>place</span> <span style=color:#f92672>===</span> <span style=color:#ae81ff>5</span>) <span style=color:#66d9ef>continue</span>;
+</span></span><span style=display:flex><span>      <span style=color:#66d9ef>for</span> (<span style=color:#a6e22e>i</span> <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>; <span style=color:#a6e22e>i</span> <span style=color:#f92672>&lt;</span> <span style=color:#a6e22e>nextPlaces</span>[<span style=color:#a6e22e>place</span>].<span style=color:#a6e22e>length</span>; <span style=color:#a6e22e>i</span><span style=color:#f92672>++</span>) {
+</span></span><span style=display:flex><span>        <span style=color:#a6e22e>newDic</span>[<span style=color:#a6e22e>nextPlaces</span>[<span style=color:#a6e22e>place</span>][<span style=color:#a6e22e>i</span>]] <span style=color:#f92672>+=</span> <span style=color:#a6e22e>dic</span>[<span style=color:#a6e22e>place</span>] <span style=color:#f92672>%</span> <span style=color:#a6e22e>mod</span>;
+</span></span><span style=display:flex><span>      }
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>dic</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>newDic</span>;
+</span></span><span style=display:flex><span>  }
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>totalWays</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>dic</span>.<span style=color:#a6e22e>reduce</span>((<span style=color:#a6e22e>acc</span>, <span style=color:#a6e22e>item</span>) =&gt; <span style=color:#a6e22e>acc</span> <span style=color:#f92672>+</span> <span style=color:#a6e22e>item</span>, <span style=color:#ae81ff>0</span>) <span style=color:#f92672>%</span> <span style=color:#a6e22e>mod</span>;
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>return</span> <span style=color:#a6e22e>totalWays</span>;
+</span></span><span style=display:flex><span>};
+</span></span></code></pre></div></div></details><blockquote class="book-hint info"><img src=/problems/knight_dialer/optimized_result.png alt=optimized_result></blockquote><h2 id=reference>Reference
+<a class=anchor href=#reference>#</a></h2><ul><li>Leetcode: <a href=https://leetcode.com/problems/knight-dialer>knight dialer</a></li></ul><style>.feedback-card{border:1px solid #ddd;border-radius:8px;padding:20px;max-width:100%;box-shadow:0 2px 5px rgba(0,0,0,.1);background-color:#f9f9fb}.feedback-card h2{font-size:20px;margin-top:0;margin-bottom:10px}.feedback-card .buttons{margin:10px 0}.feedback-card button{border:none;background-color:#f0f0f0;border-radius:4px;padding:10px 15px;margin-right:10px;cursor:pointer;font-size:16px}.feedback-card button:hover{background-color:#e0e0e0}.feedback-card a{color:#0074d9;text-decoration:none}.feedback-card a:hover{text-decoration:underline}.feedback-card p{font-size:14px;color:#555}.modal{display:none;position:fixed;top:0;left:0;width:100%;height:100%;border-radius:7px;padding-bottom:50px;background-color:rgba(0,0,0,.5);justify-content:center;align-items:flex-end}.modal-content{background-color:#fff;padding:20px;border-radius:5px;width:300px}.modal input{width:100%;padding:10px;margin-bottom:10px}</style><div class=feedback-card id=feedbackCard><h2>Help improve my blog</h2><p>Was this page helpful to you?</p><div class=buttons><button id=yesBtn>👍 Yes</button>
+<button id=noBtn>👎 No</button></div><p>This page was last modified at <strong>2023-11-15</strong></p><ul><li><a href=https://github.com/DangPham112000/blog target=_blank>View this page on GitHub</a></li><li><a href=# class=link-button id=linkButton>Report a problem with this content</a></li></ul></div><div class=modal id=formModal><div class=feedback-card><h2>Can I know your name?</h2><form id=form><input type=text name=username placeholder="Enter your name">
+<button type=submit>Yes</button>
+<button type=submit>No</button></form></div></div><script>const feedbackCardEle=document.getElementById("feedbackCard"),formModalEle=document.getElementById("formModal"),elesToShowForm=["linkButton","yesBtn","noBtn"];for(const e of elesToShowForm)document.getElementById(e).addEventListener("click",function(e){e.preventDefault(),formModalEle.style.display="flex"});window.onclick=function(e){e.target===formModalEle&&(formModalEle.style.display="none")},document.getElementById("form").addEventListener("submit",function(e){e.preventDefault(),alert("This feature is currently being developed"),formModalEle.style.display="none"})</script></article><footer class=book-footer><div class="flex flex-wrap justify-between"></div><script>(function(){function e(e){const t=window.getSelection(),n=document.createRange();n.selectNodeContents(e),t.removeAllRanges(),t.addRange(n)}document.querySelectorAll("pre code").forEach(t=>{t.addEventListener("click",function(){if(window.getSelection().toString())return;e(t.parentElement),navigator.clipboard&&navigator.clipboard.writeText(t.parentElement.textContent)})})})()</script></footer><div class=book-comments></div><label for=menu-control class="hidden book-menu-overlay"></label></div><aside class=book-toc><div class=book-toc-content><nav id=TableOfContents><ul><li><a href=#description>Description</a></li><li><a href=#solution>Solution</a><ul><li><a href=#high-level>High level</a></li><li><a href=#low-level>Low level</a></li></ul></li><li><a href=#optimize>Optimize</a><ul><li><a href=#retrospective>Retrospective</a></li><li><a href=#new-way>New way</a></li><li><a href=#time-and-space-complexity-optimize>Time and space complexity optimize</a></li></ul></li><li><a href=#reference>Reference</a></li></ul></nav></div></aside></main></body></html>

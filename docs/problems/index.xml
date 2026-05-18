@@ -1,19 +1,13 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>PROBLEMS on Dante 0401</title>
-    <link>https://dangpham112000.github.io/docs/problems/</link>
-    <description>Recent content in PROBLEMS on Dante 0401</description>
-    <generator>Hugo</generator>
-    <language>en-us</language>
-    <lastBuildDate>Wed, 15 Nov 2023 01:47:46 +0700</lastBuildDate>
-    <atom:link href="https://dangpham112000.github.io/docs/problems/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>Knight Dialer</title>
-      <link>https://dangpham112000.github.io/docs/problems/knight_dialer/</link>
-      <pubDate>Wed, 15 Nov 2023 01:47:46 +0700</pubDate>
-      <guid>https://dangpham112000.github.io/docs/problems/knight_dialer/</guid>
-      <description>&lt;h1 id=&#34;knight-dialer&#34;&gt;&#xA;  Knight dialer&#xA;  &lt;a class=&#34;anchor&#34; href=&#34;#knight-dialer&#34;&gt;#&lt;/a&gt;&#xA;&lt;/h1&gt;&#xA;&lt;h2 id=&#34;description&#34;&gt;&#xA;  Description&#xA;  &lt;a class=&#34;anchor&#34; href=&#34;#description&#34;&gt;#&lt;/a&gt;&#xA;&lt;/h2&gt;&#xA;&lt;p&gt;The chess knight has a &lt;strong&gt;unique movement&lt;/strong&gt;, it may move two squares vertically and one square horizontally, or two squares horizontally and one square vertically (with both forming the shape of an &lt;strong&gt;L&lt;/strong&gt;). The possible movements of chess knight are shown in this diagaram:&lt;/p&gt;&#xA;&lt;p&gt;A chess knight can move as indicated in the chess diagram below:&lt;/br&gt;&#xA;&lt;img src=&#34;https://dangpham112000.github.io/problems/knight_dialer/chess_table.jpg&#34; alt=&#34;chess_table&#34; /&gt;&lt;/p&gt;&#xA;&lt;p&gt;We have a chess knight and a phone pad as shown below, the knight &lt;strong&gt;can only stand on a numeric cell&lt;/strong&gt; (i.e. blue cell).&lt;/br&gt;&#xA;&lt;img src=&#34;https://dangpham112000.github.io/problems/knight_dialer/phone_pad.jpg&#34; alt=&#34;phone&#34; /&gt;&lt;/p&gt;</description>
-    </item>
-  </channel>
-</rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>PROBLEMS on Dante 0401</title><link>https://dangpham112000.github.io/docs/problems/</link><description>Recent content in PROBLEMS on Dante 0401</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Wed, 15 Nov 2023 01:47:46 +0700</lastBuildDate><atom:link href="https://dangpham112000.github.io/docs/problems/index.xml" rel="self" type="application/rss+xml"/><item><title>Knight Dialer</title><link>https://dangpham112000.github.io/docs/problems/knight_dialer/</link><pubDate>Wed, 15 Nov 2023 01:47:46 +0700</pubDate><guid>https://dangpham112000.github.io/docs/problems/knight_dialer/</guid><description>&lt;h1 id="knight-dialer"&gt;
+ Knight dialer
+ &lt;a class="anchor" href="#knight-dialer"&gt;#&lt;/a&gt;
+&lt;/h1&gt;
+&lt;h2 id="description"&gt;
+ Description
+ &lt;a class="anchor" href="#description"&gt;#&lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;The chess knight has a &lt;strong&gt;unique movement&lt;/strong&gt;, it may move two squares vertically and one square horizontally, or two squares horizontally and one square vertically (with both forming the shape of an &lt;strong&gt;L&lt;/strong&gt;). The possible movements of chess knight are shown in this diagaram:&lt;/p&gt;
+&lt;p&gt;A chess knight can move as indicated in the chess diagram below:&lt;/br&gt;
+&lt;img src="https://dangpham112000.github.io/problems/knight_dialer/chess_table.jpg" alt="chess_table" /&gt;&lt;/p&gt;
+&lt;p&gt;We have a chess knight and a phone pad as shown below, the knight &lt;strong&gt;can only stand on a numeric cell&lt;/strong&gt; (i.e. blue cell).&lt;/br&gt;
+&lt;img src="https://dangpham112000.github.io/problems/knight_dialer/phone_pad.jpg" alt="phone" /&gt;&lt;/p&gt;</description></item></channel></rss>

@@ -1,54 +1,239 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>RESEARCH on Dante 0401</title>
-    <link>https://dangpham112000.github.io/docs/research/</link>
-    <description>Recent content in RESEARCH on Dante 0401</description>
-    <generator>Hugo</generator>
-    <language>en-us</language>
-    <lastBuildDate>Fri, 03 Jan 2025 01:47:46 +0700</lastBuildDate>
-    <atom:link href="https://dangpham112000.github.io/docs/research/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>Process vs Thread</title>
-      <link>https://dangpham112000.github.io/docs/research/process_vs_thread/</link>
-      <pubDate>Tue, 05 Dec 2023 01:47:46 +0700</pubDate>
-      <guid>https://dangpham112000.github.io/docs/research/process_vs_thread/</guid>
-      <description>&lt;h1 id=&#34;process-vs-thread&#34;&gt;&#xA;  Process vs Thread&#xA;  &lt;a class=&#34;anchor&#34; href=&#34;#process-vs-thread&#34;&gt;#&lt;/a&gt;&#xA;&lt;/h1&gt;&#xA;&lt;h2 id=&#34;program&#34;&gt;&#xA;  Program&#xA;  &lt;a class=&#34;anchor&#34; href=&#34;#program&#34;&gt;#&lt;/a&gt;&#xA;&lt;/h2&gt;&#xA;&lt;p&gt;A &lt;strong&gt;Program&lt;/strong&gt; is an executable file containing a set of instructions and passively stored on disk&lt;/p&gt;&#xA;&lt;p&gt;&lt;img src=&#34;https://dangpham112000.github.io/research/process_vs_thread/program.png&#34; alt=&#34;program&#34; /&gt;&lt;/p&gt;&#xA;&lt;h2 id=&#34;process&#34;&gt;&#xA;  Process&#xA;  &lt;a class=&#34;anchor&#34; href=&#34;#process&#34;&gt;#&lt;/a&gt;&#xA;&lt;/h2&gt;&#xA;&lt;p&gt;A &lt;strong&gt;Process&lt;/strong&gt; means a program is in execution. When a program is loaded into the memory and becomes active, the program becomes a process or processes&lt;/p&gt;&#xA;&lt;p&gt;&lt;img src=&#34;https://dangpham112000.github.io/research/process_vs_thread/process.png&#34; alt=&#34;process&#34; /&gt;&lt;/p&gt;&#xA;&lt;h2 id=&#34;thread&#34;&gt;&#xA;  Thread&#xA;  &lt;a class=&#34;anchor&#34; href=&#34;#thread&#34;&gt;#&lt;/a&gt;&#xA;&lt;/h2&gt;&#xA;&lt;p&gt;A &lt;strong&gt;Thread&lt;/strong&gt; is the smallest unit of execution within a process&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>Chrome Architecture</title>
-      <link>https://dangpham112000.github.io/docs/research/chrome_architecture/</link>
-      <pubDate>Tue, 05 Dec 2023 01:47:46 +0700</pubDate>
-      <guid>https://dangpham112000.github.io/docs/research/chrome_architecture/</guid>
-      <description>&lt;h1 id=&#34;chrome-architecture&#34;&gt;&#xA;  Chrome Architecture&#xA;  &lt;a class=&#34;anchor&#34; href=&#34;#chrome-architecture&#34;&gt;#&lt;/a&gt;&#xA;&lt;/h1&gt;&#xA;&lt;h2 id=&#34;prerequisites&#34;&gt;&#xA;  Prerequisites&#xA;  &lt;a class=&#34;anchor&#34; href=&#34;#prerequisites&#34;&gt;#&lt;/a&gt;&#xA;&lt;/h2&gt;&#xA;&lt;p&gt;Read &lt;a href=&#34;../process_vs_thread&#34;&gt;process vs thread&lt;/a&gt; first if you don&amp;rsquo;t have any process and thread concept in your mind&lt;/p&gt;&#xA;&lt;h2 id=&#34;browser-architecture&#34;&gt;&#xA;  Browser Architecture&#xA;  &lt;a class=&#34;anchor&#34; href=&#34;#browser-architecture&#34;&gt;#&lt;/a&gt;&#xA;&lt;/h2&gt;&#xA;&lt;p&gt;When you start an application, a process is created. The program might create thread(s) to help it do work, but that&amp;rsquo;s optional. The Operating System gives the process a &amp;ldquo;slab&amp;rdquo; of memory to work with and all application state is kept in that private memory space. When you close the application, the process also goes away and the Operating System frees up the memory&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>AWS Overview</title>
-      <link>https://dangpham112000.github.io/docs/research/aws_overview/</link>
-      <pubDate>Wed, 15 Nov 2023 01:47:46 +0700</pubDate>
-      <guid>https://dangpham112000.github.io/docs/research/aws_overview/</guid>
-      <description>&lt;h1 id=&#34;aws-overview&#34;&gt;&#xA;  AWS Overview&#xA;  &lt;a class=&#34;anchor&#34; href=&#34;#aws-overview&#34;&gt;#&lt;/a&gt;&#xA;&lt;/h1&gt;&#xA;&lt;h2 id=&#34;ref-slide&#34;&gt;&#xA;  Ref: &lt;a href=&#34;https://media.datacumulus.com/aws-ccp/AWS%20Certified%20Cloud%20Practitioner%20Slides%20v24.pdf?_gl=1*30glds*_ga*MTE3OTY1Nzc3MS4xNzAxOTkzMTc4*_ga_6GZZTGGX7H*MTcwMTk5MzE3OC4xLjAuMTcwMTk5MzE3OC42MC4wLjA.&#34;&gt;Slide&lt;/a&gt;&#xA;  &lt;a class=&#34;anchor&#34; href=&#34;#ref-slide&#34;&gt;#&lt;/a&gt;&#xA;&lt;/h2&gt;&#xA;&lt;h2 id=&#34;types-of-cloud-computing&#34;&gt;&#xA;  Types of Cloud Computing&#xA;  &lt;a class=&#34;anchor&#34; href=&#34;#types-of-cloud-computing&#34;&gt;#&lt;/a&gt;&#xA;&lt;/h2&gt;&#xA;&lt;p&gt;&lt;img src=&#34;https://dangpham112000.github.io/research/aws_overview/cloud_computing_types.png&#34; alt=&#34;cloud_computing_types&#34; /&gt;&lt;/p&gt;&#xA;&lt;h2 id=&#34;ec2---elastic-compute-cloud&#34;&gt;&#xA;  EC2 - Elastic Compute Cloud&#xA;  &lt;a class=&#34;anchor&#34; href=&#34;#ec2---elastic-compute-cloud&#34;&gt;#&lt;/a&gt;&#xA;&lt;/h2&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;strong&gt;EC2 = Infrastructure as a Service (IaaS)&lt;/strong&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;On-Demand Instances&lt;/strong&gt; – short workload, predictable pricing, pay by second&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Has the highest cost&lt;/li&gt;&#xA;&lt;li&gt;Recommended for short-term and un-interrupted workloads, where you can&amp;rsquo;t predict how the application will behave&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Reserved&lt;/strong&gt; (1 &amp;amp; 3 years)&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;strong&gt;Reserved Instances&lt;/strong&gt; – long workloads&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Recommended for steady-state usage applications (think database)&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Convertible Reserved Instances&lt;/strong&gt; – long workloads with flexible instances&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Savings Plans (1 &amp;amp; 3 years)&lt;/strong&gt; – commitment to an amount of usage, long workload&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Spot Instances&lt;/strong&gt; – short workloads, cheap, can lose instances (less reliable)&#xA;&lt;ul&gt;&#xA;&lt;li&gt;The MOST cost-efficient&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Dedicated Hosts&lt;/strong&gt; – book an entire physical server, control instance placement&#xA;&lt;ul&gt;&#xA;&lt;li&gt;The most expensive option&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Dedicated Instances&lt;/strong&gt; – no other customers will share your hardware&#xA;&lt;ul&gt;&#xA;&lt;li&gt;No control over instance placement&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Capacity Reservations&lt;/strong&gt; – reserve capacity in a specific AZ for any duration&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h2 id=&#34;ami---amazon-machine-image&#34;&gt;&#xA;  AMI - Amazon Machine Image&#xA;  &lt;a class=&#34;anchor&#34; href=&#34;#ami---amazon-machine-image&#34;&gt;#&lt;/a&gt;&#xA;&lt;/h2&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;AMI are a &lt;strong&gt;customization&lt;/strong&gt; of an EC2 instance&lt;/li&gt;&#xA;&lt;li&gt;AMI are built for a &lt;strong&gt;specific region&lt;/strong&gt; (and can be copied across regions)&lt;/li&gt;&#xA;&lt;li&gt;You can launch EC2 instances from:&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;strong&gt;A Public AMI&lt;/strong&gt;: AWS provided&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Your own AMI&lt;/strong&gt;: you make and maintain them yourself&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;An AWS Marketplace AMI&lt;/strong&gt;: an AMI someone else made (and potentially sells)&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;&lt;img src=&#34;https://dangpham112000.github.io/research/aws_overview/ami.png&#34; alt=&#34;ami&#34; /&gt;&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>Encryption</title>
-      <link>https://dangpham112000.github.io/docs/research/encryption/</link>
-      <pubDate>Fri, 15 Nov 2024 00:00:00 +0000</pubDate>
-      <guid>https://dangpham112000.github.io/docs/research/encryption/</guid>
-      <description>&lt;h1 id=&#34;encryption&#34;&gt;&#xA;  Encryption&#xA;  &lt;a class=&#34;anchor&#34; href=&#34;#encryption&#34;&gt;#&lt;/a&gt;&#xA;&lt;/h1&gt;&#xA;&lt;h2 id=&#34;hash&#34;&gt;&#xA;  Hash&#xA;  &lt;a class=&#34;anchor&#34; href=&#34;#hash&#34;&gt;#&lt;/a&gt;&#xA;&lt;/h2&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Can take a message of &lt;strong&gt;arbitrary length&lt;/strong&gt; and transform it into a &lt;strong&gt;fixed-length&lt;/strong&gt; digest&lt;/li&gt;&#xA;&lt;li&gt;Some of the commonly used hashing algorithms: &lt;strong&gt;Bcrypt&lt;/strong&gt;, MD5, SHA1, SHA256, SHA512, and etc&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;&lt;code&gt;MD5(&#39;hello&#39;) = 5d41402abc4b2a76b9719d911017c592&lt;/code&gt;&lt;/p&gt;&#xA;&lt;p&gt;&lt;em&gt;Note: An 8-bit byte is represented as 2 characters, from 00 to FF, in hexadecimal&lt;/em&gt;&lt;/p&gt;&#xA;&lt;h3 id=&#34;good-hash-function&#34;&gt;&#xA;  Good hash function&#xA;  &lt;a class=&#34;anchor&#34; href=&#34;#good-hash-function&#34;&gt;#&lt;/a&gt;&#xA;&lt;/h3&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Fast (exclude Bcrypt)&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;One-way function&lt;/strong&gt;&lt;/li&gt;&#xA;&lt;li&gt;Collision resistance&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h3 id=&#34;use-case&#34;&gt;&#xA;  Use case&#xA;  &lt;a class=&#34;anchor&#34; href=&#34;#use-case&#34;&gt;#&lt;/a&gt;&#xA;&lt;/h3&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Checking file integrity&lt;/li&gt;&#xA;&lt;li&gt;Indexing in in-memory databases (Eg: Redis)&lt;/li&gt;&#xA;&lt;li&gt;Hashing passwords (+ salt)&lt;/li&gt;&#xA;&lt;li&gt;Message authentication code (MAC)&lt;/li&gt;&#xA;&lt;li&gt;Digital signatures&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h3 id=&#34;collision&#34;&gt;&#xA;  Collision&#xA;  &lt;a class=&#34;anchor&#34; href=&#34;#collision&#34;&gt;#&lt;/a&gt;&#xA;&lt;/h3&gt;&#xA;&lt;p&gt;&lt;img src=&#34;https://dangpham112000.github.io/research/encription/hashing_collision.png&#34; alt=&#34;hashing_collision&#34; /&gt;&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>Token-based Authentication</title>
-      <link>https://dangpham112000.github.io/docs/research/token_based_authentication/</link>
-      <pubDate>Fri, 03 Jan 2025 01:47:46 +0700</pubDate>
-      <guid>https://dangpham112000.github.io/docs/research/token_based_authentication/</guid>
-      <description>&lt;h1 id=&#34;token-based-authentication&#34;&gt;&#xA;  Token-based authentication&#xA;  &lt;a class=&#34;anchor&#34; href=&#34;#token-based-authentication&#34;&gt;#&lt;/a&gt;&#xA;&lt;/h1&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;strong&gt;Senario&lt;/strong&gt;: Each time a user accesses your website containing &lt;strong&gt;sensitive&lt;/strong&gt; resources, such as posting a new blog, they are required to log in &lt;strong&gt;repeatedly&lt;/strong&gt; every time they visit&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Problem&lt;/strong&gt;: Is there a way to allow them to log in just &lt;strong&gt;once&lt;/strong&gt; and avoid re-logging in, even if their previous session was two days ago?&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Solution&lt;/strong&gt;: Access tokens were designed to solve this problem&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h2 id=&#34;access-token&#34;&gt;&#xA;  Access token&#xA;  &lt;a class=&#34;anchor&#34; href=&#34;#access-token&#34;&gt;#&lt;/a&gt;&#xA;&lt;/h2&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Provide a one-time login for users&lt;/li&gt;&#xA;&lt;li&gt;Reduce database access for password verification, user information retrieval, and role checking&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h3 id=&#34;characteristics&#34;&gt;&#xA;  Characteristics&#xA;  &lt;a class=&#34;anchor&#34; href=&#34;#characteristics&#34;&gt;#&lt;/a&gt;&#xA;&lt;/h3&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Short-lived&lt;/li&gt;&#xA;&lt;li&gt;Stored in client-side storage&lt;/li&gt;&#xA;&lt;li&gt;Contains the user&amp;rsquo;s identity&lt;/li&gt;&#xA;&lt;li&gt;Contains a set of claims, permissions, or roles of the user&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Grants access to the system&lt;/strong&gt;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h3 id=&#34;new-problems&#34;&gt;&#xA;  New problems&#xA;  &lt;a class=&#34;anchor&#34; href=&#34;#new-problems&#34;&gt;#&lt;/a&gt;&#xA;&lt;/h3&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;strong&gt;Problem 1&lt;/strong&gt;: When a hacker successfully steals an access token, they can impersonate the user&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Solution 1&lt;/strong&gt;: Use short-term access tokens to minimize the risk of misuse if a hacker steals one&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Problem 2&lt;/strong&gt;: Requiring users to re-login every time an access token is granted leads to a poor user experience&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Solution 2&lt;/strong&gt;: Refresh tokens were introduced to address this issue by allowing the generation of new access tokens without requiring the user to log in again&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h2 id=&#34;refresh-token&#34;&gt;&#xA;  Refresh token&#xA;  &lt;a class=&#34;anchor&#34; href=&#34;#refresh-token&#34;&gt;#&lt;/a&gt;&#xA;&lt;/h2&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;To prevent hackers from stealing access tokens, access tokens were designed to be valid for a short duration&lt;/li&gt;&#xA;&lt;li&gt;Refresh tokens were introduced to re-grant access tokens when they expire, allowing users to continue their sessions seamlessly without re-login while reducing the risk of impersonation&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h3 id=&#34;characteristics-1&#34;&gt;&#xA;  Characteristics&#xA;  &lt;a class=&#34;anchor&#34; href=&#34;#characteristics-1&#34;&gt;#&lt;/a&gt;&#xA;&lt;/h3&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Long-lived&lt;/li&gt;&#xA;&lt;li&gt;Stored on the server and the client&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Used to obtain a new pair of access and refresh tokens&lt;/strong&gt;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h2 id=&#34;how-do-they-work-together&#34;&gt;&#xA;  How do they work together?&#xA;  &lt;a class=&#34;anchor&#34; href=&#34;#how-do-they-work-together&#34;&gt;#&lt;/a&gt;&#xA;&lt;/h2&gt;&#xA;&lt;h3 id=&#34;basic-flow&#34;&gt;&#xA;  Basic flow&#xA;  &lt;a class=&#34;anchor&#34; href=&#34;#basic-flow&#34;&gt;#&lt;/a&gt;&#xA;&lt;/h3&gt;&#xA;&lt;p&gt;&lt;img src=&#34;https://dangpham112000.github.io/research/token_based_authentication/basic_flow.png&#34; alt=&#34;basic_flow&#34; /&gt;&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>Scale</title>
-      <link>https://dangpham112000.github.io/docs/research/scale/</link>
-      <pubDate>Thu, 18 Apr 2024 01:47:46 +0700</pubDate>
-      <guid>https://dangpham112000.github.io/docs/research/scale/</guid>
-      <description>&lt;h1 id=&#34;scale&#34;&gt;&#xA;  Scale&#xA;  &lt;a class=&#34;anchor&#34; href=&#34;#scale&#34;&gt;#&lt;/a&gt;&#xA;&lt;/h1&gt;&#xA;&lt;h2 id=&#34;monolith-architecture&#34;&gt;&#xA;  Monolith architecture&#xA;  &lt;a class=&#34;anchor&#34; href=&#34;#monolith-architecture&#34;&gt;#&lt;/a&gt;&#xA;&lt;/h2&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;The server in itself is capable and responsible for all the tasks that have to be performed and can perform every step needed to perform a function&lt;/li&gt;&#xA;&lt;li&gt;Tasks: Authorization, Presentation, Database, Business&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h3 id=&#34;server-side-rendering-ssr&#34;&gt;&#xA;  Server side rendering (SSR)&#xA;  &lt;a class=&#34;anchor&#34; href=&#34;#server-side-rendering-ssr&#34;&gt;#&lt;/a&gt;&#xA;&lt;/h3&gt;&#xA;&lt;p&gt;&lt;img src=&#34;https://dangpham112000.github.io/research/scale/SSR.png&#34; alt=&#34;SSR&#34; /&gt;&lt;/p&gt;&#xA;&lt;h2 id=&#34;splitting-server&#34;&gt;&#xA;  Splitting server&#xA;  &lt;a class=&#34;anchor&#34; href=&#34;#splitting-server&#34;&gt;#&lt;/a&gt;&#xA;&lt;/h2&gt;&#xA;&lt;h3 id=&#34;database-splitting&#34;&gt;&#xA;  Database splitting&#xA;  &lt;a class=&#34;anchor&#34; href=&#34;#database-splitting&#34;&gt;#&lt;/a&gt;&#xA;&lt;/h3&gt;&#xA;&lt;p&gt;&lt;img src=&#34;https://dangpham112000.github.io/research/scale/database_splitting.png&#34; alt=&#34;database_splitting&#34; /&gt;&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Assume your app have a stable traffic&lt;/li&gt;&#xA;&lt;li&gt;Your data is not maintain steady, it always grows up. So database is the first thing we need to splitting out from our server and be standalone&lt;/li&gt;&#xA;&lt;li&gt;For later you will need to upgrade your DB (whatever scale out or scale up)&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h3 id=&#34;client-splitting--client-side-rendering-csr&#34;&gt;&#xA;  Client splitting &amp;amp;&amp;amp; Client side rendering (CSR)&#xA;  &lt;a class=&#34;anchor&#34; href=&#34;#client-splitting--client-side-rendering-csr&#34;&gt;#&lt;/a&gt;&#xA;&lt;/h3&gt;&#xA;&lt;p&gt;&lt;img src=&#34;https://dangpham112000.github.io/research/scale/CSR.png&#34; alt=&#34;CSR&#34; /&gt;&lt;/p&gt;</description>
-    </item>
-  </channel>
-</rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>RESEARCH on Dante 0401</title><link>https://dangpham112000.github.io/docs/research/</link><description>Recent content in RESEARCH on Dante 0401</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Fri, 03 Jan 2025 01:47:46 +0700</lastBuildDate><atom:link href="https://dangpham112000.github.io/docs/research/index.xml" rel="self" type="application/rss+xml"/><item><title>Building an MCP Server from Scratch: An E-commerce Case Study</title><link>https://dangpham112000.github.io/docs/research/mcp-server-tutorial/</link><pubDate>Mon, 20 May 2024 00:00:00 +0000</pubDate><guid>https://dangpham112000.github.io/docs/research/mcp-server-tutorial/</guid><description>&lt;p&gt;Imagine you run a large e-commerce platform. You want to give your shopkeepers a &amp;ldquo;smart assistant&amp;rdquo; to help them analyze their sales, check inventory, and manage their store. Instead of building hundreds of custom dashboards, you decide to use AI.&lt;/p&gt;
+&lt;p&gt;However, AI models don&amp;rsquo;t naturally know what&amp;rsquo;s in your database. This is where &lt;strong&gt;Model Context Protocol (MCP)&lt;/strong&gt; comes in. MCP acts as a secure bridge, letting the AI talk to your specific database or internal APIs safely.&lt;/p&gt;</description></item><item><title>Process vs Thread</title><link>https://dangpham112000.github.io/docs/research/process_vs_thread/</link><pubDate>Tue, 05 Dec 2023 01:47:46 +0700</pubDate><guid>https://dangpham112000.github.io/docs/research/process_vs_thread/</guid><description>&lt;h1 id="process-vs-thread"&gt;
+ Process vs Thread
+ &lt;a class="anchor" href="#process-vs-thread"&gt;#&lt;/a&gt;
+&lt;/h1&gt;
+&lt;h2 id="program"&gt;
+ Program
+ &lt;a class="anchor" href="#program"&gt;#&lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;A &lt;strong&gt;Program&lt;/strong&gt; is an executable file containing a set of instructions and passively stored on disk&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://dangpham112000.github.io/research/process_vs_thread/program.png" alt="program" /&gt;&lt;/p&gt;
+&lt;h2 id="process"&gt;
+ Process
+ &lt;a class="anchor" href="#process"&gt;#&lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;A &lt;strong&gt;Process&lt;/strong&gt; means a program is in execution. When a program is loaded into the memory and becomes active, the program becomes a process or processes&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://dangpham112000.github.io/research/process_vs_thread/process.png" alt="process" /&gt;&lt;/p&gt;
+&lt;h2 id="thread"&gt;
+ Thread
+ &lt;a class="anchor" href="#thread"&gt;#&lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;A &lt;strong&gt;Thread&lt;/strong&gt; is the smallest unit of execution within a process&lt;/p&gt;</description></item><item><title>Chrome Architecture</title><link>https://dangpham112000.github.io/docs/research/chrome_architecture/</link><pubDate>Tue, 05 Dec 2023 01:47:46 +0700</pubDate><guid>https://dangpham112000.github.io/docs/research/chrome_architecture/</guid><description>&lt;h1 id="chrome-architecture"&gt;
+ Chrome Architecture
+ &lt;a class="anchor" href="#chrome-architecture"&gt;#&lt;/a&gt;
+&lt;/h1&gt;
+&lt;h2 id="prerequisites"&gt;
+ Prerequisites
+ &lt;a class="anchor" href="#prerequisites"&gt;#&lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;Read &lt;a href="../process_vs_thread"&gt;process vs thread&lt;/a&gt; first if you don&amp;rsquo;t have any process and thread concept in your mind&lt;/p&gt;
+&lt;h2 id="browser-architecture"&gt;
+ Browser Architecture
+ &lt;a class="anchor" href="#browser-architecture"&gt;#&lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;When you start an application, a process is created. The program might create thread(s) to help it do work, but that&amp;rsquo;s optional. The Operating System gives the process a &amp;ldquo;slab&amp;rdquo; of memory to work with and all application state is kept in that private memory space. When you close the application, the process also goes away and the Operating System frees up the memory&lt;/p&gt;</description></item><item><title>AWS Overview</title><link>https://dangpham112000.github.io/docs/research/aws_overview/</link><pubDate>Wed, 15 Nov 2023 01:47:46 +0700</pubDate><guid>https://dangpham112000.github.io/docs/research/aws_overview/</guid><description>&lt;h1 id="aws-overview"&gt;
+ AWS Overview
+ &lt;a class="anchor" href="#aws-overview"&gt;#&lt;/a&gt;
+&lt;/h1&gt;
+&lt;h2 id="ref-slide"&gt;
+ Ref: &lt;a href="https://media.datacumulus.com/aws-ccp/AWS%20Certified%20Cloud%20Practitioner%20Slides%20v24.pdf?_gl=1*30glds*_ga*MTE3OTY1Nzc3MS4xNzAxOTkzMTc4*_ga_6GZZTGGX7H*MTcwMTk5MzE3OC4xLjAuMTcwMTk5MzE3OC42MC4wLjA."&gt;Slide&lt;/a&gt;
+ &lt;a class="anchor" href="#ref-slide"&gt;#&lt;/a&gt;
+&lt;/h2&gt;
+&lt;h2 id="types-of-cloud-computing"&gt;
+ Types of Cloud Computing
+ &lt;a class="anchor" href="#types-of-cloud-computing"&gt;#&lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;&lt;img src="https://dangpham112000.github.io/research/aws_overview/cloud_computing_types.png" alt="cloud_computing_types" /&gt;&lt;/p&gt;
+&lt;h2 id="ec2---elastic-compute-cloud"&gt;
+ EC2 - Elastic Compute Cloud
+ &lt;a class="anchor" href="#ec2---elastic-compute-cloud"&gt;#&lt;/a&gt;
+&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;EC2 = Infrastructure as a Service (IaaS)&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;On-Demand Instances&lt;/strong&gt; – short workload, predictable pricing, pay by second
+&lt;ul&gt;
+&lt;li&gt;Has the highest cost&lt;/li&gt;
+&lt;li&gt;Recommended for short-term and un-interrupted workloads, where you can&amp;rsquo;t predict how the application will behave&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Reserved&lt;/strong&gt; (1 &amp;amp; 3 years)
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Reserved Instances&lt;/strong&gt; – long workloads
+&lt;ul&gt;
+&lt;li&gt;Recommended for steady-state usage applications (think database)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Convertible Reserved Instances&lt;/strong&gt; – long workloads with flexible instances&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Savings Plans (1 &amp;amp; 3 years)&lt;/strong&gt; – commitment to an amount of usage, long workload&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Spot Instances&lt;/strong&gt; – short workloads, cheap, can lose instances (less reliable)
+&lt;ul&gt;
+&lt;li&gt;The MOST cost-efficient&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Dedicated Hosts&lt;/strong&gt; – book an entire physical server, control instance placement
+&lt;ul&gt;
+&lt;li&gt;The most expensive option&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Dedicated Instances&lt;/strong&gt; – no other customers will share your hardware
+&lt;ul&gt;
+&lt;li&gt;No control over instance placement&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Capacity Reservations&lt;/strong&gt; – reserve capacity in a specific AZ for any duration&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="ami---amazon-machine-image"&gt;
+ AMI - Amazon Machine Image
+ &lt;a class="anchor" href="#ami---amazon-machine-image"&gt;#&lt;/a&gt;
+&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;AMI are a &lt;strong&gt;customization&lt;/strong&gt; of an EC2 instance&lt;/li&gt;
+&lt;li&gt;AMI are built for a &lt;strong&gt;specific region&lt;/strong&gt; (and can be copied across regions)&lt;/li&gt;
+&lt;li&gt;You can launch EC2 instances from:
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;A Public AMI&lt;/strong&gt;: AWS provided&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Your own AMI&lt;/strong&gt;: you make and maintain them yourself&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;An AWS Marketplace AMI&lt;/strong&gt;: an AMI someone else made (and potentially sells)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src="https://dangpham112000.github.io/research/aws_overview/ami.png" alt="ami" /&gt;&lt;/p&gt;</description></item><item><title>Encryption</title><link>https://dangpham112000.github.io/docs/research/encryption/</link><pubDate>Fri, 15 Nov 2024 00:00:00 +0000</pubDate><guid>https://dangpham112000.github.io/docs/research/encryption/</guid><description>&lt;h1 id="encryption"&gt;
+ Encryption
+ &lt;a class="anchor" href="#encryption"&gt;#&lt;/a&gt;
+&lt;/h1&gt;
+&lt;h2 id="hash"&gt;
+ Hash
+ &lt;a class="anchor" href="#hash"&gt;#&lt;/a&gt;
+&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Can take a message of &lt;strong&gt;arbitrary length&lt;/strong&gt; and transform it into a &lt;strong&gt;fixed-length&lt;/strong&gt; digest&lt;/li&gt;
+&lt;li&gt;Some of the commonly used hashing algorithms: &lt;strong&gt;Bcrypt&lt;/strong&gt;, MD5, SHA1, SHA256, SHA512, and etc&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;code&gt;MD5('hello') = 5d41402abc4b2a76b9719d911017c592&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Note: An 8-bit byte is represented as 2 characters, from 00 to FF, in hexadecimal&lt;/em&gt;&lt;/p&gt;
+&lt;h3 id="good-hash-function"&gt;
+ Good hash function
+ &lt;a class="anchor" href="#good-hash-function"&gt;#&lt;/a&gt;
+&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Fast (exclude Bcrypt)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;One-way function&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;Collision resistance&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="use-case"&gt;
+ Use case
+ &lt;a class="anchor" href="#use-case"&gt;#&lt;/a&gt;
+&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Checking file integrity&lt;/li&gt;
+&lt;li&gt;Indexing in in-memory databases (Eg: Redis)&lt;/li&gt;
+&lt;li&gt;Hashing passwords (+ salt)&lt;/li&gt;
+&lt;li&gt;Message authentication code (MAC)&lt;/li&gt;
+&lt;li&gt;Digital signatures&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="collision"&gt;
+ Collision
+ &lt;a class="anchor" href="#collision"&gt;#&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;&lt;img src="https://dangpham112000.github.io/research/encription/hashing_collision.png" alt="hashing_collision" /&gt;&lt;/p&gt;</description></item><item><title>Token-based Authentication</title><link>https://dangpham112000.github.io/docs/research/token_based_authentication/</link><pubDate>Fri, 03 Jan 2025 01:47:46 +0700</pubDate><guid>https://dangpham112000.github.io/docs/research/token_based_authentication/</guid><description>&lt;h1 id="token-based-authentication"&gt;
+ Token-based authentication
+ &lt;a class="anchor" href="#token-based-authentication"&gt;#&lt;/a&gt;
+&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Senario&lt;/strong&gt;: Each time a user accesses your website containing &lt;strong&gt;sensitive&lt;/strong&gt; resources, such as posting a new blog, they are required to log in &lt;strong&gt;repeatedly&lt;/strong&gt; every time they visit&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Problem&lt;/strong&gt;: Is there a way to allow them to log in just &lt;strong&gt;once&lt;/strong&gt; and avoid re-logging in, even if their previous session was two days ago?&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Solution&lt;/strong&gt;: Access tokens were designed to solve this problem&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="access-token"&gt;
+ Access token
+ &lt;a class="anchor" href="#access-token"&gt;#&lt;/a&gt;
+&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Provide a one-time login for users&lt;/li&gt;
+&lt;li&gt;Reduce database access for password verification, user information retrieval, and role checking&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="characteristics"&gt;
+ Characteristics
+ &lt;a class="anchor" href="#characteristics"&gt;#&lt;/a&gt;
+&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Short-lived&lt;/li&gt;
+&lt;li&gt;Stored in client-side storage&lt;/li&gt;
+&lt;li&gt;Contains the user&amp;rsquo;s identity&lt;/li&gt;
+&lt;li&gt;Contains a set of claims, permissions, or roles of the user&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Grants access to the system&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="new-problems"&gt;
+ New problems
+ &lt;a class="anchor" href="#new-problems"&gt;#&lt;/a&gt;
+&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Problem 1&lt;/strong&gt;: When a hacker successfully steals an access token, they can impersonate the user&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Solution 1&lt;/strong&gt;: Use short-term access tokens to minimize the risk of misuse if a hacker steals one&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Problem 2&lt;/strong&gt;: Requiring users to re-login every time an access token is granted leads to a poor user experience&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Solution 2&lt;/strong&gt;: Refresh tokens were introduced to address this issue by allowing the generation of new access tokens without requiring the user to log in again&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="refresh-token"&gt;
+ Refresh token
+ &lt;a class="anchor" href="#refresh-token"&gt;#&lt;/a&gt;
+&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;To prevent hackers from stealing access tokens, access tokens were designed to be valid for a short duration&lt;/li&gt;
+&lt;li&gt;Refresh tokens were introduced to re-grant access tokens when they expire, allowing users to continue their sessions seamlessly without re-login while reducing the risk of impersonation&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="characteristics-1"&gt;
+ Characteristics
+ &lt;a class="anchor" href="#characteristics-1"&gt;#&lt;/a&gt;
+&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Long-lived&lt;/li&gt;
+&lt;li&gt;Stored on the server and the client&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Used to obtain a new pair of access and refresh tokens&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="how-do-they-work-together"&gt;
+ How do they work together?
+ &lt;a class="anchor" href="#how-do-they-work-together"&gt;#&lt;/a&gt;
+&lt;/h2&gt;
+&lt;h3 id="basic-flow"&gt;
+ Basic flow
+ &lt;a class="anchor" href="#basic-flow"&gt;#&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;&lt;img src="https://dangpham112000.github.io/research/token_based_authentication/basic_flow.png" alt="basic_flow" /&gt;&lt;/p&gt;</description></item><item><title>Scale</title><link>https://dangpham112000.github.io/docs/research/scale/</link><pubDate>Thu, 18 Apr 2024 01:47:46 +0700</pubDate><guid>https://dangpham112000.github.io/docs/research/scale/</guid><description>&lt;h1 id="scale"&gt;
+ Scale
+ &lt;a class="anchor" href="#scale"&gt;#&lt;/a&gt;
+&lt;/h1&gt;
+&lt;h2 id="monolith-architecture"&gt;
+ Monolith architecture
+ &lt;a class="anchor" href="#monolith-architecture"&gt;#&lt;/a&gt;
+&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;The server in itself is capable and responsible for all the tasks that have to be performed and can perform every step needed to perform a function&lt;/li&gt;
+&lt;li&gt;Tasks: Authorization, Presentation, Database, Business&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="server-side-rendering-ssr"&gt;
+ Server side rendering (SSR)
+ &lt;a class="anchor" href="#server-side-rendering-ssr"&gt;#&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;&lt;img src="https://dangpham112000.github.io/research/scale/SSR.png" alt="SSR" /&gt;&lt;/p&gt;
+&lt;h2 id="splitting-server"&gt;
+ Splitting server
+ &lt;a class="anchor" href="#splitting-server"&gt;#&lt;/a&gt;
+&lt;/h2&gt;
+&lt;h3 id="database-splitting"&gt;
+ Database splitting
+ &lt;a class="anchor" href="#database-splitting"&gt;#&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;&lt;img src="https://dangpham112000.github.io/research/scale/database_splitting.png" alt="database_splitting" /&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Assume your app have a stable traffic&lt;/li&gt;
+&lt;li&gt;Your data is not maintain steady, it always grows up. So database is the first thing we need to splitting out from our server and be standalone&lt;/li&gt;
+&lt;li&gt;For later you will need to upgrade your DB (whatever scale out or scale up)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="client-splitting--client-side-rendering-csr"&gt;
+ Client splitting &amp;amp;&amp;amp; Client side rendering (CSR)
+ &lt;a class="anchor" href="#client-splitting--client-side-rendering-csr"&gt;#&lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;&lt;img src="https://dangpham112000.github.io/research/scale/CSR.png" alt="CSR" /&gt;&lt;/p&gt;</description></item></channel></rss>

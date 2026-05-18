@@ -1,9 +1,4 @@
-<!DOCTYPE html>
-<html lang="en-us" dir="ltr">
-<head>
-  <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="
+<!doctype html><html lang=en-us dir=ltr><head><meta charset=UTF-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="
   Security
   #
 
@@ -21,15 +16,15 @@ sudo nmap --script vuln 18.141.184.34
 sudo nmap -6 --script vuln 2606:4700:3033::ac43:b865
 Example output
   
-    Starting Nmap 7.94SVN ( https://nmap.org ) at 2024-12-05 09:00 &#43;07
+    Starting Nmap 7.94SVN ( https://nmap.org ) at 2024-12-05 09:00 +07
 Nmap scan report for ec2-18-141-184-34.ap-southeast-1.compute.amazonaws.com (18.141.184.34)
 Host is up (0.033s latency).
 Not shown: 997 filtered tcp ports (no-response)
 PORT    STATE SERVICE
 22/tcp  open  ssh
 80/tcp  open  http
-|_http-csrf: Couldn&#39;t find any CSRF vulnerabilities.
-|_http-dombased-xss: Couldn&#39;t find any DOM based XSS.
+|_http-csrf: Couldn't find any CSRF vulnerabilities.
+|_http-dombased-xss: Couldn't find any DOM based XSS.
 | http-vuln-cve2011-3192: 
 |   VULNERABLE:
 |   Apache byterange filter DoS
@@ -43,10 +38,10 @@ PORT    STATE SERVICE
 |       https://www.tenable.com/plugins/nessus/55976
 |       https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2011-3192
 |_      https://seclists.org/fulldisclosure/2011/Aug/175
-|_http-stored-xss: Couldn&#39;t find any stored XSS vulnerabilities.
+|_http-stored-xss: Couldn't find any stored XSS vulnerabilities.
 443/tcp open  https
-|_http-csrf: Couldn&#39;t find any CSRF vulnerabilities.
-|_http-stored-xss: Couldn&#39;t find any stored XSS vulnerabilities.
+|_http-csrf: Couldn't find any CSRF vulnerabilities.
+|_http-stored-xss: Couldn't find any stored XSS vulnerabilities.
 | http-vuln-cve2011-3192: 
 |   VULNERABLE:
 |   Apache byterange filter DoS
@@ -60,7 +55,7 @@ PORT    STATE SERVICE
 |       https://www.tenable.com/plugins/nessus/55976
 |       https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2011-3192
 |_      https://seclists.org/fulldisclosure/2011/Aug/175
-|_http-dombased-xss: Couldn&#39;t find any DOM based XSS.
+|_http-dombased-xss: Couldn't find any DOM based XSS.
 
 Nmap done: 1 IP address (1 host up) scanned in 193.10 seconds
 
@@ -75,915 +70,83 @@ Nmap done: 1 IP address (1 host up) scanned in 193.10 seconds
 Every password-based system and encryption key out there can be cracked using a brute force attack.
 There is only one problem with this attack: the time.
 
-">
-<meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff">
-<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#343a40">
-<meta name="color-scheme" content="light dark"><meta property="og:url" content="https://dangpham112000.github.io/docs/research/security/">
-  <meta property="og:site_name" content="Dante 0401">
-  <meta property="og:title" content="Security - Draft">
-  <meta property="og:description" content="Security # Explore your site’s vulnerabilities # # IPv4 sudo nmap --script vuln [IPv4] # IPv6 sudo nmap -6 --script vuln [IPv6] # E.g IPv4 sudo nmap --script vuln 18.141.184.34 # E.g IPv6 sudo nmap -6 --script vuln 2606:4700:3033::ac43:b865 Example output Starting Nmap 7.94SVN ( https://nmap.org ) at 2024-12-05 09:00 &#43;07 Nmap scan report for ec2-18-141-184-34.ap-southeast-1.compute.amazonaws.com (18.141.184.34) Host is up (0.033s latency). Not shown: 997 filtered tcp ports (no-response) PORT STATE SERVICE 22/tcp open ssh 80/tcp open http |_http-csrf: Couldn&#39;t find any CSRF vulnerabilities. |_http-dombased-xss: Couldn&#39;t find any DOM based XSS. | http-vuln-cve2011-3192: | VULNERABLE: | Apache byterange filter DoS | State: VULNERABLE | IDs: BID:49303 CVE:CVE-2011-3192 | The Apache web server is vulnerable to a denial of service attack when numerous | overlapping byte ranges are requested. | Disclosure date: 2011-08-19 | References: | https://www.securityfocus.com/bid/49303 | https://www.tenable.com/plugins/nessus/55976 | https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2011-3192 |_ https://seclists.org/fulldisclosure/2011/Aug/175 |_http-stored-xss: Couldn&#39;t find any stored XSS vulnerabilities. 443/tcp open https |_http-csrf: Couldn&#39;t find any CSRF vulnerabilities. |_http-stored-xss: Couldn&#39;t find any stored XSS vulnerabilities. | http-vuln-cve2011-3192: | VULNERABLE: | Apache byterange filter DoS | State: VULNERABLE | IDs: BID:49303 CVE:CVE-2011-3192 | The Apache web server is vulnerable to a denial of service attack when numerous | overlapping byte ranges are requested. | Disclosure date: 2011-08-19 | References: | https://www.securityfocus.com/bid/49303 | https://www.tenable.com/plugins/nessus/55976 | https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2011-3192 |_ https://seclists.org/fulldisclosure/2011/Aug/175 |_http-dombased-xss: Couldn&#39;t find any DOM based XSS. Nmap done: 1 IP address (1 host up) scanned in 193.10 seconds Brute Force Attack # Every password-based system and encryption key out there can be cracked using a brute force attack. There is only one problem with this attack: the time.">
-  <meta property="og:locale" content="en_us">
-  <meta property="og:type" content="website">
-<title>Security - Draft | Dante 0401</title>
-<link rel="manifest" href="/manifest.json">
-<link rel="icon" href="/favicon.png" >
-<link rel="canonical" href="https://dangpham112000.github.io/docs/research/security/">
-<link rel="stylesheet" href="/book.min.ef1786281083252320100bd5f394f36844d3252afdbd5bfe72e5f440aaff402b.css" integrity="sha256-7xeGKBCDJSMgEAvV85TzaETTJSr9vVv&#43;cuX0QKr/QCs=" crossorigin="anonymous">
-  <script defer src="/fuse.min.js"></script>
-  <script defer src="/en.search.min.8cd250da139fc136773875cc0c5c476270e41dde5b32a6624b24175c7dd7d37b.js" integrity="sha256-jNJQ2hOfwTZ3OHXMDFxHYnDkHd5bMqZiSyQXXH3X03s=" crossorigin="anonymous"></script>
-<link rel="alternate" type="application/rss+xml" href="https://dangpham112000.github.io/docs/research/security/index.xml" title="Dante 0401" />
-<!--
-Made with Book Theme
-https://github.com/alex-shpak/hugo-book
--->
-  
-</head>
-<body dir="ltr">
-  <input type="checkbox" class="hidden toggle" id="menu-control" />
-  <input type="checkbox" class="hidden toggle" id="toc-control" />
-  <main class="container flex">
-    <aside class="book-menu">
-      <div class="book-menu-content">
-        
-  <nav>
-<h2 class="book-brand">
-  <a class="flex align-center" href="/"><span>Dante 0401</span>
-  </a>
-</h2>
-
-
-<div class="book-search hidden">
-  <input type="text" id="book-search-input" placeholder="Search" aria-label="Search" maxlength="64" data-hotkeys="s/" />
-  <div class="book-search-spinner hidden"></div>
-  <ul id="book-search-results"></ul>
-</div>
-<script>document.querySelector(".book-search").classList.remove("hidden")</script>
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
-
-
-  
-  <ul>
-    
-      
-        <li class="book-section-flat" >
-          
-  
-  
-
-  
-    <span>RESEARCH</span>
-  
-
-          
-  <ul>
-    
-      
-        <li>
-          
-  
-  
-
-  
-    <a href="/docs/research/process_vs_thread/" class="">Process vs Thread</a>
-  
-
-        </li>
-      
-    
-      
-        <li>
-          
-  
-  
-
-  
-    <a href="/docs/research/chrome_architecture/" class="">Chrome Architecture</a>
-  
-
-        </li>
-      
-    
-      
-        <li>
-          
-  
-  
-
-  
-    <a href="/docs/research/aws_overview/" class="">AWS Overview</a>
-  
-
-        </li>
-      
-    
-      
-        <li>
-          
-  
-  
-
-  
-    <a href="/docs/research/be_protocol/" class="">Backend</a>
-  
-
-          
-  <ul>
-    
-      
-        <li>
-          
-  
-  
-
-  
-    <a href="/docs/research/be_protocol/tls_ssl/" class="">TLS - SSL</a>
-  
-
-        </li>
-      
-    
-      
-        <li>
-          
-  
-  
-
-  
-    <a href="/docs/research/be_protocol/communication/" class="">Communication</a>
-  
-
-        </li>
-      
-    
-      
-        <li>
-          
-  
-  
-
-  
-    <a href="/docs/research/be_protocol/rabbitmq/" class="">RabbitMQ</a>
-  
-
-        </li>
-      
-    
-      
-        <li>
-          
-  
-  
-
-  
-    <a href="/docs/research/be_protocol/kafka/" class="">Kafka - Draft</a>
-  
-
-        </li>
-      
-    
-  </ul>
-
-        </li>
-      
-    
-      
-        <li>
-          
-  
-  
-
-  
-    <a href="/docs/research/encryption/" class="">Encryption</a>
-  
-
-        </li>
-      
-    
-      
-        <li>
-          
-  
-  
-
-  
-    <a href="/docs/research/token_based_authentication/" class="">Token-based Authentication</a>
-  
-
-        </li>
-      
-    
-      
-        <li>
-          
-  
-  
-
-  
-    <a href="/docs/research/security/" class="active">Security - Draft</a>
-  
-
-          
-  <ul>
-    
-      
-        <li>
-          
-  
-  
-
-  
-    <a href="/docs/research/security/hsts/" class="">HSTS</a>
-  
-
-        </li>
-      
-    
-      
-        <li>
-          
-  
-  
-
-  
-    <a href="/docs/research/security/bit_flipping/" class="">Bit Flipping</a>
-  
-
-        </li>
-      
-    
-  </ul>
-
-        </li>
-      
-    
-      
-        <li>
-          
-  
-  
-
-  
-    <a href="/docs/research/scale/" class="">Scale</a>
-  
-
-        </li>
-      
-    
-  </ul>
-
-        </li>
-      
-    
-      
-        <li class="book-section-flat" >
-          
-  
-  
-
-  
-    <span>TIPS</span>
-  
-
-          
-  <ul>
-    
-      
-        <li>
-          
-  
-  
-
-  
-    <a href="/docs/tips/001_unit_test/" class="">Unit Test</a>
-  
-
-        </li>
-      
-    
-      
-        <li>
-          
-  
-  
-
-  
-    <a href="/docs/tips/002_git/" class="">Git</a>
-  
-
-        </li>
-      
-    
-      
-        <li>
-          
-  
-  
-
-  
-    <a href="/docs/tips/003_docker/" class="">Docker</a>
-  
-
-        </li>
-      
-    
-      
-        <li>
-          
-  
-  
-
-  
-    <a href="/docs/tips/004_ops/" class="">Ops</a>
-  
-
-        </li>
-      
-    
-      
-        <li>
-          
-  
-  
-
-  
-    <a href="/docs/tips/005_passion/" class="">Spark Passion</a>
-  
-
-        </li>
-      
-    
-  </ul>
-
-        </li>
-      
-    
-      
-        <li class="book-section-flat" >
-          
-  
-  
-
-  
-    <span>PROBLEMS</span>
-  
-
-          
-  <ul>
-    
-      
-        <li>
-          
-  
-  
-
-  
-    <a href="/docs/problems/knight_dialer/" class="">Knight Dialer</a>
-  
-
-        </li>
-      
-    
-  </ul>
-
-        </li>
-      
-    
-  </ul>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-</nav>
-
-
-
-
-  <script>(function(){var e=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(){localStorage.setItem("menu.scrollTop",e.scrollTop)}),e.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
-
-
- 
-      </div>
-    </aside>
-
-    <div class="book-page">
-      <header class="book-header">
-        
-  <div class="flex align-center justify-between">
-  <label for="menu-control">
-    <img src="/svg/menu.svg" class="book-icon" alt="Menu" />
-  </label>
-
-  <strong>Security - Draft</strong>
-
-  <label for="toc-control">
-    
-    <img src="/svg/toc.svg" class="book-icon" alt="Table of Contents" />
-    
-  </label>
-</div>
-
-
-  
-  <aside class="hidden clearfix">
-    
-  
-<nav id="TableOfContents">
-  <ul>
-    <li><a href="#explore-your-sites-vulnerabilities">Explore your site&rsquo;s vulnerabilities</a></li>
-    <li><a href="#brute-force-attack">Brute Force Attack</a>
-      <ul>
-        <li><a href="#use-case">Use case</a></li>
-        <li><a href="#how-it-works">How it works</a></li>
-        <li><a href="#prevention">Prevention</a></li>
-      </ul>
-    </li>
-    <li><a href="#dictionary-attack">Dictionary Attack</a>
-      <ul>
-        <li><a href="#use-case-1">Use case</a></li>
-        <li><a href="#how-it-works-1">How it works</a></li>
-        <li><a href="#prevention-1">Prevention</a></li>
-      </ul>
-    </li>
-    <li><a href="#man-in-the-middle-attack-mitm">Man In The Middle Attack (MITM)</a></li>
-    <li><a href="#malicious-network-redirects">Malicious Network Redirects</a>
-      <ul>
-        <li><a href="#how-it-works-2">How it works</a></li>
-        <li><a href="#prevention-2">Prevention</a></li>
-      </ul>
-    </li>
-    <li><a href="#denial-of-service-dos">Denial Of Service (DOS)</a>
-      <ul>
-        <li><a href="#prevention-3">Prevention</a></li>
-        <li><a href="#distributed-denial-of-service-ddos">Distributed Denial Of Service (DDOS)</a></li>
-      </ul>
-    </li>
-    <li><a href="#backdoor-attack">Backdoor Attack</a></li>
-    <li><a href="#sql-injection">SQL Injection</a></li>
-    <li><a href="#idor-attack">IDOR Attack</a></li>
-    <li><a href="#cross-domain-access-attack">Cross-domain Access Attack</a></li>
-    <li><a href="#syn-flood-attack">Syn Flood Attack</a></li>
-    <li><a href="#references">References</a></li>
-  </ul>
-</nav>
-
-
-
-  </aside>
-  
- 
-      </header>
-
-      
-      
-  <article class="markdown book-article"><h1 id="security">
-  Security
-  <a class="anchor" href="#security">#</a>
-</h1>
-<h2 id="explore-your-sites-vulnerabilities">
-  Explore your site&rsquo;s vulnerabilities
-  <a class="anchor" href="#explore-your-sites-vulnerabilities">#</a>
-</h2>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span><span style="color:#75715e"># IPv4</span>
-</span></span><span style="display:flex;"><span>sudo nmap --script vuln <span style="color:#f92672">[</span>IPv4<span style="color:#f92672">]</span> 
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># IPv6 </span>
-</span></span><span style="display:flex;"><span>sudo nmap -6 --script vuln <span style="color:#f92672">[</span>IPv6<span style="color:#f92672">]</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># E.g IPv4</span>
-</span></span><span style="display:flex;"><span>sudo nmap --script vuln 18.141.184.34
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># E.g IPv6</span>
-</span></span><span style="display:flex;"><span>sudo nmap -6 --script vuln 2606:4700:3033::ac43:b865
-</span></span></code></pre></div><details ><summary>Example output</summary>
-  <div class="markdown-inner">
-    <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>Starting Nmap 7.94SVN <span style="color:#f92672">(</span> https://nmap.org <span style="color:#f92672">)</span> at 2024-12-05 09:00 +07
-</span></span><span style="display:flex;"><span>Nmap scan report <span style="color:#66d9ef">for</span> ec2-18-141-184-34.ap-southeast-1.compute.amazonaws.com <span style="color:#f92672">(</span>18.141.184.34<span style="color:#f92672">)</span>
-</span></span><span style="display:flex;"><span>Host is up <span style="color:#f92672">(</span>0.033s latency<span style="color:#f92672">)</span>.
-</span></span><span style="display:flex;"><span>Not shown: <span style="color:#ae81ff">997</span> filtered tcp ports <span style="color:#f92672">(</span>no-response<span style="color:#f92672">)</span>
-</span></span><span style="display:flex;"><span>PORT    STATE SERVICE
-</span></span><span style="display:flex;"><span>22/tcp  open  ssh
-</span></span><span style="display:flex;"><span>80/tcp  open  http
-</span></span><span style="display:flex;"><span>|_http-csrf: Couldn<span style="color:#e6db74">&#39;t find any CSRF vulnerabilities.
-</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">|_http-dombased-xss: Couldn&#39;</span>t find any DOM based XSS.
-</span></span><span style="display:flex;"><span>| http-vuln-cve2011-3192: 
-</span></span><span style="display:flex;"><span>|   VULNERABLE:
-</span></span><span style="display:flex;"><span>|   Apache byterange filter DoS
-</span></span><span style="display:flex;"><span>|     State: VULNERABLE
-</span></span><span style="display:flex;"><span>|     IDs:  BID:49303  CVE:CVE-2011-3192
-</span></span><span style="display:flex;"><span>|       The Apache web server is vulnerable to a denial of service attack when numerous
-</span></span><span style="display:flex;"><span>|       overlapping byte ranges are requested.
-</span></span><span style="display:flex;"><span>|     Disclosure date: 2011-08-19
-</span></span><span style="display:flex;"><span>|     References:
-</span></span><span style="display:flex;"><span>|       https://www.securityfocus.com/bid/49303
-</span></span><span style="display:flex;"><span>|       https://www.tenable.com/plugins/nessus/55976
-</span></span><span style="display:flex;"><span>|       https://cve.mitre.org/cgi-bin/cvename.cgi?name<span style="color:#f92672">=</span>CVE-2011-3192
-</span></span><span style="display:flex;"><span>|_      https://seclists.org/fulldisclosure/2011/Aug/175
-</span></span><span style="display:flex;"><span>|_http-stored-xss: Couldn<span style="color:#e6db74">&#39;t find any stored XSS vulnerabilities.
-</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">443/tcp open  https
-</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">|_http-csrf: Couldn&#39;</span>t find any CSRF vulnerabilities.
-</span></span><span style="display:flex;"><span>|_http-stored-xss: Couldn<span style="color:#e6db74">&#39;t find any stored XSS vulnerabilities.
-</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">| http-vuln-cve2011-3192: 
-</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">|   VULNERABLE:
-</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">|   Apache byterange filter DoS
-</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">|     State: VULNERABLE
-</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">|     IDs:  BID:49303  CVE:CVE-2011-3192
-</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">|       The Apache web server is vulnerable to a denial of service attack when numerous
-</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">|       overlapping byte ranges are requested.
-</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">|     Disclosure date: 2011-08-19
-</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">|     References:
-</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">|       https://www.securityfocus.com/bid/49303
-</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">|       https://www.tenable.com/plugins/nessus/55976
-</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">|       https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2011-3192
-</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">|_      https://seclists.org/fulldisclosure/2011/Aug/175
-</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">|_http-dombased-xss: Couldn&#39;</span>t find any DOM based XSS.
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>Nmap <span style="color:#66d9ef">done</span>: <span style="color:#ae81ff">1</span> IP address <span style="color:#f92672">(</span><span style="color:#ae81ff">1</span> host up<span style="color:#f92672">)</span> scanned in 193.10 seconds
-</span></span></code></pre></div>
-  </div>
-</details>
-
-<h2 id="brute-force-attack">
-  Brute Force Attack
-  <a class="anchor" href="#brute-force-attack">#</a>
-</h2>
-<ul>
-<li>Every password-based system and encryption key out there can be cracked using a brute force attack.</li>
-<li>There is only one problem with this attack: the time.</li>
-</ul>
-<p><img src="/research/security/2024-Crack-Password-Table.png" alt="2024-Crack-Password-Table" /></p>
-<ul>
-<li>Why does the hashing method matter when cracking passwords with a brute force attack? <a href="/docs/research/encryption/#bcrypt-vs-md5">Bcrypt will take longer to crack than MD5</a></li>
-</ul>
-<h3 id="use-case">
-  Use case
-  <a class="anchor" href="#use-case">#</a>
-</h3>
-<ul>
-<li>Cracking passwords (SSH logins)</li>
-<li>Cracking encryption keys (API keys)</li>
-</ul>
-<h3 id="how-it-works">
-  How it works
-  <a class="anchor" href="#how-it-works">#</a>
-</h3>
-<ul>
-<li>The hacker have to run through every possible combination of characters before achieving their goal</li>
-<li>These attacks are often carried out by scripts or bots that target specific systems or accounts</li>
-</ul>
-<h3 id="prevention">
-  Prevention
-  <a class="anchor" href="#prevention">#</a>
-</h3>
-<ul>
-<li><strong>Longer password</strong></li>
-<li><strong>Delay response</strong>: A system that responds immediately is not always good. Adding a delay when checking passwords, even a delay of a few seconds, can greatly weaken the effectiveness of a brute force attack</li>
-<li><strong>Stronger hashing method</strong></li>
-<li><strong>Two-factor authentication</strong></li>
-<li><strong>Rate limit</strong></li>
-</ul>
-<h2 id="dictionary-attack">
-  Dictionary Attack
-  <a class="anchor" href="#dictionary-attack">#</a>
-</h2>
-<h3 id="use-case-1">
-  Use case
-  <a class="anchor" href="#use-case-1">#</a>
-</h3>
-<ul>
-<li>A dictionary attack is a method of breaking into a password-protected computer, network or other IT resource by systematically entering every word in a dictionary, or word list, as a password</li>
-<li>A dictionary attack can also be used in an attempt to find the key necessary to decrypt an encrypted message or document</li>
-</ul>
-<h3 id="how-it-works-1">
-  How it works
-  <a class="anchor" href="#how-it-works-1">#</a>
-</h3>
-<ul>
-<li>If it targets an organization or a particular person, the dictionary can collect all the closely related words around the target they want to hack. It can then combine all of them in all possible ways and try each combination to guess the password or key they want to hack</li>
-</ul>
-<h3 id="prevention-1">
-  Prevention
-  <a class="anchor" href="#prevention-1">#</a>
-</h3>
-<ul>
-<li><strong>Avoid passwords</strong>: Passwords can&rsquo;t be hacked if we don&rsquo;t use them for login (I&rsquo;m joking). From a system perspective, we can completely avoid them by using password-free authentication solutions and biometric logins</li>
-<li><strong>Random passwords</strong>: From a user perspective, don&rsquo;t use closely related information (like names, pets, birthdays) or easy-to-predict words (like &ldquo;password,&rdquo; &ldquo;abcd,&rdquo; &ldquo;xyz,&rdquo; &ldquo;123&rdquo;) to create a password. Instead, use random strings. If you find them difficult to remember, you can use a third-party password manager to store them (of course, you need to choose a trustworthy one)</li>
-<li><strong>Two-factor authentication</strong></li>
-<li><strong>Limit login attempts</strong></li>
-<li><strong>Force resets</strong></li>
-</ul>
-<h2 id="man-in-the-middle-attack-mitm">
-  Man In The Middle Attack (MITM)
-  <a class="anchor" href="#man-in-the-middle-attack-mitm">#</a>
-</h2>
-<ul>
-<li><a href="/docs/research/security/packet_sniffing/">Packet Sniffing</a></li>
-<li><a href="/docs/research/security/arp_spoofing/">ARP Spoofing</a></li>
-<li><a href="/docs/research/security/evil_twin/">Evil Twin</a></li>
-<li><a href="/docs/research/security/dns_poisoning">DNS Poisoning</a></li>
-<li><a href="/docs/research/security/bit_flipping">Bit Flipping</a></li>
-</ul>
-<h2 id="malicious-network-redirects">
-  Malicious Network Redirects
-  <a class="anchor" href="#malicious-network-redirects">#</a>
-</h2>
-<p>Attackers can inject fake DNS responses, redirecting you to malicious versions of websites</p>
-<h3 id="how-it-works-2">
-  How it works
-  <a class="anchor" href="#how-it-works-2">#</a>
-</h3>
-<ul>
-<li>Hacker hijacking the unsecured Wi-Fi you access (more detail: <a href="/docs/research/security/dns_poisoning">DNS Poisoning</a>)</li>
-<li>Malware in your computer edit your Host file (the file work like the DNS in your computer)</li>
-</ul>
-<h3 id="prevention-2">
-  Prevention
-  <a class="anchor" href="#prevention-2">#</a>
-</h3>
-<ul>
-<li><strong>Using SSL/TLS for website</strong>: Even if SSL helps detect this (you’d see a certificate warning), many users may overlook or click through the warning, which could put them at risk</li>
-</ul>
-<h2 id="denial-of-service-dos">
-  Denial Of Service (DOS)
-  <a class="anchor" href="#denial-of-service-dos">#</a>
-</h2>
-<h3 id="prevention-3">
-  Prevention
-  <a class="anchor" href="#prevention-3">#</a>
-</h3>
-<ul>
-<li>Rate limit</li>
-</ul>
-<h3 id="distributed-denial-of-service-ddos">
-  Distributed Denial Of Service (DDOS)
-  <a class="anchor" href="#distributed-denial-of-service-ddos">#</a>
-</h3>
-<h2 id="backdoor-attack">
-  Backdoor Attack
-  <a class="anchor" href="#backdoor-attack">#</a>
-</h2>
-<h2 id="sql-injection">
-  SQL Injection
-  <a class="anchor" href="#sql-injection">#</a>
-</h2>
-<h2 id="idor-attack">
-  IDOR Attack
-  <a class="anchor" href="#idor-attack">#</a>
-</h2>
-<p>Authorize route</p>
-<h2 id="cross-domain-access-attack">
-  Cross-domain Access Attack
-  <a class="anchor" href="#cross-domain-access-attack">#</a>
-</h2>
-<h2 id="syn-flood-attack">
-  Syn Flood Attack
-  <a class="anchor" href="#syn-flood-attack">#</a>
-</h2>
-<h2 id="references">
-  References
-  <a class="anchor" href="#references">#</a>
-</h2>
-<ul>
-<li>Cloudflare: <a href="https://www.cloudflare.com/learning/bots/brute-force-attack/">What is a brute force attack?</a></li>
-<li>Hivesystems: <a href="https://www.hivesystems.com/blog/are-your-passwords-in-the-green">Are Your Passwords in the Green?</a> (2024)</li>
-<li>Kaspersky: <a href="https://www.kaspersky.com/resource-center/definitions/what-is-a-dictionary-attack">What is a Dictionary Attack?</a></li>
-</ul>
-<style>
-    .feedback-card {
-        border: 1px solid #ddd;
-        border-radius: 8px;
-        padding: 20px;
-        max-width: 100%;
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-        background-color: #f9f9fb;
-    }
-    .feedback-card h2 {
-        font-size: 20px;
-        margin-top: 0px;
-        margin-bottom: 10px;
-    }
-    .feedback-card .buttons {
-        margin: 10px 0;
-    }
-    .feedback-card button {
-        border: none;
-        background-color: #f0f0f0;
-        border-radius: 4px;
-        padding: 10px 15px;
-        margin-right: 10px;
-        cursor: pointer;
-        font-size: 16px;
-    }
-    .feedback-card button:hover {
-        background-color: #e0e0e0;
-    }
-    .feedback-card a {
-        color: #0074d9;
-        text-decoration: none;
-    }
-    .feedback-card a:hover {
-        text-decoration: underline;
-    }
-    .feedback-card p {
-        font-size: 14px;
-        color: #555;
-    }
-
-     
-    .modal {
-      display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      border-radius: 7px;
-      padding-bottom: 50px;
-
-      background-color: rgba(0, 0, 0, 0.5);
-      justify-content: center;
-      align-items: flex-end;
-    }
-
-    .modal-content {
-      background-color: white;
-      padding: 20px;
-      border-radius: 5px;
-      width: 300px;
-    }
-
-    .modal input {
-      width: 100%;
-      padding: 10px;
-      margin-bottom: 10px;
-    }
-</style>
-<div class="feedback-card" id="feedbackCard">
-    <h2>Help improve my blog</h2>
-    <p>Was this page helpful to you?</p>
-    <div class="buttons">
-        <button id="yesBtn">👍 Yes</button>
-        <button id="noBtn">👎 No</button>
-    </div>
-    <p>This page was last modified at <strong>2024-06-15</strong></p>
-    <ul>
-        <li><a href="https://github.com/DangPham112000/blog" target="_blank">View this page on GitHub</a></li>
-        <li><a href="#" class="link-button" id="linkButton">Report a problem with this content</a></li>
-    </ul>
-</div>
-
-<div class="modal" id="formModal">
-    <div class="feedback-card">
-        <h2>Can I know your name?</h2>
-        <form id="form">
-            <input type="text" name="username" placeholder="Enter your name">
-            <button type="submit">Yes</button>
-            <button type="submit">No</button>
-        </form>
-    </div>
-</div>
-
-<script>
-    const feedbackCardEle = document.getElementById("feedbackCard");
-    const formModalEle = document.getElementById('formModal');
-    const elesToShowForm = ['linkButton', 'yesBtn', 'noBtn'];
-
-    for (const ele of elesToShowForm) {
-        document.getElementById(ele).addEventListener('click', function(e) {
-            e.preventDefault();
-            formModalEle.style.display = 'flex';
-        });
-    }
-
-    window.onclick = function(event) {
-        if (event.target === formModalEle) {
-            formModalEle.style.display = 'none';
-        }
-    };
-
-    document.getElementById('form').addEventListener('submit', function(e) {
-        e.preventDefault(); 
-        alert('This feature is currently being developed');
-        formModalEle.style.display = 'none'; 
-    });
-</script>
-</article>
- 
-      
-
-      <footer class="book-footer">
-        
-  <div class="flex flex-wrap justify-between">
-
-
-
-
-
-</div>
-
-
-
-  <script>(function(){function e(e){const t=window.getSelection(),n=document.createRange();n.selectNodeContents(e),t.removeAllRanges(),t.addRange(n)}document.querySelectorAll("pre code").forEach(t=>{t.addEventListener("click",function(){if(window.getSelection().toString())return;e(t.parentElement),navigator.clipboard&&navigator.clipboard.writeText(t.parentElement.textContent)})})})()</script>
-
-
- 
-        
-      </footer>
-
-      
-  
-  <div class="book-comments">
-
-</div>
-  
- 
-
-      <label for="menu-control" class="hidden book-menu-overlay"></label>
-    </div>
-
-    
-    <aside class="book-toc">
-      <div class="book-toc-content">
-        
-  
-<nav id="TableOfContents">
-  <ul>
-    <li><a href="#explore-your-sites-vulnerabilities">Explore your site&rsquo;s vulnerabilities</a></li>
-    <li><a href="#brute-force-attack">Brute Force Attack</a>
-      <ul>
-        <li><a href="#use-case">Use case</a></li>
-        <li><a href="#how-it-works">How it works</a></li>
-        <li><a href="#prevention">Prevention</a></li>
-      </ul>
-    </li>
-    <li><a href="#dictionary-attack">Dictionary Attack</a>
-      <ul>
-        <li><a href="#use-case-1">Use case</a></li>
-        <li><a href="#how-it-works-1">How it works</a></li>
-        <li><a href="#prevention-1">Prevention</a></li>
-      </ul>
-    </li>
-    <li><a href="#man-in-the-middle-attack-mitm">Man In The Middle Attack (MITM)</a></li>
-    <li><a href="#malicious-network-redirects">Malicious Network Redirects</a>
-      <ul>
-        <li><a href="#how-it-works-2">How it works</a></li>
-        <li><a href="#prevention-2">Prevention</a></li>
-      </ul>
-    </li>
-    <li><a href="#denial-of-service-dos">Denial Of Service (DOS)</a>
-      <ul>
-        <li><a href="#prevention-3">Prevention</a></li>
-        <li><a href="#distributed-denial-of-service-ddos">Distributed Denial Of Service (DDOS)</a></li>
-      </ul>
-    </li>
-    <li><a href="#backdoor-attack">Backdoor Attack</a></li>
-    <li><a href="#sql-injection">SQL Injection</a></li>
-    <li><a href="#idor-attack">IDOR Attack</a></li>
-    <li><a href="#cross-domain-access-attack">Cross-domain Access Attack</a></li>
-    <li><a href="#syn-flood-attack">Syn Flood Attack</a></li>
-    <li><a href="#references">References</a></li>
-  </ul>
-</nav>
-
-
- 
-      </div>
-    </aside>
-    
-  </main>
-
-  
-</body>
-</html>
-
-
-
-
-
-
-
-
-
-
-
-
+"><meta name=theme-color media="(prefers-color-scheme: light)" content="#ffffff"><meta name=theme-color media="(prefers-color-scheme: dark)" content="#343a40"><meta name=color-scheme content="light dark"><meta property="og:url" content="https://dangpham112000.github.io/docs/research/security/"><meta property="og:site_name" content="Dante 0401"><meta property="og:title" content="Security - Draft"><meta property="og:description" content="Security # Explore your site’s vulnerabilities # # IPv4 sudo nmap --script vuln [IPv4] # IPv6 sudo nmap -6 --script vuln [IPv6] # E.g IPv4 sudo nmap --script vuln 18.141.184.34 # E.g IPv6 sudo nmap -6 --script vuln 2606:4700:3033::ac43:b865 Example output Starting Nmap 7.94SVN ( https://nmap.org ) at 2024-12-05 09:00 +07 Nmap scan report for ec2-18-141-184-34.ap-southeast-1.compute.amazonaws.com (18.141.184.34) Host is up (0.033s latency). Not shown: 997 filtered tcp ports (no-response) PORT STATE SERVICE 22/tcp open ssh 80/tcp open http |_http-csrf: Couldn't find any CSRF vulnerabilities. |_http-dombased-xss: Couldn't find any DOM based XSS. | http-vuln-cve2011-3192: | VULNERABLE: | Apache byterange filter DoS | State: VULNERABLE | IDs: BID:49303 CVE:CVE-2011-3192 | The Apache web server is vulnerable to a denial of service attack when numerous | overlapping byte ranges are requested. | Disclosure date: 2011-08-19 | References: | https://www.securityfocus.com/bid/49303 | https://www.tenable.com/plugins/nessus/55976 | https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2011-3192 |_ https://seclists.org/fulldisclosure/2011/Aug/175 |_http-stored-xss: Couldn't find any stored XSS vulnerabilities. 443/tcp open https |_http-csrf: Couldn't find any CSRF vulnerabilities. |_http-stored-xss: Couldn't find any stored XSS vulnerabilities. | http-vuln-cve2011-3192: | VULNERABLE: | Apache byterange filter DoS | State: VULNERABLE | IDs: BID:49303 CVE:CVE-2011-3192 | The Apache web server is vulnerable to a denial of service attack when numerous | overlapping byte ranges are requested. | Disclosure date: 2011-08-19 | References: | https://www.securityfocus.com/bid/49303 | https://www.tenable.com/plugins/nessus/55976 | https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2011-3192 |_ https://seclists.org/fulldisclosure/2011/Aug/175 |_http-dombased-xss: Couldn't find any DOM based XSS. Nmap done: 1 IP address (1 host up) scanned in 193.10 seconds Brute Force Attack # Every password-based system and encryption key out there can be cracked using a brute force attack. There is only one problem with this attack: the time."><meta property="og:locale" content="en_us"><meta property="og:type" content="website"><title>Security - Draft | Dante 0401</title><link rel=manifest href=/manifest.json><link rel=icon href=/favicon.png><link rel=canonical href=https://dangpham112000.github.io/docs/research/security/><link rel=stylesheet href=/book.min.95535ae437871e725b7f7b2fb47d6446b8247773f5f22345e8c0aafa00c5db9b.css integrity="sha256-lVNa5DeHHnJbf3svtH1kRrgkd3P18iNF6MCq+gDF25s=" crossorigin=anonymous><script defer src=/fuse.min.js></script><script defer src=/en.search.min.b7403c70329304a8d4de17873d6d0681a5a205e052f3bdbca43f342b899d2958.js integrity="sha256-t0A8cDKTBKjU3heHPW0GgaWiBeBS8728pD80K4mdKVg=" crossorigin=anonymous></script><link rel=alternate type=application/rss+xml href=https://dangpham112000.github.io/docs/research/security/index.xml title="Dante 0401"></head><body dir=ltr><input type=checkbox class="hidden toggle" id=menu-control>
+<input type=checkbox class="hidden toggle" id=toc-control><main class="container flex"><aside class=book-menu><div class=book-menu-content><nav><h2 class=book-brand><a class="flex align-center" href=/><span>Dante 0401</span></a></h2><div class="book-search hidden"><input type=text id=book-search-input placeholder=Search aria-label=Search maxlength=64 data-hotkeys=s/><div class="book-search-spinner hidden"></div><ul id=book-search-results></ul></div><script>document.querySelector(".book-search").classList.remove("hidden")</script><ul><li class=book-section-flat><span>RESEARCH</span><ul><li><a href=/docs/research/mcp-server-tutorial/>Building an MCP Server from Scratch: An E-commerce Case Study</a></li><li><a href=/docs/research/process_vs_thread/>Process vs Thread</a></li><li><a href=/docs/research/chrome_architecture/>Chrome Architecture</a></li><li><a href=/docs/research/aws_overview/>AWS Overview</a></li><li><a href=/docs/research/be_protocol/>Backend</a><ul><li><a href=/docs/research/be_protocol/tls_ssl/>TLS - SSL</a></li><li><a href=/docs/research/be_protocol/communication/>Communication</a></li><li><a href=/docs/research/be_protocol/rabbitmq/>RabbitMQ</a></li><li><a href=/docs/research/be_protocol/kafka/>Kafka - Draft</a></li></ul></li><li><a href=/docs/research/encryption/>Encryption</a></li><li><a href=/docs/research/token_based_authentication/>Token-based Authentication</a></li><li><a href=/docs/research/security/ class=active>Security - Draft</a><ul><li><a href=/docs/research/security/hsts/>HSTS</a></li><li><a href=/docs/research/security/bit_flipping/>Bit Flipping</a></li></ul></li><li><a href=/docs/research/scale/>Scale</a></li></ul></li><li class=book-section-flat><span>TIPS</span><ul><li><a href=/docs/tips/001_unit_test/>Unit Test</a></li><li><a href=/docs/tips/002_git/>Git</a></li><li><a href=/docs/tips/003_docker/>Docker</a></li><li><a href=/docs/tips/004_ops/>Ops</a></li><li><a href=/docs/tips/005_passion/>Spark Passion</a></li></ul></li><li class=book-section-flat><span>PROBLEMS</span><ul><li><a href=/docs/problems/knight_dialer/>Knight Dialer</a></li></ul></li></ul></nav><script>(function(){var e=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(){localStorage.setItem("menu.scrollTop",e.scrollTop)}),e.scrollTop=localStorage.getItem("menu.scrollTop")})()</script></div></aside><div class=book-page><header class=book-header><div class="flex align-center justify-between"><label for=menu-control><img src=/svg/menu.svg class=book-icon alt=Menu>
+</label><strong>Security - Draft</strong>
+<label for=toc-control><img src=/svg/toc.svg class=book-icon alt="Table of Contents"></label></div><aside class="hidden clearfix"><nav id=TableOfContents><ul><li><a href=#explore-your-sites-vulnerabilities>Explore your site&rsquo;s vulnerabilities</a></li><li><a href=#brute-force-attack>Brute Force Attack</a><ul><li><a href=#use-case>Use case</a></li><li><a href=#how-it-works>How it works</a></li><li><a href=#prevention>Prevention</a></li></ul></li><li><a href=#dictionary-attack>Dictionary Attack</a><ul><li><a href=#use-case-1>Use case</a></li><li><a href=#how-it-works-1>How it works</a></li><li><a href=#prevention-1>Prevention</a></li></ul></li><li><a href=#man-in-the-middle-attack-mitm>Man In The Middle Attack (MITM)</a></li><li><a href=#malicious-network-redirects>Malicious Network Redirects</a><ul><li><a href=#how-it-works-2>How it works</a></li><li><a href=#prevention-2>Prevention</a></li></ul></li><li><a href=#denial-of-service-dos>Denial Of Service (DOS)</a><ul><li><a href=#prevention-3>Prevention</a></li><li><a href=#distributed-denial-of-service-ddos>Distributed Denial Of Service (DDOS)</a></li></ul></li><li><a href=#backdoor-attack>Backdoor Attack</a></li><li><a href=#sql-injection>SQL Injection</a></li><li><a href=#idor-attack>IDOR Attack</a></li><li><a href=#cross-domain-access-attack>Cross-domain Access Attack</a></li><li><a href=#syn-flood-attack>Syn Flood Attack</a></li><li><a href=#references>References</a></li></ul></nav></aside></header><article class="markdown book-article"><h1 id=security>Security
+<a class=anchor href=#security>#</a></h1><h2 id=explore-your-sites-vulnerabilities>Explore your site&rsquo;s vulnerabilities
+<a class=anchor href=#explore-your-sites-vulnerabilities>#</a></h2><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-sh data-lang=sh><span style=display:flex><span><span style=color:#75715e># IPv4</span>
+</span></span><span style=display:flex><span>sudo nmap --script vuln <span style=color:#f92672>[</span>IPv4<span style=color:#f92672>]</span> 
+</span></span><span style=display:flex><span><span style=color:#75715e># IPv6 </span>
+</span></span><span style=display:flex><span>sudo nmap -6 --script vuln <span style=color:#f92672>[</span>IPv6<span style=color:#f92672>]</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># E.g IPv4</span>
+</span></span><span style=display:flex><span>sudo nmap --script vuln 18.141.184.34
+</span></span><span style=display:flex><span><span style=color:#75715e># E.g IPv6</span>
+</span></span><span style=display:flex><span>sudo nmap -6 --script vuln 2606:4700:3033::ac43:b865
+</span></span></code></pre></div><details><summary>Example output</summary><div class=markdown-inner><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-sh data-lang=sh><span style=display:flex><span>Starting Nmap 7.94SVN <span style=color:#f92672>(</span> https://nmap.org <span style=color:#f92672>)</span> at 2024-12-05 09:00 +07
+</span></span><span style=display:flex><span>Nmap scan report <span style=color:#66d9ef>for</span> ec2-18-141-184-34.ap-southeast-1.compute.amazonaws.com <span style=color:#f92672>(</span>18.141.184.34<span style=color:#f92672>)</span>
+</span></span><span style=display:flex><span>Host is up <span style=color:#f92672>(</span>0.033s latency<span style=color:#f92672>)</span>.
+</span></span><span style=display:flex><span>Not shown: <span style=color:#ae81ff>997</span> filtered tcp ports <span style=color:#f92672>(</span>no-response<span style=color:#f92672>)</span>
+</span></span><span style=display:flex><span>PORT    STATE SERVICE
+</span></span><span style=display:flex><span>22/tcp  open  ssh
+</span></span><span style=display:flex><span>80/tcp  open  http
+</span></span><span style=display:flex><span>|_http-csrf: Couldn<span style=color:#e6db74>&#39;t find any CSRF vulnerabilities.
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>|_http-dombased-xss: Couldn&#39;</span>t find any DOM based XSS.
+</span></span><span style=display:flex><span>| http-vuln-cve2011-3192: 
+</span></span><span style=display:flex><span>|   VULNERABLE:
+</span></span><span style=display:flex><span>|   Apache byterange filter DoS
+</span></span><span style=display:flex><span>|     State: VULNERABLE
+</span></span><span style=display:flex><span>|     IDs:  BID:49303  CVE:CVE-2011-3192
+</span></span><span style=display:flex><span>|       The Apache web server is vulnerable to a denial of service attack when numerous
+</span></span><span style=display:flex><span>|       overlapping byte ranges are requested.
+</span></span><span style=display:flex><span>|     Disclosure date: 2011-08-19
+</span></span><span style=display:flex><span>|     References:
+</span></span><span style=display:flex><span>|       https://www.securityfocus.com/bid/49303
+</span></span><span style=display:flex><span>|       https://www.tenable.com/plugins/nessus/55976
+</span></span><span style=display:flex><span>|       https://cve.mitre.org/cgi-bin/cvename.cgi?name<span style=color:#f92672>=</span>CVE-2011-3192
+</span></span><span style=display:flex><span>|_      https://seclists.org/fulldisclosure/2011/Aug/175
+</span></span><span style=display:flex><span>|_http-stored-xss: Couldn<span style=color:#e6db74>&#39;t find any stored XSS vulnerabilities.
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>443/tcp open  https
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>|_http-csrf: Couldn&#39;</span>t find any CSRF vulnerabilities.
+</span></span><span style=display:flex><span>|_http-stored-xss: Couldn<span style=color:#e6db74>&#39;t find any stored XSS vulnerabilities.
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>| http-vuln-cve2011-3192: 
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>|   VULNERABLE:
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>|   Apache byterange filter DoS
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>|     State: VULNERABLE
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>|     IDs:  BID:49303  CVE:CVE-2011-3192
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>|       The Apache web server is vulnerable to a denial of service attack when numerous
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>|       overlapping byte ranges are requested.
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>|     Disclosure date: 2011-08-19
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>|     References:
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>|       https://www.securityfocus.com/bid/49303
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>|       https://www.tenable.com/plugins/nessus/55976
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>|       https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2011-3192
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>|_      https://seclists.org/fulldisclosure/2011/Aug/175
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>|_http-dombased-xss: Couldn&#39;</span>t find any DOM based XSS.
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>Nmap <span style=color:#66d9ef>done</span>: <span style=color:#ae81ff>1</span> IP address <span style=color:#f92672>(</span><span style=color:#ae81ff>1</span> host up<span style=color:#f92672>)</span> scanned in 193.10 seconds
+</span></span></code></pre></div></div></details><h2 id=brute-force-attack>Brute Force Attack
+<a class=anchor href=#brute-force-attack>#</a></h2><ul><li>Every password-based system and encryption key out there can be cracked using a brute force attack.</li><li>There is only one problem with this attack: the time.</li></ul><p><img src=/research/security/2024-Crack-Password-Table.png alt=2024-Crack-Password-Table></p><ul><li>Why does the hashing method matter when cracking passwords with a brute force attack? <a href=/docs/research/encryption/#bcrypt-vs-md5>Bcrypt will take longer to crack than MD5</a></li></ul><h3 id=use-case>Use case
+<a class=anchor href=#use-case>#</a></h3><ul><li>Cracking passwords (SSH logins)</li><li>Cracking encryption keys (API keys)</li></ul><h3 id=how-it-works>How it works
+<a class=anchor href=#how-it-works>#</a></h3><ul><li>The hacker have to run through every possible combination of characters before achieving their goal</li><li>These attacks are often carried out by scripts or bots that target specific systems or accounts</li></ul><h3 id=prevention>Prevention
+<a class=anchor href=#prevention>#</a></h3><ul><li><strong>Longer password</strong></li><li><strong>Delay response</strong>: A system that responds immediately is not always good. Adding a delay when checking passwords, even a delay of a few seconds, can greatly weaken the effectiveness of a brute force attack</li><li><strong>Stronger hashing method</strong></li><li><strong>Two-factor authentication</strong></li><li><strong>Rate limit</strong></li></ul><h2 id=dictionary-attack>Dictionary Attack
+<a class=anchor href=#dictionary-attack>#</a></h2><h3 id=use-case-1>Use case
+<a class=anchor href=#use-case-1>#</a></h3><ul><li>A dictionary attack is a method of breaking into a password-protected computer, network or other IT resource by systematically entering every word in a dictionary, or word list, as a password</li><li>A dictionary attack can also be used in an attempt to find the key necessary to decrypt an encrypted message or document</li></ul><h3 id=how-it-works-1>How it works
+<a class=anchor href=#how-it-works-1>#</a></h3><ul><li>If it targets an organization or a particular person, the dictionary can collect all the closely related words around the target they want to hack. It can then combine all of them in all possible ways and try each combination to guess the password or key they want to hack</li></ul><h3 id=prevention-1>Prevention
+<a class=anchor href=#prevention-1>#</a></h3><ul><li><strong>Avoid passwords</strong>: Passwords can&rsquo;t be hacked if we don&rsquo;t use them for login (I&rsquo;m joking). From a system perspective, we can completely avoid them by using password-free authentication solutions and biometric logins</li><li><strong>Random passwords</strong>: From a user perspective, don&rsquo;t use closely related information (like names, pets, birthdays) or easy-to-predict words (like &ldquo;password,&rdquo; &ldquo;abcd,&rdquo; &ldquo;xyz,&rdquo; &ldquo;123&rdquo;) to create a password. Instead, use random strings. If you find them difficult to remember, you can use a third-party password manager to store them (of course, you need to choose a trustworthy one)</li><li><strong>Two-factor authentication</strong></li><li><strong>Limit login attempts</strong></li><li><strong>Force resets</strong></li></ul><h2 id=man-in-the-middle-attack-mitm>Man In The Middle Attack (MITM)
+<a class=anchor href=#man-in-the-middle-attack-mitm>#</a></h2><ul><li><a href=/docs/research/security/packet_sniffing/>Packet Sniffing</a></li><li><a href=/docs/research/security/arp_spoofing/>ARP Spoofing</a></li><li><a href=/docs/research/security/evil_twin/>Evil Twin</a></li><li><a href=/docs/research/security/dns_poisoning>DNS Poisoning</a></li><li><a href=/docs/research/security/bit_flipping>Bit Flipping</a></li></ul><h2 id=malicious-network-redirects>Malicious Network Redirects
+<a class=anchor href=#malicious-network-redirects>#</a></h2><p>Attackers can inject fake DNS responses, redirecting you to malicious versions of websites</p><h3 id=how-it-works-2>How it works
+<a class=anchor href=#how-it-works-2>#</a></h3><ul><li>Hacker hijacking the unsecured Wi-Fi you access (more detail: <a href=/docs/research/security/dns_poisoning>DNS Poisoning</a>)</li><li>Malware in your computer edit your Host file (the file work like the DNS in your computer)</li></ul><h3 id=prevention-2>Prevention
+<a class=anchor href=#prevention-2>#</a></h3><ul><li><strong>Using SSL/TLS for website</strong>: Even if SSL helps detect this (you’d see a certificate warning), many users may overlook or click through the warning, which could put them at risk</li></ul><h2 id=denial-of-service-dos>Denial Of Service (DOS)
+<a class=anchor href=#denial-of-service-dos>#</a></h2><h3 id=prevention-3>Prevention
+<a class=anchor href=#prevention-3>#</a></h3><ul><li>Rate limit</li></ul><h3 id=distributed-denial-of-service-ddos>Distributed Denial Of Service (DDOS)
+<a class=anchor href=#distributed-denial-of-service-ddos>#</a></h3><h2 id=backdoor-attack>Backdoor Attack
+<a class=anchor href=#backdoor-attack>#</a></h2><h2 id=sql-injection>SQL Injection
+<a class=anchor href=#sql-injection>#</a></h2><h2 id=idor-attack>IDOR Attack
+<a class=anchor href=#idor-attack>#</a></h2><p>Authorize route</p><h2 id=cross-domain-access-attack>Cross-domain Access Attack
+<a class=anchor href=#cross-domain-access-attack>#</a></h2><h2 id=syn-flood-attack>Syn Flood Attack
+<a class=anchor href=#syn-flood-attack>#</a></h2><h2 id=references>References
+<a class=anchor href=#references>#</a></h2><ul><li>Cloudflare: <a href=https://www.cloudflare.com/learning/bots/brute-force-attack/>What is a brute force attack?</a></li><li>Hivesystems: <a href=https://www.hivesystems.com/blog/are-your-passwords-in-the-green>Are Your Passwords in the Green?</a> (2024)</li><li>Kaspersky: <a href=https://www.kaspersky.com/resource-center/definitions/what-is-a-dictionary-attack>What is a Dictionary Attack?</a></li></ul><style>.feedback-card{border:1px solid #ddd;border-radius:8px;padding:20px;max-width:100%;box-shadow:0 2px 5px rgba(0,0,0,.1);background-color:#f9f9fb}.feedback-card h2{font-size:20px;margin-top:0;margin-bottom:10px}.feedback-card .buttons{margin:10px 0}.feedback-card button{border:none;background-color:#f0f0f0;border-radius:4px;padding:10px 15px;margin-right:10px;cursor:pointer;font-size:16px}.feedback-card button:hover{background-color:#e0e0e0}.feedback-card a{color:#0074d9;text-decoration:none}.feedback-card a:hover{text-decoration:underline}.feedback-card p{font-size:14px;color:#555}.modal{display:none;position:fixed;top:0;left:0;width:100%;height:100%;border-radius:7px;padding-bottom:50px;background-color:rgba(0,0,0,.5);justify-content:center;align-items:flex-end}.modal-content{background-color:#fff;padding:20px;border-radius:5px;width:300px}.modal input{width:100%;padding:10px;margin-bottom:10px}</style><div class=feedback-card id=feedbackCard><h2>Help improve my blog</h2><p>Was this page helpful to you?</p><div class=buttons><button id=yesBtn>👍 Yes</button>
+<button id=noBtn>👎 No</button></div><p>This page was last modified at <strong>2024-06-15</strong></p><ul><li><a href=https://github.com/DangPham112000/blog target=_blank>View this page on GitHub</a></li><li><a href=# class=link-button id=linkButton>Report a problem with this content</a></li></ul></div><div class=modal id=formModal><div class=feedback-card><h2>Can I know your name?</h2><form id=form><input type=text name=username placeholder="Enter your name">
+<button type=submit>Yes</button>
+<button type=submit>No</button></form></div></div><script>const feedbackCardEle=document.getElementById("feedbackCard"),formModalEle=document.getElementById("formModal"),elesToShowForm=["linkButton","yesBtn","noBtn"];for(const e of elesToShowForm)document.getElementById(e).addEventListener("click",function(e){e.preventDefault(),formModalEle.style.display="flex"});window.onclick=function(e){e.target===formModalEle&&(formModalEle.style.display="none")},document.getElementById("form").addEventListener("submit",function(e){e.preventDefault(),alert("This feature is currently being developed"),formModalEle.style.display="none"})</script></article><footer class=book-footer><div class="flex flex-wrap justify-between"></div><script>(function(){function e(e){const t=window.getSelection(),n=document.createRange();n.selectNodeContents(e),t.removeAllRanges(),t.addRange(n)}document.querySelectorAll("pre code").forEach(t=>{t.addEventListener("click",function(){if(window.getSelection().toString())return;e(t.parentElement),navigator.clipboard&&navigator.clipboard.writeText(t.parentElement.textContent)})})})()</script></footer><div class=book-comments></div><label for=menu-control class="hidden book-menu-overlay"></label></div><aside class=book-toc><div class=book-toc-content><nav id=TableOfContents><ul><li><a href=#explore-your-sites-vulnerabilities>Explore your site&rsquo;s vulnerabilities</a></li><li><a href=#brute-force-attack>Brute Force Attack</a><ul><li><a href=#use-case>Use case</a></li><li><a href=#how-it-works>How it works</a></li><li><a href=#prevention>Prevention</a></li></ul></li><li><a href=#dictionary-attack>Dictionary Attack</a><ul><li><a href=#use-case-1>Use case</a></li><li><a href=#how-it-works-1>How it works</a></li><li><a href=#prevention-1>Prevention</a></li></ul></li><li><a href=#man-in-the-middle-attack-mitm>Man In The Middle Attack (MITM)</a></li><li><a href=#malicious-network-redirects>Malicious Network Redirects</a><ul><li><a href=#how-it-works-2>How it works</a></li><li><a href=#prevention-2>Prevention</a></li></ul></li><li><a href=#denial-of-service-dos>Denial Of Service (DOS)</a><ul><li><a href=#prevention-3>Prevention</a></li><li><a href=#distributed-denial-of-service-ddos>Distributed Denial Of Service (DDOS)</a></li></ul></li><li><a href=#backdoor-attack>Backdoor Attack</a></li><li><a href=#sql-injection>SQL Injection</a></li><li><a href=#idor-attack>IDOR Attack</a></li><li><a href=#cross-domain-access-attack>Cross-domain Access Attack</a></li><li><a href=#syn-flood-attack>Syn Flood Attack</a></li><li><a href=#references>References</a></li></ul></nav></div></aside></main></body></html>

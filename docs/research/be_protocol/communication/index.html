@@ -1,9 +1,4 @@
-<!DOCTYPE html>
-<html lang="en-us" dir="ltr">
-<head>
-  <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="
+<!doctype html><html lang=en-us dir=ltr><head><meta charset=UTF-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="
   Communication
   #
 
@@ -27,40 +22,40 @@ The most common patterns for communication in client-server architectures
 Server code
   
     // server.js
-const http = require(&#39;http&#39;);
+const http = require('http');
 
-const server = http.createServer((req, res) =&gt; {
+const server = http.createServer((req, res) => {
     console.log(`Received request: ${req.method} ${req.url}`);
 
-    if (req.url === &#39;/hello&#39;) {
-        if (req.method === &#39;POST&#39;) {
-            let body = &#39;&#39;;
+    if (req.url === '/hello') {
+        if (req.method === 'POST') {
+            let body = '';
 
-            req.on(&#39;data&#39;, chunk =&gt; {
-                body &#43;= chunk.toString(); // Convert buffer to string
+            req.on('data', chunk => {
+                body += chunk.toString(); // Convert buffer to string
             });
 
-            req.on(&#39;end&#39;, () =&gt; {
-                res.writeHead(200, { &#39;Content-Type&#39;: &#39;text/plain&#39; });
+            req.on('end', () => {
+                res.writeHead(200, { 'Content-Type': 'text/plain' });
                 if (body.trim() === &#34;ping&#34;) {
-                    res.end(&#39;pong&#39;);
+                    res.end('pong');
                 } else {
-                    res.end(&#39;&#39;);
+                    res.end('');
                 }
             });
 
         } else {
-            res.writeHead(200, { &#39;Content-Type&#39;: &#39;text/plain&#39; });
-            res.end(&#39;world&#39;);
+            res.writeHead(200, { 'Content-Type': 'text/plain' });
+            res.end('world');
         }
     } else {
-        res.writeHead(404, { &#39;Content-Type&#39;: &#39;text/plain&#39; });
-        res.end(&#39;Not Found&#39;);
+        res.writeHead(404, { 'Content-Type': 'text/plain' });
+        res.end('Not Found');
     }
 });
 
-server.listen(2000, () =&gt; {
-    console.log(&#39;Server is listening on port 2000&#39;);
+server.listen(2000, () => {
+    console.log('Server is listening on port 2000');
 });
 
   
@@ -69,13 +64,13 @@ server.listen(2000, () =&gt; {
 
 Client code
   
-    fetch(&#39;http://localhost:2000/hello&#39;, {
-    method: &#39;POST&#39;,
-    headers: { &#39;Content-Type&#39;: &#39;text/plain&#39; },
-    body: &#39;ping&#39;
+    fetch('http://localhost:2000/hello', {
+    method: 'POST',
+    headers: { 'Content-Type': 'text/plain' },
+    body: 'ping'
 })
-.then(response =&gt; response.text())
-.then(data =&gt; console.log(data))  // Should log: &#34;pong&#34;
+.then(response => response.text())
+.then(data => console.log(data))  // Should log: &#34;pong&#34;
 
   
 
@@ -101,1328 +96,350 @@ Open the browser console and run Client code
   Short Polling
   #
 
-">
-<meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff">
-<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#343a40">
-<meta name="color-scheme" content="light dark"><meta property="og:url" content="https://dangpham112000.github.io/docs/research/be_protocol/communication/">
-  <meta property="og:site_name" content="Dante 0401">
-  <meta property="og:title" content="Communication">
-  <meta property="og:description" content="Communication # Request-Response # Overview # Fundamental communication pattern The most common patterns for communication in client-server architectures Demo # Server code // server.js const http = require(&#39;http&#39;); const server = http.createServer((req, res) =&gt; { console.log(`Received request: ${req.method} ${req.url}`); if (req.url === &#39;/hello&#39;) { if (req.method === &#39;POST&#39;) { let body = &#39;&#39;; req.on(&#39;data&#39;, chunk =&gt; { body &#43;= chunk.toString(); // Convert buffer to string }); req.on(&#39;end&#39;, () =&gt; { res.writeHead(200, { &#39;Content-Type&#39;: &#39;text/plain&#39; }); if (body.trim() === &#34;ping&#34;) { res.end(&#39;pong&#39;); } else { res.end(&#39;&#39;); } }); } else { res.writeHead(200, { &#39;Content-Type&#39;: &#39;text/plain&#39; }); res.end(&#39;world&#39;); } } else { res.writeHead(404, { &#39;Content-Type&#39;: &#39;text/plain&#39; }); res.end(&#39;Not Found&#39;); } }); server.listen(2000, () =&gt; { console.log(&#39;Server is listening on port 2000&#39;); }); Client code fetch(&#39;http://localhost:2000/hello&#39;, { method: &#39;POST&#39;, headers: { &#39;Content-Type&#39;: &#39;text/plain&#39; }, body: &#39;ping&#39; }) .then(response =&gt; response.text()) .then(data =&gt; console.log(data)) // Should log: &#34;pong&#34; Instruction Start the server by running node server.js
+"><meta name=theme-color media="(prefers-color-scheme: light)" content="#ffffff"><meta name=theme-color media="(prefers-color-scheme: dark)" content="#343a40"><meta name=color-scheme content="light dark"><meta property="og:url" content="https://dangpham112000.github.io/docs/research/be_protocol/communication/"><meta property="og:site_name" content="Dante 0401"><meta property="og:title" content="Communication"><meta property="og:description" content="Communication # Request-Response # Overview # Fundamental communication pattern The most common patterns for communication in client-server architectures Demo # Server code // server.js const http = require('http'); const server = http.createServer((req, res) => { console.log(`Received request: ${req.method} ${req.url}`); if (req.url === '/hello') { if (req.method === 'POST') { let body = ''; req.on('data', chunk => { body += chunk.toString(); // Convert buffer to string }); req.on('end', () => { res.writeHead(200, { 'Content-Type': 'text/plain' }); if (body.trim() === &#34;ping&#34;) { res.end('pong'); } else { res.end(''); } }); } else { res.writeHead(200, { 'Content-Type': 'text/plain' }); res.end('world'); } } else { res.writeHead(404, { 'Content-Type': 'text/plain' }); res.end('Not Found'); } }); server.listen(2000, () => { console.log('Server is listening on port 2000'); }); Client code fetch('http://localhost:2000/hello', { method: 'POST', headers: { 'Content-Type': 'text/plain' }, body: 'ping' }) .then(response => response.text()) .then(data => console.log(data)) // Should log: &#34;pong&#34; Instruction Start the server by running node server.js
 1.1. Your terminal will display: Server is listening on port 2000 Open your browser and enter: http://localhost:2000/hello
 2.1. Your terminal will first log: Received request: GET /hello
 2.2. Then, your browser will display: world Open the browser console and run Client code
 3.1. Your terminal will first log: Received request: POST /hello
-3.2. Then, your browser console will display: pong Short Polling #">
-  <meta property="og:locale" content="en_us">
-  <meta property="og:type" content="article">
-    <meta property="article:section" content="docs">
-    <meta property="article:published_time" content="2023-11-15T00:00:00+00:00">
-    <meta property="article:modified_time" content="2023-11-15T00:00:00+00:00">
-<title>Communication | Dante 0401</title>
-<link rel="manifest" href="/manifest.json">
-<link rel="icon" href="/favicon.png" >
-<link rel="canonical" href="https://dangpham112000.github.io/docs/research/be_protocol/communication/">
-<link rel="stylesheet" href="/book.min.ef1786281083252320100bd5f394f36844d3252afdbd5bfe72e5f440aaff402b.css" integrity="sha256-7xeGKBCDJSMgEAvV85TzaETTJSr9vVv&#43;cuX0QKr/QCs=" crossorigin="anonymous">
-  <script defer src="/fuse.min.js"></script>
-  <script defer src="/en.search.min.8cd250da139fc136773875cc0c5c476270e41dde5b32a6624b24175c7dd7d37b.js" integrity="sha256-jNJQ2hOfwTZ3OHXMDFxHYnDkHd5bMqZiSyQXXH3X03s=" crossorigin="anonymous"></script>
-<!--
-Made with Book Theme
-https://github.com/alex-shpak/hugo-book
--->
-  
-</head>
-<body dir="ltr">
-  <input type="checkbox" class="hidden toggle" id="menu-control" />
-  <input type="checkbox" class="hidden toggle" id="toc-control" />
-  <main class="container flex">
-    <aside class="book-menu">
-      <div class="book-menu-content">
-        
-  <nav>
-<h2 class="book-brand">
-  <a class="flex align-center" href="/"><span>Dante 0401</span>
-  </a>
-</h2>
-
-
-<div class="book-search hidden">
-  <input type="text" id="book-search-input" placeholder="Search" aria-label="Search" maxlength="64" data-hotkeys="s/" />
-  <div class="book-search-spinner hidden"></div>
-  <ul id="book-search-results"></ul>
-</div>
-<script>document.querySelector(".book-search").classList.remove("hidden")</script>
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
-
-
-  
-  <ul>
-    
-      
-        <li class="book-section-flat" >
-          
-  
-  
-
-  
-    <span>RESEARCH</span>
-  
-
-          
-  <ul>
-    
-      
-        <li>
-          
-  
-  
-
-  
-    <a href="/docs/research/process_vs_thread/" class="">Process vs Thread</a>
-  
-
-        </li>
-      
-    
-      
-        <li>
-          
-  
-  
-
-  
-    <a href="/docs/research/chrome_architecture/" class="">Chrome Architecture</a>
-  
-
-        </li>
-      
-    
-      
-        <li>
-          
-  
-  
-
-  
-    <a href="/docs/research/aws_overview/" class="">AWS Overview</a>
-  
-
-        </li>
-      
-    
-      
-        <li>
-          
-  
-  
-
-  
-    <a href="/docs/research/be_protocol/" class="">Backend</a>
-  
-
-          
-  <ul>
-    
-      
-        <li>
-          
-  
-  
-
-  
-    <a href="/docs/research/be_protocol/tls_ssl/" class="">TLS - SSL</a>
-  
-
-        </li>
-      
-    
-      
-        <li>
-          
-  
-  
-
-  
-    <a href="/docs/research/be_protocol/communication/" class="active">Communication</a>
-  
-
-        </li>
-      
-    
-      
-        <li>
-          
-  
-  
-
-  
-    <a href="/docs/research/be_protocol/rabbitmq/" class="">RabbitMQ</a>
-  
-
-        </li>
-      
-    
-      
-        <li>
-          
-  
-  
-
-  
-    <a href="/docs/research/be_protocol/kafka/" class="">Kafka - Draft</a>
-  
-
-        </li>
-      
-    
-  </ul>
-
-        </li>
-      
-    
-      
-        <li>
-          
-  
-  
-
-  
-    <a href="/docs/research/encryption/" class="">Encryption</a>
-  
-
-        </li>
-      
-    
-      
-        <li>
-          
-  
-  
-
-  
-    <a href="/docs/research/token_based_authentication/" class="">Token-based Authentication</a>
-  
-
-        </li>
-      
-    
-      
-        <li>
-          
-  
-  
-
-  
-    <a href="/docs/research/security/" class="">Security - Draft</a>
-  
-
-          
-  <ul>
-    
-      
-        <li>
-          
-  
-  
-
-  
-    <a href="/docs/research/security/hsts/" class="">HSTS</a>
-  
-
-        </li>
-      
-    
-      
-        <li>
-          
-  
-  
-
-  
-    <a href="/docs/research/security/bit_flipping/" class="">Bit Flipping</a>
-  
-
-        </li>
-      
-    
-  </ul>
-
-        </li>
-      
-    
-      
-        <li>
-          
-  
-  
-
-  
-    <a href="/docs/research/scale/" class="">Scale</a>
-  
-
-        </li>
-      
-    
-  </ul>
-
-        </li>
-      
-    
-      
-        <li class="book-section-flat" >
-          
-  
-  
-
-  
-    <span>TIPS</span>
-  
-
-          
-  <ul>
-    
-      
-        <li>
-          
-  
-  
-
-  
-    <a href="/docs/tips/001_unit_test/" class="">Unit Test</a>
-  
-
-        </li>
-      
-    
-      
-        <li>
-          
-  
-  
-
-  
-    <a href="/docs/tips/002_git/" class="">Git</a>
-  
-
-        </li>
-      
-    
-      
-        <li>
-          
-  
-  
-
-  
-    <a href="/docs/tips/003_docker/" class="">Docker</a>
-  
-
-        </li>
-      
-    
-      
-        <li>
-          
-  
-  
-
-  
-    <a href="/docs/tips/004_ops/" class="">Ops</a>
-  
-
-        </li>
-      
-    
-      
-        <li>
-          
-  
-  
-
-  
-    <a href="/docs/tips/005_passion/" class="">Spark Passion</a>
-  
-
-        </li>
-      
-    
-  </ul>
-
-        </li>
-      
-    
-      
-        <li class="book-section-flat" >
-          
-  
-  
-
-  
-    <span>PROBLEMS</span>
-  
-
-          
-  <ul>
-    
-      
-        <li>
-          
-  
-  
-
-  
-    <a href="/docs/problems/knight_dialer/" class="">Knight Dialer</a>
-  
-
-        </li>
-      
-    
-  </ul>
-
-        </li>
-      
-    
-  </ul>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-</nav>
-
-
-
-
-  <script>(function(){var e=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(){localStorage.setItem("menu.scrollTop",e.scrollTop)}),e.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
-
-
- 
-      </div>
-    </aside>
-
-    <div class="book-page">
-      <header class="book-header">
-        
-  <div class="flex align-center justify-between">
-  <label for="menu-control">
-    <img src="/svg/menu.svg" class="book-icon" alt="Menu" />
-  </label>
-
-  <strong>Communication</strong>
-
-  <label for="toc-control">
-    
-    <img src="/svg/toc.svg" class="book-icon" alt="Table of Contents" />
-    
-  </label>
-</div>
-
-
-  
-  <aside class="hidden clearfix">
-    
-  
-<nav id="TableOfContents">
-  <ul>
-    <li><a href="#request-response">Request-Response</a>
-      <ul>
-        <li><a href="#overview">Overview</a></li>
-        <li><a href="#demo">Demo</a></li>
-      </ul>
-    </li>
-    <li><a href="#short-polling">Short Polling</a>
-      <ul>
-        <li><a href="#overview-1">Overview</a></li>
-        <li><a href="#use-case">Use case</a></li>
-        <li><a href="#demo-1">Demo</a></li>
-      </ul>
-    </li>
-    <li><a href="#long-polling">Long Polling</a>
-      <ul>
-        <li><a href="#overview-2">Overview</a></li>
-        <li><a href="#use-case-1">Use case</a></li>
-        <li><a href="#demo-2">Demo</a></li>
-      </ul>
-    </li>
-    <li><a href="#push">Push</a>
-      <ul>
-        <li><a href="#overview-3">Overview</a></li>
-        <li><a href="#use-case-2">Use case</a></li>
-        <li><a href="#demo-websocket">Demo Websocket</a></li>
-        <li><a href="#demo-server-sent-events">Demo Server-sent events</a></li>
-      </ul>
-    </li>
-    <li><a href="#publish-subcribe">Publish-Subcribe</a>
-      <ul>
-        <li><a href="#rabbitmq">RabbitMQ</a></li>
-        <li><a href="#kafka">Kafka</a></li>
-      </ul>
-    </li>
-    <li><a href="#reference">Reference</a></li>
-  </ul>
-</nav>
-
-
-
-  </aside>
-  
- 
-      </header>
-
-      
-      
-  <article class="markdown book-article"><h1 id="communication">
-  Communication
-  <a class="anchor" href="#communication">#</a>
-</h1>
-<h2 id="request-response">
-  Request-Response
-  <a class="anchor" href="#request-response">#</a>
-</h2>
-<p><img src="/research/be_protocol/communication/request_response.png" alt="request_response" /></p>
-<h3 id="overview">
-  Overview
-  <a class="anchor" href="#overview">#</a>
-</h3>
-<ul>
-<li>Fundamental communication pattern</li>
-<li>The most common patterns for communication in client-server architectures</li>
-</ul>
-<h3 id="demo">
-  Demo
-  <a class="anchor" href="#demo">#</a>
-</h3>
-<details ><summary>Server code</summary>
-  <div class="markdown-inner">
-    <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#75715e">// server.js
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">http</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span>(<span style="color:#e6db74">&#39;http&#39;</span>);
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">server</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">http</span>.<span style="color:#a6e22e">createServer</span>((<span style="color:#a6e22e">req</span>, <span style="color:#a6e22e">res</span>) =&gt; {
-</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">`Received request: </span><span style="color:#e6db74">${</span><span style="color:#a6e22e">req</span>.<span style="color:#a6e22e">method</span><span style="color:#e6db74">}</span><span style="color:#e6db74"> </span><span style="color:#e6db74">${</span><span style="color:#a6e22e">req</span>.<span style="color:#a6e22e">url</span><span style="color:#e6db74">}</span><span style="color:#e6db74">`</span>);
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">req</span>.<span style="color:#a6e22e">url</span> <span style="color:#f92672">===</span> <span style="color:#e6db74">&#39;/hello&#39;</span>) {
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">req</span>.<span style="color:#a6e22e">method</span> <span style="color:#f92672">===</span> <span style="color:#e6db74">&#39;POST&#39;</span>) {
-</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">body</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;&#39;</span>;
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">req</span>.<span style="color:#a6e22e">on</span>(<span style="color:#e6db74">&#39;data&#39;</span>, <span style="color:#a6e22e">chunk</span> =&gt; {
-</span></span><span style="display:flex;"><span>                <span style="color:#a6e22e">body</span> <span style="color:#f92672">+=</span> <span style="color:#a6e22e">chunk</span>.<span style="color:#a6e22e">toString</span>(); <span style="color:#75715e">// Convert buffer to string
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>            });
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">req</span>.<span style="color:#a6e22e">on</span>(<span style="color:#e6db74">&#39;end&#39;</span>, () =&gt; {
-</span></span><span style="display:flex;"><span>                <span style="color:#a6e22e">res</span>.<span style="color:#a6e22e">writeHead</span>(<span style="color:#ae81ff">200</span>, { <span style="color:#e6db74">&#39;Content-Type&#39;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;text/plain&#39;</span> });
-</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">body</span>.<span style="color:#a6e22e">trim</span>() <span style="color:#f92672">===</span> <span style="color:#e6db74">&#34;ping&#34;</span>) {
-</span></span><span style="display:flex;"><span>                    <span style="color:#a6e22e">res</span>.<span style="color:#a6e22e">end</span>(<span style="color:#e6db74">&#39;pong&#39;</span>);
-</span></span><span style="display:flex;"><span>                } <span style="color:#66d9ef">else</span> {
-</span></span><span style="display:flex;"><span>                    <span style="color:#a6e22e">res</span>.<span style="color:#a6e22e">end</span>(<span style="color:#e6db74">&#39;&#39;</span>);
-</span></span><span style="display:flex;"><span>                }
-</span></span><span style="display:flex;"><span>            });
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>        } <span style="color:#66d9ef">else</span> {
-</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">res</span>.<span style="color:#a6e22e">writeHead</span>(<span style="color:#ae81ff">200</span>, { <span style="color:#e6db74">&#39;Content-Type&#39;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;text/plain&#39;</span> });
-</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">res</span>.<span style="color:#a6e22e">end</span>(<span style="color:#e6db74">&#39;world&#39;</span>);
-</span></span><span style="display:flex;"><span>        }
-</span></span><span style="display:flex;"><span>    } <span style="color:#66d9ef">else</span> {
-</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">res</span>.<span style="color:#a6e22e">writeHead</span>(<span style="color:#ae81ff">404</span>, { <span style="color:#e6db74">&#39;Content-Type&#39;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;text/plain&#39;</span> });
-</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">res</span>.<span style="color:#a6e22e">end</span>(<span style="color:#e6db74">&#39;Not Found&#39;</span>);
-</span></span><span style="display:flex;"><span>    }
-</span></span><span style="display:flex;"><span>});
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">server</span>.<span style="color:#a6e22e">listen</span>(<span style="color:#ae81ff">2000</span>, () =&gt; {
-</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#39;Server is listening on port 2000&#39;</span>);
-</span></span><span style="display:flex;"><span>});
-</span></span></code></pre></div>
-  </div>
-</details>
-
-</br>
-<details ><summary>Client code</summary>
-  <div class="markdown-inner">
-    <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#a6e22e">fetch</span>(<span style="color:#e6db74">&#39;http://localhost:2000/hello&#39;</span>, {
-</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">method</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;POST&#39;</span>,
-</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">headers</span><span style="color:#f92672">:</span> { <span style="color:#e6db74">&#39;Content-Type&#39;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;text/plain&#39;</span> },
-</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">body</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;ping&#39;</span>
-</span></span><span style="display:flex;"><span>})
-</span></span><span style="display:flex;"><span>.<span style="color:#a6e22e">then</span>(<span style="color:#a6e22e">response</span> =&gt; <span style="color:#a6e22e">response</span>.<span style="color:#a6e22e">text</span>())
-</span></span><span style="display:flex;"><span>.<span style="color:#a6e22e">then</span>(<span style="color:#a6e22e">data</span> =&gt; <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">data</span>))  <span style="color:#75715e">// Should log: &#34;pong&#34;
-</span></span></span></code></pre></div>
-  </div>
-</details>
-
-</br>
-<details ><summary>Instruction</summary>
-  <div class="markdown-inner">
-    <ol>
-<li>Start the server by running <code>node server.js</code><br>
-1.1. Your terminal will display: <code>Server is listening on port 2000</code></li>
-<li>Open your browser and enter: <code>http://localhost:2000/hello</code><br>
-2.1. Your terminal will first log: <code>Received request: GET /hello</code><br>
-2.2. Then, your browser will display: <code>world</code></li>
-<li>Open the browser console and run <strong>Client code</strong><br>
-3.1. Your terminal will first log: <code>Received request: POST /hello</code><br>
-3.2. Then, your browser console will display: <code>pong</code></li>
-</ol>
-
-  </div>
-</details>
-
-<h2 id="short-polling">
-  Short Polling
-  <a class="anchor" href="#short-polling">#</a>
-</h2>
-<p><img src="/research/be_protocol/communication/short_polling.png" alt="short_polling" /></p>
-<h3 id="overview-1">
-  Overview
-  <a class="anchor" href="#overview-1">#</a>
-</h3>
-<ul>
-<li>Based on the Request-Response design pattern</li>
-<li>Continuously polls the server for new updates</li>
-<li>Near real-time updates</li>
-<li>Client controls the frequency</li>
-</ul>
-<h3 id="use-case">
-  Use case
-  <a class="anchor" href="#use-case">#</a>
-</h3>
-<ul>
-<li>Monitor stocks or cryptocurrencies</li>
-<li>Fetch status updates</li>
-<li>User notifications</li>
-</ul>
-<h3 id="demo-1">
-  Demo
-  <a class="anchor" href="#demo-1">#</a>
-</h3>
-<details ><summary>Server code</summary>
-  <div class="markdown-inner">
-    <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#75715e">// server.js
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">express</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span>(<span style="color:#e6db74">&#39;express&#39;</span>);
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">app</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">express</span>();
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">port</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">2000</span>;
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">app</span>.<span style="color:#a6e22e">get</span>(<span style="color:#e6db74">&#39;/&#39;</span>, (<span style="color:#a6e22e">req</span>, <span style="color:#a6e22e">res</span>) =&gt; {
-</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">res</span>.<span style="color:#a6e22e">send</span>(<span style="color:#e6db74">&#39;Hello world&#39;</span>);
-</span></span><span style="display:flex;"><span>});
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">app</span>.<span style="color:#a6e22e">get</span>(<span style="color:#e6db74">&#39;/bitcoin&#39;</span>, (<span style="color:#a6e22e">req</span>, <span style="color:#a6e22e">res</span>) =&gt; {
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">randomValue</span> <span style="color:#f92672">=</span> Math.<span style="color:#a6e22e">floor</span>(Math.<span style="color:#a6e22e">random</span>() <span style="color:#f92672">*</span> <span style="color:#ae81ff">111</span>) <span style="color:#f92672">-</span> <span style="color:#ae81ff">10</span>; <span style="color:#75715e">// Random value between -10 and +100
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">res</span>.<span style="color:#a6e22e">json</span>({ <span style="color:#a6e22e">coins</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">randomValue</span> });
-</span></span><span style="display:flex;"><span>});
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">app</span>.<span style="color:#a6e22e">listen</span>(<span style="color:#a6e22e">port</span>, () =&gt; {
-</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">`Server is running at http://localhost:</span><span style="color:#e6db74">${</span><span style="color:#a6e22e">port</span><span style="color:#e6db74">}</span><span style="color:#e6db74">`</span>);
-</span></span><span style="display:flex;"><span>});
-</span></span></code></pre></div>
-  </div>
-</details>
-
-</br>
-<details ><summary>Client code</summary>
-  <div class="markdown-inner">
-    <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">fetchBitcoinData</span>() {
-</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">fetch</span>(<span style="color:#e6db74">&#39;http://localhost:2000/bitcoin&#39;</span>)
-</span></span><span style="display:flex;"><span>        .<span style="color:#a6e22e">then</span>(<span style="color:#a6e22e">response</span> =&gt; <span style="color:#a6e22e">response</span>.<span style="color:#a6e22e">json</span>())
-</span></span><span style="display:flex;"><span>        .<span style="color:#a6e22e">then</span>(<span style="color:#a6e22e">data</span> =&gt; {
-</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">`Bitcoin value: </span><span style="color:#e6db74">${</span><span style="color:#a6e22e">data</span>.<span style="color:#a6e22e">coins</span><span style="color:#e6db74">}</span><span style="color:#e6db74">`</span>);
-</span></span><span style="display:flex;"><span>        });
-</span></span><span style="display:flex;"><span>}
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">setInterval</span>(<span style="color:#a6e22e">fetchBitcoinData</span>, <span style="color:#ae81ff">1000</span>);
-</span></span></code></pre></div>
-  </div>
-</details>
-
-</br>
-<details ><summary>Instruction</summary>
-  <div class="markdown-inner">
-    <ol>
-<li>Start the server by running <code>node server.js</code><br>
-1.1. Your terminal will display: <code>Server is running at http://localhost:2000</code></li>
-<li>Open your browser and enter: <code>http://localhost:2000</code><br>
-2.1. Your browser will display: <code>Hello world</code></li>
-<li>Open the browser console and run <strong>Client code</strong><br>
-3.1. Your browser console will continuously display:
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>&gt;&gt; Bitcoin value: 10
-</span></span><span style="display:flex;"><span>&gt;&gt; Bitcoin value: 100
-</span></span><span style="display:flex;"><span>&gt;&gt; Bitcoin value: 26
-</span></span><span style="display:flex;"><span>&gt;&gt; Bitcoin value: -6
-</span></span><span style="display:flex;"><span>&gt;&gt; Bitcoin value: 65
-</span></span><span style="display:flex;"><span>...
-</span></span></code></pre></div></li>
-</ol>
-
-  </div>
-</details>
-
-<h2 id="long-polling">
-  Long Polling
-  <a class="anchor" href="#long-polling">#</a>
-</h2>
-<p><img src="/research/be_protocol/communication/long_polling.png" alt="long_polling" /></p>
-<h3 id="overview-2">
-  Overview
-  <a class="anchor" href="#overview-2">#</a>
-</h3>
-<ul>
-<li>Based on the Request-Response design pattern</li>
-<li>Holds the request open and only responds after completing the task</li>
-<li>Real-time updates</li>
-<li>Server controls the timing of response</li>
-</ul>
-<h3 id="use-case-1">
-  Use case
-  <a class="anchor" href="#use-case-1">#</a>
-</h3>
-<ul>
-<li>Fetch status updates</li>
-<li>User notifications</li>
-</ul>
-<h3 id="demo-2">
-  Demo
-  <a class="anchor" href="#demo-2">#</a>
-</h3>
-<details ><summary>Server code</summary>
-  <div class="markdown-inner">
-    <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#75715e">// server.js
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">express</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span>(<span style="color:#e6db74">&#39;express&#39;</span>);
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">app</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">express</span>();
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">port</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">2000</span>;
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">app</span>.<span style="color:#a6e22e">use</span>(<span style="color:#a6e22e">express</span>.<span style="color:#a6e22e">json</span>());
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">app</span>.<span style="color:#a6e22e">get</span>(<span style="color:#e6db74">&#39;/&#39;</span>, (<span style="color:#a6e22e">req</span>, <span style="color:#a6e22e">res</span>) =&gt; {
-</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">res</span>.<span style="color:#a6e22e">send</span>(<span style="color:#e6db74">&#39;Hello world&#39;</span>);
-</span></span><span style="display:flex;"><span>});
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">app</span>.<span style="color:#a6e22e">post</span>(<span style="color:#e6db74">&#39;/validate-music&#39;</span>, (<span style="color:#a6e22e">req</span>, <span style="color:#a6e22e">res</span>) =&gt; {
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> { <span style="color:#a6e22e">musicName</span>, <span style="color:#a6e22e">capacity</span> } <span style="color:#f92672">=</span> <span style="color:#a6e22e">req</span>.<span style="color:#a6e22e">body</span>;
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Simulate processing time with a random delay between 5 to 10 seconds
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">delay</span> <span style="color:#f92672">=</span> Math.<span style="color:#a6e22e">floor</span>(Math.<span style="color:#a6e22e">random</span>() <span style="color:#f92672">*</span> <span style="color:#ae81ff">6</span>) <span style="color:#f92672">+</span> <span style="color:#ae81ff">5</span>;
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">`Received request to validate music: </span><span style="color:#e6db74">${</span><span style="color:#a6e22e">musicName</span><span style="color:#e6db74">}</span><span style="color:#e6db74">, capacity: </span><span style="color:#e6db74">${</span><span style="color:#a6e22e">capacity</span><span style="color:#e6db74">}</span><span style="color:#e6db74">`</span>);
-</span></span><span style="display:flex;"><span>    
-</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">setTimeout</span>(() =&gt; {
-</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">res</span>.<span style="color:#a6e22e">json</span>({ <span style="color:#a6e22e">message</span><span style="color:#f92672">:</span> <span style="color:#e6db74">`The music &#34;</span><span style="color:#e6db74">${</span><span style="color:#a6e22e">musicName</span><span style="color:#e6db74">}</span><span style="color:#e6db74">&#34; is valid.`</span> });
-</span></span><span style="display:flex;"><span>    }, <span style="color:#a6e22e">delay</span> <span style="color:#f92672">*</span> <span style="color:#ae81ff">1000</span>);
-</span></span><span style="display:flex;"><span>});
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">app</span>.<span style="color:#a6e22e">listen</span>(<span style="color:#a6e22e">port</span>, () =&gt; {
-</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">`Server is running at http://localhost:</span><span style="color:#e6db74">${</span><span style="color:#a6e22e">port</span><span style="color:#e6db74">}</span><span style="color:#e6db74">`</span>);
-</span></span><span style="display:flex;"><span>});
-</span></span></code></pre></div>
-  </div>
-</details>
-
-</br>
-<details ><summary>Client code</summary>
-  <div class="markdown-inner">
-    <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">validateMusic</span>(<span style="color:#a6e22e">musicName</span>, <span style="color:#a6e22e">capacity</span>) {
-</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">fetch</span>(<span style="color:#e6db74">&#39;http://localhost:2000/validate-music&#39;</span>, {
-</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">method</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;POST&#39;</span>,
-</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">headers</span><span style="color:#f92672">:</span> {
-</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#39;Content-Type&#39;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;application/json&#39;</span>
-</span></span><span style="display:flex;"><span>        },
-</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">body</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">JSON</span>.<span style="color:#a6e22e">stringify</span>({ <span style="color:#a6e22e">musicName</span>, <span style="color:#a6e22e">capacity</span> })
-</span></span><span style="display:flex;"><span>    })
-</span></span><span style="display:flex;"><span>    .<span style="color:#a6e22e">then</span>(<span style="color:#a6e22e">response</span> =&gt; <span style="color:#a6e22e">response</span>.<span style="color:#a6e22e">json</span>())
-</span></span><span style="display:flex;"><span>    .<span style="color:#a6e22e">then</span>(<span style="color:#a6e22e">data</span> =&gt; {
-</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">data</span>.<span style="color:#a6e22e">message</span>);
-</span></span><span style="display:flex;"><span>    });
-</span></span><span style="display:flex;"><span>}
-</span></span><span style="display:flex;"><span>  
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">validateMusic</span>(<span style="color:#e6db74">&#39;Supernova&#39;</span>, <span style="color:#e6db74">&#39;5MB&#39;</span>);
-</span></span></code></pre></div>
-  </div>
-</details>
-
-</br>
-<details ><summary>Instruction</summary>
-  <div class="markdown-inner">
-    <ol>
-<li>Start the server by running <code>node server.js</code><br>
-1.1. Your terminal will display: <code>Server is running at http://localhost:2000</code></li>
-<li>Open your browser and enter: <code>http://localhost:2000</code><br>
-2.1. Your browser will display: <code>Hello world</code></li>
-<li>Open the browser console and run <strong>Client code</strong><br>
-3.1. Your terminal will first log: <code>Received request to validate music: Supernova, capacity: 5MB</code><br>
-3.2. Then, your browser console after some seconds will display: <code>The music &quot;Supernova&quot; is valid.</code></li>
-</ol>
-
-  </div>
-</details>
-
-<h2 id="push">
-  Push
-  <a class="anchor" href="#push">#</a>
-</h2>
-<p><img src="/research/be_protocol/communication/push.png" alt="push" /></p>
-<h3 id="overview-3">
-  Overview
-  <a class="anchor" href="#overview-3">#</a>
-</h3>
-<ul>
-<li>Real-time updates</li>
-</ul>
-<h3 id="use-case-2">
-  Use case
-  <a class="anchor" href="#use-case-2">#</a>
-</h3>
-<ul>
-<li>Chat and messaging apps</li>
-<li>Notification systems</li>
-</ul>
-<h3 id="demo-websocket">
-  Demo Websocket
-  <a class="anchor" href="#demo-websocket">#</a>
-</h3>
-<ul>
-<li><strong>Bidirectional</strong> communication</li>
-</ul>
-<details ><summary>Server code</summary>
-  <div class="markdown-inner">
-    <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#75715e">// server.js
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">http</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span>(<span style="color:#e6db74">&#39;http&#39;</span>);
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">WebSocket</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span>(<span style="color:#e6db74">&#39;ws&#39;</span>);
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">port</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">2000</span>;
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">// Create an HTTP server
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">server</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">http</span>.<span style="color:#a6e22e">createServer</span>((<span style="color:#a6e22e">req</span>, <span style="color:#a6e22e">res</span>) =&gt; {
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">req</span>.<span style="color:#a6e22e">url</span> <span style="color:#f92672">===</span> <span style="color:#e6db74">&#39;/&#39;</span>) {
-</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">res</span>.<span style="color:#a6e22e">writeHead</span>(<span style="color:#ae81ff">200</span>, { <span style="color:#e6db74">&#39;Content-Type&#39;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;text/plain&#39;</span> });
-</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">res</span>.<span style="color:#a6e22e">end</span>(<span style="color:#e6db74">&#39;Hello, World!&#39;</span>);
-</span></span><span style="display:flex;"><span>    } <span style="color:#66d9ef">else</span> {
-</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">res</span>.<span style="color:#a6e22e">writeHead</span>(<span style="color:#ae81ff">404</span>, { <span style="color:#e6db74">&#39;Content-Type&#39;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;text/plain&#39;</span> });
-</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">res</span>.<span style="color:#a6e22e">end</span>(<span style="color:#e6db74">&#39;Not Found&#39;</span>);
-</span></span><span style="display:flex;"><span>    }
-</span></span><span style="display:flex;"><span>});
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">// Create a WebSocket server on top of the HTTP server
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">wss</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">WebSocket</span>.<span style="color:#a6e22e">Server</span>({ <span style="color:#a6e22e">server</span> });
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">wss</span>.<span style="color:#a6e22e">on</span>(<span style="color:#e6db74">&#39;connection&#39;</span>, <span style="color:#a6e22e">ws</span> =&gt; {
-</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#39;Client connected the WebSocket connection&#39;</span>);
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">ws</span>.<span style="color:#a6e22e">on</span>(<span style="color:#e6db74">&#39;message&#39;</span>, <span style="color:#a6e22e">message</span> =&gt; {
-</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">`Received: </span><span style="color:#e6db74">${</span><span style="color:#a6e22e">message</span><span style="color:#e6db74">}</span><span style="color:#e6db74">`</span>);
-</span></span><span style="display:flex;"><span>        
-</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// Simulating music validation process
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">progress</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">interval</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">setInterval</span>(() =&gt; {
-</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">progress</span> <span style="color:#f92672">+=</span> Math.<span style="color:#a6e22e">floor</span>(Math.<span style="color:#a6e22e">random</span>() <span style="color:#f92672">*</span> <span style="color:#ae81ff">10</span>) <span style="color:#f92672">+</span> <span style="color:#ae81ff">10</span>; <span style="color:#75715e">// Random progress between 10% - 20%
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>            <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">progress</span> <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">100</span>) {
-</span></span><span style="display:flex;"><span>                <span style="color:#a6e22e">progress</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">100</span>;
-</span></span><span style="display:flex;"><span>                <span style="color:#a6e22e">ws</span>.<span style="color:#a6e22e">send</span>(<span style="color:#a6e22e">JSON</span>.<span style="color:#a6e22e">stringify</span>({ <span style="color:#a6e22e">status</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;complete&#39;</span>, <span style="color:#a6e22e">message</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;Music validation complete and valid!&#39;</span> }));
-</span></span><span style="display:flex;"><span>                <span style="color:#a6e22e">clearInterval</span>(<span style="color:#a6e22e">interval</span>);
-</span></span><span style="display:flex;"><span>            } <span style="color:#66d9ef">else</span> {
-</span></span><span style="display:flex;"><span>                <span style="color:#a6e22e">ws</span>.<span style="color:#a6e22e">send</span>(<span style="color:#a6e22e">JSON</span>.<span style="color:#a6e22e">stringify</span>({ <span style="color:#a6e22e">status</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;in-progress&#39;</span>, <span style="color:#a6e22e">progress</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">progress</span> }));
-</span></span><span style="display:flex;"><span>            }
-</span></span><span style="display:flex;"><span>        }, <span style="color:#ae81ff">1000</span>);
-</span></span><span style="display:flex;"><span>    });
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">ws</span>.<span style="color:#a6e22e">on</span>(<span style="color:#e6db74">&#39;close&#39;</span>, () =&gt; {
-</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#39;Client disconnected the WebSocket connection&#39;</span>);
-</span></span><span style="display:flex;"><span>    });
-</span></span><span style="display:flex;"><span>});
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">server</span>.<span style="color:#a6e22e">listen</span>(<span style="color:#a6e22e">port</span>, () =&gt; {
-</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">`Server running on http://localhost:</span><span style="color:#e6db74">${</span><span style="color:#a6e22e">port</span><span style="color:#e6db74">}</span><span style="color:#e6db74">`</span>);
-</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">`WebSocket server running on ws://localhost:</span><span style="color:#e6db74">${</span><span style="color:#a6e22e">port</span><span style="color:#e6db74">}</span><span style="color:#e6db74">`</span>);
-</span></span><span style="display:flex;"><span>});
-</span></span></code></pre></div>
-  </div>
-</details>
-
-</br>
-<details ><summary>Client code</summary>
-  <div class="markdown-inner">
-    <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">socket</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">WebSocket</span>(<span style="color:#e6db74">&#39;ws://localhost:2000&#39;</span>);
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">socket</span>.<span style="color:#a6e22e">onmessage</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">event</span>) {
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">data</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">JSON</span>.<span style="color:#a6e22e">parse</span>(<span style="color:#a6e22e">event</span>.<span style="color:#a6e22e">data</span>);
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">data</span>.<span style="color:#a6e22e">status</span> <span style="color:#f92672">===</span> <span style="color:#e6db74">&#39;in-progress&#39;</span>) {
-</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">`Validation progress: </span><span style="color:#e6db74">${</span><span style="color:#a6e22e">data</span>.<span style="color:#a6e22e">progress</span><span style="color:#e6db74">}</span><span style="color:#e6db74">%`</span>);
-</span></span><span style="display:flex;"><span>    } <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">data</span>.<span style="color:#a6e22e">status</span> <span style="color:#f92672">===</span> <span style="color:#e6db74">&#39;complete&#39;</span>) {
-</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">data</span>.<span style="color:#a6e22e">message</span>);
-</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">socket</span>.<span style="color:#a6e22e">close</span>();
-</span></span><span style="display:flex;"><span>    }
-</span></span><span style="display:flex;"><span>};
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">socket</span>.<span style="color:#a6e22e">onopen</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">function</span>() {
-</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#39;Connected to the server&#39;</span>);
-</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Simulating a music upload with a title and arbitrary size
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">musicData</span> <span style="color:#f92672">=</span> {
-</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">title</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;My Awesome Track&#39;</span>,
-</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">size</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">1234</span>
-</span></span><span style="display:flex;"><span>    };
-</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">socket</span>.<span style="color:#a6e22e">send</span>(<span style="color:#a6e22e">JSON</span>.<span style="color:#a6e22e">stringify</span>(<span style="color:#a6e22e">musicData</span>));
-</span></span><span style="display:flex;"><span>};
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">socket</span>.<span style="color:#a6e22e">onclose</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">function</span>() {
-</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#39;Disconnected the WebSocket connection from the server&#39;</span>);
-</span></span><span style="display:flex;"><span>};
-</span></span></code></pre></div>
-  </div>
-</details>
-
-</br>
-<details ><summary>Instruction</summary>
-  <div class="markdown-inner">
-    <ol>
-<li>Start the server by running <code>node server.js</code><br>
-1.1. Your terminal will display:
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>Server running on http://localhost:2000
-</span></span><span style="display:flex;"><span>WebSocket server running on ws://localhost:2000
-</span></span></code></pre></div></li>
-<li>Open your browser and enter: <code>http://localhost:2000</code><br>
-2.1. Your browser will display: <code>Hello world</code></li>
-<li>Open the browser console and run <strong>Client code</strong><br>
-3.1. Your terminal will first log:
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>Client connected the WebSocket connection
-</span></span><span style="display:flex;"><span>Received: {&#34;title&#34;:&#34;My Awesome Track&#34;,&#34;size&#34;:1234}
-</span></span></code></pre></div>3.2. Then, your browser console will display:
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>&gt;&gt; Connected to the server
-</span></span><span style="display:flex;"><span>&gt;&gt; Validation progress: 18%
-</span></span><span style="display:flex;"><span>&gt;&gt; Validation progress: 28%
-</span></span><span style="display:flex;"><span>&gt;&gt; Validation progress: 39%
-</span></span><span style="display:flex;"><span>&gt;&gt; Validation progress: 50%
-</span></span><span style="display:flex;"><span>&gt;&gt; Validation progress: 65%
-</span></span><span style="display:flex;"><span>&gt;&gt; Validation progress: 80%
-</span></span><span style="display:flex;"><span>&gt;&gt; Validation progress: 97%
-</span></span><span style="display:flex;"><span>&gt;&gt; Music validation complete and valid!
-</span></span><span style="display:flex;"><span>&gt;&gt; Disconnected the WebSocket connection from the server
-</span></span></code></pre></div></li>
-</ol>
-
-  </div>
-</details>
-
-<h3 id="demo-server-sent-events">
-  Demo Server-sent events
-  <a class="anchor" href="#demo-server-sent-events">#</a>
-</h3>
-<ul>
-<li><strong>Unidirectional</strong> communication</li>
-</ul>
-<details ><summary>Server code</summary>
-  <div class="markdown-inner">
-    <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#75715e">// server.js
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">http</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span>(<span style="color:#e6db74">&#39;http&#39;</span>);
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">port</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">2000</span>;
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">let</span> <span style="color:#a6e22e">currentProgress</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">server</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">http</span>.<span style="color:#a6e22e">createServer</span>((<span style="color:#a6e22e">req</span>, <span style="color:#a6e22e">res</span>) =&gt; {
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">req</span>.<span style="color:#a6e22e">method</span> <span style="color:#f92672">===</span> <span style="color:#e6db74">&#39;GET&#39;</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#a6e22e">req</span>.<span style="color:#a6e22e">url</span> <span style="color:#f92672">===</span> <span style="color:#e6db74">&#39;/&#39;</span>) {
-</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">res</span>.<span style="color:#a6e22e">writeHead</span>(<span style="color:#ae81ff">200</span>, { <span style="color:#e6db74">&#39;Content-Type&#39;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;text/plain&#39;</span> });
-</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">res</span>.<span style="color:#a6e22e">end</span>(<span style="color:#e6db74">&#39;Hello, World!&#39;</span>);
-</span></span><span style="display:flex;"><span>    } <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">req</span>.<span style="color:#a6e22e">method</span> <span style="color:#f92672">===</span> <span style="color:#e6db74">&#39;POST&#39;</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#a6e22e">req</span>.<span style="color:#a6e22e">url</span> <span style="color:#f92672">===</span> <span style="color:#e6db74">&#39;/upload&#39;</span>) {
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">body</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;&#39;</span>;
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">req</span>.<span style="color:#a6e22e">on</span>(<span style="color:#e6db74">&#39;data&#39;</span>, <span style="color:#a6e22e">chunk</span> =&gt; {
-</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">body</span> <span style="color:#f92672">+=</span> <span style="color:#a6e22e">chunk</span>.<span style="color:#a6e22e">toString</span>();
-</span></span><span style="display:flex;"><span>        });
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">req</span>.<span style="color:#a6e22e">on</span>(<span style="color:#e6db74">&#39;end&#39;</span>, () =&gt; {
-</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#39;Received music data:&#39;</span>, <span style="color:#a6e22e">body</span>);
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">currentProgress</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">interval</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">setInterval</span>(() =&gt; {
-</span></span><span style="display:flex;"><span>                <span style="color:#a6e22e">currentProgress</span> <span style="color:#f92672">+=</span> Math.<span style="color:#a6e22e">floor</span>(Math.<span style="color:#a6e22e">random</span>() <span style="color:#f92672">*</span> <span style="color:#ae81ff">10</span>) <span style="color:#f92672">+</span> <span style="color:#ae81ff">10</span>; <span style="color:#75715e">// Random progress between 10% - 20%
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>                <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">currentProgress</span> <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">100</span>) {
-</span></span><span style="display:flex;"><span>                    <span style="color:#a6e22e">currentProgress</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">100</span>;
-</span></span><span style="display:flex;"><span>                    <span style="color:#a6e22e">clearInterval</span>(<span style="color:#a6e22e">interval</span>);
-</span></span><span style="display:flex;"><span>                }
-</span></span><span style="display:flex;"><span>            }, <span style="color:#ae81ff">1000</span>);
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">res</span>.<span style="color:#a6e22e">writeHead</span>(<span style="color:#ae81ff">200</span>, { <span style="color:#e6db74">&#39;Content-Type&#39;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;text/plain&#39;</span> });
-</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">res</span>.<span style="color:#a6e22e">end</span>(<span style="color:#e6db74">&#39;Music data received and processing started&#39;</span>);
-</span></span><span style="display:flex;"><span>        });
-</span></span><span style="display:flex;"><span>    } <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">req</span>.<span style="color:#a6e22e">method</span> <span style="color:#f92672">===</span> <span style="color:#e6db74">&#39;GET&#39;</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#a6e22e">req</span>.<span style="color:#a6e22e">url</span> <span style="color:#f92672">===</span> <span style="color:#e6db74">&#39;/uploadprogress&#39;</span>) {
-</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// Set headers for SSE
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#a6e22e">res</span>.<span style="color:#a6e22e">writeHead</span>(<span style="color:#ae81ff">200</span>, {
-</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#39;Content-Type&#39;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;text/event-stream&#39;</span>,
-</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#39;Cache-Control&#39;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;no-cache&#39;</span>,
-</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#39;Connection&#39;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;keep-alive&#39;</span>
-</span></span><span style="display:flex;"><span>        });
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">interval</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">null</span>;
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">sendProgress</span> <span style="color:#f92672">=</span> () =&gt; {
-</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">currentProgress</span> <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">100</span>) {
-</span></span><span style="display:flex;"><span>                <span style="color:#a6e22e">res</span>.<span style="color:#a6e22e">write</span>(<span style="color:#e6db74">`data: </span><span style="color:#e6db74">${</span><span style="color:#a6e22e">JSON</span>.<span style="color:#a6e22e">stringify</span>({ <span style="color:#a6e22e">status</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;in-progress&#39;</span>, <span style="color:#a6e22e">progress</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">currentProgress</span> <span style="color:#e6db74">}</span><span style="color:#e6db74">)}\n\n`</span>);
-</span></span><span style="display:flex;"><span>            } <span style="color:#66d9ef">else</span> {
-</span></span><span style="display:flex;"><span>                <span style="color:#a6e22e">res</span>.<span style="color:#a6e22e">write</span>(<span style="color:#e6db74">`data: </span><span style="color:#e6db74">${</span><span style="color:#a6e22e">JSON</span>.<span style="color:#a6e22e">stringify</span>({ <span style="color:#a6e22e">status</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;complete&#39;</span>, <span style="color:#a6e22e">message</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;Music validation complete and valid!&#39;</span> <span style="color:#e6db74">}</span><span style="color:#e6db74">)}\n\n`</span>);
-</span></span><span style="display:flex;"><span>                <span style="color:#a6e22e">clearInterval</span>(<span style="color:#a6e22e">interval</span>);
-</span></span><span style="display:flex;"><span>                <span style="color:#a6e22e">res</span>.<span style="color:#a6e22e">end</span>(); 
-</span></span><span style="display:flex;"><span>            }
-</span></span><span style="display:flex;"><span>        };
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">interval</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">setInterval</span>(<span style="color:#a6e22e">sendProgress</span>, <span style="color:#ae81ff">1000</span>);
-</span></span><span style="display:flex;"><span>    } <span style="color:#66d9ef">else</span> {
-</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">res</span>.<span style="color:#a6e22e">writeHead</span>(<span style="color:#ae81ff">404</span>, { <span style="color:#e6db74">&#39;Content-Type&#39;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;text/plain&#39;</span> });
-</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">res</span>.<span style="color:#a6e22e">end</span>(<span style="color:#e6db74">&#39;Not Found&#39;</span>);
-</span></span><span style="display:flex;"><span>    }
-</span></span><span style="display:flex;"><span>});
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">server</span>.<span style="color:#a6e22e">listen</span>(<span style="color:#a6e22e">port</span>, () =&gt; {
-</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">`Server running on http://localhost:</span><span style="color:#e6db74">${</span><span style="color:#a6e22e">port</span><span style="color:#e6db74">}</span><span style="color:#e6db74">`</span>);
-</span></span><span style="display:flex;"><span>});
-</span></span></code></pre></div>
-  </div>
-</details>
-
-</br>
-<details ><summary>Client code</summary>
-  <div class="markdown-inner">
-    <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">uploadMusicData</span>() {
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">musicData</span> <span style="color:#f92672">=</span> {
-</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">title</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;My Awesome Track&#39;</span>,
-</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">size</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">1234</span>
-</span></span><span style="display:flex;"><span>    };
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">fetch</span>(<span style="color:#e6db74">&#39;http://localhost:2000/upload&#39;</span>, {
-</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">method</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;POST&#39;</span>,
-</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">headers</span><span style="color:#f92672">:</span> {
-</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#39;Content-Type&#39;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;application/json&#39;</span>
-</span></span><span style="display:flex;"><span>        },
-</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">body</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">JSON</span>.<span style="color:#a6e22e">stringify</span>(<span style="color:#a6e22e">musicData</span>)
-</span></span><span style="display:flex;"><span>    })
-</span></span><span style="display:flex;"><span>    .<span style="color:#a6e22e">then</span>(<span style="color:#a6e22e">response</span> =&gt; <span style="color:#a6e22e">response</span>.<span style="color:#a6e22e">text</span>())
-</span></span><span style="display:flex;"><span>    .<span style="color:#a6e22e">then</span>(<span style="color:#a6e22e">data</span> =&gt; {
-</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">data</span>);
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// Create an EventSource connection to the server
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">eventSource</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">EventSource</span>(<span style="color:#e6db74">&#39;http://localhost:2000/uploadprogress&#39;</span>);
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">eventSource</span>.<span style="color:#a6e22e">onmessage</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">event</span>) {
-</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">data</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">JSON</span>.<span style="color:#a6e22e">parse</span>(<span style="color:#a6e22e">event</span>.<span style="color:#a6e22e">data</span>);
-</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">data</span>.<span style="color:#a6e22e">status</span> <span style="color:#f92672">===</span> <span style="color:#e6db74">&#39;in-progress&#39;</span>) {
-</span></span><span style="display:flex;"><span>                <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">`Validation progress: </span><span style="color:#e6db74">${</span><span style="color:#a6e22e">data</span>.<span style="color:#a6e22e">progress</span><span style="color:#e6db74">}</span><span style="color:#e6db74">%`</span>);
-</span></span><span style="display:flex;"><span>            } <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">data</span>.<span style="color:#a6e22e">status</span> <span style="color:#f92672">===</span> <span style="color:#e6db74">&#39;complete&#39;</span>) {
-</span></span><span style="display:flex;"><span>                <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">data</span>.<span style="color:#a6e22e">message</span>);
-</span></span><span style="display:flex;"><span>                <span style="color:#a6e22e">eventSource</span>.<span style="color:#a6e22e">close</span>();
-</span></span><span style="display:flex;"><span>            }
-</span></span><span style="display:flex;"><span>        };
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">eventSource</span>.<span style="color:#a6e22e">onopen</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">function</span>() {
-</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#39;Connected to the server for progress updates&#39;</span>);
-</span></span><span style="display:flex;"><span>        };
-</span></span><span style="display:flex;"><span>    });
-</span></span><span style="display:flex;"><span>}
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">uploadMusicData</span>();
-</span></span></code></pre></div>
-  </div>
-</details>
-
-</br>
-<details ><summary>Instruction</summary>
-  <div class="markdown-inner">
-    <ol>
-<li>Start the server by running <code>node server.js</code><br>
-1.1. Your terminal will display: <code>Server running on http://localhost:2000</code></li>
-<li>Open your browser and enter: <code>http://localhost:2000</code><br>
-2.1. Your browser will display: <code>Hello world</code></li>
-<li>Open the browser console and run <strong>Client code</strong><br>
-3.1. Your terminal will first log: <code>Received music data: {&quot;title&quot;:&quot;My Awesome Track&quot;,&quot;size&quot;:1234}</code><br>
-3.2. Then, your browser console will display:
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>&gt;&gt; Music data received and processing started
-</span></span><span style="display:flex;"><span>&gt;&gt; Connected to the server for progress updates
-</span></span><span style="display:flex;"><span>&gt;&gt; Validation progress: 18%
-</span></span><span style="display:flex;"><span>&gt;&gt; Validation progress: 28%
-</span></span><span style="display:flex;"><span>&gt;&gt; Validation progress: 39%
-</span></span><span style="display:flex;"><span>&gt;&gt; Validation progress: 50%
-</span></span><span style="display:flex;"><span>&gt;&gt; Validation progress: 65%
-</span></span><span style="display:flex;"><span>&gt;&gt; Validation progress: 80%
-</span></span><span style="display:flex;"><span>&gt;&gt; Validation progress: 97%
-</span></span><span style="display:flex;"><span>&gt;&gt; Music validation complete and valid!
-</span></span></code></pre></div></li>
-</ol>
-
-  </div>
-</details>
-
-<h2 id="publish-subcribe">
-  Publish-Subcribe
-  <a class="anchor" href="#publish-subcribe">#</a>
-</h2>
-<ul>
-<li>Also known as <strong>Message Queue</strong> Design Pattern</li>
-<li>Used in microservices architectures</li>
-</ul>
-<p><img src="/research/be_protocol/communication/message_queue.png" alt="message_queue" /></p>
-<h3 id="rabbitmq">
-  RabbitMQ
-  <a class="anchor" href="#rabbitmq">#</a>
-</h3>
-<ul>
-<li>Producer sends and monitors if the message reaches the intended consumer</li>
-<li>Messages are deleted once consumed</li>
-<li>Designed for complex message routing</li>
-<li>Support message priorities</li>
-</ul>
-<h3 id="kafka">
-  Kafka
-  <a class="anchor" href="#kafka">#</a>
-</h3>
-<ul>
-<li>Consumers keep track of message retrieval with an offset tracker</li>
-<li>Retain messages according to the retention policy</li>
-<li>There’s no message priority</li>
-</ul>
-<h2 id="reference">
-  Reference
-  <a class="anchor" href="#reference">#</a>
-</h2>
-<ul>
-<li>Freecodecamp: <a href="https://www.freecodecamp.org/news/communication-design-patterns-for-backend-development/">Communication Design Patterns for Backend Development</a> (Sep 12th, 2023)</li>
-<li>Udemy: <a href="https://www.udemy.com/course/fundamentals-of-backend-communications-and-protocols">Fundamentals of Backend Engineering</a> (Feb, 2024)</li>
-<li>Linkedin: <a href="https://www.linkedin.com/pulse/understanding-short-polling-simple-backend-pattern-rubayet-mnwec/">Understanding Short Polling: A Simple Backend Communication Pattern</a> (Aug 7th, 2024)</li>
-<li>Stackoverflow: <a href="https://stackoverflow.com/questions/5195452/websockets-vs-server-sent-events-eventsource">WebSockets vs. Server-Sent events/EventSource</a> (Mar 16th, 2011)</li>
-<li>Amazon: <a href="https://aws.amazon.com/message-queue/">Message Queues</a></li>
-<li>Amazon: <a href="https://aws.amazon.com/compare/the-difference-between-rabbitmq-and-kafka/">What’s the Difference Between Kafka and RabbitMQ?</a></li>
-</ul>
-<style>
-    .feedback-card {
-        border: 1px solid #ddd;
-        border-radius: 8px;
-        padding: 20px;
-        max-width: 100%;
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-        background-color: #f9f9fb;
-    }
-    .feedback-card h2 {
-        font-size: 20px;
-        margin-top: 0px;
-        margin-bottom: 10px;
-    }
-    .feedback-card .buttons {
-        margin: 10px 0;
-    }
-    .feedback-card button {
-        border: none;
-        background-color: #f0f0f0;
-        border-radius: 4px;
-        padding: 10px 15px;
-        margin-right: 10px;
-        cursor: pointer;
-        font-size: 16px;
-    }
-    .feedback-card button:hover {
-        background-color: #e0e0e0;
-    }
-    .feedback-card a {
-        color: #0074d9;
-        text-decoration: none;
-    }
-    .feedback-card a:hover {
-        text-decoration: underline;
-    }
-    .feedback-card p {
-        font-size: 14px;
-        color: #555;
-    }
-
-     
-    .modal {
-      display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      border-radius: 7px;
-      padding-bottom: 50px;
-
-      background-color: rgba(0, 0, 0, 0.5);
-      justify-content: center;
-      align-items: flex-end;
-    }
-
-    .modal-content {
-      background-color: white;
-      padding: 20px;
-      border-radius: 5px;
-      width: 300px;
-    }
-
-    .modal input {
-      width: 100%;
-      padding: 10px;
-      margin-bottom: 10px;
-    }
-</style>
-<div class="feedback-card" id="feedbackCard">
-    <h2>Help improve my blog</h2>
-    <p>Was this page helpful to you?</p>
-    <div class="buttons">
-        <button id="yesBtn">👍 Yes</button>
-        <button id="noBtn">👎 No</button>
-    </div>
-    <p>This page was last modified at <strong>2023-11-15</strong></p>
-    <ul>
-        <li><a href="https://github.com/DangPham112000/blog" target="_blank">View this page on GitHub</a></li>
-        <li><a href="#" class="link-button" id="linkButton">Report a problem with this content</a></li>
-    </ul>
-</div>
-
-<div class="modal" id="formModal">
-    <div class="feedback-card">
-        <h2>Can I know your name?</h2>
-        <form id="form">
-            <input type="text" name="username" placeholder="Enter your name">
-            <button type="submit">Yes</button>
-            <button type="submit">No</button>
-        </form>
-    </div>
-</div>
-
-<script>
-    const feedbackCardEle = document.getElementById("feedbackCard");
-    const formModalEle = document.getElementById('formModal');
-    const elesToShowForm = ['linkButton', 'yesBtn', 'noBtn'];
-
-    for (const ele of elesToShowForm) {
-        document.getElementById(ele).addEventListener('click', function(e) {
-            e.preventDefault();
-            formModalEle.style.display = 'flex';
-        });
-    }
-
-    window.onclick = function(event) {
-        if (event.target === formModalEle) {
-            formModalEle.style.display = 'none';
-        }
-    };
-
-    document.getElementById('form').addEventListener('submit', function(e) {
-        e.preventDefault(); 
-        alert('This feature is currently being developed');
-        formModalEle.style.display = 'none'; 
-    });
-</script>
-</article>
- 
-      
-
-      <footer class="book-footer">
-        
-  <div class="flex flex-wrap justify-between">
-
-
-
-
-
-</div>
-
-
-
-  <script>(function(){function e(e){const t=window.getSelection(),n=document.createRange();n.selectNodeContents(e),t.removeAllRanges(),t.addRange(n)}document.querySelectorAll("pre code").forEach(t=>{t.addEventListener("click",function(){if(window.getSelection().toString())return;e(t.parentElement),navigator.clipboard&&navigator.clipboard.writeText(t.parentElement.textContent)})})})()</script>
-
-
- 
-        
-      </footer>
-
-      
-  
-  <div class="book-comments">
-
-</div>
-  
- 
-
-      <label for="menu-control" class="hidden book-menu-overlay"></label>
-    </div>
-
-    
-    <aside class="book-toc">
-      <div class="book-toc-content">
-        
-  
-<nav id="TableOfContents">
-  <ul>
-    <li><a href="#request-response">Request-Response</a>
-      <ul>
-        <li><a href="#overview">Overview</a></li>
-        <li><a href="#demo">Demo</a></li>
-      </ul>
-    </li>
-    <li><a href="#short-polling">Short Polling</a>
-      <ul>
-        <li><a href="#overview-1">Overview</a></li>
-        <li><a href="#use-case">Use case</a></li>
-        <li><a href="#demo-1">Demo</a></li>
-      </ul>
-    </li>
-    <li><a href="#long-polling">Long Polling</a>
-      <ul>
-        <li><a href="#overview-2">Overview</a></li>
-        <li><a href="#use-case-1">Use case</a></li>
-        <li><a href="#demo-2">Demo</a></li>
-      </ul>
-    </li>
-    <li><a href="#push">Push</a>
-      <ul>
-        <li><a href="#overview-3">Overview</a></li>
-        <li><a href="#use-case-2">Use case</a></li>
-        <li><a href="#demo-websocket">Demo Websocket</a></li>
-        <li><a href="#demo-server-sent-events">Demo Server-sent events</a></li>
-      </ul>
-    </li>
-    <li><a href="#publish-subcribe">Publish-Subcribe</a>
-      <ul>
-        <li><a href="#rabbitmq">RabbitMQ</a></li>
-        <li><a href="#kafka">Kafka</a></li>
-      </ul>
-    </li>
-    <li><a href="#reference">Reference</a></li>
-  </ul>
-</nav>
-
-
- 
-      </div>
-    </aside>
-    
-  </main>
-
-  
-</body>
-</html>
-
-
-
-
-
-
-
-
-
-
-
-
+3.2. Then, your browser console will display: pong Short Polling #"><meta property="og:locale" content="en_us"><meta property="og:type" content="article"><meta property="article:section" content="docs"><meta property="article:published_time" content="2023-11-15T00:00:00+00:00"><meta property="article:modified_time" content="2023-11-15T00:00:00+00:00"><title>Communication | Dante 0401</title><link rel=manifest href=/manifest.json><link rel=icon href=/favicon.png><link rel=canonical href=https://dangpham112000.github.io/docs/research/be_protocol/communication/><link rel=stylesheet href=/book.min.95535ae437871e725b7f7b2fb47d6446b8247773f5f22345e8c0aafa00c5db9b.css integrity="sha256-lVNa5DeHHnJbf3svtH1kRrgkd3P18iNF6MCq+gDF25s=" crossorigin=anonymous><script defer src=/fuse.min.js></script><script defer src=/en.search.min.b7403c70329304a8d4de17873d6d0681a5a205e052f3bdbca43f342b899d2958.js integrity="sha256-t0A8cDKTBKjU3heHPW0GgaWiBeBS8728pD80K4mdKVg=" crossorigin=anonymous></script></head><body dir=ltr><input type=checkbox class="hidden toggle" id=menu-control>
+<input type=checkbox class="hidden toggle" id=toc-control><main class="container flex"><aside class=book-menu><div class=book-menu-content><nav><h2 class=book-brand><a class="flex align-center" href=/><span>Dante 0401</span></a></h2><div class="book-search hidden"><input type=text id=book-search-input placeholder=Search aria-label=Search maxlength=64 data-hotkeys=s/><div class="book-search-spinner hidden"></div><ul id=book-search-results></ul></div><script>document.querySelector(".book-search").classList.remove("hidden")</script><ul><li class=book-section-flat><span>RESEARCH</span><ul><li><a href=/docs/research/mcp-server-tutorial/>Building an MCP Server from Scratch: An E-commerce Case Study</a></li><li><a href=/docs/research/process_vs_thread/>Process vs Thread</a></li><li><a href=/docs/research/chrome_architecture/>Chrome Architecture</a></li><li><a href=/docs/research/aws_overview/>AWS Overview</a></li><li><a href=/docs/research/be_protocol/>Backend</a><ul><li><a href=/docs/research/be_protocol/tls_ssl/>TLS - SSL</a></li><li><a href=/docs/research/be_protocol/communication/ class=active>Communication</a></li><li><a href=/docs/research/be_protocol/rabbitmq/>RabbitMQ</a></li><li><a href=/docs/research/be_protocol/kafka/>Kafka - Draft</a></li></ul></li><li><a href=/docs/research/encryption/>Encryption</a></li><li><a href=/docs/research/token_based_authentication/>Token-based Authentication</a></li><li><a href=/docs/research/security/>Security - Draft</a><ul><li><a href=/docs/research/security/hsts/>HSTS</a></li><li><a href=/docs/research/security/bit_flipping/>Bit Flipping</a></li></ul></li><li><a href=/docs/research/scale/>Scale</a></li></ul></li><li class=book-section-flat><span>TIPS</span><ul><li><a href=/docs/tips/001_unit_test/>Unit Test</a></li><li><a href=/docs/tips/002_git/>Git</a></li><li><a href=/docs/tips/003_docker/>Docker</a></li><li><a href=/docs/tips/004_ops/>Ops</a></li><li><a href=/docs/tips/005_passion/>Spark Passion</a></li></ul></li><li class=book-section-flat><span>PROBLEMS</span><ul><li><a href=/docs/problems/knight_dialer/>Knight Dialer</a></li></ul></li></ul></nav><script>(function(){var e=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(){localStorage.setItem("menu.scrollTop",e.scrollTop)}),e.scrollTop=localStorage.getItem("menu.scrollTop")})()</script></div></aside><div class=book-page><header class=book-header><div class="flex align-center justify-between"><label for=menu-control><img src=/svg/menu.svg class=book-icon alt=Menu>
+</label><strong>Communication</strong>
+<label for=toc-control><img src=/svg/toc.svg class=book-icon alt="Table of Contents"></label></div><aside class="hidden clearfix"><nav id=TableOfContents><ul><li><a href=#request-response>Request-Response</a><ul><li><a href=#overview>Overview</a></li><li><a href=#demo>Demo</a></li></ul></li><li><a href=#short-polling>Short Polling</a><ul><li><a href=#overview-1>Overview</a></li><li><a href=#use-case>Use case</a></li><li><a href=#demo-1>Demo</a></li></ul></li><li><a href=#long-polling>Long Polling</a><ul><li><a href=#overview-2>Overview</a></li><li><a href=#use-case-1>Use case</a></li><li><a href=#demo-2>Demo</a></li></ul></li><li><a href=#push>Push</a><ul><li><a href=#overview-3>Overview</a></li><li><a href=#use-case-2>Use case</a></li><li><a href=#demo-websocket>Demo Websocket</a></li><li><a href=#demo-server-sent-events>Demo Server-sent events</a></li></ul></li><li><a href=#publish-subcribe>Publish-Subcribe</a><ul><li><a href=#rabbitmq>RabbitMQ</a></li><li><a href=#kafka>Kafka</a></li></ul></li><li><a href=#reference>Reference</a></li></ul></nav></aside></header><article class="markdown book-article"><h1 id=communication>Communication
+<a class=anchor href=#communication>#</a></h1><h2 id=request-response>Request-Response
+<a class=anchor href=#request-response>#</a></h2><p><img src=/research/be_protocol/communication/request_response.png alt=request_response></p><h3 id=overview>Overview
+<a class=anchor href=#overview>#</a></h3><ul><li>Fundamental communication pattern</li><li>The most common patterns for communication in client-server architectures</li></ul><h3 id=demo>Demo
+<a class=anchor href=#demo>#</a></h3><details><summary>Server code</summary><div class=markdown-inner><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-js data-lang=js><span style=display:flex><span><span style=color:#75715e>// server.js
+</span></span></span><span style=display:flex><span><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>http</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>require</span>(<span style=color:#e6db74>&#39;http&#39;</span>);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>server</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>http</span>.<span style=color:#a6e22e>createServer</span>((<span style=color:#a6e22e>req</span>, <span style=color:#a6e22e>res</span>) =&gt; {
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#e6db74>`Received request: </span><span style=color:#e6db74>${</span><span style=color:#a6e22e>req</span>.<span style=color:#a6e22e>method</span><span style=color:#e6db74>}</span><span style=color:#e6db74> </span><span style=color:#e6db74>${</span><span style=color:#a6e22e>req</span>.<span style=color:#a6e22e>url</span><span style=color:#e6db74>}</span><span style=color:#e6db74>`</span>);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>if</span> (<span style=color:#a6e22e>req</span>.<span style=color:#a6e22e>url</span> <span style=color:#f92672>===</span> <span style=color:#e6db74>&#39;/hello&#39;</span>) {
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>if</span> (<span style=color:#a6e22e>req</span>.<span style=color:#a6e22e>method</span> <span style=color:#f92672>===</span> <span style=color:#e6db74>&#39;POST&#39;</span>) {
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>let</span> <span style=color:#a6e22e>body</span> <span style=color:#f92672>=</span> <span style=color:#e6db74>&#39;&#39;</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>            <span style=color:#a6e22e>req</span>.<span style=color:#a6e22e>on</span>(<span style=color:#e6db74>&#39;data&#39;</span>, <span style=color:#a6e22e>chunk</span> =&gt; {
+</span></span><span style=display:flex><span>                <span style=color:#a6e22e>body</span> <span style=color:#f92672>+=</span> <span style=color:#a6e22e>chunk</span>.<span style=color:#a6e22e>toString</span>(); <span style=color:#75715e>// Convert buffer to string
+</span></span></span><span style=display:flex><span>            });
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>            <span style=color:#a6e22e>req</span>.<span style=color:#a6e22e>on</span>(<span style=color:#e6db74>&#39;end&#39;</span>, () =&gt; {
+</span></span><span style=display:flex><span>                <span style=color:#a6e22e>res</span>.<span style=color:#a6e22e>writeHead</span>(<span style=color:#ae81ff>200</span>, { <span style=color:#e6db74>&#39;Content-Type&#39;</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#39;text/plain&#39;</span> });
+</span></span><span style=display:flex><span>                <span style=color:#66d9ef>if</span> (<span style=color:#a6e22e>body</span>.<span style=color:#a6e22e>trim</span>() <span style=color:#f92672>===</span> <span style=color:#e6db74>&#34;ping&#34;</span>) {
+</span></span><span style=display:flex><span>                    <span style=color:#a6e22e>res</span>.<span style=color:#a6e22e>end</span>(<span style=color:#e6db74>&#39;pong&#39;</span>);
+</span></span><span style=display:flex><span>                } <span style=color:#66d9ef>else</span> {
+</span></span><span style=display:flex><span>                    <span style=color:#a6e22e>res</span>.<span style=color:#a6e22e>end</span>(<span style=color:#e6db74>&#39;&#39;</span>);
+</span></span><span style=display:flex><span>                }
+</span></span><span style=display:flex><span>            });
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        } <span style=color:#66d9ef>else</span> {
+</span></span><span style=display:flex><span>            <span style=color:#a6e22e>res</span>.<span style=color:#a6e22e>writeHead</span>(<span style=color:#ae81ff>200</span>, { <span style=color:#e6db74>&#39;Content-Type&#39;</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#39;text/plain&#39;</span> });
+</span></span><span style=display:flex><span>            <span style=color:#a6e22e>res</span>.<span style=color:#a6e22e>end</span>(<span style=color:#e6db74>&#39;world&#39;</span>);
+</span></span><span style=display:flex><span>        }
+</span></span><span style=display:flex><span>    } <span style=color:#66d9ef>else</span> {
+</span></span><span style=display:flex><span>        <span style=color:#a6e22e>res</span>.<span style=color:#a6e22e>writeHead</span>(<span style=color:#ae81ff>404</span>, { <span style=color:#e6db74>&#39;Content-Type&#39;</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#39;text/plain&#39;</span> });
+</span></span><span style=display:flex><span>        <span style=color:#a6e22e>res</span>.<span style=color:#a6e22e>end</span>(<span style=color:#e6db74>&#39;Not Found&#39;</span>);
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>});
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>server</span>.<span style=color:#a6e22e>listen</span>(<span style=color:#ae81ff>2000</span>, () =&gt; {
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#e6db74>&#39;Server is listening on port 2000&#39;</span>);
+</span></span><span style=display:flex><span>});
+</span></span></code></pre></div></div></details></br><details><summary>Client code</summary><div class=markdown-inner><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-js data-lang=js><span style=display:flex><span><span style=color:#a6e22e>fetch</span>(<span style=color:#e6db74>&#39;http://localhost:2000/hello&#39;</span>, {
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>method</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#39;POST&#39;</span>,
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>headers</span><span style=color:#f92672>:</span> { <span style=color:#e6db74>&#39;Content-Type&#39;</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#39;text/plain&#39;</span> },
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>body</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#39;ping&#39;</span>
+</span></span><span style=display:flex><span>})
+</span></span><span style=display:flex><span>.<span style=color:#a6e22e>then</span>(<span style=color:#a6e22e>response</span> =&gt; <span style=color:#a6e22e>response</span>.<span style=color:#a6e22e>text</span>())
+</span></span><span style=display:flex><span>.<span style=color:#a6e22e>then</span>(<span style=color:#a6e22e>data</span> =&gt; <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#a6e22e>data</span>))  <span style=color:#75715e>// Should log: &#34;pong&#34;
+</span></span></span></code></pre></div></div></details></br><details><summary>Instruction</summary><div class=markdown-inner><ol><li>Start the server by running <code>node server.js</code><br>1.1. Your terminal will display: <code>Server is listening on port 2000</code></li><li>Open your browser and enter: <code>http://localhost:2000/hello</code><br>2.1. Your terminal will first log: <code>Received request: GET /hello</code><br>2.2. Then, your browser will display: <code>world</code></li><li>Open the browser console and run <strong>Client code</strong><br>3.1. Your terminal will first log: <code>Received request: POST /hello</code><br>3.2. Then, your browser console will display: <code>pong</code></li></ol></div></details><h2 id=short-polling>Short Polling
+<a class=anchor href=#short-polling>#</a></h2><p><img src=/research/be_protocol/communication/short_polling.png alt=short_polling></p><h3 id=overview-1>Overview
+<a class=anchor href=#overview-1>#</a></h3><ul><li>Based on the Request-Response design pattern</li><li>Continuously polls the server for new updates</li><li>Near real-time updates</li><li>Client controls the frequency</li></ul><h3 id=use-case>Use case
+<a class=anchor href=#use-case>#</a></h3><ul><li>Monitor stocks or cryptocurrencies</li><li>Fetch status updates</li><li>User notifications</li></ul><h3 id=demo-1>Demo
+<a class=anchor href=#demo-1>#</a></h3><details><summary>Server code</summary><div class=markdown-inner><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-js data-lang=js><span style=display:flex><span><span style=color:#75715e>// server.js
+</span></span></span><span style=display:flex><span><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>express</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>require</span>(<span style=color:#e6db74>&#39;express&#39;</span>);
+</span></span><span style=display:flex><span><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>app</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>express</span>();
+</span></span><span style=display:flex><span><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>port</span> <span style=color:#f92672>=</span> <span style=color:#ae81ff>2000</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>app</span>.<span style=color:#a6e22e>get</span>(<span style=color:#e6db74>&#39;/&#39;</span>, (<span style=color:#a6e22e>req</span>, <span style=color:#a6e22e>res</span>) =&gt; {
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>res</span>.<span style=color:#a6e22e>send</span>(<span style=color:#e6db74>&#39;Hello world&#39;</span>);
+</span></span><span style=display:flex><span>});
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>app</span>.<span style=color:#a6e22e>get</span>(<span style=color:#e6db74>&#39;/bitcoin&#39;</span>, (<span style=color:#a6e22e>req</span>, <span style=color:#a6e22e>res</span>) =&gt; {
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>randomValue</span> <span style=color:#f92672>=</span> Math.<span style=color:#a6e22e>floor</span>(Math.<span style=color:#a6e22e>random</span>() <span style=color:#f92672>*</span> <span style=color:#ae81ff>111</span>) <span style=color:#f92672>-</span> <span style=color:#ae81ff>10</span>; <span style=color:#75715e>// Random value between -10 and +100
+</span></span></span><span style=display:flex><span>    <span style=color:#a6e22e>res</span>.<span style=color:#a6e22e>json</span>({ <span style=color:#a6e22e>coins</span><span style=color:#f92672>:</span> <span style=color:#a6e22e>randomValue</span> });
+</span></span><span style=display:flex><span>});
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>app</span>.<span style=color:#a6e22e>listen</span>(<span style=color:#a6e22e>port</span>, () =&gt; {
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#e6db74>`Server is running at http://localhost:</span><span style=color:#e6db74>${</span><span style=color:#a6e22e>port</span><span style=color:#e6db74>}</span><span style=color:#e6db74>`</span>);
+</span></span><span style=display:flex><span>});
+</span></span></code></pre></div></div></details></br><details><summary>Client code</summary><div class=markdown-inner><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-js data-lang=js><span style=display:flex><span><span style=color:#66d9ef>function</span> <span style=color:#a6e22e>fetchBitcoinData</span>() {
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>fetch</span>(<span style=color:#e6db74>&#39;http://localhost:2000/bitcoin&#39;</span>)
+</span></span><span style=display:flex><span>        .<span style=color:#a6e22e>then</span>(<span style=color:#a6e22e>response</span> =&gt; <span style=color:#a6e22e>response</span>.<span style=color:#a6e22e>json</span>())
+</span></span><span style=display:flex><span>        .<span style=color:#a6e22e>then</span>(<span style=color:#a6e22e>data</span> =&gt; {
+</span></span><span style=display:flex><span>            <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#e6db74>`Bitcoin value: </span><span style=color:#e6db74>${</span><span style=color:#a6e22e>data</span>.<span style=color:#a6e22e>coins</span><span style=color:#e6db74>}</span><span style=color:#e6db74>`</span>);
+</span></span><span style=display:flex><span>        });
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>setInterval</span>(<span style=color:#a6e22e>fetchBitcoinData</span>, <span style=color:#ae81ff>1000</span>);
+</span></span></code></pre></div></div></details></br><details><summary>Instruction</summary><div class=markdown-inner><ol><li>Start the server by running <code>node server.js</code><br>1.1. Your terminal will display: <code>Server is running at http://localhost:2000</code></li><li>Open your browser and enter: <code>http://localhost:2000</code><br>2.1. Your browser will display: <code>Hello world</code></li><li>Open the browser console and run <strong>Client code</strong><br>3.1. Your browser console will continuously display:<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-text data-lang=text><span style=display:flex><span>&gt;&gt; Bitcoin value: 10
+</span></span><span style=display:flex><span>&gt;&gt; Bitcoin value: 100
+</span></span><span style=display:flex><span>&gt;&gt; Bitcoin value: 26
+</span></span><span style=display:flex><span>&gt;&gt; Bitcoin value: -6
+</span></span><span style=display:flex><span>&gt;&gt; Bitcoin value: 65
+</span></span><span style=display:flex><span>...
+</span></span></code></pre></div></li></ol></div></details><h2 id=long-polling>Long Polling
+<a class=anchor href=#long-polling>#</a></h2><p><img src=/research/be_protocol/communication/long_polling.png alt=long_polling></p><h3 id=overview-2>Overview
+<a class=anchor href=#overview-2>#</a></h3><ul><li>Based on the Request-Response design pattern</li><li>Holds the request open and only responds after completing the task</li><li>Real-time updates</li><li>Server controls the timing of response</li></ul><h3 id=use-case-1>Use case
+<a class=anchor href=#use-case-1>#</a></h3><ul><li>Fetch status updates</li><li>User notifications</li></ul><h3 id=demo-2>Demo
+<a class=anchor href=#demo-2>#</a></h3><details><summary>Server code</summary><div class=markdown-inner><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-js data-lang=js><span style=display:flex><span><span style=color:#75715e>// server.js
+</span></span></span><span style=display:flex><span><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>express</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>require</span>(<span style=color:#e6db74>&#39;express&#39;</span>);
+</span></span><span style=display:flex><span><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>app</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>express</span>();
+</span></span><span style=display:flex><span><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>port</span> <span style=color:#f92672>=</span> <span style=color:#ae81ff>2000</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>app</span>.<span style=color:#a6e22e>use</span>(<span style=color:#a6e22e>express</span>.<span style=color:#a6e22e>json</span>());
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>app</span>.<span style=color:#a6e22e>get</span>(<span style=color:#e6db74>&#39;/&#39;</span>, (<span style=color:#a6e22e>req</span>, <span style=color:#a6e22e>res</span>) =&gt; {
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>res</span>.<span style=color:#a6e22e>send</span>(<span style=color:#e6db74>&#39;Hello world&#39;</span>);
+</span></span><span style=display:flex><span>});
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>app</span>.<span style=color:#a6e22e>post</span>(<span style=color:#e6db74>&#39;/validate-music&#39;</span>, (<span style=color:#a6e22e>req</span>, <span style=color:#a6e22e>res</span>) =&gt; {
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>const</span> { <span style=color:#a6e22e>musicName</span>, <span style=color:#a6e22e>capacity</span> } <span style=color:#f92672>=</span> <span style=color:#a6e22e>req</span>.<span style=color:#a6e22e>body</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e>// Simulate processing time with a random delay between 5 to 10 seconds
+</span></span></span><span style=display:flex><span>    <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>delay</span> <span style=color:#f92672>=</span> Math.<span style=color:#a6e22e>floor</span>(Math.<span style=color:#a6e22e>random</span>() <span style=color:#f92672>*</span> <span style=color:#ae81ff>6</span>) <span style=color:#f92672>+</span> <span style=color:#ae81ff>5</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#e6db74>`Received request to validate music: </span><span style=color:#e6db74>${</span><span style=color:#a6e22e>musicName</span><span style=color:#e6db74>}</span><span style=color:#e6db74>, capacity: </span><span style=color:#e6db74>${</span><span style=color:#a6e22e>capacity</span><span style=color:#e6db74>}</span><span style=color:#e6db74>`</span>);
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>setTimeout</span>(() =&gt; {
+</span></span><span style=display:flex><span>        <span style=color:#a6e22e>res</span>.<span style=color:#a6e22e>json</span>({ <span style=color:#a6e22e>message</span><span style=color:#f92672>:</span> <span style=color:#e6db74>`The music &#34;</span><span style=color:#e6db74>${</span><span style=color:#a6e22e>musicName</span><span style=color:#e6db74>}</span><span style=color:#e6db74>&#34; is valid.`</span> });
+</span></span><span style=display:flex><span>    }, <span style=color:#a6e22e>delay</span> <span style=color:#f92672>*</span> <span style=color:#ae81ff>1000</span>);
+</span></span><span style=display:flex><span>});
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>app</span>.<span style=color:#a6e22e>listen</span>(<span style=color:#a6e22e>port</span>, () =&gt; {
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#e6db74>`Server is running at http://localhost:</span><span style=color:#e6db74>${</span><span style=color:#a6e22e>port</span><span style=color:#e6db74>}</span><span style=color:#e6db74>`</span>);
+</span></span><span style=display:flex><span>});
+</span></span></code></pre></div></div></details></br><details><summary>Client code</summary><div class=markdown-inner><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-js data-lang=js><span style=display:flex><span><span style=color:#66d9ef>function</span> <span style=color:#a6e22e>validateMusic</span>(<span style=color:#a6e22e>musicName</span>, <span style=color:#a6e22e>capacity</span>) {
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>fetch</span>(<span style=color:#e6db74>&#39;http://localhost:2000/validate-music&#39;</span>, {
+</span></span><span style=display:flex><span>        <span style=color:#a6e22e>method</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#39;POST&#39;</span>,
+</span></span><span style=display:flex><span>        <span style=color:#a6e22e>headers</span><span style=color:#f92672>:</span> {
+</span></span><span style=display:flex><span>            <span style=color:#e6db74>&#39;Content-Type&#39;</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#39;application/json&#39;</span>
+</span></span><span style=display:flex><span>        },
+</span></span><span style=display:flex><span>        <span style=color:#a6e22e>body</span><span style=color:#f92672>:</span> <span style=color:#a6e22e>JSON</span>.<span style=color:#a6e22e>stringify</span>({ <span style=color:#a6e22e>musicName</span>, <span style=color:#a6e22e>capacity</span> })
+</span></span><span style=display:flex><span>    })
+</span></span><span style=display:flex><span>    .<span style=color:#a6e22e>then</span>(<span style=color:#a6e22e>response</span> =&gt; <span style=color:#a6e22e>response</span>.<span style=color:#a6e22e>json</span>())
+</span></span><span style=display:flex><span>    .<span style=color:#a6e22e>then</span>(<span style=color:#a6e22e>data</span> =&gt; {
+</span></span><span style=display:flex><span>        <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#a6e22e>data</span>.<span style=color:#a6e22e>message</span>);
+</span></span><span style=display:flex><span>    });
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>  
+</span></span><span style=display:flex><span><span style=color:#a6e22e>validateMusic</span>(<span style=color:#e6db74>&#39;Supernova&#39;</span>, <span style=color:#e6db74>&#39;5MB&#39;</span>);
+</span></span></code></pre></div></div></details></br><details><summary>Instruction</summary><div class=markdown-inner><ol><li>Start the server by running <code>node server.js</code><br>1.1. Your terminal will display: <code>Server is running at http://localhost:2000</code></li><li>Open your browser and enter: <code>http://localhost:2000</code><br>2.1. Your browser will display: <code>Hello world</code></li><li>Open the browser console and run <strong>Client code</strong><br>3.1. Your terminal will first log: <code>Received request to validate music: Supernova, capacity: 5MB</code><br>3.2. Then, your browser console after some seconds will display: <code>The music "Supernova" is valid.</code></li></ol></div></details><h2 id=push>Push
+<a class=anchor href=#push>#</a></h2><p><img src=/research/be_protocol/communication/push.png alt=push></p><h3 id=overview-3>Overview
+<a class=anchor href=#overview-3>#</a></h3><ul><li>Real-time updates</li></ul><h3 id=use-case-2>Use case
+<a class=anchor href=#use-case-2>#</a></h3><ul><li>Chat and messaging apps</li><li>Notification systems</li></ul><h3 id=demo-websocket>Demo Websocket
+<a class=anchor href=#demo-websocket>#</a></h3><ul><li><strong>Bidirectional</strong> communication</li></ul><details><summary>Server code</summary><div class=markdown-inner><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-js data-lang=js><span style=display:flex><span><span style=color:#75715e>// server.js
+</span></span></span><span style=display:flex><span><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>http</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>require</span>(<span style=color:#e6db74>&#39;http&#39;</span>);
+</span></span><span style=display:flex><span><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>WebSocket</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>require</span>(<span style=color:#e6db74>&#39;ws&#39;</span>);
+</span></span><span style=display:flex><span><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>port</span> <span style=color:#f92672>=</span> <span style=color:#ae81ff>2000</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>// Create an HTTP server
+</span></span></span><span style=display:flex><span><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>server</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>http</span>.<span style=color:#a6e22e>createServer</span>((<span style=color:#a6e22e>req</span>, <span style=color:#a6e22e>res</span>) =&gt; {
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>if</span> (<span style=color:#a6e22e>req</span>.<span style=color:#a6e22e>url</span> <span style=color:#f92672>===</span> <span style=color:#e6db74>&#39;/&#39;</span>) {
+</span></span><span style=display:flex><span>        <span style=color:#a6e22e>res</span>.<span style=color:#a6e22e>writeHead</span>(<span style=color:#ae81ff>200</span>, { <span style=color:#e6db74>&#39;Content-Type&#39;</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#39;text/plain&#39;</span> });
+</span></span><span style=display:flex><span>        <span style=color:#a6e22e>res</span>.<span style=color:#a6e22e>end</span>(<span style=color:#e6db74>&#39;Hello, World!&#39;</span>);
+</span></span><span style=display:flex><span>    } <span style=color:#66d9ef>else</span> {
+</span></span><span style=display:flex><span>        <span style=color:#a6e22e>res</span>.<span style=color:#a6e22e>writeHead</span>(<span style=color:#ae81ff>404</span>, { <span style=color:#e6db74>&#39;Content-Type&#39;</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#39;text/plain&#39;</span> });
+</span></span><span style=display:flex><span>        <span style=color:#a6e22e>res</span>.<span style=color:#a6e22e>end</span>(<span style=color:#e6db74>&#39;Not Found&#39;</span>);
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>});
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>// Create a WebSocket server on top of the HTTP server
+</span></span></span><span style=display:flex><span><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>wss</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> <span style=color:#a6e22e>WebSocket</span>.<span style=color:#a6e22e>Server</span>({ <span style=color:#a6e22e>server</span> });
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>wss</span>.<span style=color:#a6e22e>on</span>(<span style=color:#e6db74>&#39;connection&#39;</span>, <span style=color:#a6e22e>ws</span> =&gt; {
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#e6db74>&#39;Client connected the WebSocket connection&#39;</span>);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>ws</span>.<span style=color:#a6e22e>on</span>(<span style=color:#e6db74>&#39;message&#39;</span>, <span style=color:#a6e22e>message</span> =&gt; {
+</span></span><span style=display:flex><span>        <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#e6db74>`Received: </span><span style=color:#e6db74>${</span><span style=color:#a6e22e>message</span><span style=color:#e6db74>}</span><span style=color:#e6db74>`</span>);
+</span></span><span style=display:flex><span>        
+</span></span><span style=display:flex><span>        <span style=color:#75715e>// Simulating music validation process
+</span></span></span><span style=display:flex><span>        <span style=color:#66d9ef>let</span> <span style=color:#a6e22e>progress</span> <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>interval</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>setInterval</span>(() =&gt; {
+</span></span><span style=display:flex><span>            <span style=color:#a6e22e>progress</span> <span style=color:#f92672>+=</span> Math.<span style=color:#a6e22e>floor</span>(Math.<span style=color:#a6e22e>random</span>() <span style=color:#f92672>*</span> <span style=color:#ae81ff>10</span>) <span style=color:#f92672>+</span> <span style=color:#ae81ff>10</span>; <span style=color:#75715e>// Random progress between 10% - 20%
+</span></span></span><span style=display:flex><span>            <span style=color:#66d9ef>if</span> (<span style=color:#a6e22e>progress</span> <span style=color:#f92672>&gt;=</span> <span style=color:#ae81ff>100</span>) {
+</span></span><span style=display:flex><span>                <span style=color:#a6e22e>progress</span> <span style=color:#f92672>=</span> <span style=color:#ae81ff>100</span>;
+</span></span><span style=display:flex><span>                <span style=color:#a6e22e>ws</span>.<span style=color:#a6e22e>send</span>(<span style=color:#a6e22e>JSON</span>.<span style=color:#a6e22e>stringify</span>({ <span style=color:#a6e22e>status</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#39;complete&#39;</span>, <span style=color:#a6e22e>message</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#39;Music validation complete and valid!&#39;</span> }));
+</span></span><span style=display:flex><span>                <span style=color:#a6e22e>clearInterval</span>(<span style=color:#a6e22e>interval</span>);
+</span></span><span style=display:flex><span>            } <span style=color:#66d9ef>else</span> {
+</span></span><span style=display:flex><span>                <span style=color:#a6e22e>ws</span>.<span style=color:#a6e22e>send</span>(<span style=color:#a6e22e>JSON</span>.<span style=color:#a6e22e>stringify</span>({ <span style=color:#a6e22e>status</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#39;in-progress&#39;</span>, <span style=color:#a6e22e>progress</span><span style=color:#f92672>:</span> <span style=color:#a6e22e>progress</span> }));
+</span></span><span style=display:flex><span>            }
+</span></span><span style=display:flex><span>        }, <span style=color:#ae81ff>1000</span>);
+</span></span><span style=display:flex><span>    });
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>ws</span>.<span style=color:#a6e22e>on</span>(<span style=color:#e6db74>&#39;close&#39;</span>, () =&gt; {
+</span></span><span style=display:flex><span>        <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#e6db74>&#39;Client disconnected the WebSocket connection&#39;</span>);
+</span></span><span style=display:flex><span>    });
+</span></span><span style=display:flex><span>});
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>server</span>.<span style=color:#a6e22e>listen</span>(<span style=color:#a6e22e>port</span>, () =&gt; {
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#e6db74>`Server running on http://localhost:</span><span style=color:#e6db74>${</span><span style=color:#a6e22e>port</span><span style=color:#e6db74>}</span><span style=color:#e6db74>`</span>);
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#e6db74>`WebSocket server running on ws://localhost:</span><span style=color:#e6db74>${</span><span style=color:#a6e22e>port</span><span style=color:#e6db74>}</span><span style=color:#e6db74>`</span>);
+</span></span><span style=display:flex><span>});
+</span></span></code></pre></div></div></details></br><details><summary>Client code</summary><div class=markdown-inner><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-js data-lang=js><span style=display:flex><span><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>socket</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> <span style=color:#a6e22e>WebSocket</span>(<span style=color:#e6db74>&#39;ws://localhost:2000&#39;</span>);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>socket</span>.<span style=color:#a6e22e>onmessage</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>function</span>(<span style=color:#a6e22e>event</span>) {
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>data</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>JSON</span>.<span style=color:#a6e22e>parse</span>(<span style=color:#a6e22e>event</span>.<span style=color:#a6e22e>data</span>);
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>if</span> (<span style=color:#a6e22e>data</span>.<span style=color:#a6e22e>status</span> <span style=color:#f92672>===</span> <span style=color:#e6db74>&#39;in-progress&#39;</span>) {
+</span></span><span style=display:flex><span>        <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#e6db74>`Validation progress: </span><span style=color:#e6db74>${</span><span style=color:#a6e22e>data</span>.<span style=color:#a6e22e>progress</span><span style=color:#e6db74>}</span><span style=color:#e6db74>%`</span>);
+</span></span><span style=display:flex><span>    } <span style=color:#66d9ef>else</span> <span style=color:#66d9ef>if</span> (<span style=color:#a6e22e>data</span>.<span style=color:#a6e22e>status</span> <span style=color:#f92672>===</span> <span style=color:#e6db74>&#39;complete&#39;</span>) {
+</span></span><span style=display:flex><span>        <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#a6e22e>data</span>.<span style=color:#a6e22e>message</span>);
+</span></span><span style=display:flex><span>        <span style=color:#a6e22e>socket</span>.<span style=color:#a6e22e>close</span>();
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>};
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>socket</span>.<span style=color:#a6e22e>onopen</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>function</span>() {
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#e6db74>&#39;Connected to the server&#39;</span>);
+</span></span><span style=display:flex><span>    <span style=color:#75715e>// Simulating a music upload with a title and arbitrary size
+</span></span></span><span style=display:flex><span>    <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>musicData</span> <span style=color:#f92672>=</span> {
+</span></span><span style=display:flex><span>        <span style=color:#a6e22e>title</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#39;My Awesome Track&#39;</span>,
+</span></span><span style=display:flex><span>        <span style=color:#a6e22e>size</span><span style=color:#f92672>:</span> <span style=color:#ae81ff>1234</span>
+</span></span><span style=display:flex><span>    };
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>socket</span>.<span style=color:#a6e22e>send</span>(<span style=color:#a6e22e>JSON</span>.<span style=color:#a6e22e>stringify</span>(<span style=color:#a6e22e>musicData</span>));
+</span></span><span style=display:flex><span>};
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>socket</span>.<span style=color:#a6e22e>onclose</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>function</span>() {
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#e6db74>&#39;Disconnected the WebSocket connection from the server&#39;</span>);
+</span></span><span style=display:flex><span>};
+</span></span></code></pre></div></div></details></br><details><summary>Instruction</summary><div class=markdown-inner><ol><li>Start the server by running <code>node server.js</code><br>1.1. Your terminal will display:<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-text data-lang=text><span style=display:flex><span>Server running on http://localhost:2000
+</span></span><span style=display:flex><span>WebSocket server running on ws://localhost:2000
+</span></span></code></pre></div></li><li>Open your browser and enter: <code>http://localhost:2000</code><br>2.1. Your browser will display: <code>Hello world</code></li><li>Open the browser console and run <strong>Client code</strong><br>3.1. Your terminal will first log:<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-text data-lang=text><span style=display:flex><span>Client connected the WebSocket connection
+</span></span><span style=display:flex><span>Received: {&#34;title&#34;:&#34;My Awesome Track&#34;,&#34;size&#34;:1234}
+</span></span></code></pre></div>3.2. Then, your browser console will display:<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-text data-lang=text><span style=display:flex><span>&gt;&gt; Connected to the server
+</span></span><span style=display:flex><span>&gt;&gt; Validation progress: 18%
+</span></span><span style=display:flex><span>&gt;&gt; Validation progress: 28%
+</span></span><span style=display:flex><span>&gt;&gt; Validation progress: 39%
+</span></span><span style=display:flex><span>&gt;&gt; Validation progress: 50%
+</span></span><span style=display:flex><span>&gt;&gt; Validation progress: 65%
+</span></span><span style=display:flex><span>&gt;&gt; Validation progress: 80%
+</span></span><span style=display:flex><span>&gt;&gt; Validation progress: 97%
+</span></span><span style=display:flex><span>&gt;&gt; Music validation complete and valid!
+</span></span><span style=display:flex><span>&gt;&gt; Disconnected the WebSocket connection from the server
+</span></span></code></pre></div></li></ol></div></details><h3 id=demo-server-sent-events>Demo Server-sent events
+<a class=anchor href=#demo-server-sent-events>#</a></h3><ul><li><strong>Unidirectional</strong> communication</li></ul><details><summary>Server code</summary><div class=markdown-inner><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-js data-lang=js><span style=display:flex><span><span style=color:#75715e>// server.js
+</span></span></span><span style=display:flex><span><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>http</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>require</span>(<span style=color:#e6db74>&#39;http&#39;</span>);
+</span></span><span style=display:flex><span><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>port</span> <span style=color:#f92672>=</span> <span style=color:#ae81ff>2000</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>let</span> <span style=color:#a6e22e>currentProgress</span> <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>server</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>http</span>.<span style=color:#a6e22e>createServer</span>((<span style=color:#a6e22e>req</span>, <span style=color:#a6e22e>res</span>) =&gt; {
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>if</span> (<span style=color:#a6e22e>req</span>.<span style=color:#a6e22e>method</span> <span style=color:#f92672>===</span> <span style=color:#e6db74>&#39;GET&#39;</span> <span style=color:#f92672>&amp;&amp;</span> <span style=color:#a6e22e>req</span>.<span style=color:#a6e22e>url</span> <span style=color:#f92672>===</span> <span style=color:#e6db74>&#39;/&#39;</span>) {
+</span></span><span style=display:flex><span>        <span style=color:#a6e22e>res</span>.<span style=color:#a6e22e>writeHead</span>(<span style=color:#ae81ff>200</span>, { <span style=color:#e6db74>&#39;Content-Type&#39;</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#39;text/plain&#39;</span> });
+</span></span><span style=display:flex><span>        <span style=color:#a6e22e>res</span>.<span style=color:#a6e22e>end</span>(<span style=color:#e6db74>&#39;Hello, World!&#39;</span>);
+</span></span><span style=display:flex><span>    } <span style=color:#66d9ef>else</span> <span style=color:#66d9ef>if</span> (<span style=color:#a6e22e>req</span>.<span style=color:#a6e22e>method</span> <span style=color:#f92672>===</span> <span style=color:#e6db74>&#39;POST&#39;</span> <span style=color:#f92672>&amp;&amp;</span> <span style=color:#a6e22e>req</span>.<span style=color:#a6e22e>url</span> <span style=color:#f92672>===</span> <span style=color:#e6db74>&#39;/upload&#39;</span>) {
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>let</span> <span style=color:#a6e22e>body</span> <span style=color:#f92672>=</span> <span style=color:#e6db74>&#39;&#39;</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        <span style=color:#a6e22e>req</span>.<span style=color:#a6e22e>on</span>(<span style=color:#e6db74>&#39;data&#39;</span>, <span style=color:#a6e22e>chunk</span> =&gt; {
+</span></span><span style=display:flex><span>            <span style=color:#a6e22e>body</span> <span style=color:#f92672>+=</span> <span style=color:#a6e22e>chunk</span>.<span style=color:#a6e22e>toString</span>();
+</span></span><span style=display:flex><span>        });
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        <span style=color:#a6e22e>req</span>.<span style=color:#a6e22e>on</span>(<span style=color:#e6db74>&#39;end&#39;</span>, () =&gt; {
+</span></span><span style=display:flex><span>            <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#e6db74>&#39;Received music data:&#39;</span>, <span style=color:#a6e22e>body</span>);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>            <span style=color:#a6e22e>currentProgress</span> <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>let</span> <span style=color:#a6e22e>interval</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>setInterval</span>(() =&gt; {
+</span></span><span style=display:flex><span>                <span style=color:#a6e22e>currentProgress</span> <span style=color:#f92672>+=</span> Math.<span style=color:#a6e22e>floor</span>(Math.<span style=color:#a6e22e>random</span>() <span style=color:#f92672>*</span> <span style=color:#ae81ff>10</span>) <span style=color:#f92672>+</span> <span style=color:#ae81ff>10</span>; <span style=color:#75715e>// Random progress between 10% - 20%
+</span></span></span><span style=display:flex><span>                <span style=color:#66d9ef>if</span> (<span style=color:#a6e22e>currentProgress</span> <span style=color:#f92672>&gt;=</span> <span style=color:#ae81ff>100</span>) {
+</span></span><span style=display:flex><span>                    <span style=color:#a6e22e>currentProgress</span> <span style=color:#f92672>=</span> <span style=color:#ae81ff>100</span>;
+</span></span><span style=display:flex><span>                    <span style=color:#a6e22e>clearInterval</span>(<span style=color:#a6e22e>interval</span>);
+</span></span><span style=display:flex><span>                }
+</span></span><span style=display:flex><span>            }, <span style=color:#ae81ff>1000</span>);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>            <span style=color:#a6e22e>res</span>.<span style=color:#a6e22e>writeHead</span>(<span style=color:#ae81ff>200</span>, { <span style=color:#e6db74>&#39;Content-Type&#39;</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#39;text/plain&#39;</span> });
+</span></span><span style=display:flex><span>            <span style=color:#a6e22e>res</span>.<span style=color:#a6e22e>end</span>(<span style=color:#e6db74>&#39;Music data received and processing started&#39;</span>);
+</span></span><span style=display:flex><span>        });
+</span></span><span style=display:flex><span>    } <span style=color:#66d9ef>else</span> <span style=color:#66d9ef>if</span> (<span style=color:#a6e22e>req</span>.<span style=color:#a6e22e>method</span> <span style=color:#f92672>===</span> <span style=color:#e6db74>&#39;GET&#39;</span> <span style=color:#f92672>&amp;&amp;</span> <span style=color:#a6e22e>req</span>.<span style=color:#a6e22e>url</span> <span style=color:#f92672>===</span> <span style=color:#e6db74>&#39;/uploadprogress&#39;</span>) {
+</span></span><span style=display:flex><span>        <span style=color:#75715e>// Set headers for SSE
+</span></span></span><span style=display:flex><span>        <span style=color:#a6e22e>res</span>.<span style=color:#a6e22e>writeHead</span>(<span style=color:#ae81ff>200</span>, {
+</span></span><span style=display:flex><span>            <span style=color:#e6db74>&#39;Content-Type&#39;</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#39;text/event-stream&#39;</span>,
+</span></span><span style=display:flex><span>            <span style=color:#e6db74>&#39;Cache-Control&#39;</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#39;no-cache&#39;</span>,
+</span></span><span style=display:flex><span>            <span style=color:#e6db74>&#39;Connection&#39;</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#39;keep-alive&#39;</span>
+</span></span><span style=display:flex><span>        });
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>let</span> <span style=color:#a6e22e>interval</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>null</span>;
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>sendProgress</span> <span style=color:#f92672>=</span> () =&gt; {
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>if</span> (<span style=color:#a6e22e>currentProgress</span> <span style=color:#f92672>&lt;</span> <span style=color:#ae81ff>100</span>) {
+</span></span><span style=display:flex><span>                <span style=color:#a6e22e>res</span>.<span style=color:#a6e22e>write</span>(<span style=color:#e6db74>`data: </span><span style=color:#e6db74>${</span><span style=color:#a6e22e>JSON</span>.<span style=color:#a6e22e>stringify</span>({ <span style=color:#a6e22e>status</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#39;in-progress&#39;</span>, <span style=color:#a6e22e>progress</span><span style=color:#f92672>:</span> <span style=color:#a6e22e>currentProgress</span> <span style=color:#e6db74>}</span><span style=color:#e6db74>)}\n\n`</span>);
+</span></span><span style=display:flex><span>            } <span style=color:#66d9ef>else</span> {
+</span></span><span style=display:flex><span>                <span style=color:#a6e22e>res</span>.<span style=color:#a6e22e>write</span>(<span style=color:#e6db74>`data: </span><span style=color:#e6db74>${</span><span style=color:#a6e22e>JSON</span>.<span style=color:#a6e22e>stringify</span>({ <span style=color:#a6e22e>status</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#39;complete&#39;</span>, <span style=color:#a6e22e>message</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#39;Music validation complete and valid!&#39;</span> <span style=color:#e6db74>}</span><span style=color:#e6db74>)}\n\n`</span>);
+</span></span><span style=display:flex><span>                <span style=color:#a6e22e>clearInterval</span>(<span style=color:#a6e22e>interval</span>);
+</span></span><span style=display:flex><span>                <span style=color:#a6e22e>res</span>.<span style=color:#a6e22e>end</span>(); 
+</span></span><span style=display:flex><span>            }
+</span></span><span style=display:flex><span>        };
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        <span style=color:#a6e22e>interval</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>setInterval</span>(<span style=color:#a6e22e>sendProgress</span>, <span style=color:#ae81ff>1000</span>);
+</span></span><span style=display:flex><span>    } <span style=color:#66d9ef>else</span> {
+</span></span><span style=display:flex><span>        <span style=color:#a6e22e>res</span>.<span style=color:#a6e22e>writeHead</span>(<span style=color:#ae81ff>404</span>, { <span style=color:#e6db74>&#39;Content-Type&#39;</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#39;text/plain&#39;</span> });
+</span></span><span style=display:flex><span>        <span style=color:#a6e22e>res</span>.<span style=color:#a6e22e>end</span>(<span style=color:#e6db74>&#39;Not Found&#39;</span>);
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>});
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>server</span>.<span style=color:#a6e22e>listen</span>(<span style=color:#a6e22e>port</span>, () =&gt; {
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#e6db74>`Server running on http://localhost:</span><span style=color:#e6db74>${</span><span style=color:#a6e22e>port</span><span style=color:#e6db74>}</span><span style=color:#e6db74>`</span>);
+</span></span><span style=display:flex><span>});
+</span></span></code></pre></div></div></details></br><details><summary>Client code</summary><div class=markdown-inner><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-js data-lang=js><span style=display:flex><span><span style=color:#66d9ef>function</span> <span style=color:#a6e22e>uploadMusicData</span>() {
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>musicData</span> <span style=color:#f92672>=</span> {
+</span></span><span style=display:flex><span>        <span style=color:#a6e22e>title</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#39;My Awesome Track&#39;</span>,
+</span></span><span style=display:flex><span>        <span style=color:#a6e22e>size</span><span style=color:#f92672>:</span> <span style=color:#ae81ff>1234</span>
+</span></span><span style=display:flex><span>    };
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>fetch</span>(<span style=color:#e6db74>&#39;http://localhost:2000/upload&#39;</span>, {
+</span></span><span style=display:flex><span>        <span style=color:#a6e22e>method</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#39;POST&#39;</span>,
+</span></span><span style=display:flex><span>        <span style=color:#a6e22e>headers</span><span style=color:#f92672>:</span> {
+</span></span><span style=display:flex><span>            <span style=color:#e6db74>&#39;Content-Type&#39;</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#39;application/json&#39;</span>
+</span></span><span style=display:flex><span>        },
+</span></span><span style=display:flex><span>        <span style=color:#a6e22e>body</span><span style=color:#f92672>:</span> <span style=color:#a6e22e>JSON</span>.<span style=color:#a6e22e>stringify</span>(<span style=color:#a6e22e>musicData</span>)
+</span></span><span style=display:flex><span>    })
+</span></span><span style=display:flex><span>    .<span style=color:#a6e22e>then</span>(<span style=color:#a6e22e>response</span> =&gt; <span style=color:#a6e22e>response</span>.<span style=color:#a6e22e>text</span>())
+</span></span><span style=display:flex><span>    .<span style=color:#a6e22e>then</span>(<span style=color:#a6e22e>data</span> =&gt; {
+</span></span><span style=display:flex><span>        <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#a6e22e>data</span>);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        <span style=color:#75715e>// Create an EventSource connection to the server
+</span></span></span><span style=display:flex><span>        <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>eventSource</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> <span style=color:#a6e22e>EventSource</span>(<span style=color:#e6db74>&#39;http://localhost:2000/uploadprogress&#39;</span>);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        <span style=color:#a6e22e>eventSource</span>.<span style=color:#a6e22e>onmessage</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>function</span>(<span style=color:#a6e22e>event</span>) {
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>data</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>JSON</span>.<span style=color:#a6e22e>parse</span>(<span style=color:#a6e22e>event</span>.<span style=color:#a6e22e>data</span>);
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>if</span> (<span style=color:#a6e22e>data</span>.<span style=color:#a6e22e>status</span> <span style=color:#f92672>===</span> <span style=color:#e6db74>&#39;in-progress&#39;</span>) {
+</span></span><span style=display:flex><span>                <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#e6db74>`Validation progress: </span><span style=color:#e6db74>${</span><span style=color:#a6e22e>data</span>.<span style=color:#a6e22e>progress</span><span style=color:#e6db74>}</span><span style=color:#e6db74>%`</span>);
+</span></span><span style=display:flex><span>            } <span style=color:#66d9ef>else</span> <span style=color:#66d9ef>if</span> (<span style=color:#a6e22e>data</span>.<span style=color:#a6e22e>status</span> <span style=color:#f92672>===</span> <span style=color:#e6db74>&#39;complete&#39;</span>) {
+</span></span><span style=display:flex><span>                <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#a6e22e>data</span>.<span style=color:#a6e22e>message</span>);
+</span></span><span style=display:flex><span>                <span style=color:#a6e22e>eventSource</span>.<span style=color:#a6e22e>close</span>();
+</span></span><span style=display:flex><span>            }
+</span></span><span style=display:flex><span>        };
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        <span style=color:#a6e22e>eventSource</span>.<span style=color:#a6e22e>onopen</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>function</span>() {
+</span></span><span style=display:flex><span>            <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#e6db74>&#39;Connected to the server for progress updates&#39;</span>);
+</span></span><span style=display:flex><span>        };
+</span></span><span style=display:flex><span>    });
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>uploadMusicData</span>();
+</span></span></code></pre></div></div></details></br><details><summary>Instruction</summary><div class=markdown-inner><ol><li>Start the server by running <code>node server.js</code><br>1.1. Your terminal will display: <code>Server running on http://localhost:2000</code></li><li>Open your browser and enter: <code>http://localhost:2000</code><br>2.1. Your browser will display: <code>Hello world</code></li><li>Open the browser console and run <strong>Client code</strong><br>3.1. Your terminal will first log: <code>Received music data: {"title":"My Awesome Track","size":1234}</code><br>3.2. Then, your browser console will display:<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-text data-lang=text><span style=display:flex><span>&gt;&gt; Music data received and processing started
+</span></span><span style=display:flex><span>&gt;&gt; Connected to the server for progress updates
+</span></span><span style=display:flex><span>&gt;&gt; Validation progress: 18%
+</span></span><span style=display:flex><span>&gt;&gt; Validation progress: 28%
+</span></span><span style=display:flex><span>&gt;&gt; Validation progress: 39%
+</span></span><span style=display:flex><span>&gt;&gt; Validation progress: 50%
+</span></span><span style=display:flex><span>&gt;&gt; Validation progress: 65%
+</span></span><span style=display:flex><span>&gt;&gt; Validation progress: 80%
+</span></span><span style=display:flex><span>&gt;&gt; Validation progress: 97%
+</span></span><span style=display:flex><span>&gt;&gt; Music validation complete and valid!
+</span></span></code></pre></div></li></ol></div></details><h2 id=publish-subcribe>Publish-Subcribe
+<a class=anchor href=#publish-subcribe>#</a></h2><ul><li>Also known as <strong>Message Queue</strong> Design Pattern</li><li>Used in microservices architectures</li></ul><p><img src=/research/be_protocol/communication/message_queue.png alt=message_queue></p><h3 id=rabbitmq>RabbitMQ
+<a class=anchor href=#rabbitmq>#</a></h3><ul><li>Producer sends and monitors if the message reaches the intended consumer</li><li>Messages are deleted once consumed</li><li>Designed for complex message routing</li><li>Support message priorities</li></ul><h3 id=kafka>Kafka
+<a class=anchor href=#kafka>#</a></h3><ul><li>Consumers keep track of message retrieval with an offset tracker</li><li>Retain messages according to the retention policy</li><li>There’s no message priority</li></ul><h2 id=reference>Reference
+<a class=anchor href=#reference>#</a></h2><ul><li>Freecodecamp: <a href=https://www.freecodecamp.org/news/communication-design-patterns-for-backend-development/>Communication Design Patterns for Backend Development</a> (Sep 12th, 2023)</li><li>Udemy: <a href=https://www.udemy.com/course/fundamentals-of-backend-communications-and-protocols>Fundamentals of Backend Engineering</a> (Feb, 2024)</li><li>Linkedin: <a href=https://www.linkedin.com/pulse/understanding-short-polling-simple-backend-pattern-rubayet-mnwec/>Understanding Short Polling: A Simple Backend Communication Pattern</a> (Aug 7th, 2024)</li><li>Stackoverflow: <a href=https://stackoverflow.com/questions/5195452/websockets-vs-server-sent-events-eventsource>WebSockets vs. Server-Sent events/EventSource</a> (Mar 16th, 2011)</li><li>Amazon: <a href=https://aws.amazon.com/message-queue/>Message Queues</a></li><li>Amazon: <a href=https://aws.amazon.com/compare/the-difference-between-rabbitmq-and-kafka/>What’s the Difference Between Kafka and RabbitMQ?</a></li></ul><style>.feedback-card{border:1px solid #ddd;border-radius:8px;padding:20px;max-width:100%;box-shadow:0 2px 5px rgba(0,0,0,.1);background-color:#f9f9fb}.feedback-card h2{font-size:20px;margin-top:0;margin-bottom:10px}.feedback-card .buttons{margin:10px 0}.feedback-card button{border:none;background-color:#f0f0f0;border-radius:4px;padding:10px 15px;margin-right:10px;cursor:pointer;font-size:16px}.feedback-card button:hover{background-color:#e0e0e0}.feedback-card a{color:#0074d9;text-decoration:none}.feedback-card a:hover{text-decoration:underline}.feedback-card p{font-size:14px;color:#555}.modal{display:none;position:fixed;top:0;left:0;width:100%;height:100%;border-radius:7px;padding-bottom:50px;background-color:rgba(0,0,0,.5);justify-content:center;align-items:flex-end}.modal-content{background-color:#fff;padding:20px;border-radius:5px;width:300px}.modal input{width:100%;padding:10px;margin-bottom:10px}</style><div class=feedback-card id=feedbackCard><h2>Help improve my blog</h2><p>Was this page helpful to you?</p><div class=buttons><button id=yesBtn>👍 Yes</button>
+<button id=noBtn>👎 No</button></div><p>This page was last modified at <strong>2023-11-15</strong></p><ul><li><a href=https://github.com/DangPham112000/blog target=_blank>View this page on GitHub</a></li><li><a href=# class=link-button id=linkButton>Report a problem with this content</a></li></ul></div><div class=modal id=formModal><div class=feedback-card><h2>Can I know your name?</h2><form id=form><input type=text name=username placeholder="Enter your name">
+<button type=submit>Yes</button>
+<button type=submit>No</button></form></div></div><script>const feedbackCardEle=document.getElementById("feedbackCard"),formModalEle=document.getElementById("formModal"),elesToShowForm=["linkButton","yesBtn","noBtn"];for(const e of elesToShowForm)document.getElementById(e).addEventListener("click",function(e){e.preventDefault(),formModalEle.style.display="flex"});window.onclick=function(e){e.target===formModalEle&&(formModalEle.style.display="none")},document.getElementById("form").addEventListener("submit",function(e){e.preventDefault(),alert("This feature is currently being developed"),formModalEle.style.display="none"})</script></article><footer class=book-footer><div class="flex flex-wrap justify-between"></div><script>(function(){function e(e){const t=window.getSelection(),n=document.createRange();n.selectNodeContents(e),t.removeAllRanges(),t.addRange(n)}document.querySelectorAll("pre code").forEach(t=>{t.addEventListener("click",function(){if(window.getSelection().toString())return;e(t.parentElement),navigator.clipboard&&navigator.clipboard.writeText(t.parentElement.textContent)})})})()</script></footer><div class=book-comments></div><label for=menu-control class="hidden book-menu-overlay"></label></div><aside class=book-toc><div class=book-toc-content><nav id=TableOfContents><ul><li><a href=#request-response>Request-Response</a><ul><li><a href=#overview>Overview</a></li><li><a href=#demo>Demo</a></li></ul></li><li><a href=#short-polling>Short Polling</a><ul><li><a href=#overview-1>Overview</a></li><li><a href=#use-case>Use case</a></li><li><a href=#demo-1>Demo</a></li></ul></li><li><a href=#long-polling>Long Polling</a><ul><li><a href=#overview-2>Overview</a></li><li><a href=#use-case-1>Use case</a></li><li><a href=#demo-2>Demo</a></li></ul></li><li><a href=#push>Push</a><ul><li><a href=#overview-3>Overview</a></li><li><a href=#use-case-2>Use case</a></li><li><a href=#demo-websocket>Demo Websocket</a></li><li><a href=#demo-server-sent-events>Demo Server-sent events</a></li></ul></li><li><a href=#publish-subcribe>Publish-Subcribe</a><ul><li><a href=#rabbitmq>RabbitMQ</a></li><li><a href=#kafka>Kafka</a></li></ul></li><li><a href=#reference>Reference</a></li></ul></nav></div></aside></main></body></html>

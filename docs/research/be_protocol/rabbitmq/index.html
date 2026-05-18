@@ -1,9 +1,4 @@
-<!DOCTYPE html>
-<html lang="en-us" dir="ltr">
-<head>
-  <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="
+<!doctype html><html lang=en-us dir=ltr><head><meta charset=UTF-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="
   RabbitMQ
   #
 
@@ -40,992 +35,165 @@ A message goes to the queue(s) with the binding key that exactly matches the rou
 
 Route messages to queues based on wildcard matches between the routing key and the binding pattern
 
-">
-<meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff">
-<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#343a40">
-<meta name="color-scheme" content="light dark"><meta property="og:url" content="https://dangpham112000.github.io/docs/research/be_protocol/rabbitmq/">
-  <meta property="og:site_name" content="Dante 0401">
-  <meta property="og:title" content="RabbitMQ">
-  <meta property="og:description" content="RabbitMQ # Producer sends and monitors if the message reaches the intended consumer Messages are deleted once consumed Designed for complex message routing Support message priorities Exchange types # Direct Exchange Topic Exchange Fanout Exchange Headers Exchange Dead Letter Exchange Direct Exchange # A message goes to the queue(s) with the binding key that exactly matches the routing key of the message Topic Exchange # Route messages to queues based on wildcard matches between the routing key and the binding pattern">
-  <meta property="og:locale" content="en_us">
-  <meta property="og:type" content="article">
-    <meta property="article:section" content="docs">
-    <meta property="article:published_time" content="2025-02-11T00:00:00+00:00">
-    <meta property="article:modified_time" content="2025-02-11T00:00:00+00:00">
-<title>RabbitMQ | Dante 0401</title>
-<link rel="manifest" href="/manifest.json">
-<link rel="icon" href="/favicon.png" >
-<link rel="canonical" href="https://dangpham112000.github.io/docs/research/be_protocol/rabbitmq/">
-<link rel="stylesheet" href="/book.min.ef1786281083252320100bd5f394f36844d3252afdbd5bfe72e5f440aaff402b.css" integrity="sha256-7xeGKBCDJSMgEAvV85TzaETTJSr9vVv&#43;cuX0QKr/QCs=" crossorigin="anonymous">
-  <script defer src="/fuse.min.js"></script>
-  <script defer src="/en.search.min.8cd250da139fc136773875cc0c5c476270e41dde5b32a6624b24175c7dd7d37b.js" integrity="sha256-jNJQ2hOfwTZ3OHXMDFxHYnDkHd5bMqZiSyQXXH3X03s=" crossorigin="anonymous"></script>
-<!--
-Made with Book Theme
-https://github.com/alex-shpak/hugo-book
--->
-  
-</head>
-<body dir="ltr">
-  <input type="checkbox" class="hidden toggle" id="menu-control" />
-  <input type="checkbox" class="hidden toggle" id="toc-control" />
-  <main class="container flex">
-    <aside class="book-menu">
-      <div class="book-menu-content">
-        
-  <nav>
-<h2 class="book-brand">
-  <a class="flex align-center" href="/"><span>Dante 0401</span>
-  </a>
-</h2>
-
-
-<div class="book-search hidden">
-  <input type="text" id="book-search-input" placeholder="Search" aria-label="Search" maxlength="64" data-hotkeys="s/" />
-  <div class="book-search-spinner hidden"></div>
-  <ul id="book-search-results"></ul>
-</div>
-<script>document.querySelector(".book-search").classList.remove("hidden")</script>
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
-
-
-  
-  <ul>
-    
-      
-        <li class="book-section-flat" >
-          
-  
-  
-
-  
-    <span>RESEARCH</span>
-  
-
-          
-  <ul>
-    
-      
-        <li>
-          
-  
-  
-
-  
-    <a href="/docs/research/process_vs_thread/" class="">Process vs Thread</a>
-  
-
-        </li>
-      
-    
-      
-        <li>
-          
-  
-  
-
-  
-    <a href="/docs/research/chrome_architecture/" class="">Chrome Architecture</a>
-  
-
-        </li>
-      
-    
-      
-        <li>
-          
-  
-  
-
-  
-    <a href="/docs/research/aws_overview/" class="">AWS Overview</a>
-  
-
-        </li>
-      
-    
-      
-        <li>
-          
-  
-  
-
-  
-    <a href="/docs/research/be_protocol/" class="">Backend</a>
-  
-
-          
-  <ul>
-    
-      
-        <li>
-          
-  
-  
-
-  
-    <a href="/docs/research/be_protocol/tls_ssl/" class="">TLS - SSL</a>
-  
-
-        </li>
-      
-    
-      
-        <li>
-          
-  
-  
-
-  
-    <a href="/docs/research/be_protocol/communication/" class="">Communication</a>
-  
-
-        </li>
-      
-    
-      
-        <li>
-          
-  
-  
-
-  
-    <a href="/docs/research/be_protocol/rabbitmq/" class="active">RabbitMQ</a>
-  
-
-        </li>
-      
-    
-      
-        <li>
-          
-  
-  
-
-  
-    <a href="/docs/research/be_protocol/kafka/" class="">Kafka - Draft</a>
-  
-
-        </li>
-      
-    
-  </ul>
-
-        </li>
-      
-    
-      
-        <li>
-          
-  
-  
-
-  
-    <a href="/docs/research/encryption/" class="">Encryption</a>
-  
-
-        </li>
-      
-    
-      
-        <li>
-          
-  
-  
-
-  
-    <a href="/docs/research/token_based_authentication/" class="">Token-based Authentication</a>
-  
-
-        </li>
-      
-    
-      
-        <li>
-          
-  
-  
-
-  
-    <a href="/docs/research/security/" class="">Security - Draft</a>
-  
-
-          
-  <ul>
-    
-      
-        <li>
-          
-  
-  
-
-  
-    <a href="/docs/research/security/hsts/" class="">HSTS</a>
-  
-
-        </li>
-      
-    
-      
-        <li>
-          
-  
-  
-
-  
-    <a href="/docs/research/security/bit_flipping/" class="">Bit Flipping</a>
-  
-
-        </li>
-      
-    
-  </ul>
-
-        </li>
-      
-    
-      
-        <li>
-          
-  
-  
-
-  
-    <a href="/docs/research/scale/" class="">Scale</a>
-  
-
-        </li>
-      
-    
-  </ul>
-
-        </li>
-      
-    
-      
-        <li class="book-section-flat" >
-          
-  
-  
-
-  
-    <span>TIPS</span>
-  
-
-          
-  <ul>
-    
-      
-        <li>
-          
-  
-  
-
-  
-    <a href="/docs/tips/001_unit_test/" class="">Unit Test</a>
-  
-
-        </li>
-      
-    
-      
-        <li>
-          
-  
-  
-
-  
-    <a href="/docs/tips/002_git/" class="">Git</a>
-  
-
-        </li>
-      
-    
-      
-        <li>
-          
-  
-  
-
-  
-    <a href="/docs/tips/003_docker/" class="">Docker</a>
-  
-
-        </li>
-      
-    
-      
-        <li>
-          
-  
-  
-
-  
-    <a href="/docs/tips/004_ops/" class="">Ops</a>
-  
-
-        </li>
-      
-    
-      
-        <li>
-          
-  
-  
-
-  
-    <a href="/docs/tips/005_passion/" class="">Spark Passion</a>
-  
-
-        </li>
-      
-    
-  </ul>
-
-        </li>
-      
-    
-      
-        <li class="book-section-flat" >
-          
-  
-  
-
-  
-    <span>PROBLEMS</span>
-  
-
-          
-  <ul>
-    
-      
-        <li>
-          
-  
-  
-
-  
-    <a href="/docs/problems/knight_dialer/" class="">Knight Dialer</a>
-  
-
-        </li>
-      
-    
-  </ul>
-
-        </li>
-      
-    
-  </ul>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-</nav>
-
-
-
-
-  <script>(function(){var e=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(){localStorage.setItem("menu.scrollTop",e.scrollTop)}),e.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
-
-
- 
-      </div>
-    </aside>
-
-    <div class="book-page">
-      <header class="book-header">
-        
-  <div class="flex align-center justify-between">
-  <label for="menu-control">
-    <img src="/svg/menu.svg" class="book-icon" alt="Menu" />
-  </label>
-
-  <strong>RabbitMQ</strong>
-
-  <label for="toc-control">
-    
-    <img src="/svg/toc.svg" class="book-icon" alt="Table of Contents" />
-    
-  </label>
-</div>
-
-
-  
-  <aside class="hidden clearfix">
-    
-  
-<nav id="TableOfContents">
-  <ul>
-    <li><a href="#exchange-types">Exchange types</a>
-      <ul>
-        <li><a href="#direct-exchange">Direct Exchange</a></li>
-        <li><a href="#topic-exchange">Topic Exchange</a></li>
-        <li><a href="#fanout-exchange">Fanout Exchange</a></li>
-        <li><a href="#headers-exchange">Headers Exchange</a></li>
-        <li><a href="#dead-letter-exchange">Dead Letter Exchange</a></li>
-      </ul>
-    </li>
-    <li><a href="#demo">Demo</a>
-      <ul>
-        <li><a href="#setup-rabbitmq-broker">Setup RabbitMQ Broker</a></li>
-        <li><a href="#setup-services">Setup services</a></li>
-        <li><a href="#scenario">Scenario</a></li>
-      </ul>
-    </li>
-    <li><a href="#reference">Reference</a></li>
-  </ul>
-</nav>
-
-
-
-  </aside>
-  
- 
-      </header>
-
-      
-      
-  <article class="markdown book-article"><h1 id="rabbitmq">
-  RabbitMQ
-  <a class="anchor" href="#rabbitmq">#</a>
-</h1>
-<p><img src="/research/be_protocol/rabbitmq/rabbitmq.png" alt="rabbitmq" /></p>
-<ul>
-<li>Producer sends and monitors if the message reaches the intended consumer</li>
-<li>Messages are deleted once consumed</li>
-<li>Designed for complex message routing</li>
-<li>Support message priorities</li>
-</ul>
-<h2 id="exchange-types">
-  Exchange types
-  <a class="anchor" href="#exchange-types">#</a>
-</h2>
-<ul>
-<li>Direct Exchange</li>
-<li>Topic Exchange</li>
-<li>Fanout Exchange</li>
-<li>Headers Exchange</li>
-<li>Dead Letter Exchange</li>
-</ul>
-<h3 id="direct-exchange">
-  Direct Exchange
-  <a class="anchor" href="#direct-exchange">#</a>
-</h3>
-<ul>
-<li>A message goes to the queue(s) with the <strong>binding key</strong> that <strong>exactly matches</strong> the <strong>routing key</strong> of the message</li>
-</ul>
-<p><img src="/research/be_protocol/rabbitmq/direct.png" alt="direct" /></p>
-<h3 id="topic-exchange">
-  Topic Exchange
-  <a class="anchor" href="#topic-exchange">#</a>
-</h3>
-<ul>
-<li>Route messages to queues based on <strong>wildcard matches</strong> between the <strong>routing key</strong> and the <strong>binding pattern</strong></li>
-</ul>
-<p><img src="/research/be_protocol/rabbitmq/topic.png" alt="topic" /></p>
-<h3 id="fanout-exchange">
-  Fanout Exchange
-  <a class="anchor" href="#fanout-exchange">#</a>
-</h3>
-<ul>
-<li>Copy and route a message <strong>to all queues</strong></li>
-</ul>
-<p><img src="/research/be_protocol/rabbitmq/fanout.png" alt="fanout" /></p>
-<h3 id="headers-exchange">
-  Headers Exchange
-  <a class="anchor" href="#headers-exchange">#</a>
-</h3>
-<ul>
-<li>Similar to topic exchanges</li>
-<li>Route messages based on <strong>header values instead of routing keys</strong></li>
-</ul>
-<h3 id="dead-letter-exchange">
-  Dead Letter Exchange
-  <a class="anchor" href="#dead-letter-exchange">#</a>
-</h3>
-<ul>
-<li>Capture messages that are not deliverable</li>
-</ul>
-<h2 id="demo">
-  Demo
-  <a class="anchor" href="#demo">#</a>
-</h2>
-<p><img src="/research/be_protocol/rabbitmq/direct_demo.png" alt="direct_demo" /></p>
-<h3 id="setup-rabbitmq-broker">
-  Setup RabbitMQ Broker
-  <a class="anchor" href="#setup-rabbitmq-broker">#</a>
-</h3>
-<ol>
-<li>Pull the official RabbitMQ image:
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>sudo docker pull rabbitmq:4.0.5-management
-</span></span></code></pre></div></li>
-<li>Start a RabbitMQ:
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>sudo docker run --name rabbitmq -p 5672:5672 -p 15672:15672 rabbitmq:4.0.5-management
-</span></span></code></pre></div><ul>
-<li><code>--name</code> assigns a name to the container</li>
-<li><code>-p</code> maps the ports from the container to your host machine
-<ul>
-<li><code>5672</code> is for <strong>RabbitMQ server</strong></li>
-<li><code>15672</code> is for <strong>management UI</strong></li>
-</ul>
-</li>
-</ul>
-</li>
-<li>Access the RabbitMQ Management Console:
-<ul>
-<li>Open a web browser and navigate to <a href="http://localhost:15672/">http://localhost:15672/</a></li>
-<li>Log in with the default username <code>guest</code> and password <code>guest</code></li>
-</ul>
-</li>
-</ol>
-<h3 id="setup-services">
-  Setup services
-  <a class="anchor" href="#setup-services">#</a>
-</h3>
-<ul>
-<li><code>AMQP</code> is the data transfer protocol for communication with RabbitMQ</li>
-</ul>
-<details ><summary><strong>Prepare</strong></summary>
-  <div class="markdown-inner">
-    <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#75715e">// config.js
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">module</span>.<span style="color:#a6e22e">exports</span> <span style="color:#f92672">=</span> {
-</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">rabbitMQ</span><span style="color:#f92672">:</span> {
-</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">url</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;amqp://localhost&#34;</span>,
-</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">exchangeName</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;logExchange&#34;</span>,
-</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">exchangeType</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;direct&#34;</span>,
-</span></span><span style="display:flex;"><span>  },
-</span></span><span style="display:flex;"><span>};
-</span></span></code></pre></div><p>You can run this code block bellow with <strong>REST Client</strong> VScode extension</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>### post.http
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>@url=http://localhost:3000
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>### Info log
-</span></span><span style="display:flex;"><span>POST {{url}}/sendLog
-</span></span><span style="display:flex;"><span>Content-Type: application/json
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>{
-</span></span><span style="display:flex;"><span>    &#34;logType&#34;: &#34;Info&#34;,
-</span></span><span style="display:flex;"><span>    &#34;message&#34;: &#34;Everything works OK&#34;
-</span></span><span style="display:flex;"><span>}
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>### Warning log
-</span></span><span style="display:flex;"><span>POST {{url}}/sendLog
-</span></span><span style="display:flex;"><span>Content-Type: application/json
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>{
-</span></span><span style="display:flex;"><span>    &#34;logType&#34;: &#34;Warning&#34;,
-</span></span><span style="display:flex;"><span>    &#34;message&#34;: &#34;Chrome is moving towards a new experience that allows users to choose to browse without third-party cookies&#34;
-</span></span><span style="display:flex;"><span>}
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>### Error log
-</span></span><span style="display:flex;"><span>POST {{url}}/sendLog
-</span></span><span style="display:flex;"><span>Content-Type: application/json
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>{
-</span></span><span style="display:flex;"><span>    &#34;logType&#34;: &#34;Error&#34;,
-</span></span><span style="display:flex;"><span>    &#34;message&#34;: &#34;Unchecked runtime.lastError: The message port closed before a response was received&#34;
-</span></span><span style="display:flex;"><span>}
-</span></span></code></pre></div>
-  </div>
-</details>
-
-</br>
-<details ><summary><strong>Logger service</strong></summary>
-  <div class="markdown-inner">
-    <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#75715e">// loggerService.js
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">amqp</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span>(<span style="color:#e6db74">&#34;amqplib&#34;</span>);
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">config</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span>(<span style="color:#e6db74">&#34;./config&#34;</span>);
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Producer</span> {
-</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">channel</span>;
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">async</span> <span style="color:#a6e22e">createChannel</span>() {
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">rabbitmqUrl</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">config</span>.<span style="color:#a6e22e">rabbitMQ</span>.<span style="color:#a6e22e">url</span>;
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">connection</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> <span style="color:#a6e22e">amqp</span>.<span style="color:#a6e22e">connect</span>(<span style="color:#a6e22e">rabbitmqUrl</span>);
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">channel</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> <span style="color:#a6e22e">connection</span>.<span style="color:#a6e22e">createChannel</span>();
-</span></span><span style="display:flex;"><span>  }
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">async</span> <span style="color:#a6e22e">publishMessage</span>(<span style="color:#a6e22e">routingKey</span>, <span style="color:#a6e22e">message</span>) {
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span><span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">channel</span>) {
-</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">await</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">createChannel</span>();
-</span></span><span style="display:flex;"><span>    }
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">exchangeName</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">config</span>.<span style="color:#a6e22e">rabbitMQ</span>.<span style="color:#a6e22e">exchangeName</span>;
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">exchangeType</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">config</span>.<span style="color:#a6e22e">rabbitMQ</span>.<span style="color:#a6e22e">exchangeType</span>;
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">await</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">channel</span>.<span style="color:#a6e22e">assertExchange</span>(<span style="color:#a6e22e">exchangeName</span>, <span style="color:#a6e22e">exchangeType</span>);
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">logDetails</span> <span style="color:#f92672">=</span> {
-</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">logType</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">routingKey</span>,
-</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">message</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">message</span>,
-</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">dateTime</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">new</span> Date(),
-</span></span><span style="display:flex;"><span>    };
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">await</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">channel</span>.<span style="color:#a6e22e">publish</span>(
-</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">exchangeName</span>,
-</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">routingKey</span>,
-</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">Buffer</span>.<span style="color:#a6e22e">from</span>(<span style="color:#a6e22e">JSON</span>.<span style="color:#a6e22e">stringify</span>(<span style="color:#a6e22e">logDetails</span>))
-</span></span><span style="display:flex;"><span>    );
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(
-</span></span><span style="display:flex;"><span>      <span style="color:#e6db74">`The new </span><span style="color:#e6db74">${</span><span style="color:#a6e22e">routingKey</span><span style="color:#e6db74">}</span><span style="color:#e6db74"> log is sent to exchange </span><span style="color:#e6db74">${</span><span style="color:#a6e22e">exchangeName</span><span style="color:#e6db74">}</span><span style="color:#e6db74">`</span>
-</span></span><span style="display:flex;"><span>    );
-</span></span><span style="display:flex;"><span>  }
-</span></span><span style="display:flex;"><span>}
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">express</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span>(<span style="color:#e6db74">&#34;express&#34;</span>);
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">app</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">express</span>();
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">producer</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">Producer</span>();
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">app</span>.<span style="color:#a6e22e">use</span>(<span style="color:#a6e22e">express</span>.<span style="color:#a6e22e">json</span>());
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">app</span>.<span style="color:#a6e22e">post</span>(<span style="color:#e6db74">&#34;/sendLog&#34;</span>, <span style="color:#66d9ef">async</span> (<span style="color:#a6e22e">req</span>, <span style="color:#a6e22e">res</span>) =&gt; {
-</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">await</span> <span style="color:#a6e22e">producer</span>.<span style="color:#a6e22e">publishMessage</span>(<span style="color:#a6e22e">req</span>.<span style="color:#a6e22e">body</span>.<span style="color:#a6e22e">logType</span>, <span style="color:#a6e22e">req</span>.<span style="color:#a6e22e">body</span>.<span style="color:#a6e22e">message</span>);
-</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">res</span>.<span style="color:#a6e22e">send</span>();
-</span></span><span style="display:flex;"><span>});
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">app</span>.<span style="color:#a6e22e">listen</span>(<span style="color:#ae81ff">3000</span>, () =&gt; {
-</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#34;Server started...&#34;</span>);
-</span></span><span style="display:flex;"><span>});
-</span></span></code></pre></div>
-  </div>
-</details>
-
-</br>
-<details ><summary><strong>Info service</strong></summary>
-  <div class="markdown-inner">
-    <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#75715e">// loggerService.js
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">amqp</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span>(<span style="color:#e6db74">&#34;amqplib&#34;</span>);
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">config</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span>(<span style="color:#e6db74">&#34;./config&#34;</span>);
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">async</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">consumeMessages</span>() {
-</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">rabbitmqUrl</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">config</span>.<span style="color:#a6e22e">rabbitMQ</span>.<span style="color:#a6e22e">url</span>;
-</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">connection</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> <span style="color:#a6e22e">amqp</span>.<span style="color:#a6e22e">connect</span>(<span style="color:#a6e22e">rabbitmqUrl</span>);
-</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">channel</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> <span style="color:#a6e22e">connection</span>.<span style="color:#a6e22e">createChannel</span>();
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">exchangeName</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">config</span>.<span style="color:#a6e22e">rabbitMQ</span>.<span style="color:#a6e22e">exchangeName</span>;
-</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">exchangeType</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">config</span>.<span style="color:#a6e22e">rabbitMQ</span>.<span style="color:#a6e22e">exchangeType</span>;
-</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">await</span> <span style="color:#a6e22e">channel</span>.<span style="color:#a6e22e">assertExchange</span>(<span style="color:#a6e22e">exchangeName</span>, <span style="color:#a6e22e">exchangeType</span>);
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">q</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> <span style="color:#a6e22e">channel</span>.<span style="color:#a6e22e">assertQueue</span>(<span style="color:#e6db74">&#34;InfoQueue&#34;</span>);
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">await</span> <span style="color:#a6e22e">channel</span>.<span style="color:#a6e22e">bindQueue</span>(<span style="color:#a6e22e">q</span>.<span style="color:#a6e22e">queue</span>, <span style="color:#a6e22e">exchangeName</span>, <span style="color:#e6db74">&#34;Info&#34;</span>);
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">channel</span>.<span style="color:#a6e22e">consume</span>(<span style="color:#a6e22e">q</span>.<span style="color:#a6e22e">queue</span>, (<span style="color:#a6e22e">msg</span>) =&gt; {
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">data</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">JSON</span>.<span style="color:#a6e22e">parse</span>(<span style="color:#a6e22e">msg</span>.<span style="color:#a6e22e">content</span>);
-</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">data</span>);
-</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">channel</span>.<span style="color:#a6e22e">ack</span>(<span style="color:#a6e22e">msg</span>);
-</span></span><span style="display:flex;"><span>  });
-</span></span><span style="display:flex;"><span>}
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">consumeMessages</span>();
-</span></span></code></pre></div>
-  </div>
-</details>
-
-</br>
-<details ><summary><strong>Warning service</strong></summary>
-  <div class="markdown-inner">
-    <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#75715e">// warningService.js
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">amqp</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span>(<span style="color:#e6db74">&#34;amqplib&#34;</span>);
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">config</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span>(<span style="color:#e6db74">&#34;./config&#34;</span>);
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">async</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">consumeMessages</span>() {
-</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">connection</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> <span style="color:#a6e22e">amqp</span>.<span style="color:#a6e22e">connect</span>(<span style="color:#a6e22e">config</span>.<span style="color:#a6e22e">rabbitMQ</span>.<span style="color:#a6e22e">url</span>);
-</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">channel</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> <span style="color:#a6e22e">connection</span>.<span style="color:#a6e22e">createChannel</span>();
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">exchangeName</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">config</span>.<span style="color:#a6e22e">rabbitMQ</span>.<span style="color:#a6e22e">exchangeName</span>;
-</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">exchangeType</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">config</span>.<span style="color:#a6e22e">rabbitMQ</span>.<span style="color:#a6e22e">exchangeType</span>;
-</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">await</span> <span style="color:#a6e22e">channel</span>.<span style="color:#a6e22e">assertExchange</span>(<span style="color:#a6e22e">exchangeName</span>, <span style="color:#a6e22e">exchangeType</span>);
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">q</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> <span style="color:#a6e22e">channel</span>.<span style="color:#a6e22e">assertQueue</span>(<span style="color:#e6db74">&#34;WarningQueue&#34;</span>);
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">await</span> <span style="color:#a6e22e">channel</span>.<span style="color:#a6e22e">bindQueue</span>(<span style="color:#a6e22e">q</span>.<span style="color:#a6e22e">queue</span>, <span style="color:#a6e22e">exchangeName</span>, <span style="color:#e6db74">&#34;Warning&#34;</span>);
-</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">await</span> <span style="color:#a6e22e">channel</span>.<span style="color:#a6e22e">bindQueue</span>(<span style="color:#a6e22e">q</span>.<span style="color:#a6e22e">queue</span>, <span style="color:#a6e22e">exchangeName</span>, <span style="color:#e6db74">&#34;Error&#34;</span>);
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">channel</span>.<span style="color:#a6e22e">consume</span>(<span style="color:#a6e22e">q</span>.<span style="color:#a6e22e">queue</span>, (<span style="color:#a6e22e">msg</span>) =&gt; {
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">data</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">JSON</span>.<span style="color:#a6e22e">parse</span>(<span style="color:#a6e22e">msg</span>.<span style="color:#a6e22e">content</span>);
-</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">data</span>);
-</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">channel</span>.<span style="color:#a6e22e">ack</span>(<span style="color:#a6e22e">msg</span>);
-</span></span><span style="display:flex;"><span>  });
-</span></span><span style="display:flex;"><span>}
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">consumeMessages</span>();
-</span></span></code></pre></div>
-  </div>
-</details>
-
-<ol>
-<li>Create a folder to hold all services in one place, such as <code>RabbitMQ_Demo</code></li>
-<li>Initialize Node.js with: <code>npm init -y</code></li>
-<li>Install necessary libraries:
-<ul>
-<li><code>amqplib</code>: <code>npm i amqplib</code></li>
-<li><code>express</code>: <code>npm i express</code></li>
-</ul>
-</li>
-<li>Prepare the necessary files: <code>config.js</code>, <code>post.http</code>, <code>loggerService.js</code>, <code>infoService.js</code>, and <code>warningService.js</code></li>
-<li>Start the services:
-<ul>
-<li>Logger service: <code>node loggerService.js</code></li>
-<li>Info service: <code>node infoService.js</code></li>
-<li>Warning service: <code>node warningService.js</code></li>
-</ul>
-</li>
-</ol>
-<h3 id="scenario">
-  Scenario
-  <a class="anchor" href="#scenario">#</a>
-</h3>
-<ul>
-<li>Send info, warning, or error messages to the Logger service
-<ul>
-<li><strong>Expect</strong>: They are routed to the corresponding consumer services</li>
-</ul>
-</li>
-<li>Try sending some messages with a logType that does not exist in any services
-<ul>
-<li><strong>Expect</strong>: The logger service announces that the message was sent to the Exchange, but none of the consumer services receive the message</li>
-</ul>
-</li>
-<li>Try commenting out the code line in the Consumer service&rsquo;s code block: <code>channel.ack(msg);</code>
-<ul>
-<li><strong>Expect</strong>: Consumer services receive messages normally, but when we start them again, they will receive all unacknowledged messages again</li>
-</ul>
-</li>
-</ul>
-<h2 id="reference">
-  Reference
-  <a class="anchor" href="#reference">#</a>
-</h2>
-<ul>
-<li>Cloudamqp: <a href="https://www.cloudamqp.com/blog/part4-rabbitmq-for-beginners-exchanges-routing-keys-bindings.html">Part 4: RabbitMQ Exchanges, routing keys and bindings</a> (Sep 24th, 2019)</li>
-<li>Youtube: <a href="https://www.youtube.com/watch?v=i5G3uSGS7QQ">RabbitMQ basics (Including different exchange types + real use cases)</a> (Jun 2nd, 2022)</li>
-<li>Svix: <a href="https://www.svix.com/resources/guides/rabbitmq-docker-setup-guide/">Running RabbitMQ in Docker: A Comprehensive Guide</a></li>
-<li>Youtube: <a href="https://www.youtube.com/watch?v=igaVS0S1hA4">NodeJs Microservices using RabbitMQ (Message Queueing)</a> (Jul 11th, 2022)</li>
-</ul>
-<style>
-    .feedback-card {
-        border: 1px solid #ddd;
-        border-radius: 8px;
-        padding: 20px;
-        max-width: 100%;
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-        background-color: #f9f9fb;
-    }
-    .feedback-card h2 {
-        font-size: 20px;
-        margin-top: 0px;
-        margin-bottom: 10px;
-    }
-    .feedback-card .buttons {
-        margin: 10px 0;
-    }
-    .feedback-card button {
-        border: none;
-        background-color: #f0f0f0;
-        border-radius: 4px;
-        padding: 10px 15px;
-        margin-right: 10px;
-        cursor: pointer;
-        font-size: 16px;
-    }
-    .feedback-card button:hover {
-        background-color: #e0e0e0;
-    }
-    .feedback-card a {
-        color: #0074d9;
-        text-decoration: none;
-    }
-    .feedback-card a:hover {
-        text-decoration: underline;
-    }
-    .feedback-card p {
-        font-size: 14px;
-        color: #555;
-    }
-
-     
-    .modal {
-      display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      border-radius: 7px;
-      padding-bottom: 50px;
-
-      background-color: rgba(0, 0, 0, 0.5);
-      justify-content: center;
-      align-items: flex-end;
-    }
-
-    .modal-content {
-      background-color: white;
-      padding: 20px;
-      border-radius: 5px;
-      width: 300px;
-    }
-
-    .modal input {
-      width: 100%;
-      padding: 10px;
-      margin-bottom: 10px;
-    }
-</style>
-<div class="feedback-card" id="feedbackCard">
-    <h2>Help improve my blog</h2>
-    <p>Was this page helpful to you?</p>
-    <div class="buttons">
-        <button id="yesBtn">👍 Yes</button>
-        <button id="noBtn">👎 No</button>
-    </div>
-    <p>This page was last modified at <strong>2025-02-11</strong></p>
-    <ul>
-        <li><a href="https://github.com/DangPham112000/blog" target="_blank">View this page on GitHub</a></li>
-        <li><a href="#" class="link-button" id="linkButton">Report a problem with this content</a></li>
-    </ul>
-</div>
-
-<div class="modal" id="formModal">
-    <div class="feedback-card">
-        <h2>Can I know your name?</h2>
-        <form id="form">
-            <input type="text" name="username" placeholder="Enter your name">
-            <button type="submit">Yes</button>
-            <button type="submit">No</button>
-        </form>
-    </div>
-</div>
-
-<script>
-    const feedbackCardEle = document.getElementById("feedbackCard");
-    const formModalEle = document.getElementById('formModal');
-    const elesToShowForm = ['linkButton', 'yesBtn', 'noBtn'];
-
-    for (const ele of elesToShowForm) {
-        document.getElementById(ele).addEventListener('click', function(e) {
-            e.preventDefault();
-            formModalEle.style.display = 'flex';
-        });
-    }
-
-    window.onclick = function(event) {
-        if (event.target === formModalEle) {
-            formModalEle.style.display = 'none';
-        }
-    };
-
-    document.getElementById('form').addEventListener('submit', function(e) {
-        e.preventDefault(); 
-        alert('This feature is currently being developed');
-        formModalEle.style.display = 'none'; 
-    });
-</script>
-</article>
- 
-      
-
-      <footer class="book-footer">
-        
-  <div class="flex flex-wrap justify-between">
-
-
-
-
-
-</div>
-
-
-
-  <script>(function(){function e(e){const t=window.getSelection(),n=document.createRange();n.selectNodeContents(e),t.removeAllRanges(),t.addRange(n)}document.querySelectorAll("pre code").forEach(t=>{t.addEventListener("click",function(){if(window.getSelection().toString())return;e(t.parentElement),navigator.clipboard&&navigator.clipboard.writeText(t.parentElement.textContent)})})})()</script>
-
-
- 
-        
-      </footer>
-
-      
-  
-  <div class="book-comments">
-
-</div>
-  
- 
-
-      <label for="menu-control" class="hidden book-menu-overlay"></label>
-    </div>
-
-    
-    <aside class="book-toc">
-      <div class="book-toc-content">
-        
-  
-<nav id="TableOfContents">
-  <ul>
-    <li><a href="#exchange-types">Exchange types</a>
-      <ul>
-        <li><a href="#direct-exchange">Direct Exchange</a></li>
-        <li><a href="#topic-exchange">Topic Exchange</a></li>
-        <li><a href="#fanout-exchange">Fanout Exchange</a></li>
-        <li><a href="#headers-exchange">Headers Exchange</a></li>
-        <li><a href="#dead-letter-exchange">Dead Letter Exchange</a></li>
-      </ul>
-    </li>
-    <li><a href="#demo">Demo</a>
-      <ul>
-        <li><a href="#setup-rabbitmq-broker">Setup RabbitMQ Broker</a></li>
-        <li><a href="#setup-services">Setup services</a></li>
-        <li><a href="#scenario">Scenario</a></li>
-      </ul>
-    </li>
-    <li><a href="#reference">Reference</a></li>
-  </ul>
-</nav>
-
-
- 
-      </div>
-    </aside>
-    
-  </main>
-
-  
-</body>
-</html>
-
-
-
-
-
-
-
-
-
-
-
-
+"><meta name=theme-color media="(prefers-color-scheme: light)" content="#ffffff"><meta name=theme-color media="(prefers-color-scheme: dark)" content="#343a40"><meta name=color-scheme content="light dark"><meta property="og:url" content="https://dangpham112000.github.io/docs/research/be_protocol/rabbitmq/"><meta property="og:site_name" content="Dante 0401"><meta property="og:title" content="RabbitMQ"><meta property="og:description" content="RabbitMQ # Producer sends and monitors if the message reaches the intended consumer Messages are deleted once consumed Designed for complex message routing Support message priorities Exchange types # Direct Exchange Topic Exchange Fanout Exchange Headers Exchange Dead Letter Exchange Direct Exchange # A message goes to the queue(s) with the binding key that exactly matches the routing key of the message Topic Exchange # Route messages to queues based on wildcard matches between the routing key and the binding pattern"><meta property="og:locale" content="en_us"><meta property="og:type" content="article"><meta property="article:section" content="docs"><meta property="article:published_time" content="2025-02-11T00:00:00+00:00"><meta property="article:modified_time" content="2025-02-11T00:00:00+00:00"><title>RabbitMQ | Dante 0401</title><link rel=manifest href=/manifest.json><link rel=icon href=/favicon.png><link rel=canonical href=https://dangpham112000.github.io/docs/research/be_protocol/rabbitmq/><link rel=stylesheet href=/book.min.95535ae437871e725b7f7b2fb47d6446b8247773f5f22345e8c0aafa00c5db9b.css integrity="sha256-lVNa5DeHHnJbf3svtH1kRrgkd3P18iNF6MCq+gDF25s=" crossorigin=anonymous><script defer src=/fuse.min.js></script><script defer src=/en.search.min.b7403c70329304a8d4de17873d6d0681a5a205e052f3bdbca43f342b899d2958.js integrity="sha256-t0A8cDKTBKjU3heHPW0GgaWiBeBS8728pD80K4mdKVg=" crossorigin=anonymous></script></head><body dir=ltr><input type=checkbox class="hidden toggle" id=menu-control>
+<input type=checkbox class="hidden toggle" id=toc-control><main class="container flex"><aside class=book-menu><div class=book-menu-content><nav><h2 class=book-brand><a class="flex align-center" href=/><span>Dante 0401</span></a></h2><div class="book-search hidden"><input type=text id=book-search-input placeholder=Search aria-label=Search maxlength=64 data-hotkeys=s/><div class="book-search-spinner hidden"></div><ul id=book-search-results></ul></div><script>document.querySelector(".book-search").classList.remove("hidden")</script><ul><li class=book-section-flat><span>RESEARCH</span><ul><li><a href=/docs/research/mcp-server-tutorial/>Building an MCP Server from Scratch: An E-commerce Case Study</a></li><li><a href=/docs/research/process_vs_thread/>Process vs Thread</a></li><li><a href=/docs/research/chrome_architecture/>Chrome Architecture</a></li><li><a href=/docs/research/aws_overview/>AWS Overview</a></li><li><a href=/docs/research/be_protocol/>Backend</a><ul><li><a href=/docs/research/be_protocol/tls_ssl/>TLS - SSL</a></li><li><a href=/docs/research/be_protocol/communication/>Communication</a></li><li><a href=/docs/research/be_protocol/rabbitmq/ class=active>RabbitMQ</a></li><li><a href=/docs/research/be_protocol/kafka/>Kafka - Draft</a></li></ul></li><li><a href=/docs/research/encryption/>Encryption</a></li><li><a href=/docs/research/token_based_authentication/>Token-based Authentication</a></li><li><a href=/docs/research/security/>Security - Draft</a><ul><li><a href=/docs/research/security/hsts/>HSTS</a></li><li><a href=/docs/research/security/bit_flipping/>Bit Flipping</a></li></ul></li><li><a href=/docs/research/scale/>Scale</a></li></ul></li><li class=book-section-flat><span>TIPS</span><ul><li><a href=/docs/tips/001_unit_test/>Unit Test</a></li><li><a href=/docs/tips/002_git/>Git</a></li><li><a href=/docs/tips/003_docker/>Docker</a></li><li><a href=/docs/tips/004_ops/>Ops</a></li><li><a href=/docs/tips/005_passion/>Spark Passion</a></li></ul></li><li class=book-section-flat><span>PROBLEMS</span><ul><li><a href=/docs/problems/knight_dialer/>Knight Dialer</a></li></ul></li></ul></nav><script>(function(){var e=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(){localStorage.setItem("menu.scrollTop",e.scrollTop)}),e.scrollTop=localStorage.getItem("menu.scrollTop")})()</script></div></aside><div class=book-page><header class=book-header><div class="flex align-center justify-between"><label for=menu-control><img src=/svg/menu.svg class=book-icon alt=Menu>
+</label><strong>RabbitMQ</strong>
+<label for=toc-control><img src=/svg/toc.svg class=book-icon alt="Table of Contents"></label></div><aside class="hidden clearfix"><nav id=TableOfContents><ul><li><a href=#exchange-types>Exchange types</a><ul><li><a href=#direct-exchange>Direct Exchange</a></li><li><a href=#topic-exchange>Topic Exchange</a></li><li><a href=#fanout-exchange>Fanout Exchange</a></li><li><a href=#headers-exchange>Headers Exchange</a></li><li><a href=#dead-letter-exchange>Dead Letter Exchange</a></li></ul></li><li><a href=#demo>Demo</a><ul><li><a href=#setup-rabbitmq-broker>Setup RabbitMQ Broker</a></li><li><a href=#setup-services>Setup services</a></li><li><a href=#scenario>Scenario</a></li></ul></li><li><a href=#reference>Reference</a></li></ul></nav></aside></header><article class="markdown book-article"><h1 id=rabbitmq>RabbitMQ
+<a class=anchor href=#rabbitmq>#</a></h1><p><img src=/research/be_protocol/rabbitmq/rabbitmq.png alt=rabbitmq></p><ul><li>Producer sends and monitors if the message reaches the intended consumer</li><li>Messages are deleted once consumed</li><li>Designed for complex message routing</li><li>Support message priorities</li></ul><h2 id=exchange-types>Exchange types
+<a class=anchor href=#exchange-types>#</a></h2><ul><li>Direct Exchange</li><li>Topic Exchange</li><li>Fanout Exchange</li><li>Headers Exchange</li><li>Dead Letter Exchange</li></ul><h3 id=direct-exchange>Direct Exchange
+<a class=anchor href=#direct-exchange>#</a></h3><ul><li>A message goes to the queue(s) with the <strong>binding key</strong> that <strong>exactly matches</strong> the <strong>routing key</strong> of the message</li></ul><p><img src=/research/be_protocol/rabbitmq/direct.png alt=direct></p><h3 id=topic-exchange>Topic Exchange
+<a class=anchor href=#topic-exchange>#</a></h3><ul><li>Route messages to queues based on <strong>wildcard matches</strong> between the <strong>routing key</strong> and the <strong>binding pattern</strong></li></ul><p><img src=/research/be_protocol/rabbitmq/topic.png alt=topic></p><h3 id=fanout-exchange>Fanout Exchange
+<a class=anchor href=#fanout-exchange>#</a></h3><ul><li>Copy and route a message <strong>to all queues</strong></li></ul><p><img src=/research/be_protocol/rabbitmq/fanout.png alt=fanout></p><h3 id=headers-exchange>Headers Exchange
+<a class=anchor href=#headers-exchange>#</a></h3><ul><li>Similar to topic exchanges</li><li>Route messages based on <strong>header values instead of routing keys</strong></li></ul><h3 id=dead-letter-exchange>Dead Letter Exchange
+<a class=anchor href=#dead-letter-exchange>#</a></h3><ul><li>Capture messages that are not deliverable</li></ul><h2 id=demo>Demo
+<a class=anchor href=#demo>#</a></h2><p><img src=/research/be_protocol/rabbitmq/direct_demo.png alt=direct_demo></p><h3 id=setup-rabbitmq-broker>Setup RabbitMQ Broker
+<a class=anchor href=#setup-rabbitmq-broker>#</a></h3><ol><li>Pull the official RabbitMQ image:<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-sh data-lang=sh><span style=display:flex><span>sudo docker pull rabbitmq:4.0.5-management
+</span></span></code></pre></div></li><li>Start a RabbitMQ:<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-sh data-lang=sh><span style=display:flex><span>sudo docker run --name rabbitmq -p 5672:5672 -p 15672:15672 rabbitmq:4.0.5-management
+</span></span></code></pre></div><ul><li><code>--name</code> assigns a name to the container</li><li><code>-p</code> maps the ports from the container to your host machine<ul><li><code>5672</code> is for <strong>RabbitMQ server</strong></li><li><code>15672</code> is for <strong>management UI</strong></li></ul></li></ul></li><li>Access the RabbitMQ Management Console:<ul><li>Open a web browser and navigate to <a href=http://localhost:15672/>http://localhost:15672/</a></li><li>Log in with the default username <code>guest</code> and password <code>guest</code></li></ul></li></ol><h3 id=setup-services>Setup services
+<a class=anchor href=#setup-services>#</a></h3><ul><li><code>AMQP</code> is the data transfer protocol for communication with RabbitMQ</li></ul><details><summary><strong>Prepare</strong></summary><div class=markdown-inner><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-js data-lang=js><span style=display:flex><span><span style=color:#75715e>// config.js
+</span></span></span><span style=display:flex><span><span style=color:#a6e22e>module</span>.<span style=color:#a6e22e>exports</span> <span style=color:#f92672>=</span> {
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>rabbitMQ</span><span style=color:#f92672>:</span> {
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>url</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;amqp://localhost&#34;</span>,
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>exchangeName</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;logExchange&#34;</span>,
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>exchangeType</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;direct&#34;</span>,
+</span></span><span style=display:flex><span>  },
+</span></span><span style=display:flex><span>};
+</span></span></code></pre></div><p>You can run this code block bellow with <strong>REST Client</strong> VScode extension</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-text data-lang=text><span style=display:flex><span>### post.http
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>@url=http://localhost:3000
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>### Info log
+</span></span><span style=display:flex><span>POST {{url}}/sendLog
+</span></span><span style=display:flex><span>Content-Type: application/json
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span>    &#34;logType&#34;: &#34;Info&#34;,
+</span></span><span style=display:flex><span>    &#34;message&#34;: &#34;Everything works OK&#34;
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>### Warning log
+</span></span><span style=display:flex><span>POST {{url}}/sendLog
+</span></span><span style=display:flex><span>Content-Type: application/json
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span>    &#34;logType&#34;: &#34;Warning&#34;,
+</span></span><span style=display:flex><span>    &#34;message&#34;: &#34;Chrome is moving towards a new experience that allows users to choose to browse without third-party cookies&#34;
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>### Error log
+</span></span><span style=display:flex><span>POST {{url}}/sendLog
+</span></span><span style=display:flex><span>Content-Type: application/json
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span>    &#34;logType&#34;: &#34;Error&#34;,
+</span></span><span style=display:flex><span>    &#34;message&#34;: &#34;Unchecked runtime.lastError: The message port closed before a response was received&#34;
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div></div></details></br><details><summary><strong>Logger service</strong></summary><div class=markdown-inner><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-js data-lang=js><span style=display:flex><span><span style=color:#75715e>// loggerService.js
+</span></span></span><span style=display:flex><span><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>amqp</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>require</span>(<span style=color:#e6db74>&#34;amqplib&#34;</span>);
+</span></span><span style=display:flex><span><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>config</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>require</span>(<span style=color:#e6db74>&#34;./config&#34;</span>);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>Producer</span> {
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>channel</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>async</span> <span style=color:#a6e22e>createChannel</span>() {
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>rabbitmqUrl</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>config</span>.<span style=color:#a6e22e>rabbitMQ</span>.<span style=color:#a6e22e>url</span>;
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>connection</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>await</span> <span style=color:#a6e22e>amqp</span>.<span style=color:#a6e22e>connect</span>(<span style=color:#a6e22e>rabbitmqUrl</span>);
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>this</span>.<span style=color:#a6e22e>channel</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>await</span> <span style=color:#a6e22e>connection</span>.<span style=color:#a6e22e>createChannel</span>();
+</span></span><span style=display:flex><span>  }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>async</span> <span style=color:#a6e22e>publishMessage</span>(<span style=color:#a6e22e>routingKey</span>, <span style=color:#a6e22e>message</span>) {
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>if</span> (<span style=color:#f92672>!</span><span style=color:#66d9ef>this</span>.<span style=color:#a6e22e>channel</span>) {
+</span></span><span style=display:flex><span>      <span style=color:#66d9ef>await</span> <span style=color:#66d9ef>this</span>.<span style=color:#a6e22e>createChannel</span>();
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>exchangeName</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>config</span>.<span style=color:#a6e22e>rabbitMQ</span>.<span style=color:#a6e22e>exchangeName</span>;
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>exchangeType</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>config</span>.<span style=color:#a6e22e>rabbitMQ</span>.<span style=color:#a6e22e>exchangeType</span>;
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>await</span> <span style=color:#66d9ef>this</span>.<span style=color:#a6e22e>channel</span>.<span style=color:#a6e22e>assertExchange</span>(<span style=color:#a6e22e>exchangeName</span>, <span style=color:#a6e22e>exchangeType</span>);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>logDetails</span> <span style=color:#f92672>=</span> {
+</span></span><span style=display:flex><span>      <span style=color:#a6e22e>logType</span><span style=color:#f92672>:</span> <span style=color:#a6e22e>routingKey</span>,
+</span></span><span style=display:flex><span>      <span style=color:#a6e22e>message</span><span style=color:#f92672>:</span> <span style=color:#a6e22e>message</span>,
+</span></span><span style=display:flex><span>      <span style=color:#a6e22e>dateTime</span><span style=color:#f92672>:</span> <span style=color:#66d9ef>new</span> Date(),
+</span></span><span style=display:flex><span>    };
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>await</span> <span style=color:#66d9ef>this</span>.<span style=color:#a6e22e>channel</span>.<span style=color:#a6e22e>publish</span>(
+</span></span><span style=display:flex><span>      <span style=color:#a6e22e>exchangeName</span>,
+</span></span><span style=display:flex><span>      <span style=color:#a6e22e>routingKey</span>,
+</span></span><span style=display:flex><span>      <span style=color:#a6e22e>Buffer</span>.<span style=color:#a6e22e>from</span>(<span style=color:#a6e22e>JSON</span>.<span style=color:#a6e22e>stringify</span>(<span style=color:#a6e22e>logDetails</span>))
+</span></span><span style=display:flex><span>    );
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(
+</span></span><span style=display:flex><span>      <span style=color:#e6db74>`The new </span><span style=color:#e6db74>${</span><span style=color:#a6e22e>routingKey</span><span style=color:#e6db74>}</span><span style=color:#e6db74> log is sent to exchange </span><span style=color:#e6db74>${</span><span style=color:#a6e22e>exchangeName</span><span style=color:#e6db74>}</span><span style=color:#e6db74>`</span>
+</span></span><span style=display:flex><span>    );
+</span></span><span style=display:flex><span>  }
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>express</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>require</span>(<span style=color:#e6db74>&#34;express&#34;</span>);
+</span></span><span style=display:flex><span><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>app</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>express</span>();
+</span></span><span style=display:flex><span><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>producer</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> <span style=color:#a6e22e>Producer</span>();
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>app</span>.<span style=color:#a6e22e>use</span>(<span style=color:#a6e22e>express</span>.<span style=color:#a6e22e>json</span>());
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>app</span>.<span style=color:#a6e22e>post</span>(<span style=color:#e6db74>&#34;/sendLog&#34;</span>, <span style=color:#66d9ef>async</span> (<span style=color:#a6e22e>req</span>, <span style=color:#a6e22e>res</span>) =&gt; {
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>await</span> <span style=color:#a6e22e>producer</span>.<span style=color:#a6e22e>publishMessage</span>(<span style=color:#a6e22e>req</span>.<span style=color:#a6e22e>body</span>.<span style=color:#a6e22e>logType</span>, <span style=color:#a6e22e>req</span>.<span style=color:#a6e22e>body</span>.<span style=color:#a6e22e>message</span>);
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>res</span>.<span style=color:#a6e22e>send</span>();
+</span></span><span style=display:flex><span>});
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>app</span>.<span style=color:#a6e22e>listen</span>(<span style=color:#ae81ff>3000</span>, () =&gt; {
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#e6db74>&#34;Server started...&#34;</span>);
+</span></span><span style=display:flex><span>});
+</span></span></code></pre></div></div></details></br><details><summary><strong>Info service</strong></summary><div class=markdown-inner><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-js data-lang=js><span style=display:flex><span><span style=color:#75715e>// loggerService.js
+</span></span></span><span style=display:flex><span><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>amqp</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>require</span>(<span style=color:#e6db74>&#34;amqplib&#34;</span>);
+</span></span><span style=display:flex><span><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>config</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>require</span>(<span style=color:#e6db74>&#34;./config&#34;</span>);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>async</span> <span style=color:#66d9ef>function</span> <span style=color:#a6e22e>consumeMessages</span>() {
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>rabbitmqUrl</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>config</span>.<span style=color:#a6e22e>rabbitMQ</span>.<span style=color:#a6e22e>url</span>;
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>connection</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>await</span> <span style=color:#a6e22e>amqp</span>.<span style=color:#a6e22e>connect</span>(<span style=color:#a6e22e>rabbitmqUrl</span>);
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>channel</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>await</span> <span style=color:#a6e22e>connection</span>.<span style=color:#a6e22e>createChannel</span>();
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>exchangeName</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>config</span>.<span style=color:#a6e22e>rabbitMQ</span>.<span style=color:#a6e22e>exchangeName</span>;
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>exchangeType</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>config</span>.<span style=color:#a6e22e>rabbitMQ</span>.<span style=color:#a6e22e>exchangeType</span>;
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>await</span> <span style=color:#a6e22e>channel</span>.<span style=color:#a6e22e>assertExchange</span>(<span style=color:#a6e22e>exchangeName</span>, <span style=color:#a6e22e>exchangeType</span>);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>q</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>await</span> <span style=color:#a6e22e>channel</span>.<span style=color:#a6e22e>assertQueue</span>(<span style=color:#e6db74>&#34;InfoQueue&#34;</span>);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>await</span> <span style=color:#a6e22e>channel</span>.<span style=color:#a6e22e>bindQueue</span>(<span style=color:#a6e22e>q</span>.<span style=color:#a6e22e>queue</span>, <span style=color:#a6e22e>exchangeName</span>, <span style=color:#e6db74>&#34;Info&#34;</span>);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>channel</span>.<span style=color:#a6e22e>consume</span>(<span style=color:#a6e22e>q</span>.<span style=color:#a6e22e>queue</span>, (<span style=color:#a6e22e>msg</span>) =&gt; {
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>data</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>JSON</span>.<span style=color:#a6e22e>parse</span>(<span style=color:#a6e22e>msg</span>.<span style=color:#a6e22e>content</span>);
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#a6e22e>data</span>);
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>channel</span>.<span style=color:#a6e22e>ack</span>(<span style=color:#a6e22e>msg</span>);
+</span></span><span style=display:flex><span>  });
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>consumeMessages</span>();
+</span></span></code></pre></div></div></details></br><details><summary><strong>Warning service</strong></summary><div class=markdown-inner><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-js data-lang=js><span style=display:flex><span><span style=color:#75715e>// warningService.js
+</span></span></span><span style=display:flex><span><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>amqp</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>require</span>(<span style=color:#e6db74>&#34;amqplib&#34;</span>);
+</span></span><span style=display:flex><span><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>config</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>require</span>(<span style=color:#e6db74>&#34;./config&#34;</span>);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>async</span> <span style=color:#66d9ef>function</span> <span style=color:#a6e22e>consumeMessages</span>() {
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>connection</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>await</span> <span style=color:#a6e22e>amqp</span>.<span style=color:#a6e22e>connect</span>(<span style=color:#a6e22e>config</span>.<span style=color:#a6e22e>rabbitMQ</span>.<span style=color:#a6e22e>url</span>);
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>channel</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>await</span> <span style=color:#a6e22e>connection</span>.<span style=color:#a6e22e>createChannel</span>();
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>exchangeName</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>config</span>.<span style=color:#a6e22e>rabbitMQ</span>.<span style=color:#a6e22e>exchangeName</span>;
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>exchangeType</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>config</span>.<span style=color:#a6e22e>rabbitMQ</span>.<span style=color:#a6e22e>exchangeType</span>;
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>await</span> <span style=color:#a6e22e>channel</span>.<span style=color:#a6e22e>assertExchange</span>(<span style=color:#a6e22e>exchangeName</span>, <span style=color:#a6e22e>exchangeType</span>);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>q</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>await</span> <span style=color:#a6e22e>channel</span>.<span style=color:#a6e22e>assertQueue</span>(<span style=color:#e6db74>&#34;WarningQueue&#34;</span>);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>await</span> <span style=color:#a6e22e>channel</span>.<span style=color:#a6e22e>bindQueue</span>(<span style=color:#a6e22e>q</span>.<span style=color:#a6e22e>queue</span>, <span style=color:#a6e22e>exchangeName</span>, <span style=color:#e6db74>&#34;Warning&#34;</span>);
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>await</span> <span style=color:#a6e22e>channel</span>.<span style=color:#a6e22e>bindQueue</span>(<span style=color:#a6e22e>q</span>.<span style=color:#a6e22e>queue</span>, <span style=color:#a6e22e>exchangeName</span>, <span style=color:#e6db74>&#34;Error&#34;</span>);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>channel</span>.<span style=color:#a6e22e>consume</span>(<span style=color:#a6e22e>q</span>.<span style=color:#a6e22e>queue</span>, (<span style=color:#a6e22e>msg</span>) =&gt; {
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>data</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>JSON</span>.<span style=color:#a6e22e>parse</span>(<span style=color:#a6e22e>msg</span>.<span style=color:#a6e22e>content</span>);
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#a6e22e>data</span>);
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>channel</span>.<span style=color:#a6e22e>ack</span>(<span style=color:#a6e22e>msg</span>);
+</span></span><span style=display:flex><span>  });
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>consumeMessages</span>();
+</span></span></code></pre></div></div></details><ol><li>Create a folder to hold all services in one place, such as <code>RabbitMQ_Demo</code></li><li>Initialize Node.js with: <code>npm init -y</code></li><li>Install necessary libraries:<ul><li><code>amqplib</code>: <code>npm i amqplib</code></li><li><code>express</code>: <code>npm i express</code></li></ul></li><li>Prepare the necessary files: <code>config.js</code>, <code>post.http</code>, <code>loggerService.js</code>, <code>infoService.js</code>, and <code>warningService.js</code></li><li>Start the services:<ul><li>Logger service: <code>node loggerService.js</code></li><li>Info service: <code>node infoService.js</code></li><li>Warning service: <code>node warningService.js</code></li></ul></li></ol><h3 id=scenario>Scenario
+<a class=anchor href=#scenario>#</a></h3><ul><li>Send info, warning, or error messages to the Logger service<ul><li><strong>Expect</strong>: They are routed to the corresponding consumer services</li></ul></li><li>Try sending some messages with a logType that does not exist in any services<ul><li><strong>Expect</strong>: The logger service announces that the message was sent to the Exchange, but none of the consumer services receive the message</li></ul></li><li>Try commenting out the code line in the Consumer service&rsquo;s code block: <code>channel.ack(msg);</code><ul><li><strong>Expect</strong>: Consumer services receive messages normally, but when we start them again, they will receive all unacknowledged messages again</li></ul></li></ul><h2 id=reference>Reference
+<a class=anchor href=#reference>#</a></h2><ul><li>Cloudamqp: <a href=https://www.cloudamqp.com/blog/part4-rabbitmq-for-beginners-exchanges-routing-keys-bindings.html>Part 4: RabbitMQ Exchanges, routing keys and bindings</a> (Sep 24th, 2019)</li><li>Youtube: <a href="https://www.youtube.com/watch?v=i5G3uSGS7QQ">RabbitMQ basics (Including different exchange types + real use cases)</a> (Jun 2nd, 2022)</li><li>Svix: <a href=https://www.svix.com/resources/guides/rabbitmq-docker-setup-guide/>Running RabbitMQ in Docker: A Comprehensive Guide</a></li><li>Youtube: <a href="https://www.youtube.com/watch?v=igaVS0S1hA4">NodeJs Microservices using RabbitMQ (Message Queueing)</a> (Jul 11th, 2022)</li></ul><style>.feedback-card{border:1px solid #ddd;border-radius:8px;padding:20px;max-width:100%;box-shadow:0 2px 5px rgba(0,0,0,.1);background-color:#f9f9fb}.feedback-card h2{font-size:20px;margin-top:0;margin-bottom:10px}.feedback-card .buttons{margin:10px 0}.feedback-card button{border:none;background-color:#f0f0f0;border-radius:4px;padding:10px 15px;margin-right:10px;cursor:pointer;font-size:16px}.feedback-card button:hover{background-color:#e0e0e0}.feedback-card a{color:#0074d9;text-decoration:none}.feedback-card a:hover{text-decoration:underline}.feedback-card p{font-size:14px;color:#555}.modal{display:none;position:fixed;top:0;left:0;width:100%;height:100%;border-radius:7px;padding-bottom:50px;background-color:rgba(0,0,0,.5);justify-content:center;align-items:flex-end}.modal-content{background-color:#fff;padding:20px;border-radius:5px;width:300px}.modal input{width:100%;padding:10px;margin-bottom:10px}</style><div class=feedback-card id=feedbackCard><h2>Help improve my blog</h2><p>Was this page helpful to you?</p><div class=buttons><button id=yesBtn>👍 Yes</button>
+<button id=noBtn>👎 No</button></div><p>This page was last modified at <strong>2025-02-11</strong></p><ul><li><a href=https://github.com/DangPham112000/blog target=_blank>View this page on GitHub</a></li><li><a href=# class=link-button id=linkButton>Report a problem with this content</a></li></ul></div><div class=modal id=formModal><div class=feedback-card><h2>Can I know your name?</h2><form id=form><input type=text name=username placeholder="Enter your name">
+<button type=submit>Yes</button>
+<button type=submit>No</button></form></div></div><script>const feedbackCardEle=document.getElementById("feedbackCard"),formModalEle=document.getElementById("formModal"),elesToShowForm=["linkButton","yesBtn","noBtn"];for(const e of elesToShowForm)document.getElementById(e).addEventListener("click",function(e){e.preventDefault(),formModalEle.style.display="flex"});window.onclick=function(e){e.target===formModalEle&&(formModalEle.style.display="none")},document.getElementById("form").addEventListener("submit",function(e){e.preventDefault(),alert("This feature is currently being developed"),formModalEle.style.display="none"})</script></article><footer class=book-footer><div class="flex flex-wrap justify-between"></div><script>(function(){function e(e){const t=window.getSelection(),n=document.createRange();n.selectNodeContents(e),t.removeAllRanges(),t.addRange(n)}document.querySelectorAll("pre code").forEach(t=>{t.addEventListener("click",function(){if(window.getSelection().toString())return;e(t.parentElement),navigator.clipboard&&navigator.clipboard.writeText(t.parentElement.textContent)})})})()</script></footer><div class=book-comments></div><label for=menu-control class="hidden book-menu-overlay"></label></div><aside class=book-toc><div class=book-toc-content><nav id=TableOfContents><ul><li><a href=#exchange-types>Exchange types</a><ul><li><a href=#direct-exchange>Direct Exchange</a></li><li><a href=#topic-exchange>Topic Exchange</a></li><li><a href=#fanout-exchange>Fanout Exchange</a></li><li><a href=#headers-exchange>Headers Exchange</a></li><li><a href=#dead-letter-exchange>Dead Letter Exchange</a></li></ul></li><li><a href=#demo>Demo</a><ul><li><a href=#setup-rabbitmq-broker>Setup RabbitMQ Broker</a></li><li><a href=#setup-services>Setup services</a></li><li><a href=#scenario>Scenario</a></li></ul></li><li><a href=#reference>Reference</a></li></ul></nav></div></aside></main></body></html>

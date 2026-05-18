@@ -1,12 +1,1 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>Docs on Dante 0401</title>
-    <link>https://dangpham112000.github.io/docs/</link>
-    <description>Recent content in Docs on Dante 0401</description>
-    <generator>Hugo</generator>
-    <language>en-us</language>
-    <lastBuildDate></lastBuildDate>
-    <atom:link href="https://dangpham112000.github.io/docs/index.xml" rel="self" type="application/rss+xml" />
-  </channel>
-</rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Docs on Dante 0401</title><link>https://dangpham112000.github.io/docs/</link><description>Recent content in Docs on Dante 0401</description><generator>Hugo</generator><language>en-us</language><lastBuildDate/><atom:link href="https://dangpham112000.github.io/docs/index.xml" rel="self" type="application/rss+xml"/></channel></rss>
