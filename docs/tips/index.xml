@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>TIPS on Dante 0401</title><link>https://dangpham112000.github.io/docs/tips/</link><description>Recent content in TIPS on Dante 0401</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Tue, 31 Dec 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://dangpham112000.github.io/docs/tips/index.xml" rel="self" type="application/rss+xml"/><item><title>Unit Test</title><link>https://dangpham112000.github.io/docs/tips/001_unit_test/</link><pubDate>Sat, 06 Jan 2024 00:00:00 +0000</pubDate><guid>https://dangpham112000.github.io/docs/tips/001_unit_test/</guid><description>&lt;h1 id="unit-test-tips"&gt;
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>TIPS on Dante 0401</title><link>https://dangpham112000.github.io/docs/tips/</link><description>Recent content in TIPS on Dante 0401</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Sat, 23 May 2026 11:41:47 +0000</lastBuildDate><atom:link href="https://dangpham112000.github.io/docs/tips/index.xml" rel="self" type="application/rss+xml"/><item><title>Unit Test</title><link>https://dangpham112000.github.io/docs/tips/001_unit_test/</link><pubDate>Sat, 06 Jan 2024 00:00:00 +0000</pubDate><guid>https://dangpham112000.github.io/docs/tips/001_unit_test/</guid><description>&lt;h1 id="unit-test-tips"&gt;
  Unit Test Tips
  &lt;a class="anchor" href="#unit-test-tips"&gt;#&lt;/a&gt;
 &lt;/h1&gt;
@@ -458,4 +458,29 @@
  &lt;a href="https://github.com/zsh-users/zsh-autosuggestions?tab=readme-ov-file#zsh-autosuggestions"&gt;Auto-suggestions&lt;/a&gt;
  &lt;a class="anchor" href="#auto-suggestions"&gt;#&lt;/a&gt;
 &lt;/h4&gt;
-&lt;p&gt;&lt;img src="https://dangpham112000.github.io/tips/passion/auto_suggestions.png" alt="auto_suggestions" /&gt;&lt;/p&gt;</description></item></channel></rss>
+&lt;p&gt;&lt;img src="https://dangpham112000.github.io/tips/passion/auto_suggestions.png" alt="auto_suggestions" /&gt;&lt;/p&gt;</description></item><item><title>Vim</title><link>https://dangpham112000.github.io/docs/tips/006_vim/</link><pubDate>Sat, 23 May 2026 11:41:47 +0000</pubDate><guid>https://dangpham112000.github.io/docs/tips/006_vim/</guid><description>&lt;h1 id="vim-tips"&gt;
+ Vim Tips
+ &lt;a class="anchor" href="#vim-tips"&gt;#&lt;/a&gt;
+&lt;/h1&gt;
+&lt;p&gt;Vim is a highly configurable text editor built to make creating and changing any kind of text very efficient. Here are some general tips and commands organized by mode.&lt;/p&gt;
+&lt;h2 id="normal-mode"&gt;
+ Normal Mode
+ &lt;a class="anchor" href="#normal-mode"&gt;#&lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;Normal mode is the default mode where you navigate and manipulate text.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;dd&lt;/code&gt;: &lt;strong&gt;Quick delete line&lt;/strong&gt;. Deletes the current line and copies it to the clipboard.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;gg=G&lt;/code&gt;: &lt;strong&gt;Quick format document&lt;/strong&gt;. &lt;code&gt;gg&lt;/code&gt; goes to the top of the file, &lt;code&gt;=&lt;/code&gt; formats the code, and &lt;code&gt;G&lt;/code&gt; tells it to format until the end of the file.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;u&lt;/code&gt;: &lt;strong&gt;Undo&lt;/strong&gt;. Undoes the last change.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Ctrl + r&lt;/code&gt;: &lt;strong&gt;Redo&lt;/strong&gt;. Redoes the last undone change.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;yy&lt;/code&gt;: &lt;strong&gt;Yank (copy) line&lt;/strong&gt;. Copies the current line.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;p&lt;/code&gt;: &lt;strong&gt;Paste&lt;/strong&gt;. Pastes the copied or deleted text after the cursor.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;/pattern&lt;/code&gt;: &lt;strong&gt;Search&lt;/strong&gt;. Searches forward for the given pattern. Press &lt;code&gt;n&lt;/code&gt; for next match, &lt;code&gt;N&lt;/code&gt; for previous.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;0&lt;/code&gt; or &lt;code&gt;^&lt;/code&gt;: &lt;strong&gt;Start of line&lt;/strong&gt;. Moves the cursor to the beginning of the current line.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;$&lt;/code&gt;: &lt;strong&gt;End of line&lt;/strong&gt;. Moves the cursor to the end of the current line.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="insert-mode"&gt;
+ Insert Mode
+ &lt;a class="anchor" href="#insert-mode"&gt;#&lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;Insert mode is where you actually type text into the file.&lt;/p&gt;</description></item></channel></rss>

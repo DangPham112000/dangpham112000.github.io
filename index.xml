@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Introduction on Dante 0401</title><link>https://dangpham112000.github.io/</link><description>Recent content in Introduction on Dante 0401</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Wed, 12 Feb 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://dangpham112000.github.io/index.xml" rel="self" type="application/rss+xml"/><item><title>Building an MCP Server from Scratch: An E-commerce Case Study</title><link>https://dangpham112000.github.io/docs/research/mcp-server-tutorial/</link><pubDate>Mon, 20 May 2024 00:00:00 +0000</pubDate><guid>https://dangpham112000.github.io/docs/research/mcp-server-tutorial/</guid><description>&lt;p&gt;Imagine you run a large e-commerce platform. You want to give your shopkeepers a &amp;ldquo;smart assistant&amp;rdquo; to help them analyze their sales, check inventory, and manage their store. Instead of building hundreds of custom dashboards, you decide to use AI.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Introduction on Dante 0401</title><link>https://dangpham112000.github.io/</link><description>Recent content in Introduction on Dante 0401</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Sat, 23 May 2026 11:41:47 +0000</lastBuildDate><atom:link href="https://dangpham112000.github.io/index.xml" rel="self" type="application/rss+xml"/><item><title>Building an MCP Server from Scratch: An E-commerce Case Study</title><link>https://dangpham112000.github.io/docs/research/mcp-server-tutorial/</link><pubDate>Mon, 20 May 2024 00:00:00 +0000</pubDate><guid>https://dangpham112000.github.io/docs/research/mcp-server-tutorial/</guid><description>&lt;p&gt;Imagine you run a large e-commerce platform. You want to give your shopkeepers a &amp;ldquo;smart assistant&amp;rdquo; to help them analyze their sales, check inventory, and manage their store. Instead of building hundreds of custom dashboards, you decide to use AI.&lt;/p&gt;
 &lt;p&gt;However, AI models don&amp;rsquo;t naturally know what&amp;rsquo;s in your database. This is where &lt;strong&gt;Model Context Protocol (MCP)&lt;/strong&gt; comes in. MCP acts as a secure bridge, letting the AI talk to your specific database or internal APIs safely.&lt;/p&gt;</description></item><item><title>Top 5 AI Friendly for Integration: A JavaScript Developer's Guide</title><link>https://dangpham112000.github.io/docs/research/top-5-ai-integration/</link><pubDate>Fri, 24 May 2024 00:00:00 +0000</pubDate><guid>https://dangpham112000.github.io/docs/research/top-5-ai-integration/</guid><description>&lt;p&gt;Integrating Artificial Intelligence into modern applications is no longer just a trend; it&amp;rsquo;s an expectation. Whether you&amp;rsquo;re building a customer service chatbot, a smart document analyzer, or a semantic search engine, choosing the right AI provider and integration strategy is critical.&lt;/p&gt;
 &lt;p&gt;In this guide, we&amp;rsquo;ll explore how to build AI features using JavaScript, compare the top 5 most popular AI providers, and look at code examples for setting them up.&lt;/p&gt;</description></item><item><title>TLS - SSL</title><link>https://dangpham112000.github.io/docs/research/be_protocol/tls_ssl/</link><pubDate>Sun, 14 Jan 2024 00:00:00 +0000</pubDate><guid>https://dangpham112000.github.io/docs/research/be_protocol/tls_ssl/</guid><description>&lt;h1 id="tls---ssl"&gt;
  TLS - SSL
@@ -887,7 +887,32 @@
  &lt;a href="https://github.com/zsh-users/zsh-autosuggestions?tab=readme-ov-file#zsh-autosuggestions"&gt;Auto-suggestions&lt;/a&gt;
  &lt;a class="anchor" href="#auto-suggestions"&gt;#&lt;/a&gt;
 &lt;/h4&gt;
-&lt;p&gt;&lt;img src="https://dangpham112000.github.io/tips/passion/auto_suggestions.png" alt="auto_suggestions" /&gt;&lt;/p&gt;</description></item><item><title>HSTS</title><link>https://dangpham112000.github.io/docs/research/security/hsts/</link><pubDate>Sat, 15 Jun 2024 01:47:46 +0700</pubDate><guid>https://dangpham112000.github.io/docs/research/security/hsts/</guid><description>&lt;h1 id="http-strict-transport-security"&gt;
+&lt;p&gt;&lt;img src="https://dangpham112000.github.io/tips/passion/auto_suggestions.png" alt="auto_suggestions" /&gt;&lt;/p&gt;</description></item><item><title>Vim</title><link>https://dangpham112000.github.io/docs/tips/006_vim/</link><pubDate>Sat, 23 May 2026 11:41:47 +0000</pubDate><guid>https://dangpham112000.github.io/docs/tips/006_vim/</guid><description>&lt;h1 id="vim-tips"&gt;
+ Vim Tips
+ &lt;a class="anchor" href="#vim-tips"&gt;#&lt;/a&gt;
+&lt;/h1&gt;
+&lt;p&gt;Vim is a highly configurable text editor built to make creating and changing any kind of text very efficient. Here are some general tips and commands organized by mode.&lt;/p&gt;
+&lt;h2 id="normal-mode"&gt;
+ Normal Mode
+ &lt;a class="anchor" href="#normal-mode"&gt;#&lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;Normal mode is the default mode where you navigate and manipulate text.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;dd&lt;/code&gt;: &lt;strong&gt;Quick delete line&lt;/strong&gt;. Deletes the current line and copies it to the clipboard.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;gg=G&lt;/code&gt;: &lt;strong&gt;Quick format document&lt;/strong&gt;. &lt;code&gt;gg&lt;/code&gt; goes to the top of the file, &lt;code&gt;=&lt;/code&gt; formats the code, and &lt;code&gt;G&lt;/code&gt; tells it to format until the end of the file.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;u&lt;/code&gt;: &lt;strong&gt;Undo&lt;/strong&gt;. Undoes the last change.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Ctrl + r&lt;/code&gt;: &lt;strong&gt;Redo&lt;/strong&gt;. Redoes the last undone change.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;yy&lt;/code&gt;: &lt;strong&gt;Yank (copy) line&lt;/strong&gt;. Copies the current line.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;p&lt;/code&gt;: &lt;strong&gt;Paste&lt;/strong&gt;. Pastes the copied or deleted text after the cursor.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;/pattern&lt;/code&gt;: &lt;strong&gt;Search&lt;/strong&gt;. Searches forward for the given pattern. Press &lt;code&gt;n&lt;/code&gt; for next match, &lt;code&gt;N&lt;/code&gt; for previous.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;0&lt;/code&gt; or &lt;code&gt;^&lt;/code&gt;: &lt;strong&gt;Start of line&lt;/strong&gt;. Moves the cursor to the beginning of the current line.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;$&lt;/code&gt;: &lt;strong&gt;End of line&lt;/strong&gt;. Moves the cursor to the end of the current line.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="insert-mode"&gt;
+ Insert Mode
+ &lt;a class="anchor" href="#insert-mode"&gt;#&lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;Insert mode is where you actually type text into the file.&lt;/p&gt;</description></item><item><title>HSTS</title><link>https://dangpham112000.github.io/docs/research/security/hsts/</link><pubDate>Sat, 15 Jun 2024 01:47:46 +0700</pubDate><guid>https://dangpham112000.github.io/docs/research/security/hsts/</guid><description>&lt;h1 id="http-strict-transport-security"&gt;
  HTTP Strict-Transport-Security
  &lt;a class="anchor" href="#http-strict-transport-security"&gt;#&lt;/a&gt;
 &lt;/h1&gt;
